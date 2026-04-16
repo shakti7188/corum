@@ -1,0 +1,55 @@
+---
+import { navLinks, ctaLink } from '../data/siteNav';
+import ArrowIcon from './ArrowIcon.astro';
+---
+<div class="PrimaryNavigation_page__DgiUM">
+  <button class="PrimaryNavigation_icon__qAQCe" data-modal-hide="true" aria-label="Open menu">
+    <div class="PrimaryNavigation_line__eUBQ0"></div>
+    <div class="PrimaryNavigation_line__eUBQ0"></div>
+  </button>
+  <aside class="PrimaryNavigation_flyout__nH7QV">
+    <nav class="PrimaryNavigation_navigation__l8Jgb">
+      <ul>
+        {navLinks.map((item) => (
+          <li>
+            {item.children ? (
+              <>
+                <div class="PrimaryNavigation_parent__bfX37">
+                  {item.label}
+                  <figure class="PrimaryNavigation_toggleSign__XESvT">
+                    <span class="PrimaryNavigation_toggleInner__Lz3QB">
+                      <span class="PrimaryNavigation_toggleLine__QUlfd"></span>
+                      <span class="PrimaryNavigation_toggleLine__QUlfd"></span>
+                    </span>
+                  </figure>
+                </div>
+                <ul class="PrimaryNavigation_submenu__ryGWu">
+                  {item.children.map((child) => (
+                    <li><a href={child.href}>{child.label}</a></li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <a href={item.href}>{item.label}</a>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div class="PrimaryNavigation_buttonContainer__iiKTy">
+        <div class="Magnetic_magnetic__LncOy" data-fill="false">
+          <div class="Button_button__JJiqJ" data-direction="forwards">
+            <a class="Button_inner__fnyH6" href={ctaLink.href}>
+              <span class="Button_border__hirH2"></span>
+              <span class="Button_text__IZaCD">
+                <span class="Button_textInner__JTTHe">{ctaLink.label}</span>
+                <ArrowIcon class="Button_buttonArrow__0W9XI" />
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="PrimaryNavigation_background__vtv26"></div>
+  </aside>
+  <figure class="PrimaryNavigation_pageOverlay__QD6me"></figure>
+</div>

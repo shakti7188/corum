@@ -1,0 +1,60 @@
+---
+import { articles } from "../data/content";
+---
+
+<section id="blog" class="py-24 md:py-32 border-t border-[color:var(--color-rule)]">
+  <div class="max-wide container-x">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16" data-reveal-group>
+      <div>
+        <p data-reveal class="text-[12px] uppercase tracking-[0.2em] text-[color:var(--color-ink-mute)] mb-4">
+          Journal
+        </p>
+        <h2 data-reveal class="headline text-[clamp(2.25rem,5vw,4.5rem)] max-w-[16ch]">
+          Latest{" "}
+          <span class="font-serif-it">articles.</span>
+        </h2>
+      </div>
+      <a data-reveal href="#" class="cta-pill cta-ghost self-start md:self-end">
+        View our blog
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" data-reveal-group>
+      {
+        articles.map((a) => (
+          <a href="#" class="group flex flex-col gap-4" data-reveal>
+            <div class="aspect-[4/3] overflow-hidden rounded-2xl bg-[color:var(--color-rule)]">
+              <img
+                src={a.image}
+                alt=""
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)] border border-[color:var(--color-rule)] rounded-full px-3 py-1">
+                {a.tag}
+              </span>
+            </div>
+            <h3 class="text-[1.2rem] md:text-[1.35rem] leading-snug font-medium max-w-[32ch]">
+              {a.title}
+            </h3>
+            <span class="link-underline text-sm mt-auto inline-flex items-center gap-2">
+              Read more
+              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                <path
+                  d="M2 10 10 2M4 2h6v6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

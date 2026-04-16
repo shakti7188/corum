@@ -1,0 +1,16 @@
+---
+import { brand, ctaLink } from '../data/siteNav';
+import BrandMark from './BrandMark.astro';
+import ArrowIcon from './ArrowIcon.astro';
+---
+<header class="Header_header__KwdYD" data-modal-hide="true">
+  <a class="Header_logo____uDV" href="/" aria-label={brand.name}>
+    <BrandMark />
+  </a>
+  <a class="Header_button__yG4_K" href={ctaLink.href}>
+    <span class="Header_text__taNU6">
+      <span>{ctaLink.shortLabel}</span>
+      <ArrowIcon class="Header_buttonArrow__frtNz" />
+    </span>
+  </a>
+</header>

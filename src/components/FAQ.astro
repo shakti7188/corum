@@ -1,0 +1,59 @@
+---
+import { faqs } from "../data/content";
+---
+
+<section id="faq" class="py-24 md:py-32 border-t border-[color:var(--color-rule)]">
+  <div class="max-wide container-x grid grid-cols-12 gap-8">
+    <div class="col-span-12 md:col-span-4" data-reveal-group>
+      <p data-reveal class="text-[12px] uppercase tracking-[0.2em] text-[color:var(--color-ink-mute)] mb-4">
+        FAQs
+      </p>
+      <h2 data-reveal class="headline text-[clamp(2.25rem,4.4vw,4rem)] max-w-[12ch]">
+        Frequently{" "}
+        <span class="font-serif-it">asked.</span>
+      </h2>
+    </div>
+
+    <div class="col-span-12 md:col-span-8 flex flex-col" data-reveal-group>
+      {
+        faqs.map((f, i) => (
+          <details
+            class="faq-item group border-t border-[color:var(--color-rule)] last:border-b"
+            data-reveal
+          >
+            <summary class="flex cursor-pointer items-start justify-between gap-6 py-6 md:py-7 text-left">
+              <span class="flex items-start gap-5">
+                <span class="text-[12px] tracking-[0.2em] text-[color:var(--color-ink-mute)] pt-2">
+                  0{i + 1}
+                </span>
+                <span class="text-[1.1rem] md:text-[1.3rem] font-medium leading-snug">
+                  {f.q}
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                class="faq-icon mt-2 inline-flex w-7 h-7 shrink-0 items-center justify-center rounded-full border border-[color:var(--color-ink)] transition-transform duration-300"
+              >
+                <svg width="10" height="10" viewBox="0 0 10 10">
+                  <path
+                    d="M5 1v8M1 5h8"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-body">
+              <div>
+                <p class="pb-7 md:pb-8 pl-0 md:pl-[3.5rem] max-w-[60ch] text-[15px] leading-relaxed text-[color:var(--color-ink-soft)]">
+                  {f.a}
+                </p>
+              </div>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

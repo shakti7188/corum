@@ -1,0 +1,51 @@
+---
+import { stats } from "../data/content";
+---
+
+<section class="section-pad border-t border-[color:var(--color-rule)] bg-[color:var(--color-bg)]">
+  <div class="container-wide">
+    <div class="max-w-[32ch] mb-16" data-reveal-group>
+      <p data-reveal class="text-[12px] uppercase tracking-[0.2em] text-[color:var(--color-ink-mute)] mb-4">
+        Results
+      </p>
+      <h2 data-reveal class="headline" style="font-size: var(--fs-60); max-width: 14ch;">
+        Numbers that{" "}
+        <span class="font-serif-it">mean something.</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16" data-reveal-group>
+      {
+        stats.map((s) => (
+          <div class="flex flex-col gap-4" data-reveal>
+            <div
+              class="stat-number"
+              style="font-size: var(--fs-100);"
+              data-counter={s.value}
+              data-decimals={s.decimals ?? 1}
+              data-suffix={s.suffix}
+            >
+              0{s.suffix}
+            </div>
+            <p class="text-[15px] leading-relaxed text-[color:var(--color-ink-soft)] max-w-[30ch]">
+              {s.label}
+            </p>
+            <a href="#" class="link-underline text-sm inline-flex items-center gap-2 w-fit">
+              View project — {s.project}
+              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                <path
+                  d="M2 10 10 2M4 2h6v6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,67 @@
+---
+import { brand, socialLinks, sectorLinks, legalLinks } from '../data/siteNav';
+import BrandMark from './BrandMark.astro';
+
+const socialArrowPath =
+  'M12.65.31a.504.504 0 00-.46-.31H.5C.22 0 0 .22 0 .5s.22.5.5.5h10.49L.55 11.43c-.2.2-.2.51 0 .71a.485.485 0 00.7 0L11.69 1.71v10.47c0 .28.22.5.5.5s.5-.22.5-.5V.52c0-.07 0-.14-.04-.21z';
+---
+<footer class="Footer_footer__pQtti">
+  <div class="container">
+    <div class="Footer_top__YBhK_">
+      <span class="Footer_logo__fUEOF" aria-hidden="true">
+        <BrandMark fill="#fff" />
+      </span>
+      <a class="Footer_email__nLajh CopyText_copyText__OtWNq" href={`mailto:${brand.email}`}>
+        {brand.email}
+        <div class="CopyText_tooltip__HuxWa">Copy email address</div>
+      </a>
+    </div>
+    <div class="Footer_bottom__wxP7Z">
+      <div class="Footer_socialLinks__tA7gt">
+        {socialLinks.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener noreferrer">
+            {s.label}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.69 12.69" aria-hidden="true">
+              <path fill="#fff" stroke-width="0" d={socialArrowPath}></path>
+            </svg>
+          </a>
+        ))}
+      </div>
+      <ul class="Footer_lastNav__at6Kh" data-type="mobile">
+        {legalLinks.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+      <div class="Footer_sectorsWrap__UM4Zx" data-type="mobile">
+        <span class="Footer_sectorTitle__yEZhb">Our sectors :</span>
+        <ul class="Footer_sectorMenu__GX7QZ">
+          {sectorLinks.map((s) => (
+            <a class="Footer_sectorItem__0Cx14" href={s.href}>{s.label}</a>
+          ))}
+        </ul>
+      </div>
+      <div class="Footer_logos__jFNys"></div>
+    </div>
+    <div class="Footer_last__auU9C">
+      <ul class="Footer_lastNav__at6Kh" data-type="desktop">
+        {legalLinks.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+      <a class="Footer_newsletterButton__wp2hz" href="/newsletter">Sign up to our newsletter</a>
+    </div>
+    <div class="Footer_copyright__j4atB">
+      <div class="Footer_sectorsWrap__UM4Zx" data-type="desktop">
+        <span class="Footer_sectorTitle__yEZhb">Our sectors :</span>
+        <ul class="Footer_sectorMenu__GX7QZ">
+          {sectorLinks.map((s) => (
+            <a class="Footer_sectorItem__0Cx14" href={s.href}>{s.label}</a>
+          ))}
+        </ul>
+      </div>
+      <div class="Footer_copyrightTextWrap__uhQWh">
+        <span class="Footer_copyrightText__f_Lte">© {brand.name} {brand.copyrightYear}</span>
+      </div>
+    </div>
+  </div>
+</footer>
