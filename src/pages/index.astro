@@ -1,37 +1,116 @@
 ---
-import fs from 'node:fs';
-
-const raw = fs.readFileSync(
-  new URL('../../raw-clone/siteDown/index.html', import.meta.url),
-  'utf-8',
-);
-
-function localize(s: string): string {
-  return s
-    .replace(/(src|href)="js\//g, '$1="/_next/static/chunks/')
-    .replace(/(src|href)="css\//g, '$1="/css/')
-    .replace(/(src|href)="images\//g, '$1="/images/')
-    .replace(/(src|href)="media\//g, '$1="/media/')
-    .replace(/(src|href)="fonts\//g, '$1="/fonts/');
-}
-
-const headInner = raw.match(/<head[^>]*>([\s\S]*?)<\/head>/)?.[1] ?? '';
-const bodyInner = raw.match(/<body[^>]*>([\s\S]*?)<\/body>/)?.[1] ?? '';
-
-// The original site paints a fixed #efefef overlay while JS boots, then removes it
-// once hydration completes. We don't run the removal, so strip it at ingest time.
-const stripPreloader = (s: string) =>
-  s.replace(/<div\b[^>]*style="[^"]*position:\s*fixed;[^"]*z-index:\s*50[\s\S]*?"><\/div>/, '');
-
-const headHtml = localize(headInner);
-const bodyHtml = stripPreloader(localize(bodyInner));
+import Navigation from '../components/Navigation.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CloudBackground from '../components/CloudBackground.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Ethos from '../components/Ethos.astro';
+import Work from '../components/Work.astro';
+import Statistics from '../components/Statistics.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Partners from '../components/Partners.astro';
+import Articles from '../components/Articles.astro';
+import FaqsList from '../components/FaqsList.astro';
+import KotaverseCta from '../components/KotaverseCta.astro';
 ---
 <!doctype html>
 <html lang="en" class="__variable_a78db3 __variable_ab8453">
   <head>
-    <Fragment set:html={headHtml} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Corum8 — preview</title>
+    <link rel="preload" href="/_next/static/media/482a8097102f5f9f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+    <link rel="preload" href="/_next/static/media/50431d8feb7ceff2-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+    <link rel="preload" href="/_next/static/media/54252e86b97de34f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+    <link rel="preload" href="/_next/static/media/bb0bdc9db5c241da-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+    <link rel="stylesheet" href="/css/c6a848d34dfd7dce.css">
+    <link rel="stylesheet" href="/css/0aea7e632ce3cedf.css">
+    <link rel="stylesheet" href="/css/053ade63481ccabc.css">
+    <link rel="stylesheet" href="/css/e36a1a112c1c5ec8.css">
+    <link rel="stylesheet" href="/css/13f753c524b3db20.css">
+    <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css">
+    <link rel="stylesheet" href="/css/de01f06c65200d74.css">
+    <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css">
+    <link rel="stylesheet" href="/css/ecdfc97c33854f51.css">
+    <link rel="stylesheet" href="/css/3d63d502945bea5a.css">
   </head>
   <body>
-    <Fragment set:html={bodyHtml} />
+    <Navigation />
+    <Header />
+
+    <main style="position: relative; z-index: 1;">
+      <Hero />
+      <Services />
+      <Ethos />
+      <Work />
+      <Statistics />
+      <Testimonials />
+      <Partners />
+      <Articles />
+
+      <!-- Removed blur bridge as per user request -->
+
+      <FaqsList />
+      <KotaverseCta />
+    </main>
+
+    <Footer />
+
+    <script>
+      import '../scripts/site.ts';
+    </script>
+
+    <style is:global>
+      body { margin: 0; background: #efefef; }
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-end;
+        padding: 0 clamp(1.5rem, 4vw, 4rem) clamp(4rem, 10vh, 8rem);
+        overflow: hidden;
+      }
+      .hero-inner { position: relative; z-index: 1; max-width: 60rem; color: #111; }
+      .hero-eyebrow {
+        font-size: 0.9rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin: 0 0 1.5rem;
+      }
+      .hero-title {
+        font-size: clamp(3rem, 9vw, 8rem);
+        line-height: 0.95;
+        letter-spacing: -0.025em;
+        font-weight: 400;
+        margin: 0 0 2rem;
+      }
+      .hero-title span { display: block; }
+      .hero-sub {
+        font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+        max-width: 40rem;
+        line-height: 1.5;
+        margin: 0 0 2.5rem;
+        opacity: 0.85;
+      }
+      .hero-cta {
+        display: inline-block;
+        padding: 1rem 1.75rem;
+        border: 1px solid #111;
+        border-radius: 999px;
+        color: #111;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background 0.3s, color 0.3s;
+      }
+      .hero-cta:hover { background: #111; color: #fff; }
+      .scroll-demo {
+        padding: 10rem 2rem;
+        background: #111;
+        color: #eee;
+        text-align: center;
+      }
+    </style>
   </body>
 </html>

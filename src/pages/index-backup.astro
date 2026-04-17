@@ -1,0 +1,37 @@
+---
+import fs from 'node:fs';
+
+const raw = fs.readFileSync(
+  new URL('../../raw-clone/siteDown/index.html', import.meta.url),
+  'utf-8',
+);
+
+function localize(s: string): string {
+  return s
+    .replace(/(src|href)="js\//g, '$1="/_next/static/chunks/')
+    .replace(/(src|href)="css\//g, '$1="/css/')
+    .replace(/(src|href)="images\//g, '$1="/images/')
+    .replace(/(src|href)="media\//g, '$1="/media/')
+    .replace(/(src|href)="fonts\//g, '$1="/fonts/');
+}
+
+const headInner = raw.match(/<head[^>]*>([\s\S]*?)<\/head>/)?.[1] ?? '';
+const bodyInner = raw.match(/<body[^>]*>([\s\S]*?)<\/body>/)?.[1] ?? '';
+
+// The original site paints a fixed #efefef overlay while JS boots, then removes it
+// once hydration completes. We don't run the removal, so strip it at ingest time.
+const stripPreloader = (s: string) =>
+  s.replace(/<div\b[^>]*style="[^"]*position:\s*fixed;[^"]*z-index:\s*50[\s\S]*?"><\/div>/, '');
+
+const headHtml = localize(headInner);
+const bodyHtml = stripPreloader(localize(bodyInner));
+---
+<!doctype html>
+<html lang="en" class="__variable_a78db3 __variable_ab8453">
+  <head>
+    <Fragment set:html={headHtml} />
+  </head>
+  <body>
+    <Fragment set:html={bodyHtml} />
+  </body>
+</html>
