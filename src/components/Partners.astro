@@ -1,71 +1,66 @@
 ---
-// Automatically extracted from KOTA clone
+// Our Clients — Corum8's headline partner roster.
+// Logos live in /public/clients (copied from assets/clients).
+const clients = [
+  { src: '/clients/binance.png',      alt: 'Binance' },
+  { src: '/clients/kucoin.png',       alt: 'KuCoin' },
+  { src: '/clients/okx.png',          alt: 'OKX' },
+  { src: '/clients/gate-io.png',      alt: 'Gate.io' },
+  { src: '/clients/wazirx.png',       alt: 'WazirX' },
+  { src: '/clients/metamask.png',     alt: 'MetaMask' },
+  { src: '/clients/tron.png',         alt: 'TRON' },
+  { src: '/clients/tether.png',       alt: 'Tether' },
+  { src: '/clients/kava.png',         alt: 'KAVA' },
+  { src: '/clients/etoro.png',        alt: 'eToro' },
+  { src: '/clients/fanadise.png',     alt: 'Fanadise' },
+  { src: '/clients/metarix.png',      alt: 'Metarix' },
+  { src: '/clients/ubuntu-tribe.png', alt: 'Ubuntu Tribe' },
+  { src: '/clients/dream11.png',      alt: 'Dream11' },
+  { src: '/clients/chingari.png',     alt: 'Chingari' },
+];
 ---
 
 <div class="Partners_partners__jBo8y">
-        <div class="DarkThemeSwitch_cover__hn_xc"></div>
-        <div class="container">
-          <div class="Partners_headingInner__vdhDe">
-            <h2 class="Partners_heading__AOTNV">
-              <div class="LargeHeading_headingOuter__i9qcd">
-                <span class="Partners_heading__AOTNV">Our</span><span class="Partners_heading__AOTNV Partners_bottom__5DSXe">Clients</span>
-              </div>
-            </h2>
-            <div class="Partners_arrowWrapper__Xq8Wc">
-              <span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 111.42 110.66">
-                  <polygon points="13.65 102.66 109.53 6.67 103.87 1.02 8 97 8 0 0 0 0 110.66 111.42 110.66 111.42 102.66 13.65 102.66" fill="#fff"></polygon></svg></span>
+  <div class="DarkThemeSwitch_cover__hn_xc"></div>
+  <div class="container">
+    <div class="Partners_headingInner__vdhDe">
+      <h2 class="Partners_heading__AOTNV">
+        <div class="LargeHeading_headingOuter__i9qcd">
+          <span class="Partners_heading__AOTNV">Our</span><span class="Partners_heading__AOTNV Partners_bottom__5DSXe">Clients</span>
+        </div>
+      </h2>
+      <div class="Partners_arrowWrapper__Xq8Wc">
+        <span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 111.42 110.66">
+          <polygon points="13.65 102.66 109.53 6.67 103.87 1.02 8 97 8 0 0 0 0 110.66 111.42 110.66 111.42 102.66 13.65 102.66" fill="#fff"></polygon>
+        </svg></span>
+      </div>
+    </div>
+    <div class="Partners_logos__7QiB4">
+      <div class="AnimatedLogoGrid_grid__3n0at">
+        <div class="Partners_logosInner__Aoq5_">
+          {clients.map((c) => (
+            <div class="Partners_logo__eDI8e" data-animation="grid-item">
+              <img src={c.src} alt={c.alt} loading="lazy" />
             </div>
-          </div>
-          <div class="Partners_logos__7QiB4">
-            <div class="AnimatedLogoGrid_grid__3n0at">
-              <div class="Partners_logosInner__Aoq5_">
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/Jamie-oliver.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/comptoir-libanais-1.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/british-red-cross.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/sym.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/penguin.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/raw.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/penhaligons.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/stoli.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/bounce.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/tangerine.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/tribepad.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/matchroom.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/diageo.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/sonovate.svg" alt="">
-                </div>
-                <div class="Partners_logo__eDI8e" data-animation="grid-item">
-                  <img src="/fonts/saatchi.svg" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Corum8 client logos ship as colour PNGs — flatten them to clean white marks
+     so the row reads as a unified brand wall on the dark section. */
+  .Partners_logo__eDI8e img {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    max-height: 56px;
+    object-fit: contain;
+  }
+
+  .Partners_logo__eDI8e:hover img {
+    opacity: 1;
+  }
+</style>
