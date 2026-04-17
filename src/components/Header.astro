@@ -4,13 +4,469 @@ import BrandMark from './BrandMark.astro';
 import ArrowIcon from './ArrowIcon.astro';
 ---
 <header class="Header_header__KwdYD" data-modal-hide="true">
-  <a class="Header_logo____uDV" href="/" aria-label={brand.name}>
-    <BrandMark />
-  </a>
-  <a class="Header_button__yG4_K" href={ctaLink.href}>
-    <span class="Header_text__taNU6">
-      <span>{ctaLink.shortLabel}</span>
-      <ArrowIcon class="Header_buttonArrow__frtNz" />
-    </span>
-  </a>
+  <div class="Header_left">
+    <a class="Header_logo____uDV" href="/" aria-label={brand.name}>
+      <BrandMark />
+    </a>
+  </div>
+  
+  <nav class="MegaMenu_nav">
+    <ul class="MegaMenu_list">
+      <!-- Non-Dropdown Links -->
+      <li class="MegaMenu_item"><a href="/" class="MegaMenu_link">Home</a></li>
+      
+      <!-- Marketing Mega Menu -->
+      <li class="MegaMenu_item has-dropdown">
+        <a href="/services/marketing" class="MegaMenu_link">Marketing <span class="Chevron"></span></a>
+        
+        <div class="MegaDropdown">
+          <div class="MegaDropdown_bg"></div>
+          <div class="MegaDropdown_inner">
+            <div class="MegaColWrapper"><div class="MegaCol">
+              <h4 class="MegaCol_title">Growth &amp; Digital</h4>
+              <a href="/services/marketing/performance-marketing"><span>Performance Marketing</span><span class="MegaCol_desc">Full-funnel ads across Meta, Google & X</span></a>
+              <a href="/services/marketing/seo"><span>SEO, AEO &amp; GEO</span><span class="MegaCol_desc">Rank on Google, appear in AI answers</span></a>
+              <a href="/services/marketing/social-media"><span>Social Media Management</span><span class="MegaCol_desc">Platform-native strategy & reporting</span></a>
+              <a href="/services/marketing/b2b-marketing"><span>B2B &amp; Lead Generation</span><span class="MegaCol_desc">ABM, LinkedIn outreach & CRM pipelines</span></a>
+            </div>
+            <div class="MegaCol">
+              <h4 class="MegaCol_title">PR &amp; Branding</h4>
+              <a href="/services/marketing/pr"><span>Crypto PR &amp; Media</span><span class="MegaCol_desc">Coverage across 10,000+ publications</span></a>
+              <a href="/services/marketing/branding"><span>Branding &amp; Design Studio</span><span class="MegaCol_desc">Identity, pitch decks & motion graphics</span></a>
+              <a href="/services/marketing/content"><span>Content Marketing</span><span class="MegaCol_desc">Blogs, whitepapers & thought leadership</span></a>
+            </div>
+            <div class="MegaCol">
+              <h4 class="MegaCol_title">Web3 Specific</h4>
+              <a href="/services/marketing/influencer-marketing"><span>Influencer &amp; KOL Marketing</span><span class="MegaCol_desc">25,000+ vetted influencers globally</span></a>
+              <a href="/services/marketing/community"><span>Community Building</span><span class="MegaCol_desc">Telegram, Discord & organic growth</span></a>
+              <a href="/services/marketing/listing"><span>Exchange Listings</span><span class="MegaCol_desc">CEX listing strategy & market making</span></a>
+            </div></div>
+            <div class="MegaCta">
+              <p>25,000+ influencers. 10,000+ media outlets. Full-funnel campaigns.</p>
+              <a href="/contact" class="Header_button__yG4_K MegaButton">
+                <span class="Header_text__taNU6">
+                  <span>Get Started</span>
+                  <ArrowIcon class="Header_buttonArrow__frtNz" />
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- Development Mega Menu -->
+      <li class="MegaMenu_item has-dropdown">
+        <a href="/services/development" class="MegaMenu_link">Development <span class="Chevron"></span></a>
+        
+        <div class="MegaDropdown">
+          <div class="MegaDropdown_bg"></div>
+          <div class="MegaDropdown_inner">
+            <div class="MegaCol">
+              <h4 class="MegaCol_title">Web3 &amp; Blockchain</h4>
+              <a href="/services/development/exchange"><span>CEX &amp; DEX Exchanges</span><span class="MegaCol_desc">Custom exchange platforms</span></a>
+              <a href="/services/development/rwa"><span>RWA Marketplace</span><span class="MegaCol_desc">Tokenize real-world assets</span></a>
+              <a href="/services/development/wallet"><span>Wallet Infrastructure</span><span class="MegaCol_desc">Enterprise-grade wallet systems</span></a>
+              <a href="/services/development/defi"><span>DeFi &amp; Staking Platforms</span><span class="MegaCol_desc">Battle-tested DeFi protocols</span></a>
+            </div>
+            <div class="MegaCol">
+              <h4 class="MegaCol_title">AI &amp; Core Tech</h4>
+              <a href="/services/development/ai"><span>AI &amp; Automation</span><span class="MegaCol_desc">Production AI systems & workflows</span></a>
+              <a href="/services/development/mobile-web"><span>Mobile &amp; Web Apps</span><span class="MegaCol_desc">High-performance applications</span></a>
+              <a href="/services/development/token"><span>Token &amp; Stablecoin</span><span class="MegaCol_desc">End-to-end token launches</span></a>
+              <a href="/services/development/blockchain-layer"><span>Blockchain L0/L1/L2</span><span class="MegaCol_desc">Custom layer development</span></a>
+            </div>
+            <div class="MegaCol">
+              <h4 class="MegaCol_title">Fintech &amp; Trading</h4>
+              <a href="/services/development/payment"><span>Payment Solutions</span><span class="MegaCol_desc">Crypto-fiat gateways & payment rails</span></a>
+              <a href="/services/development/trading"><span>Trading Bots &amp; Tools</span><span class="MegaCol_desc">Automated trading infrastructure</span></a>
+              <a href="/services/development/nft"><span>NFT Marketplace</span><span class="MegaCol_desc">Custom NFT platforms & launchpad</span></a>
+            </div></div>
+            <div class="MegaCta">
+              <p>200+ products delivered. 40+ white-label solutions ready to deploy.</p>
+              <a href="/contact" class="Header_button__yG4_K MegaButton">
+                <span class="Header_text__taNU6">
+                  <span>View Products</span>
+                  <ArrowIcon class="Header_buttonArrow__frtNz" />
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- Simple Dropdowns -->
+      <li class="MegaMenu_item has-dropdown">
+        <a href="/industries" class="MegaMenu_link">Industries <span class="Chevron"></span></a>
+        <div class="MegaDropdown MiniDropdown">
+          <div class="MegaDropdown_bg"></div>
+          <div class="MegaDropdown_inner">
+            <div class="MegaCol">
+              <a href="/industries/web3">Web3 &amp; Crypto</a>
+              <a href="/industries/startups">Startups</a>
+              <a href="/industries/saas">SaaS</a>
+              <a href="/industries/fintech">Fintech</a>
+              <a href="/industries/ai">AI</a>
+              <a href="/industries/enterprise">Enterprise</a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="MegaMenu_item has-dropdown">
+        <a href="/resources" class="MegaMenu_link">Resources <span class="Chevron"></span></a>
+        <div class="MegaDropdown MiniDropdown">
+          <div class="MegaDropdown_bg"></div>
+          <div class="MegaDropdown_inner">
+            <div class="MegaCol">
+              <a href="/case-studies">Case Studies</a>
+              <a href="/gallery">Gallery</a>
+              <a href="/blog">Blog</a>
+              <a href="/insights">Insights</a>
+              <a href="/guides">Guides</a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="MegaMenu_item has-dropdown">
+        <a href="/about" class="MegaMenu_link">About <span class="Chevron"></span></a>
+        <div class="MegaDropdown MiniDropdown">
+          <div class="MegaDropdown_bg"></div>
+          <div class="MegaDropdown_inner">
+            <div class="MegaCol">
+              <a href="/about/company">Company</a>
+              <a href="/about/team">Team</a>
+              <a href="/about/careers">Careers</a>
+              <a href="/contact">Contact</a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </nav>
+
+  <div class="Header_right">
+    <a class="Header_button__yG4_K" href={ctaLink.href}>
+      <span class="Header_text__taNU6">
+        <span>{ctaLink.shortLabel}</span>
+        <ArrowIcon class="Header_buttonArrow__frtNz" />
+      </span>
+    </a>
+  </div>
 </header>
+
+<style is:global>
+  /* Base Header Layout */
+  .Header_header__KwdYD {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+  }
+  .Header_left, .Header_right {
+    flex: 0 0 auto;
+  }
+
+  /* Mega Menu Nav Core */
+  .MegaMenu_nav {
+    pointer-events: auto !important;
+    flex: 1 1 auto;
+    display: none; /* Hide on mobile to fallback to Nav.astro slider */
+    justify-content: center;
+  }
+  @media (min-width: 1024px) {
+    .MegaMenu_nav {
+    pointer-events: auto !important; display: flex; }
+    /* Hide the KOTA default hamburger trigger on Desktop since we have our Mega Menu */
+    .PrimaryNavigation_icon__qAQCe { display: none !important; }
+  }
+
+  .MegaMenu_list {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .MegaMenu_item {
+    position: static;
+    padding: 2rem 0; /* Creates hover bridge */
+  }
+
+  .MegaMenu_link {
+    color: var(--theme-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+  }
+  .MegaMenu_item:hover .MegaMenu_link {
+    opacity: 0.7;
+  }
+
+  .Chevron {
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .MegaMenu_item:hover .Chevron {
+    transform: rotate(-135deg) translateY(-2px);
+  }
+
+  /* The Dropdown Container */
+  .MegaDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.98);
+    transform-origin: top center;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 1000;
+    padding-top: 1.5rem;
+  }
+  .MegaMenu_item:hover .MegaDropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  /* The Glass Background now acts on the inner container constraints */
+  .MegaDropdown_bg {
+    position: absolute;
+    top: 1.5rem; left: 50%; transform: translateX(-50%);
+    width: calc(100% - 4rem); max-width: 1300px; bottom: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 2rem;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.05);
+    z-index: -1;
+  }
+
+  
+  .MiniDropdown {
+    min-width: 250px;
+  }
+
+
+
+  /* Glassmorphism Background */
+
+
+  /* Grid Architecture */
+  .MegaDropdown_inner {
+    display: flex;
+    width: 100%;
+    max-width: 1300px;
+    padding: 3.5rem;
+    gap: 0;
+    justify-content: space-between;
+  }
+  .MegaColWrapper {
+    display: flex;
+    gap: 3rem;
+    flex: 1;
+  }
+
+  .MiniDropdown .MegaDropdown_inner {
+    padding: 2rem;
+    justify-content: center;
+  }
+
+  .MegaCol {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 200px;
+  }
+
+  .MegaCol_title {
+    color: #999;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .MegaCol a {
+    color: #000;
+    font-size: 1.15rem;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 0.25rem;
+    width: fit-content;
+    transition: color 0.3s ease;
+  }
+
+  /* Premium Hover Underline Animation */
+  .MegaCol a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0%;
+    height: 1px;
+    background: linear-gradient(90deg, #7c41f3, #ff6eff);
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .MegaCol a:hover {
+    color: #000;
+  }
+  .MegaCol a:hover::after {
+    width: 100%;
+  }
+
+  /* Mega CTA Block */
+  .MegaCta {
+    background: linear-gradient(135deg, #1B0F2A 0%, #300C39 100%) !important;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 320px;
+    min-height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Decorative Glass Orb inside CTA */
+  .MegaCta::after {
+    content: ""; position: absolute;
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(255,110,255,0.4) 0%, rgba(124,65,243,0) 70%);
+    top: -50px; right: -50px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .MegaCta p, .MegaCta h4, .MegaCta a {
+    position: relative; z-index: 1;
+  }
+  .MegaCta p {
+    color: #F8F8F8 !important;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
+  }
+  .MegaCta .MegaButton {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .MegaCta .MegaButton:hover {
+    background: #ff6eff !important;
+    color: #fff !important;
+    transform: scale(1.05);
+  }
+
+  .MegaButton {
+    width: fit-content;
+    border-radius: 2rem;
+  }
+  
+  /* Staggered Fade-in Animation for columns */
+  .MegaCol {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .MegaMenu_item:hover .MegaCol:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+  .MegaMenu_item:hover .MegaCol:nth-child(2) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+  .MegaMenu_item:hover .MegaCol:nth-child(3) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+  .MegaMenu_item:hover .MegaCta { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
+  .MegaCta {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .Header_header__KwdYD {
+    transform: none !important;
+    background: transparent !important;
+    border-bottom: none;
+  }
+  
+  /* Mega Col Subtext & Color Enhancements */
+
+  .MegaCol a {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.35rem !important;
+    padding: 1rem !important;
+    border-radius: 0.75rem;
+    width: 100% !important;
+    white-space: normal !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    clear: both;
+  }
+  .MegaCol a span:first-child {
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
+  }
+  
+  /* The Group Hover Physics Engine */
+  .MegaColWrapper:hover .MegaCol a {
+    opacity: 0.4;
+    transform: scale(0.98);
+  }
+  .MegaColWrapper:hover .MegaCol a:hover {
+    opacity: 1;
+    transform: scale(1.02) translateX(4px);
+    background: rgba(124, 65, 243, 0.08) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  
+  .MegaCol a span {
+    display: block !important;
+    line-height: 1.2 !important;
+    width: 100% !important;
+  }
+
+  
+  .MegaCol a::after {
+    display: none !important; /* Disable underline, replace with block highlight */
+  }
+
+  .MegaCol_title {
+    padding-left: 0.75rem;
+    color: #7c41f3 !important;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+  }
+  
+
+
+  .MegaCol_desc {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  
+  .MegaCta {
+    background: linear-gradient(135deg, rgba(124, 65, 243, 0.05) 0%, rgba(255, 110, 255, 0.05) 100%) !important;
+    border-color: rgba(124, 65, 243, 0.3) !important;
+  }
+</style>

@@ -31,14 +31,14 @@ const defaultFaqs = [
   },
   {
     question: "Do you offer white-label services for other agencies?",
-    answer: "Yes. White-label development and marketing for agencies, consultancies and resellers worldwide. {titleLight} clients get our execution quality under your brand, with dedicated account management and confidential workflows."
+    answer: "Yes. White-label development and marketing for agencies, consultancies and resellers worldwide. Your clients get our execution quality under your brand, with dedicated account management and confidential workflows."
   }
 ];
 
 const {
-  titleLight = "{titleLight}",
-  titleBold = "{titleBold}",
-  subtitle = "{subtitle}",
+  titleLight = "Your",
+  titleBold = "Questions.",
+  subtitle = "Straight answers on how we plan, build and scale Web3 brands.",
   faqs = defaultFaqs
 } = Astro.props;
 ---
@@ -262,7 +262,7 @@ const {
     background: #000;
   }
 
-  /* Smooth Grid Accordion Format */
+  /* Smooth Grid Accordion — only works if the inner row can actually shrink */
   .FAQCustom_answerWrapper {
     display: grid;
     grid-template-rows: 0fr;
@@ -274,7 +274,8 @@ const {
   }
 
   .FAQCustom_answerInner {
-    
+    min-height: 0;
+    overflow: hidden;
   }
 
   .FAQCustom_answer {
