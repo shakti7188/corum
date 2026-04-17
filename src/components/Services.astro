@@ -1,5 +1,42 @@
 ---
-// Automatically extracted from KOTA clone
+// Service cards now carry rich living collages — real faces (pravatar),
+// real press logos (/media-logos), and ad / chat / post UI.
+const faces = {
+  a: 'https://i.pravatar.cc/160?img=12',
+  b: 'https://i.pravatar.cc/160?img=47',
+  c: 'https://i.pravatar.cc/160?img=32',
+  d: 'https://i.pravatar.cc/160?img=56',
+  e: 'https://i.pravatar.cc/160?img=23',
+  f: 'https://i.pravatar.cc/160?img=38',
+  g: 'https://i.pravatar.cc/160?img=65',
+  h: 'https://i.pravatar.cc/160?img=8',
+  i: 'https://i.pravatar.cc/160?img=44',
+};
+
+// Muted editorial palette — warm cream / rose / sage / taupe (KOTA tone)
+const instaTiles = [
+  { bg: 'linear-gradient(135deg,#d9c7a7,#c8a47c)',  user: 'cryptokelly',   hint: 'AD', likes: '12.4K' },
+  { bg: 'linear-gradient(135deg,#d7c7d0,#b895a4)',  user: 'milaxweb3',      hint: '',   likes: '8.9K'  },
+  { bg: 'linear-gradient(135deg,#c7d3c2,#9fb4a0)',  user: 'defi.arielle',   hint: '',   likes: '23.1K' },
+  { bg: 'linear-gradient(135deg,#c9d1d8,#98a6b4)',  user: 'jeff.vc',        hint: 'AD', likes: '4.2K'  },
+  { bg: 'linear-gradient(135deg,#e8c9b5,#cb9880)',  user: 'nina.on.chain',  hint: '',   likes: '17.7K' },
+  { bg: 'linear-gradient(135deg,#dcd3c4,#b4a890)',  user: 'max.tokens',     hint: '',   likes: '6.3K'  },
+];
+
+const prFeed = [
+  { logo: '/media-logos/Forbes.webp',         pub: 'Forbes',         quote: '"Corum8-backed launch raises $32M in 72 hours"',              time: '2m' },
+  { logo: '/media-logos/cointelegraph.png',   pub: 'CoinTelegraph',  quote: '"Fanadise closes $5M with tier-1 launch engine"',             time: '14m' },
+  { logo: '/media-logos/Bloomberg.webp',      pub: 'Bloomberg',      quote: '"KuCoin deepens strategic PR push across EMEA"',              time: '1h' },
+  { logo: '/media-logos/reuters.png',         pub: 'Reuters',        quote: '"Binance affiliate network hits $800M monthly volume"',       time: '2h' },
+];
+
+const influencers = [
+  { src: faces.a, handle: '@jake.web3',   followers: '1.4M' },
+  { src: faces.b, handle: '@mia.defi',    followers: '820K' },
+  { src: faces.c, handle: '@sola.tokens', followers: '612K' },
+  { src: faces.d, handle: '@kof.eth',     followers: '2.1M' },
+  { src: faces.e, handle: '@hana.crypto', followers: '990K' },
+];
 ---
 
 <div class="Services_services__YnZAs gsap-services-section">
@@ -42,78 +79,46 @@
                       </div>
                     </div>
                     <div class="ServiceMedia_mediaContainer__WGgZa">
-                      <div class="c8-app c8-app--dash" aria-hidden="true">
-                        <div class="c8-app__chrome">
-                          <span class="c8-dot c8-dot--r"></span>
-                          <span class="c8-dot c8-dot--y"></span>
-                          <span class="c8-dot c8-dot--g"></span>
-                          <div class="c8-app__url">campaigns.corum8.io</div>
+                      <div class="c8-feed" aria-hidden="true">
+                        <div class="c8-feed__bg"></div>
+                        {/* 3 × 2 social feed of creator posts + 2 ads */}
+                        <div class="c8-feed__grid">
+                          {instaTiles.map((t, i) => (
+                            <div class={`c8-tile c8-tile--${i+1}`} style={`--bg:${t.bg}`}>
+                              <div class="c8-tile__head">
+                                <img class="c8-tile__avatar" src={Object.values(faces)[i]} alt="" loading="lazy" />
+                                <span class="c8-tile__user">@{t.user}</span>
+                                {t.hint && <span class="c8-tile__hint">{t.hint}</span>}
+                              </div>
+                              <div class="c8-tile__likes"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.7-9.7-9.3C.6 8 3 4 6.7 4c2 0 3.5 1.1 4.3 2.4C12 5.1 13.5 4 15.5 4 19 4 21.4 8 21.7 11.7 19.5 16.3 12 21 12 21z"/></svg>{t.likes}</div>
+                            </div>
+                          ))}
                         </div>
-                        <div class="c8-app__body">
-                          <div class="c8-app__sidebar">
-                            <div class="c8-side-item c8-side-item--active">
-                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-                            </div>
-                            <div class="c8-side-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg></div>
-                            <div class="c8-side-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-                            <div class="c8-side-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div>
-                          </div>
-                          <div class="c8-app__main">
-                            <div class="c8-kpi-row">
-                              <div class="c8-kpi">
-                                <span class="c8-kpi__lbl">Spend</span>
-                                <span class="c8-kpi__val">$2.<span class="c8-count" data-from="1" data-to="9">4</span>M</span>
-                                <span class="c8-kpi__delta c8-kpi__delta--up">▲ 18%</span>
-                              </div>
-                              <div class="c8-kpi">
-                                <span class="c8-kpi__lbl">ROAS</span>
-                                <span class="c8-kpi__val"><span class="c8-count">4.2</span>×</span>
-                                <span class="c8-kpi__delta c8-kpi__delta--up">▲ 23%</span>
-                              </div>
-                              <div class="c8-kpi">
-                                <span class="c8-kpi__lbl">Conv.</span>
-                                <span class="c8-kpi__val"><span class="c8-count">18.7</span>K</span>
-                                <span class="c8-kpi__delta c8-kpi__delta--up">▲ 9%</span>
-                              </div>
-                            </div>
-                            <div class="c8-chart">
-                              <svg viewBox="0 0 300 120" preserveAspectRatio="none">
-                                <defs>
-                                  <linearGradient id="gDashArea" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.4"/>
-                                    <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
-                                  </linearGradient>
-                                </defs>
-                                <g class="c8-chart__grid" stroke="rgba(255,255,255,0.06)" stroke-width="1">
-                                  <line x1="0" y1="30" x2="300" y2="30"/>
-                                  <line x1="0" y1="60" x2="300" y2="60"/>
-                                  <line x1="0" y1="90" x2="300" y2="90"/>
-                                </g>
-                                <path class="c8-chart__area" d="M0,95 L30,88 L60,78 L90,82 L120,64 L150,56 L180,44 L210,38 L240,28 L270,22 L300,14 L300,120 L0,120 Z" fill="url(#gDashArea)"/>
-                                <path class="c8-chart__line" d="M0,95 L30,88 L60,78 L90,82 L120,64 L150,56 L180,44 L210,38 L240,28 L270,22 L300,14" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <circle class="c8-chart__pulse" cx="300" cy="14" r="4" fill="#F59E0B"/>
-                              </svg>
-                            </div>
-                            <div class="c8-rows">
-                              <div class="c8-row">
-                                <span class="c8-row__tag c8-row__tag--meta">Meta</span>
-                                <span class="c8-row__bar"><span style="width:78%"></span></span>
-                                <span class="c8-row__val">$312K</span>
-                              </div>
-                              <div class="c8-row">
-                                <span class="c8-row__tag c8-row__tag--x">X/Ads</span>
-                                <span class="c8-row__bar"><span style="width:62%"></span></span>
-                                <span class="c8-row__val">$248K</span>
-                              </div>
-                              <div class="c8-row">
-                                <span class="c8-row__tag c8-row__tag--goog">Google</span>
-                                <span class="c8-row__bar"><span style="width:90%"></span></span>
-                                <span class="c8-row__val">$401K</span>
-                              </div>
+
+                        {/* Floating "Ad" card */}
+                        <div class="c8-ad-card">
+                          <div class="c8-ad-card__top">
+                            <img src={faces.g} alt="" loading="lazy" />
+                            <div>
+                              <div class="c8-ad-card__name">Corum8 · <span>Sponsored</span></div>
+                              <div class="c8-ad-card__sub">Targeting: Web3 · AI · 30+ markets</div>
                             </div>
                           </div>
+                          <div class="c8-ad-card__body" style="background:linear-gradient(135deg,#7c41f3,#ec4899)"></div>
+                          <div class="c8-ad-card__cta">Book Strategy Call →</div>
                         </div>
-                        <span class="c8-cursor"></span>
+
+                        {/* Spend ticker pill */}
+                        <div class="c8-pill c8-pill--spend">
+                          <span class="c8-pill__dot"></span>
+                          Ad spend today · <b>$<span class="c8-tick-up">1,248,392</span></b>
+                        </div>
+
+                        {/* Floating hearts */}
+                        <span class="c8-heart" style="--x:72%; --d:0s">❤</span>
+                        <span class="c8-heart" style="--x:18%; --d:1.4s">❤</span>
+                        <span class="c8-heart" style="--x:52%; --d:2.6s">❤</span>
+                        <span class="c8-heart" style="--x:90%; --d:3.8s">❤</span>
                       </div>
                     </div>
                     <div class="ServicesPanel_panelBackground__O9mDV"></div>
@@ -144,56 +149,50 @@
                       </div>
                     </div>
                     <div class="ServiceMedia_mediaContainer__WGgZa">
-                      <div class="c8-app c8-app--press" aria-hidden="true">
-                        <div class="c8-app__chrome">
-                          <span class="c8-dot c8-dot--r"></span>
-                          <span class="c8-dot c8-dot--y"></span>
-                          <span class="c8-dot c8-dot--g"></span>
-                          <div class="c8-app__url">coverage.corum8.io</div>
+                      <div class="c8-pr" aria-hidden="true">
+                        <div class="c8-pr__bg"></div>
+
+                        {/* Influencer portraits orbiting */}
+                        <div class="c8-orbit">
+                          {influencers.map((inf, i) => (
+                            <div class={`c8-orbit__item c8-orbit__item--${i+1}`}>
+                              <img src={inf.src} alt="" loading="lazy" />
+                              <span class="c8-orbit__handle">{inf.handle}</span>
+                              <span class="c8-orbit__followers">{inf.followers}</span>
+                            </div>
+                          ))}
+                          <div class="c8-orbit__core">
+                            <div class="c8-orbit__core-inner">25K+<br/><span>KOLs</span></div>
+                          </div>
                         </div>
-                        <div class="c8-press">
-                          <div class="c8-press__header">
-                            <span class="c8-press__title">Live coverage</span>
-                            <span class="c8-press__live"><span class="c8-live-dot"></span> LIVE</span>
+
+                        {/* Stacked press mentions on top */}
+                        <ul class="c8-pr__stack">
+                          {prFeed.map((p, i) => (
+                            <li class="c8-pr__mention" style={`--d:${i * 1}s`}>
+                              <span class="c8-pr__logo"><img src={p.logo} alt={p.pub} loading="lazy"/></span>
+                              <div class="c8-pr__body">
+                                <span class="c8-pr__pub">{p.pub} <span class="c8-pr__time">· {p.time}</span></span>
+                                <span class="c8-pr__quote">{p.quote}</span>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+
+                        {/* Bottom-left X/Twitter style mention */}
+                        <div class="c8-tweet">
+                          <img class="c8-tweet__avatar" src={faces.h} alt="" loading="lazy"/>
+                          <div class="c8-tweet__body">
+                            <span class="c8-tweet__name">Lena Park <span class="c8-tweet__handle">@lena.eth · 12m</span></span>
+                            <span class="c8-tweet__text">Okay @Corum8's launch engine is unreal. 32M raised before breakfast. 🚀</span>
+                            <span class="c8-tweet__stats">♡ 4.1k · ↻ 812 · 💬 148</span>
                           </div>
-                          <ul class="c8-press__feed">
-                            <li class="c8-press__item" style="--d:.0s">
-                              <span class="c8-press__logo" data-pub="FORBES">F</span>
-                              <div class="c8-press__meta">
-                                <span class="c8-press__pub">Forbes</span>
-                                <span class="c8-press__hl">"Corum8-backed launch raises $32M in 72 hours…"</span>
-                              </div>
-                              <span class="c8-press__time">2m</span>
-                            </li>
-                            <li class="c8-press__item" style="--d:.6s">
-                              <span class="c8-press__logo" data-pub="CT">C</span>
-                              <div class="c8-press__meta">
-                                <span class="c8-press__pub">CoinTelegraph</span>
-                                <span class="c8-press__hl">"Fanadise hits $5M milestone on tier-1 partner play"</span>
-                              </div>
-                              <span class="c8-press__time">14m</span>
-                            </li>
-                            <li class="c8-press__item" style="--d:1.2s">
-                              <span class="c8-press__logo" data-pub="BB">B</span>
-                              <div class="c8-press__meta">
-                                <span class="c8-press__pub">Bloomberg</span>
-                                <span class="c8-press__hl">"KuCoin deepens strategic PR push across EMEA"</span>
-                              </div>
-                              <span class="c8-press__time">1h</span>
-                            </li>
-                            <li class="c8-press__item" style="--d:1.8s">
-                              <span class="c8-press__logo" data-pub="REU">R</span>
-                              <div class="c8-press__meta">
-                                <span class="c8-press__pub">Reuters</span>
-                                <span class="c8-press__hl">"Binance network hits $800M monthly exchange vol."</span>
-                              </div>
-                              <span class="c8-press__time">2h</span>
-                            </li>
-                          </ul>
-                          <div class="c8-press__footer">
-                            <span>Reach today</span>
-                            <span class="c8-press__reach"><span class="c8-count" data-from="1.8" data-to="2.4">2.4</span>M impressions</span>
-                          </div>
+                        </div>
+
+                        {/* Reach counter chip */}
+                        <div class="c8-pill c8-pill--reach">
+                          <span class="c8-pill__dot c8-pill__dot--red"></span>
+                          LIVE · <b>2.4M</b> impressions today
                         </div>
                       </div>
                     </div>
@@ -225,35 +224,75 @@
                       </div>
                     </div>
                     <div class="ServiceMedia_mediaContainer__WGgZa">
-                      <div class="c8-app c8-app--code" aria-hidden="true">
-                        <div class="c8-app__chrome c8-app__chrome--dark">
-                          <span class="c8-dot c8-dot--r"></span>
-                          <span class="c8-dot c8-dot--y"></span>
-                          <span class="c8-dot c8-dot--g"></span>
-                          <div class="c8-app__tabs">
-                            <span class="c8-tab c8-tab--active">Vault.sol</span>
-                            <span class="c8-tab">deploy.ts</span>
+                      <div class="c8-dev" aria-hidden="true">
+                        <div class="c8-dev__bg"></div>
+
+                        {/* Phone mockup showing a real exchange app screen */}
+                        <div class="c8-phone">
+                          <div class="c8-phone__notch"></div>
+                          <div class="c8-phone__screen">
+                            <div class="c8-phone__header">
+                              <span class="c8-phone__brand">Corum8 Exchange</span>
+                              <img class="c8-phone__avatar" src={faces.i} alt="" loading="lazy"/>
+                            </div>
+                            <div class="c8-phone__balance">
+                              <span class="c8-phone__lbl">Total balance</span>
+                              <span class="c8-phone__val">$128,430<span>.52</span></span>
+                              <span class="c8-phone__delta">+12.4% ▲</span>
+                            </div>
+                            <div class="c8-phone__chart">
+                              <svg viewBox="0 0 300 80" preserveAspectRatio="none">
+                                <defs>
+                                  <linearGradient id="gPhone" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#6d8864" stop-opacity="0.55"/>
+                                    <stop offset="100%" stop-color="#6d8864" stop-opacity="0"/>
+                                  </linearGradient>
+                                </defs>
+                                <path d="M0,60 L30,52 L60,58 L90,40 L120,46 L150,30 L180,34 L210,18 L240,22 L270,12 L300,8 L300,80 L0,80 Z" fill="url(#gPhone)"/>
+                                <path class="c8-phone__line" d="M0,60 L30,52 L60,58 L90,40 L120,46 L150,30 L180,34 L210,18 L240,22 L270,12 L300,8" fill="none" stroke="#6d8864" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                            <div class="c8-phone__rows">
+                              <div class="c8-phone__row">
+                                <span class="c8-phone__tok">BTC</span>
+                                <span class="c8-phone__bal">2.418</span>
+                                <span class="c8-phone__chg c8-phone__chg--up">+3.2%</span>
+                              </div>
+                              <div class="c8-phone__row">
+                                <span class="c8-phone__tok">ETH</span>
+                                <span class="c8-phone__bal">14.82</span>
+                                <span class="c8-phone__chg c8-phone__chg--up">+5.7%</span>
+                              </div>
+                              <div class="c8-phone__row">
+                                <span class="c8-phone__tok">SOL</span>
+                                <span class="c8-phone__bal">842.0</span>
+                                <span class="c8-phone__chg c8-phone__chg--dn">-1.1%</span>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                        <div class="c8-code">
-                          <ol class="c8-code__lines">
-                            <li><span class="c8-tok c8-tok--key">pragma</span> solidity ^0.8.24;</li>
-                            <li><span class="c8-tok c8-tok--com">// audited · Q1 2026</span></li>
-                            <li></li>
-                            <li><span class="c8-tok c8-tok--key">contract</span> <span class="c8-tok c8-tok--typ">Vault</span> <span class="c8-tok c8-tok--key">is</span> <span class="c8-tok c8-tok--typ">ReentrancyGuard</span> {</li>
-                            <li>  <span class="c8-tok c8-tok--key">function</span> <span class="c8-tok c8-tok--fn">stake</span>(<span class="c8-tok c8-tok--typ">uint256</span> amount)</li>
-                            <li>    <span class="c8-tok c8-tok--key">external</span> nonReentrant {</li>
-                            <li>    totalStaked += amount;</li>
-                            <li>    <span class="c8-tok c8-tok--key">emit</span> <span class="c8-tok c8-tok--fn">Staked</span>(msg.sender, amount);</li>
-                            <li class="c8-code__typing">  }<span class="c8-caret"></span></li>
-                          </ol>
+
+                        {/* Floating commit feed */}
+                        <div class="c8-commits">
+                          <div class="c8-commits__head">
+                            <img src={faces.f} alt="" loading="lazy"/>
+                            <div>
+                              <span class="c8-commits__name">Rhea (eng)</span>
+                              <span class="c8-commits__repo">corum8/vault-contracts · main</span>
+                            </div>
+                          </div>
+                          <ul class="c8-commits__list">
+                            <li><span class="c8-commits__sha">7a1fe3</span> feat: MPC wallet custody flow</li>
+                            <li><span class="c8-commits__sha">c2a88b</span> fix: fee curve on high-vol days</li>
+                            <li><span class="c8-commits__sha">93d210</span> test: Vault reentrancy coverage</li>
+                            <li class="c8-commits__new"><span class="c8-commits__sha">0xC0c8</span> deploy: mainnet v1.4 <span class="c8-commits__badge">LIVE</span></li>
+                          </ul>
                         </div>
-                        <div class="c8-term">
-                          <div class="c8-term__line"><span class="c8-term__prompt">$</span> forge test --match-contract Vault</div>
-                          <div class="c8-term__line c8-term__line--ok">✓ 24 passed  ·  0 failed  ·  92% coverage</div>
-                          <div class="c8-term__line"><span class="c8-term__prompt">$</span> corum8 deploy --network mainnet</div>
-                          <div class="c8-term__line c8-term__line--progress"><span class="c8-term__bar"><span></span></span> deploying…</div>
-                          <div class="c8-term__line c8-term__line--ok">✓ Deployed at 0xC0…c8a1</div>
+
+                        {/* Uptime / audit pills */}
+                        <div class="c8-pill c8-pill--uptime">
+                          <span class="c8-pill__dot c8-pill__dot--green"></span>
+                          Uptime <b>99.99%</b> · 3 audits
                         </div>
                       </div>
                     </div>
@@ -268,317 +307,423 @@
 
 <style>
   /* ════════════════════════════════════════════════════════════════════
-     Services "screen recording" mockups — realistic app UIs as pure CSS.
-     Each card animation mimics a real product screen (dashboard, press
-     coverage feed, code editor) so the panel reads like a video loop.
+     Services: living collages — real faces (pravatar), real press logos,
+     phone mockups. Each card feels like a short reel rather than a chart.
      ════════════════════════════════════════════════════════════════════ */
 
   .ServiceMedia_mediaContainer__WGgZa {
-    background: #0a0a0a;
+    background: #ece4d2;
+  }
+  .ServiceMedia_mediaContainer__WGgZa > div[aria-hidden] {
+    position: absolute; inset: 0; overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, system-ui, sans-serif;
+    color: #2b2721;
   }
 
-  .c8-app {
+  /* Slow camera drift — every collage wrapper parallaxes so the card
+     reads as a moving frame rather than a static layout. */
+  @keyframes c8-pan-x {
+    0%,100% { transform: translateX(-1.2%) scale(1.015); }
+    50%     { transform: translateX(1.2%) scale(1.015); }
+  }
+  @keyframes c8-pan-xy {
+    0%,100% { transform: translate(-0.8%, -0.6%) scale(1.03); }
+    50%     { transform: translate( 0.8%,  0.6%) scale(1.03); }
+  }
+  @keyframes c8-ken-burns {
+    0%   { transform: scale(1.04) translate(-0.6%, -0.4%); }
+    100% { transform: scale(1.08) translate( 0.6%,  0.4%); }
+  }
+
+  /* Shared floating pill — warm cream paper style */
+  .c8-pill {
     position: absolute;
-    inset: 0;
-    background: #0a0a0a;
-    color: #eaeaea;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
-    font-size: clamp(7px, 0.85vw, 12px);
-    letter-spacing: 0.005em;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 10px;
+    background: rgba(247,241,228,0.88);
+    color: #2b2721;
+    border: 1px solid rgba(0,0,0,0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 999px;
+    font-size: clamp(8px, 0.72vw, 11px);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    z-index: 8;
   }
+  .c8-pill b { font-weight: 700; }
+  .c8-pill__dot { width: 6px; height: 6px; border-radius: 50%; background: #8a9e7c; box-shadow: 0 0 6px currentColor; color: #8a9e7c; }
+  .c8-pill__dot--red { background: #c97767; color: #c97767; }
+  .c8-pill__dot--green { background: #8a9e7c; color: #8a9e7c; }
+  .c8-pill__dot, .c8-live-dot { animation: c8-pulse-dot 1.6s ease-in-out infinite; }
+  @keyframes c8-pulse-dot { 0%,100%{opacity:.55; transform:scale(.85)} 50%{opacity:1; transform:scale(1.15)} }
 
-  /* macOS-style window chrome */
-  .c8-app__chrome {
-    height: 11%;
-    min-height: 22px;
-    background: linear-gradient(to bottom, #202022, #151517);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-    gap: 6px;
-    position: relative;
+  /* ── Card 1 · Living social feed (warm cream base) ─────────────── */
+  .c8-feed {}
+  .c8-feed__bg {
+    position: absolute; inset: -3%;
+    background:
+      radial-gradient(55% 55% at 80% 20%, rgba(200,164,124,0.45), transparent 65%),
+      radial-gradient(55% 55% at 10% 90%, rgba(184,149,164,0.35), transparent 65%),
+      #e9e0ce;
+    animation: c8-ken-burns 18s ease-in-out infinite alternate;
   }
-  .c8-app__chrome--dark {
-    background: linear-gradient(to bottom, #1b1f2a, #13151c);
+  .c8-feed__grid {
+    position: absolute; inset: 4% 4% 28% 4%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 4px;
+    transform-origin: center;
+    animation: c8-pan-xy 16s ease-in-out infinite;
   }
-  .c8-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .c8-dot--r { background: #ff5f57; }
-  .c8-dot--y { background: #febc2e; }
-  .c8-dot--g { background: #28c840; }
-  .c8-app__url {
-    position: absolute; left: 50%; transform: translateX(-50%);
-    font-size: 0.8em; color: #8a8a92;
-    padding: 3px 12px; background: rgba(255,255,255,0.06); border-radius: 999px;
-    letter-spacing: 0.02em;
+  .c8-feed__grid > * { transform: rotate(-3deg); }
+  .c8-tile {
+    position: relative; border-radius: 10px; overflow: hidden;
+    background: var(--bg);
+    box-shadow: 0 4px 14px rgba(45,37,25,0.18);
+    animation: c8-tile-in 0.7s ease-out both;
+    animation-delay: calc(var(--i, 0) * 0.12s);
   }
-  .c8-app__tabs {
-    display: flex; gap: 2px; margin-left: 16px; align-items: center; height: 100%;
+  .c8-tile--1 { --i: 0; }
+  .c8-tile--2 { --i: 1; }
+  .c8-tile--3 { --i: 2; }
+  .c8-tile--4 { --i: 3; }
+  .c8-tile--5 { --i: 4; }
+  .c8-tile--6 { --i: 5; }
+  @keyframes c8-tile-in {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
   }
-  .c8-tab {
-    padding: 4px 10px; font-size: 0.78em; color: #8a8a92;
-    border-top-left-radius: 4px; border-top-right-radius: 4px;
+  .c8-tile::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(40,32,22,0.35), transparent 45%);
   }
-  .c8-tab--active {
-    background: #0f1318; color: #eaeaea;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  .c8-tile__head {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; gap: 4px; padding: 5px 6px;
+    background: rgba(40,32,22,0.2);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
-
-  /* ── Card 1 · Analytics dashboard ────────────────────────────────── */
-  .c8-app--dash .c8-app__body {
-    flex: 1; display: flex; min-height: 0;
+  .c8-tile__avatar {
+    width: 18px; height: 18px; border-radius: 50%; object-fit: cover;
+    border: 1.5px solid rgba(255,250,240,0.85);
   }
-  .c8-app__sidebar {
-    width: 9%; min-width: 28px;
-    background: #0d0d0f;
-    border-right: 1px solid rgba(255,255,255,0.05);
-    padding: 8px 0; display: flex; flex-direction: column; align-items: center; gap: 10px;
-  }
-  .c8-side-item {
-    width: 62%; aspect-ratio: 1/1; border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    color: #5a5a62;
-    transition: background 0.3s, color 0.3s;
-  }
-  .c8-side-item svg { width: 55%; height: 55%; }
-  .c8-side-item--active {
-    background: rgba(245,158,11,0.12);
-    color: #F59E0B;
-  }
-
-  .c8-app__main {
-    flex: 1; padding: 2% 3%; display: flex; flex-direction: column; gap: 3%;
-    min-width: 0;
-  }
-  .c8-kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3%; }
-  .c8-kpi {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 6px;
-    padding: 6% 8%;
-    display: flex; flex-direction: column; gap: 2px;
-    min-width: 0;
-  }
-  .c8-kpi__lbl { font-size: 0.78em; color: #8a8a92; text-transform: uppercase; letter-spacing: 0.08em; }
-  .c8-kpi__val { font-size: 1.3em; font-weight: 600; color: #fff; }
-  .c8-kpi__delta { font-size: 0.72em; font-weight: 500; }
-  .c8-kpi__delta--up { color: #10B981; }
-
-  .c8-chart {
-    flex: 1; min-height: 0; position: relative;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 6px; padding: 4%;
-  }
-  .c8-chart svg { width: 100%; height: 100%; display: block; }
-  .c8-chart__line {
-    stroke-dasharray: 900;
-    stroke-dashoffset: 900;
-    animation: c8-chart-draw 4s ease-out infinite;
-  }
-  .c8-chart__area { opacity: 0; animation: c8-chart-fade 4s ease-out infinite; }
-  .c8-chart__pulse {
-    animation: c8-chart-dot 4s ease-out infinite;
-    transform-origin: 300px 14px;
-  }
-  @keyframes c8-chart-draw { 0%{stroke-dashoffset:900} 60%,100%{stroke-dashoffset:0} }
-  @keyframes c8-chart-fade { 0%,40%{opacity:0} 75%,100%{opacity:1} }
-  @keyframes c8-chart-dot {
-    0%,55% { opacity: 0; transform: scale(0.4); }
-    65% { opacity: 1; transform: scale(1.2); }
-    75%,100% { opacity: 1; transform: scale(1); }
-  }
-
-  .c8-rows { display: flex; flex-direction: column; gap: 4px; }
-  .c8-row {
-    display: grid; grid-template-columns: 18% 1fr 18%;
-    align-items: center; gap: 6px; font-size: 0.85em;
-  }
-  .c8-row__tag {
-    padding: 2px 5px; border-radius: 4px; font-size: 0.78em; font-weight: 500;
-    text-align: center;
-  }
-  .c8-row__tag--meta { background: rgba(24,119,242,0.18); color: #60a5fa; }
-  .c8-row__tag--x { background: rgba(255,255,255,0.1); color: #eaeaea; }
-  .c8-row__tag--goog { background: rgba(245,158,11,0.18); color: #F59E0B; }
-  .c8-row__bar {
-    height: 5px; background: rgba(255,255,255,0.06); border-radius: 999px; position: relative; overflow: hidden;
-  }
-  .c8-row__bar span {
-    display: block; height: 100%; background: linear-gradient(90deg, #F59E0B, #f97316);
-    border-radius: 999px; width: 0;
-    animation: c8-bar-fill 4s ease-out infinite;
-  }
-  .c8-row:nth-child(2) .c8-row__bar span { animation-delay: .15s; }
-  .c8-row:nth-child(3) .c8-row__bar span { animation-delay: .3s; }
-  .c8-row__val { font-variant-numeric: tabular-nums; color: #cfcfd4; text-align: right; font-size: 0.85em; }
-  @keyframes c8-bar-fill {
-    0% { width: 0; }
-    60%,100% { width: var(--target, 100%); }
-  }
-  /* Pipe the inline style's width into a CSS var so the animation animates to it */
-  .c8-row__bar span[style*="width:78%"] { --target: 78%; }
-  .c8-row__bar span[style*="width:62%"] { --target: 62%; }
-  .c8-row__bar span[style*="width:90%"] { --target: 90%; }
-
-  .c8-cursor {
-    position: absolute;
-    width: 14px; height: 14px;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%23fff' stroke='%23000' stroke-width='1' d='M3 2l9 9-4 1 2 4-2 1-2-4-3 3z'/></svg>") center/contain no-repeat;
-    animation: c8-cursor 6s ease-in-out infinite;
-    pointer-events: none;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-  }
-  @keyframes c8-cursor {
-    0%   { left: 18%; top: 32%; }
-    20%  { left: 40%; top: 38%; }
-    40%  { left: 55%; top: 60%; }
-    60%  { left: 30%; top: 72%; }
-    80%  { left: 70%; top: 82%; }
-    100% { left: 18%; top: 32%; }
-  }
-
-  /* Numeric count-up — purely decorative, just subtle opacity flicker */
-  .c8-count { display: inline; position: relative; }
-
-  /* ── Card 2 · Press coverage feed ──────────────────────────────────── */
-  .c8-app--press { background: #0b0d12; }
-  .c8-press {
-    flex: 1; display: flex; flex-direction: column; min-height: 0;
-    padding: 4% 5%;
-  }
-  .c8-press__header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-bottom: 3%; border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .c8-press__title { font-weight: 600; color: #fff; font-size: 1.05em; }
-  .c8-press__live {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 0.72em; font-weight: 600; color: #ef4444;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    padding: 3px 8px; border-radius: 999px;
-    background: rgba(239,68,68,0.12);
-  }
-  .c8-live-dot {
-    width: 6px; height: 6px; border-radius: 50%; background: #ef4444;
-    animation: c8-live-pulse 1.2s ease-in-out infinite;
-  }
-  @keyframes c8-live-pulse { 0%,100%{opacity:0.3; transform:scale(0.8)} 50%{opacity:1; transform:scale(1.2)} }
-
-  .c8-press__feed {
-    flex: 1; list-style: none; margin: 3% 0 0; padding: 0;
-    display: flex; flex-direction: column; gap: 5px;
-    overflow: hidden;
-  }
-  .c8-press__item {
-    display: grid; grid-template-columns: 28px 1fr auto;
-    gap: 7px; align-items: center;
-    padding: 6px 6px;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.04);
-    border-radius: 6px;
-    opacity: 0;
-    transform: translateY(8px);
-    animation: c8-press-in 6s ease-out infinite;
-    animation-delay: var(--d);
-  }
-  @keyframes c8-press-in {
-    0%,8%    { opacity: 0; transform: translateY(10px); }
-    12%,86%  { opacity: 1; transform: translateY(0); }
-    94%,100% { opacity: 0; transform: translateY(-4px); }
-  }
-  .c8-press__logo {
-    width: 28px; height: 28px; border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 0.9em;
-    background: linear-gradient(135deg, #7c41f3, #c084fc); color: #fff;
-    flex-shrink: 0;
-  }
-  .c8-press__meta { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
-  .c8-press__pub {
-    font-size: 0.7em; font-weight: 600; color: #c084fc;
-    text-transform: uppercase; letter-spacing: 0.06em;
-  }
-  .c8-press__hl {
-    font-size: 0.82em; color: #dcdce3;
+  .c8-tile__user {
+    font-size: 0.72em; font-weight: 600; color: #fbf6e9;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
-  .c8-press__time { font-size: 0.72em; color: #6a6a72; }
-  .c8-press__footer {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-top: 4%; margin-top: 3%;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    font-size: 0.78em; color: #8a8a92;
+  .c8-tile__hint {
+    margin-left: auto; font-size: 0.62em; font-weight: 700;
+    padding: 1px 5px; border-radius: 3px;
+    background: #c8a47c; color: #2b2014;
+    text-transform: uppercase; letter-spacing: 0.04em;
   }
-  .c8-press__reach { color: #c084fc; font-weight: 600; }
+  .c8-tile__likes {
+    position: absolute; left: 6px; bottom: 6px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 0.75em; font-weight: 600; color: #fbf6e9;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+  }
+  .c8-tile__likes svg { width: 11px; height: 11px; color: #c97767; }
 
-  /* ── Card 3 · Code editor + terminal ───────────────────────────────── */
-  .c8-app--code { background: #0c0e13; font-family: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace; }
-  .c8-code { flex: 1.4; min-height: 0; overflow: hidden; padding: 3% 0 3% 0; }
-  .c8-code__lines {
-    list-style: decimal; list-style-position: outside;
-    padding: 0 3% 0 8%; margin: 0;
-    color: #d4d4dc; font-size: 0.95em; line-height: 1.45;
-  }
-  .c8-code__lines li::marker { color: #4a4a52; font-size: 0.85em; }
-  .c8-code__lines li { white-space: nowrap; overflow: hidden; }
-  .c8-tok--key { color: #c084fc; }
-  .c8-tok--typ { color: #60a5fa; }
-  .c8-tok--fn  { color: #facc15; }
-  .c8-tok--com { color: #5a6170; font-style: italic; }
-  .c8-code__typing { position: relative; }
-  .c8-caret {
-    display: inline-block; width: 2px; height: 1em; background: #F59E0B;
-    vertical-align: text-bottom; margin-left: 2px;
-    animation: c8-caret-blink 1s step-end infinite;
-  }
-  @keyframes c8-caret-blink { 50% { opacity: 0; } }
-
-  .c8-term {
-    flex: 1; min-height: 0;
-    background: #000;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 3% 4%;
+  .c8-ad-card {
+    position: absolute; bottom: 3%; right: 3%; z-index: 6;
+    width: 48%;
+    background: #fbf6e9;
+    color: #2b2721;
+    border-radius: 10px;
     overflow: hidden;
-    display: flex; flex-direction: column; gap: 3px;
-    font-size: 0.92em;
+    box-shadow: 0 8px 24px rgba(45,37,25,0.22);
+    animation: c8-float 4s ease-in-out infinite;
   }
-  .c8-term__line {
-    color: #c5c5cc; line-height: 1.5; white-space: nowrap; overflow: hidden;
-    opacity: 0;
-    animation: c8-term-in 8s linear infinite;
+  @keyframes c8-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+  .c8-ad-card__top {
+    display: flex; align-items: center; gap: 6px; padding: 6px 8px;
   }
-  .c8-term__line:nth-child(1) { animation-delay: 0s; }
-  .c8-term__line:nth-child(2) { animation-delay: 1s; }
-  .c8-term__line:nth-child(3) { animation-delay: 2s; }
-  .c8-term__line:nth-child(4) { animation-delay: 3s; }
-  .c8-term__line:nth-child(5) { animation-delay: 5s; }
-  @keyframes c8-term-in {
-    0%,8%   { opacity: 0; transform: translateY(4px); }
-    10%,90% { opacity: 1; transform: translateY(0); }
-    95%,100%{ opacity: 0; }
+  .c8-ad-card__top img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; }
+  .c8-ad-card__name { font-size: 0.78em; font-weight: 700; }
+  .c8-ad-card__name span { font-weight: 400; color: #8a7b66; font-size: 0.92em; }
+  .c8-ad-card__sub { font-size: 0.68em; color: #8a7b66; }
+  .c8-ad-card__body {
+    height: 38%; min-height: 40px; background: linear-gradient(135deg,#c8a47c,#b895a4);
   }
-  .c8-term__prompt { color: #10B981; margin-right: 6px; }
-  .c8-term__line--ok { color: #10B981; }
-  .c8-term__bar {
-    display: inline-block; width: 80px; height: 6px;
-    background: rgba(255,255,255,0.08); border-radius: 999px;
-    margin-right: 8px; overflow: hidden;
-    vertical-align: middle;
+  .c8-ad-card__cta {
+    padding: 6px 8px; font-size: 0.78em; font-weight: 600;
+    background: #2b2721; color: #fbf6e9; text-align: center;
   }
-  .c8-term__bar span {
-    display: block; height: 100%; width: 0%;
-    background: linear-gradient(90deg, #10B981, #34d399);
-    animation: c8-term-bar 1.6s ease-out infinite;
-  }
-  @keyframes c8-term-bar { 0%{width:0} 100%{width:100%} }
 
-  /* Keep animations lean on reduced-motion preference */
+  .c8-pill--spend {
+    top: 5%; left: 5%; color: #8a6b3d;
+  }
+  .c8-tick-up { display: inline-block; animation: c8-tick 1.8s steps(30) infinite; }
+  @keyframes c8-tick { 0%{opacity:0.6} 50%{opacity:1} 100%{opacity:0.6} }
+
+  .c8-heart {
+    position: absolute; bottom: 0; left: var(--x);
+    font-size: 15px; color: #c97767;
+    animation: c8-heart-up 4s ease-in infinite;
+    animation-delay: var(--d);
+    opacity: 0;
+    filter: drop-shadow(0 0 3px rgba(201,119,103,0.35));
+    z-index: 7;
+  }
+  @keyframes c8-heart-up {
+    0%   { opacity: 0; transform: translateY(0) scale(0.4); }
+    15%  { opacity: 0.85; transform: translateY(-20px) scale(1); }
+    100% { opacity: 0; transform: translateY(-220px) scale(0.6); }
+  }
+
+  /* ── Card 2 · PR influencer orbit + press mentions (dusty rose/sage) ─── */
+  .c8-pr {}
+  .c8-pr__bg {
+    position: absolute; inset: -3%;
+    background:
+      radial-gradient(55% 55% at 50% 50%, rgba(184,149,164,0.45), transparent 65%),
+      radial-gradient(55% 55% at 15% 85%, rgba(160,170,152,0.32), transparent 60%),
+      #ebe2d3;
+    animation: c8-ken-burns 22s ease-in-out infinite alternate-reverse;
+  }
+
+  .c8-orbit {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    animation: c8-pan-xy 20s ease-in-out infinite;
+  }
+  .c8-orbit__core {
+    width: 22%; aspect-ratio: 1/1; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #d5b6c0, #a07e8e 70%);
+    box-shadow: 0 0 28px rgba(160,126,142,0.35), inset 0 0 18px rgba(0,0,0,0.22);
+    display: flex; align-items: center; justify-content: center;
+    color: #fbf6e9;
+    animation: c8-pulse-core 3.2s ease-in-out infinite;
+    z-index: 2;
+  }
+  .c8-orbit__core-inner {
+    text-align: center; font-weight: 800; font-size: clamp(10px, 1.3vw, 18px);
+    line-height: 1.05;
+  }
+  .c8-orbit__core-inner span {
+    font-weight: 400; font-size: 0.65em; opacity: 0.85; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  @keyframes c8-pulse-core { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+
+  .c8-orbit__item {
+    position: absolute; width: 26%; aspect-ratio: 1/1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px;
+    animation: c8-orbit-bob 4s ease-in-out infinite;
+  }
+  .c8-orbit__item img {
+    width: 62%; aspect-ratio: 1/1; border-radius: 50%; object-fit: cover;
+    border: 2.5px solid rgba(255,255,255,0.9);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+  }
+  .c8-orbit__handle {
+    font-size: 0.72em; font-weight: 600; color: #fbf6e9;
+    background: rgba(45,39,33,0.65); padding: 1px 7px; border-radius: 999px;
+    white-space: nowrap;
+  }
+  .c8-orbit__followers {
+    font-size: 0.62em; color: #8a6b3d; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .c8-orbit__item--1 { top: 4%;  left: 10%; animation-delay: 0s;   }
+  .c8-orbit__item--2 { top: 8%;  right: 8%; animation-delay: .5s;  }
+  .c8-orbit__item--3 { bottom: 12%; left: 6%; animation-delay: 1s; }
+  .c8-orbit__item--4 { bottom: 8%; right: 10%; animation-delay: 1.5s; }
+  .c8-orbit__item--5 { top: 38%; left: 50%; transform: translateX(-50%); animation-delay: 2s; }
+  @keyframes c8-orbit-bob {
+    0%,100% { transform: translate(0,0) rotate(-1deg); }
+    50%     { transform: translate(0,-5px) rotate(1deg); }
+  }
+  .c8-orbit__item--5 { animation-name: c8-orbit-bob-center; }
+  @keyframes c8-orbit-bob-center {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%     { transform: translateX(-50%) translateY(-6px); }
+  }
+
+  .c8-pr__stack {
+    position: absolute; top: 44%; left: 6%; width: 54%;
+    list-style: none; margin: 0; padding: 0;
+    display: grid;
+    z-index: 5;
+  }
+  .c8-pr__mention {
+    grid-column: 1; grid-row: 1;
+    display: grid; grid-template-columns: 36px 1fr;
+    gap: 8px; align-items: center;
+    padding: 8px 10px;
+    background: #fbf6e9;
+    color: #2b2721;
+    border-radius: 10px;
+    box-shadow: 0 8px 22px rgba(45,37,25,0.18);
+    opacity: 0;
+    transform: translateY(12px);
+    animation: c8-mention 4s ease-out infinite;
+    animation-delay: var(--d);
+  }
+  @keyframes c8-mention {
+    0%,8%    { opacity: 0; transform: translateY(12px) scale(0.96); }
+    15%,70%  { opacity: 1; transform: translateY(0) scale(1); }
+    85%,100% { opacity: 0; transform: translateY(-4px) scale(0.98); }
+  }
+  .c8-pr__logo {
+    width: 36px; height: 36px; border-radius: 6px;
+    background: #efe7d7; display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .c8-pr__logo img { max-width: 72%; max-height: 72%; object-fit: contain; }
+  .c8-pr__body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+  .c8-pr__pub { font-size: 0.7em; font-weight: 700; color: #a07e8e; text-transform: uppercase; letter-spacing: 0.06em; }
+  .c8-pr__time { color: #a89d88; font-weight: 400; }
+  .c8-pr__quote { font-size: 0.84em; color: #2b2721; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .c8-tweet {
+    position: absolute; right: 5%; bottom: 8%; width: 42%;
+    display: grid; grid-template-columns: 28px 1fr; gap: 8px;
+    padding: 10px;
+    background: rgba(251,246,233,0.94);
+    border: 1px solid rgba(0,0,0,0.06);
+    color: #2b2721;
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgba(45,37,25,0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 6;
+    animation: c8-float 5s ease-in-out infinite;
+  }
+  .c8-tweet__avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+  .c8-tweet__body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .c8-tweet__name { font-size: 0.78em; font-weight: 700; color: #2b2721; }
+  .c8-tweet__handle { font-weight: 400; color: #a89d88; font-size: 0.92em; }
+  .c8-tweet__text { font-size: 0.82em; color: #2b2721; line-height: 1.35; }
+  .c8-tweet__stats { font-size: 0.7em; color: #a89d88; margin-top: 3px; }
+
+  .c8-pill--reach { bottom: 3%; left: 3%; color: #2b2721; }
+
+  /* ── Card 3 · Phone mockup + commit feed (sage/wheat) ─────────────── */
+  .c8-dev {}
+  .c8-dev__bg {
+    position: absolute; inset: -3%;
+    background:
+      radial-gradient(55% 55% at 25% 30%, rgba(160,170,152,0.38), transparent 65%),
+      radial-gradient(50% 50% at 75% 80%, rgba(200,164,124,0.32), transparent 65%),
+      #e5dec7;
+    animation: c8-ken-burns 24s ease-in-out infinite alternate;
+  }
+  .c8-phone {
+    position: absolute; top: 6%; left: 6%; bottom: 6%;
+    width: 46%;
+    background: #3a3a36;
+    border: 3px solid #4a4a44;
+    border-radius: 28px;
+    padding: 8px;
+    box-shadow: 0 16px 40px rgba(45,37,25,0.35), inset 0 0 0 1px rgba(255,250,240,0.06);
+    transform: rotate(-4deg);
+    animation: c8-phone-tilt 6s ease-in-out infinite;
+    display: flex; flex-direction: column;
+  }
+  @keyframes c8-phone-tilt {
+    0%,100% { transform: rotate(-4deg) translateY(0); }
+    50%     { transform: rotate(-2deg) translateY(-4px); }
+  }
+  .c8-phone__notch {
+    width: 40%; height: 12px; margin: 0 auto 4px;
+    background: #1f1f1c; border-radius: 0 0 10px 10px;
+  }
+  .c8-phone__screen {
+    flex: 1;
+    background: linear-gradient(160deg, #f4ecd8 0%, #e4d9be 60%);
+    border-radius: 18px;
+    padding: 10px 12px;
+    display: flex; flex-direction: column; gap: 8px;
+    overflow: hidden;
+    color: #2b2721;
+  }
+  .c8-phone__header {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .c8-phone__brand { font-size: 0.78em; font-weight: 700; color: #6d8864; }
+  .c8-phone__avatar {
+    width: 22px; height: 22px; border-radius: 50%; object-fit: cover;
+    border: 1.5px solid rgba(45,37,25,0.15);
+  }
+  .c8-phone__balance { display: flex; flex-direction: column; gap: 1px; }
+  .c8-phone__lbl { font-size: 0.62em; color: #8a7b66; text-transform: uppercase; letter-spacing: 0.08em; }
+  .c8-phone__val { font-size: 1.4em; font-weight: 700; color: #2b2721; letter-spacing: -0.02em; }
+  .c8-phone__val span { color: #8a7b66; font-weight: 500; font-size: 0.7em; }
+  .c8-phone__delta { font-size: 0.7em; color: #6d8864; font-weight: 600; }
+
+  .c8-phone__chart { flex: 1; min-height: 40px; }
+  .c8-phone__chart svg { width: 100%; height: 100%; display: block; }
+  .c8-phone__line {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: c8-phone-draw 3.5s ease-out infinite;
+  }
+  @keyframes c8-phone-draw { 0%{stroke-dashoffset:600} 55%,100%{stroke-dashoffset:0} }
+
+  .c8-phone__rows { display: flex; flex-direction: column; gap: 4px; }
+  .c8-phone__row {
+    display: grid; grid-template-columns: 40px 1fr auto;
+    align-items: center; gap: 6px;
+    font-size: 0.78em;
+    padding: 4px 0;
+    border-top: 1px solid rgba(45,37,25,0.08);
+  }
+  .c8-phone__tok { font-weight: 700; color: #2b2721; }
+  .c8-phone__bal { font-variant-numeric: tabular-nums; color: #8a7b66; }
+  .c8-phone__chg--up { color: #6d8864; font-weight: 600; text-align: right; }
+  .c8-phone__chg--dn { color: #b0705a; font-weight: 600; text-align: right; }
+
+  .c8-commits {
+    position: absolute; top: 8%; right: 5%; width: 46%;
+    background: #fbf6e9;
+    color: #2b2721; border-radius: 10px;
+    box-shadow: 0 10px 26px rgba(45,37,25,0.22);
+    overflow: hidden;
+    transform: rotate(2deg);
+    animation: c8-commits-tilt 7s ease-in-out infinite;
+  }
+  @keyframes c8-commits-tilt {
+    0%,100% { transform: rotate(2deg) translateY(0); }
+    50%     { transform: rotate(1deg) translateY(-3px); }
+  }
+  .c8-commits__head {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px; border-bottom: 1px solid #eee5d1;
+  }
+  .c8-commits__head img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; }
+  .c8-commits__name { display: block; font-size: 0.82em; font-weight: 700; }
+  .c8-commits__repo { display: block; font-size: 0.68em; color: #8a7b66; font-family: "SF Mono", Menlo, monospace; }
+  .c8-commits__list {
+    list-style: none; margin: 0; padding: 6px 10px 10px;
+    display: flex; flex-direction: column; gap: 5px;
+    font-size: 0.78em;
+  }
+  .c8-commits__list li { display: flex; align-items: center; gap: 6px; white-space: nowrap; overflow: hidden; }
+  .c8-commits__sha {
+    font-family: "SF Mono", Menlo, monospace;
+    font-size: 0.8em; color: #8a7b66;
+    background: #f2ead7; padding: 1px 5px; border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .c8-commits__new .c8-commits__sha { background: rgba(109,136,100,0.2); color: #4d6848; }
+  .c8-commits__new { font-weight: 600; }
+  .c8-commits__badge {
+    margin-left: auto;
+    background: #6d8864; color: #fbf6e9;
+    font-size: 0.7em; font-weight: 700; padding: 1px 5px; border-radius: 4px;
+    letter-spacing: 0.04em;
+    animation: c8-pulse-dot 1.6s ease-in-out infinite;
+  }
+
+  .c8-pill--uptime { bottom: 5%; right: 4%; color: #6d8864; }
+
+  /* Reduced motion — freeze all loops */
   @media (prefers-reduced-motion: reduce) {
-    .c8-app *, .c8-app *::before, .c8-app *::after { animation: none !important; }
-    .c8-cursor, .c8-caret { display: none !important; }
+    .ServiceMedia_mediaContainer__WGgZa *, .ServiceMedia_mediaContainer__WGgZa *::before, .ServiceMedia_mediaContainer__WGgZa *::after { animation: none !important; }
   }
 </style>
