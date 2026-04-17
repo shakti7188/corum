@@ -1,0 +1,98 @@
+---
+// Floating WhatsApp enquiry button — pinned to bottom-right of the viewport.
+export interface Props {
+  phone?: string;       // E.164, no "+"; defaults to a placeholder
+  message?: string;     // pre-filled enquiry
+}
+
+const {
+  phone = '971500000000',
+  message = 'Hi Corum8 team — I\u2019d like to book a strategy call.',
+} = Astro.props;
+
+const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+---
+
+<a
+  class="c8-wa"
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Enquire on WhatsApp"
+>
+  <span class="c8-wa__ring"></span>
+  <svg class="c8-wa__icon" viewBox="0 0 32 32" aria-hidden="true">
+    <path fill="currentColor" d="M16.002 3C9.374 3 4 8.373 4 15a11.9 11.9 0 0 0 1.704 6.146L4 29l8.065-1.662A11.93 11.93 0 0 0 16.002 27C22.63 27 28 21.627 28 15S22.63 3 16.002 3Zm0 21.874a9.88 9.88 0 0 1-5.036-1.372l-.361-.212-4.783.986.996-4.664-.236-.381A9.874 9.874 0 0 1 5.87 15c0-5.585 4.547-10.13 10.132-10.13S26.13 9.415 26.13 15s-4.547 9.874-10.128 9.874Zm5.527-7.382c-.302-.151-1.789-.883-2.065-.982-.277-.101-.478-.151-.68.152-.2.303-.779.982-.955 1.183-.176.203-.352.227-.654.076-.302-.152-1.273-.47-2.424-1.498-.896-.8-1.5-1.787-1.677-2.09-.176-.302-.019-.466.133-.617.137-.136.302-.353.453-.53.152-.176.203-.302.303-.503.101-.201.05-.378-.025-.53-.076-.151-.68-1.641-.932-2.247-.245-.588-.494-.508-.68-.517-.176-.01-.377-.012-.579-.012-.201 0-.529.076-.806.377-.277.303-1.057 1.033-1.057 2.52s1.081 2.923 1.232 3.125c.152.201 2.128 3.247 5.156 4.553.721.311 1.283.497 1.722.635.723.23 1.38.198 1.9.12.579-.086 1.789-.731 2.042-1.436.253-.705.253-1.309.177-1.436-.076-.127-.277-.202-.579-.354Z"/>
+  </svg>
+  <span class="c8-wa__label">Enquire on WhatsApp</span>
+</a>
+
+<style>
+  .c8-wa {
+    position: fixed;
+    right: clamp(1rem, 2.5vw, 2rem);
+    bottom: clamp(1rem, 2.5vw, 2rem);
+    z-index: 9999;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+
+    padding: 0.875rem 1.25rem 0.875rem 0.875rem;
+    border-radius: 999px;
+
+    background: #25d366;
+    color: #063b1d;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+
+    box-shadow:
+      0 14px 34px rgba(37, 211, 102, 0.42),
+      0 4px 12px rgba(0, 0, 0, 0.18);
+
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+
+  .c8-wa:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow:
+      0 18px 40px rgba(37, 211, 102, 0.55),
+      0 6px 14px rgba(0, 0, 0, 0.22);
+    color: #05341a;
+  }
+
+  .c8-wa__icon {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+
+  .c8-wa__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+    animation: c8-wa-pulse 2.6s ease-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes c8-wa-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+    70%  { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+
+  @media (max-width: 640px) {
+    .c8-wa { padding: 0.75rem; }
+    .c8-wa__label { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c8-wa__ring { animation: none; }
+    .c8-wa:hover { transform: none; }
+  }
+</style>
