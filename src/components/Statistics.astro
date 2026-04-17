@@ -1,5 +1,50 @@
 ---
-// Automatically extracted from KOTA clone
+// Dynamic Statistics Carousel
+export interface StatItem {
+  logo: string;
+  alt: string;
+  mainVisual: string;
+  heading: string;
+  description: string;
+  href?: string;
+  btnText?: string;
+}
+
+export interface Props {
+  stats?: StatItem[];
+}
+
+const defaultStats: StatItem[] = [
+  {
+    logo: '/clients/binance.png',
+    alt: 'Binance',
+    mainVisual: '/clients/binance.png',
+    heading: 'M+',
+    description: 'monthly exchange volume via our performance affiliate network.',
+    href: '/work/binance',
+    btnText: 'View Project'
+  },
+  {
+    logo: '/clients/fanadise.png',
+    alt: 'Fanadise',
+    mainVisual: '/clients/fanadise.png',
+    heading: 'M',
+    description: 'raised through our full-stack Web3 growth campaign.',
+    href: '/work/fanadise',
+    btnText: 'View Project'
+  },
+  {
+    logo: '/clients/kucoin.png',
+    alt: 'KuCoin',
+    mainVisual: '/clients/kucoin.png',
+    heading: 'Global',
+    description: 'brand visibility amplified in every priority market via PR.',
+    href: '/work/kucoin',
+    btnText: 'View Project'
+  }
+];
+
+const { stats = defaultStats } = Astro.props;
 ---
 
 <div class="Statistics_statistics__vWlOY">

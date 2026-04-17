@@ -4,6 +4,16 @@ import BrandMark from './BrandMark.astro';
 
 const socialArrowPath =
   'M12.65.31a.504.504 0 00-.46-.31H.5C.22 0 0 .22 0 .5s.22.5.5.5h10.49L.55 11.43c-.2.2-.2.51 0 .71a.485.485 0 00.7 0L11.69 1.71v10.47c0 .28.22.5.5.5s.5-.22.5-.5V.52c0-.07 0-.14-.04-.21z';
+
+// Awards displayed in the footer logo strip — slots into the original KOTA
+// .Footer_logos__jFNys grid (height: 2.25rem, gap: 1.25rem).
+const awards = [
+  { src: '/awards/blockchain-life.png', alt: 'Blockchain Life' },
+  { src: '/awards/dubai-expo.png',      alt: 'Dubai Expo' },
+  { src: '/awards/emmi-empire.png',     alt: 'EMMI Empire' },
+  { src: '/awards/finext.png',          alt: 'Finext' },
+  { src: '/awards/iisa.png',            alt: 'IISA' },
+];
 ---
 <footer class="Footer_footer__pQtti">
   <div class="container">
@@ -40,7 +50,11 @@ const socialArrowPath =
           ))}
         </ul>
       </div>
-      <div class="Footer_logos__jFNys"></div>
+      <div class="Footer_logos__jFNys">
+        {awards.map((a) => (
+          <img src={a.src} alt={a.alt} loading="lazy" />
+        ))}
+      </div>
     </div>
     <div class="Footer_last__auU9C">
       <ul class="Footer_lastNav__at6Kh" data-type="desktop">
@@ -64,3 +78,17 @@ const socialArrowPath =
     </div>
   </div>
 </footer>
+
+<style>
+  /* Flatten colour award PNGs into unified white marks for the dark footer */
+  .Footer_logos__jFNys img {
+    filter: brightness(0) invert(1);
+    opacity: 0.78;
+    transition: opacity 0.3s ease;
+    max-width: 140px;
+    object-fit: contain;
+  }
+  .Footer_logos__jFNys img:hover {
+    opacity: 1;
+  }
+</style>

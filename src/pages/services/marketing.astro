@@ -1,12 +1,57 @@
 ---
 import ServicePillarLayout from '../../layouts/ServicePillarLayout.astro';
+
+const mktTestimonials = [
+  {
+    bg: '#d7e1d3',
+    logo: '/clients/fanadise.png',
+    alt: 'Top Tier KOL',
+    quote: 'Corum8 does not just buy ads. They create movements. We organically reached 150,000 active Discord members purely through their strategic Web3 KOL network.',
+    name: 'Emily T.',
+    title: 'CMO',
+    href: '/case-studies'
+  },
+  {
+    bg: '#000000',
+    logo: '/clients/binance.png',
+    alt: 'Exchange Listing',
+    quote: 'The PR assault they orchestrated alongside our Tier-1 exchange listing was flawless. Forbes, Bloomberg, and CoinDesk all picked up our narrative.',
+    name: 'James L.',
+    title: 'Head of Growth',
+    href: '/case-studies'
+  }
+];
+
+const mktStats = [
+  {
+    logo: '/clients/kava.png',
+    alt: 'Community',
+    mainVisual: '/clients/kava.png',
+    heading: '40M+',
+    description: 'Verified users across all managed community sectors globally.',
+    href: '/work',
+    btnText: 'View Growth Case'
+  },
+  {
+    logo: '/clients/kucoin.png',
+    alt: 'PR',
+    mainVisual: '/clients/kucoin.png',
+    heading: '12x ROI',
+    description: 'Average return on ad-spend for optimized Web3 funnel campaigns.',
+    href: '/work',
+    btnText: 'View PR Strategy'
+  }
+];
 ---
 
 <ServicePillarLayout 
   title="Web3 Marketing Services | Corum8"
   heroHeadline="Marketing & Growth Services"
   heroSubheadline="Visibility that moves markets."
+  testimonials={mktTestimonials}
+  stats={mktStats}
 >
+
   <Fragment slot="pills">
     <nav class="DiscoverMore_discoverMore__hYPtP" data-theme="light"><span class="FadeIn_container__bjQVL" data-fill="false"><div class="DiscoverMore_linksInner__Vgx11"><p class="DiscoverMore_heading__fBuVc">Discover more</p><a class="DiscoverMoreLink_active__6IF37" href="/service/web-design-development">Public Relations</a><a class="" href="/service/creative-web-design">Influencer & KOL</a><a class="" href="/service/web-development">Performance Marketing</a><a class="" href="/service/e-commerce">Social Media</a><a class="" href="/service/wordpress">Community Building</a><a class="" href="/service/copywriting">SEO & AEO</a></div></span></nav>
   </Fragment>

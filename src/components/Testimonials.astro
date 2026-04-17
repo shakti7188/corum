@@ -1,5 +1,51 @@
 ---
-// Automatically extracted from KOTA clone
+// Dynamic KOTA-Style Testimonials Carousel
+
+export interface Testimonial {
+  bg: string;
+  logo: string;
+  alt: string;
+  quote: string;
+  name: string;
+  title: string;
+  href: string;
+}
+
+export interface Props {
+  testimonials?: Testimonial[];
+}
+
+const defaultTestis: Testimonial[] = [
+  {
+    bg: '#d7e1d3',
+    logo: '/clients/metamask.png',
+    alt: 'NexaChain',
+    quote: 'Corum8 delivered our exchange platform two weeks ahead of schedule and ran a launch PR programme that landed us in Forbes and CoinTelegraph in the first month. The all-in-one approach saved us from coordinating between five different vendors.',
+    name: 'Marcus Chen',
+    title: 'CEO, NexaChain',
+    href: '/work'
+  },
+  {
+    bg: '#a8e1ec',
+    logo: '/clients/kava.png',
+    alt: 'DeFiVault',
+    quote: 'Their influencer network is unmatched. We went from 2,000 to 85,000 community members in 90 days with genuine engagement — not bot farms. The ROI on our KOL campaigns was 12x what we saw with our previous agency.',
+    name: 'Sarah Al-Rashid',
+    title: 'CMO, DeFiVault',
+    href: '/work'
+  },
+  {
+    bg: '#ffffff',
+    logo: '/clients/kucoin.png',
+    alt: 'KuCoin',
+    quote: 'Corum8 rebuilt our entire tokenomics model from the ground up, ensuring deep liquidity mapping. Our token launch hit M in volume within the first 48 hours precisely due to their structural PR push.',
+    name: 'David Z.',
+    title: 'Founder',
+    href: '/work'
+  }
+];
+
+const { testimonials = defaultTestis } = Astro.props;
 ---
 
 <section class="Testimonials_testimonials__AMUEx">

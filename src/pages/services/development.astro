@@ -1,12 +1,57 @@
 ---
 import ServicePillarLayout from '../../layouts/ServicePillarLayout.astro';
+
+const devTestimonials = [
+  {
+    bg: '#000000',
+    logo: '/clients/fanadise.png',
+    alt: 'Decentralized Exchange',
+    quote: 'Corum8 rebuilt our entire DEX smart contract architecture in 6 weeks. Their code passed all CertiK audits with zero critical vulnerabilities. Truly elite engineering.',
+    name: 'Alex R.',
+    title: 'CTO',
+    href: '/case-studies'
+  },
+  {
+    bg: '#ffffff',
+    logo: '/clients/kava.png',
+    alt: 'DeFi protocol',
+    quote: 'The wallet infrastructure they provided scaled to 500k DAU effortlessly. Corum8 is the only agency we trust with our L1 integrations.',
+    name: 'Sarah K.',
+    title: 'Lead Architect',
+    href: '/case-studies'
+  }
+];
+
+const devStats = [
+  {
+    logo: '/clients/metamask.png',
+    alt: 'Security',
+    mainVisual: '/clients/metamask.png',
+    heading: 'Zero',
+    description: 'critical vulnerabilities across 50+ smart contract deployments.',
+    href: '/work',
+    btnText: 'Read Audits'
+  },
+  {
+    logo: '/clients/binance.png',
+    alt: 'Volume',
+    mainVisual: '/clients/binance.png',
+    heading: 'B+',
+    description: 'Total Value Locked (TVL) across protocols we built.',
+    href: '/work',
+    btnText: 'View Case Study'
+  }
+];
 ---
 
 <ServicePillarLayout 
   title="Web3 Development Services | Corum8"
-  heroHeadline="Blockchain Development Services"
-  heroSubheadline="Engineering the infrastructure of tomorrow."
+  heroHeadline="Development & Engineering Services"
+  heroSubheadline="Bulletproof architecture for Web3."
+  testimonials={devTestimonials}
+  stats={devStats}
 >
+
   <Fragment slot="pills">
     <nav class="DiscoverMore_discoverMore__hYPtP" data-theme="light"><span class="FadeIn_container__bjQVL" data-fill="false"><div class="DiscoverMore_linksInner__Vgx11"><p class="DiscoverMore_heading__fBuVc">Discover more</p><a class="DiscoverMoreLink_active__6IF37" href="/service/web-design-development">Web design &amp; development</a><a class="" href="/service/creative-web-design">Creative web design</a><a class="" href="/service/web-development">Web development</a><a class="" href="/service/e-commerce">E-Commerce</a><a class="" href="/service/wordpress">WordPress</a><a class="" href="/service/copywriting">Copywriting</a></div></span></nav>
   </Fragment>
