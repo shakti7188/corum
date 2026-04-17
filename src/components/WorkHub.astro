@@ -1,0 +1,247 @@
+---
+// WorkHub section - Exclusively for the /work endpoint.
+// Fully bypasses Next.js CSR mapping with native VanillaJS logic.
+
+const arrowGrad = {
+  id: 'd2',
+  stops: [
+    { offset: '0', color: '#7c41f3' },
+    { offset: '1', color: '#ff6eff' },
+  ],
+};
+
+const filterCategories = [
+  { label: 'All', slug: 'all' },
+  { label: 'Branding', slug: 'branding' },
+  { label: 'eCommerce', slug: 'ecommerce' },
+  { label: 'SaaS', slug: 'saas' },
+  { label: 'Web App', slug: 'web-app' },
+  { label: 'Performance', slug: 'performance' },
+];
+
+const projects = [
+  {
+    category: 'performance',
+    size: 'small',
+    href: '/work/fanadise',
+    name: 'Fanadise',
+    type: 'Full-stack Web3 growth campaign',
+    result: '$5M raised',
+    heading: 'Full-stack Web3 growth campaign that rallied the community behind a $5M raise.',
+    tags: ['Full-stack Web3', 'Growth Campaign', 'Community'],
+    video: '/media/GOAT-FeatureVideo.mp4',
+    poster: '/images/GOAT-FeaturedImage.png',
+  },
+  {
+    category: 'branding',
+    size: 'small',
+    href: '/work/ubuntu-tribe',
+    name: 'Ubuntu Tribe',
+    type: 'PR, community, influencer',
+    result: 'Global presence',
+    heading: 'PR, community and influencer programme anchored around Token2049.',
+    tags: ['PR', 'Community', 'Influencer'],
+    video: '/media/isi-vid2-1.mp4',
+    poster: '/images/hero.webp',
+  },
+  {
+    category: 'saas',
+    size: 'small',
+    href: '/work/kucoin',
+    name: 'KuCoin',
+    type: 'Strategic PR for exchange',
+    result: 'Brand visibility',
+    heading: 'Strategic PR programme for a major exchange.',
+    tags: ['Strategic PR', 'Exchange', 'Visibility'],
+    video: '/media/Duplicated-Assets.mp4',
+    poster: '/images/ig-featured-mobile.jpg',
+  },
+  {
+    category: 'web-app',
+    size: 'small',
+    href: '/work/metarix',
+    name: 'Metarix',
+    type: 'Full launch',
+    result: '$780K raised',
+    heading: 'Full launch across influencers, PR and community.',
+    tags: ['Influencers', 'PR', 'Community'],
+    video: '/media/Featured-compressed.mp4',
+    poster: '/images/wogan-featured-2.jpg',
+  },
+  {
+    category: 'performance',
+    size: 'small',
+    href: '/work/binance',
+    name: 'Binance',
+    type: 'Performance network',
+    result: '$800M+ volume',
+    heading: 'Performance affiliate network driving $800M+ volume.',
+    tags: ['Performance Marketing', 'Exchange'],
+    video: '/media/Company-Loop4-compressed-2.mp4',
+    poster: '/images/upp-featured-mobile.jpg',
+  },
+  {
+    category: 'ecommerce',
+    size: 'small',
+    href: '/work/cashaa',
+    name: 'Cashaa',
+    type: 'Token launch',
+    result: '$32M raised',
+    heading: 'Token launch powered by influencer marketing.',
+    tags: ['Token', 'Influencer'],
+    video: '/media/Featured2-Compressed.mp4',
+    poster: '/images/upp-featured-mobile.jpg',
+  },
+  // Duplicating for the grid volume required by /work
+  {
+    category: 'branding',
+    size: 'small',
+    href: '/work/example-7',
+    name: 'CoinMarketCap',
+    type: 'Platform Branding',
+    result: 'Industry standard',
+    heading: 'Re-imagining the visual layer of crypto data.',
+    tags: ['Branding', 'Data', 'Web3'],
+    video: '/media/Featured-compressed.mp4',
+    poster: '/images/wogan-featured-2.jpg',
+  },
+  {
+    category: 'web-app',
+    size: 'small',
+    href: '/work/example-8',
+    name: 'Trust Wallet',
+    type: 'dApp Integrations',
+    result: 'Mass adoption',
+    heading: 'Frictionless web application infrastructure for 10M users.',
+    tags: ['dApp', 'Wallet', 'UX'],
+    video: '/media/isi-vid2-1.mp4',
+    poster: '/images/hero.webp',
+  }
+];
+---
+
+<div class="WorkHub_container">
+  
+  <!-- Custom Filter Bar Engine -->
+  <div class="WorkHub_filters">
+    <div class="container" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem;">
+      {filterCategories.map(cat => (
+        <button class="WorkHub_filterBtn" data-filter={cat.slug}>
+          {cat.label}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div class="Work_projects__A5q77">
+    <div class="AnimatedGrid_grid__otAMD">
+      <div class="container" id="WorkHub_grid">
+        {projects.map((p) => (
+          <a
+            class="ProjectCard_project__d1wbY ProjectCard_small__xsL92 WorkHub_card"
+            data-category={p.category}
+            data-animation="grid-item"
+            href={p.href}
+          >
+            <div class="ProjectCard_projectText__o770X">
+              <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.78 14.78">
+                  <defs>
+                    <linearGradient id={arrowGrad.id} x1="3.54" x2="13.98" y1="3.54" y2="13.99" gradientUnits="userSpaceOnUse">
+                      {arrowGrad.stops.map((s) => <stop offset={s.offset} stop-color={s.color}></stop>)}
+                    </linearGradient>
+                  </defs>
+                  <path fill={`url(#${arrowGrad.id})`} stroke-width="0" d="M13.25 12.18L13.25 0.23 14.78 0.23 14.78 14.76 14.74 14.76 14.74 14.78 0.21 14.78 0.21 13.25 12.18 13.25 0 1.08 1.08 0 13.25 12.18z"></path>
+                </svg>{p.name}
+              </h3>
+              <p>
+                {p.type && <span class="ProjectCard_type__c8">{p.type} &middot; </span>}
+                <span class="ProjectCard_result__c8">{p.result}</span>
+              </p>
+            </div>
+            <div class="ProjectCard_projectImage__Nfx9I">
+              <div class="ProjectCard_imageOverlay__OCawr">
+                <p class="ProjectCard_heading__1csIW">{p.heading}</p>
+                <ul class="ProjectCard_tags__XdVcf">
+                  {p.tags.map((t) => <li>{t}</li>)}
+                </ul>
+              </div>
+              {p.poster && (
+                <span class="Image_image__RAAdZ Image_fill__EiIzS"><img src={p.poster} alt="" fetchpriority="low" /></span>
+              )}
+              <video src={p.video} class="ProjectCard_video__AheFz" autoplay="true" muted="true" loop="true" playsinline="true"></video>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .WorkHub_filters {
+    padding-top: 2rem;
+  }
+  .WorkHub_filterBtn {
+    background: transparent;
+    border: 1px solid currentColor;
+    color: var(--theme-text);
+    padding: 0.75rem 1.75rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .WorkHub_filterBtn:hover {
+    border-color: #ff6eff;
+    color: #ff6eff;
+  }
+  .WorkHub_filterBtn.active {
+    background: linear-gradient(90deg, #7c41f3 0%, #ff6eff 100%);
+    border-color: transparent;
+    color: var(--theme-text);
+  }
+  .WorkHub_card {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.WorkHub_filterBtn');
+    const cards = document.querySelectorAll('.WorkHub_card');
+
+    if (filterBtns.length === 0) return;
+
+    // Set initial state
+    filterBtns[0].classList.add('active');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const activeSlug = btn.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          
+          if (activeSlug === 'all') {
+            card.style.display = 'block';
+            setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 50);
+          } else {
+            if (cardCategory === activeSlug) {
+              card.style.display = 'block';
+              setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 50);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'scale(0.95)';
+              setTimeout(() => { card.style.display = 'none'; }, 400);
+            }
+          }
+        });
+      });
+    });
+  });
+</script>
