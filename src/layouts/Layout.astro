@@ -2,6 +2,7 @@
 import Navigation from '../components/Navigation.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 
 interface Props {
 	title: string;
@@ -49,7 +50,9 @@ const { title } = Astro.props;
       <slot />
     </main>
     <Footer />
-    
+
+    <WhatsAppButton />
+
     <script>
       import '../scripts/site.ts';
     </script>
