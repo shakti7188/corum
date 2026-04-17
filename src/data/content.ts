@@ -4,7 +4,7 @@
 export const banner = "Building better digital brands since day one";
 
 export const hero = {
-  pre: "London / Remote",
+  pre: "Dubai, UAE / Delaware, USA",
   headline: {
     start: "We're a creative studio designing digital brands that",
     accent: "stand out on purpose.",
@@ -254,7 +254,7 @@ export const faqs = [
 
 export const footer = {
   intro: "Building work worth the wait",
-  email: "hello@corum8.com",
+  email: "info@corum8.com",
   socials: [
     { label: "Instagram", href: "#" },
     { label: "LinkedIn", href: "#" },

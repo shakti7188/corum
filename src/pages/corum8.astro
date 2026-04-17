@@ -3,6 +3,16 @@ import Navigation from '../components/Navigation.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CloudBackground from '../components/CloudBackground.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Ethos from '../components/Ethos.astro';
+import Work from '../components/Work.astro';
+import Statistics from '../components/Statistics.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Partners from '../components/Partners.astro';
+import Articles from '../components/Articles.astro';
+import FaqsList from '../components/FaqsList.astro';
+import KotaverseCta from '../components/KotaverseCta.astro';
 ---
 <!doctype html>
 <html lang="en" class="__variable_a78db3 __variable_ab8453">
@@ -29,27 +39,20 @@ import CloudBackground from '../components/CloudBackground.astro';
     <Navigation />
     <Header />
 
-    <main>
-      <section class="hero">
-        <CloudBackground />
-        <div class="hero-inner">
-          <p class="hero-eyebrow">Corum8 · Digital studio</p>
-          <h1 class="hero-title">
-            <span>Build brands</span>
-            <span>people</span>
-            <span>remember.</span>
-          </h1>
-          <p class="hero-sub">
-            Strategy, identity, and product design for companies ready to stop looking like everyone else.
-          </p>
-          <a class="hero-cta" href="/start-your-project">Start a project →</a>
-        </div>
-      </section>
+    <main style="position: relative; z-index: 1;">
+      <Hero />
+      <Services />
+      <Ethos />
+      <Work />
+      <Statistics />
+      <Testimonials />
+      <Partners />
+      <Articles />
 
-      <section class="scroll-demo">
-        <h2>Scroll demo — replace with real sections</h2>
-        <p>Below this is where the Services / Work / Testimonials sections will live.</p>
-      </section>
+      <!-- Removed blur bridge as per user request -->
+
+      <FaqsList />
+      <KotaverseCta />
     </main>
 
     <Footer />

@@ -1,14 +1,14 @@
 export const brand = {
   name: 'Corum8',
   shortMark: 'C8',
-  email: 'hello@corum8.com',
+  email: 'info@corum8.com',
   copyrightYear: 2026,
 };
 
 export const ctaLink = {
-  href: '/start-your-project',
-  label: 'Start your project',
-  shortLabel: 'Hire us',
+  href: '/book-a-strategy-call',
+  label: 'Book a Strategy Call',
+  shortLabel: 'Book a Strategy Call',
 };
 
 export const navLinks: Array<{
@@ -32,19 +32,19 @@ export const navLinks: Array<{
 ];
 
 export const socialLinks: Array<{ label: string; href: string }> = [
-  { label: 'LinkedIn', href: '#' },
-  { label: 'Facebook', href: '#' },
-  { label: 'Instagram', href: '#' },
-  { label: 'Bluesky', href: '#' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/company/corum8' },
+  { label: 'Telegram', href: 'https://t.me/corum8' },
+  { label: 'Instagram', href: 'https://instagram.com/corum8' },
+  { label: 'X/Twitter', href: 'https://x.com/corum8' },
 ];
 
 export const sectorLinks: Array<{ label: string; href: string }> = [
-  { label: 'Agencies', href: '/agencies' },
-  { label: 'SaaS and Tech', href: '/b2b-tech-software-saas' },
-  { label: 'B2B Transformation', href: '/b2b-transformation' },
-  { label: 'Healthcare', href: '/healthcare' },
-  { label: 'Media & Entertainment', href: '/media-entertainment' },
-  { label: 'Retail', href: '/retail' },
+  { label: 'Web3 & Crypto', href: '/web3-and-crypto' },
+  { label: 'Startups', href: '/startups' },
+  { label: 'SaaS', href: '/saas' },
+  { label: 'Fintech', href: '/fintech' },
+  { label: 'AI', href: '/ai' },
+  { label: 'Enterprise', href: '/enterprise' },
 ];
 
 export const legalLinks: Array<{ label: string; href: string }> = [

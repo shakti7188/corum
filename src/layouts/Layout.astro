@@ -1,0 +1,120 @@
+---
+import Navigation from '../components/Navigation.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="__variable_a78db3 __variable_ab8453">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    
+    <meta name="description" content="Discover Corum8, a Global Web3 Marketing, PR & Development Agency. Experts in Web3 & Crypto, Startups, SaaS, Fintech, AI, and Enterprise strategy." />
+    
+    <link rel="preload" href="/_next/static/media/482a8097102f5f9f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+    <link rel="preload" href="/_next/static/media/50431d8feb7ceff2-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+    <link rel="preload" href="/_next/static/media/54252e86b97de34f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+    <link rel="preload" href="/_next/static/media/bb0bdc9db5c241da-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+    
+    <link rel="stylesheet" href="/css/c6a848d34dfd7dce.css">
+    <link rel="stylesheet" href="/css/0aea7e632ce3cedf.css">
+    <link rel="stylesheet" href="/css/053ade63481ccabc.css">
+    <link rel="stylesheet" href="/css/e36a1a112c1c5ec8.css">
+    <link rel="stylesheet" href="/css/13f753c524b3db20.css">
+    <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css">
+    <link rel="stylesheet" href="/css/de01f06c65200d74.css">
+    <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css">
+    <link rel="stylesheet" href="/css/ecdfc97c33854f51.css">
+    <link rel="stylesheet" href="/css/3d63d502945bea5a.css">
+    
+    <!-- Service Pillar / Cluster Layout Extracted CSS Blocks -->
+    <link rel="stylesheet" href="/css/360c1cf90a1ae901.css">
+    <link rel="stylesheet" href="/css/842a33b51ca56037.css">
+    <link rel="stylesheet" href="/css/f84288c45a46068b.css">
+    <link rel="stylesheet" href="/css/df01bcfa5dec6e02.css">
+  </head>
+  <body>
+    <Navigation />
+    <Header />
+    <main style="position: relative; z-index: 1;">
+      <slot />
+    </main>
+    <Footer />
+    
+    <script>
+      import '../scripts/site.ts';
+    </script>
+
+    <style is:global>
+      /* KOTA Missing Hydration CSS Overrides */
+      [class*="Timeline_timeline__"] {
+        display: block !important;
+        overflow: hidden;
+      }
+      /* Ensure internal invisible wrappers are unlocked and scrollable */
+      [class*="Timeline_timeline__"] {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      [class*="StaggeredItems_grid__"],
+      [class*="Timeline_block__"] {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+      }
+      [class*="StaggeredItems_grid__"],
+      [class*="Timeline_scroller__"] {
+        display: flex !important;
+        width: max-content !important;
+        flex-wrap: nowrap;
+        gap: 2rem;
+      }
+      [class*="Timeline_inner__"] {
+        display: flex;
+        gap: 2rem;
+      }
+      
+      /* Global Image Premium Hover Upgrade (Replacing Shake) */
+      img, [class*="Image_image__"] {
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+      }
+      img:hover, [class*="Image_image__"]:hover {
+        transform: scale(1.02);
+      }
+      
+      /* Circular Wave Hover for Hero Top Media */
+      [class*="Hero_video__"], [class*="Hero_video__"] * {
+        transition: box-shadow 0.8s ease, transform 0.8s ease;
+        border-radius: 50% !important; /* Enforce deeply nested circularity */
+      }
+      [class*="Hero_video__"] {
+        aspect-ratio: 1 / 1 !important; /* Force geometric perfection */
+        object-fit: cover !important;
+        overflow: hidden;
+      }
+      [class*="Hero_video__"]:hover {
+        box-shadow: 0 0 0 20px rgba(200, 255, 0, 0.1), 0 0 0 40px rgba(200, 255, 0, 0.05);
+        transform: scale(1.03);
+      }
+      
+      /* Header Breathing Room fix for Hero Top Media */
+      [class*="Hero_hero__"] {
+        padding-top: clamp(100px, 12vh, 160px) !important;
+      }
+      
+      /* Force Visibility on Arrow Container */
+      [class*="Hero_arrow__"] [class*="FadeIn"] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    </style>
+  </body>
+</html>

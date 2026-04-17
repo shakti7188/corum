@@ -137,3 +137,91 @@
             </div>
           </div>
         </div>
+        
+<style>
+  .Statistics_statistics__vWlOY {
+    background-color: #000 !important;
+    position: relative;
+    min-height: 100vh;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .StatisticsHeading_heading__3C_3F {
+    color: #fff !important;
+  }
+
+  .StatisticsCarousel_container__2XA6W {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (min-width: 1024px) {
+    /* Shrink the heading so OUR + RESULTS (staircase) fit fully above the card */
+    .Statistics_statistics__vWlOY .StatisticsHeading_heading__3C_3F {
+      font-size: clamp(2.5rem, 5.6vw, 5.5rem) !important;
+      line-height: 0.9 !important;
+    }
+
+    .Statistics_statistics__vWlOY .StatisticsHeading_heading__3C_3F.StatisticsHeading_bottom__WtLQC {
+      margin-bottom: 0 !important;
+    }
+
+    /* Heading sits at the very top of the pinned viewport */
+    .Statistics_statistics__vWlOY > .container {
+      position: absolute;
+      top: 1.5vh;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+
+    /* Cards vertically centered in pinned viewport — location stays put */
+    .StatisticsCarousel_panels__pxnru {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      margin: 0 !important;
+      z-index: 2;
+    }
+
+    .StatisticsCarousel_swiper__PGdj6 {
+      margin: 0 auto;
+    }
+
+    .StatisticsCarousel_swiper__PGdj6 .swiper-wrapper {
+      position: relative;
+      display: block !important;
+      min-height: 62vh;
+      max-height: 72vh;
+      z-index: 5;
+    }
+
+    /* Keep the card content compact so the bottom border + button stay visible */
+    .StatisticsPanel_panel__5YHtR {
+      min-height: 62vh !important;
+      max-height: 72vh !important;
+      padding: 2.5rem 3.5rem !important;
+    }
+
+    .StatisticsPanel_description__csS74 {
+      margin-bottom: 2.25rem !important;
+    }
+
+    .StatisticsPanel_logo__Y5wQT img {
+      margin-bottom: 1.75rem !important;
+      height: 80px !important;
+    }
+
+    .StatisticsPanel_heading__UrLlt {
+      font-size: clamp(5rem, 8vw, 8rem) !important;
+    }
+
+    .StatisticsCarousel_swiperSlide__is8BS {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+</style>
