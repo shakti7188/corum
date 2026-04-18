@@ -82,6 +82,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a blockchain layer build",
+      enquiry: {
+        hook: "Chain plans drifting?",
+        heading: "Most appchain pitches collapse when decentralization meets throughput.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Hiroshi T.",
+        avatarRole: "Blockchain Infra Lead",
+      },
       body:
         "Every custom chain we build has a consistent set of core modules.",
       subsections: [
@@ -236,7 +246,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four blockchain builds, four different reasons to build",
+      heading: "Blockchain-layer work we've shipped",
       items: [
         {
           company: "Stratus Chain",
@@ -245,6 +255,7 @@ export const page: PageData = {
           situation:
             "Stratus is a sovereign L1 for an institutional settlement protocol. The requirement was sovereign control over fee economics (all fees paid in the protocol's native stablecoin), a permissioned validator set (named regulated institutions only), and on-chain privacy for certain transaction types. Cosmos SDK was the clear choice — native tokenomics flexibility, permissioning via custom module, CometBFT-governed validator set. We shipped the chain with 12 named institutional validators across three jurisdictions, native stablecoin fee payment, and IBC integration to the broader Cosmos ecosystem.",
           outcomeNumber: "12 institutional validators · 3 jurisdictions",
+          outcomeSecondary: "Cosmos SDK chain · native stablecoin fees · IBC shipped",
         },
         {
           company: "Lucent Rollup",
@@ -253,6 +264,7 @@ export const page: PageData = {
           situation:
             "Lucent is an Ethereum L2 optimised for RWA issuance — specifically compliance-friendly token issuance with permissioned validator set and MiCA-aligned audit trails. We built on OP Stack with custom modifications: a permissioned-sequencer configuration, native KYC module integrated with Sumsub, and compliance-reporting hooks that emitted regulator-readable audit events. Deployed to mainnet after six months with two institutional issuers live at launch.",
           outcomeNumber: "2 institutional issuers at mainnet",
+          outcomeSecondary: "OP Stack L2 · permissioned sequencer · Sumsub KYC module",
         },
         {
           company: "Cobalt Subnet",
@@ -261,6 +273,7 @@ export const page: PageData = {
           situation:
             "Cobalt is a permissioned Avalanche subnet for enterprise supply-chain coordination — B2B only, no retail access, transaction-level privacy. We built on Subnet-EVM with custom precompiles for document-hash attestation and cross-enterprise messaging via Avalanche ICM. Validator set is six enterprise operators plus three independent nodes. Production load of roughly 50K transactions per day across eight enterprise participants.",
           outcomeNumber: "50K daily txs · 8 enterprise participants",
+          outcomeSecondary: "Avalanche Subnet-EVM · custom precompiles · ICM messaging",
         },
         {
           company: "Juniper Layer",
@@ -269,6 +282,7 @@ export const page: PageData = {
           situation:
             "Juniper is a gaming-optimised L3 settling to Base. The product requirement was near-zero transaction fees (in-game actions can't cost users money), rapid finality for real-time gameplay, and custom gas abstraction so players pay in the game's utility token. We built on Arbitrum Orbit with AnyTrust DA, gas-token abstraction to the game's native token, and sponsored-gas infrastructure for the largest in-game interactions. Two launch partner games deployed with combined DAU crossing 50K post-launch.",
           outcomeNumber: "50K+ combined DAU across 2 launch games",
+          outcomeSecondary: "Arbitrum Orbit L3 · AnyTrust DA · gas-token abstraction live",
         },
       ],
     },

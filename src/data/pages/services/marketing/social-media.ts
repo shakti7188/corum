@@ -82,6 +82,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a social program",
+      enquiry: {
+        hook: "Posts that don't land?",
+        heading: "Social media that works doesn't look like every other brand account.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Jamal R.",
+        avatarRole: "Social Media Lead",
+      },
       body:
         "Each program shares a core set of modules.",
       subsections: [
@@ -235,7 +245,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four social programs, four different shapes",
+      heading: "Social-media work we've shipped",
       items: [
         {
           company: "Peregrine Labs",
@@ -244,6 +254,7 @@ export const page: PageData = {
           situation:
             "Peregrine treated X as primary distribution — founders and team posting daily, engaging with the Web3 developer community. The challenge was coordinating brand voice across eight team accounts plus the company handle without producing generic output. We built a voice guide, a shared content queue with team-specific variations, and a daily-engagement rotation. Brand-account follower count grew roughly 4× in 9 months and three team accounts crossed 10K followers each with measurably different voice identities.",
           outcomeNumber: "~4× brand follower growth · 9 months",
+          outcomeSecondary: "Voice guide + shared queue across 8 team accounts live",
         },
         {
           company: "Tidemark Finance",
@@ -252,6 +263,7 @@ export const page: PageData = {
           situation:
             "Tidemark is B2B fintech whose buyers live on LinkedIn. We built a founder-led LinkedIn program — 3 long-form posts per week from the CEO and CTO, edited to match each person's actual speaking voice. After 6 months the CEO's LinkedIn account produced more inbound sales meetings than all other marketing channels combined, and the company page grew from 2K to 18K followers with verifiable engagement from target-account decision makers.",
           outcomeNumber: "2K → 18K followers · account-based engagement",
+          outcomeSecondary: "CEO + CTO LinkedIn program · 3 long-form posts weekly shipped",
         },
         {
           company: "Azure Farcaster Collective",
@@ -260,6 +272,7 @@ export const page: PageData = {
           situation:
             "Azure is a Web3 builder community whose audience concentrates heavily on Farcaster. We built a Farcaster-first strategy: daily casts from founding members, frame experiments for interactive content, channel-specific conversation starters, and participation in the broader Farcaster builder ecosystem. Launch-week engagement came predominantly from Farcaster-warmed users — roughly 35% of the first 2,000 signups traced to specific Farcaster casts.",
           outcomeNumber: "~35% launch signups via Farcaster",
+          outcomeSecondary: "Daily cast cadence · frame experiments and channel programming shipped",
         },
         {
           company: "Monsoon Social",
@@ -268,6 +281,7 @@ export const page: PageData = {
           situation:
             "Monsoon is an Asian consumer brand needing Instagram + TikTok presence in three Southeast Asian markets. Language and cultural localisation were the binding constraints. We built in-region content teams (Vietnamese, Bahasa, Tagalog) producing platform-native content with locally-relevant cultural anchors. Instagram follower growth hit 120K across three markets in 6 months with TikTok follower count matching — and direct-message customer inquiry volume rose meaningfully.",
           outcomeNumber: "120K+ Instagram · 120K+ TikTok · 6 months",
+          outcomeSecondary: "In-region teams across 3 languages · native content pipelines live",
         },
       ],
     },

@@ -1,4 +1,27 @@
 ---
 import ServiceClusterLayout from '../../layouts/ServiceClusterLayout.astro';
+
+const heroHeadline = "Fintech";
+const heroTagline = "Banks, neobanks, payment rails, lending, insurance — and the regulatory surface around each.";
+const introTitle = "What we build for fintech teams";
+const introBody = "Fintech is regulated engineering with marketing bolted on top. We build compliance-grade financial infrastructure and run the PR, lead-gen and content programmes your legal team can actually sign off on. KYC/AML pipelines that stand up to audit. Pitch decks for institutional LPs. Paid acquisition that respects FCA, MAS and SEC constraints.";
+const services = [
+  "Payment gateway & card issuing",
+  "Neobank infrastructure",
+  "KYC / AML integration (Sumsub, Jumio, Persona)",
+  "Compliance content & whitepapers",
+  "B2B marketing for institutional buyers",
+  "Investor & analyst PR",
+  "Thought leadership across Bloomberg, FT, WSJ",
+  "Regulator-friendly performance ads",
+  "Analyst-grade reporting dashboards",
+];
 ---
-<ServiceClusterLayout title="Web3 Agency for Fintech | Corum8" />
+<ServiceClusterLayout
+  title="Fintech Agency | Corum8"
+  heroHeadline={heroHeadline}
+  heroTagline={heroTagline}
+  introTitle={introTitle}
+  introBody={introBody}
+  services={services}
+/>

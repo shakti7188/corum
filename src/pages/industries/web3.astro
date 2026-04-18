@@ -1,4 +1,27 @@
 ---
 import ServiceClusterLayout from '../../layouts/ServiceClusterLayout.astro';
+
+const heroHeadline = "Web3 & Crypto";
+const heroTagline = "Exchanges, wallets, RWAs, DeFi, tokens — and the marketing engine that launches them.";
+const introTitle = "What we build for Web3 teams";
+const introBody = "Web3 isn't a vertical. It's a full stack of engineering and go-to-market that moves together or doesn't move at all. We build exchanges, wallet infrastructure, RWA platforms, DeFi protocols — and run the tokenomics, PR and community programmes that launch them. Our dev team ships against audits. Our marketing team ships against listings, raises and volume.";
+const services = [
+  "CEX & DEX development",
+  "Wallet infrastructure (MPC, custodial, non-custodial)",
+  "RWA tokenization platforms",
+  "DeFi & staking protocols",
+  "Token & stablecoin engineering",
+  "Crypto PR & tier-1 media",
+  "Influencer & KOL programmes",
+  "Community building (Discord, Telegram, Farcaster)",
+  "Exchange listing strategy",
+];
 ---
-<ServiceClusterLayout title="Web3 Agency for Web3 | Corum8" />
+<ServiceClusterLayout
+  title="Web3 & Crypto Agency | Corum8"
+  heroHeadline={heroHeadline}
+  heroTagline={heroTagline}
+  introTitle={introTitle}
+  introBody={introBody}
+  services={services}
+/>

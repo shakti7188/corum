@@ -1,0 +1,163 @@
+---
+import Layout from "../layouts/Layout.astro";
+import KotaverseCta from "../components/KotaverseCta.astro";
+
+const reports = [
+  {
+    slug: "#",
+    title: "State of Web3 launches, 2026",
+    summary: "Quarterly analysis of 200+ tracked launches — raise sizes, channel mix, community retention, and what separates the ones that still exist at 12 months from the ones that don't.",
+    category: "Web3 · Launches",
+    pages: 42,
+    updated: "April 2026",
+  },
+  {
+    slug: "#",
+    title: "The RWA tokenization operator map",
+    summary: "Which chains, which issuance standards, which secondary-market venues are institutional operators actually using in 2026. With usage data, not marketing claims.",
+    category: "RWA · Infrastructure",
+    pages: 38,
+    updated: "March 2026",
+  },
+  {
+    slug: "#",
+    title: "AI go-to-market, post-GPT-5",
+    summary: "What changed when LLM capability plateaued and differentiation became the only moat. Case studies across 15 AI product launches between 2024 and 2026.",
+    category: "AI · GTM",
+    pages: 54,
+    updated: "March 2026",
+  },
+  {
+    slug: "#",
+    title: "Crypto PR tiers in a fragmented media landscape",
+    summary: "The Block, CoinDesk, Decrypt, Blockworks, The Defiant — who reaches which audiences, what gets a reply, and what doesn't. Media contact density by region.",
+    category: "PR · Media",
+    pages: 29,
+    updated: "February 2026",
+  },
+];
+---
+<Layout title="Insights | Corum8">
+
+<section class="Hero_hero__zbooM"><div class="container"><div class="Hero_top__UZ6SA"><h2><span class="LineByLine_headingOuter__JmusT"><span>Long-form research. Written by the people who shipped the product.</span></span></h2></div><div class="Hero_bottom__pLxrT"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Insights</span></div></span></h1><div class="Hero_arrow__WTdEi"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z" style="stroke-width:0"></path></svg></span></div></div></div></section>
+
+<section class="c8-insights">
+  <div class="container">
+    <p class="c8-insights__lede">Quarterly long-form analysis on Web3, AI and fintech. Written by the engineers, PR leads and growth operators running the work — not the marketing team summarising it.</p>
+    <div class="c8-insights__list">
+      {reports.map((r) => (
+        <a class="c8-report" href={r.slug}>
+          <div class="c8-report__meta">
+            <span class="c8-report__category">{r.category}</span>
+            <span class="c8-report__pages">{r.pages} pages</span>
+          </div>
+          <h3>{r.title}</h3>
+          <p>{r.summary}</p>
+          <div class="c8-report__foot">
+            <span class="c8-report__updated">Updated {r.updated}</span>
+            <span class="c8-report__cta">
+              Download
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" width="14">
+                <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<KotaverseCta
+  light="Need a bespoke"
+  bold="research piece?"
+  subtitle="We build custom reports for teams that need data, not marketing summaries."
+/>
+
+<style>
+  .c8-insights {
+    padding: clamp(4rem, 8vw, 8rem) 0;
+    background: #fafafa;
+  }
+  .c8-insights__lede {
+    max-width: 44rem;
+    margin: 0 auto 4rem;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444;
+  }
+  .c8-insights__list {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .c8-report {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2.5rem;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease,
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .c8-report:hover {
+    transform: translateY(-3px);
+    border-color: var(--c8-gold);
+    box-shadow: 0 28px 50px -24px rgba(0, 0, 0, 0.18);
+  }
+  .c8-report__meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .c8-report h3 {
+    font-size: 1.45rem;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: #111;
+  }
+  .c8-report p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: #444;
+    margin: 0;
+  }
+  .c8-report__foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .c8-report__updated {
+    font-size: 0.8rem;
+    color: #888;
+  }
+  .c8-report__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #111;
+  }
+  .c8-report:hover .c8-report__cta svg {
+    transform: translateX(4px);
+  }
+  .c8-report__cta svg {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
+
+</Layout>

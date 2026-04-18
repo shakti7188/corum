@@ -397,6 +397,29 @@ const { testimonials = defaultTestis } = Astro.props;
       </section>
 
 <style is:global>
+  /* ---------------------------------------------------------------
+     Light-theme override — KOTA ships Testimonials with a baked-in
+     `background:#000; color:#fff` on `.Testimonials_testimonials__AMUEx`.
+     Reset both so the section sits on the page's light body colour. The
+     pastel testimonial cards (#d7e1d3, #a8e1ec, #c4b5f3, #f8e5cb, etc.)
+     carry all the visual interest now — they pop harder against light
+     than they did against black. Heading swaps to dark for contrast. */
+  .Testimonials_testimonials__AMUEx {
+    background: transparent !important;
+    color: #0a0a0a !important;
+  }
+  .Testimonials_testimonials__AMUEx .Testimonials_heading__k0Yyf,
+  .Testimonials_testimonials__AMUEx [class*="Testimonials_heading"] {
+    color: #0a0a0a !important;
+  }
+  /* The KOTA DarkThemeSwitch_cover div on this section used to signal a
+     dark background to any observers. It's decorative only (pointer-events
+     none, z-index 10), but we hide it here so no future script flips the
+     page into dark mode when scrolling through Testimonials. */
+  .Testimonials_testimonials__AMUEx .DarkThemeSwitch_cover__hn_xc {
+    display: none !important;
+  }
+
   /* Cards — lift the minimum height so quotes breathe instead of packing
      tight against the avatar + logo. Keeps KOTA's 150px corner radius and
      12-col inner grid intact. */

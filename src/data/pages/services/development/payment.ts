@@ -82,6 +82,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a payment gateway build",
+      enquiry: {
+        hook: "Crypto-to-fiat broken?",
+        heading: "Every payment failure is two failures — compliance and UX.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Emma L.",
+        avatarRole: "Payments Solutions Lead",
+      },
       body:
         "Every production payment system we build has a consistent set of modules. The specifics shift based on product type, but the shape is consistent.",
       subsections: [
@@ -235,7 +245,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four payment builds, four different shapes of product",
+      heading: "Payment work we've shipped",
       items: [
         {
           company: "Everpay Rails",
@@ -244,6 +254,7 @@ export const page: PageData = {
           situation:
             "Everpay is an EU-licensed crypto-fiat gateway serving merchants across the EU. MiCA EMT licensing was the product constraint — the gateway operates under EU money-services framework with specific reporting and consumer-protection requirements. We built the payment-intent service, integrated Monerium for SEPA rails and Circle Mint for USDC, and shipped a merchant dashboard with integrated reconciliation into Xero and QuickBooks. First-year volume crossed €32M with zero compliance findings in their MiCA review.",
           outcomeNumber: "€32M volume · 0 compliance findings",
+          outcomeSecondary: "MiCA EMT gateway · Monerium SEPA + Circle Mint · Xero sync",
         },
         {
           company: "Coral Gateway",
@@ -252,6 +263,7 @@ export const page: PageData = {
           situation:
             "Coral is a UAE-licensed payment gateway serving merchants accepting crypto across Dubai, Abu Dhabi, and regional markets. Settlement in USDC on Base with auto-conversion to AED via a licensed banking partner. We built the merchant surfaces, the compliance pipeline meeting VARA requirements, and direct integrations with Emirates NBD for AED settlement. Onboarded 60+ merchants in the first six months with average daily volume crossing $400K.",
           outcomeNumber: "60+ merchants · $400K+ daily volume",
+          outcomeSecondary: "USDC on Base · Emirates NBD AED rail · VARA compliance pipeline",
         },
         {
           company: "Sundial Remit",
@@ -260,6 +272,7 @@ export const page: PageData = {
           situation:
             "Sundial is a remittance app for Southeast Asian migrant workers in Singapore sending money home. Stablecoin rails (USDC via Bridge for fiat-to-crypto in Singapore, Coins.ph / local partners for crypto-to-fiat in destination). We built the consumer mobile app, per-corridor compliance workflow, and real-time FX display including all fees. Average send-to-receive time dropped below 3 minutes, with fees roughly 60% below bank wire and comparable-to-better than Wise.",
           outcomeNumber: "Sub-3-min delivery · 60% fee reduction vs wire",
+          outcomeSecondary: "Consumer mobile app · Bridge on-ramp · Coins.ph off-ramp wired",
         },
         {
           company: "Bridge Commerce",
@@ -268,6 +281,7 @@ export const page: PageData = {
           situation:
             "Bridge Commerce is a B2B invoicing and settlement platform where suppliers get paid in USDC next-day rather than waiting 30-60 days on ACH or wire. We built the invoice-management UI, USDC settlement on Base, supplier onboarding with KYB and banking integration, and accounting sync with NetSuite and QuickBooks. First cohort of 120 suppliers processed $18M in USDC settlement across the first two quarters with measurably faster DSO for their customer-buyers.",
           outcomeNumber: "120 suppliers · $18M USDC settled",
+          outcomeSecondary: "USDC on Base · KYB onboarding · NetSuite + QuickBooks sync",
         },
       ],
     },

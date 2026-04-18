@@ -76,6 +76,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a community program",
+      enquiry: {
+        hook: "Discord a ghost town?",
+        heading: "Communities aren't hired. They're earned — usually in the boring months.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Alex M.",
+        avatarRole: "Community Lead",
+      },
       body:
         "Every program we run covers the same core modules. Specifics shift based on platform mix and product type.",
       subsections: [
@@ -230,7 +240,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four community programs, four different shapes",
+      heading: "Community work we've shipped",
       items: [
         {
           company: "Starlight Protocol",
@@ -239,6 +249,7 @@ export const page: PageData = {
           situation:
             "Starlight is a DeFi lending protocol whose community was stuck at 3K members for 18 months after an early ambassador program collapsed. We rebuilt infrastructure (Discord architecture, moderation bots, anti-phishing), launched a structured three-tier ambassador program, and programmed weekly community calls, bi-weekly technical AMAs, and monthly governance-participation initiatives. 12 months later the community is at 85K active members with roughly 30% active-to-registered ratio — well above category norms.",
           outcomeNumber: "3K → 85K · ~30% active ratio",
+          outcomeSecondary: "3-tier ambassador program · weekly AMA cadence live",
         },
         {
           company: "Seafoam Social",
@@ -247,6 +258,7 @@ export const page: PageData = {
           situation:
             "Seafoam is a consumer Web3 social app launching in Indonesia, Philippines, and Vietnam. Traditional Discord wasn't the right platform for consumer Asian markets — Telegram and Kakao dominated. We built Telegram channels per country, local-language moderators, and a country-ambassador program where local creators earned recognition and access. Pre-launch community hit 40K engaged members across three country channels and launch-week app install-conversion was tracked at roughly 28% from community.",
           outcomeNumber: "~28% community-to-install conversion",
+          outcomeSecondary: "3 Telegram country channels · local-language mod teams live",
         },
         {
           company: "Hearthstone Games",
@@ -255,6 +267,7 @@ export const page: PageData = {
           situation:
             "Hearthstone is a Web3 game whose community challenge was bringing in mainstream gamers — not crypto-audience. We built a Discord community structured around gaming concerns (game design feedback, playtest feedback, tournaments) rather than crypto-centric content. The game-community programming ran alongside a light token-economics track for crypto-curious members. Community grew to 50K with majority-gamer composition and a strong playtest-feedback loop that shaped the pre-launch build.",
           outcomeNumber: "50K community · gamer-majority composition",
+          outcomeSecondary: "Discord built for playtest feedback · tournaments and design channels shipped",
         },
         {
           company: "Meridian Finance",
@@ -263,6 +276,7 @@ export const page: PageData = {
           situation:
             "Meridian's paid-acquisition costs had doubled year-over-year, making paid-only growth economically unsustainable. We built a formal EU-ambassador program with regional leads across Germany, France, Spain, and Italy, structured contributor pipelines with clear advancement criteria, and ongoing community-led content production. 9 months later, community-attributed signups represented roughly 35% of total new-user acquisition with meaningfully lower CAC than the paid channels it partially replaced.",
           outcomeNumber: "~35% of signups via community",
+          outcomeSecondary: "Regional ambassador program across 4 EU markets live",
         },
       ],
     },

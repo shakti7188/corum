@@ -78,6 +78,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a trading infrastructure build",
+      enquiry: {
+        hook: "Trading UX killing retention?",
+        heading: "A fast matching engine is half the job. The chart is the other half.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Leo P.",
+        avatarRole: "Trading Platform Lead",
+      },
       body:
         "Every production trading system we ship has the same core modules. Specifics vary by strategy category and latency tier, but the shape is consistent.",
       subsections: [
@@ -231,7 +241,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four trading builds, four different shapes of system",
+      heading: "Trading-platform work we've shipped",
       items: [
         {
           company: "Westgate Alpha",
@@ -240,6 +250,7 @@ export const page: PageData = {
           situation:
             "Westgate runs a crypto-native quant strategy across seven venues (spot + perps). Their legacy Python stack was losing money to execution slippage on large orders and missing fills during volatility events. We rebuilt the OMS and execution layer in Rust with latency-tier separation: critical path in Rust, strategy logic unchanged in Python. Cross-venue execution slippage dropped roughly 40 basis points on comparable order flow, and the system handled a significant volatility event in Q2 2026 with no missed fills.",
           outcomeNumber: "~40bps execution slippage reduction",
+          outcomeSecondary: "Rust OMS + execution · 7 venues · Python strategy intact",
         },
         {
           company: "Solstice Trading",
@@ -248,6 +259,7 @@ export const page: PageData = {
           situation:
             "Solstice wanted to add regulated crypto market-making to their traditional-finance desk. The constraint was integrating crypto venues with their existing FIX-based OMS and risk stack, not rebuilding. We built a protocol-bridge service translating between the FIX OMS and the heterogeneous crypto venue APIs (WebSocket, REST, proprietary). Market-making bots deployed on major spot pairs and perps without touching the existing risk-and-reporting infrastructure.",
           outcomeNumber: "Zero refactor to existing OMS",
+          outcomeSecondary: "FIX↔crypto protocol bridge · MM bots on spot + perps",
         },
         {
           company: "Narrows Markets",
@@ -256,6 +268,7 @@ export const page: PageData = {
           situation:
             "Narrows is a retail-facing automated trading platform offering grid bots, DCA, and copy-trading strategies to Asian retail users across Binance, OKX, Bybit, KuCoin, and Gate. The engineering challenge was user-fund safety — the platform custodies strategy execution keys but not the user's actual funds. We built an isolated-execution architecture where each user's strategy ran in a sandboxed context with per-user rate limits, per-user loss circuit breakers, and auditable execution logs. Retail user count crossed 40K with zero per-user fund-loss incidents.",
           outcomeNumber: "40K+ users · 0 fund-loss incidents",
+          outcomeSecondary: "Sandboxed execution · 5-venue integration · per-user circuit breakers",
         },
         {
           company: "Lantern Quant",
@@ -264,6 +277,7 @@ export const page: PageData = {
           situation:
             "Lantern is a VARA-licensed crypto DMA broker offering execution algos (TWAP, VWAP, POV, Iceberg) to Middle East institutional clients. The product was essentially 'a trad-fi execution platform for crypto,' with regulatory expectations to match. We built the execution layer with per-client order isolation, best-execution reporting for every fill, MiFID-equivalent audit trails for the VARA framework, and a client-facing portal for execution analytics. Passed VARA's operational examination on first pass.",
           outcomeNumber: "Passed VARA op exam on first pass",
+          outcomeSecondary: "TWAP/VWAP/POV/Iceberg algos · MiFID-grade audit trails",
         },
       ],
     },

@@ -1,4 +1,27 @@
 ---
 import ServiceClusterLayout from '../../layouts/ServiceClusterLayout.astro';
+
+const heroHeadline = "Startups";
+const heroTagline = "Pre-seed to Series A — products built for investors, users and the markets you haven't reached yet.";
+const introTitle = "What we build for founders";
+const introBody = "Early-stage startups ship what works, not what's complete. We build the first real version of your product, run the launch programme that gets you the next round, and come back for the post-product-market-fit scaling sprint. Pitch decks, brand systems, MVPs, and the growth loops that turn early traction into a defensible story.";
+const services = [
+  "MVP & prototype development",
+  "Pitch deck & investor collateral",
+  "Brand identity (logo, voice, system)",
+  "Launch PR across tier-1 and trade press",
+  "Performance marketing (Google, Meta, X)",
+  "SEO foundations for founder-led content",
+  "Community seeding on Farcaster / Telegram",
+  "Website & landing-page systems",
+  "Analytics & attribution setup",
+];
 ---
-<ServiceClusterLayout title="Web3 Agency for Startups | Corum8" />
+<ServiceClusterLayout
+  title="Agency for Startups | Corum8"
+  heroHeadline={heroHeadline}
+  heroTagline={heroTagline}
+  introTitle={introTitle}
+  introBody={introBody}
+  services={services}
+/>

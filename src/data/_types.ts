@@ -143,8 +143,8 @@ export type BodySection =
   | { type: "Prose"; heading?: string; body: string | string[]; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string; enquiry?: EnquirySidebar }
   | { type: "DirectAnswer"; body: string }
   | { type: "Definition"; heading: string; body: string; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string; enquiry?: EnquirySidebar }
-  | { type: "DeepBreakdown"; heading: string; body: string; subsections?: Array<{ heading: string; body: string }> }
-  | { type: "SignalsYouNeedThis"; heading?: string; signals: string[] }
+  | { type: "DeepBreakdown"; heading: string; body: string; subsections?: Array<{ heading: string; body: string }>; enquiry?: EnquirySidebar }
+  | { type: "SignalsYouNeedThis"; heading?: string; signals: string[]; enquiry?: EnquirySidebar }
   | { type: "DecisionFactors"; heading?: string; body: string; factors?: Array<{ name: string; body: string }> }
   | { type: "CommonPitfalls"; heading?: string; pitfalls: Array<{ name: string; body: string }> }
   | { type: "StackNotes"; heading?: string; body: string; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string; enquiry?: EnquirySidebar }

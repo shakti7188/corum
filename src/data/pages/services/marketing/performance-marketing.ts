@@ -83,6 +83,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a performance program",
+      enquiry: {
+        hook: "CAC trending wrong?",
+        heading: "Paid that works is paid with working attribution underneath.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Sarah O.",
+        avatarRole: "Growth Lead",
+      },
       body:
         "Every program shares a consistent set of modules.",
       subsections: [
@@ -235,7 +245,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four performance programs, four different shapes",
+      heading: "Performance-marketing work we've shipped",
       items: [
         {
           company: "Beacon Capital",
@@ -244,6 +254,7 @@ export const page: PageData = {
           situation:
             "Beacon's Google + Meta CAC had doubled over 18 months. Their agency had been optimising against platform-reported conversions post-ATT, missing 40% of actual signal. We rebuilt attribution with Conversions API and offline-conversion uploads, recalibrated campaigns around LTV-weighted bidding, and rebuilt creative pipeline. CAC dropped roughly 42% across the following two quarters at similar monthly scale.",
           outcomeNumber: "~42% CAC reduction across 2 quarters",
+          outcomeSecondary: "Conversions API rebuild · LTV-weighted bidding live on Google + Meta",
         },
         {
           company: "Vivid Protocol",
@@ -252,6 +263,7 @@ export const page: PageData = {
           situation:
             "Vivid is a DeFi product where conversion means 'user deposits at least $X on-chain.' Traditional ad platforms can't measure this directly. We built a tracking bridge: ad click → wallet-connect attribution → on-chain deposit matched to original session via wallet signature, with offline conversion passed back to Google and Meta. Campaigns became measurable, and top-quartile ads produced CAC 3× better than platform-average auto-optimised campaigns.",
           outcomeNumber: "~3× better CAC on top-quartile creatives",
+          outcomeSecondary: "Wallet-connect attribution bridge · on-chain deposit pass-back shipped",
         },
         {
           company: "Crest AI",
@@ -260,6 +272,7 @@ export const page: PageData = {
           situation:
             "Crest is a B2B AI SaaS with a 6-month sales cycle. LinkedIn Ads + Google Search were the primary channels. The challenge was attributing deep-funnel outcomes (closed-won deals) back to top-funnel impressions months prior. We implemented LinkedIn Conversions API with offline-upload of closed-deal events, built matched-market testing for LinkedIn incrementality, and moved from 'MQL' to 'pipeline-$-value' as the optimisation target. Pipeline-attributed marketing spend grew from 22% to 51% of total pipeline over 12 months.",
           outcomeNumber: "Pipeline attribution 22% → 51%",
+          outcomeSecondary: "LinkedIn Conversions API · closed-deal offline upload live",
         },
         {
           company: "Horizon Exchange",
@@ -268,6 +281,7 @@ export const page: PageData = {
           situation:
             "Horizon is an MAS-licensed regulated exchange. Ad compliance was as binding a constraint as performance — regulated marketing requires explicit disclosures, claim controls, and jurisdiction-specific messaging. We ran campaigns across Google, Meta, and X with pre-cleared creative matrices, LTV-weighted bidding against genuinely-profitable-customer segments, and region-specific messaging. Maintained CAC within target thresholds while scaling spend roughly 4× over two quarters.",
           outcomeNumber: "~4× spend scale within CAC targets",
+          outcomeSecondary: "Pre-cleared creative matrix across Google · Meta · X shipped",
         },
       ],
     },

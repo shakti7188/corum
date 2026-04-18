@@ -1,0 +1,161 @@
+---
+import Layout from "../layouts/Layout.astro";
+import KotaverseCta from "../components/KotaverseCta.astro";
+
+const guides = [
+  {
+    slug: "#",
+    title: "Token launch: from tokenomics to TGE",
+    summary: "The end-to-end playbook — allocations, vesting, audit, PR sequencing, CEX relationships, community seeding, TGE day ops.",
+    steps: 12,
+    level: "Intermediate",
+  },
+  {
+    slug: "#",
+    title: "Getting listed on tier-1 exchanges",
+    summary: "What Binance, Coinbase, Kraken and OKX actually look at. How to build the relationship six months before you submit.",
+    steps: 8,
+    level: "Advanced",
+  },
+  {
+    slug: "#",
+    title: "MiCA-compliant crypto custody launch",
+    summary: "Jurisdictional choice, capital requirements, client-fund segregation, audit trails. Written to be handed to your compliance counsel.",
+    steps: 15,
+    level: "Advanced",
+  },
+  {
+    slug: "#",
+    title: "Shipping an AI product that clears the noise",
+    summary: "Pre-launch positioning, developer-first content, technical credibility, the paid-plus-organic motion once the story lands.",
+    steps: 9,
+    level: "Intermediate",
+  },
+  {
+    slug: "#",
+    title: "Post-MiCA stablecoin engineering",
+    summary: "EMT vs ART, reserves, PoR, redemption engines, the architecture that clears EU and US regulators simultaneously.",
+    steps: 11,
+    level: "Advanced",
+  },
+  {
+    slug: "#",
+    title: "Series A pitch-deck system for Web3 founders",
+    summary: "The 18 slides that actually show up in every tier-1 raise, plus the six you can almost always cut.",
+    steps: 7,
+    level: "Beginner",
+  },
+];
+---
+<Layout title="Guides | Corum8">
+
+<section class="Hero_hero__zbooM"><div class="container"><div class="Hero_top__UZ6SA"><h2><span class="LineByLine_headingOuter__JmusT"><span>Step-by-step playbooks. Written to be handed to your team on Monday.</span></span></h2></div><div class="Hero_bottom__pLxrT"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Guides</span></div></span></h1><div class="Hero_arrow__WTdEi"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z" style="stroke-width:0"></path></svg></span></div></div></div></section>
+
+<section class="c8-guides">
+  <div class="container">
+    <p class="c8-guides__lede">Practical, step-by-step guides drawn from the programmes we actually run. No fluff, no theory-only sections. Read once, implement on Monday.</p>
+    <div class="c8-guides__grid">
+      {guides.map((g) => (
+        <a class="c8-guide" href={g.slug}>
+          <div class="c8-guide__meta">
+            <span class="c8-guide__level">{g.level}</span>
+            <span class="c8-guide__steps">{g.steps} steps</span>
+          </div>
+          <h3>{g.title}</h3>
+          <p>{g.summary}</p>
+          <span class="c8-guide__cta">
+            Open guide
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" width="14">
+              <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<KotaverseCta
+  light="Want the playbook"
+  bold="run for you?"
+  subtitle="Book a call. We'll walk you through it and scope the engagement."
+/>
+
+<style>
+  .c8-guides {
+    padding: clamp(4rem, 8vw, 8rem) 0;
+    background: #fafafa;
+  }
+  .c8-guides__lede {
+    max-width: 44rem;
+    margin: 0 auto 4rem;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444;
+  }
+  .c8-guides__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .c8-guide {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2.25rem;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease,
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .c8-guide:hover {
+    transform: translateY(-4px);
+    border-color: var(--c8-gold);
+    box-shadow: 0 28px 50px -24px rgba(0, 0, 0, 0.18);
+  }
+  .c8-guide__meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .c8-guide h3 {
+    font-size: 1.35rem;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: #111;
+  }
+  .c8-guide p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+    margin: 0;
+  }
+  .c8-guide__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #111;
+  }
+  .c8-guide:hover .c8-guide__cta svg {
+    transform: translateX(4px);
+  }
+  .c8-guide__cta svg {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
+
+</Layout>

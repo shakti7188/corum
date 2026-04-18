@@ -68,16 +68,6 @@ export const page: PageData = {
     {
       type: "Definition",
       heading: "What branding and design actually covers",
-      enquiry: {
-        hook: "Brand not hitting?",
-        heading: "Stop sounding like every other fintech deck.",
-        body: "If your identity was built by committee, shipped as a PDF, or still feels pre-Series-B — we've rebuilt worse. <em>15 minutes tells you whether we're the right partner.</em>",
-        buttonLabel: "Let's talk →",
-        href: "/contact",
-        avatarUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80",
-        avatarName: "Aditi K.",
-        avatarRole: "Lead Designer",
-      },
       body:
         "<strong>Branding and design</strong> at our scope covers the strategic and production work that defines how a company presents itself across every surface — from product UI to investor decks to LinkedIn posts.\n\n" +
         "<strong>Brand strategy</strong> — positioning, audience, narrative, values, category definition. The strategic foundation that identity expresses.\n\n" +
@@ -93,6 +83,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a branding engagement",
+      enquiry: {
+        hook: "Brand not hitting?",
+        heading: "Stop sounding like every other fintech deck.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Aditi K.",
+        avatarRole: "Lead Designer",
+      },
       body:
         "Every serious engagement shares a core set of modules.",
       subsections: [
@@ -303,16 +303,6 @@ export const page: PageData = {
     {
       type: "WhyCorum8",
       heading: "Why teams run branding with us",
-      enquiry: {
-        hook: "Ready to move?",
-        heading: "Book the conversation your last agency didn't earn.",
-        body: "Bring the thing that's bothering you. A deck that isn't landing. A site that feels pre-brand. An identity that outgrew itself. <em>We'll tell you honestly whether we'd take the work.</em>",
-        buttonLabel: "Start the call →",
-        href: "/contact",
-        avatarUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80",
-        avatarName: "Priya S.",
-        avatarRole: "Creative Director",
-      },
       body:
         "We've been building brand systems for technology companies since 2014 — through the mobile-first era, the Web3 aesthetic era, the AI-product emergence, and into the current institutional-fintech and AI-convergence phase. <em>Our discipline bridges strategic brief writing and production-grade implementation — most studios do one well, not both.</em>\n\n" +
         "We ship the full branding stack under one roof: strategy, verbal identity, visual identity, design systems, web, decks, motion, implementation. One team, one brief, one delivery timeline. No handoff between a strategy consultancy, a branding studio, and a web development shop — which is typically where brand integrity gets lost.\n\n" +

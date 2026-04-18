@@ -14,16 +14,15 @@ const arrowGrad = {
   ],
 };
 
-const intro = {
-  size: 'large',
-  isIntro: true,
-  href: '#our-work',
-  name: 'Corum8',
-  year: '2026',
-  heading: 'We build, market and scale Web3, AI and fintech companies that refuse to blend in.',
-  tags: ['Global Marketing', 'PR', 'Full-Stack Development', 'Web3 · AI · Fintech'],
-  video: '/media/bg2.mp4',
-};
+// Intro / Corum8 brand video moved out of this grid into the new Showcase
+// section above Ethos (src/components/Showcase.astro). Keeping the data
+// shape here in case we want to reintroduce it later:
+//   {
+//     size: 'large', isIntro: true, href: '#our-work', name: 'Corum8',
+//     year: '2026', video: '/media/bg2.mp4',
+//     heading: 'We build, market and scale Web3, AI and fintech companies that refuse to blend in.',
+//     tags: ['Global Marketing', 'PR', 'Full-Stack Development', 'Web3 · AI · Fintech'],
+//   }
 
 const projects = [
   {
@@ -34,7 +33,7 @@ const projects = [
     heading: 'Full-stack Web3 growth campaign that rallied the community behind a $5M raise.',
     tags: ['Full-stack Web3', 'Growth Campaign', 'Community'],
     video: '/media/fanadise.mp4',
-    poster: '/images/GOAT-FeaturedImage.png',
+    poster: '/images/GOAT-FeaturedImage.webp',
   },
   {
     size: 'small',
@@ -88,7 +87,7 @@ const projects = [
   },
 ];
 
-const allCards = [intro, ...projects];
+const allCards = [...projects];
 ---
 
 <div class="Work_work__rSI8c" id="our-work">

@@ -1,4 +1,27 @@
 ---
 import ServiceClusterLayout from '../../layouts/ServiceClusterLayout.astro';
+
+const heroHeadline = "SaaS";
+const heroTagline = "B2B and B2C SaaS — product-led growth, enterprise sales motions, and the engineering stack under both.";
+const introTitle = "What we build for SaaS teams";
+const introBody = "SaaS revenue compounds. So does SaaS complexity. We build and market SaaS across B2B and B2C — PLG funnels, enterprise sales support, product onboarding, multi-touch retention loops. The same team that wires Stripe, Customer.io and Segment also runs the ABM programme that fills your pipeline.";
+const services = [
+  "Web app & SaaS platform engineering",
+  "PLG funnel design (trial → activation → upgrade)",
+  "B2B lead generation & ABM",
+  "Content marketing & SEO",
+  "Performance marketing across Google + LinkedIn",
+  "Analytics stack (Segment, Amplitude, Mixpanel)",
+  "CRM & lifecycle automation",
+  "Developer-facing content & docs",
+  "Pricing-page and conversion optimisation",
+];
 ---
-<ServiceClusterLayout title="Web3 Agency for Saas | Corum8" />
+<ServiceClusterLayout
+  title="SaaS Agency | Corum8"
+  heroHeadline={heroHeadline}
+  heroTagline={heroTagline}
+  introTitle={introTitle}
+  introBody={introBody}
+  services={services}
+/>

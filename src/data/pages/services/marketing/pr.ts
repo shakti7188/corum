@@ -81,6 +81,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a crypto PR campaign",
+      enquiry: {
+        hook: "Press release died quietly?",
+        heading: "Tier-1 coverage doesn't start with pressing send on a press release.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Natalia F.",
+        avatarRole: "Head of PR",
+      },
       body:
         "Every PR engagement we run has the same core modules. The emphasis shifts based on whether the campaign is launch, funding, crisis, or ongoing category expertship.",
       subsections: [
@@ -235,7 +245,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four PR campaigns, four different shapes of engagement",
+      heading: "PR work we've shipped",
       items: [
         {
           company: "Northstar Protocol",
@@ -244,6 +254,7 @@ export const page: PageData = {
           situation:
             "Northstar is a DeFi protocol that had closed a $25M Series A with tier-one investors but hadn't yet announced. The challenge: launching the Series A narrative into trade and mainstream simultaneously, across multiple markets, with the investor brands reinforcing the framing. We coordinated an embargo across The Block (exclusive), CoinDesk, Decrypt, Bloomberg, and The Information; prepared the founder for podcast circuit (Bankless, Empire); and landed a Protos deep-dive three weeks later. Series A announcement produced 40+ tier-one placements and a measurable inbound spike for the next raise conversations.",
           outcomeNumber: "40+ tier-one placements on announcement",
+          outcomeSecondary: "Embargo across The Block, CoinDesk, Decrypt, Bloomberg",
         },
         {
           company: "Harbor Labs",
@@ -252,6 +263,7 @@ export const page: PageData = {
           situation:
             "Harbor shipped their L2 chain mainnet after two years of testnet work. The story challenge was that 'yet another rollup launches' is hard to make reportable — the market is saturated. We reframed the story around a specific technical innovation (their custom sequencer decentralisation approach) and a verifiable outcome (a named institutional validator in their launch set). Announcement landed placements in The Block, Blockworks, and an EthCC stage-level mention, with founder invited onto Bell Curve and Empire within the first month.",
           outcomeNumber: "Bell Curve + Empire podcast placements",
+          outcomeSecondary: "Sequencer-angle reframe · The Block + Blockworks + EthCC mention",
         },
         {
           company: "Skyline Finance",
@@ -260,6 +272,7 @@ export const page: PageData = {
           situation:
             "Skyline is a VARA-licensed retail fintech combining crypto and fiat services. The regulatory narrative was the entire story — 'crypto product launches in UAE' happens every week, but 'VARA-licensed retail fintech with specific novel licensing' is reportable to business press. We ran dual-track coverage: trade press for the crypto angle (CoinDesk, Decrypt, Arabian Business), mainstream business press for the regulatory angle (The National, Gulf News, Bloomberg MENA bureau). Landed 18 earned placements across trade and mainstream in the launch window.",
           outcomeNumber: "18 earned placements · trade + mainstream",
+          outcomeSecondary: "Dual-track rollout · VARA narrative · MENA + global outlets",
         },
         {
           company: "Orchard AI",
@@ -268,6 +281,7 @@ export const page: PageData = {
           situation:
             "Orchard is an AI tooling product with a dual audience: crypto infrastructure teams (developer audience) and traditional enterprise (commercial audience). Their Series A needed coverage in both AI-adjacent trade press (The Information, TechCrunch, VentureBeat) and crypto trade (The Block, Decrypt). We ran sequenced rollout: AI trade first with the technical angle, crypto trade second with the Web3 use-case angle. Result: founder on Bankless, TechCrunch feature, and a German mainstream-business-press profile in Handelsblatt.",
           outcomeNumber: "TechCrunch feature + Bankless placement",
+          outcomeSecondary: "Sequenced rollout · AI trade first · Handelsblatt profile landed",
         },
       ],
     },

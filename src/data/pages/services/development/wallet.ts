@@ -81,6 +81,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a wallet build",
+      enquiry: {
+        hook: "Wallet failing users?",
+        heading: "Users don't read seed-phrase instructions. They rage-quit.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Danny W.",
+        avatarRole: "Wallet Engineering Lead",
+      },
       body:
         "Every wallet we build shares a core architecture. The specifics shift based on custodial vs non-custodial vs MPC, but the modules are the same.",
       subsections: [
@@ -229,7 +239,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four wallet builds, four different shapes of problem",
+      heading: "Wallet work we've shipped",
       items: [
         {
           company: "Vermilion Wallet",
@@ -238,6 +248,7 @@ export const page: PageData = {
           situation:
             "Vermilion is an institutional MPC wallet serving family offices and asset managers moving eight and nine-figure positions. Their previous vendor's threshold-signature protocol had a liveness issue — under partial network partition, signing ceremonies would deadlock. We rebuilt the MPC layer on a modern CMP-based implementation with explicit ceremony timeouts and automatic recovery, commissioned two independent audits, and shipped without a signing failure across the first year of production use.",
           outcomeNumber: "Zero ceremony failures in Y1",
+          outcomeSecondary: "CMP-based MPC rebuild · 2 independent audits cleared",
         },
         {
           company: "Tidepool Keys",
@@ -246,6 +257,7 @@ export const page: PageData = {
           situation:
             "Tidepool wanted a retail multi-chain wallet for Southeast Asia with fiat on-ramp integration and social-recovery UX that worked for first-time crypto users. The hard constraint: the product had to feel like a normal fintech app, not a Web3 tool. We built an ERC-4337 account-abstraction wallet with guardian-based recovery, integrated four regional on-ramps, and spent disproportionate time on the signing and recovery flows. MAS licensing came through clean and the product shipped with a week-one recovery rate above 95% for users who triggered the social-recovery flow in testing.",
           outcomeNumber: "95%+ social-recovery success rate",
+          outcomeSecondary: "ERC-4337 wallet · 4 regional on-ramps integrated",
         },
         {
           company: "Sienna Vault",
@@ -254,6 +266,7 @@ export const page: PageData = {
           situation:
             "Sienna is an EU-regulated custody product for family offices. MiCA was the design constraint — they needed audit trails that a Swiss regulator could read without the company translating them. We built the custody layer on HSM-backed MPC with explicit approval workflows for every movement, a compliance export pipeline that produced MiCA-compliant reports directly from the ledger, and a UI designed for compliance officers rather than crypto natives. First regulatory examination passed without a single clarifying question.",
           outcomeNumber: "First examination — zero findings",
+          outcomeSecondary: "HSM-backed MPC · MiCA export pipeline shipped",
         },
         {
           company: "Haven Self-Custody",
@@ -262,6 +275,7 @@ export const page: PageData = {
           situation:
             "Haven is a consumer non-custodial browser wallet with social recovery for people who don't understand seed phrases. The product philosophy: never ask the user to write down twenty-four words. We built the recovery layer on a combination of passkeys, hardware-device attestation, and trusted-contact multi-sig, all wrapped in a UX where recovery feels like 'reset my password' rather than 'retrieve my 24-word mnemonic.' Recovery completion rate in user testing landed at 93% — roughly 4× what the team measured with their prior seed-phrase flow.",
           outcomeNumber: "~4× recovery completion vs prior",
+          outcomeSecondary: "Passkeys + hardware + multi-sig recovery layer delivered",
         },
       ],
     },

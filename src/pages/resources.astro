@@ -1,0 +1,136 @@
+---
+import Layout from "../layouts/Layout.astro";
+import KotaverseCta from "../components/KotaverseCta.astro";
+
+const sections = [
+  {
+    slug: "/case-studies",
+    title: "Case studies",
+    desc: "Six engagements across exchanges, token launches, community programmes and performance networks — with the numbers attached.",
+    tag: "Outcomes",
+  },
+  {
+    slug: "/gallery",
+    title: "Gallery",
+    desc: "Identity systems, pitch decks, motion graphics and product shipments. The visual work, side by side.",
+    tag: "Visuals",
+  },
+  {
+    slug: "/blog",
+    title: "Blog",
+    desc: "Short posts on launches, market movements and the engineering decisions behind the campaigns we run.",
+    tag: "Weekly",
+  },
+  {
+    slug: "/insights",
+    title: "Insights",
+    desc: "Long-form analysis on Web3, AI and fintech — written by the people who shipped the product, not the marketing team.",
+    tag: "Quarterly",
+  },
+  {
+    slug: "/guides",
+    title: "Guides",
+    desc: "Step-by-step playbooks: token launches, exchange listings, post-MiCA compliance, AI product GTM. Written to be used.",
+    tag: "How-to",
+  },
+];
+---
+<Layout title="Resources | Corum8">
+
+<section class="Hero_hero__zbooM"><div class="container"><div class="Hero_top__UZ6SA"><h2><span class="LineByLine_headingOuter__JmusT"><span>Everything we've learned shipping 1,100+ launches. Written up.</span></span></h2></div><div class="Hero_bottom__pLxrT"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Resources</span></div></span></h1><div class="Hero_arrow__WTdEi"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z" style="stroke-width:0"></path></svg></span></div></div></div></section>
+
+<section class="c8-resources">
+  <div class="container">
+    <div class="c8-resources__grid">
+      {sections.map((s) => (
+        <a class="c8-resource-card" href={s.slug}>
+          <span class="c8-resource-card__tag">{s.tag}</span>
+          <h3>{s.title}</h3>
+          <p>{s.desc}</p>
+          <span class="c8-resource-card__cta">
+            Open
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" width="14">
+              <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<KotaverseCta
+  light="More specific"
+  bold="question in mind?"
+  subtitle="Skip the reading. Book a call and we'll walk you through it."
+/>
+
+<style>
+  .c8-resources {
+    padding: clamp(4rem, 8vw, 8rem) 0;
+    background: #fafafa;
+  }
+  .c8-resources__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .c8-resource-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2.25rem;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease,
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .c8-resource-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--c8-gold);
+    box-shadow: 0 28px 50px -24px rgba(0, 0, 0, 0.18);
+  }
+  .c8-resource-card__tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 600;
+  }
+  .c8-resource-card h3 {
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: #111;
+  }
+  .c8-resource-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+    margin: 0;
+  }
+  .c8-resource-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #111;
+  }
+  .c8-resource-card:hover .c8-resource-card__cta svg {
+    transform: translateX(4px);
+  }
+  .c8-resource-card__cta svg {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
+
+</Layout>

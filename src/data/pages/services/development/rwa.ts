@@ -79,6 +79,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of an RWA platform build",
+      enquiry: {
+        hook: "RWA plans stuck?",
+        heading: "Tokenizing the asset is the easy half. Secondary markets aren't.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Irene L.",
+        avatarRole: "RWA Solutions Architect",
+      },
       body:
         "Every RWA platform we build shares a core architecture across six modules. The specifics shift based on asset class and jurisdiction, but the shape is consistent.",
       subsections: [
@@ -227,7 +237,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four RWA builds, four different shapes of product",
+      heading: "RWA work we've shipped",
       items: [
         {
           company: "Atlas Tokenize",
@@ -236,6 +246,7 @@ export const page: PageData = {
           situation:
             "Atlas is a VARA-licensed tokenization platform for commercial real estate in Dubai. The product issues fractional ownership in a DIFC-domiciled SPV, backed by actual property, to accredited investors globally. We designed the smart contracts around ERC-3643 with custom waterfall extensions for quarterly rental distributions, integrated Sumsub for accreditation, and built the subscription engine to handle both USDC and AED-stablecoin settlement. First building tokenized cleared VARA review with zero findings, and the product onboarded 140 accredited investors pre-launch.",
           outcomeNumber: "140 accredited investors pre-launch",
+          outcomeSecondary: "ERC-3643 contracts · USDC + AED settlement wired",
         },
         {
           company: "Crescent Assets",
@@ -244,6 +255,7 @@ export const page: PageData = {
           situation:
             "Crescent is an EU private-credit platform tokenizing direct-lending loans originated against European SMEs. The compliance framework is MiCA-adjacent with MiFID overlay — non-trivial. We built the issuance engine on Avalanche's subnet infrastructure for permissioning, a default-handling module that ties on-chain events to off-chain workout processes, and a Luxembourg-compliant reporting pipeline that their custodian and auditor both accepted on the first review.",
           outcomeNumber: "Accepted by custodian on Y1 review",
+          outcomeSecondary: "Avalanche subnet issuance · default-handling module shipped",
         },
         {
           company: "Parallax Funds",
@@ -252,6 +264,7 @@ export const page: PageData = {
           situation:
             "Parallax runs a tokenized money-market fund feeding into an institutional parent product. Accredited US investors, Reg D 506(c) exemption, daily NAV, weekly redemption windows. The hard engineering problem was the redemption engine — handling a queue of redemption requests against an underlying portfolio with T+1 settlement, while keeping the on-chain state consistent. We built it on Ethereum with a custom mint/burn engine, Chainlink proof-of-reserve integration, and SEC Form D amendment automation. Fund crossed $60M AUM in the first quarter.",
           outcomeNumber: "$60M+ AUM in Q1",
+          outcomeSecondary: "Custom mint/burn engine · Chainlink PoR integrated",
         },
         {
           company: "Summit Infrastructure",
@@ -260,6 +273,7 @@ export const page: PageData = {
           situation:
             "Summit tokenizes infrastructure debt — solar, water, regulated-utility projects — for accredited investors across Asia. MAS-licensed recognised market operator pathway. The challenge was the cash-flow complexity: project-level distributions come quarterly, across multiple operating entities, with varying withholding-tax regimes. We built a multi-level distribution system where project cash flows settle into a pool contract that then disburses to token holders under the correct withholding schedule per investor jurisdiction. Launched with three infrastructure projects and a committed investor base of about $40M.",
           outcomeNumber: "~$40M committed at launch",
+          outcomeSecondary: "Multi-level distribution system · 3 projects live",
         },
       ],
     },

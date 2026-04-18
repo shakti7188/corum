@@ -82,6 +82,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a production app build",
+      enquiry: {
+        hook: "App too slow?",
+        heading: "React Native gets you 60%. The last 40% is where Web3 apps die.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1542178243-bc20204b769f?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Karan J.",
+        avatarRole: "Mobile Engineering Lead",
+      },
       body:
         "Every production app we ship has a consistent set of modules, regardless of platform choice.",
       subsections: [
@@ -237,7 +247,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four app builds, four different shapes of product",
+      heading: "Mobile and web work we've shipped",
       items: [
         {
           company: "Beacon Trade",
@@ -246,6 +256,7 @@ export const page: PageData = {
           situation:
             "Beacon is a UK-regulated trading app offering crypto and equity alongside GBP fiat. The product required native iOS and Android quality, FCA compliance UX (risk warnings, appropriateness tests), Apple/Google Pay integration for fiat funding, and an embedded wallet for crypto balances that felt invisible to non-crypto users. We shipped native Swift and Kotlin apps with a shared backend-for-frontend, integrated Privy for embedded wallets, and navigated Apple's review successfully on the first crypto-feature submission. Active user base crossed 80K in the first two quarters.",
           outcomeNumber: "80K+ active users · Q1-Q2",
+          outcomeSecondary: "Native Swift + Kotlin · Privy embedded wallets · FCA UX shipped",
         },
         {
           company: "Vox Social",
@@ -254,6 +265,7 @@ export const page: PageData = {
           situation:
             "Vox is a social app built on Farcaster with token-gated creator tools and on-chain identity. Cross-platform React Native was the correct choice — rapid iteration and identical UX across iOS and Android. We built on Expo with a custom Farcaster client, integrated WalletConnect v2 for power users and Privy for mainstream users, and shipped OTA updates for post-launch iteration. App Store review passed first submission after careful crypto-feature framing.",
           outcomeNumber: "1st-pass App Store approval",
+          outcomeSecondary: "Expo RN · Farcaster client · WalletConnect v2 + Privy",
         },
         {
           company: "Granite Ops",
@@ -262,6 +274,7 @@ export const page: PageData = {
           situation:
             "Granite is an enterprise mobile dashboard for institutional crypto custody operators — approving high-value transactions, reviewing anomaly alerts, managing ops workflows from phone. Native iOS and Android with deep platform integration: Face ID / biometric approval chains, Push Notifications with interactive actions, Passkeys for operator authentication. Hardware-key attestation (YubiKey / SoloKey over NFC) for high-value approvals. Shipped to 12 enterprise customers with near-zero friction onboarding for their security teams.",
           outcomeNumber: "12 enterprise customers onboarded",
+          outcomeSecondary: "Native iOS + Android · biometric approvals · NFC hardware keys",
         },
         {
           company: "Harbor Pay",
@@ -270,6 +283,7 @@ export const page: PageData = {
           situation:
             "Harbor is a consumer remittance app using stablecoin rails to send value from UAE to Asian corridors. The product needed to feel like a normal money-transfer app (similar aesthetic bar to Wise or Revolut), with stablecoin complexity hidden from the user. We built on React Native with Privy embedded wallets, Bridge / BVNK for fiat on-ramps, and careful UX that turned 'send $200 to Manila via USDC' into a two-tap flow. First three months moved $2.8M in remittance volume across 4,000 users.",
           outcomeNumber: "$2.8M volume · 4K users · Q1",
+          outcomeSecondary: "React Native · Privy wallets · Bridge + BVNK on-ramps wired",
         },
       ],
     },

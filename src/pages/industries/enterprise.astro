@@ -1,4 +1,27 @@
 ---
 import ServiceClusterLayout from '../../layouts/ServiceClusterLayout.astro';
+
+const heroHeadline = "Enterprise";
+const heroTagline = "Fortune 500, financial institutions, government tech — delivery on the procurement clock.";
+const introTitle = "What we build for enterprise teams";
+const introBody = "Enterprise engagements move slower, cost more and demand higher compliance. We work with procurement, security review and multi-stakeholder sign-off — from RFP through delivery to operating at enterprise scale. Blockchain pilots for banks. AI agents for operational teams. Digital transformation programmes that actually land.";
+const services = [
+  "Enterprise blockchain & tokenization pilots",
+  "Custom platform development",
+  "Digital transformation programmes",
+  "AI integration for operations teams",
+  "Security-first architecture (SOC 2, ISO 27001)",
+  "Analyst-grade thought leadership",
+  "Account-based marketing",
+  "Executive briefing content",
+  "RFP response & procurement support",
+];
 ---
-<ServiceClusterLayout title="Web3 Agency for Enterprise | Corum8" />
+<ServiceClusterLayout
+  title="Enterprise Agency | Corum8"
+  heroHeadline={heroHeadline}
+  heroTagline={heroTagline}
+  introTitle={introTitle}
+  introBody={introBody}
+  services={services}
+/>

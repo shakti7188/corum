@@ -80,6 +80,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of an influencer campaign",
+      enquiry: {
+        hook: "Influencer spend vanished?",
+        heading: "Follower counts lie. Wallet overlap doesn't.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1545996124-0501ebae84d0?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Lena H.",
+        avatarRole: "Influencer Programme Lead",
+      },
       body:
         "Every campaign we run has the same set of modules.",
       subsections: [
@@ -233,7 +243,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four influencer programs, four different shapes",
+      heading: "Influencer and KOL work we've shipped",
       items: [
         {
           company: "Cedar Launch",
@@ -242,6 +252,7 @@ export const page: PageData = {
           situation:
             "Cedar was launching a governance token with a multi-region go-to-market. We coordinated a 400-creator rollout across Twitter, Telegram, YouTube, and Farcaster, segmented by region and audience type. Each creator tier had different deliverable shape — macro creators produced long-form video, mid-tier produced tweet threads, micro creators produced Discord-community activation. Attribution pixels on the token-launch site tracked 18% of launch-week signups back to specific creator codes, measurable LTV per creator segment, and fraud-screening caught seven creators with inflated metrics before contracts signed.",
           outcomeNumber: "18% of launch-week signups creator-attributed",
+          outcomeSecondary: "400 creators across 4 platforms · fraud-screen excluded 7",
         },
         {
           company: "Harbor Stream",
@@ -250,6 +261,7 @@ export const page: PageData = {
           situation:
             "Harbor is a DeFi product targeting Southeast Asian retail — Philippines, Vietnam, Indonesia, Thailand. Korean-speaking US-market creators were irrelevant; local-language creators dominated the mix. We ran a campaign with 60 creators across Tagalog, Bahasa Indonesia, Vietnamese, and Thai-speaking YouTube and TikTok channels. Launch week drove roughly 45K new user signups with measurably lower CAC than the client's paid-ad channels in the same markets.",
           outcomeNumber: "~45K signups · lower CAC than paid ads",
+          outcomeSecondary: "60 creators · 4 local languages · YouTube + TikTok coverage",
         },
         {
           company: "Canyon Games",
@@ -258,6 +270,7 @@ export const page: PageData = {
           situation:
             "Canyon launched a Web3 game requiring gaming-audience buy-in — not crypto-audience buy-in. We built a creator program around Twitch streamers and YouTube Gaming channels who had never covered Web3 games before. Program ran 30 creators over six weeks with ranked-list content formats (top 10 games this week, honest Web3 game review). Conversion attribution showed non-crypto gaming audience signed up at 3.2× the conversion rate of prior crypto-audience creator efforts.",
           outcomeNumber: "~3.2× conversion vs crypto-audience",
+          outcomeSecondary: "30 Twitch + YouTube Gaming creators · 6-week ranked-list program",
         },
         {
           company: "Oakmoss Beauty",
@@ -266,6 +279,7 @@ export const page: PageData = {
           situation:
             "Oakmoss is a consumer beauty brand that had been running unattributed influencer marketing for two years. Agency had been declaring 'success' on impressions without measuring sales impact. We built an attribution layer with unique discount codes per creator, post-purchase attribution surveys, and matched-market testing. First quarter of attribution-tracked work showed 38% of creator spend was producing meaningful ROAS while 62% wasn't — the client reallocated spend to the productive creators and grew revenue without increasing budget.",
           outcomeNumber: "38% creator spend productive · budget reallocated",
+          outcomeSecondary: "Attribution layer built · per-creator codes + matched-market tests",
         },
       ],
     },

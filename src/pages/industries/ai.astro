@@ -1,4 +1,27 @@
 ---
 import ServiceClusterLayout from '../../layouts/ServiceClusterLayout.astro';
+
+const heroHeadline = "AI";
+const heroTagline = "AI products people pay for — agents, copilots, LLM pipelines, and the marketing engine that cuts through the noise.";
+const introTitle = "What we build for AI teams";
+const introBody = "AI demos are cheap. AI products are hard. We build production-grade AI systems — agents, copilots, RAG pipelines, fine-tuned models — and run the marketing programmes that separate your launch from the wall of me-too AI announcements. Developer-first content, technical credibility, and the paid motion that scales once the story lands.";
+const services = [
+  "AI agent engineering",
+  "LLM pipeline & RAG systems",
+  "Model fine-tuning & eval harnesses",
+  "Inference infrastructure (vLLM, TensorRT, Triton)",
+  "AI product launch programmes",
+  "Developer marketing & docs",
+  "Technical content & AI research posts",
+  "Performance marketing with offline conversion",
+  "Analyst relations (CB Insights, Gartner)",
+];
 ---
-<ServiceClusterLayout title="Web3 Agency for Ai | Corum8" />
+<ServiceClusterLayout
+  title="AI Agency | Corum8"
+  heroHeadline={heroHeadline}
+  heroTagline={heroTagline}
+  introTitle={introTitle}
+  introBody={introBody}
+  services={services}
+/>

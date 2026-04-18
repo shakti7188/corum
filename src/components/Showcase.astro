@@ -1,0 +1,503 @@
+---
+// Showcase.astro
+// Sits between <Services /> and <Ethos />. Two blocks:
+//   1. Pin-and-slide video: video pins to viewport, four narrative panels
+//      travel across it right→left as the user scrolls. Panels live at the
+//      BOTTOM of the video (caption-style) — not centered over it.
+//      Content clubs the nine hero-stats into three themed groups so the
+//      reader digests scale / reach / record in three beats, plus an opener.
+//   2. Client-logo strip: flex-wrap, same visual language as the hero's
+//      media-logos (c8-hero__press-logos) — just slightly bigger.
+
+// Four slides total. First is the positioning line; the three after cluster
+// related proof points so each scroll beat lands a full idea instead of a
+// lone number. Labels are written tight and specific.
+const slides = [
+  {
+    type: 'tagline',
+    eyebrow: 'Corum8',
+    html: 'We build, market and scale <em>Web3, AI and fintech</em> companies that refuse to blend in.',
+  },
+  {
+    type: 'group',
+    eyebrow: 'Results',
+    stats: [
+      { value: '$120M+', label: 'Client revenue driven' },
+      { value: '1,100+', label: 'Projects delivered' },
+      { value: '2.5B+',  label: 'Impressions generated' },
+    ],
+  },
+  {
+    type: 'group',
+    eyebrow: 'Reach',
+    stats: [
+      { value: '30+',     label: 'Countries on retainer' },
+      { value: '25,000+', label: 'Influencers on roster' },
+      { value: '95+',     label: 'In-house specialists' },
+    ],
+  },
+  {
+    type: 'group',
+    eyebrow: 'Record',
+    stats: [
+      { value: '10+',   label: 'Years in the market' },
+      { value: '50+',   label: 'Global awards' },
+      { value: '$10M+', label: 'Paid spend managed' },
+    ],
+  },
+];
+
+// Scroll runway. With 4 slides we want the whole sequence to resolve in 3–4
+// scroll beats (~one viewport per transition + one viewport of pin at the
+// start). 100vh pin + 3 × 90vh per transition = 370vh. Shorter than the
+// previous 730vh — intentional, per the "finish in 3/4 scrolls" directive.
+const totalVh = 100 + (slides.length - 1) * 90; // 4 slides → 370vh
+
+// Client logos shown below the pinned video — same visual language as the
+// hero's media-logos strip (grayscale, hover reveal), just slightly larger.
+const clients = [
+  { src: '/clients/binance.png',       alt: 'Binance' },
+  { src: '/clients/kucoin.png',        alt: 'KuCoin' },
+  { src: '/clients/okx.png',           alt: 'OKX' },
+  { src: '/clients/metamask.png',      alt: 'MetaMask' },
+  { src: '/clients/tether.png',        alt: 'Tether' },
+  { src: '/clients/tron.png',          alt: 'TRON' },
+  { src: '/clients/etoro.png',         alt: 'eToro' },
+  { src: '/clients/gate-io.png',       alt: 'Gate.io' },
+  { src: '/clients/coinmarketcap.png', alt: 'CoinMarketCap' },
+  { src: '/clients/fanadise.png',      alt: 'Fanadise' },
+  { src: '/clients/metarix.png',       alt: 'Metarix' },
+  { src: '/clients/ubuntu-tribe.png',  alt: 'Ubuntu Tribe' },
+  { src: '/clients/dream11.png',       alt: 'Dream11' },
+  { src: '/clients/kava.png',          alt: 'Kava' },
+  { src: '/clients/iotex.png',         alt: 'IoTeX' },
+  { src: '/clients/eos.png',           alt: 'EOS' },
+  { src: '/clients/wazirx.png',        alt: 'WazirX' },
+  { src: '/clients/Plasmapay.png',     alt: 'PlasmaPay' },
+];
+---
+
+<section class="c8-showcase">
+  <!-- Scroll runway — tall wrapper so the sticky child has somewhere to
+       travel through. When its top hits viewport top, sticky pins the video
+       and JS translates the slides track based on scroll progress. -->
+  <div
+    class="c8-showcase__scroll-zone"
+    data-c8-scroll
+    style={`--c8-slides: ${slides.length}; --c8-scroll-h: ${totalVh}vh;`}
+  >
+    <div class="c8-showcase__sticky-wrap">
+      <div class="c8-showcase__inner">
+        <div class="c8-showcase__frame">
+          <video
+            class="c8-showcase__video"
+            src="/media/bg2.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+          ></video>
+
+          <!-- Bottom gradient veil — darker at the bottom where the text sits,
+               lighter at top so the video image stays visible. -->
+          <div class="c8-showcase__veil"></div>
+
+          <!-- Progress dots: 4 ticks that fill as each slide resolves -->
+          <div class="c8-showcase__ticks" data-c8-ticks>
+            {slides.map((_, i) => (
+              <span class="c8-showcase__tick" data-i={i}></span>
+            ))}
+          </div>
+
+          <!-- Horizontal slide track. Every slide is anchored to the BOTTOM of
+               the video frame (caption-style), not centered. -->
+          <div class="c8-showcase__slides-track" data-c8-slides>
+            {slides.map((s) => (
+              <div class="c8-showcase__slide">
+                {s.type === 'tagline' ? (
+                  <div class="c8-showcase__panel c8-showcase__panel--tagline">
+                    <span class="c8-showcase__eyebrow">{s.eyebrow}</span>
+                    <p class="c8-showcase__tagline" set:html={s.html}></p>
+                  </div>
+                ) : (
+                  <div class="c8-showcase__panel c8-showcase__panel--group">
+                    <span class="c8-showcase__eyebrow">{s.eyebrow}</span>
+                    <div class="c8-showcase__stats">
+                      {s.stats.map((st) => (
+                        <div class="c8-showcase__stat">
+                          <span class="c8-showcase__stat-value">{st.value}</span>
+                          <span class="c8-showcase__stat-label">{st.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client logo strip — light, hero-press-logos style (grayscale/hover
+       reveal). Framed with thin hairlines top + bottom like the "Featured
+       in" strip on the hero. Label sits in the same parenthetical voice. -->
+  <div class="c8-showcase__clients">
+    <p class="c8-showcase__clients-label"><span>(Industry leaders we build with)</span></p>
+    <div class="c8-showcase__clients-logos">
+      {clients.map((c) => (
+        <img src={c.src} alt={c.alt} loading="lazy" class="c8-showcase__client-img" />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .c8-showcase {
+    position: relative;
+    /* Generous bottom padding so the next section (Ethos) has room to breathe
+       below the client strip — prevents the logos from crashing into it. */
+    padding: clamp(1rem, 2vh, 1.75rem) 0 clamp(5rem, 10vh, 9rem);
+    color: #0a0a0a;
+    overflow: visible;
+  }
+
+  /* ---------- Pin-and-slide video ---------- */
+
+  .c8-showcase__scroll-zone {
+    position: relative;
+    height: var(--c8-scroll-h, 370vh);
+  }
+  .c8-showcase__sticky-wrap {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  .c8-showcase__inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 5rem);
+    box-sizing: border-box;
+  }
+  .c8-showcase__frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.25);
+  }
+  .c8-showcase__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Gradient veil — light so the video image stays the hero. The dark
+     content panel itself carries the contrast for the text. */
+  .c8-showcase__veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.08) 55%,
+      rgba(0, 0, 0, 0.28) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Progress ticks — bottom-left, same row as the eyebrow baseline */
+  .c8-showcase__ticks {
+    position: absolute;
+    top: clamp(1.25rem, 2.5vw, 2rem);
+    right: clamp(1.25rem, 2.5vw, 2rem);
+    z-index: 3;
+    display: flex;
+    gap: 0.5rem;
+    pointer-events: none;
+  }
+  .c8-showcase__tick {
+    width: clamp(1.5rem, 3vw, 2.25rem);
+    height: 2px;
+    background: rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    position: relative;
+    overflow: hidden;
+  }
+  .c8-showcase__tick::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    transform: scaleX(var(--fill, 0));
+    transform-origin: left center;
+    transition: transform 0.12s linear;
+  }
+
+  /* Horizontal track holding every slide. Snap behavior — transform is
+     written in discrete steps (0%, -25%, -50%, -75%) by JS and the CSS
+     transition eases between steps so each slide arrives as one full
+     motion, not a hand-over-hand scroll response. */
+  .c8-showcase__slides-track {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    width: calc(var(--c8-slides, 4) * 100%);
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.7s cubic-bezier(0.6, 0, 0.2, 1);
+  }
+  .c8-showcase__slide {
+    flex: 0 0 calc(100% / var(--c8-slides, 4));
+    display: flex;
+    align-items: flex-end;   /* BOTTOM anchor — per user directive */
+    padding: clamp(1.5rem, 4vw, 3rem);
+    padding-bottom: clamp(1.75rem, 5vh, 3.25rem);
+    color: #fff;
+    box-sizing: border-box;
+  }
+
+  /* A panel is the content block at the bottom of a slide — eyebrow on top,
+     content under it. Left-aligned for caption-style reading.
+     Semi-transparent dark backdrop so copy reads clean against any video
+     frame. Backdrop-filter adds a touch of blur where the browser supports
+     it; where it doesn't, the rgba background alone still does the job. */
+  .c8-showcase__panel {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.9rem, 1.8vh, 1.5rem);
+    width: auto;
+    max-width: 52rem;
+    padding: clamp(1.1rem, 2.2vh, 1.6rem) clamp(1.35rem, 2.6vw, 2.1rem)
+             clamp(1.2rem, 2.4vh, 1.75rem);
+    background: rgba(0, 0, 0, 0.32);
+    -webkit-backdrop-filter: blur(10px) saturate(1.1);
+    backdrop-filter: blur(10px) saturate(1.1);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 40px -20px rgba(0, 0, 0, 0.45);
+  }
+  .c8-showcase__eyebrow {
+    font-family: var(--montreal, sans-serif);
+    font-size: clamp(0.7rem, 0.82vw, 0.82rem);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .c8-showcase__eyebrow::before {
+    content: '';
+    width: 1.25rem;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Tagline slide */
+  .c8-showcase__tagline {
+    margin: 0;
+    max-width: 44rem;
+    font-family: var(--montreal, sans-serif);
+    font-size: clamp(1.55rem, 2.8vw, 2.85rem);
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    color: #fff;
+  }
+  .c8-showcase__tagline em {
+    font-style: italic;
+    font-family: var(--syne, var(--montreal));
+    font-weight: 400;
+  }
+
+  /* Grouped stats: 3 columns side-by-side on the bottom of the frame */
+  .c8-showcase__stats {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+  }
+  .c8-showcase__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+  .c8-showcase__stat-value {
+    font-family: var(--montreal, sans-serif);
+    font-size: clamp(2rem, 4.8vw, 4.4rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .c8-showcase__stat-label {
+    font-family: var(--montreal, sans-serif);
+    font-size: clamp(0.72rem, 0.88vw, 0.88rem);
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.78);
+    font-weight: 400;
+    line-height: 1.3;
+    max-width: 14rem;
+  }
+
+  /* ---------- Client logos (hero-press-logos style) ---------- */
+
+  .c8-showcase__clients {
+    width: 100%;
+    padding: clamp(2.5rem, 5vh, 3.75rem) clamp(1.5rem, 5vw, 5rem)
+             clamp(2rem, 4vh, 3rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .c8-showcase__clients-label {
+    margin: 0;
+    font-family: var(--montreal, sans-serif);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #999;
+  }
+  .c8-showcase__clients-label span::before,
+  .c8-showcase__clients-label span::after {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: #ccc;
+    vertical-align: middle;
+  }
+  .c8-showcase__clients-label span::before { margin-right: 0.6rem; }
+  .c8-showcase__clients-label span::after  { margin-left: 0.6rem; }
+
+  .c8-showcase__clients-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.25rem 2.5rem;
+  }
+  .c8-showcase__client-img {
+    height: 28px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.25);
+    opacity: 0.75;
+    transition: opacity 0.25s ease, filter 0.25s ease;
+  }
+  .c8-showcase__client-img:hover {
+    filter: none;
+    opacity: 1;
+  }
+
+  /* Mobile — scroll-jack is a bad fit for narrow viewports, so we stop
+     pinning and stack the panels under the video as plain copy. */
+  @media (max-width: 900px) {
+    .c8-showcase__scroll-zone { height: auto; }
+    .c8-showcase__sticky-wrap { position: static; height: auto; }
+    .c8-showcase__frame       { aspect-ratio: 4 / 5; border-radius: 1rem; }
+    .c8-showcase__slides-track { transform: none !important; display: none; }
+    .c8-showcase__ticks       { display: none; }
+
+    .c8-showcase__clients     { padding: 2rem 1.25rem 0.25rem; }
+    .c8-showcase__client-img  { height: 22px; max-width: 110px; }
+    .c8-showcase__clients-logos { gap: 1rem 1.75rem; }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const zones = document.querySelectorAll('[data-c8-scroll]');
+    if (!zones.length) return;
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    zones.forEach((zone) => {
+      const track = zone.querySelector('[data-c8-slides]');
+      const ticksWrap = zone.querySelector('[data-c8-ticks]');
+      if (!track) return;
+
+      const slideCount = Number(zone.style.getPropertyValue('--c8-slides')) || track.children.length;
+      if (slideCount <= 1) return;
+
+      const ticks = ticksWrap ? Array.from(ticksWrap.children) : [];
+      const step = 100 / slideCount; // % of track width per slide
+      let currentIndex = -1;
+      let pending = false;
+
+      // Snap write: pick a single slide index from scroll progress and
+      // translate the track to its position. The CSS transition on the
+      // track eases between discrete steps, so each slide arrives as one
+      // motion — "full come and full go" — not a continuous scroll-tie.
+      const update = () => {
+        pending = false;
+        const rect = zone.getBoundingClientRect();
+        const total = zone.offsetHeight - window.innerHeight;
+        if (total <= 0) return;
+        const scrolled = Math.max(0, Math.min(total, -rect.top));
+        const progress = scrolled / total; // 0..1
+
+        // Split the runway into slideCount equal segments, one per slide.
+        // Floor picks which segment we're in, so each slide holds in place
+        // until the user crosses into the next.
+        let idx = Math.floor(progress * slideCount);
+        if (idx >= slideCount) idx = slideCount - 1;
+        if (idx < 0) idx = 0;
+
+        if (idx === currentIndex) return;
+        currentIndex = idx;
+
+        track.style.transform = `translate3d(${-idx * step}%, 0, 0)`;
+
+        // Progress ticks — binary fill. Tick i lights once we've reached
+        // slide i. Matches the snap feel.
+        for (let i = 0; i < ticks.length; i++) {
+          ticks[i].style.setProperty('--fill', i <= idx ? '1' : '0');
+        }
+      };
+
+      const schedule = () => {
+        if (pending) return;
+        pending = true;
+        requestAnimationFrame(update);
+      };
+
+      // Primary driver — native scroll event, rAF-coalesced.
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', schedule, { passive: true });
+
+      // Belt-and-braces — Lenis smooth-scroll dispatches its own events via
+      // an emitter rather than always firing native scroll. Subscribe too.
+      const tryHookLenis = (retries = 20) => {
+        const lenis = /** @type {any} */ (window).__lenis;
+        if (lenis && typeof lenis.on === 'function') {
+          lenis.on('scroll', schedule);
+          return;
+        }
+        if (retries > 0) setTimeout(() => tryHookLenis(retries - 1), 100);
+      };
+      tryHookLenis();
+
+      // Prime on mount so slide 0 is aligned and its tick is lit.
+      schedule();
+    });
+  })();
+</script>

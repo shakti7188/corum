@@ -81,6 +81,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a production AI build",
+      enquiry: {
+        hook: "AI demo, no product?",
+        heading: "Copilots are the easy bit. Agents that run your business aren't.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Sonia K.",
+        avatarRole: "AI Solutions Lead",
+      },
       body:
         "Every AI system we ship has the same seven modules. The specifics shift based on product pattern, but the shape is consistent.",
       subsections: [
@@ -234,7 +244,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four AI builds, four different shapes of problem",
+      heading: "AI work we've shipped",
       items: [
         {
           company: "Lumenfield AI",
@@ -243,6 +253,7 @@ export const page: PageData = {
           situation:
             "Lumenfield needed an agent platform that could run cross-tool workflows (Salesforce + Slack + email + custom APIs) for enterprise ops teams. Their internal prototype worked in a notebook but cost $12K/month in tokens for 30 beta users — unsustainable. We rebuilt the orchestration around Claude 4 Sonnet with GPT-5-mini classification for routing, added response caching for frequently-repeated tool outputs, implemented bounded autonomy caps, and shipped a production eval harness with 300-case golden sets per tool. Per-user cost dropped about 70% and Series A due-diligence accepted the cost model.",
           outcomeNumber: "~70% per-user cost reduction",
+          outcomeSecondary: "Multi-model routing · 300-case golden-set eval harness",
         },
         {
           company: "Seraph Systems",
@@ -251,6 +262,7 @@ export const page: PageData = {
           situation:
             "Seraph builds an LLM-native analytics product for regulated European banks and insurers. Data residency was the binding constraint — customer data could not leave EU infrastructure. We architected the system on Mistral Large deployed via Azure OpenAI in Frankfurt, with pgvector retrieval and evaluation running entirely in-region. RAG quality reached 92% retrieval precision on customer golden sets, and the first three bank customers onboarded with zero compliance blockers.",
           outcomeNumber: "92% retrieval precision · 0 compliance blockers",
+          outcomeSecondary: "In-region Azure/Mistral · pgvector stack shipped",
         },
         {
           company: "Orion Copilot",
@@ -259,6 +271,7 @@ export const page: PageData = {
           situation:
             "Orion wanted a customer-support copilot for Asian-market fintech support teams — multilingual, domain-specific, integrated with Zendesk. The hard problem was accurate handling of financial terminology across eight languages and five product lines. We built a multi-model routing architecture (Gemini for translation, Claude for complex reasoning, GPT-5-mini for classification), a 2,000-case evaluation harness covering each language-product combination, and deployed with careful per-locale prompt templates. Support team handle-time dropped about 40% and customer CSAT on AI-assisted tickets exceeded human-only baseline.",
           outcomeNumber: "~40% handle-time reduction",
+          outcomeSecondary: "8-language copilot · 2,000-case eval harness live",
         },
         {
           company: "Mosaic Intelligence",
@@ -267,6 +280,7 @@ export const page: PageData = {
           situation:
             "Mosaic is a multi-modal intelligence platform for compliance reviewers processing document-heavy regulatory submissions (KYC, AML, sanctions). The combination of document OCR, structured extraction, and LLM-based reasoning had failed on two prior attempts at other vendors. We built a pipeline combining Claude 4 Opus for reasoning, Gemini 2.5 Pro for long-document analysis, a Document AI OCR layer, and an agentic workflow for multi-pass review. Compliance officer review time per case reduced about 60% with measurable accuracy improvements on the team's golden dataset.",
           outcomeNumber: "~60% review-time reduction",
+          outcomeSecondary: "OCR + multi-model reasoning pipeline · agentic review loop",
         },
       ],
     },

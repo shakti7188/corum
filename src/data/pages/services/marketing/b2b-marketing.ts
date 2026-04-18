@@ -80,6 +80,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a B2B program",
+      enquiry: {
+        hook: "Pipeline leaking?",
+        heading: "B2B-Web3 buyers don't fill contact forms. They lurk and disappear.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1556474835-b0f3ac40d4d1?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Rohan B.",
+        avatarRole: "B2B Marketing Lead",
+      },
       body:
         "Every program shares a core set of modules.",
       subsections: [
@@ -234,7 +244,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four B2B programs, four different shapes",
+      heading: "B2B-marketing work we've shipped",
       items: [
         {
           company: "Meridian Data",
@@ -243,6 +253,7 @@ export const page: PageData = {
           situation:
             "Meridian was generating 1,200+ MQLs quarterly with SQL-conversion below 8%. The leads weren't right. We rebuilt ICP, pruned the TAL to 320 named Fortune-1000 accounts, built account-specific ABM playbooks with coordinated LinkedIn outbound + paid media + event presence. MQL volume dropped to 320/quarter but SQL conversion climbed to 34% and closed-won-$ sourced from marketing roughly doubled over two quarters.",
           outcomeNumber: "SQL conversion 8% → 34%",
+          outcomeSecondary: "ICP rebuild · 320-account TAL with ABM playbooks live",
         },
         {
           company: "Bright Institutional",
@@ -251,6 +262,7 @@ export const page: PageData = {
           situation:
             "Bright sells institutional crypto custody to European asset managers. The buyer audience is small (maybe 500 relevant institutions) and deeply researched — ABM was the correct motion. We built personalised content for specific large asset managers, coordinated executive-level introductions via founder-led LinkedIn outreach, and ran targeted event presence at institutional-investor conferences. Pipeline from 8 of the top-40 European asset managers within 9 months.",
           outcomeNumber: "8 top-40 asset managers in pipeline",
+          outcomeSecondary: "Account-specific content · founder-led LinkedIn outreach shipped",
         },
         {
           company: "Bastion Security",
@@ -259,6 +271,7 @@ export const page: PageData = {
           situation:
             "Bastion's existing outbound was producing meetings but low close rates. We restructured the approach around verified account research (via Clay + ZoomInfo), personalised first messages referencing specific security events or tooling choices at the target account, and coordinated account-team motion across marketing, SDR, and AE. Close rate on outbound-sourced pipeline improved about 3× over prior baseline in the first three quarters.",
           outcomeNumber: "~3× close rate on outbound pipeline",
+          outcomeSecondary: "Clay + ZoomInfo research stack · coordinated SDR/AE motion live",
         },
         {
           company: "Parallel Ops",
@@ -267,6 +280,7 @@ export const page: PageData = {
           situation:
             "Parallel is a B2B SaaS targeting Asian mid-market operations teams. LinkedIn Sales Navigator coverage in some target countries (Vietnam, Thailand, Indonesia) is weaker than in developed markets, requiring alternative account discovery. We built a hybrid program — LinkedIn for countries where Sales Navigator works well, partnership-driven warm-intro programs for countries where it doesn't. Qualified pipeline crossed $2.4M ARR-equivalent from 60 active opportunities after 6 months.",
           outcomeNumber: "$2.4M ARR pipeline · 60 opportunities",
+          outcomeSecondary: "Hybrid LinkedIn + warm-intro motion across APAC markets shipped",
         },
       ],
     },

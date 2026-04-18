@@ -81,6 +81,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a listing campaign",
+      enquiry: {
+        hook: "Listing process stalled?",
+        heading: "Tier-1 listings aren't a form. They're a relationship that starts six months earlier.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
+        avatarName: "David K.",
+        avatarRole: "Listings Lead",
+      },
       body:
         "Every campaign we run shares the same core modules.",
       subsections: [
@@ -233,7 +243,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four listing campaigns, four different shapes",
+      heading: "Exchange-listing work we've shipped",
       items: [
         {
           company: "Ember Token",
@@ -242,6 +252,7 @@ export const page: PageData = {
           situation:
             "Ember is a governance token that launched on DEXs and needed a coordinated tier-one CEX rollout across 8 exchanges in a 90-day window. We built the phased sequence — two tier-two exchanges first to establish volume history, then two tier-one listings leveraging that track record, then four additional exchanges propagating the initial momentum. MM partnerships signed with two tier-one MMs for primary venues. Listing campaign produced sustained spot volume meaningfully higher than what DEX-only trading had delivered.",
           outcomeNumber: "8 CEX listings · 90 days",
+          outcomeSecondary: "Phased tier-2 to tier-1 sequence · 2 tier-one MM agreements signed",
         },
         {
           company: "Wavelet Protocol",
@@ -250,6 +261,7 @@ export const page: PageData = {
           situation:
             "Wavelet is a DeFi protocol whose community concentrated in Asia-Pacific markets. We prioritised Asian-retail-heavy exchanges (Gate, KuCoin, Bitget, Bybit) rather than Western tier-ones. Paired listings with regional PR and influencer amplification in local languages. Asian trading volume contributed majority of token's trading activity within the first quarter — materially better product-market fit than a Western-exchange-first strategy would have produced.",
           outcomeNumber: "Majority volume from Asian venues Q1",
+          outcomeSecondary: "Gate · KuCoin · Bitget · Bybit listings with localised amplification shipped",
         },
         {
           company: "Obsidian Finance",
@@ -258,6 +270,7 @@ export const page: PageData = {
           situation:
             "Obsidian is a regulated European stablecoin where institutional credibility was as important as retail access. We prioritised institutional-relevant listings — specific Kraken pair, OKX institutional liquidity pool, integration with Bridge's stablecoin-settlement rails — before retail-facing tier-ones. The listing strategy matched the product's positioning: serious institutional-grade product with retail availability as secondary.",
           outcomeNumber: "Institutional-credible listing progression",
+          outcomeSecondary: "Kraken pair · OKX institutional pool · Bridge rail integration live",
         },
         {
           company: "Keystone Utility",
@@ -266,6 +279,7 @@ export const page: PageData = {
           situation:
             "Keystone is a utility token for a consumer product whose mainnet launch generated genuine retail interest. We timed the listing campaign to land the first CEX within two weeks of mainnet launch to capture the attention window. First listing was Bybit (fast response time, retail-friendly), followed by Gate and KuCoin for altcoin-community reach, then Coinbase application leveraging the demonstrated track record. Coinbase listing secured four months post-mainnet — fast for a utility token in 2026.",
           outcomeNumber: "Coinbase listing 4 months post-mainnet",
+          outcomeSecondary: "Bybit · Gate · KuCoin sequence · Coinbase application shipped",
         },
       ],
     },

@@ -1,0 +1,198 @@
+---
+import Layout from "../layouts/Layout.astro";
+import KotaverseCta from "../components/KotaverseCta.astro";
+
+const caseStudies = [
+  {
+    slug: "/case-studies/binance",
+    client: "Binance",
+    tagline: "$800M+ in monthly affiliate volume",
+    scope: "Performance affiliate network for the world's largest exchange.",
+    type: "Performance · Affiliate Network",
+    region: "Global",
+    year: "2023",
+    poster: "/images/upp-featured-mobile.jpg",
+  },
+  {
+    slug: "/case-studies/cashaa",
+    client: "Cashaa",
+    tagline: "$32M raised at token launch",
+    scope: "Token launch powered by influencer marketing, PR and community activation.",
+    type: "Token Launch · Influencer · PR",
+    region: "Global",
+    year: "2022",
+    poster: "/images/Featured.png",
+  },
+  {
+    slug: "/case-studies/kucoin",
+    client: "KuCoin",
+    tagline: "Tier-1 visibility across priority markets",
+    scope: "Strategic PR programme amplifying brand visibility for a major exchange.",
+    type: "Strategic PR · Exchange",
+    region: "Global",
+    year: "2024",
+    poster: "/images/ig-featured-mobile.jpg",
+  },
+  {
+    slug: "/case-studies/fanadise",
+    client: "Fanadise",
+    tagline: "$5M raise, fully subscribed",
+    scope: "Full-stack Web3 growth campaign rallying community behind the raise.",
+    type: "Full-stack Web3 · Growth · Community",
+    region: "Europe",
+    year: "2024",
+    poster: "/images/GOAT-FeaturedImage.webp",
+  },
+  {
+    slug: "/case-studies/ubuntu-tribe",
+    client: "Ubuntu Tribe",
+    tagline: "Token2049 activation, global reach",
+    scope: "PR, community and influencer programme anchored around Token2049.",
+    type: "PR · Community · Influencer",
+    region: "APAC / Global",
+    year: "2024",
+    poster: "/images/hero.webp",
+  },
+  {
+    slug: "/case-studies/metarix",
+    client: "Metarix",
+    tagline: "$780K raised",
+    scope: "Full launch across influencers, PR and community converting attention into capital.",
+    type: "Launch · Influencers · PR · Community",
+    region: "APAC",
+    year: "2023",
+    poster: "/images/wogan-featured-2.jpg",
+  },
+];
+---
+<Layout title="Case Studies | Corum8">
+
+<section class="Hero_hero__zbooM"><div class="container"><div class="Hero_top__UZ6SA"><h2><span class="LineByLine_headingOuter__JmusT"><span>Selected work. Real clients. Verifiable numbers.</span></span></h2></div><div class="Hero_bottom__pLxrT"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Case studies</span></div></span></h1><div class="Hero_arrow__WTdEi"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z" style="stroke-width:0"></path></svg></span></div></div></div></section>
+
+<section class="c8-cases">
+  <div class="container">
+    <p class="c8-cases__lede">Six engagements across exchanges, token launches, community programmes and performance networks. Every number is either the client's own reported figure or an outcome we can walk you through on a call.</p>
+    <div class="c8-cases__grid">
+      {caseStudies.map((c) => (
+        <a class="c8-case-card" href={c.slug}>
+          <div class="c8-case-card__media">
+            <img src={c.poster} alt="" loading="lazy" />
+            <div class="c8-case-card__overlay">
+              <span class="c8-case-card__scope">{c.scope}</span>
+            </div>
+          </div>
+          <div class="c8-case-card__body">
+            <div class="c8-case-card__meta">
+              <span>{c.type}</span>
+              <span>{c.region} · {c.year}</span>
+            </div>
+            <h3 class="c8-case-card__client">{c.client}</h3>
+            <p class="c8-case-card__tagline">{c.tagline}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<KotaverseCta
+  light="Want a"
+  bold="case like these?"
+  subtitle="Book a call. We'll tell you what we'd build, ship and measure first."
+/>
+
+<style>
+  .c8-cases {
+    padding: clamp(4rem, 8vw, 8rem) 0;
+    background: #fafafa;
+  }
+  .c8-cases__lede {
+    max-width: 44rem;
+    margin: 0 auto 4rem;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444;
+  }
+  .c8-cases__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.75rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .c8-case-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .c8-case-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 50px -24px rgba(0, 0, 0, 0.2);
+  }
+  .c8-case-card__media {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #111;
+  }
+  .c8-case-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .c8-case-card:hover .c8-case-card__media img {
+    transform: scale(1.04);
+  }
+  .c8-case-card__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.25rem;
+    background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
+  }
+  .c8-case-card__scope {
+    color: #fff;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  .c8-case-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem 1.75rem 1.75rem;
+  }
+  .c8-case-card__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .c8-case-card__client {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: #111;
+    margin: 0;
+  }
+  .c8-case-card__tagline {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #444;
+    margin: 0;
+  }
+</style>
+
+</Layout>

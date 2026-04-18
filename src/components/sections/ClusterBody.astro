@@ -27,6 +27,7 @@ function paragraphs(input: string | string[]): string[] {
  */
 const PROSE_TYPES_WITH_ASIDE = new Set([
   "Prose", "Definition", "StackNotes", "HowWeApproach", "WhyCorum8", "OutcomesDriven",
+  "DeepBreakdown", "SignalsYouNeedThis",
 ]);
 
 function sideMediaFor(section: BodySection): { src: string; alt: string; decorative: boolean; side: "left" | "right" } | null {
@@ -203,39 +204,121 @@ function enquiryFor(section: BodySection) {
         );
       })()}
 
-      {section.type === "DeepBreakdown" && (
-        <section class="cbody__block">
-          <div class="cbody__wrap">
-            <h2 class="cbody__h">{section.heading}</h2>
-            <div class="cbody__prose">
-              {paragraphs(section.body).map((p) => <p set:html={p} />)}
-            </div>
-            {section.subsections && section.subsections.length > 0 && (
-              <div class="cbody__subs">
-                {section.subsections.map((sub) => (
-                  <div class="cbody__sub">
-                    <h3 class="cbody__h3">{sub.heading}</h3>
+      {section.type === "DeepBreakdown" && (() => {
+        const eq = enquiryFor(section);
+        return (
+          <section class={`cbody__block ${eq ? "cbody__block--enquiry-aside" : ""}`}>
+            <div class="cbody__wrap">
+              {eq ? (
+                <div class="cbody__split cbody__split--enquiry">
+                  <div class="cbody__splitcopy">
+                    <h2 class="cbody__h">{section.heading}</h2>
                     <div class="cbody__prose">
-                      {paragraphs(sub.body).map((p) => <p set:html={p} />)}
+                      {paragraphs(section.body).map((p) => <p set:html={p} />)}
                     </div>
+                    {section.subsections && section.subsections.length > 0 && (
+                      <div class="cbody__subs">
+                        {section.subsections.map((sub) => (
+                          <div class="cbody__sub">
+                            <h3 class="cbody__h3">{sub.heading}</h3>
+                            <div class="cbody__prose">
+                              {paragraphs(sub.body).map((p) => <p set:html={p} />)}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-      )}
+                  <aside class="cbody__enquiry">
+                    {eq.avatarUrl && (
+                      <figure class="cbody__enquiry-avatar">
+                        <img src={eq.avatarUrl} alt={eq.avatarName ? `${eq.avatarName}, ${eq.avatarRole ?? 'Corum8'}` : ''} loading="lazy" decoding="async" />
+                      </figure>
+                    )}
+                    <span class="cbody__enquiry-hook">{eq.hook}</span>
+                    <h4 class="cbody__enquiry-heading">{eq.heading}</h4>
+                    <form class="cbody__enquiry-form" action={eq.href ?? "/contact"} method="GET">
+                      <input type="tel" name="phone" placeholder="Phone (with country code)" required autocomplete="tel" inputmode="tel" />
+                      <input type="email" name="email" placeholder="Work email" required autocomplete="email" />
+                      <button type="submit">{eq.buttonLabel ?? "Let's talk →"}</button>
+                    </form>
+                    {eq.avatarName && (
+                      <span class="cbody__enquiry-person">
+                        with <strong>{eq.avatarName}</strong>{eq.avatarRole && <span> · {eq.avatarRole}</span>}
+                      </span>
+                    )}
+                  </aside>
+                </div>
+              ) : (
+                <>
+                  <h2 class="cbody__h">{section.heading}</h2>
+                  <div class="cbody__prose">
+                    {paragraphs(section.body).map((p) => <p set:html={p} />)}
+                  </div>
+                  {section.subsections && section.subsections.length > 0 && (
+                    <div class="cbody__subs">
+                      {section.subsections.map((sub) => (
+                        <div class="cbody__sub">
+                          <h3 class="cbody__h3">{sub.heading}</h3>
+                          <div class="cbody__prose">
+                            {paragraphs(sub.body).map((p) => <p set:html={p} />)}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          </section>
+        );
+      })()}
 
-      {section.type === "SignalsYouNeedThis" && (
-        <section class="cbody__block cbody__block--tinted">
-          <div class="cbody__wrap cbody__wrap--wide">
-            {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
-            <ul class="cbody__signals">
-              {section.signals.map((s) => (<li>{s}</li>))}
-            </ul>
-          </div>
-        </section>
-      )}
+      {section.type === "SignalsYouNeedThis" && (() => {
+        const eq = enquiryFor(section);
+        return (
+          <section class={`cbody__block cbody__block--tinted ${eq ? "cbody__block--enquiry-aside" : ""}`}>
+            <div class={eq ? "cbody__wrap" : "cbody__wrap cbody__wrap--wide"}>
+              {eq ? (
+                <div class="cbody__split cbody__split--enquiry">
+                  <div class="cbody__splitcopy">
+                    {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                    <ul class="cbody__signals">
+                      {section.signals.map((s) => (<li>{s}</li>))}
+                    </ul>
+                  </div>
+                  <aside class="cbody__enquiry">
+                    {eq.avatarUrl && (
+                      <figure class="cbody__enquiry-avatar">
+                        <img src={eq.avatarUrl} alt={eq.avatarName ? `${eq.avatarName}, ${eq.avatarRole ?? 'Corum8'}` : ''} loading="lazy" decoding="async" />
+                      </figure>
+                    )}
+                    <span class="cbody__enquiry-hook">{eq.hook}</span>
+                    <h4 class="cbody__enquiry-heading">{eq.heading}</h4>
+                    <form class="cbody__enquiry-form" action={eq.href ?? "/contact"} method="GET">
+                      <input type="tel" name="phone" placeholder="Phone (with country code)" required autocomplete="tel" inputmode="tel" />
+                      <input type="email" name="email" placeholder="Work email" required autocomplete="email" />
+                      <button type="submit">{eq.buttonLabel ?? "Let's talk →"}</button>
+                    </form>
+                    {eq.avatarName && (
+                      <span class="cbody__enquiry-person">
+                        with <strong>{eq.avatarName}</strong>{eq.avatarRole && <span> · {eq.avatarRole}</span>}
+                      </span>
+                    )}
+                  </aside>
+                </div>
+              ) : (
+                <>
+                  {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                  <ul class="cbody__signals">
+                    {section.signals.map((s) => (<li>{s}</li>))}
+                  </ul>
+                </>
+              )}
+            </div>
+          </section>
+        );
+      })()}
 
       {section.type === "DecisionFactors" && (
         <section class="cbody__block">
@@ -979,6 +1062,8 @@ function enquiryFor(section: BodySection) {
     flex-direction: column;
     gap: 0.6rem;
     margin-top: 0.25rem;
+    width: 100%;
+    align-self: stretch;
   }
   .cbody__enquiry-form input {
     appearance: none;
@@ -991,6 +1076,12 @@ function enquiryFor(section: BodySection) {
     font-size: 0.95rem;
     outline: none;
     transition: border-color 0.2s ease, background-color 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .cbody__enquiry-form button {
+    width: 100%;
+    box-sizing: border-box;
   }
   .cbody__enquiry-form input::placeholder { color: rgba(255,255,255,0.4); }
   .cbody__enquiry-form input:focus {

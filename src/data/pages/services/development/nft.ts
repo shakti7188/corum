@@ -82,6 +82,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of an NFT platform build",
+      enquiry: {
+        hook: "NFT drop flopped?",
+        heading: "Most NFT platforms win the mint and lose the secondary.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Maya R.",
+        avatarRole: "NFT Platform Lead",
+      },
       body:
         "Every NFT platform we build has six core modules. Specifics shift based on category and distribution strategy, but the shape is consistent.",
       subsections: [
@@ -231,7 +241,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four NFT builds, four different shapes of product",
+      heading: "NFT work we've shipped",
       items: [
         {
           company: "Pillar Gallery",
@@ -240,6 +250,7 @@ export const page: PageData = {
           situation:
             "Pillar is an institutional-grade fine-art NFT platform for established artists and serious collectors. The critical product requirements were auditable provenance (who owned what, when, with custody chain for physical pieces), royalty enforcement for secondary sales, and buyer verification for high-value transactions. We built on Ethereum mainnet with Seaport for trading, custom provenance contracts anchoring authentication records, and an operator allowlist for royalty enforcement. First year gross merchandise value crossed $18M with secondary-royalty collection at above 95% of owed amount — roughly 3× the OpenSea market norm.",
           outcomeNumber: "~95% royalty collection rate",
+          outcomeSecondary: "Ethereum mainnet · Seaport + custom provenance contracts",
         },
         {
           company: "Quarry Collectibles",
@@ -248,6 +259,7 @@ export const page: PageData = {
           situation:
             "Quarry is a licensed digital collectibles platform for Japanese anime IP. The platform issues verified digital collectibles from licensed anime catalogues, distributed to mainstream fans who mostly don't own crypto wallets. We built on Polygon PoS for cost, with embedded wallets via Privy and credit-card checkout via Crossmint. License-holder admin tools issue rights-tracked collections with royalty splits to the studios. First licensed drop sold out without any crypto-wallet education in the customer funnel.",
           outcomeNumber: "First drop sold out — zero wallet friction",
+          outcomeSecondary: "Polygon PoS · Privy embedded wallets + Crossmint checkout",
         },
         {
           company: "Ember Music",
@@ -256,6 +268,7 @@ export const page: PageData = {
           situation:
             "Ember is a music royalty platform where fans can own a share of future streaming revenue from specific songs. Each NFT represents a pro-rata claim on a defined percentage of a song's royalty pool. Engineering challenge: mechanical royalty distribution across multiple recipient categories per song (songwriter, producer, label, performer, fan-NFT-holders), with different percentages per jurisdiction. We built on Ethereum with 0xSplits-powered distribution and a custom rights-metadata contract that encodes the royalty structure on-chain. First album generated quarterly distributions to 1,200 NFT holders across three releases.",
           outcomeNumber: "1,200 holders · Q distributions live",
+          outcomeSecondary: "Ethereum · 0xSplits routing + on-chain rights metadata",
         },
         {
           company: "Oasis Assets",
@@ -264,6 +277,7 @@ export const page: PageData = {
           situation:
             "Oasis tokenises high-value physical collectibles — vintage watches, classic cars, fine wine, rare spirits — with physical custody in Dubai Free Zone facilities. Each NFT is backed by a specific physical asset held with insurance and a custody chain. We built the platform on Polygon with on-chain custody attestations, integration with the physical-warehouse management system, and a redemption flow where an NFT holder can claim the physical asset (triggering NFT burn and physical shipment). First-year platform inventory crossed $12M across 400 verified assets.",
           outcomeNumber: "$12M+ verified physical inventory",
+          outcomeSecondary: "Polygon · custody attestations + warehouse + redemption flow",
         },
       ],
     },

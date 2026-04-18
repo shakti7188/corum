@@ -81,6 +81,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a content program",
+      enquiry: {
+        hook: "Content not converting?",
+        heading: "Blog posts chasing keywords die inside LLM summary boxes.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Priya M.",
+        avatarRole: "Content Strategy Lead",
+      },
       body:
         "Every program we run shares the same core modules.",
       subsections: [
@@ -234,7 +244,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four content programs, four different shapes",
+      heading: "Content-marketing work we've shipped",
       items: [
         {
           company: "Lighthouse Protocol",
@@ -243,6 +253,7 @@ export const page: PageData = {
           situation:
             "Lighthouse needed content that earned category authority in competitive DeFi territory. We built a program anchored to original on-chain research — monthly reports analysing specific market dynamics using Dune and Flipside data. Reports became widely-cited reference material; organic traffic grew roughly 8× over 12 months and category-ranking queries (e.g., 'best DeFi lending protocol') started surfacing Lighthouse content in the top results consistently.",
           outcomeNumber: "~8× organic traffic · Y1",
+          outcomeSecondary: "Monthly on-chain research reports · Dune + Flipside data pipeline live",
         },
         {
           company: "Veridian Data",
@@ -251,6 +262,7 @@ export const page: PageData = {
           situation:
             "Veridian is B2B analytics SaaS whose blog had been thin-content blog posts that didn't convert. We pruned 60+ old pieces, built a pillar-cluster structure covering 8 substantive topics, and produced deep guides (4,000–7,000 words each) with the client's technical team. Pipeline from organic traffic increased roughly 3.5× with meaningfully higher close rates on content-sourced leads — they arrived better-educated than paid leads.",
           outcomeNumber: "~3.5× organic pipeline",
+          outcomeSecondary: "60+ old posts pruned · pillar-cluster structure across 8 topics live",
         },
         {
           company: "Orion Fintech",
@@ -259,6 +271,7 @@ export const page: PageData = {
           situation:
             "Orion is an MiCA-regulated European fintech needing content that could pass compliance review while still being substantive. We built a content program with in-line compliance review integrated into production workflow, focused on regulatory-clarity content (MiCA implications for specific use cases, cross-border compliance walkthroughs, institutional due-diligence checklists). Content became sales-enablement backbone — reps used it during late-stage deals.",
           outcomeNumber: "Sales-enablement backbone across deals",
+          outcomeSecondary: "In-line compliance workflow · MiCA-clarity content library shipped",
         },
         {
           company: "Cypress Commerce",
@@ -267,6 +280,7 @@ export const page: PageData = {
           situation:
             "Cypress is a consumer ecommerce platform serving Indonesia, Vietnam, Thailand, Philippines. English content wasn't enough; local-language content was the primary driver. We built native-writer teams in each country plus a regional editor coordinating voice consistency. Each market had its own editorial calendar anchored to local culture and buying patterns. Combined organic traffic across four language sites grew to 2.3M monthly within two quarters.",
           outcomeNumber: "2.3M monthly organic · 4 languages",
+          outcomeSecondary: "Native-writer teams in 4 countries · regional editor coordination live",
         },
       ],
     },

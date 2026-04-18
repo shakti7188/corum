@@ -1,0 +1,270 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import KotaverseCta from "../../components/KotaverseCta.astro";
+
+const roles = [
+  {
+    title: "Senior Smart Contract Engineer",
+    location: "Remote · Dubai / EU timezone",
+    team: "Development · DeFi",
+    type: "Full-time",
+  },
+  {
+    title: "Exchange Platform Lead",
+    location: "Dubai (on-site)",
+    team: "Development · Exchange",
+    type: "Full-time",
+  },
+  {
+    title: "Growth Marketing Manager",
+    location: "Remote · Global",
+    team: "Marketing · Performance",
+    type: "Full-time",
+  },
+  {
+    title: "Crypto PR Lead",
+    location: "Remote · Global",
+    team: "Marketing · PR",
+    type: "Full-time",
+  },
+  {
+    title: "Community Manager (Web3)",
+    location: "Remote · APAC or EU timezone",
+    team: "Marketing · Community",
+    type: "Full-time",
+  },
+  {
+    title: "AI Engineer (Production Systems)",
+    location: "Remote · US / EU timezone",
+    team: "Development · AI",
+    type: "Full-time",
+  },
+];
+
+const principles = [
+  {
+    num: "01",
+    title: "We ship, then we write about it.",
+    body: "We publish after the work lands. Case studies come with numbers from the client's own dashboards. Nobody ghost-writes results.",
+  },
+  {
+    num: "02",
+    title: "One team, one brief.",
+    body: "No handoff tax. Engineering, PR, community, growth and design sit in the same Slack and run against the same strategic document.",
+  },
+  {
+    num: "03",
+    title: "Stay close to the craft.",
+    body: "Senior people stay technical. Leads still write code, still pitch journalists, still moderate communities. No detachment ladder.",
+  },
+  {
+    num: "04",
+    title: "Opinions earn the floor.",
+    body: "Experience matters; so does the clearest argument. Hierarchy exists for decisions, not for who gets heard in the room.",
+  },
+];
+---
+<Layout title="Careers | Corum8">
+
+<section class="Hero_hero__zbooM"><div class="container"><div class="Hero_top__UZ6SA"><h2><span class="LineByLine_headingOuter__JmusT"><span>Build, launch and scale the products that refuse to blend in.</span></span></h2></div><div class="Hero_bottom__pLxrT"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Careers</span></div></span></h1><div class="Hero_arrow__WTdEi"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z" style="stroke-width:0"></path></svg></span></div></div></div></section>
+
+<section class="c8-careers-intro">
+  <div class="container">
+    <p class="c8-careers-intro__body">
+      Corum8 is 95+ engineers, PR leads, community managers, growth operators and designers across Dubai, the US and India. Every hire raises the bar. Every engagement gets senior work, not a team-of-juniors shuffle. If you want to ship things that move markets — and get your name in the write-up — read on.
+    </p>
+  </div>
+</section>
+
+<section class="c8-principles">
+  <div class="container">
+    <h2 class="c8-principles__heading">How we work</h2>
+    <div class="c8-principles__grid">
+      {principles.map((p) => (
+        <div class="c8-principle">
+          <span class="c8-principle__num">{p.num}</span>
+          <h3>{p.title}</h3>
+          <p>{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="c8-roles">
+  <div class="container">
+    <h2 class="c8-roles__heading">Open roles</h2>
+    <div class="c8-roles__list">
+      {roles.map((r) => (
+        <a class="c8-role" href="/contact">
+          <div class="c8-role__left">
+            <h3 class="c8-role__title">{r.title}</h3>
+            <div class="c8-role__meta">
+              <span>{r.team}</span>
+              <span>·</span>
+              <span>{r.location}</span>
+              <span>·</span>
+              <span>{r.type}</span>
+            </div>
+          </div>
+          <span class="c8-role__cta">
+            Apply
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" width="14">
+              <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+    <p class="c8-roles__nudge">Don't see your role? <a href="/contact">Send us a note</a> — we hire ahead of specific openings when the person is right.</p>
+  </div>
+</section>
+
+<KotaverseCta
+  light="Bring the work"
+  bold="you're proudest of."
+  subtitle="Apply with a link to something you shipped. No cover letter required."
+/>
+
+<style>
+  .c8-careers-intro {
+    padding: clamp(3rem, 6vw, 6rem) 0 clamp(2rem, 4vw, 4rem);
+    background: #fafafa;
+  }
+  .c8-careers-intro__body {
+    max-width: 48rem;
+    margin: 0 auto;
+    text-align: center;
+    font-size: clamp(1.1rem, 1.3vw, 1.3rem);
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .c8-principles {
+    padding: clamp(3rem, 6vw, 6rem) 0;
+    background: #fafafa;
+  }
+  .c8-principles__heading {
+    text-align: center;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    letter-spacing: -0.02em;
+    margin: 0 0 3rem;
+    color: #111;
+  }
+  .c8-principles__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .c8-principle {
+    padding: 2.25rem;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 1.25rem;
+  }
+  .c8-principle__num {
+    display: block;
+    font-size: 0.9rem;
+    color: #888;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  .c8-principle h3 {
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.75rem;
+    color: #111;
+  }
+  .c8-principle p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+    margin: 0;
+  }
+
+  .c8-roles {
+    padding: clamp(3rem, 6vw, 6rem) 0;
+    background: #fff;
+  }
+  .c8-roles__heading {
+    text-align: center;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    letter-spacing: -0.02em;
+    margin: 0 0 3rem;
+    color: #111;
+  }
+  .c8-roles__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .c8-role {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.75rem 2rem;
+    background: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  }
+  .c8-role:hover {
+    transform: translateX(4px);
+    border-color: var(--c8-gold);
+    background: #fff;
+  }
+  .c8-role__title {
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4rem;
+    color: #111;
+  }
+  .c8-role__meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: #666;
+  }
+  .c8-role__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #111;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+  .c8-role:hover .c8-role__cta svg {
+    transform: translateX(4px);
+  }
+  .c8-role__cta svg {
+    transition: transform 0.3s ease;
+  }
+  .c8-roles__nudge {
+    max-width: 40rem;
+    margin: 3rem auto 0;
+    text-align: center;
+    color: #666;
+    font-size: 0.95rem;
+  }
+  .c8-roles__nudge a {
+    color: #111;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .c8-roles__nudge a:hover {
+    color: var(--c8-gold);
+  }
+</style>
+
+</Layout>

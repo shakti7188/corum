@@ -78,6 +78,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a DeFi build",
+      enquiry: {
+        hook: "Protocol stuck in audit?",
+        heading: "Most DeFi bugs aren't in the math. They're in the glue around it.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Marco V.",
+        avatarRole: "DeFi Engineering Lead",
+      },
       body:
         "Every protocol we build has six modules. The shape is consistent even when the financial product is radically different.",
       subsections: [
@@ -226,7 +236,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four DeFi builds, four different shapes of problem",
+      heading: "DeFi work we've shipped",
       items: [
         {
           company: "Orchid Yield",
@@ -235,6 +245,7 @@ export const page: PageData = {
           situation:
             "Orchid is a cross-chain yield aggregator routing capital between lending, staking, and LP positions across six chains. The hard problem was rebalancing without leaking value to MEV — naively moving $10M in stablecoins between chains telegraphs arbitrage. We built a custom intent-based rebalancing layer using <strong>Across</strong> and <strong>CCTP</strong> as settlement rails, with batched netting across vaults to reduce cross-chain footprint. TVL crossed $80M in the first two quarters with measurably better net yield than the aggregators they competed with.",
           outcomeNumber: "$80M+ TVL · Q1-Q2",
+          outcomeSecondary: "Intent-based rebalancer · 6 chains · Across + CCTP",
         },
         {
           company: "Veridian Lending",
@@ -243,6 +254,7 @@ export const page: PageData = {
           situation:
             "Veridian is a MiCA-aligned lending protocol for European institutional users — isolated markets, explicit KYC gate at the UI level, transfer-restricted collateral. We designed the protocol around Morpho-Blue-style isolated markets, added a whitelist layer at the market-entry point (not the token level — tokens stay permissionless), and built the risk-parameter governance as a three-of-five institutional multisig with a 48-hour timelock. MiCA licensing was in scope from week one and the protocol cleared review without a single blocking finding.",
           outcomeNumber: "MiCA review — no blocking findings",
+          outcomeSecondary: "Morpho-Blue-style markets · 3-of-5 multisig · 48h timelock",
         },
         {
           company: "Brightside Staking",
@@ -251,6 +263,7 @@ export const page: PageData = {
           situation:
             "Brightside is a liquid-staking protocol for Ethereum validators aimed at crypto-native retail and small institutional. The competitive bar is Lido. We differentiated on validator set diversification (randomised delegation across 40+ operators, no operator above 3% of stake) and slashing insurance via a protocol-owned insurance module. The design deliberately trades raw APY for risk-adjusted return. First staking round filled $45M and the protocol survived its first slashing event (a validator DVT misconfiguration) with zero customer-facing impact thanks to the insurance buffer.",
           outcomeNumber: "$45M staked · 0 customer impact",
+          outcomeSecondary: "40+ operator validator set · insurance module live",
         },
         {
           company: "Kindred Perpetuals",
@@ -259,6 +272,7 @@ export const page: PageData = {
           situation:
             "Kindred is a perpetuals protocol on an L2, cross-margin, targeting Asian retail. The risk engine was the critical piece — correlated liquidations during crypto flash events are how perpetuals protocols die. We built a socialised-loss auto-deleveraging module with hard per-market thresholds and a dedicated insurance fund funded from funding-rate revenue. Protocol launched with signed market-maker partnerships and survived a $50M+ single-hour liquidation event in Q2 without touching the insurance fund.",
           outcomeNumber: "Survived $50M liquidation event cleanly",
+          outcomeSecondary: "Socialised-loss ADL module · funding-rate insurance fund",
         },
       ],
     },

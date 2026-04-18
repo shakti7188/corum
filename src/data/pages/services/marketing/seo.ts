@@ -78,6 +78,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a 2026 SEO / AEO / GEO program",
+      enquiry: {
+        hook: "Traffic flat post-ChatGPT?",
+        heading: "Ranking #1 is obsolete. Getting cited by LLMs is the new SEO.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1557862921-37829c790f19?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Deepak S.",
+        avatarRole: "SEO and AEO Lead",
+      },
       body:
         "Every search program we run has the same set of modules. Specifics shift based on industry, existing content, and technical-site state.",
       subsections: [
@@ -231,7 +241,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four search programs, four different shapes",
+      heading: "SEO, AEO and GEO work we've shipped",
       items: [
         {
           company: "Lodestar Analytics",
@@ -240,6 +250,7 @@ export const page: PageData = {
           situation:
             "Lodestar is a B2B analytics SaaS whose organic had been declining for 18 months after two Google Core Updates. Audit showed 180 pages of thin, keyword-targeted content that was exactly what the Helpful Content algorithm downgraded. We pruned about 40% of existing content, rebuilt 60 pages as genuinely authoritative cluster content, added comprehensive schema, and ran a data-driven-content program producing original benchmarking reports that earned inbound links. Organic revenue roughly 4× in 9 months.",
           outcomeNumber: "~4× organic revenue in 9 months",
+          outcomeSecondary: "Pruned ~40% of pages · 60 cluster pages rebuilt · schema added",
         },
         {
           company: "Riverbank Crypto",
@@ -248,6 +259,7 @@ export const page: PageData = {
           situation:
             "Riverbank is a global crypto exchange competing in a vertical where competitors run 200–300 page site architectures. Their site was 25 pages. We built a 260-page pillar-cluster architecture over eight months, each page at 2,500–5,500 words with full schema, authored use cases, and internal link depth. Organic traffic grew roughly 6× in the first full year; AI-citation tracking showed the brand appearing in Perplexity and ChatGPT answers for category-defining queries it had never ranked for in Google.",
           outcomeNumber: "~6× organic traffic in Y1",
+          outcomeSecondary: "260-page pillar-cluster architecture · full schema + use cases",
         },
         {
           company: "Meridian Legal",
@@ -256,6 +268,7 @@ export const page: PageData = {
           situation:
             "Meridian is an EU regtech product where buyer research increasingly happens in AI answer engines before any vendor site visit. We ran an AEO program specifically targeting Gemini and Perplexity placements: direct-answer block authoring, comprehensive FAQ schema, entity-density work around regulatory terminology, and explicit authoritativeness signals. Brand appearance rate in target AI queries (via Profound tracking) moved from 2% baseline to 47% across two quarters.",
           outcomeNumber: "2% → 47% AI-query brand appearance",
+          outcomeSecondary: "Direct-answer authoring · FAQ schema · entity-density rebuild",
         },
         {
           company: "Solstice Health",
@@ -264,6 +277,7 @@ export const page: PageData = {
           situation:
             "Solstice is a HealthTech SaaS whose buyer journey in Asia-Pacific markets increasingly includes Gemini as a research tool. We ran a GEO program focused on Gemini citation specifically — content formats Gemini prefers (structured comparative tables, explicit claim-evidence pairings, named authoritative sources), schema types Google's AI Overviews weigh heavily (FAQPage, Article with explicit author attribution), and digital-PR work earning citations from sites Gemini trusts. Brand citation rate in target Gemini queries roughly quadrupled within a quarter.",
           outcomeNumber: "~4× Gemini citation rate in Q1",
+          outcomeSecondary: "Comparative tables · claim-evidence pairs · trusted-source links",
         },
       ],
     },

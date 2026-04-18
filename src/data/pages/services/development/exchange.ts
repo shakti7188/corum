@@ -98,6 +98,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of an exchange build",
+      enquiry: {
+        hook: "Exchange stalling?",
+        heading: "White-label demos look great. Production usually breaks them.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Ravi S.",
+        avatarRole: "Exchange Architect",
+      },
       body:
         "Every exchange we build shares a core architecture. The specifics shift based on CEX versus DEX versus hybrid, but the modules are the same — and if any one of them is weak, the venue doesn't survive contact with real users.",
       subsections: [
@@ -255,7 +265,7 @@ export const page: PageData = {
     // --- Use cases (authored fresh) -------------------------------------------
     {
       type: "UseCases",
-      heading: "Five builds, five different shapes of problem",
+      heading: "Exchange work we've shipped",
       items: [
         {
           company: "Meridian Exchange",
@@ -264,6 +274,7 @@ export const page: PageData = {
           situation:
             "A Singapore-based founding team came to us pre-Series A with a white-label exchange POC that couldn't pass their own capacity testing. Their matching engine was buckling at around 40K TPS during simulations, and liquidity aggregation had gaps across three of their target pairs. We rebuilt the matching layer in Rust, swapped the sequencer architecture, and wired in seven additional market-maker APIs. Peak-load throughput moved past 180K TPS in stress tests, their MAS VASP package went in with the rebuild as the reference architecture, and they closed their Series A with a clean technical due-diligence report.",
           outcomeNumber: "180K+ TPS in stress tests",
+          outcomeSecondary: "Rust matching rebuild · 7 MM APIs wired in",
         },
         {
           company: "Halcyon Markets",
@@ -272,6 +283,7 @@ export const page: PageData = {
           situation:
             "Halcyon wanted a perpetuals-only venue licensed under MiCA, with on-book execution for institutions and a separate retail tier. The hard problem was the risk layer — their previous vendor's liquidation engine had cascaded during a simulated flash event and wiped out the test treasury. We rebuilt the liquidation engine around a socialized-loss model with hard auto-deleveraging thresholds, layered a surveillance stack on top, and ran it through eight weeks of adversarial simulation before go-live. The venue launched without a liquidation cascade event in its first quarter.",
           outcomeNumber: "Zero cascade events post-launch",
+          outcomeSecondary: "New liquidation engine · 8-week adversarial sim",
         },
         {
           company: "Kasbah Trade",
@@ -280,6 +292,7 @@ export const page: PageData = {
           situation:
             "Kasbah is a VARA-licensed spot CEX targeting MENA pairs — AED stablecoin products, regional token listings, and a localized fiat on-ramp. VARA's rulebook is specific about audit trails and custody controls, so we designed the compliance pipeline around explicit state machines that VARA's supervisory team could inspect. The wallet layer is MPC with threshold-signed cold storage. They passed pre-licensing review on the first pass with zero major findings.",
           outcomeNumber: "Zero major findings in VARA review",
+          outcomeSecondary: "State-machine compliance pipeline · MPC custody shipped",
         },
         {
           company: "Aurelia Capital",
@@ -288,6 +301,7 @@ export const page: PageData = {
           situation:
             "Aurelia is an institutional OTC desk that wanted to move from pure voice-brokered flow to on-book execution with internal matching. The challenge was that their institutional counterparties required a venue with audit trails and execution reports that matched their existing trad-fi compliance expectations. We built them a private venue with matched-principal settlement, FIX API primary, and a reporting layer that exports into their compliance partners' ingestion formats without translation. They moved roughly 40% of flow to on-book within two quarters of go-live.",
           outcomeNumber: "~40% flow migrated to on-book",
+          outcomeSecondary: "Private venue · FIX primary · compliance export pipeline",
         },
         {
           company: "Sable Exchange",
@@ -296,6 +310,7 @@ export const page: PageData = {
           situation:
             "Sable is a DEX aggregator targeting pan-African stablecoin and local-token pairs. The engineering problem was that liquidity on individual African chains was fragmented, so an aggregator approach was the only way to get useful depth. We built the routing engine with a custom path-finding algorithm, settlement via CCTP and LayerZero where available, and an aggressive gas-optimization layer because transaction costs on Ethereum mainnet were killing the economics. Daily unique users moved from pre-launch zero to five figures within the first quarter.",
           outcomeNumber: "Five-figure DAU within Q1",
+          outcomeSecondary: "Custom path-finder · CCTP/LayerZero settlement wired",
         },
       ],
     },

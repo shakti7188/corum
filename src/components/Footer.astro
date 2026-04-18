@@ -80,63 +80,153 @@ const awards = [
 </footer>
 
 <style is:global>
-  /* Flatten colour award PNGs into unified white marks for the dark footer. */
-  .Footer_logos__jFNys img {
-    filter: brightness(0) invert(1);
-    opacity: 0.78;
-    transition: opacity 0.3s ease;
-    max-width: 110px;
-    max-height: 28px;
-    object-fit: contain;
-  }
-  .Footer_logos__jFNys img:hover { opacity: 1; }
+  /* -------------------------------------------------------------------
+     Footer balance pass — the stock KOTA email is huge (up to 7.5rem) and
+     the logo is small; we want something calmer while keeping the email
+     as the clear visual anchor. Logo sits as an accent on the left, email
+     as the row's hero on the right. Rows below share one rhythm. */
 
-  /* Tighten the top row — the stock KOTA values make the brand mark and
-     email feel oversized for a footer. Bring both down a notch and align
-     them on the same baseline so the row sits as a single tidy header. */
+  /* Top row — logo + email. Anchored by a hairline top-border so the
+     footer reads as one block that starts cleanly, not a floating header.
+     Vertically centred on the optical baseline of the email text. */
   .Footer_footer__pQtti .Footer_top__YBhK_ {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     gap: 1.5rem !important;
-    padding-bottom: 2.25rem !important;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    margin-bottom: 2.5rem !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+    margin-bottom: 0 !important;
   }
+
+  /* Logo: sized as an accent, not a competing headline. 44–64px covers
+     hero → desktop without ever looking out of scale against the email. */
   .Footer_footer__pQtti .Footer_logo__fUEOF {
     display: inline-flex !important;
     align-items: center;
     width: auto !important;
+    line-height: 0;  /* kill the inline-flex phantom baseline */
   }
   .Footer_footer__pQtti .Footer_logo__fUEOF svg,
   .Footer_footer__pQtti .Footer_logo__fUEOF img {
-    height: clamp(34px, 4vw, 52px) !important;
+    height: clamp(42px, 4.6vw, 60px) !important;
     width: auto !important;
     max-width: none !important;
-  }
-  .Footer_footer__pQtti .Footer_email__nLajh {
-    font-size: clamp(1.6rem, 2.6vw, 2.4rem) !important;
-    line-height: 1.1 !important;
-    letter-spacing: -0.01em !important;
-    padding: 0 !important;
-    font-weight: 500;
+    display: block;
   }
 
-  /* Awards strip — slimmer pad row and more even spacing. */
+  /* Email: the row's anchor. Bigger than the logo, line-height:1 so its
+     optical baseline matches the logo's centre. No gradient animation —
+     the plain white reads calmer next to the dense content above. */
+  .Footer_footer__pQtti .Footer_email__nLajh {
+    font-size: clamp(1.9rem, 4.2vw, 3.6rem) !important;
+    line-height: 1 !important;
+    letter-spacing: -0.015em !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+    color: #fff !important;
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    animation: none !important;
+  }
+  .Footer_footer__pQtti .Footer_email__nLajh:hover {
+    color: rgba(255, 255, 255, 0.75) !important;
+  }
+
+  /* Social + awards row. align-items:center so tall award marks and short
+     text links sit on the same optical line. Even gap top and bottom. */
+  .Footer_footer__pQtti .Footer_bottom__wxP7Z {
+    align-items: center !important;
+    gap: 2rem !important;
+    padding-top: 2.5rem !important;
+    padding-bottom: 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .Footer_footer__pQtti .Footer_socialLinks__tA7gt a {
+    line-height: 1 !important;
+    font-size: 1rem !important;
+    letter-spacing: 0.01em;
+  }
+
+  /* Awards: unified white marks, evenly distributed. Padding-top: 0 here —
+     the bottom row already owns the vertical spacing. */
   .Footer_footer__pQtti .Footer_logos__jFNys {
     display: flex !important;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1.5rem 2.25rem !important;
-    padding-top: 1.5rem !important;
+    gap: 1.25rem 2.25rem !important;
+    padding-top: 0 !important;
+  }
+  .Footer_footer__pQtti .Footer_logos__jFNys img {
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    max-width: 110px;
+    max-height: 26px;
+    height: auto !important;
+    object-fit: contain;
+    margin: 0 !important;
+  }
+  .Footer_footer__pQtti .Footer_logos__jFNys img:hover { opacity: 1; }
+
+  /* Legal + newsletter row — tighten the vertical rhythm so this row feels
+     connected to the row above rather than floating in the middle. */
+  .Footer_footer__pQtti .Footer_last__auU9C {
+    margin: 2.25rem 0 !important;
+    align-items: center !important;
+  }
+  .Footer_footer__pQtti .Footer_lastNav__at6Kh a {
+    font-size: 0.95rem !important;
+    line-height: 1 !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+    transition: color 0.25s ease;
+  }
+  .Footer_footer__pQtti .Footer_lastNav__at6Kh a:hover {
+    color: #fff !important;
+  }
+  .Footer_footer__pQtti .Footer_newsletterButton__wp2hz {
+    font-size: 0.95rem !important;
+    padding: 0.75rem 1.35rem !important;
+    border-width: 1px !important;
+    line-height: 1 !important;
+  }
+
+  /* Copyright row — sectors on the left, copyright on the right. Small,
+     quiet, evenly aligned. */
+  .Footer_footer__pQtti .Footer_copyright__j4atB {
+    padding-top: 1.75rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    align-items: center !important;
+  }
+  .Footer_footer__pQtti .Footer_copyrightText__f_Lte {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    color: rgba(255, 255, 255, 0.55) !important;
+  }
+  .Footer_footer__pQtti .Footer_sectorTitle__yEZhb,
+  .Footer_footer__pQtti .Footer_sectorItem__0Cx14 {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    color: rgba(255, 255, 255, 0.55) !important;
   }
 
   @media (max-width: 720px) {
     .Footer_footer__pQtti .Footer_top__YBhK_ {
       flex-direction: column !important;
       align-items: flex-start !important;
-      gap: 1rem !important;
+      gap: 1.25rem !important;
+      padding-top: 2.25rem !important;
+      padding-bottom: 2.25rem !important;
     }
-    .Footer_footer__pQtti .Footer_email__nLajh { font-size: 1rem !important; }
+    .Footer_footer__pQtti .Footer_email__nLajh {
+      font-size: clamp(1.4rem, 7vw, 2rem) !important;
+    }
+    .Footer_footer__pQtti .Footer_logo__fUEOF svg,
+    .Footer_footer__pQtti .Footer_logo__fUEOF img {
+      height: 40px !important;
+    }
   }
 </style>

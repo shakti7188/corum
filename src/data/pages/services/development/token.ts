@@ -80,6 +80,16 @@ export const page: PageData = {
     {
       type: "DeepBreakdown",
       heading: "Anatomy of a token build",
+      enquiry: {
+        hook: "Token launch messy?",
+        heading: "Most tokenomics spreadsheets don't survive a bear market.",
+        body: "",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Tom C.",
+        avatarRole: "Token Architect",
+      },
       body:
         "Every token we ship has the same six modules. Specifics vary by type, but the shape doesn't.",
       subsections: [
@@ -228,7 +238,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four token builds, four different shapes of launch",
+      heading: "Token work we've shipped",
       items: [
         {
           company: "Solace Network",
@@ -237,6 +247,7 @@ export const page: PageData = {
           situation:
             "Solace launched an infrastructure protocol and needed a governance token with real protocol-revenue capture — not an airdrop farming play. We designed the token around a veToken model with protocol-fee distribution to lockers, a four-year linear emission to community, and a treasury-controlled bootstrap LP. First unlock schedule was staggered across six months with public calendar. Token launched with signed MM support on day one and sustained 90%+ of initial market cap through the first six months — meaningfully better than comparable launches that period.",
           outcomeNumber: "90%+ market cap sustained Q1-Q2",
+          outcomeSecondary: "veToken model · 4-year emissions · bootstrap LP shipped",
         },
         {
           company: "Coral Stable",
@@ -245,6 +256,7 @@ export const page: PageData = {
           situation:
             "Coral is an AED-denominated regulated stablecoin for MENA payments, licensed under the UAE Central Bank's payment token framework. The engineering brief was strict: 1:1 fiat-backed reserves with daily on-chain attestation, redemption windows honoured within 24 hours, and regulatory reporting integrated into the smart contract's event log. We built the token on Ethereum mainnet with Chainlink Proof-of-Reserve, custodial reserves with a UAE-licensed bank, and a redemption engine designed specifically for regulatory examination. Pre-launch review cleared without material findings.",
           outcomeNumber: "Regulator pre-review — no material findings",
+          outcomeSecondary: "Ethereum deploy · Chainlink PoR · redemption engine live",
         },
         {
           company: "Lattice Points",
@@ -253,6 +265,7 @@ export const page: PageData = {
           situation:
             "Lattice runs a gaming ecosystem and wanted a utility token that captured real game-economy activity without becoming a speculative vehicle disconnected from gameplay. We designed the token as a closed-loop utility with burn-on-use mechanics tied to specific in-game actions, a supply cap that rebases slightly with DAU growth, and a treasury-funded liquidity reserve. No public sale — allocation was split across retroactive player rewards, treasury, and operating team. Post-launch the token has maintained a stable value-per-DAU ratio through two quarters, which is the actual health metric the team cares about.",
           outcomeNumber: "Stable value-per-DAU across 2 quarters",
+          outcomeSecondary: "Burn-on-use mechanics · DAU-rebase supply cap shipped",
         },
         {
           company: "Palisade Capital",
@@ -261,6 +274,7 @@ export const page: PageData = {
           situation:
             "Palisade is a revenue-share instrument tokenized under Reg D 506(c) for accredited US investors. Engineering brief: ERC-3643 compliance layer, automated quarterly distributions from an operating entity, tax-form generation for holders, and secondary market integration with an ATS-licensed venue. We built the distribution contracts with explicit withholding-tax handling per investor jurisdiction, integrated with the ATS for secondary trading, and shipped the investor portal with K-1 export functionality. First full tax year closed with zero holder complaints about distribution accuracy.",
           outcomeNumber: "Zero tax-year distribution complaints",
+          outcomeSecondary: "ERC-3643 · ATS integration · K-1 export delivered",
         },
       ],
     },
