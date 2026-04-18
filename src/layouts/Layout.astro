@@ -1,8 +1,10 @@
 ---
+import "../styles/global.css";
 import Navigation from '../components/Navigation.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
+import AmbientAurora from '../components/AmbientAurora.astro';
 
 interface Props {
 	title: string;
@@ -17,8 +19,11 @@ const { title } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    
+
     <meta name="description" content="Discover Corum8, a Global Web3 Marketing, PR & Development Agency. Experts in Web3 & Crypto, Startups, SaaS, Fintech, AI, and Enterprise strategy." />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     
     <link rel="preload" href="/_next/static/media/482a8097102f5f9f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
     <link rel="stylesheet" href="/css/kota-core.css">
@@ -42,8 +47,12 @@ const { title } = Astro.props;
     <link rel="stylesheet" href="/css/842a33b51ca56037.css">
     <link rel="stylesheet" href="/css/f84288c45a46068b.css">
     <link rel="stylesheet" href="/css/df01bcfa5dec6e02.css">
+
+    <!-- Page-specific head (meta, canonical, OG, JSON-LD, etc.) -->
+    <slot name="head" />
   </head>
   <body>
+    <AmbientAurora />
     <Navigation />
     <Header />
     <main style="position: relative; z-index: 1;">
@@ -58,6 +67,15 @@ const { title } = Astro.props;
     </script>
 
     <style is:global>
+      /* Brand palette — gold sampled to match the Corum8 logo mark.
+         Used on interactive accents (button hover fills, borders, rings, glow)
+         but NOT on text (poor contrast / unreadable on light bg). */
+      :root {
+        --c8-gold: #d4a23a;
+        --c8-gold-soft: rgba(212, 162, 58, 0.12);
+        --c8-gold-glow: rgba(212, 162, 58, 0.35);
+      }
+
       /* KOTA Missing Hydration CSS Overrides */
       [class*="Timeline_timeline__"] {
         display: block !important;

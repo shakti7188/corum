@@ -1,9 +1,25 @@
 ---
-// Final CTA Section
+// Final CTA Section — page-specific copy, same design.
+
+export interface Props {
+  light?: string;                  // first line of headline
+  bold?: string;                   // second line, emphasised
+  subtitle?: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+}
+
+const {
+  light = "Ready to",
+  bold = "build, launch & scale?",
+  subtitle = "One team. Full stack. Dubai · US · India.",
+  buttonLabel = "Book a Strategy Call",
+  buttonHref = "/book-a-strategy-call",
+} = Astro.props;
 ---
 
 <section class="FinalCta_wrapper">
-  <!-- 3D Animated Background Object exactly 50% smaller -->
+  <!-- 3D Animated Background Object -->
   <figure class="FinalCta_videoBackground">
     <video autoplay loop muted playsinline src="https://kota-content.b-cdn.net/app/uploads/2024/01/blob-loop-uncompressed_1706098182.mp4"></video>
   </figure>
@@ -14,12 +30,12 @@
   <!-- Content -->
   <div class="FinalCta_content">
     <h2 class="FinalCta_title">
-      <span class="FinalCta_light">Ready to</span><br/>
-      <span class="FinalCta_bold">build, launch &amp; scale?</span>
+      <span class="FinalCta_light">{light}</span><br/>
+      <span class="FinalCta_bold">{bold}</span>
     </h2>
-    <p class="FinalCta_subtitle">One team. Full stack. Dubai · US · India.</p>
-    <a href="/book-a-strategy-call" class="FinalCta_button">
-      Book a Strategy Call
+    <p class="FinalCta_subtitle">{subtitle}</p>
+    <a href={buttonHref} class="FinalCta_button">
+      {buttonLabel}
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 15" class="FinalCta_arrow"><path d="M17 7.5S17 7.5 17 7.5c0-.2-.1-.5-.2-.6L9.2.2C8.9-.1 8.4-.1 8.1.2c-.3.3-.3.8 0 1.1l6.3 5.5H.8C.3 6.8 0 7.1 0 7.6c0 .4.3.8.8.8h13.7l-6.3 5.5c-.3.3-.3.8 0 1.1.2.2.4.3.6.3s.4-.1.5-.2l7.6-6.7c.2-.2.2-.4.2-.6 0 0 0 0 0 0Z" fill="currentColor"/></svg>
     </a>
   </div>
@@ -42,12 +58,12 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 30vw;
-    height: 50vh;
+    width: 48vw;
+    height: 78vh;
     transform: translate(-50%, -50%);
     z-index: 1;
     pointer-events: none;
-    opacity: 0.8;
+    opacity: 0.9;
   }
 
   .FinalCta_videoBackground video {
@@ -96,7 +112,7 @@
     font-size: clamp(1rem, 1.5vw, 1.25rem);
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: #a1a1aa;
+    color: #ffffff; text-shadow: 0 4px 10px rgba(0,0,0,0.8); letter-spacing: 0.25em;
     margin: 0;
   }
 
@@ -120,11 +136,11 @@
   }
 
   .FinalCta_button:hover {
-    background: rgba(255,255,255,1);
-    color: #000;
-    border-color: #fff;
+    background: var(--c8-gold);
+    color: #111;
+    border-color: var(--c8-gold);
     transform: translateY(-3px);
-    box-shadow: 0 10px 40px rgba(124, 65, 243, 0.3);
+    box-shadow: 0 10px 40px var(--c8-gold-glow, rgba(212, 162, 58, 0.45));
   }
 
   .FinalCta_arrow {
@@ -135,5 +151,34 @@
 
   .FinalCta_button:hover .FinalCta_arrow {
     transform: translateX(8px);
+  }
+  @media (max-width: 1024px) {
+    .FinalCta_videoBackground {
+      width: 150vw !important;
+      height: 100vh !important;
+    }
+  }
+
+  .FinalCta_button {
+    border: 1px solid rgba(255, 255, 255, 0.85) !important;
+    background: rgba(0,0,0,0.4) !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,1) !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+  .FinalCta_button:hover {
+    border: 1px solid var(--c8-gold) !important;
+    background: var(--c8-gold) !important;
+    color: #111 !important;
+    text-shadow: none !important;
+    transform: scale(1.05);
+  }
+  .FinalCta_button:hover path {
+    fill: #111 !important;
+  }
+  .FinalCta_subtitle {
+    color: #ffffff !important;
+    text-shadow: 0 4px 15px rgba(0,0,0,1) !important;
+    font-weight: 600 !important;
   }
 </style>

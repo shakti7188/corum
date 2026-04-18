@@ -1,0 +1,445 @@
+---
+// ExchangeMockup — a dummy trading-venue UI that visually anchors exchange /
+// trading / DEX / derivatives pages. Pure HTML/CSS/SVG, no JS runtime cost.
+//
+// Reusable: include this on /services/development/exchange, /trading,
+// /dex, /services/development/derivatives, etc. Change the `pair` prop to vary
+// the displayed market.
+
+interface Props {
+  pair?: string;           // e.g. "BTC/USDT"
+  last?: string;           // e.g. "67,842.50"
+  change?: string;         // e.g. "+2.14%"
+  heading?: string;        // optional section heading above the mockup
+  caption?: string;        // optional small caption below the mockup
+  variant?: "embedded" | "hero"; // "hero" for larger presentation
+}
+
+const {
+  pair = "BTC / USDT",
+  last = "67,842.50",
+  change = "+2.14%",
+  heading = "Inside a venue we build",
+  caption = "Illustrative — not a live market. Our production stack renders the same surfaces with real depth, TradingView charting, and sub-millisecond streaming APIs.",
+  variant = "embedded",
+} = Astro.props;
+
+// Deterministic fake order book rows (sell desc, buy desc).
+const asks = [
+  { p: "67,852.30", q: "0.4821", total: "32,706.11" },
+  { p: "67,851.10", q: "0.1204", total: "8,169.67" },
+  { p: "67,850.50", q: "1.8772", total: "127,380.42" },
+  { p: "67,849.75", q: "0.0634", total: "4,301.88" },
+  { p: "67,848.40", q: "0.9211", total: "62,490.32" },
+  { p: "67,846.90", q: "0.3382", total: "22,942.77" },
+];
+const bids = [
+  { p: "67,842.50", q: "0.6705", total: "45,468.99" },
+  { p: "67,841.25", q: "0.2114", total: "14,342.47" },
+  { p: "67,840.80", q: "1.4099", total: "95,635.74" },
+  { p: "67,839.55", q: "0.0982", total: "6,661.79" },
+  { p: "67,837.10", q: "0.8456", total: "57,354.81" },
+  { p: "67,835.40", q: "0.3611", total: "24,493.70" },
+];
+
+// Fake recent trades.
+const trades = [
+  { t: "14:32:11", p: "67,842.50", q: "0.1421", side: "buy" },
+  { t: "14:32:08", p: "67,842.30", q: "0.0804", side: "buy" },
+  { t: "14:32:03", p: "67,841.90", q: "0.3100", side: "sell" },
+  { t: "14:31:59", p: "67,843.10", q: "0.0562", side: "buy" },
+  { t: "14:31:55", p: "67,841.75", q: "0.2248", side: "sell" },
+  { t: "14:31:49", p: "67,844.00", q: "0.0185", side: "buy" },
+  { t: "14:31:42", p: "67,840.25", q: "0.5003", side: "sell" },
+  { t: "14:31:38", p: "67,842.80", q: "0.0711", side: "buy" },
+];
+
+// Candle data — deterministic generator so it doesn't change between builds.
+// 48 candles, light trend pattern around the current price.
+const candles = Array.from({ length: 48 }, (_, i) => {
+  const base = 67550 + Math.sin(i * 0.38) * 160 + i * 5.8;
+  const variance = Math.cos(i * 0.73) * 45;
+  const open = base + variance * 0.4;
+  const close = base + variance * -0.6 + (i % 5 === 0 ? -18 : 9);
+  const high = Math.max(open, close) + Math.abs(variance) * 0.9 + 6;
+  const low = Math.min(open, close) - Math.abs(variance) * 0.7 - 4;
+  return { open, close, high, low, up: close >= open };
+});
+
+// Normalise to SVG coordinate space.
+const cMax = Math.max(...candles.map((c) => c.high));
+const cMin = Math.min(...candles.map((c) => c.low));
+const range = cMax - cMin || 1;
+const sw = 720;  // svg virtual width
+const sh = 240;  // svg virtual height
+const pad = 18;
+const step = (sw - pad * 2) / candles.length;
+const bodyW = Math.max(step * 0.55, 3);
+function y(v: number): number {
+  return pad + (1 - (v - cMin) / range) * (sh - pad * 2);
+}
+---
+
+<section class={`c8-mockup c8-mockup--${variant}`}>
+  <div class="container-wide">
+    {heading && <h2 class="c8-mockup__heading">{heading}</h2>}
+
+    <div class="c8-mockup__frame">
+      {/* TOP BAR */}
+      <header class="c8-mockup__topbar">
+        <div class="c8-mockup__pair">
+          <span class="c8-mockup__pairname">{pair}</span>
+          <span class="c8-mockup__pairlast">{last}</span>
+          <span class={`c8-mockup__pairchange ${change.startsWith("-") ? "down" : "up"}`}>{change}</span>
+        </div>
+        <nav class="c8-mockup__topnav" aria-hidden="true">
+          <span>Spot</span><span>Margin</span><span>Perps</span><span>Options</span>
+        </nav>
+        <div class="c8-mockup__topctrl" aria-hidden="true">
+          <span class="c8-mockup__dot c8-mockup__dot--green"></span>
+          <span class="c8-mockup__dot c8-mockup__dot--amber"></span>
+          <span class="c8-mockup__dot c8-mockup__dot--red"></span>
+        </div>
+      </header>
+
+      {/* GRID */}
+      <div class="c8-mockup__grid">
+        {/* LEFT: ORDER BOOK */}
+        <div class="c8-mockup__book" aria-hidden="true">
+          <div class="c8-mockup__bookhead">
+            <span>Price (USDT)</span><span>Size (BTC)</span><span>Total</span>
+          </div>
+          <div class="c8-mockup__asks">
+            {asks.map((r, i) => (
+              <div class="c8-mockup__row c8-mockup__row--ask" style={`--depth:${(i + 1) * 14 + 10}%`}>
+                <span>{r.p}</span><span>{r.q}</span><span>{r.total}</span>
+              </div>
+            ))}
+          </div>
+          <div class="c8-mockup__midprice">
+            <span class="c8-mockup__midvalue">{last}</span>
+            <span class="c8-mockup__midlabel">↑ last</span>
+          </div>
+          <div class="c8-mockup__bids">
+            {bids.map((r, i) => (
+              <div class="c8-mockup__row c8-mockup__row--bid" style={`--depth:${(i + 1) * 13 + 10}%`}>
+                <span>{r.p}</span><span>{r.q}</span><span>{r.total}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* MIDDLE: CANDLE CHART + TIMESERIES FOOTER */}
+        <div class="c8-mockup__chart" aria-hidden="true">
+          <div class="c8-mockup__chartbar">
+            <span class="c8-mockup__tf">1m</span>
+            <span class="c8-mockup__tf">5m</span>
+            <span class="c8-mockup__tf c8-mockup__tf--active">15m</span>
+            <span class="c8-mockup__tf">1H</span>
+            <span class="c8-mockup__tf">4H</span>
+            <span class="c8-mockup__tf">1D</span>
+            <span class="c8-mockup__chartstat">O 67,820 · H 67,901 · L 67,778 · C 67,842</span>
+          </div>
+          <svg class="c8-mockup__svg" viewBox={`0 0 ${sw} ${sh}`} preserveAspectRatio="none">
+            {/* grid lines */}
+            {[0.25, 0.5, 0.75].map((f) => (
+              <line x1={pad} x2={sw - pad} y1={pad + (sh - pad * 2) * f} y2={pad + (sh - pad * 2) * f} stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 6" />
+            ))}
+            {/* candles */}
+            {candles.map((c, i) => {
+              const x = pad + i * step + step / 2;
+              const yo = y(c.open);
+              const yc = y(c.close);
+              const yh = y(c.high);
+              const yl = y(c.low);
+              const bodyTop = Math.min(yo, yc);
+              const bodyH = Math.max(Math.abs(yo - yc), 1.5);
+              const color = c.up ? "#22c07c" : "#ff5c7a";
+              return (
+                <g>
+                  <line x1={x} x2={x} y1={yh} y2={yl} stroke={color} stroke-width="1" />
+                  <rect x={x - bodyW / 2} y={bodyTop} width={bodyW} height={bodyH} fill={color} opacity="0.85" />
+                </g>
+              );
+            })}
+            {/* price label (right) */}
+            <g>
+              <rect x={sw - pad - 62} y={y(candles[candles.length - 1].close) - 9} width="58" height="18" rx="2" fill="rgba(212,162,58,0.95)" />
+              <text x={sw - pad - 33} y={y(candles[candles.length - 1].close) + 4} text-anchor="middle" font-family="ui-monospace, SF Mono, monospace" font-size="10" fill="#0b0b0b" font-weight="600">{last}</text>
+            </g>
+          </svg>
+          <div class="c8-mockup__vol" aria-hidden="true">
+            {candles.map((c, i) => (
+              <span class={`c8-mockup__volbar ${c.up ? "up" : "down"}`} style={`height:${18 + (i % 11) * 4}%`}></span>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT: RECENT TRADES + ORDER FORM */}
+        <div class="c8-mockup__side" aria-hidden="true">
+          <div class="c8-mockup__trades">
+            <div class="c8-mockup__sidehead">Recent trades</div>
+            <div class="c8-mockup__tradeshead">
+              <span>Time</span><span>Price</span><span>Size</span>
+            </div>
+            {trades.map((t) => (
+              <div class={`c8-mockup__traderow c8-mockup__traderow--${t.side}`}>
+                <span>{t.t}</span><span>{t.p}</span><span>{t.q}</span>
+              </div>
+            ))}
+          </div>
+          <div class="c8-mockup__form">
+            <div class="c8-mockup__formtabs">
+              <span class="c8-mockup__formtab c8-mockup__formtab--buy">Buy</span>
+              <span class="c8-mockup__formtab c8-mockup__formtab--sell">Sell</span>
+            </div>
+            <div class="c8-mockup__formtypes">
+              <span class="c8-mockup__formtype c8-mockup__formtype--active">Limit</span>
+              <span class="c8-mockup__formtype">Market</span>
+              <span class="c8-mockup__formtype">Stop</span>
+            </div>
+            <div class="c8-mockup__field"><span>Price</span><span class="c8-mockup__val">67,842.50 USDT</span></div>
+            <div class="c8-mockup__field"><span>Size</span><span class="c8-mockup__val">0.2500 BTC</span></div>
+            <div class="c8-mockup__field"><span>Total</span><span class="c8-mockup__val">16,960.63 USDT</span></div>
+            <button class="c8-mockup__buybtn" type="button" aria-hidden="true">Place Buy Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {caption && <p class="c8-mockup__caption">{caption}</p>}
+  </div>
+</section>
+
+<style>
+  .c8-mockup { padding-block: var(--space-small, 4.6875rem); }
+  .c8-mockup--hero { padding: 0; }
+  .c8-mockup__heading {
+    font-size: var(--fs-50);
+    letter-spacing: -0.03em;
+    margin: 0 0 2rem;
+    font-weight: 400;
+    line-height: 1;
+    max-width: 20ch;
+    color: var(--color-ink);
+  }
+
+  .c8-mockup__frame {
+    background: var(--color-ink);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    line-height: 1.3;
+  }
+
+  /* TOP BAR */
+  .c8-mockup__topbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    background: #0f1218;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .c8-mockup__pair { display: flex; align-items: baseline; gap: 0.9rem; }
+  .c8-mockup__pairname { font-weight: 600; font-size: 0.95rem; color: #f5f6fa; letter-spacing: 0.02em; }
+  .c8-mockup__pairlast { color: #fff; font-weight: 500; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .c8-mockup__pairchange { font-size: 0.78rem; font-weight: 600; padding: 0.2em 0.55em; border-radius: 3px; }
+  .c8-mockup__pairchange.up { color: #22c07c; background: rgba(34, 192, 124, 0.14); }
+  .c8-mockup__pairchange.down { color: #ff5c7a; background: rgba(255, 92, 122, 0.14); }
+
+  .c8-mockup__topnav { display: flex; gap: 1.25rem; justify-content: center; color: rgba(230, 232, 238, 0.55); font-size: 0.8rem; }
+  .c8-mockup__topnav span:first-child { color: #f5f6fa; font-weight: 600; }
+
+  .c8-mockup__topctrl { display: flex; gap: 0.4rem; }
+  .c8-mockup__dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .c8-mockup__dot--green { background: #22c07c; }
+  .c8-mockup__dot--amber { background: #e4b03a; }
+  .c8-mockup__dot--red { background: #ff5c7a; }
+
+  /* GRID */
+  .c8-mockup__grid {
+    display: grid;
+    grid-template-columns: 220px 1fr 220px;
+    min-height: 420px;
+  }
+
+  /* ORDER BOOK */
+  .c8-mockup__book { padding: 0.6rem 0.5rem; border-right: 1px solid rgba(255, 255, 255, 0.05); }
+  .c8-mockup__bookhead,
+  .c8-mockup__tradeshead {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr 0.9fr;
+    gap: 0.4rem;
+    padding: 0.35rem 0.5rem 0.5rem;
+    color: rgba(230, 232, 238, 0.5);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  .c8-mockup__asks, .c8-mockup__bids { display: flex; flex-direction: column; }
+  .c8-mockup__row {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr 0.9fr;
+    gap: 0.4rem;
+    padding: 0.2rem 0.5rem;
+    position: relative;
+    font-variant-numeric: tabular-nums;
+  }
+  .c8-mockup__row::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: var(--depth, 0%);
+    opacity: 0.16;
+  }
+  .c8-mockup__row--ask::before { background: #ff5c7a; }
+  .c8-mockup__row--bid::before { background: #22c07c; }
+  .c8-mockup__row--ask span:first-child { color: #ff5c7a; position: relative; }
+  .c8-mockup__row--bid span:first-child { color: #22c07c; position: relative; }
+  .c8-mockup__row span { position: relative; }
+
+  .c8-mockup__midprice {
+    padding: 0.5rem 0.75rem;
+    background: rgba(212, 162, 58, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+  }
+  .c8-mockup__midvalue { color: var(--color-accent, #b7ff3a); font-weight: 600; }
+  .c8-mockup__midlabel { color: rgba(230, 232, 238, 0.5); font-size: 0.7rem; }
+
+  /* CHART */
+  .c8-mockup__chart { padding: 0.6rem 0.8rem; display: flex; flex-direction: column; min-height: 0; }
+  .c8-mockup__chartbar {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    padding: 0.3rem 0 0.6rem;
+    font-size: 0.7rem;
+    color: rgba(230, 232, 238, 0.55);
+    flex-wrap: wrap;
+  }
+  .c8-mockup__tf {
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+  }
+  .c8-mockup__tf--active {
+    background: rgba(212, 162, 58, 0.18);
+    color: var(--color-accent, #b7ff3a);
+    font-weight: 600;
+  }
+  .c8-mockup__chartstat {
+    margin-left: auto;
+    font-variant-numeric: tabular-nums;
+  }
+  .c8-mockup__svg { width: 100%; height: 280px; flex: 1; min-height: 0; }
+  .c8-mockup__vol {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 36px;
+    padding-top: 0.5rem;
+  }
+  .c8-mockup__volbar { flex: 1; border-radius: 1px; opacity: 0.55; }
+  .c8-mockup__volbar.up { background: #22c07c; }
+  .c8-mockup__volbar.down { background: #ff5c7a; }
+
+  /* SIDE */
+  .c8-mockup__side { display: flex; flex-direction: column; border-left: 1px solid rgba(255, 255, 255, 0.05); }
+  .c8-mockup__sidehead {
+    padding: 0.65rem 0.75rem 0.4rem;
+    font-size: 0.7rem;
+    color: rgba(230, 232, 238, 0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .c8-mockup__trades { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+  .c8-mockup__traderow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.8fr;
+    gap: 0.4rem;
+    padding: 0.2rem 0.75rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .c8-mockup__traderow--buy span:nth-child(2) { color: #22c07c; }
+  .c8-mockup__traderow--sell span:nth-child(2) { color: #ff5c7a; }
+
+  /* ORDER FORM */
+  .c8-mockup__form { padding: 0.65rem 0.75rem 0.95rem; display: flex; flex-direction: column; gap: 0.55rem; }
+  .c8-mockup__formtabs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+  .c8-mockup__formtab {
+    padding: 0.4rem;
+    border-radius: 3px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.78rem;
+  }
+  .c8-mockup__formtab--buy { background: #22c07c; color: #0b0d11; }
+  .c8-mockup__formtab--sell { background: rgba(255, 92, 122, 0.12); color: #ff5c7a; }
+
+  .c8-mockup__formtypes { display: flex; gap: 0.5rem; font-size: 0.72rem; color: rgba(230, 232, 238, 0.6); padding: 0.1rem 0; }
+  .c8-mockup__formtype--active { color: #f5f6fa; font-weight: 600; }
+
+  .c8-mockup__field {
+    display: flex; justify-content: space-between;
+    background: #0f1218;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0.45rem 0.6rem;
+    border-radius: 3px;
+    font-size: 0.78rem;
+  }
+  .c8-mockup__field > span:first-child { color: rgba(230, 232, 238, 0.55); }
+  .c8-mockup__val { color: #f5f6fa; font-variant-numeric: tabular-nums; }
+  .c8-mockup__buybtn {
+    border: none;
+    background: #22c07c;
+    color: #0b0d11;
+    font-weight: 700;
+    padding: 0.6rem;
+    border-radius: 3px;
+    font-family: inherit;
+    cursor: default;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+  }
+
+  .c8-mockup__caption {
+    margin: 1.25rem 0 0;
+    font-size: 0.85rem;
+    color: var(--color-ink-mute);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    text-align: center;
+    max-width: 62ch;
+    margin-inline: auto;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .c8-mockup__grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+    .c8-mockup__chart { grid-column: span 2; order: -1; }
+    .c8-mockup__side { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+  }
+  @media (max-width: 640px) {
+    .c8-mockup__grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .c8-mockup__chart { grid-column: span 1; }
+    .c8-mockup__book, .c8-mockup__side { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+    .c8-mockup__topnav { display: none; }
+  }
+</style>

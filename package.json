@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "validate": "node --experimental-strip-types scripts/validate-pages.ts",
+    "prebuild": "node --experimental-strip-types scripts/validate-pages.ts"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.3",

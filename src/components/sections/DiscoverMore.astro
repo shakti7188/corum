@@ -1,0 +1,35 @@
+---
+// DiscoverMore — the KOTA-style link cluster at the bottom of cluster/pillar
+// pages. Page-specific: every page declares which sibling pages to surface.
+// Uses the existing KOTA DiscoverMore_* classes defined in public/css/kota-core.css.
+
+export interface DiscoverLink {
+  label: string;
+  href: string;
+  active?: boolean;
+}
+
+interface Props {
+  heading?: string;
+  links: DiscoverLink[];
+  theme?: "light" | "dark";
+}
+
+const { heading = "Discover more", links, theme = "dark" } = Astro.props;
+---
+
+<nav class="DiscoverMore_discoverMore__hYPtP" data-theme={theme}>
+  {theme === "dark" && <div class="DarkThemeSwitch_cover__hn_xc"></div>}
+  <div class="container">
+    <div class="DiscoverMore_inner__kXlds">
+      <span class="FadeIn_container__bjQVL" data-fill="false">
+        <div class="DiscoverMore_linksInner__Vgx11">
+          <p class="DiscoverMore_heading__fBuVc">{heading}</p>
+          {links.map((l) => (
+            <a class={l.active ? "DiscoverMoreLink_active__6IF37" : ""} href={l.href}>{l.label}</a>
+          ))}
+        </div>
+      </span>
+    </div>
+  </div>
+</nav>

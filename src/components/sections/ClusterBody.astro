@@ -1,0 +1,830 @@
+---
+// ClusterBody — Corum8 long-read template.
+// Magazine-style centered column for prose, proper multi-column grids for
+// cards. Not built on KOTA's 12-col .container grid because that breaks
+// card layouts and wastes horizontal space on prose. Uses Corum8 design
+// tokens (--color-*, --fs-*, --font-display, --space-*).
+
+import type { BodySection } from "../../data/_types";
+import { resolveMedia } from "../../data/media";
+import ExchangeMockup from "./ExchangeMockup.astro";
+
+interface Props {
+  body: BodySection[];
+}
+
+const { body } = Astro.props;
+
+function paragraphs(input: string | string[]): string[] {
+  if (Array.isArray(input)) return input;
+  return input.split(/\n\n+/).map((s) => s.trim()).filter(Boolean);
+}
+
+/**
+ * Returns the side-image for any prose-type section that declared a
+ * mediaToken. Types that support it are kept in one list so the dispatcher
+ * doesn't have to duplicate the logic.
+ */
+const PROSE_TYPES_WITH_ASIDE = new Set([
+  "Prose", "Definition", "StackNotes", "HowWeApproach", "WhyCorum8", "OutcomesDriven",
+]);
+
+function sideMediaFor(section: BodySection): { src: string; alt: string; decorative: boolean; side: "left" | "right" } | null {
+  if (!PROSE_TYPES_WITH_ASIDE.has(section.type)) return null;
+  const s = section as { mediaToken?: string; mediaSide?: "left" | "right" };
+  if (!s.mediaToken) return null;
+  const resolved = resolveMedia(s.mediaToken);
+  if (!resolved || resolved.kind === "video") return null;
+  return { src: resolved.src, alt: resolved.alt, decorative: Boolean(resolved.decorative), side: s.mediaSide ?? "right" };
+}
+
+function pullQuoteFor(section: BodySection): { quote: string; attrib?: string } | null {
+  if (!PROSE_TYPES_WITH_ASIDE.has(section.type)) return null;
+  const s = section as { pullQuote?: string; pullAttrib?: string };
+  if (!s.pullQuote) return null;
+  return { quote: s.pullQuote, attrib: s.pullAttrib };
+}
+---
+
+<div class="cbody">
+  {body.map((section) => (
+    <>
+      {section.type === "Prose" && (() => {
+        const side = sideMediaFor(section);
+        const pq = pullQuoteFor(section);
+        const hasAside = Boolean(side || pq);
+        return (
+          <section class={`cbody__block ${hasAside ? (side ? `cbody__block--side cbody__block--side-${side.side}` : "cbody__block--pull") : ""}`}>
+            <div class="cbody__wrap">
+              {hasAside ? (
+                <div class={`cbody__split${pq && !side ? " cbody__split--pull" : ""}`}>
+                  <div class="cbody__splitcopy">
+                    {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                    <div class="cbody__prose">
+                      {paragraphs(section.body).map((p) => <p set:html={p} />)}
+                    </div>
+                  </div>
+                  {side && (
+                    <figure class="cbody__splitmedia">
+                      {side.decorative ? (
+                        <img src={side.src} alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" />
+                      ) : (
+                        <img src={side.src} alt={side.alt} loading="lazy" decoding="async" />
+                      )}
+                    </figure>
+                  )}
+                  {!side && pq && (
+                    <aside class="cbody__pull">
+                      <blockquote>
+                        <p set:html={pq.quote} />
+                      </blockquote>
+                      {pq.attrib && <cite>— {pq.attrib}</cite>}
+                    </aside>
+                  )}
+                </div>
+              ) : (
+                <>
+                  {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                  <div class="cbody__prose">
+                    {paragraphs(section.body).map((p) => <p set:html={p} />)}
+                  </div>
+                </>
+              )}
+            </div>
+          </section>
+        );
+      })()}
+
+      {section.type === "Definition" && (() => {
+        const side = sideMediaFor(section);
+        const pq = pullQuoteFor(section);
+        const hasAside = Boolean(side || pq);
+        return (
+          <section class={`cbody__block ${hasAside ? (side ? `cbody__block--side cbody__block--side-${side.side}` : "cbody__block--pull") : ""}`}>
+            <div class="cbody__wrap">
+              {hasAside ? (
+                <div class={`cbody__split${pq && !side ? " cbody__split--pull" : ""}`}>
+                  <div class="cbody__splitcopy">
+                    <h2 class="cbody__h">{section.heading}</h2>
+                    <div class="cbody__prose">
+                      {paragraphs(section.body).map((p) => <p set:html={p} />)}
+                    </div>
+                  </div>
+                  {side && (
+                    <figure class="cbody__splitmedia">
+                      {side.decorative ? (
+                        <img src={side.src} alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" />
+                      ) : (
+                        <img src={side.src} alt={side.alt} loading="lazy" decoding="async" />
+                      )}
+                    </figure>
+                  )}
+                  {!side && pq && (
+                    <aside class="cbody__pull">
+                      <blockquote>
+                        <p set:html={pq.quote} />
+                      </blockquote>
+                      {pq.attrib && <cite>— {pq.attrib}</cite>}
+                    </aside>
+                  )}
+                </div>
+              ) : (
+                <>
+                  <h2 class="cbody__h">{section.heading}</h2>
+                  <div class="cbody__prose">
+                    {paragraphs(section.body).map((p) => <p set:html={p} />)}
+                  </div>
+                </>
+              )}
+            </div>
+          </section>
+        );
+      })()}
+
+      {section.type === "DeepBreakdown" && (
+        <section class="cbody__block">
+          <div class="cbody__wrap">
+            <h2 class="cbody__h">{section.heading}</h2>
+            <div class="cbody__prose">
+              {paragraphs(section.body).map((p) => <p set:html={p} />)}
+            </div>
+            {section.subsections && section.subsections.length > 0 && (
+              <div class="cbody__subs">
+                {section.subsections.map((sub) => (
+                  <div class="cbody__sub">
+                    <h3 class="cbody__h3">{sub.heading}</h3>
+                    <div class="cbody__prose">
+                      {paragraphs(sub.body).map((p) => <p set:html={p} />)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {section.type === "SignalsYouNeedThis" && (
+        <section class="cbody__block cbody__block--tinted">
+          <div class="cbody__wrap cbody__wrap--wide">
+            {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+            <ul class="cbody__signals">
+              {section.signals.map((s) => (<li>{s}</li>))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {section.type === "DecisionFactors" && (
+        <section class="cbody__block">
+          <div class="cbody__wrap cbody__wrap--wide">
+            {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+            <div class="cbody__prose">
+              {paragraphs(section.body).map((p) => <p set:html={p} />)}
+            </div>
+            {section.factors && (
+              <div class="cbody__grid cbody__grid--cards">
+                {section.factors.map((f) => (
+                  <div class="cbody__card">
+                    <h4 class="cbody__cardtitle">{f.name}</h4>
+                    <p class="cbody__cardbody" set:html={f.body} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {section.type === "CommonPitfalls" && (
+        <section class="cbody__block cbody__block--dark">
+          <div class="cbody__wrap cbody__wrap--wide">
+            {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+            <div class="cbody__grid cbody__grid--cards">
+              {section.pitfalls.map((p) => (
+                <div class="cbody__card cbody__card--dark">
+                  <h4 class="cbody__cardtitle">{p.name}</h4>
+                  <p class="cbody__cardbody" set:html={p.body} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {section.type === "StackNotes" && (() => {
+        const side = sideMediaFor(section);
+        const pq = pullQuoteFor(section);
+        const hasAside = Boolean(side || pq);
+        return (
+          <section class={`cbody__block ${hasAside ? (side ? `cbody__block--side cbody__block--side-${side.side}` : "cbody__block--pull") : ""}`}>
+            <div class="cbody__wrap">
+              {hasAside ? (
+                <div class={`cbody__split${pq && !side ? " cbody__split--pull" : ""}`}>
+                  <div class="cbody__splitcopy">
+                    {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                    <div class="cbody__prose">{paragraphs(section.body).map((p) => <p set:html={p} />)}</div>
+                  </div>
+                  {side && (
+                    <figure class="cbody__splitmedia">
+                      {side.decorative
+                        ? <img src={side.src} alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" />
+                        : <img src={side.src} alt={side.alt} loading="lazy" decoding="async" />}
+                    </figure>
+                  )}
+                  {!side && pq && (
+                    <aside class="cbody__pull">
+                      <blockquote><p set:html={pq.quote} /></blockquote>
+                      {pq.attrib && <cite>— {pq.attrib}</cite>}
+                    </aside>
+                  )}
+                </div>
+              ) : (
+                <>
+                  {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                  <div class="cbody__prose">{paragraphs(section.body).map((p) => <p set:html={p} />)}</div>
+                </>
+              )}
+            </div>
+          </section>
+        );
+      })()}
+
+      {section.type === "HowWeApproach" && (() => {
+        const side = sideMediaFor(section);
+        const pq = pullQuoteFor(section);
+        const hasAside = Boolean(side || pq);
+        return (
+          <section class={`cbody__block ${hasAside ? (side ? `cbody__block--side cbody__block--side-${side.side}` : "cbody__block--pull") : ""}`}>
+            <div class="cbody__wrap">
+              {hasAside ? (
+                <div class={`cbody__split${pq && !side ? " cbody__split--pull" : ""}`}>
+                  <div class="cbody__splitcopy">
+                    {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                    <div class="cbody__prose">{paragraphs(section.body).map((p) => <p set:html={p} />)}</div>
+                  </div>
+                  {side && (
+                    <figure class="cbody__splitmedia">
+                      {side.decorative
+                        ? <img src={side.src} alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" />
+                        : <img src={side.src} alt={side.alt} loading="lazy" decoding="async" />}
+                    </figure>
+                  )}
+                  {!side && pq && (
+                    <aside class="cbody__pull">
+                      <blockquote><p set:html={pq.quote} /></blockquote>
+                      {pq.attrib && <cite>— {pq.attrib}</cite>}
+                    </aside>
+                  )}
+                </div>
+              ) : (
+                <>
+                  {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                  <div class="cbody__prose">{paragraphs(section.body).map((p) => <p set:html={p} />)}</div>
+                </>
+              )}
+            </div>
+          </section>
+        );
+      })()}
+
+      {(section.type === "ProcessTimeline" || section.type === "HowTo") && (
+        <section class="cbody__block">
+          <div class="cbody__wrap">
+            {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+            <ol class="cbody__steps">
+              {section.steps.map((s, i) => (
+                <li class="cbody__step">
+                  <span class="cbody__stepnum">{String(i + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h4 class="cbody__stephead">{s.name}</h4>
+                    <p class="cbody__stepbody">{s.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      )}
+
+      {section.type === "UseCases" && (
+        <section class="cbody__block cbody__block--dark">
+          <div class="cbody__wrap cbody__wrap--wide">
+            <h2 class="cbody__h">{section.heading ?? "How this plays out in practice"}</h2>
+            <div class="cbody__grid cbody__grid--cases">
+              {section.items.map((uc) => (
+                <article class="cbody__case">
+                  <header class="cbody__casehead">
+                    <h3 class="cbody__casecompany">{uc.company}</h3>
+                    <div class="cbody__casemeta">
+                      {uc.stage && <span>{uc.stage}</span>}
+                      {uc.region && <span>{uc.region}</span>}
+                    </div>
+                  </header>
+                  <p class="cbody__casebody">{uc.situation}</p>
+                  {uc.outcomeNumber && (
+                    <div class="cbody__caseoutcome">
+                      <span class="cbody__caseoutcomelabel">Outcome</span>
+                      <span class="cbody__caseoutcomevalue">{uc.outcomeNumber}</span>
+                    </div>
+                  )}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {section.type === "OutcomesDriven" && (() => {
+        const side = sideMediaFor(section);
+        const pq = pullQuoteFor(section);
+        const hasAside = Boolean(side || pq);
+        return (
+          <section class={`cbody__block ${hasAside ? (side ? `cbody__block--side cbody__block--side-${side.side}` : "cbody__block--pull") : ""}`}>
+            <div class="cbody__wrap">
+              {hasAside ? (
+                <div class={`cbody__split${pq && !side ? " cbody__split--pull" : ""}`}>
+                  <div class="cbody__splitcopy">
+                    {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                    <div class="cbody__prose">{paragraphs(section.body).map((p) => <p set:html={p} />)}</div>
+                    {section.stats && section.stats.length > 0 && (
+                      <div class="cbody__stats">
+                        {section.stats.map((st) => (
+                          <div class="cbody__stat">
+                            <div class="cbody__statvalue">{st.value}</div>
+                            <div class="cbody__statlabel">{st.label}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  {side && (
+                    <figure class="cbody__splitmedia">
+                      {side.decorative
+                        ? <img src={side.src} alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" />
+                        : <img src={side.src} alt={side.alt} loading="lazy" decoding="async" />}
+                    </figure>
+                  )}
+                  {!side && pq && (
+                    <aside class="cbody__pull">
+                      <blockquote><p set:html={pq.quote} /></blockquote>
+                      {pq.attrib && <cite>— {pq.attrib}</cite>}
+                    </aside>
+                  )}
+                </div>
+              ) : (
+                <>
+                  {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                  <div class="cbody__prose">{paragraphs(section.body).map((p) => <p set:html={p} />)}</div>
+                  {section.stats && section.stats.length > 0 && (
+                    <div class="cbody__stats">
+                      {section.stats.map((st) => (
+                        <div class="cbody__stat">
+                          <div class="cbody__statvalue">{st.value}</div>
+                          <div class="cbody__statlabel">{st.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          </section>
+        );
+      })()}
+
+      {section.type === "WhyCorum8" && (() => {
+        const side = sideMediaFor(section);
+        const pq = pullQuoteFor(section);
+        const hasAside = Boolean(side || pq);
+        return (
+          <section class={`cbody__block ${hasAside ? (side ? `cbody__block--side cbody__block--side-${side.side}` : "cbody__block--pull") : ""}`}>
+            <div class="cbody__wrap">
+              {hasAside ? (
+                <div class={`cbody__split${pq && !side ? " cbody__split--pull" : ""}`}>
+                  <div class="cbody__splitcopy">
+                    {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                    <div class="cbody__prose">{paragraphs(section.body).map((p) => <p set:html={p} />)}</div>
+                  </div>
+                  {side && (
+                    <figure class="cbody__splitmedia">
+                      {side.decorative
+                        ? <img src={side.src} alt="" role="presentation" aria-hidden="true" loading="lazy" decoding="async" />
+                        : <img src={side.src} alt={side.alt} loading="lazy" decoding="async" />}
+                    </figure>
+                  )}
+                  {!side && pq && (
+                    <aside class="cbody__pull">
+                      <blockquote><p set:html={pq.quote} /></blockquote>
+                      {pq.attrib && <cite>— {pq.attrib}</cite>}
+                    </aside>
+                  )}
+                </div>
+              ) : (
+                <>
+                  {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
+                  <div class="cbody__prose">{paragraphs(section.body).map((p) => <p set:html={p} />)}</div>
+                </>
+              )}
+            </div>
+          </section>
+        );
+      })()}
+
+      {section.type === "ExchangeMockup" && (
+        <ExchangeMockup
+          heading={section.heading}
+          caption={section.caption}
+          pair={section.pair}
+          last={section.last}
+          change={section.change}
+        />
+      )}
+    </>
+  ))}
+</div>
+
+<style is:global>
+  /* ============================================================
+     Corum8 cluster body — magazine-style long-read template.
+     Independent from KOTA's .container 12-col grid (which shrinks
+     cards to thin columns). Uses tokens from src/styles/global.css.
+     ============================================================ */
+
+  .cbody { width: 100%; }
+
+  .cbody__block {
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+  }
+  .cbody__block--tinted { background: color-mix(in srgb, var(--color-bg, #efefef) 50%, #fff); }
+  .cbody__block--dark {
+    background: var(--color-ink, #000);
+    color: #fff;
+  }
+
+  /* Every section uses the full KOTA container width (1400px + 7% padding).
+     Content inside the wrap is left-aligned with reading-width caps on
+     individual elements (prose max 72ch, headings max 24ch). The page
+     no longer pins body text to a narrow center column. */
+  .cbody__wrap {
+    width: 100%;
+    max-width: calc(1400px + 15%);
+    margin-inline: auto;
+    padding-inline: 7%;
+  }
+  .cbody__wrap--wide { /* kept as alias so existing markup works; same width */
+    max-width: calc(1400px + 15%);
+  }
+
+  /* Side-by-side prose + image split (opt-in per section via mediaToken).
+     Used sparingly — most cluster sections stay single-column prose. */
+  .cbody__split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media (min-width: 820px) {
+    /* Default: image on the RIGHT → text (2fr) / image (1fr). */
+    .cbody__split {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+    /* Image on the LEFT → image (1fr) / text (2fr).
+       Text ALWAYS gets the 2fr rail; decorative imagery stays a sidekick. */
+    .cbody__block--side-left .cbody__split {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    }
+  }
+  .cbody__splitcopy { min-width: 0; }
+  .cbody__splitmedia {
+    margin: 0;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--color-ink, #000);
+    max-width: 360px;
+    justify-self: end;
+    width: 100%;
+  }
+  .cbody__splitmedia img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .cbody__splitmedia:hover img { transform: scale(1.03); }
+  .cbody__block--side-left .cbody__splitmedia { order: -1; justify-self: start; }
+
+  /* Pull-quote aside — uses the right-side empty space with a bold
+     italic callout instead of an image. Same 2-col grid shape. */
+  .cbody__split--pull {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 920px) {
+    .cbody__split--pull { grid-template-columns: 1.45fr 0.55fr; gap: 3.5rem; align-items: start; }
+  }
+  .cbody__pull {
+    margin: 0;
+    position: relative;
+    padding: 1.25rem 0 0 1.75rem;
+    border-left: 2px solid var(--color-ink, #000);
+  }
+  .cbody__pull blockquote { margin: 0; }
+  .cbody__pull blockquote p {
+    font-family: var(--font-display, serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.35rem, 2.3vw, 1.85rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-ink, #000);
+    margin: 0 0 0.9rem;
+  }
+  .cbody__pull cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ink-mute, #6b6b6b);
+  }
+  .cbody__block--dark .cbody__pull { border-left-color: #fff; }
+  .cbody__block--dark .cbody__pull blockquote p { color: #fff; }
+  .cbody__block--dark .cbody__pull cite { color: rgba(255,255,255,0.55); }
+  @media (min-width: 920px) {
+    .cbody__pull {
+      position: sticky;
+      top: 7rem;
+    }
+  }
+
+  .cbody__h {
+    font-size: var(--fs-50, clamp(1.875rem, 3.5vw, 3rem));
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+    margin: 0 0 1.5rem;
+    max-width: 24ch;
+    color: inherit;
+  }
+  .cbody__h3 {
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    margin: 0 0 0.9rem;
+  }
+
+  .cbody__prose p {
+    font-size: clamp(1.05rem, 1.2vw, 1.18rem);
+    line-height: 1.65;
+    color: var(--color-ink-soft, #1a1a1a);
+    margin: 0 0 1.1rem;
+    max-width: 72ch;
+    font-weight: 400;
+  }
+  .cbody__block--dark .cbody__prose p { color: rgba(255,255,255,0.78); }
+  .cbody__prose p:last-child { margin-bottom: 0; }
+
+  .cbody__prose strong {
+    font-weight: 500;
+    color: var(--color-ink, #000);
+  }
+  .cbody__block--dark .cbody__prose strong { color: #fff; }
+  .cbody__prose em {
+    font-family: var(--font-display, serif);
+    font-style: italic;
+    color: var(--color-ink, #000);
+  }
+  .cbody__block--dark .cbody__prose em { color: var(--color-accent, #b7ff3a); }
+
+  /* Deep-breakdown subsections — flow as a single column of headed paragraphs,
+     not the image-heavy KOTA TextImageRows pattern. */
+  .cbody__subs {
+    margin-top: 3rem;
+    display: grid;
+    gap: 3rem;
+    border-top: 1px solid var(--color-rule, #d6d6d6);
+    padding-top: 2.5rem;
+  }
+  .cbody__sub {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .cbody__block--dark .cbody__subs { border-top-color: rgba(255,255,255,0.1); }
+
+  /* Signals list — outlined pills in a 2-col grid on desktop */
+  .cbody__signals {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  @media (min-width: 700px) {
+    .cbody__signals { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  }
+  .cbody__signals li {
+    padding: 1.1rem 1.35rem 1.1rem 2.75rem;
+    background: #fff;
+    border: 1px solid var(--color-rule, #d6d6d6);
+    border-radius: 14px;
+    position: relative;
+    font-size: 1.02rem;
+    line-height: 1.5;
+    color: var(--color-ink-soft, #1a1a1a);
+  }
+  .cbody__signals li::before {
+    content: "→";
+    position: absolute;
+    left: 1.15rem;
+    top: 1.1rem;
+    color: var(--color-ink, #000);
+    font-weight: 400;
+  }
+
+  /* Card grids — proper 2/3 columns, not 1/12 of a KOTA grid */
+  .cbody__grid {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .cbody__grid--cards {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 700px) { .cbody__grid--cards { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .cbody__grid--cards { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+
+  .cbody__card {
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid var(--color-rule, #d6d6d6);
+    border-radius: 18px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  .cbody__card:hover {
+    border-color: var(--color-ink, #000);
+    transform: translateY(-2px);
+  }
+  .cbody__card--dark {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+  .cbody__card--dark:hover { border-color: rgba(255,255,255,0.3); }
+  .cbody__cardtitle {
+    margin: 0 0 0.7rem;
+    font-size: clamp(1.15rem, 1.7vw, 1.35rem);
+    letter-spacing: -0.015em;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .cbody__cardbody {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--color-ink-soft, #1a1a1a);
+  }
+  .cbody__card--dark .cbody__cardbody { color: rgba(255,255,255,0.72); }
+  .cbody__card strong { font-weight: 500; }
+  .cbody__card em {
+    font-family: var(--font-display, serif);
+    font-style: italic;
+  }
+  .cbody__card--dark em { color: var(--color-accent, #b7ff3a); }
+
+  /* Use cases — 2-col card layout with outcome footer */
+  .cbody__grid--cases { grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .cbody__grid--cases { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .cbody__grid--cases { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; } }
+
+  .cbody__case {
+    margin: 0;
+    padding: 2.25rem;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+  }
+  .cbody__case:hover {
+    border-color: rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-2px);
+  }
+  .cbody__casehead { display: flex; flex-direction: column; gap: 0.35rem; }
+  .cbody__casecompany {
+    margin: 0;
+    font-size: clamp(1.35rem, 2vw, 1.65rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+    color: #fff;
+  }
+  .cbody__casemeta {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.76rem;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+  }
+  .cbody__casemeta span:not(:last-child)::after { content: "·"; margin-left: 0.75rem; opacity: 0.5; }
+  .cbody__casebody {
+    margin: 0;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.82);
+    font-size: 1rem;
+  }
+  .cbody__caseoutcome {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .cbody__caseoutcomelabel {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.55);
+  }
+  .cbody__caseoutcomevalue {
+    font-weight: 500;
+    font-size: 1.02rem;
+    color: var(--color-accent, #b7ff3a);
+    letter-spacing: -0.005em;
+  }
+
+  /* Steps list — numbered with left gutter */
+  .cbody__steps {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: grid;
+    gap: 0;
+  }
+  .cbody__step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--color-rule, #d6d6d6);
+    align-items: baseline;
+  }
+  .cbody__step:last-child { border-bottom: 0; }
+  .cbody__stepnum {
+    font-size: 1.4rem;
+    color: var(--color-ink-mute, #6b6b6b);
+    min-width: 2.5rem;
+    letter-spacing: 0.05em;
+  }
+  .cbody__stephead {
+    margin: 0 0 0.4rem;
+    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    letter-spacing: -0.015em;
+    font-weight: 500;
+  }
+  .cbody__stepbody {
+    margin: 0;
+    color: var(--color-ink-soft, #1a1a1a);
+    line-height: 1.55;
+    font-size: 1rem;
+  }
+
+  /* Outcomes stats strip */
+  .cbody__stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-rule, #d6d6d6);
+  }
+  @media (min-width: 640px) { .cbody__stats { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .cbody__stats { grid-template-columns: repeat(4, 1fr); } }
+
+  .cbody__statvalue {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+    color: var(--color-ink, #000);
+  }
+  .cbody__block--dark .cbody__statvalue { color: #fff; }
+  .cbody__statlabel {
+    margin-top: 0.55rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-ink-mute, #6b6b6b);
+  }
+  .cbody__block--dark .cbody__statlabel { color: rgba(255,255,255,0.55); }
+</style>

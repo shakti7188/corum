@@ -1,0 +1,335 @@
+---
+// ServiceClusterLayout (KOTA-native, v3 semantics).
+// Keeps the same file name so existing page imports (exchange.astro) don't
+// break. Rebuilt on top of the real Corum8/KOTA components + CSS classes
+// instead of a parallel c8-* aesthetic.
+//
+// Sections, in order:
+//   1. Hero  (KOTA Hero_hero__ classes, page-specific copy + media)
+//   2. Direct Answer  (Intro_intro__ block — AEO-citable summary)
+//   3. Body  (ClusterBody renderer — Intro / TextImageRows / cards / steps / etc.)
+//   4. Testimonials  (Testimonials.astro, fed from testimonials library)
+//   5. FAQ  (FaqsList.astro, fed from page FAQs)
+//   6. Discover more  (DiscoverMore.astro, page-specific related pages)
+//   7. Final CTA  (KotaverseCta.astro, page-specific copy)
+
+import Layout from "./Layout.astro";
+import ClusterBody from "../components/sections/ClusterBody.astro";
+import Testimonials from "../components/Testimonials.astro";
+import FaqsList from "../components/FaqsList.astro";
+import DiscoverMore from "../components/sections/DiscoverMore.astro";
+import KotaverseCta from "../components/KotaverseCta.astro";
+import { resolveMedia } from "../data/media";
+import { getTestimonial } from "../data/testimonials";
+import { schemasForPage } from "../data/schema";
+import type { PageData } from "../data/_types";
+
+interface Props {
+  page: PageData;
+}
+
+const { page } = Astro.props;
+const schemas = schemasForPage(page);
+const heroMedia = page.hero.mediaToken ? resolveMedia(page.hero.mediaToken) : null;
+
+// Map testimonial library entries → shape accepted by Testimonials.astro.
+function clientLogoByCompany(company: string): string {
+  const n = company.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const map: Record<string, string> = {
+    salamantex: "/clients/salamantex.png",
+    cobox: "/clients/cobox.png",
+    fanadise: "/clients/fanadise.png",
+    ubuntutribe: "/clients/ubuntu-tribe.png",
+    metarix: "/clients/metarix.png",
+    binance: "/clients/binance.png",
+    kucoin: "/clients/kucoin.png",
+    metamask: "/clients/metamask.png",
+    kava: "/clients/kava.png",
+    etoro: "/clients/etoro.png",
+    gateio: "/clients/gate-io.png",
+    okx: "/clients/okx.png",
+    tether: "/clients/tether.png",
+    tron: "/clients/tron.png",
+    dream11: "/clients/dream11.png",
+  };
+  return map[n] ?? "/clients/metamask.png";
+}
+
+const bgCycle = ["#d7e1d3", "#a8e1ec", "#ffffff", "#f3eadc", "#e6d8f2"];
+const testimonialsForDesign = page.testimonials
+  .map((ref, i) => {
+    const t = getTestimonial(ref.id);
+    if (!t) return null;
+    return {
+      bg: bgCycle[i % bgCycle.length],
+      logo: clientLogoByCompany(t.company),
+      alt: t.company,
+      quote: t.quote,
+      name: t.author,
+      title: `${t.role}, ${t.company}`,
+      href: "/case-studies",
+    };
+  })
+  .filter((x): x is NonNullable<typeof x> => Boolean(x));
+
+// Map faqs to the shape FaqsList expects.
+const faqsForDesign = page.faqs.map((f) => ({ question: f.q, answer: f.a }));
+
+// Final CTA defaults if page doesn't override.
+const cta = page.finalCta ?? {};
+---
+
+<Layout title={page.meta.title}>
+  <Fragment slot="head">
+    <meta name="description" content={page.meta.description} />
+    <link rel="canonical" href={page.meta.canonical ?? `https://corum8.com${page.slug}`} />
+    <meta property="og:title" content={page.meta.title} />
+    <meta property="og:description" content={page.meta.description} />
+    <meta property="og:type" content={page.meta.ogType ?? "website"} />
+    <meta property="og:url" content={page.meta.canonical ?? `https://corum8.com${page.slug}`} />
+    {page.meta.ogImage && <meta property="og:image" content={page.meta.ogImage} />}
+    <meta name="twitter:card" content={page.meta.twitterCard ?? "summary_large_image"} />
+    {page.meta.noindex && <meta name="robots" content="noindex,follow" />}
+    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+  </Fragment>
+
+  <article class="cluster-page">
+    <!-- ============ HERO — KOTA pillar shape: big title left, round image right,
+         discover-more pills + scroll arrow below. Content is ours; frame is theirs. -->
+    <section class="Hero_hero__18Xqo chero">
+      <h1 class="u-sr-only">{page.hero.headline}</h1>
+      <div class="container">
+        <div class="Hero_top__fPz2U chero__top">
+          <div class="chero__titlecol">
+            {page.hero.eyebrow && <p class="chero__eyebrow">{page.hero.eyebrow}</p>}
+            <h2 class="chero__title">
+              <span class="LineByLine_headingOuter__JmusT"><span>{page.hero.headline}</span></span>
+            </h2>
+            {page.hero.subtitle && (
+              <p class="chero__subtitle">{page.hero.subtitle}</p>
+            )}
+          </div>
+          {heroMedia && (
+            <div class="Hero_video__IHL3y chero__media">
+              <span class="ScaleFadeIn_container__cK78G" data-fill="true">
+                <span class="ScaleFadeIn_inner__y4reT" data-fill="true">
+                  {heroMedia.kind === "video" ? (
+                    heroMedia.decorative ? (
+                      <video src={heroMedia.src} autoplay loop muted playsinline aria-hidden="true" role="presentation"></video>
+                    ) : (
+                      <video src={heroMedia.src} autoplay loop muted playsinline></video>
+                    )
+                  ) : (
+                    <span class="Image_image__RAAdZ Image_fill__EiIzS">
+                      {heroMedia.decorative ? (
+                        <img src={heroMedia.src} alt="" role="presentation" aria-hidden="true" loading="eager" fetchpriority="high" />
+                      ) : (
+                        <img src={heroMedia.src} alt={heroMedia.alt} loading="eager" fetchpriority="high" />
+                      )}
+                    </span>
+                  )}
+                </span>
+              </span>
+            </div>
+          )}
+        </div>
+        <div class="Hero_bottom__5uvI_ chero__bottom">
+          {page.hero.sub && (
+            <h3 class="Hero_introText__HLM02 chero__lede">
+              <span class="FadeIn_container__bjQVL" data-fill="false">
+                <span>{page.hero.sub}</span>
+              </span>
+            </h3>
+          )}
+          {page.discoverMore && page.discoverMore.length > 0 && (
+            <nav class="DiscoverMore_discoverMore__hYPtP" data-theme="light">
+              <span class="FadeIn_container__bjQVL" data-fill="false">
+                <div class="DiscoverMore_linksInner__Vgx11">
+                  <p class="DiscoverMore_heading__fBuVc">Discover more</p>
+                  {page.discoverMore.map((l) => (
+                    <a class={l.active ? "DiscoverMoreLink_active__6IF37" : ""} href={l.href}>{l.label}</a>
+                  ))}
+                </div>
+              </span>
+            </nav>
+          )}
+          <div class="Hero_arrow__CVNIo chero__arrow">
+            <span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65" aria-hidden="true">
+                <path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z" style="stroke-width:0"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DIRECT ANSWER (AEO-citable summary) ============ -->
+    <section class="cda">
+      <div class="cda__wrap">
+        <span class="cda__label">In short</span>
+        <p class="cda__body">{page.directAnswer}</p>
+      </div>
+    </section>
+
+    <!-- ============ BODY (KOTA-native renderer) ============ -->
+    <ClusterBody body={page.body} />
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <Testimonials testimonials={testimonialsForDesign} />
+
+    <!-- ============ FAQ ============ -->
+    <FaqsList
+      titleLight={page.faqsHeading?.light ?? "Questions"}
+      titleBold={page.faqsHeading?.bold ?? "we hear often."}
+      subtitle={page.faqsHeading?.subtitle ?? "Straight answers on how we scope, build and scale — no timelines we can't keep, no prices we can't honour."}
+      faqs={faqsForDesign}
+    />
+
+    <!-- ============ DISCOVER MORE ============ -->
+    {page.discoverMore && page.discoverMore.length > 0 && (
+      <DiscoverMore heading={page.discoverHeading ?? "Discover more"} links={page.discoverMore} theme="dark" />
+    )}
+
+    <!-- ============ FINAL CTA ============ -->
+    <KotaverseCta
+      light={cta.light}
+      bold={cta.bold}
+      subtitle={cta.subtitle}
+      buttonLabel={cta.buttonLabel}
+      buttonHref={cta.buttonHref}
+    />
+  </article>
+</Layout>
+
+<style is:global>
+  /* =========================================================
+     Cluster hero — KOTA pillar shape retained (title-left / circle-image-right
+     / intro-text + discover-more + arrow below). Content tuned for long-read
+     cluster pages: 2-piece title (big + italic subtitle), shorter lede.
+     ========================================================= */
+  .u-sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  .chero.Hero_hero__18Xqo {
+    padding-block: clamp(6rem, 14vh, 10rem) clamp(2.5rem, 5vw, 4.5rem);
+    position: relative;
+  }
+  .chero.Hero_hero__18Xqo .container {
+    position: relative;
+  }
+  .chero__titlecol { display: flex; flex-direction: column; justify-content: center; }
+  .chero__eyebrow {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--color-ink-mute, #6b6b6b);
+    margin: 0 0 1.5rem;
+    font-weight: 400;
+  }
+  .chero__title {
+    font-size: clamp(2.5rem, 6.4vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin: 0 0 1rem;
+    font-weight: 400;
+    max-width: 14ch;
+    color: var(--color-ink, #000);
+  }
+  .chero__subtitle {
+    font-family: var(--font-display, serif);
+    font-style: italic;
+    font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    color: var(--color-ink-soft, #1a1a1a);
+    margin: 0;
+    max-width: 28ch;
+  }
+
+  /* Right-column circular media already handled by the global
+     [class*="Hero_video__"] overrides in Layout.astro — aspect-ratio:1/1
+     and border-radius:50%. Nothing more needed here. */
+
+  .chero__bottom { gap: 1.5rem; }
+  .chero__lede {
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+    line-height: 1.5;
+    color: var(--color-ink-soft, #1a1a1a);
+    max-width: 58ch;
+    font-weight: 400;
+    margin: 0;
+  }
+  .chero__lede span.FadeIn_container__bjQVL,
+  .chero__lede span.FadeIn_container__bjQVL > span { display: inline; }
+
+  /* Hero DiscoverMore inherits the full KOTA DiscoverMore_* styling defined in
+     public/css/kota-core.css — no overrides. Matches /services/development. */
+
+  /* Scroll arrow — anchored to the bottom-right of the hero section.
+     KOTA's default positioning is inside the Hero_bottom_ flex; we overlay it
+     in the bottom-right corner of the hero container so it doesn't disturb
+     the lede/discover-more flow. Size matches the KOTA source. */
+  .chero__arrow {
+    position: absolute;
+    right: clamp(1rem, 4vw, 2.5rem);
+    bottom: clamp(1.5rem, 4vw, 2.5rem);
+    width: clamp(48px, 6vw, 72px);
+    height: clamp(48px, 6vw, 72px);
+    display: block;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .chero__arrow span.FadeInRotate_container__QE9u9 {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .chero__arrow svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--color-ink, #000);
+    display: block;
+  }
+  @media (max-width: 720px) {
+    .chero__arrow { display: none; }
+  }
+
+  /* =========================================================
+     Direct Answer — small, citable summary block (centered column)
+     ========================================================= */
+  .cda { padding-block: 0 clamp(3rem, 6vw, 5rem); }
+  .cda__wrap {
+    width: 100%;
+    max-width: 880px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 3rem);
+  }
+  .cda__label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 0.72rem;
+    color: var(--color-ink-mute, #6b6b6b);
+    margin: 0 0 0.9rem;
+  }
+  .cda__body {
+    font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+    line-height: 1.5;
+    color: var(--color-ink, #000);
+    letter-spacing: -0.005em;
+    max-width: 62ch;
+    border-left: 2px solid var(--color-ink, #000);
+    padding: 0.1rem 0 0.1rem 1.5rem;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  /* Remove the floating 'Start your project' KOTA button from cluster pages */
+  .cluster-page ~ .FloatingStartButton_linkContainer__eZz7z,
+  .cluster-page .FloatingStartButton_linkContainer__eZz7z { display: none; }
+</style>
