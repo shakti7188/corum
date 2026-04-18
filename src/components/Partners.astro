@@ -1,66 +1,175 @@
 ---
-// Our Clients — Corum8's headline partner roster.
-// Logos live in /public/clients (copied from assets/clients).
+// Our Clients — 30 client logos in 3 rows of 10, flat monochrome white, packed
+// close like the footer awards strip. Heading reuses the same
+// `.AnimatedArrow_animatedArrow__Q4v7Q` treatment as "Our Services".
 const clients = [
-  { src: '/clients/binance.png',      alt: 'Binance' },
-  { src: '/clients/kucoin.png',       alt: 'KuCoin' },
-  { src: '/clients/okx.png',          alt: 'OKX' },
-  { src: '/clients/gate-io.png',      alt: 'Gate.io' },
-  { src: '/clients/wazirx.png',       alt: 'WazirX' },
-  { src: '/clients/metamask.png',     alt: 'MetaMask' },
-  { src: '/clients/tron.png',         alt: 'TRON' },
-  { src: '/clients/tether.png',       alt: 'Tether' },
-  { src: '/clients/kava.png',         alt: 'KAVA' },
-  { src: '/clients/etoro.png',        alt: 'eToro' },
-  { src: '/clients/fanadise.png',     alt: 'Fanadise' },
-  { src: '/clients/metarix.png',      alt: 'Metarix' },
-  { src: '/clients/ubuntu-tribe.png', alt: 'Ubuntu Tribe' },
-  { src: '/clients/dream11.png',      alt: 'Dream11' },
-  { src: '/clients/chingari.png',     alt: 'Chingari' },
+  { src: '/clients/binance.png',         alt: 'Binance' },
+  { src: '/clients/okx.png',             alt: 'OKX' },
+  { src: '/clients/metamask.png',        alt: 'MetaMask' },
+  { src: '/clients/tether.png',          alt: 'Tether' },
+  { src: '/clients/etoro.png',           alt: 'eToro' },
+  { src: '/clients/tron.png',            alt: 'TRON' },
+  { src: '/clients/coinmarketcap.png',   alt: 'CoinMarketCap' },
+  { src: '/clients/kucoin.png',          alt: 'KuCoin' },
+  { src: '/clients/gate-io.png',         alt: 'Gate.io' }
 ];
 ---
 
 <div class="Partners_partners__jBo8y">
   <div class="DarkThemeSwitch_cover__hn_xc"></div>
   <div class="container">
-    <div class="Partners_headingInner__vdhDe">
-      <h2 class="Partners_heading__AOTNV">
-        <div class="LargeHeading_headingOuter__i9qcd">
-          <span class="Partners_heading__AOTNV">Our</span><span class="Partners_heading__AOTNV Partners_bottom__5DSXe">Clients</span>
-        </div>
-      </h2>
-      <div class="Partners_arrowWrapper__Xq8Wc">
-        <span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 111.42 110.66">
-          <polygon points="13.65 102.66 109.53 6.67 103.87 1.02 8 97 8 0 0 0 0 110.66 111.42 110.66 111.42 102.66 13.65 102.66" fill="#fff"></polygon>
-        </svg></span>
-      </div>
-    </div>
-    <div class="Partners_logos__7QiB4">
-      <div class="AnimatedLogoGrid_grid__3n0at">
-        <div class="Partners_logosInner__Aoq5_">
-          {clients.map((c) => (
-            <div class="Partners_logo__eDI8e" data-animation="grid-item">
-              <img src={c.src} alt={c.alt} loading="lazy" />
-            </div>
-          ))}
+    <h2 class="Partners_heading__AOTNV Partners_heading--withArrow">
+      <span><div class="LargeHeading_headingOuter__i9qcd">
+        <span class="Partners_heading__AOTNV">Our</span><span class="Partners_heading__AOTNV Partners_bottom__5DSXe">Clients</span>
+      </div></span>
+      <div class="AnimatedArrow_animatedArrow__Q4v7Q">
+        <div class="AnimatedArrow_innerArrow__6mwTB">
+          <svg class="Partners_arrow__c8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 111.42 110.66">
+            <polygon points="13.65 102.66 109.53 6.67 103.87 1.02 8 97 8 0 0 0 0 110.66 111.42 110.66 111.42 102.66 13.65 102.66"></polygon>
+          </svg>
         </div>
       </div>
-    </div>
+    </h2>
+    <!-- Three counter-drifting marquee rows. Each row slides at a different
+         speed / direction so the wall reads as a living conveyor instead of
+         a static strip. Track is duplicated so the loop seams are invisible. -->
+    {[
+      { dir: 'left',  speed: '38s', offset: 0 },
+      { dir: 'right', speed: '46s', offset: 3 },
+      { dir: 'left',  speed: '52s', offset: 6 },
+    ].map((row) => {
+      const rotated = [...clients.slice(row.offset), ...clients.slice(0, row.offset)];
+      return (
+        <div class={`Corum8ClientStrip Corum8ClientStrip--${row.dir}`}>
+          <div class="Corum8ClientTrack" style={`animation-duration: ${row.speed};`}>
+            {rotated.map((c) => (
+              <div class="Corum8ClientCell">
+                <img src={c.src} alt={c.alt} loading="lazy" />
+              </div>
+            ))}
+            {rotated.map((c) => (
+              <div class="Corum8ClientCell" aria-hidden="true">
+                <img src={c.src} alt={c.alt} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    })}
   </div>
 </div>
 
-<style>
-  /* Corum8 client logos ship as colour PNGs — flatten them to clean white marks
-     so the row reads as a unified brand wall on the dark section. */
-  .Partners_logo__eDI8e img {
-    filter: brightness(0) invert(1);
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-    max-height: 56px;
-    object-fit: contain;
+<style is:global>
+  .Partners_heading--withArrow {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-end !important;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    margin-bottom: 3rem !important;
+    grid-column: span 12;
+  }
+  .Partners_heading--withArrow > span:first-child { display: inline-block; }
+  .Partners_arrow__c8 { width: clamp(2.5rem, 6vw, 5.5rem); height: auto; fill: #fff; }
+
+  /* Marquee container — stacks 3 drifting rows with breathing room between.
+     Logos sit on light "cards" so brand colours (and depth on logos like
+     MetaMask) read properly against the dark section. */
+  .Corum8ClientStrip {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    max-width: 1500px;
+    margin: 0 auto;
+    grid-column: span 12;
+    width: 100%;
+    padding: 0.75rem 0;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  }
+  .Corum8ClientStrip + .Corum8ClientStrip { margin-top: 1rem; }
+
+  /* Rolling track — tighter gap so cards sit close together, per spec. */
+  .Corum8ClientTrack {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding-right: 1.25rem;
+    animation: c8MarqueeLeft 40s linear infinite;
+    will-change: transform;
+  }
+  .Corum8ClientStrip--right .Corum8ClientTrack {
+    animation-name: c8MarqueeRight;
   }
 
-  .Partners_logo__eDI8e:hover img {
+  .Corum8ClientStrip:hover .Corum8ClientTrack {
+    animation-play-state: paused;
+  }
+
+  /* Each logo sits on a frosted white pill — preserves the logo's full
+     colour (so MetaMask's fox keeps its facial depth) while giving enough
+     contrast against the dark backdrop. */
+  .Corum8ClientCell {
+    flex-shrink: 0;
+    height: 5.25rem;
+    width: 11.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 14px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.7) inset,
+      0 14px 30px -18px rgba(0, 0, 0, 0.55),
+      0 2px 8px -2px rgba(0, 0, 0, 0.25);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
+    animation: c8LogoFloat 6s ease-in-out infinite;
+  }
+  .Corum8ClientCell:nth-child(3n)   { animation-delay: -1.5s; }
+  .Corum8ClientCell:nth-child(3n+1) { animation-delay: -3s;   }
+
+  .Corum8ClientCell img {
+    max-height: 70%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: none;
     opacity: 1;
+    transition: transform 0.3s ease;
+  }
+  .Corum8ClientCell:hover {
+    transform: translateY(-3px);
+    background: #ffffff;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.9) inset,
+      0 22px 38px -16px rgba(0, 0, 0, 0.65),
+      0 4px 12px -2px rgba(0, 0, 0, 0.35);
+  }
+  .Corum8ClientCell:hover img {
+    transform: scale(1.06);
+  }
+
+  @keyframes c8MarqueeLeft {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes c8MarqueeRight {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+  @keyframes c8LogoFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .Corum8ClientTrack, .Corum8ClientCell { animation: none !important; }
+  }
+
+  @media (max-width: 1024px) {
+    .Corum8ClientTrack { gap: 3rem; padding-right: 3rem; }
+    .Corum8ClientCell { height: 2.75rem; }
   }
 </style>

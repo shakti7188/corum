@@ -103,7 +103,10 @@ export interface UseCase {
   stage?: string;           // "pre-seed", "Series A", "post-ICO", etc.
   region?: string;
   situation: string;        // 80–140 word paragraph narrative
-  outcomeNumber?: string;   // "$32M raised", "180K+ TPS", etc.
+  /** Primary outcome — usually the commercial win ("$32M raised", "Series A closed") */
+  outcomeNumber?: string;
+  /** Secondary outcome — usually the technical proof underneath the win */
+  outcomeSecondary?: string;
 }
 
 export interface StatItem {
@@ -120,26 +123,43 @@ export interface HowToStep {
 // Body section union (ordered content blocks)
 // ============================================================================
 
+/**
+ * Sidebar enquiry card — rendered in the right-side empty space of a prose
+ * section (same slot as `pullQuote` or `mediaToken`, mutually exclusive).
+ * Small form + provocative hook + avatar of a Corum8 person who'd take the call.
+ */
+export interface EnquirySidebar {
+  hook: string;               // tiny eyebrow label, provocative
+  heading: string;             // 1-line direct challenge to the reader
+  body: string;                // 20–40 words, can contain <em>
+  buttonLabel?: string;
+  href?: string;               // defaults to /contact
+  avatarUrl?: string;
+  avatarName?: string;
+  avatarRole?: string;
+}
+
 export type BodySection =
-  | { type: "Prose"; heading?: string; body: string | string[]; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string }
-  | { type: "DirectAnswer"; body: string }                          // 40–60 words
-  | { type: "Definition"; heading: string; body: string; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string }
+  | { type: "Prose"; heading?: string; body: string | string[]; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string; enquiry?: EnquirySidebar }
+  | { type: "DirectAnswer"; body: string }
+  | { type: "Definition"; heading: string; body: string; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string; enquiry?: EnquirySidebar }
   | { type: "DeepBreakdown"; heading: string; body: string; subsections?: Array<{ heading: string; body: string }> }
   | { type: "SignalsYouNeedThis"; heading?: string; signals: string[] }
   | { type: "DecisionFactors"; heading?: string; body: string; factors?: Array<{ name: string; body: string }> }
   | { type: "CommonPitfalls"; heading?: string; pitfalls: Array<{ name: string; body: string }> }
-  | { type: "StackNotes"; heading?: string; body: string; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string }
-  | { type: "HowWeApproach"; heading?: string; body: string; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string }
+  | { type: "StackNotes"; heading?: string; body: string; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string; enquiry?: EnquirySidebar }
+  | { type: "HowWeApproach"; heading?: string; body: string; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string; enquiry?: EnquirySidebar }
   | { type: "ProcessTimeline"; heading?: string; steps: HowToStep[] }  // optional — only when truly useful
   | { type: "HowTo"; heading: string; steps: HowToStep[] }
   | { type: "UseCases"; heading?: string; items: UseCase[] }
-  | { type: "OutcomesDriven"; heading?: string; body: string; stats?: StatItem[]; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string }
+  | { type: "OutcomesDriven"; heading?: string; body: string; stats?: StatItem[]; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string; enquiry?: EnquirySidebar }
   | { type: "StatsBar"; stats: StatItem[] }
-  | { type: "WhyCorum8"; heading?: string; body: string; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string }
+  | { type: "WhyCorum8"; heading?: string; body: string; mediaToken?: string; mediaSide?: "left" | "right"; pullQuote?: string; pullAttrib?: string; enquiry?: EnquirySidebar }
   | { type: "ComparisonTable"; heading?: string; columns: string[]; rows: string[][] }
   | { type: "CostBreakdown"; heading?: string; tiers: Array<{ name: string; scope: string; drivers: string[] }> }
   | { type: "LocalContext"; heading?: string; body: string; regulators?: string[] }
   | { type: "ExchangeMockup"; heading?: string; caption?: string; pair?: string; last?: string; change?: string }
+  | { type: "InlineEnquiry"; heading: string; body: string; hook: string; buttonLabel?: string; href?: string; avatarUrl?: string; avatarName?: string; avatarRole?: string }
   | { type: "Cta"; heading: string; sub?: string; buttonLabel: string; href: string };
 
 // ============================================================================

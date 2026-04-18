@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { brand, ctaLink } from '../data/siteNav';
+---
+<Layout title={`404 — ${brand.name}`}>
+  <section class="NotFound">
+    <div class="NotFound_inner">
+      <img src="/assets/logo/logo-dark.png" alt={brand.name} class="NotFound_logo" />
+      <p class="NotFound_eyebrow">Error 404</p>
+      <h1 class="NotFound_title">This page took a wrong turn.</h1>
+      <p class="NotFound_body">
+        The link may be broken or the page may have moved. Let's get you back on track.
+      </p>
+      <div class="NotFound_actions">
+        <a href="/" class="NotFound_btn NotFound_btn--primary">Back to Home</a>
+        <a href={ctaLink.href} class="NotFound_btn NotFound_btn--ghost">{ctaLink.shortLabel}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .NotFound {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 1.5rem 6rem;
+  }
+  .NotFound_inner {
+    max-width: 640px;
+    text-align: center;
+  }
+  .NotFound_logo {
+    height: 72px;
+    width: auto;
+    margin: 0 auto 2.5rem;
+    display: block;
+  }
+  .NotFound_eyebrow {
+    color: #7c41f3;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin: 0 0 1rem;
+  }
+  .NotFound_title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.05;
+    margin: 0 0 1.25rem;
+    font-weight: 600;
+  }
+  .NotFound_body {
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 0 2.5rem;
+  }
+  .NotFound_actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .NotFound_btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.9rem 1.8rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  }
+  .NotFound_btn--primary {
+    background: #111;
+    color: #fff;
+  }
+  .NotFound_btn--primary:hover {
+    background: var(--c8-gold);
+    color: #111;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px var(--c8-gold-glow);
+  }
+  .NotFound_btn--ghost {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: #111;
+  }
+  .NotFound_btn--ghost:hover {
+    border-color: var(--c8-gold);
+    background: var(--c8-gold-soft);
+    transform: translateY(-2px);
+  }
+</style>

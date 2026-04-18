@@ -179,6 +179,7 @@ const projects = [
 </div>
 
 <style>
+  .WorkHub_container { margin-bottom: 8vw; }
   .WorkHub_filters {
     padding-top: 2rem;
   }
@@ -207,41 +208,42 @@ const projects = [
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function initFilters() {
     const filterBtns = document.querySelectorAll('.WorkHub_filterBtn');
     const cards = document.querySelectorAll('.WorkHub_card');
-
     if (filterBtns.length === 0) return;
-
-    // Set initial state
+    
+    // Reset standard behavior on load for safety
+    filterBtns.forEach(b => b.classList.remove('active'));
     filterBtns[0].classList.add('active');
-
+    
+    // Safety unbind to prevent duplicates if navigating back and forth
     filterBtns.forEach(btn => {
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+    });
+    
+    const cleanBtns = document.querySelectorAll('.WorkHub_filterBtn');
+    cleanBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Remove active class
-        filterBtns.forEach(b => b.classList.remove('active'));
+        cleanBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         const activeSlug = btn.getAttribute('data-filter');
-
         cards.forEach(card => {
           const cardCategory = card.getAttribute('data-category');
-          
-          if (activeSlug === 'all') {
+          if (activeSlug === 'all' || cardCategory === activeSlug) {
             card.style.display = 'block';
             setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 50);
           } else {
-            if (cardCategory === activeSlug) {
-              card.style.display = 'block';
-              setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 50);
-            } else {
-              card.style.opacity = '0';
-              card.style.transform = 'scale(0.95)';
-              setTimeout(() => { card.style.display = 'none'; }, 400);
-            }
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => { card.style.display = 'none'; }, 400);
           }
         });
       });
     });
-  });
+  }
+  document.addEventListener('DOMContentLoaded', initFilters);
+  document.addEventListener('astro:page-load', initFilters);
+  initFilters();
 </script>

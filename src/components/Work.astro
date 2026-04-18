@@ -1,5 +1,11 @@
 ---
-// Work section — Corum8 intro (large) + 6 featured case studies
+// Work section — simplified to match the raw-clone KOTA treatment:
+// • Heading + right-side copy aside (instead of single centered heading)
+// • Each card shows only brand name + year; the tags / one-line heading
+//   move into the hover image overlay, which KOTA already wires up via
+//   ProjectCard_imageOverlay__OCawr.
+// The grid positions and slide-in animation are preserved — only the
+// internal card composition changed.
 const arrowGrad = {
   id: 'd',
   stops: [
@@ -8,16 +14,12 @@ const arrowGrad = {
   ],
 };
 
-// The first item is a Corum8 introduction panel. It uses the same card markup
-// so the grid stays consistent, but carries intro-only copy (no case-study
-// metric, no /work/* href) and plays bg2.mp4 as a brand loop.
 const intro = {
   size: 'large',
   isIntro: true,
   href: '#our-work',
   name: 'Corum8',
-  kicker: 'Introducing',
-  result: 'Global marketing, PR & full-stack dev',
+  year: '2026',
   heading: 'We build, market and scale Web3, AI and fintech companies that refuse to blend in.',
   tags: ['Global Marketing', 'PR', 'Full-Stack Development', 'Web3 · AI · Fintech'],
   video: '/media/bg2.mp4',
@@ -28,19 +30,17 @@ const projects = [
     size: 'small',
     href: '/work/fanadise',
     name: 'Fanadise',
-    type: 'Full-stack Web3 growth campaign',
-    result: '$5M raised',
+    year: '2024',
     heading: 'Full-stack Web3 growth campaign that rallied the community behind a $5M raise.',
     tags: ['Full-stack Web3', 'Growth Campaign', 'Community'],
-    video: '/media/GOAT-FeatureVideo.mp4',
+    video: '/media/fanadise.mp4',
     poster: '/images/GOAT-FeaturedImage.png',
   },
   {
     size: 'small',
     href: '/work/ubuntu-tribe',
     name: 'Ubuntu Tribe',
-    type: 'PR, community, influencer, Token2049',
-    result: 'Global presence + community acceleration',
+    year: '2024',
     heading: 'PR, community and influencer programme anchored around a Token2049 activation — delivering global presence and community acceleration.',
     tags: ['PR', 'Community', 'Influencer', 'Token2049 Event'],
     video: '/media/isi-vid2-1.mp4',
@@ -50,8 +50,7 @@ const projects = [
     size: 'small',
     href: '/work/kucoin',
     name: 'KuCoin',
-    type: 'Strategic PR for major exchange',
-    result: 'Stronger brand visibility globally',
+    year: '2024',
     heading: 'Strategic PR programme for a major exchange — amplifying brand visibility in every priority market.',
     tags: ['Strategic PR', 'Exchange', 'Global Visibility'],
     video: '/media/Duplicated-Assets.mp4',
@@ -61,8 +60,7 @@ const projects = [
     size: 'small',
     href: '/work/metarix',
     name: 'Metarix',
-    type: 'Full launch — influencers, PR, community',
-    result: '$780K raised',
+    year: '2023',
     heading: 'Full launch across influencers, PR and community that converted attention into a $780K raise.',
     tags: ['Influencers', 'PR', 'Community', 'Full Launch'],
     video: '/media/Featured-compressed.mp4',
@@ -72,8 +70,7 @@ const projects = [
     size: 'small',
     href: '/work/binance',
     name: 'Binance',
-    type: 'Performance affiliate network',
-    result: '$800M+ monthly exchange volume',
+    year: '2023',
     heading: 'Performance affiliate network driving $800M+ monthly exchange volume.',
     tags: ['Performance Marketing', 'Affiliate Network', 'Exchange'],
     video: '/media/Company-Loop4-compressed-2.mp4',
@@ -83,8 +80,7 @@ const projects = [
     size: 'small',
     href: '/work/cashaa',
     name: 'Cashaa',
-    type: 'Token launch — influencer, PR, community',
-    result: '$32M raised',
+    year: '2022',
     heading: 'Token launch powered by influencer marketing, PR and community activation — $32M raised.',
     tags: ['Token Launch', 'Influencer Marketing', 'PR', 'Community'],
     video: '/media/Featured2-Compressed.mp4',
@@ -106,10 +102,10 @@ const allCards = [intro, ...projects];
       </h2>
       <div class="Work_rightText__zx_Y0">
         <h3>
-          <span data-blur-reveal="true">Campaigns that raise capital and move markets.</span>
+          <span data-blur-reveal="true">Making brands a damn site better.</span>
         </h3>
         <p>
-          <span data-blur-reveal="true">Featured case studies across Web3, AI and fintech — token launches, PR programmes and full-stack growth campaigns that delivered measurable results.</span>
+          <span data-blur-reveal="true">Featured work across Web3, AI and fintech — token launches, PR programmes and full-stack growth campaigns engineered to move markets.</span>
         </p>
       </div>
     </div>
@@ -134,11 +130,7 @@ const allCards = [intro, ...projects];
                   <path fill={`url(#${arrowGrad.id})`} stroke-width="0" d="M13.25 12.18L13.25 0.23 14.78 0.23 14.78 14.76 14.74 14.76 14.74 14.78 0.21 14.78 0.21 13.25 12.18 13.25 0 1.08 1.08 0 13.25 12.18z"></path>
                 </svg>{p.name}
               </h3>
-              <p>
-                {p.kicker && <span class="ProjectCard_kicker__c8">{p.kicker} &middot; </span>}
-                {p.type && <span class="ProjectCard_type__c8">{p.type} &middot; </span>}
-                <span class="ProjectCard_result__c8">{p.result}</span>
-              </p>
+              <p>{p.year}</p>
             </div>
             <div class="ProjectCard_projectImage__Nfx9I">
               <div class="ProjectCard_imageOverlay__OCawr">
@@ -167,30 +159,24 @@ const allCards = [intro, ...projects];
   </div>
 </div>
 
-<style>
+<style is:global>
   .Work_work__rSI8c {
     background-color: #000 !important;
     padding-bottom: 15vh;
   }
 
-  /* Intro card keeps the grid layout but styles the copy more prominently */
+  /* Grid preserves KOTA's spacing but we add a little extra room beneath the
+     intro card so the Corum8 video isn't crowded by the first small case. */
+  .Work_projects__A5q77 .AnimatedGrid_grid__otAMD .container {
+    row-gap: 4rem !important;
+    column-gap: 2.5rem !important;
+  }
+  .ProjectCard_intro__c8 { margin-bottom: 1.5rem !important; }
+  .Work_buttonContainer__Owbmu { margin-top: 5rem !important; }
+
+  /* Intro card reads as brand statement rather than case-study metric. */
   .ProjectCard_intro__c8 .ProjectCard_projectText__o770X p {
     font-weight: 500;
     letter-spacing: 0.01em;
-  }
-
-  .ProjectCard_kicker__c8 {
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 0.7em;
-    opacity: 0.75;
-  }
-
-  .ProjectCard_type__c8 {
-    opacity: 0.85;
-  }
-
-  .ProjectCard_result__c8 {
-    font-weight: 600;
   }
 </style>

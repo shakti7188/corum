@@ -1,187 +1,149 @@
 ---
-// Dynamic Statistics Carousel
-export interface StatItem {
-  logo: string;
-  alt: string;
-  mainVisual: string;
-  heading: string;
-  description: string;
-  href?: string;
-  btnText?: string;
-}
-
-export interface Props {
-  stats?: StatItem[];
-}
-
-const defaultStats: StatItem[] = [
-  {
-    logo: '/clients/binance.png',
-    alt: 'Binance',
-    mainVisual: '/clients/binance.png',
-    heading: 'M+',
-    description: 'monthly exchange volume via our performance affiliate network.',
-    href: '/work/binance',
-    btnText: 'View Project'
-  },
-  {
-    logo: '/clients/fanadise.png',
-    alt: 'Fanadise',
-    mainVisual: '/clients/fanadise.png',
-    heading: 'M',
-    description: 'raised through our full-stack Web3 growth campaign.',
-    href: '/work/fanadise',
-    btnText: 'View Project'
-  },
-  {
-    logo: '/clients/kucoin.png',
-    alt: 'KuCoin',
-    mainVisual: '/clients/kucoin.png',
-    heading: 'Global',
-    description: 'brand visibility amplified in every priority market via PR.',
-    href: '/work/kucoin',
-    btnText: 'View Project'
-  }
-];
-
-const { stats = defaultStats } = Astro.props;
 ---
 
 <div class="Statistics_statistics__vWlOY">
-          <div class="DarkThemeSwitch_cover__hn_xc"></div>
-          <div class="container">
-            <h2 class="StatisticsHeading_heading__3C_3F">
-              <span><div class="LargeHeading_headingOuter__i9qcd">
-                  <span class="StatisticsHeading_heading__3C_3F">Our</span><span class="StatisticsHeading_heading__3C_3F StatisticsHeading_bottom__WtLQC">Results</span>
-                </div></span>
-            </h2>
-          </div>
-          <div class="StatisticsCarousel_panels__pxnru">
-            <div class="StatisticsCarousel_container__2XA6W">
-              <div class="StatisticsCarousel_swiper__PGdj6 swiper">
-                <div class="swiper-wrapper">
-                  <div class="StatisticsCarousel_swiperSlide__is8BS swiper-slide">
-                    <div class="StatisticsPanel_panel__5YHtR statisticPanel">
-                      <figure class="StatisticsPanel_backgroundImage___Dgsu">
-                        <span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-srcset="https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-1400x762.jpeg 1400w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-2000x1089.jpeg 2000w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-500x272.jpeg 500w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-768x418.jpeg 768w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-1536x836.jpeg 1536w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-2048x1115.jpeg 2048w" data-src="/images/Statistics-bg-black.jpeg" alt="" fetchpriority="low" height="1222" width="2244" sizes="auto" class="lazyload"></span>
-                      </figure>
-                      <div class="StatisticsPanel_panelWrap__XLJZs">
-                        <figure class="StatisticsPanel_logo__Y5wQT">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/binance.png" alt="Binance" fetchpriority="low" height="89" width="180" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <figure class="StatisticsPanel_visualMobile__NTMW2">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/binance.png" alt="Binance" fetchpriority="low" height="400" width="600" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <h3 class="StatisticsPanel_heading__UrLlt">$800M+</h3>
-                        <span class="StatisticsPanel_description__csS74">monthly exchange volume via our performance affiliate network.</span>
-                        <div class="StatisticsPanel_buttons__FwZUj">
-                          <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                            <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
-                              <a class="Button_inner__fnyH6" href="/work/binance"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View Project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                    <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <figure class="StatisticsPanel_visual__W0d30">
-                        <span class="Image_image__RAAdZ Image_contain__awbZj"><img data-src="/clients/binance.png" alt="Binance" fetchpriority="low" height="400" width="600" sizes="auto" class="lazyload"></span>
-                      </figure>
+  <div class="DarkThemeSwitch_cover__hn_xc"></div>
+
+  <div class="StatisticsCarousel_panels__pxnru">
+    <div class="StatisticsCarousel_container__2XA6W">
+      <div class="StatisticsCarousel_swiper__PGdj6 swiper">
+        <div class="swiper-wrapper">
+
+          <!-- Slide 1: Influencer & KOL Marketing -->
+          <div class="StatisticsCarousel_swiperSlide__is8BS swiper-slide">
+            <div class="StatisticsPanel_panel__5YHtR statisticPanel">
+              <figure class="StatisticsPanel_backgroundImage___Dgsu">
+                <span class="Image_image__RAAdZ Image_fill__EiIzS">
+                  <img data-src="/images/Statistics-bg-black.jpeg" src="/images/Statistics-bg-black.jpeg" alt="" fetchpriority="low" height="1222" width="2244" class="lazyload" />
+                </span>
+              </figure>
+              <div class="StatisticsPanel_panelWrap__XLJZs">
+                <figure class="StatisticsPanel_logo__Y5wQT">
+                  <span class="StatisticsPanel_pillar__c8">Influencer &amp; KOL Marketing</span>
+                </figure>
+                <figure class="StatisticsPanel_visualMobile__NTMW2">
+                  <div class="c8-kol-visual"></div>
+                </figure>
+                <h3 class="StatisticsPanel_heading__UrLlt">25,000+</h3>
+                <span class="StatisticsPanel_description__csS74">vetted KOLs across Web3, AI and fintech — activated on every tier-1 campaign we run.</span>
+                <div class="StatisticsPanel_buttons__FwZUj">
+                  <div class="Magnetic_magnetic__LncOy" data-fill="false">
+                    <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
+                      <a class="Button_inner__fnyH6" href="/services/marketing/influencer-marketing"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Explore services</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI"><path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
                     </div>
                   </div>
-                  <div class="StatisticsCarousel_swiperSlide__is8BS swiper-slide">
-                    <div class="StatisticsPanel_panel__5YHtR statisticPanel">
-                      <figure class="StatisticsPanel_backgroundImage___Dgsu">
-                        <span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-srcset="https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-1400x762.jpeg 1400w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-2000x1089.jpeg 2000w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-500x272.jpeg 500w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-768x418.jpeg 768w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-1536x836.jpeg 1536w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-2048x1115.jpeg 2048w" data-src="/images/Statistics-bg-black.jpeg" alt="" fetchpriority="low" height="1222" width="2244" sizes="auto" class="lazyload"></span>
-                      </figure>
-                      <div class="StatisticsPanel_panelWrap__XLJZs">
-                        <figure class="StatisticsPanel_logo__Y5wQT">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/fanadise.png" alt="Fanadise" fetchpriority="low" height="48" width="180" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <figure class="StatisticsPanel_visualMobile__NTMW2">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/fanadise.png" alt="Fanadise" fetchpriority="low" height="400" width="600" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <h3 class="StatisticsPanel_heading__UrLlt">$5M</h3>
-                        <span class="StatisticsPanel_description__csS74">raised through our full-stack Web3 growth campaign.</span>
-                        <div class="StatisticsPanel_buttons__FwZUj">
-                          <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                            <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
-                              <a class="Button_inner__fnyH6" href="/work/fanadise"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View Project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                    <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <figure class="StatisticsPanel_visual__W0d30">
-                        <span class="Image_image__RAAdZ Image_contain__awbZj"><img data-src="/clients/fanadise.png" alt="Fanadise" fetchpriority="low" height="400" width="600" sizes="auto" class="lazyload"></span>
-                      </figure>
-                    </div>
-                  </div>
-                  <div class="StatisticsCarousel_swiperSlide__is8BS swiper-slide">
-                    <div class="StatisticsPanel_panel__5YHtR statisticPanel">
-                      <figure class="StatisticsPanel_backgroundImage___Dgsu">
-                        <span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-srcset="https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-1400x762.jpeg 1400w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-2000x1089.jpeg 2000w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-500x272.jpeg 500w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-768x418.jpeg 768w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-1536x836.jpeg 1536w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-2048x1115.jpeg 2048w" data-src="/images/Statistics-bg-black.jpeg" alt="" fetchpriority="low" height="1222" width="2244" sizes="auto" class="lazyload"></span>
-                      </figure>
-                      <div class="StatisticsPanel_panelWrap__XLJZs">
-                        <figure class="StatisticsPanel_logo__Y5wQT">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/metarix.png" alt="Metarix" fetchpriority="low" height="88" width="180" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <figure class="StatisticsPanel_visualMobile__NTMW2">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/metarix.png" alt="Metarix" fetchpriority="low" height="400" width="600" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <h3 class="StatisticsPanel_heading__UrLlt">$780K</h3>
-                        <span class="StatisticsPanel_description__csS74">raised in a single full launch across influencers, PR and community.</span>
-                        <div class="StatisticsPanel_buttons__FwZUj">
-                          <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                            <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
-                              <a class="Button_inner__fnyH6" href="/work/metarix"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View Project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                    <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <figure class="StatisticsPanel_visual__W0d30">
-                        <span class="Image_image__RAAdZ Image_contain__awbZj"><img data-src="/clients/metarix.png" alt="Metarix" fetchpriority="low" height="400" width="600" sizes="auto" class="lazyload"></span>
-                      </figure>
-                    </div>
-                  </div>
-                  <div class="StatisticsCarousel_swiperSlide__is8BS swiper-slide">
-                    <div class="StatisticsPanel_panel__5YHtR statisticPanel">
-                      <figure class="StatisticsPanel_backgroundImage___Dgsu">
-                        <span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-srcset="https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-1400x762.jpeg 1400w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-2000x1089.jpeg 2000w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-500x272.jpeg 500w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-768x418.jpeg 768w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-1536x836.jpeg 1536w, https://kota-content.b-cdn.net/app/uploads/2024/05/Statistics-bg-black-2048x1115.jpeg 2048w" data-src="/images/Statistics-bg-black.jpeg" alt="" fetchpriority="low" height="1222" width="2244" sizes="auto" class="lazyload"></span>
-                      </figure>
-                      <div class="StatisticsPanel_panelWrap__XLJZs">
-                        <figure class="StatisticsPanel_logo__Y5wQT">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/ubuntu-tribe.png" alt="Ubuntu Tribe" fetchpriority="low" height="34" width="220" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <figure class="StatisticsPanel_visualMobile__NTMW2">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/ubuntu-tribe.png" alt="Ubuntu Tribe" fetchpriority="low" height="400" width="600" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <h3 class="StatisticsPanel_heading__UrLlt">Global</h3>
-                        <span class="StatisticsPanel_description__csS74">presence and community acceleration via PR, influencers and a Token2049 activation.</span>
-                        <div class="StatisticsPanel_buttons__FwZUj">
-                          <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                            <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
-                              <a class="Button_inner__fnyH6" href="/work/ubuntu-tribe"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                    <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <figure class="StatisticsPanel_visual__W0d30">
-                        <span class="Image_image__RAAdZ Image_contain__awbZj"><img data-src="/clients/ubuntu-tribe.png" alt="Ubuntu Tribe" fetchpriority="low" height="400" width="600" sizes="auto" class="lazyload"></span>
-                      </figure>
-                    </div>
-                  </div>
-                </div>
-                <div class="StatisticsCarousel_swiperNav__Pi054">
-                  <div class="StatisticsCarousel_swiperNavNext__sdg5A swiper-panel-next"></div>
                 </div>
               </div>
+              <figure class="StatisticsPanel_visual__W0d30">
+                <!-- Social platform icons grid -->
+                <div class="c8-kol-visual"></div>
+              </figure>
             </div>
           </div>
+
+          <!-- Slide 2: PR & Media -->
+          <div class="StatisticsCarousel_swiperSlide__is8BS swiper-slide">
+            <div class="StatisticsPanel_panel__5YHtR statisticPanel">
+              <figure class="StatisticsPanel_backgroundImage___Dgsu">
+                <span class="Image_image__RAAdZ Image_fill__EiIzS">
+                  <img data-src="/images/Statistics-bg-black.jpeg" src="/images/Statistics-bg-black.jpeg" alt="" fetchpriority="low" height="1222" width="2244" class="lazyload" />
+                </span>
+              </figure>
+              <div class="StatisticsPanel_panelWrap__XLJZs">
+                <figure class="StatisticsPanel_logo__Y5wQT">
+                  <span class="StatisticsPanel_pillar__c8">PR &amp; Media</span>
+                </figure>
+                <figure class="StatisticsPanel_visualMobile__NTMW2">
+                  <div class="c8-pr-visual"></div>
+                </figure>
+                <h3 class="StatisticsPanel_heading__UrLlt">10,000+</h3>
+                <span class="StatisticsPanel_description__csS74">publications in our PR network — Forbes, Bloomberg, CoinDesk and every tier-1 outlet in between.</span>
+                <div class="StatisticsPanel_buttons__FwZUj">
+                  <div class="Magnetic_magnetic__LncOy" data-fill="false">
+                    <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
+                      <a class="Button_inner__fnyH6" href="/services/marketing/pr"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Explore services</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI"><path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figure class="StatisticsPanel_visual__W0d30">
+                <div class="c8-pr-visual"></div>
+              </figure>
+            </div>
+          </div>
+
+          <!-- Slide 3: Full-Stack Development -->
+          <div class="StatisticsCarousel_swiperSlide__is8BS swiper-slide">
+            <div class="StatisticsPanel_panel__5YHtR statisticPanel">
+              <figure class="StatisticsPanel_backgroundImage___Dgsu">
+                <span class="Image_image__RAAdZ Image_fill__EiIzS">
+                  <img data-src="/images/Statistics-bg-black.jpeg" src="/images/Statistics-bg-black.jpeg" alt="" fetchpriority="low" height="1222" width="2244" class="lazyload" />
+                </span>
+              </figure>
+              <div class="StatisticsPanel_panelWrap__XLJZs">
+                <figure class="StatisticsPanel_logo__Y5wQT">
+                  <span class="StatisticsPanel_pillar__c8">Full-Stack Development</span>
+                </figure>
+                <figure class="StatisticsPanel_visualMobile__NTMW2">
+                  <div class="c8-dev-visual"></div>
+                </figure>
+                <h3 class="StatisticsPanel_heading__UrLlt">200+</h3>
+                <span class="StatisticsPanel_description__csS74">production products shipped — exchanges, wallets, RWA marketplaces, DeFi protocols and AI agents.</span>
+                <div class="StatisticsPanel_buttons__FwZUj">
+                  <div class="Magnetic_magnetic__LncOy" data-fill="false">
+                    <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
+                      <a class="Button_inner__fnyH6" href="/services/development"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Explore services</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI"><path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figure class="StatisticsPanel_visual__W0d30">
+                <div class="c8-dev-visual"></div>
+              </figure>
+            </div>
+          </div>
+
+          <!-- Slide 4: Global Reach -->
+          <div class="StatisticsCarousel_swiperSlide__is8BS swiper-slide">
+            <div class="StatisticsPanel_panel__5YHtR statisticPanel">
+              <figure class="StatisticsPanel_backgroundImage___Dgsu">
+                <span class="Image_image__RAAdZ Image_fill__EiIzS">
+                  <img data-src="/images/Statistics-bg-black.jpeg" src="/images/Statistics-bg-black.jpeg" alt="" fetchpriority="low" height="1222" width="2244" class="lazyload" />
+                </span>
+              </figure>
+              <div class="StatisticsPanel_panelWrap__XLJZs">
+                <figure class="StatisticsPanel_logo__Y5wQT">
+                  <span class="StatisticsPanel_pillar__c8">Global Reach</span>
+                </figure>
+                <figure class="StatisticsPanel_visualMobile__NTMW2">
+                  <div class="c8-global-visual"></div>
+                </figure>
+                <h3 class="StatisticsPanel_heading__UrLlt">30+</h3>
+                <span class="StatisticsPanel_description__csS74">countries and 1,100+ projects delivered by a team of 95+ specialists across Dubai, US and India.</span>
+                <div class="StatisticsPanel_buttons__FwZUj">
+                  <div class="Magnetic_magnetic__LncOy" data-fill="false">
+                    <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
+                      <a class="Button_inner__fnyH6" href="/about"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">About Corum8</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI"><path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figure class="StatisticsPanel_visual__W0d30">
+                <div class="c8-global-visual"></div>
+              </figure>
+            </div>
+          </div>
+
+        </div><!-- /swiper-wrapper -->
+        <div class="StatisticsCarousel_swiperNav__Pi054">
+          <div class="StatisticsCarousel_swiperNavNext__sdg5A swiper-panel-next"></div>
         </div>
-        
-<style>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
   .Statistics_statistics__vWlOY {
     background-color: #000 !important;
     position: relative;
@@ -190,36 +152,12 @@ const { stats = defaultStats } = Astro.props;
     overflow: hidden;
   }
 
-  .StatisticsHeading_heading__3C_3F {
-    color: #fff !important;
-  }
-
   .StatisticsCarousel_container__2XA6W {
     display: flex;
     justify-content: center;
   }
 
   @media (min-width: 1024px) {
-    /* Shrink the heading so OUR + RESULTS (staircase) fit fully above the card */
-    .Statistics_statistics__vWlOY .StatisticsHeading_heading__3C_3F {
-      font-size: clamp(2.5rem, 5.6vw, 5.5rem) !important;
-      line-height: 0.9 !important;
-    }
-
-    .Statistics_statistics__vWlOY .StatisticsHeading_heading__3C_3F.StatisticsHeading_bottom__WtLQC {
-      margin-bottom: 0 !important;
-    }
-
-    /* Heading sits at the very top of the pinned viewport */
-    .Statistics_statistics__vWlOY > .container {
-      position: absolute;
-      top: 1.5vh;
-      left: 0;
-      right: 0;
-      z-index: 1;
-    }
-
-    /* Cards vertically centered in pinned viewport — location stays put */
     .StatisticsCarousel_panels__pxnru {
       position: absolute;
       top: 50%;
@@ -229,11 +167,6 @@ const { stats = defaultStats } = Astro.props;
       margin: 0 !important;
       z-index: 2;
     }
-
-    .StatisticsCarousel_swiper__PGdj6 {
-      margin: 0 auto;
-    }
-
     .StatisticsCarousel_swiper__PGdj6 .swiper-wrapper {
       position: relative;
       display: block !important;
@@ -241,30 +174,729 @@ const { stats = defaultStats } = Astro.props;
       max-height: 72vh;
       z-index: 5;
     }
-
-    /* Keep the card content compact so the bottom border + button stay visible */
     .StatisticsPanel_panel__5YHtR {
       min-height: 62vh !important;
       max-height: 72vh !important;
       padding: 2.5rem 3.5rem !important;
     }
+    .StatisticsPanel_description__csS74 { margin-bottom: 2.25rem !important; }
+    .StatisticsPanel_heading__UrLlt { font-size: clamp(5rem, 8vw, 8rem) !important; }
+    .StatisticsCarousel_swiperSlide__is8BS { width: 100% !important; height: 100% !important; }
+  }
 
-    .StatisticsPanel_description__csS74 {
-      margin-bottom: 2.25rem !important;
-    }
+  .StatisticsPanel_pillar__c8 {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
 
-    .StatisticsPanel_logo__Y5wQT img {
-      margin-bottom: 1.75rem !important;
-      height: 80px !important;
-    }
+  /* ── Influencer / KOL visual — feed of realistic social posts ───────────── */
+  .c8-kol-visual {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    align-content: center;
+    position: relative;
+  }
+  .c8-post {
+    background: #18181b;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 0.85rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #e4e4e7;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    transition: transform 0.4s cubic-bezier(.2,.8,.2,1), border-color 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    position: relative;
+  }
+  .c8-post:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.22);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.6);
+  }
+  .c8-post__head {
+    display: flex; align-items: center; gap: 0.55rem;
+    margin-bottom: 0.55rem;
+  }
+  .c8-post__avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: linear-gradient(135deg, #f72585, #4361ee);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 0.7rem;
+  }
+  .c8-post__user { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+  .c8-post__name { font-weight: 700; font-size: 0.78rem; color: #fff; display: flex; align-items: center; gap: 0.25rem; }
+  .c8-post__name svg { color: #1da1f2; flex-shrink: 0; }
+  .c8-post__handle { font-size: 0.68rem; color: #71717a; }
+  .c8-post__platform { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.7; }
+  .c8-post__body { font-size: 0.76rem; color: #d4d4d8; margin-bottom: 0.55rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .c8-post__body b { color: #f72585; font-weight: 600; }
+  .c8-post__stats { display: flex; gap: 0.85rem; font-size: 0.68rem; color: #71717a; padding-top: 0.45rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .c8-post__stats span { display: inline-flex; align-items: center; gap: 0.25rem; }
+  .c8-post__stats svg { width: 11px; height: 11px; }
 
-    .StatisticsPanel_heading__UrLlt {
-      font-size: clamp(5rem, 8vw, 8rem) !important;
-    }
+  /* ── PR / Media visual — newspaper article cards ─────────────────────────── */
+  .c8-pr-visual {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    justify-content: center;
+  }
+  .c8-article {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0.85rem;
+    background: #fff;
+    color: #111;
+    border-radius: 10px;
+    padding: 0.7rem;
+    font-family: 'Georgia', serif;
+    transition: transform 0.4s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s;
+    overflow: hidden;
+  }
+  .c8-article:hover {
+    transform: translateX(4px);
+    box-shadow: 0 14px 30px -12px rgba(0,0,0,0.5);
+  }
+  .c8-article__thumb {
+    width: 80px; height: 64px; border-radius: 6px;
+    background: linear-gradient(135deg, var(--thumb-a, #1f2937), var(--thumb-b, #374151));
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .c8-article__thumb::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.25), transparent 60%);
+  }
+  .c8-article__body { min-width: 0; display: flex; flex-direction: column; justify-content: space-between; }
+  .c8-article__pub {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #71717a;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .c8-article__pub b { color: #f72585; }
+  .c8-article__headline {
+    font-family: 'Georgia', serif;
+    font-size: 0.84rem;
+    line-height: 1.25;
+    color: #111;
+    font-weight: 700;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    margin-bottom: 0.25rem;
+  }
+  .c8-article__meta {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.62rem;
+    color: #71717a;
+    display: flex; gap: 0.65rem; align-items: center;
+  }
 
-    .StatisticsCarousel_swiperSlide__is8BS {
-      width: 100% !important;
-      height: 100% !important;
-    }
+  /* ── Dev visual — 2x2 grid of fake product screenshots ──────────────────── */
+  .c8-dev-visual {
+    width: 100%;
+    height: 100%;
+    min-height: 360px;
+    padding: 0.5rem;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.85rem;
+    perspective: 1400px;
+  }
+  .c8-product {
+    position: relative;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 18px 38px -16px rgba(0,0,0,0.65), 0 2px 6px rgba(0,0,0,0.25);
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    will-change: transform;
+  }
+  .c8-product:nth-child(1) { transform: rotate(-1.2deg) translateY(0); }
+  .c8-product:nth-child(2) { transform: rotate( 0.8deg) translateY(-4px); }
+  .c8-product:nth-child(3) { transform: rotate( 1.4deg) translateY(2px); }
+  .c8-product:nth-child(4) { transform: rotate(-0.6deg) translateY(-2px); }
+  .c8-product:hover { transform: rotate(0deg) translateY(-6px) scale(1.02); z-index: 2; }
+
+  /* Browser-window chrome shared by web product mockups */
+  .c8-product__chrome {
+    background: #f1f1f3;
+    padding: 0.4rem 0.6rem;
+    display: flex; align-items: center; gap: 0.45rem;
+    border-bottom: 1px solid #e3e3e6;
+    height: 22px;
+  }
+  .c8-product__chrome i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+  .c8-product__chrome i:nth-child(1) { background: #ff5f57; }
+  .c8-product__chrome i:nth-child(2) { background: #febc2e; }
+  .c8-product__chrome i:nth-child(3) { background: #28c840; }
+  .c8-product__url {
+    margin-left: 0.45rem;
+    font-size: 0.55rem;
+    background: #fff;
+    border-radius: 4px;
+    padding: 2px 8px;
+    color: #888;
+    border: 1px solid #e1e1e3;
+    flex: 1;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* ── 1: Crypto exchange swap card ─────────────────────────────────────── */
+  .c8-product--swap .c8-product__inner {
+    padding: 0.7rem 0.75rem 0.85rem;
+    background: linear-gradient(160deg, #0b1221 0%, #1a1f3a 100%);
+    color: #fff;
+    height: calc(100% - 22px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .c8-product--swap .c8-swap__title {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .c8-product--swap .c8-swap__row {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 0.45rem 0.55rem;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 0.5rem;
+  }
+  .c8-product--swap .c8-swap__amt {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .c8-product--swap .c8-swap__sub { font-size: 0.5rem; opacity: 0.55; margin-top: 1px; }
+  .c8-product--swap .c8-swap__token {
+    display: flex; align-items: center; gap: 0.35rem;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 3px 8px 3px 4px;
+    font-size: 0.6rem; font-weight: 600;
+  }
+  .c8-product--swap .c8-swap__token b {
+    width: 16px; height: 16px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.5rem; font-weight: 700;
+  }
+  .c8-product--swap .c8-swap__btn {
+    margin-top: auto;
+    background: linear-gradient(90deg, #ff006e, #b5179e);
+    border-radius: 8px;
+    padding: 0.45rem;
+    text-align: center;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .c8-product--swap .c8-swap__rate {
+    display: flex; justify-content: space-between;
+    font-size: 0.5rem;
+    opacity: 0.65;
+  }
+
+  /* ── 2: Mobile wallet phone mockup ────────────────────────────────────── */
+  .c8-product--wallet {
+    background: linear-gradient(180deg, #1a1d29 0%, #0d0f1a 100%);
+    padding: 0.6rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .c8-product--wallet .c8-phone {
+    width: 96px;
+    height: 100%;
+    max-height: 200px;
+    background: #fff;
+    border-radius: 12px;
+    border: 2px solid #2a2e3d;
+    overflow: hidden;
+    position: relative;
+    display: flex; flex-direction: column;
+    box-shadow: 0 8px 20px -8px rgba(0,0,0,0.5);
+  }
+  .c8-product--wallet .c8-phone__notch {
+    background: #1a1d29;
+    height: 12px;
+    margin: 4px auto 0;
+    width: 38px;
+    border-radius: 6px;
+  }
+  .c8-product--wallet .c8-phone__bal {
+    text-align: center; padding: 0.45rem 0.3rem 0.35rem;
+    color: #0a0a0a;
+  }
+  .c8-product--wallet .c8-phone__bal small { font-size: 0.45rem; opacity: 0.55; display: block; }
+  .c8-product--wallet .c8-phone__bal b { font-size: 0.85rem; font-weight: 700; letter-spacing: -0.02em; }
+  .c8-product--wallet .c8-phone__bal span { color: #00b67a; font-size: 0.5rem; margin-left: 3px; }
+  .c8-product--wallet .c8-phone__pills {
+    display: flex; justify-content: center; gap: 4px; padding: 0 0.3rem 0.35rem;
+  }
+  .c8-product--wallet .c8-phone__pill {
+    flex: 1; background: #f3f4f8; border-radius: 999px;
+    text-align: center; font-size: 0.42rem; padding: 3px;
+    color: #555; font-weight: 600;
+  }
+  .c8-product--wallet .c8-phone__list { flex: 1; padding: 0.25rem 0.4rem; overflow: hidden; }
+  .c8-product--wallet .c8-phone__row {
+    display: grid; grid-template-columns: 14px 1fr auto;
+    align-items: center; gap: 5px;
+    padding: 4px 0;
+    border-bottom: 1px solid #f0f1f4;
+    font-size: 0.5rem;
+    color: #0a0a0a;
+  }
+  .c8-product--wallet .c8-phone__row:last-child { border-bottom: 0; }
+  .c8-product--wallet .c8-phone__row i {
+    width: 14px; height: 14px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.42rem; font-weight: 700; color: #fff;
+    font-style: normal;
+  }
+  .c8-product--wallet .c8-phone__row em {
+    text-align: right; font-style: normal; font-weight: 600;
+  }
+
+  /* ── 3: Token launch / presale page ───────────────────────────────────── */
+  .c8-product--token .c8-product__inner {
+    padding: 0.65rem 0.7rem;
+    background: radial-gradient(circle at 80% 0%, rgba(58,134,255,0.15), transparent 60%), #0e1018;
+    color: #fff;
+    height: calc(100% - 22px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .c8-product--token .c8-token__head {
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .c8-product--token .c8-token__logo {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: conic-gradient(from 90deg, #3a86ff, #b5179e, #00b4d8, #3a86ff);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
+  }
+  .c8-product--token .c8-token__name { font-size: 0.7rem; font-weight: 700; letter-spacing: -0.01em; }
+  .c8-product--token .c8-token__sym { font-size: 0.5rem; opacity: 0.55; }
+  .c8-product--token .c8-token__tag {
+    margin-left: auto;
+    font-size: 0.45rem;
+    background: rgba(0,182,122,0.15);
+    color: #00d4a0;
+    border: 1px solid rgba(0,182,122,0.4);
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .c8-product--token .c8-token__price { font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; }
+  .c8-product--token .c8-token__delta { color: #00d4a0; font-size: 0.5rem; margin-left: 0.35rem; }
+  .c8-product--token .c8-token__bar {
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    height: 5px;
+    overflow: hidden;
+  }
+  .c8-product--token .c8-token__bar i {
+    display: block; height: 100%;
+    background: linear-gradient(90deg, #3a86ff, #b5179e);
+    width: 72%;
+    border-radius: 999px;
+  }
+  .c8-product--token .c8-token__meta {
+    display: flex; justify-content: space-between;
+    font-size: 0.45rem; opacity: 0.6;
+  }
+  .c8-product--token .c8-token__chart {
+    flex: 1; min-height: 24px;
+    background:
+      linear-gradient(180deg, rgba(58,134,255,0.25) 0%, transparent 80%);
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'><polyline points='0,22 8,18 16,20 24,12 32,16 40,8 48,11 56,5 64,9 72,4 80,7 88,3 96,5 100,3 100,30 0,30' fill='black' stroke='black' stroke-width='1' stroke-linejoin='round'/></svg>");
+    -webkit-mask-size: 100% 100%;
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'><polyline points='0,22 8,18 16,20 24,12 32,16 40,8 48,11 56,5 64,9 72,4 80,7 88,3 96,5 100,3 100,30 0,30' fill='black' stroke='black' stroke-width='1' stroke-linejoin='round'/></svg>");
+    mask-size: 100% 100%;
+    position: relative;
+  }
+  .c8-product--token .c8-token__chart::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, #3a86ff, #b5179e, transparent);
+  }
+
+  /* ── 4: NFT marketplace ───────────────────────────────────────────────── */
+  .c8-product--nft .c8-product__inner {
+    padding: 0.55rem 0.6rem;
+    background: #0a0a0c;
+    color: #fff;
+    height: calc(100% - 22px);
+    display: flex; flex-direction: column;
+    gap: 0.35rem;
+  }
+  .c8-product--nft .c8-nft__head {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.55rem;
+  }
+  .c8-product--nft .c8-nft__head b { font-weight: 700; }
+  .c8-product--nft .c8-nft__head span {
+    background: rgba(255,255,255,0.08);
+    padding: 2px 6px; border-radius: 4px;
+    font-size: 0.45rem; opacity: 0.7;
+  }
+  .c8-product--nft .c8-nft__grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    min-height: 0;
+  }
+  .c8-product--nft .c8-nft__card {
+    background: #15171c;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .c8-product--nft .c8-nft__art {
+    flex: 1; min-height: 30px;
+  }
+  .c8-product--nft .c8-nft__art--a { background: conic-gradient(from 0deg, #ff006e, #ffb703, #ff006e); }
+  .c8-product--nft .c8-nft__art--b { background: linear-gradient(135deg, #00b4d8, #7209b7); }
+  .c8-product--nft .c8-nft__art--c { background: radial-gradient(circle at 30% 30%, #fb7185, #1e1b4b); }
+  .c8-product--nft .c8-nft__art--d { background: linear-gradient(45deg, #00d4a0, #3a86ff, #b5179e); }
+  .c8-product--nft .c8-nft__info {
+    padding: 3px 5px;
+    display: flex; justify-content: space-between;
+    font-size: 0.42rem;
+  }
+  .c8-product--nft .c8-nft__info b { font-weight: 600; }
+  .c8-product--nft .c8-nft__info span { color: #00d4a0; font-weight: 600; }
+
+  /* ── Global Reach visual — animated map / cities pulse ───────────────────── */
+  .c8-global-visual {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  .c8-globe {
+    border-radius: 14px;
+    background:
+      radial-gradient(ellipse at 30% 30%, rgba(247,37,133,0.15), transparent 40%),
+      radial-gradient(ellipse at 70% 60%, rgba(58,134,255,0.18), transparent 50%),
+      #0a0a0a;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .c8-globe svg { width: 100%; height: 100%; display: block; }
+  .c8-globe__dot {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #f72585;
+    box-shadow: 0 0 0 0 rgba(247,37,133,0.7);
+    animation: c8-cityPulse 2.4s ease-out infinite;
+    transform: translate(-50%, -50%);
+  }
+  .c8-globe__dot--blue { background: #3a86ff; box-shadow: 0 0 0 0 rgba(58,134,255,0.7); animation-name: c8-cityPulseBlue; }
+  @keyframes c8-cityPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(247,37,133,0.65); }
+    70%  { box-shadow: 0 0 0 14px rgba(247,37,133,0); }
+    100% { box-shadow: 0 0 0 0 rgba(247,37,133,0); }
+  }
+  @keyframes c8-cityPulseBlue {
+    0%   { box-shadow: 0 0 0 0 rgba(58,134,255,0.65); }
+    70%  { box-shadow: 0 0 0 14px rgba(58,134,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(58,134,255,0); }
+  }
+  .c8-cities {
+    display: flex; flex-direction: column;
+    gap: 0.5rem;
+    overflow: hidden;
+  }
+  .c8-city {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .c8-city:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+  .c8-city__flag { font-size: 1.15rem; line-height: 1; }
+  .c8-city__name {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.78rem; color: #fff; font-weight: 600;
+  }
+  .c8-city__label {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.6rem; color: #71717a;
+    text-transform: uppercase; letter-spacing: 0.08em;
   }
 </style>
+
+<script>
+  /* Hydrate the four custom visuals after mount */
+  function buildStatVisuals() {
+
+    /* ── KOL feed: realistic-looking social posts ──────────────────── */
+    const verifiedX = `<svg viewBox="0 0 22 22" width="13" height="13" fill="currentColor"><path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"/></svg>`;
+
+    const xLogo = `<svg class="c8-post__platform" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.261 5.631 5.903-5.631Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+    const igLogo = `<svg class="c8-post__platform" viewBox="0 0 24 24" fill="url(#igGrad)"><defs><linearGradient id="igGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f09433"/><stop offset=".5" stop-color="#dc2743"/><stop offset="1" stop-color="#bc1888"/></linearGradient></defs><path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zM4 7.75A3.75 3.75 0 017.75 4h8.5A3.75 3.75 0 0120 7.75v8.5A3.75 3.75 0 0116.25 20h-8.5A3.75 3.75 0 014 16.25v-8.5zm8 1.75a3 3 0 100 6 3 3 0 000-6zm0-1.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm5-.5a1 1 0 100 2 1 1 0 000-2z"/></svg>`;
+
+    const heart = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9.33-9.5C1.5 8.36 3.4 5 7 5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 3.6 0 5.5 3.36 4.33 6.5C19 16.65 12 21 12 21z"/></svg>`;
+    const repost = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 1l4 4-4 4V6H7v4H5V4h12V1zM7 23l-4-4 4-4v3h10v-4h2v6H7v3z"/></svg>`;
+    const reply = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/></svg>`;
+
+    const posts = [
+      { logo: xLogo, name: 'Vitalik', handle: '@VitalikButerin', verified: true, body: 'Excited to see what <b>Corum8</b> is building in the RWA tokenization space — clean architecture, real distribution.', likes: '24.1K', reposts: '3.2K', replies: '892' },
+      { logo: igLogo, name: 'CryptoQueen', handle: '@cryptoqueen.eth', verified: true, body: 'Just wrapped a campaign with the @corum8 team for our DeFi launch. Numbers? <b>+340% community growth</b> in 6 weeks.', likes: '8.7K', reposts: '1.1K', replies: '412' },
+      { logo: xLogo, name: 'Ansem', handle: '@blknoiz06', verified: true, body: 'these guys at @corum8 are different — actual strategy, not just engagement farming. <b>highly recommend</b>', likes: '12.4K', reposts: '2.8K', replies: '615' },
+      { logo: igLogo, name: 'WhaleAlert', handle: '@whalealert.io', verified: true, body: 'Big-ish whale moved $42M today following our @corum8 PR drop. Distribution > everything.', likes: '5.3K', reposts: '780', replies: '203' },
+    ];
+
+    document.querySelectorAll('.c8-kol-visual').forEach(el => {
+      el.innerHTML = posts.map(p => `
+        <div class="c8-post">
+          <div class="c8-post__head">
+            <div class="c8-post__avatar">${p.name.charAt(0)}</div>
+            <div class="c8-post__user">
+              <div class="c8-post__name">${p.name}${p.verified ? verifiedX : ''}</div>
+              <div class="c8-post__handle">${p.handle}</div>
+            </div>
+            ${p.logo}
+          </div>
+          <div class="c8-post__body">${p.body}</div>
+          <div class="c8-post__stats">
+            <span>${reply} ${p.replies}</span>
+            <span>${repost} ${p.reposts}</span>
+            <span>${heart} ${p.likes}</span>
+          </div>
+        </div>
+      `).join('');
+    });
+
+    /* ── PR articles: tier-1 publication cards ──────────────────────── */
+    const articles = [
+      { pub: 'FORBES', headline: 'How Corum8 Is Quietly Building the Backbone of Web3 Marketing', meta: 'Sarah Wells · 8 min read', thumbA: '#1a365d', thumbB: '#2c5282' },
+      { pub: 'BLOOMBERG', headline: 'Corum8-Backed Token Launches Hit $2.4B Combined Market Cap', meta: 'Mike Bostock · 5 min read', thumbA: '#1a202c', thumbB: '#2d3748' },
+      { pub: 'COINDESK', headline: 'Inside the Agency Behind 1,100+ Web3 Projects Across 30 Countries', meta: 'Alex Thorn · 12 min read', thumbA: '#7c3aed', thumbB: '#a855f7' },
+      { pub: 'COINTELEGRAPH', headline: 'Why Top Crypto Founders Are Switching to Full-Service Agencies', meta: 'Lina Park · 6 min read', thumbA: '#0f766e', thumbB: '#14b8a6' },
+    ];
+
+    document.querySelectorAll('.c8-pr-visual').forEach(el => {
+      el.innerHTML = articles.map(a => `
+        <div class="c8-article">
+          <div class="c8-article__thumb" style="--thumb-a:${a.thumbA};--thumb-b:${a.thumbB}"></div>
+          <div class="c8-article__body">
+            <div class="c8-article__pub"><b>●</b> ${a.pub}</div>
+            <div class="c8-article__headline">${a.headline}</div>
+            <div class="c8-article__meta"><span>${a.meta}</span></div>
+          </div>
+        </div>
+      `).join('');
+    });
+
+    /* ── 2x2 grid of fake product screenshots ───────────────────────── */
+    const browserBar = (url) => `
+      <div class="c8-product__chrome">
+        <i></i><i></i><i></i>
+        <span class="c8-product__url">🔒 ${url}</span>
+      </div>`;
+
+    const swapMarkup = `
+      <div class="c8-product c8-product--swap">
+        ${browserBar('app.helix.exchange/swap')}
+        <div class="c8-product__inner">
+          <div class="c8-swap__title">Swap</div>
+          <div class="c8-swap__row">
+            <div>
+              <div class="c8-swap__amt">2.450</div>
+              <div class="c8-swap__sub">≈ $7,840.20</div>
+            </div>
+            <div class="c8-swap__token"><b style="background:#627eea">Ξ</b>ETH</div>
+          </div>
+          <div class="c8-swap__row">
+            <div>
+              <div class="c8-swap__amt">7,841.05</div>
+              <div class="c8-swap__sub">≈ $7,840.95</div>
+            </div>
+            <div class="c8-swap__token"><b style="background:#26a17b;color:#fff">$</b>USDT</div>
+          </div>
+          <div class="c8-swap__rate"><span>1 ETH ≈ 3,200.43 USDT</span><span>Slip 0.1%</span></div>
+          <div class="c8-swap__btn">Swap</div>
+        </div>
+      </div>`;
+
+    const walletMarkup = `
+      <div class="c8-product c8-product--wallet">
+        <div class="c8-phone">
+          <div class="c8-phone__notch"></div>
+          <div class="c8-phone__bal">
+            <small>Total balance</small>
+            <b>$24,318.92</b><span>+4.21%</span>
+          </div>
+          <div class="c8-phone__pills">
+            <div class="c8-phone__pill">Send</div>
+            <div class="c8-phone__pill">Receive</div>
+            <div class="c8-phone__pill">Swap</div>
+          </div>
+          <div class="c8-phone__list">
+            <div class="c8-phone__row"><i style="background:#f7931a">B</i><span>BTC</span><em>0.184</em></div>
+            <div class="c8-phone__row"><i style="background:#627eea">Ξ</i><span>ETH</span><em>2.45</em></div>
+            <div class="c8-phone__row"><i style="background:#9945ff">S</i><span>SOL</span><em>184.0</em></div>
+            <div class="c8-phone__row"><i style="background:#26a17b">$</i><span>USDT</span><em>1,250</em></div>
+          </div>
+        </div>
+      </div>`;
+
+    const tokenMarkup = `
+      <div class="c8-product c8-product--token">
+        ${browserBar('aurorafi.io/token/AURO')}
+        <div class="c8-product__inner">
+          <div class="c8-token__head">
+            <div class="c8-token__logo"></div>
+            <div>
+              <div class="c8-token__name">AuroraFi</div>
+              <div class="c8-token__sym">$AURO</div>
+            </div>
+            <span class="c8-token__tag">LIVE</span>
+          </div>
+          <div>
+            <span class="c8-token__price">$0.428</span>
+            <span class="c8-token__delta">▲ 12.4%</span>
+          </div>
+          <div class="c8-token__bar"><i></i></div>
+          <div class="c8-token__meta"><span>Raised $7.2M / $10M</span><span>72%</span></div>
+          <div class="c8-token__chart"></div>
+        </div>
+      </div>`;
+
+    const nftMarkup = `
+      <div class="c8-product c8-product--nft">
+        ${browserBar('vexel.market/collection')}
+        <div class="c8-product__inner">
+          <div class="c8-nft__head">
+            <b>Vexel Genesis</b>
+            <span>Floor 1.85 ETH</span>
+          </div>
+          <div class="c8-nft__grid">
+            <div class="c8-nft__card">
+              <div class="c8-nft__art c8-nft__art--a"></div>
+              <div class="c8-nft__info"><b>#0421</b><span>2.1 Ξ</span></div>
+            </div>
+            <div class="c8-nft__card">
+              <div class="c8-nft__art c8-nft__art--b"></div>
+              <div class="c8-nft__info"><b>#1108</b><span>1.9 Ξ</span></div>
+            </div>
+            <div class="c8-nft__card">
+              <div class="c8-nft__art c8-nft__art--c"></div>
+              <div class="c8-nft__info"><b>#0875</b><span>2.4 Ξ</span></div>
+            </div>
+            <div class="c8-nft__card">
+              <div class="c8-nft__art c8-nft__art--d"></div>
+              <div class="c8-nft__info"><b>#2230</b><span>1.85 Ξ</span></div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+
+    document.querySelectorAll('.c8-dev-visual').forEach(el => {
+      el.innerHTML = swapMarkup + walletMarkup + tokenMarkup + nftMarkup;
+    });
+
+    /* ── Global Reach: world map + city list ─────────────────────────── */
+    const cities = [
+      { flag: '🇦🇪', name: 'Dubai',     label: 'HQ' },
+      { flag: '🇺🇸', name: 'New York',  label: 'Americas' },
+      { flag: '🇮🇳', name: 'Bangalore', label: 'Dev Hub' },
+      { flag: '🇬🇧', name: 'London',    label: 'Europe' },
+      { flag: '🇸🇬', name: 'Singapore', label: 'Asia' },
+      { flag: '🇩🇪', name: 'Berlin',    label: 'EU' },
+    ];
+
+    // Approximate equirectangular projection for city pins on the SVG map
+    const mapPins = [
+      { x: 56, y: 41, color: 'pink' }, // Dubai
+      { x: 27, y: 36, color: 'blue' }, // NYC
+      { x: 65, y: 47, color: 'pink' }, // Bangalore
+      { x: 49, y: 31, color: 'blue' }, // London
+      { x: 73, y: 50, color: 'pink' }, // Singapore
+      { x: 51, y: 32, color: 'blue' }, // Berlin
+    ];
+
+    document.querySelectorAll('.c8-global-visual').forEach(el => {
+      el.innerHTML = `
+        <div class="c8-globe">
+          <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="dots" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+                <circle cx="7" cy="7" r="1.4" fill="rgba(255,255,255,0.18)" />
+              </pattern>
+              <mask id="continents">
+                <rect width="1000" height="500" fill="#000"/>
+                <path fill="#fff" d="M150,140 q40,-30 90,-20 q60,5 90,30 q40,30 60,80 q-15,40 -55,55 q-50,15 -90,-5 q-60,-25 -80,-65 q-30,-40 -15,-75z"/>
+                <path fill="#fff" d="M280,260 q40,30 60,90 q15,55 -10,90 q-30,15 -55,-25 q-30,-50 -25,-100 q5,-40 30,-55z"/>
+                <path fill="#fff" d="M450,110 q70,-20 130,10 q50,25 65,80 q5,40 -25,70 q-50,30 -110,15 q-60,-15 -85,-65 q-15,-50 25,-110z"/>
+                <path fill="#fff" d="M520,250 q60,-10 100,30 q40,35 30,90 q-15,55 -75,75 q-60,15 -100,-30 q-30,-45 -15,-95 q15,-50 60,-70z"/>
+                <path fill="#fff" d="M620,150 q50,-25 110,-10 q70,15 110,75 q35,55 5,110 q-30,50 -100,55 q-80,5 -130,-50 q-50,-55 -45,-115 q5,-50 50,-65z"/>
+                <path fill="#fff" d="M780,330 q50,5 80,40 q25,40 5,75 q-30,30 -75,15 q-40,-20 -45,-65 q-5,-45 35,-65z"/>
+              </mask>
+            </defs>
+            <rect width="1000" height="500" fill="url(#dots)" mask="url(#continents)"/>
+          </svg>
+          ${mapPins.map(p => `<span class="c8-globe__dot ${p.color === 'blue' ? 'c8-globe__dot--blue' : ''}" style="left:${p.x}%;top:${p.y}%"></span>`).join('')}
+        </div>
+        <div class="c8-cities">
+          ${cities.map(c => `
+            <div class="c8-city">
+              <span class="c8-city__flag">${c.flag}</span>
+              <span class="c8-city__name">${c.name}</span>
+              <span class="c8-city__label">${c.label}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    });
+  }
+
+  if (document.readyState !== 'loading') buildStatVisuals();
+  else document.addEventListener('DOMContentLoaded', buildStatVisuals);
+  document.addEventListener('astro:page-load', buildStatVisuals);
+</script>

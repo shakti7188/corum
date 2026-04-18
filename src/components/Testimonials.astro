@@ -396,45 +396,107 @@ const { testimonials = defaultTestis } = Astro.props;
         </div>
       </section>
 
-<style>
-  .TestimonialsCarousel_swiperNav__hRE1L {
-    display: flex;
-    gap: 1.25rem;
-    justify-content: flex-end;
-    padding: 2.5rem 2.5rem 0;
-    margin-top: 0;
+<style is:global>
+  /* Cards — lift the minimum height so quotes breathe instead of packing
+     tight against the avatar + logo. Keeps KOTA's 150px corner radius and
+     12-col inner grid intact. */
+  .Testimonials_testimonials__AMUEx .TestimonialsPanel_panel__QSk4x,
+  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_panel__"] {
+    min-height: clamp(540px, 68vh, 680px) !important;
+    padding: 4rem 4.5rem !important;
+    display: flex !important;
+    align-items: stretch !important;
+  }
+  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_panelWrap"] {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    width: 100% !important;
+  }
+  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_logo"] {
+    flex: 0 0 auto;
+    margin-bottom: 1.75rem !important;
+  }
+  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_description"] {
+    font-size: clamp(1.15rem, 1.5vw, 1.55rem) !important;
+    line-height: 1.55 !important;
+    flex: 1 1 auto;
+    margin-bottom: 2rem !important;
+  }
+  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_details"] {
+    margin-top: auto !important;
+  }
+  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_buttons"] {
+    margin-top: 1.5rem !important;
   }
 
-  .custom-swiper-btn {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
+  /* Nav — bottom-right of the card, unfilled icon-only buttons. */
+  .Testimonials_testimonials__AMUEx .TestimonialsCarousel_swiper__AMmtm {
+    position: relative;
+  }
+  .TestimonialsCarousel_swiperNav__hRE1L {
+    position: absolute;
+    right: 2rem;
+    bottom: 1.75rem;
+    top: auto;
+    left: auto;
+    padding: 0 !important;
+    margin: 0 !important;
+    pointer-events: none !important;
+    z-index: 20;
+    display: flex !important;
+    gap: 0.9rem;
+  }
+  .TestimonialsCarousel_swiperNav__hRE1L .custom-swiper-btn {
+    position: static;
+    width: 52px;
+    height: 52px;
+    border-radius: 0;
+    border: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none;
+    color: #0a0a0a;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-    background: transparent;
-    color: #fff;
+    transition: color 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+    pointer-events: auto !important;
+    z-index: 21;
+    padding: 0;
+    transform: none;
   }
-
+  .TestimonialsCarousel_swiperNav__hRE1L .custom-swiper-btn svg {
+    width: 40px;
+    height: 40px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+  .TestimonialsCarousel_swiperNav__hRE1L .custom-swiper-btn:hover {
+    transform: translateX(2px) scale(1.05);
+    color: #000;
+  }
+  .TestimonialsCarousel_swiperNav__hRE1L .swiper-panel-prev:hover {
+    transform: translateX(-2px) scale(1.05);
+  }
+  .TestimonialsCarousel_swiperNav__hRE1L .custom-swiper-btn.swiper-button-disabled {
+    opacity: 0.25;
+    pointer-events: none !important;
+  }
   .custom-swiper-btn svg {
     stroke: currentColor;
-    width: 26px;
-    height: 26px;
-    transition: stroke 0.3s ease;
+    width: 24px;
+    height: 24px;
   }
-
   .custom-swiper-btn:hover {
-    background: #fff;
-    border-color: #fff;
-    color: #000;
-    transform: scale(1.05);
+    background: var(--c8-gold, #d4a23a);
+    border-color: var(--c8-gold, #d4a23a);
+    color: #111;
+    transform: scale(1.06);
   }
-
   .custom-swiper-btn.swiper-button-disabled {
-    opacity: 0.35;
+    opacity: 0.3;
     pointer-events: none;
   }
 </style>

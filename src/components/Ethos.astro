@@ -8,6 +8,9 @@
               <span data-fill="false" data-blur-reveal="true"><span>Strategy-first.<br>
                   Outcome-obsessed.<br> </span></span>
             </h2>
+            <p class="EthosHeading_intro__c8">
+              <span data-blur-reveal="true">Every engagement runs the same four moves, in the same order &mdash; shaped by 1,100+ launches across Web3, AI and fintech. Not a template. A discipline. Here&rsquo;s what it looks like from your side of the table.</span>
+            </p>
             <div class="Ethos_sections__tC3Xx">
               <div>
                 <div class="EthosSection_section__hjSSE">
@@ -23,9 +26,12 @@
                       </div>
                     </div>
                     <p class="EthosSection_sectionDescription__9BWQV">
-                      Discovery, positioning and go-to-market architecture grounded
-                      in 1,100+ projects of data. Before a line of code ships we
-                      know the market, the wedge and the win condition.
+                      We don&rsquo;t start by building. We start by pressure-testing
+                      your market, your wedge and your win condition against data
+                      from 1,100+ launches. You leave this phase with a positioning
+                      you can defend in a board meeting &mdash; and a go-to-market
+                      plan built around the one metric that actually moves your
+                      valuation.
                     </p>
                   </div>
                   <div class="EthosSection_line___wkFr">
@@ -47,9 +53,12 @@
                       </div>
                     </div>
                     <p class="EthosSection_sectionDescription__9BWQV">
-                      Exchanges, wallets, RWA platforms, AI agents and brand systems —
-                      95+ in-house specialists ship production-grade products
-                      and conversion-ready creative under one roof.
+                      You stop managing seven vendors. Our 95+ in-house specialists
+                      &mdash; engineers, designers, copywriters, PR leads, token
+                      economists &mdash; sit in one Slack and ship against one plan.
+                      Whether it&rsquo;s a Solana-native exchange, an RWA tokenization
+                      platform, an AI agent or the brand system wrapped around it,
+                      the product and the story come out aligned.
                     </p>
                   </div>
                   <div class="EthosSection_line___wkFr">
@@ -71,9 +80,12 @@
                       </div>
                     </div>
                     <p class="EthosSection_sectionDescription__9BWQV">
-                      Tier-1 PR across 10,000+ publications, 25,000+ vetted KOLs
-                      and coordinated community drops — orchestrated so every
-                      channel hits on the same day and message.
+                      Launch day shouldn&rsquo;t be a prayer. We coordinate tier-1 PR
+                      across 10,000+ publications, 25,000+ vetted KOLs and
+                      community drops from a single command room &mdash; so the
+                      news story, the KOL thread, the Telegram drop and the
+                      Twitter Space all land inside the same window. No
+                      fragmented momentum. No channels speaking past each other.
                     </p>
                   </div>
                   <div class="EthosSection_line___wkFr">
@@ -95,9 +107,12 @@
                       </div>
                     </div>
                     <p class="EthosSection_sectionDescription__9BWQV">
-                      Performance sprints, SEO / AEO / GEO, affiliate networks
-                      and retention loops that keep compounding long after TGE —
-                      Binance runs its $800M+ monthly volume on this playbook.
+                      Most agencies leave after the press release. We don&rsquo;t.
+                      Performance sprints, SEO / AEO / GEO, affiliate programmes
+                      and retention loops are where the compounding actually
+                      happens &mdash; and it&rsquo;s the same playbook running
+                      underneath Binance&rsquo;s $800M+ in monthly affiliate volume.
+                      Your TGE is the starting line, not the finish.
                     </p>
                   </div>
                   <div class="EthosSection_line___wkFr">
@@ -143,5 +158,113 @@
   }
   .Ethos_sections__tC3Xx [data-ethos-row]:hover {
     opacity: 1;
+  }
+</style>
+
+
+
+<style is:global>
+  /* Tighten the gap between "Our Services" (the pinned Full-Stack card
+     unpins at the container's bottom) and Ethos. KOTA ships Services with
+     `padding: 9.375rem 0 50vh` — way too much runway below the reels. */
+  .Services_services__YnZAs {
+    padding-bottom: 4vh !important;
+  }
+  .Ethos_ethos__vP_lg {
+    padding-top: 2vh !important;
+  }
+  /* Let the Ethos scroll-in reveal take over opacity/transform before GSAP
+     hydrates, so the section doesn't flash fully-visible for a frame. */
+  .Ethos_ethos__vP_lg { will-change: transform, opacity; }
+
+  /* 1. Retrieve the Numbers inline */
+  .EthosSection_numberOuter__uo7oD {
+    display: inline-block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin-right: 1.5rem !important;
+    font-family: monospace;
+    font-size: clamp(2rem, 4vw, 4rem) !important;
+    color: #111 !important;
+    font-weight: 300 !important;
+  }
+  .EthosSection_sectionHeading___kl5X {
+    display: flex !important;
+    align-items: center !important;
+    order: 1 !important;
+    z-index: 100 !important;
+    position: relative !important;
+  }
+
+  /* 2. Configure Row and Image Hover Z-Index */
+  .EthosSection_sectionTrigger__Dbhq8 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    position: relative !important;
+    padding: 3rem 0 !important;
+  }
+  .EthosSection_sectionImage__R8Wnf {
+    position: absolute !important;
+    left: 20% !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* 3. Text formatting */
+  .EthosSection_sectionDescription__9BWQV {
+    order: 3 !important;
+    flex-basis: 55% !important;
+    max-width: 55% !important;
+    font-size: 1.4rem !important;
+    line-height: 1.6 !important;
+    color: #111 !important;
+    /* User request: 'one side border of column too' -> Left border only */
+    border-left: 2px solid rgba(0,0,0,0.1) !important;
+    padding-left: 2.5rem !important;
+    margin: 0 !important;
+    z-index: 100 !important;
+    position: relative !important;
+  }
+  
+  /* 4. Restore the master thick underline spanning both left and right */
+  .EthosSection_line___wkFr {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .EthosSection_lineInner__7mqkk {
+    background: #111 !important;
+    height: 3px !important; /* Made thicker */
+    opacity: 0.15 !important;
+    width: 100% !important;
+  }
+  
+  /* 5. Popping speed */
+  .EthosSection_sectionImageReveal__oz58_ {
+    transition: opacity 0.15s ease-out, height 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  /* 6. Customer-facing lead-in beneath the big Ethos heading.
+     Span the full 12-col grid track so the paragraph escapes the 88px
+     single-column trap, then center the text inside a tight measure so
+     it reads as a quiet supporting note — not a second headline. */
+  .EthosHeading_intro__c8 {
+    grid-column: 1 / -1 !important;
+    max-width: 42rem !important;
+    margin: 1rem auto 4rem !important;
+    font-size: clamp(0.88rem, 0.95vw, 1rem) !important;
+    line-height: 1.6 !important;
+    color: #444 !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.002em !important;
+    text-align: center !important;
+  }
+  @media (max-width: 900px) {
+    .EthosHeading_intro__c8 {
+      margin: 0.75rem auto 2.5rem !important;
+      font-size: 0.9rem !important;
+      max-width: 32rem !important;
+    }
   }
 </style>

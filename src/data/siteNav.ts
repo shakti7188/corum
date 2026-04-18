@@ -2,7 +2,7 @@ export const brand = {
   name: 'Corum8',
   shortMark: 'C8',
   email: 'info@corum8.com',
-  copyrightYear: 2026,
+  copyrightYear: 2019,
 };
 
 export const ctaLink = {
@@ -16,19 +16,51 @@ export const navLinks: Array<{
   href?: string;
   children?: Array<{ label: string; href: string }>;
 }> = [
-  { label: 'Work', href: '/work' },
-  { label: 'Agency', href: '/agency' },
+  { label: 'Home', href: '/' },
   {
-    label: 'Services',
+    label: 'Marketing',
     children: [
-      { label: 'Web design & development', href: '/service/web-design-development' },
-      { label: 'Branding', href: '/service/branding' },
-      { label: 'Digital marketing', href: '/service/digital-marketing' },
+      { label: 'Performance Marketing', href: '/services/marketing/performance-marketing' },
+      { label: 'SEO, AEO & GEO', href: '/services/marketing/seo' },
+      { label: 'Social Media Management', href: '/services/marketing/social-media' },
+      { label: 'B2B & Lead Generation', href: '/services/marketing/b2b-marketing' },
+      { label: 'Crypto PR & Media', href: '/services/marketing/pr' },
+      { label: 'Branding & Design Studio', href: '/services/marketing/branding' },
+      { label: 'Content Marketing', href: '/services/marketing/content' },
+      { label: 'Influencer & KOL Marketing', href: '/services/marketing/influencer-marketing' },
+      { label: 'Community Building', href: '/services/marketing/community' },
+      { label: 'Exchange Listings', href: '/services/marketing/listing' },
     ],
   },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Culture', href: '/culture' },
-  { label: 'Contact', href: '/contact' },
+  {
+    label: 'Development',
+    children: [
+      { label: 'CEX & DEX Exchanges', href: '/services/development/exchange' },
+      { label: 'RWA Marketplace', href: '/services/development/rwa' },
+      { label: 'Wallet Infrastructure', href: '/services/development/wallet' },
+      { label: 'DeFi & Staking Platforms', href: '/services/development/defi' },
+      { label: 'AI & Automation', href: '/services/development/ai' },
+      { label: 'Mobile & Web Apps', href: '/services/development/mobile-web' },
+      { label: 'Token & Stablecoin', href: '/services/development/token' },
+      { label: 'Blockchain L0/L1/L2', href: '/services/development/blockchain-layer' },
+      { label: 'Payment Solutions', href: '/services/development/payment' },
+      { label: 'Trading Bots & Tools', href: '/services/development/trading' },
+      { label: 'NFT Marketplace', href: '/services/development/nft' },
+    ],
+  },
+  {
+    label: 'Industries',
+    children: [
+      { label: 'Web3 & Crypto', href: '/industries/web3' },
+      { label: 'Startups', href: '/industries/startups' },
+      { label: 'SaaS', href: '/industries/saas' },
+      { label: 'Fintech', href: '/industries/fintech' },
+      { label: 'AI', href: '/industries/ai' },
+      { label: 'Enterprise', href: '/industries/enterprise' },
+    ]
+  },
+  { label: 'Work', href: '/work' },
+  { label: 'About', href: '/about' },
 ];
 
 export const socialLinks: Array<{ label: string; href: string }> = [
@@ -39,16 +71,18 @@ export const socialLinks: Array<{ label: string; href: string }> = [
 ];
 
 export const sectorLinks: Array<{ label: string; href: string }> = [
-  { label: 'Web3 & Crypto', href: '/web3-and-crypto' },
-  { label: 'Startups', href: '/startups' },
-  { label: 'SaaS', href: '/saas' },
-  { label: 'Fintech', href: '/fintech' },
-  { label: 'AI', href: '/ai' },
-  { label: 'Enterprise', href: '/enterprise' },
+  { label: 'Web3 & Crypto', href: '/industries/web3' },
+  { label: 'Tech Startups', href: '/industries/startups' },
+  { label: 'SaaS', href: '/industries/saas' },
+  { label: 'Fintech', href: '/industries/fintech' },
+  { label: 'AI', href: '/industries/ai' },
+  { label: 'Enterprise', href: '/industries/enterprise' },
 ];
 
 export const legalLinks: Array<{ label: string; href: string }> = [
   { label: 'Contact', href: '/contact' },
+  { label: 'Careers', href: '/careers' },
+  { label: 'Blog', href: '/blog' },
   { label: 'FAQs', href: '/faqs' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
 ];

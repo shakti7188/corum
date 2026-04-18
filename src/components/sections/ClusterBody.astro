@@ -44,6 +44,16 @@ function pullQuoteFor(section: BodySection): { quote: string; attrib?: string } 
   if (!s.pullQuote) return null;
   return { quote: s.pullQuote, attrib: s.pullAttrib };
 }
+
+function enquiryFor(section: BodySection) {
+  if (!PROSE_TYPES_WITH_ASIDE.has(section.type)) return null;
+  const s = section as { enquiry?: {
+    hook: string; heading: string; body: string;
+    buttonLabel?: string; href?: string;
+    avatarUrl?: string; avatarName?: string; avatarRole?: string;
+  } };
+  return s.enquiry ?? null;
+}
 ---
 
 <div class="cbody">
@@ -52,12 +62,19 @@ function pullQuoteFor(section: BodySection): { quote: string; attrib?: string } 
       {section.type === "Prose" && (() => {
         const side = sideMediaFor(section);
         const pq = pullQuoteFor(section);
-        const hasAside = Boolean(side || pq);
+        const eq = enquiryFor(section);
+        const hasAside = Boolean(side || pq || eq);
+        const asideClass = side
+          ? `cbody__block--side cbody__block--side-${side.side}`
+          : eq
+            ? "cbody__block--enquiry-aside"
+            : pq ? "cbody__block--pull" : "";
+        const splitMod = side ? "" : (eq ? " cbody__split--enquiry" : (pq ? " cbody__split--pull" : ""));
         return (
-          <section class={`cbody__block ${hasAside ? (side ? `cbody__block--side cbody__block--side-${side.side}` : "cbody__block--pull") : ""}`}>
+          <section class={`cbody__block ${asideClass}`}>
             <div class="cbody__wrap">
               {hasAside ? (
-                <div class={`cbody__split${pq && !side ? " cbody__split--pull" : ""}`}>
+                <div class={`cbody__split${splitMod}`}>
                   <div class="cbody__splitcopy">
                     {section.heading && <h2 class="cbody__h">{section.heading}</h2>}
                     <div class="cbody__prose">
@@ -73,12 +90,31 @@ function pullQuoteFor(section: BodySection): { quote: string; attrib?: string } 
                       )}
                     </figure>
                   )}
-                  {!side && pq && (
+                  {!side && !eq && pq && (
                     <aside class="cbody__pull">
-                      <blockquote>
-                        <p set:html={pq.quote} />
-                      </blockquote>
+                      <blockquote><p set:html={pq.quote} /></blockquote>
                       {pq.attrib && <cite>— {pq.attrib}</cite>}
+                    </aside>
+                  )}
+                  {!side && eq && (
+                    <aside class="cbody__enquiry">
+                      {eq.avatarUrl && (
+                        <figure class="cbody__enquiry-avatar">
+                          <img src={eq.avatarUrl} alt={eq.avatarName ? `${eq.avatarName}, ${eq.avatarRole ?? 'Corum8'}` : ''} loading="lazy" decoding="async" />
+                        </figure>
+                      )}
+                      <span class="cbody__enquiry-hook">{eq.hook}</span>
+                      <h4 class="cbody__enquiry-heading">{eq.heading}</h4>
+                      <form class="cbody__enquiry-form" action={eq.href ?? "/contact"} method="GET">
+                        <input type="tel" name="phone" placeholder="Phone (with country code)" required autocomplete="tel" inputmode="tel" />
+                        <input type="email" name="email" placeholder="Work email" required autocomplete="email" />
+                        <button type="submit">{eq.buttonLabel ?? "Let's talk →"}</button>
+                      </form>
+                      {eq.avatarName && (
+                        <span class="cbody__enquiry-person">
+                          with <strong>{eq.avatarName}</strong>{eq.avatarRole && <span> · {eq.avatarRole}</span>}
+                        </span>
+                      )}
                     </aside>
                   )}
                 </div>
@@ -98,12 +134,19 @@ function pullQuoteFor(section: BodySection): { quote: string; attrib?: string } 
       {section.type === "Definition" && (() => {
         const side = sideMediaFor(section);
         const pq = pullQuoteFor(section);
-        const hasAside = Boolean(side || pq);
+        const eq = enquiryFor(section);
+        const hasAside = Boolean(side || pq || eq);
+        const asideClass = side
+          ? `cbody__block--side cbody__block--side-${side.side}`
+          : eq
+            ? "cbody__block--enquiry-aside"
+            : pq ? "cbody__block--pull" : "";
+        const splitMod = side ? "" : (eq ? " cbody__split--enquiry" : (pq ? " cbody__split--pull" : ""));
         return (
-          <section class={`cbody__block ${hasAside ? (side ? `cbody__block--side cbody__block--side-${side.side}` : "cbody__block--pull") : ""}`}>
+          <section class={`cbody__block ${asideClass}`}>
             <div class="cbody__wrap">
               {hasAside ? (
-                <div class={`cbody__split${pq && !side ? " cbody__split--pull" : ""}`}>
+                <div class={`cbody__split${splitMod}`}>
                   <div class="cbody__splitcopy">
                     <h2 class="cbody__h">{section.heading}</h2>
                     <div class="cbody__prose">
@@ -119,12 +162,31 @@ function pullQuoteFor(section: BodySection): { quote: string; attrib?: string } 
                       )}
                     </figure>
                   )}
-                  {!side && pq && (
+                  {!side && !eq && pq && (
                     <aside class="cbody__pull">
-                      <blockquote>
-                        <p set:html={pq.quote} />
-                      </blockquote>
+                      <blockquote><p set:html={pq.quote} /></blockquote>
                       {pq.attrib && <cite>— {pq.attrib}</cite>}
+                    </aside>
+                  )}
+                  {!side && eq && (
+                    <aside class="cbody__enquiry">
+                      {eq.avatarUrl && (
+                        <figure class="cbody__enquiry-avatar">
+                          <img src={eq.avatarUrl} alt={eq.avatarName ? `${eq.avatarName}, ${eq.avatarRole ?? 'Corum8'}` : ''} loading="lazy" decoding="async" />
+                        </figure>
+                      )}
+                      <span class="cbody__enquiry-hook">{eq.hook}</span>
+                      <h4 class="cbody__enquiry-heading">{eq.heading}</h4>
+                      <form class="cbody__enquiry-form" action={eq.href ?? "/contact"} method="GET">
+                        <input type="tel" name="phone" placeholder="Phone (with country code)" required autocomplete="tel" inputmode="tel" />
+                        <input type="email" name="email" placeholder="Work email" required autocomplete="email" />
+                        <button type="submit">{eq.buttonLabel ?? "Let's talk →"}</button>
+                      </form>
+                      {eq.avatarName && (
+                        <span class="cbody__enquiry-person">
+                          with <strong>{eq.avatarName}</strong>{eq.avatarRole && <span> · {eq.avatarRole}</span>}
+                        </span>
+                      )}
                     </aside>
                   )}
                 </div>
@@ -325,7 +387,10 @@ function pullQuoteFor(section: BodySection): { quote: string; attrib?: string } 
                   {uc.outcomeNumber && (
                     <div class="cbody__caseoutcome">
                       <span class="cbody__caseoutcomelabel">Outcome</span>
-                      <span class="cbody__caseoutcomevalue">{uc.outcomeNumber}</span>
+                      <div class="cbody__caseoutcomestack">
+                        <span class="cbody__caseoutcomevalue">{uc.outcomeNumber}</span>
+                        {uc.outcomeSecondary && <span class="cbody__caseoutcomesecondary">{uc.outcomeSecondary}</span>}
+                      </div>
                     </div>
                   )}
                 </article>
@@ -439,6 +504,54 @@ function pullQuoteFor(section: BodySection): { quote: string; attrib?: string } 
           last={section.last}
           change={section.change}
         />
+      )}
+
+      {section.type === "InlineEnquiry" && (
+        <section class="cbody__block cbody__block--enquiry">
+          <div class="cbody__wrap">
+            <div class="cenquiry">
+              <div class="cenquiry__left">
+                {section.avatarUrl && (
+                  <figure class="cenquiry__avatar">
+                    <img src={section.avatarUrl} alt={section.avatarName ? `${section.avatarName}, ${section.avatarRole ?? 'Corum8'}` : ''} loading="lazy" decoding="async" />
+                  </figure>
+                )}
+                <div>
+                  <span class="cenquiry__hook">{section.hook}</span>
+                  <h3 class="cenquiry__heading">{section.heading}</h3>
+                  <p class="cenquiry__body" set:html={section.body} />
+                  {section.avatarName && (
+                    <div class="cenquiry__person">
+                      <strong>{section.avatarName}</strong>
+                      {section.avatarRole && <span> · {section.avatarRole}</span>}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <form
+                class="cenquiry__form"
+                action={section.href ?? "/contact"}
+                method="GET"
+                onsubmit="try{const e=this.querySelector('input[name=email]');if(e&&e.value){this.action=this.action+'?email='+encodeURIComponent(e.value);}}catch(_){ }"
+              >
+                <label class="cenquiry__label">
+                  <span>Work email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="you@company.com"
+                    required
+                    autocomplete="email"
+                  />
+                </label>
+                <button type="submit" class="cenquiry__btn">
+                  <span>{section.buttonLabel ?? "Let's talk →"}</span>
+                </button>
+                <span class="cenquiry__note">15-min call. No pitch. We'll tell you if we're not the right fit.</span>
+              </form>
+            </div>
+          </div>
+        </section>
       )}
     </>
   ))}
@@ -756,11 +869,161 @@ function pullQuoteFor(section: BodySection): { quote: string; attrib?: string } 
     letter-spacing: 0.22em;
     color: rgba(255,255,255,0.55);
   }
+  .cbody__caseoutcomestack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-end;
+    text-align: right;
+  }
   .cbody__caseoutcomevalue {
     font-weight: 500;
     font-size: 1.02rem;
     color: var(--color-accent, #b7ff3a);
     letter-spacing: -0.005em;
+  }
+  .cbody__caseoutcomesecondary {
+    font-weight: 400;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.01em;
+  }
+
+  /* ============================================================
+     Enquiry sidebar card — small, provocative, with avatar + quick form.
+     Renders in the right-column aside slot of prose sections (same slot
+     as pullQuote / mediaToken). Designed as a human conversion hook
+     alongside long-form text.
+     ============================================================ */
+  .cbody__split--enquiry {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 920px) {
+    .cbody__split--enquiry { grid-template-columns: 1.4fr 0.6fr; gap: 3rem; align-items: start; }
+  }
+
+  .cbody__enquiry {
+    margin: 0;
+    padding: 1.75rem 1.5rem 1.5rem;
+    background: var(--color-ink, #000);
+    color: #fff;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cbody__enquiry::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    right: -40%;
+    width: 140%;
+    height: 160%;
+    background: radial-gradient(circle, var(--color-accent, #b7ff3a) 0%, rgba(183, 255, 58, 0) 55%);
+    opacity: 0.1;
+    pointer-events: none;
+  }
+  .cbody__enquiry > * { position: relative; z-index: 1; }
+  /* Sticky only on wide screens where the aside sits next to prose — and only
+     within the grid cell, so it naturally releases when the prose section ends. */
+  @media (min-width: 920px) {
+    .cbody__split--enquiry { align-items: start; }
+    .cbody__enquiry {
+      position: sticky;
+      top: 6.5rem;
+      align-self: start;
+    }
+  }
+
+  .cbody__enquiry-avatar {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 0 0.25rem;
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,255,255,0.14);
+    flex: 0 0 auto;
+  }
+  .cbody__enquiry-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cbody__enquiry-hook {
+    display: inline-block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-accent, #b7ff3a);
+    font-weight: 500;
+  }
+  .cbody__enquiry-heading {
+    font-size: 1.15rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin: 0 0 0.25rem;
+    font-weight: 500;
+    color: #fff;
+    max-width: 22ch;
+  }
+
+  .cbody__enquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+  }
+  .cbody__enquiry-form input {
+    appearance: none;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 10px;
+    padding: 0.8rem 0.95rem;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+  .cbody__enquiry-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .cbody__enquiry-form input:focus {
+    border-color: var(--color-accent, #b7ff3a);
+    background: rgba(255,255,255,0.1);
+  }
+  .cbody__enquiry-form button {
+    appearance: none;
+    background: var(--color-accent, #b7ff3a);
+    color: var(--color-ink, #000);
+    border: 0;
+    border-radius: 999px;
+    padding: 0.85rem 1.2rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .cbody__enquiry-form button:hover {
+    transform: translateY(-1px);
+    background: #c8ff5c;
+  }
+
+  .cbody__enquiry-person {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.65);
+  }
+  .cbody__enquiry-person strong { color: #fff; font-weight: 500; }
+  .cbody__enquiry-note {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
   }
 
   /* Steps list — numbered with left gutter */

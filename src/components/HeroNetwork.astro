@@ -1,0 +1,224 @@
+---
+// HeroNetwork.astro
+// Self-contained three.js "buffergeometry_drawrange" style network animation.
+// All styles/scripts are namespaced under `.c8-hnet` — safe to delete this
+// component or its import in Hero.astro without affecting anything else.
+---
+
+<div class="c8-hnet" aria-hidden="true" data-c8-hnet>
+  <canvas class="c8-hnet__canvas"></canvas>
+</div>
+
+<style is:global>
+  .c8-hnet {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 58%;
+    height: 78%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    mask-image: radial-gradient(ellipse at 70% 45%, #000 55%, transparent 95%);
+    -webkit-mask-image: radial-gradient(ellipse at 70% 45%, #000 55%, transparent 95%);
+  }
+  .c8-hnet__canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  @media (max-width: 900px) {
+    .c8-hnet {
+      width: 100%;
+      height: 55%;
+      top: 4rem;
+      opacity: 0.55;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .c8-hnet { display: none; }
+  }
+</style>
+
+<script is:inline type="module">
+  (async () => {
+    const host = document.querySelector('[data-c8-hnet]');
+    if (!host) return;
+    const canvas = host.querySelector('.c8-hnet__canvas');
+    if (!canvas) return;
+
+    let THREE;
+    try {
+      THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+    } catch (e) {
+      host.style.display = 'none';
+      return;
+    }
+
+    const PARTICLE_COUNT = 140;
+    const MAX_CONNECTIONS = 12;
+    const MIN_DISTANCE = 85;
+    const R = 260;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 1, 1, 4000);
+    camera.position.z = 620;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+
+    const group = new THREE.Group();
+    scene.add(group);
+
+    const segments = PARTICLE_COUNT * PARTICLE_COUNT;
+    const positions = new Float32Array(segments * 3);
+    const colors = new Float32Array(segments * 3);
+    const particlePositions = new Float32Array(PARTICLE_COUNT * 3);
+    const particlesData = [];
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const x = (Math.random() - 0.5) * R * 2;
+      const y = (Math.random() - 0.5) * R * 2;
+      const z = (Math.random() - 0.5) * R * 2;
+      particlePositions[i * 3]     = x;
+      particlePositions[i * 3 + 1] = y;
+      particlePositions[i * 3 + 2] = z;
+      particlesData.push({
+        velocity: new THREE.Vector3(
+          -0.4 + Math.random() * 0.8,
+          -0.4 + Math.random() * 0.8,
+          -0.4 + Math.random() * 0.8
+        ),
+        numConnections: 0
+      });
+    }
+
+    // Points
+    const pGeo = new THREE.BufferGeometry();
+    pGeo.setDrawRange(0, PARTICLE_COUNT);
+    pGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3).setUsage(THREE.DynamicDrawUsage));
+    const pMat = new THREE.PointsMaterial({
+      color: 0x3a3a3a,
+      size: 3,
+      sizeAttenuation: false,
+      transparent: true,
+      opacity: 0.9
+    });
+    const points = new THREE.Points(pGeo, pMat);
+    group.add(points);
+
+    // Lines
+    const lGeo = new THREE.BufferGeometry();
+    lGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3).setUsage(THREE.DynamicDrawUsage));
+    lGeo.setAttribute('color',    new THREE.BufferAttribute(colors,    3).setUsage(THREE.DynamicDrawUsage));
+    lGeo.computeBoundingSphere();
+    lGeo.setDrawRange(0, 0);
+    const lMat = new THREE.LineBasicMaterial({
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.55
+    });
+    const linesMesh = new THREE.LineSegments(lGeo, lMat);
+    group.add(linesMesh);
+
+    function resize() {
+      const w = host.clientWidth;
+      const h = host.clientHeight;
+      if (w === 0 || h === 0) return;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h, false);
+    }
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(host);
+
+    let rafId;
+    let running = true;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { running = e.isIntersecting; });
+    });
+    io.observe(host);
+
+    const greyBase = new THREE.Color(0x2a2a2a);
+
+    function animate() {
+      rafId = requestAnimationFrame(animate);
+      if (!running) return;
+
+      let vCount = 0;
+      let cCount = 0;
+      let numConnected = 0;
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particlesData[i].numConnections = 0;
+      }
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const pd = particlesData[i];
+        particlePositions[i * 3]     += pd.velocity.x;
+        particlePositions[i * 3 + 1] += pd.velocity.y;
+        particlePositions[i * 3 + 2] += pd.velocity.z;
+
+        if (particlePositions[i * 3 + 1] < -R || particlePositions[i * 3 + 1] > R) pd.velocity.y = -pd.velocity.y;
+        if (particlePositions[i * 3]     < -R || particlePositions[i * 3]     > R) pd.velocity.x = -pd.velocity.x;
+        if (particlePositions[i * 3 + 2] < -R || particlePositions[i * 3 + 2] > R) pd.velocity.z = -pd.velocity.z;
+
+        if (pd.numConnections >= MAX_CONNECTIONS) continue;
+
+        for (let j = i + 1; j < PARTICLE_COUNT; j++) {
+          const pdB = particlesData[j];
+          if (pdB.numConnections >= MAX_CONNECTIONS) continue;
+
+          const dx = particlePositions[i * 3]     - particlePositions[j * 3];
+          const dy = particlePositions[i * 3 + 1] - particlePositions[j * 3 + 1];
+          const dz = particlePositions[i * 3 + 2] - particlePositions[j * 3 + 2];
+          const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+          if (dist < MIN_DISTANCE) {
+            pd.numConnections++;
+            pdB.numConnections++;
+
+            const alpha = 1.0 - dist / MIN_DISTANCE;
+
+            positions[vCount++] = particlePositions[i * 3];
+            positions[vCount++] = particlePositions[i * 3 + 1];
+            positions[vCount++] = particlePositions[i * 3 + 2];
+
+            positions[vCount++] = particlePositions[j * 3];
+            positions[vCount++] = particlePositions[j * 3 + 1];
+            positions[vCount++] = particlePositions[j * 3 + 2];
+
+            colors[cCount++] = greyBase.r * alpha;
+            colors[cCount++] = greyBase.g * alpha;
+            colors[cCount++] = greyBase.b * alpha;
+
+            colors[cCount++] = greyBase.r * alpha;
+            colors[cCount++] = greyBase.g * alpha;
+            colors[cCount++] = greyBase.b * alpha;
+
+            numConnected++;
+          }
+        }
+      }
+
+      linesMesh.geometry.setDrawRange(0, numConnected * 2);
+      linesMesh.geometry.attributes.position.needsUpdate = true;
+      linesMesh.geometry.attributes.color.needsUpdate = true;
+      pGeo.attributes.position.needsUpdate = true;
+
+      group.rotation.y += 0.0015;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('beforeunload', () => {
+      cancelAnimationFrame(rafId);
+      ro.disconnect();
+      io.disconnect();
+      renderer.dispose();
+    });
+  })();
+</script>

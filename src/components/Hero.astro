@@ -1,85 +1,306 @@
 ---
-// Hero — matches the kota.co.uk typographic treatment (giant staircased
-// display text + small intro paragraph + thin awards strip). No bg video.
-const awards = [
-  { src: '/awards/blockchain-life.png', alt: 'Blockchain Life' },
-  { src: '/awards/dubai-expo.png', alt: 'Dubai Expo' },
-  { src: '/awards/emmi-empire.png', alt: 'EMMI Empire' },
-  { src: '/awards/finext.png', alt: 'Finext' },
-  { src: '/awards/iisa.png', alt: 'IISA' },
+import HeroNetwork from './HeroNetwork.astro';
+
+const mediaLogos = [
+  { src: '/media-logos/Forbes.webp',          alt: 'Forbes' },
+  { src: '/media-logos/Bloomberg.webp',       alt: 'Bloomberg' },
+  { src: '/media-logos/nasdaq.webp',          alt: 'Nasdaq' },
+  { src: '/media-logos/reuters.png',          alt: 'Reuters' },
+  { src: '/media-logos/cnbc.png',             alt: 'CNBC' },
+  { src: '/media-logos/yahoo-finance.png',    alt: 'Yahoo Finance' },
+  { src: '/media-logos/business-insider.png', alt: 'Business Insider' },
+  { src: '/media-logos/Benzinga.webp',        alt: 'Benzinga' },
+  { src: '/media-logos/TechBullion.webp',     alt: 'TechBullion' },
+  { src: '/media-logos/USAtoday.webp',        alt: 'USA Today' },
+  { src: '/media-logos/Coindesk.webp',        alt: 'CoinDesk' },
+  { src: '/media-logos/cointelegraph.png',    alt: 'Cointelegraph' },
+  { src: '/media-logos/bitcoin-magazine.png', alt: 'Bitcoin Magazine' },
+  { src: '/media-logos/blockworks.png',       alt: 'Blockworks' },
+  { src: '/media-logos/decrypt.png',          alt: 'Decrypt' },
+  { src: '/media-logos/theblock.png',         alt: 'The Block' },
+  { src: '/media-logos/hackernoon.png',       alt: 'HackerNoon' },
+  { src: '/media-logos/cryptoslate.png',      alt: 'CryptoSlate' },
 ];
 ---
 
-<section class="Hero_hero__IrR3f" style="position:relative; overflow:hidden;">
-  <div class="container" style="position: relative; z-index: 1;">
-    <div class="Hero_splitText__diMTw">
-      <span class="Hero_displayLine__c8 Hero_displayLine_top__c8" data-blur-reveal="true">Build.</span>
-      <span class="Hero_displayLine__c8 Hero_displayLine_mid__c8" data-blur-reveal="true">Launch.</span>
-      <span class="Hero_displayLine__c8 Hero_displayLine_bot__c8" data-blur-reveal="true">Scale.</span>
-      <h1 class="Hero_introText__wboFn">
-        <span class="HeroFadeIn_container___NgC6" data-fill="false"><span>Global marketing, PR &amp; full-stack development for Web3, AI and fintech brands that&nbsp;<strong>refuse to blend in.</strong> 1,100+ projects. 95+ specialists. 30+ countries.</span></span>
-      </h1>
-    </div>
-  </div>
-  <div class="Hero_logos__jC9k_" data-modal-hide="true">
-    <span class="FadeIn_container__bjQVL" data-fill="false">
-      <div class="Hero_logosInner__D4sWL Hero_awardsInner__c8">
-        {awards.map((a) => (
-          <img src={a.src} alt={a.alt} class="Hero_awardImg__c8" loading="lazy" />
+<section class="c8-hero-section">
+  <HeroNetwork />
+  <div class="c8-hero__inner">
+
+    <!-- Trust pill — sits as a preheader directly above the title -->
+    <div class="c8-hero__trust">
+      <span class="c8-hero__stars" aria-label="4.9 out of 5 stars">
+        {Array.from({length: 5}).map(() => (
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#00b67a" stroke="none">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
         ))}
+      </span>
+      <span class="c8-hero__trust-text"><strong>4.9</strong> Trustpilot</span>
+      <span class="c8-hero__trust-sep">/</span>
+      <span class="c8-hero__trust-text"><strong>50+</strong> Awards</span>
+      <span class="c8-hero__trust-sep">/</span>
+      <span class="c8-hero__trust-text"><strong>30+</strong> Countries</span>
+    </div>
+
+    <!-- Headline: imperative, parallel, asymmetric -->
+    <h1 class="c8-hero__headline">
+      <span class="c8-hero__line c8-hero__line--1">
+        Build brands<span class="c8-hero__period">.</span>
+      </span>
+      <span class="c8-hero__line c8-hero__line--2">
+        <em>Win</em> markets<span class="c8-hero__period">.</span>
+      </span>
+    </h1>
+
+    <!-- Bottom: paragraph + CTA stacked together on the left, with room to breathe -->
+    <div class="c8-hero__footer">
+      <p class="c8-hero__sub">
+        Marketing, PR &amp; full-stack development for Web3, AI and high-growth companies.
+      </p>
+      <div class="c8-hero__ctas">
+        <a class="c8-hero__cta" href="/contact">
+          <span class="c8-hero__cta-text">Book a Strategy Call</span>
+          <span class="c8-hero__cta-arrow" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17">
+              <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
+            </svg>
+          </span>
+        </a>
       </div>
-    </span>
+    </div>
+
+  </div>
+
+  <!-- Press logos strip -->
+  <div class="c8-hero__press">
+    <p class="c8-hero__press-label"><span>(Featured in)</span></p>
+    <div class="c8-hero__press-logos">
+      {mediaLogos.map((m) => (
+        <img src={m.src} alt={m.alt} loading="lazy" class="c8-hero__press-img" />
+      ))}
+    </div>
   </div>
 </section>
 
-<style>
-  /* Staircased display text — rides on KOTA's .Hero_splitText__diMTw which
-     already gives us `font-size: clamp(2rem, 16vw, 99rem); color:#000;
-     line-height:.9` so this layer only controls weight, case and indent. */
-  .Hero_splitText__diMTw {
+<style is:global>
+  .c8-hero-section {
     position: relative;
-    font-family: var(--syne), "Syne", "Helvetica Neue", Arial, sans-serif;
+    min-height: 110svh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-top: 5.5rem;
   }
 
-  .Hero_displayLine__c8 {
-    display: block;
-    font-weight: 700;
-    font-style: normal;
-    line-height: 0.88;
-    letter-spacing: -0.035em;
-    color: #000;
-    text-transform: lowercase;
+  .c8-hero__inner {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto 1fr auto;
+    column-gap: clamp(1rem, 2vw, 2rem);
+    row-gap: clamp(1.5rem, 4vh, 3rem);
+    align-items: start;
+    padding: clamp(2rem, 5vh, 4rem) clamp(1.5rem, 5vw, 5rem) clamp(3rem, 7vh, 5rem);
+    position: relative;
+    z-index: 1;
   }
 
-  /* Match KOTA's staircase: each line steps further right */
-  .Hero_displayLine_mid__c8 { padding-left: 0.14em; }
-  .Hero_displayLine_bot__c8 { padding-left: 0.34em; }
-
-  /* Award strip — keep it small, dark and uniform like the KOTA original */
-  .Hero_awardsInner__c8 {
+  /* Row 1 — trust pill, sits centered/left aligned just above the title */
+  .c8-hero__trust {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    align-self: end;
+    display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 2.5rem !important;
+    gap: 0.5rem 0.85rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(0,0,0,0.06);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 999px;
+    width: fit-content;
+    margin-bottom: -0.5rem;
+    box-shadow: 0 4px 18px -8px rgba(0,0,0,0.1);
+  }
+  .c8-hero__trust-text {
+    font-family: var(--montreal);
+    font-size: 0.78rem;
+    color: #555;
+    white-space: nowrap;
+  }
+  .c8-hero__trust-text strong { color: #0a0a0a; font-weight: 600; margin-right: 0.2rem; }
+  .c8-hero__trust-sep { color: #cbcbcb; font-size: 0.78rem; user-select: none; }
+  .c8-hero__stars { display: inline-flex; align-items: center; gap: 1px; }
+
+  /* Row 2 — Headline */
+  .c8-hero__headline {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    align-self: start;
+    margin: 0.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--montreal);
+    font-size: clamp(3.5rem, 11vw, 11rem);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    color: #0a0a0a;
+  }
+  .c8-hero__line { display: block; }
+  .c8-hero__line--1 { padding-left: 0; }
+  .c8-hero__line--2 {
+    padding-left: clamp(2rem, 8vw, 6rem);
+    margin-top: 0.1em;
+  }
+  .c8-hero__headline em {
+    font-style: italic;
+    font-family: var(--syne, var(--montreal));
+    font-weight: 400;
+  }
+  .c8-hero__period { color: #00b67a; }
+
+  /* Row 3 — subtitle stacked above a prominent CTA pair, left-aligned */
+  .c8-hero__footer {
+    grid-row: 3;
+    grid-column: 1 / -1;
+    align-self: end;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.75rem, 3vh, 2.75rem);
+    max-width: 56rem;
+  }
+
+  .c8-hero__sub {
+    font-family: var(--montreal);
+    font-size: clamp(1.15rem, 1.45vw, 1.45rem);
+    line-height: 1.55;
+    font-weight: 400;
+    color: #3a3a3a;
+    margin: 0;
+    max-width: 42rem;
+    letter-spacing: -0.005em;
+  }
+  .c8-hero__sub strong { color: #0a0a0a; font-weight: 500; }
+
+  .c8-hero__ctas {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
     flex-wrap: wrap;
   }
 
-  .Hero_awardImg__c8 {
-    height: 28px;
-    width: auto;
-    max-width: 140px;
-    object-fit: contain;
-    filter: brightness(0) invert(0);
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-    padding-right: 0 !important;
+  /* Primary CTA — larger, confident outlined pill button */
+  .c8-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1.2rem 2.1rem;
+    background: transparent;
+    color: #0a0a0a;
+    border: 1.5px solid #0a0a0a;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: var(--montreal);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.35s ease, color 0.35s ease;
+    white-space: nowrap;
+  }
+  .c8-hero__cta:hover {
+    transform: translateY(-2px);
+    background: #0a0a0a;
+    color: #fff;
+  }
+  .c8-hero__cta-arrow {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .c8-hero__cta-arrow svg { width: 100%; height: 100%; fill: currentColor; }
+  .c8-hero__cta:hover .c8-hero__cta-arrow { transform: translate(3px, -3px); }
+
+  /* Press strip — centered */
+  .c8-hero__press {
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding: 1.5rem clamp(1.5rem, 5vw, 5rem) 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    text-align: center;
+  }
+  .c8-hero__press-label {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #999;
+    text-align: center;
+  }
+  .c8-hero__press-label span::before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: #ccc;
+    vertical-align: middle;
+    margin-right: 0.6rem;
+  }
+  .c8-hero__press-label span::after {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: #ccc;
+    vertical-align: middle;
+    margin-left: 0.6rem;
   }
 
-  .Hero_awardImg__c8:hover {
-    opacity: 1;
+  .c8-hero__press-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
   }
+
+  .c8-hero__press-img {
+    height: 19px;
+    width: auto;
+    max-width: 110px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.25);
+    opacity: 0.75;
+    transition: opacity 0.25s ease, filter 0.25s ease;
+  }
+  .c8-hero__press-img:hover { filter: none; opacity: 1; }
 
   @media (max-width: 900px) {
-    .Hero_awardImg__c8 {
-      height: 22px;
+    .c8-hero__inner {
+      grid-template-columns: repeat(6, 1fr);
+      row-gap: 1.75rem;
     }
+    .c8-hero__headline { font-size: clamp(2.6rem, 11vw, 4.5rem); }
+    .c8-hero__line--2 { padding-left: clamp(1.5rem, 8vw, 4rem); }
+    .c8-hero__footer {
+      grid-column: 1 / -1;
+      gap: 1.5rem;
+    }
+    .c8-hero__cta { padding: 1rem 1.65rem; font-size: 1rem; }
+    .c8-hero__ctas { gap: 1rem; }
+    .c8-hero__press {
+      gap: 0.9rem;
+    }
+    .c8-hero__press-img { height: 17px; }
+    .c8-hero__press-logos { gap: 0.9rem 1.6rem; }
   }
 </style>

@@ -5,8 +5,7 @@ import BrandMark from './BrandMark.astro';
 const socialArrowPath =
   'M12.65.31a.504.504 0 00-.46-.31H.5C.22 0 0 .22 0 .5s.22.5.5.5h10.49L.55 11.43c-.2.2-.2.51 0 .71a.485.485 0 00.7 0L11.69 1.71v10.47c0 .28.22.5.5.5s.5-.22.5-.5V.52c0-.07 0-.14-.04-.21z';
 
-// Awards displayed in the footer logo strip — slots into the original KOTA
-// .Footer_logos__jFNys grid (height: 2.25rem, gap: 1.25rem).
+// Awards shown as a slim monochrome strip in the footer bottom row.
 const awards = [
   { src: '/awards/blockchain-life.png', alt: 'Blockchain Life' },
   { src: '/awards/dubai-expo.png',      alt: 'Dubai Expo' },
@@ -19,7 +18,7 @@ const awards = [
   <div class="container">
     <div class="Footer_top__YBhK_">
       <span class="Footer_logo__fUEOF" aria-hidden="true">
-        <BrandMark fill="#fff" />
+        <BrandMark variant="white" />
       </span>
       <a class="Footer_email__nLajh CopyText_copyText__OtWNq" href={`mailto:${brand.email}`}>
         {brand.email}
@@ -62,6 +61,7 @@ const awards = [
           <li><a href={l.href}>{l.label}</a></li>
         ))}
       </ul>
+      <a class="Footer_newsletterButton__wp2hz" href="/newsletter">Sign up to our newsletter</a>
     </div>
     <div class="Footer_copyright__j4atB">
       <div class="Footer_sectorsWrap__UM4Zx" data-type="desktop">
@@ -79,16 +79,64 @@ const awards = [
   </div>
 </footer>
 
-<style>
-  /* Flatten colour award PNGs into unified white marks for the dark footer */
+<style is:global>
+  /* Flatten colour award PNGs into unified white marks for the dark footer. */
   .Footer_logos__jFNys img {
     filter: brightness(0) invert(1);
     opacity: 0.78;
     transition: opacity 0.3s ease;
-    max-width: 140px;
+    max-width: 110px;
+    max-height: 28px;
     object-fit: contain;
   }
-  .Footer_logos__jFNys img:hover {
-    opacity: 1;
+  .Footer_logos__jFNys img:hover { opacity: 1; }
+
+  /* Tighten the top row — the stock KOTA values make the brand mark and
+     email feel oversized for a footer. Bring both down a notch and align
+     them on the same baseline so the row sits as a single tidy header. */
+  .Footer_footer__pQtti .Footer_top__YBhK_ {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 1.5rem !important;
+    padding-bottom: 2.25rem !important;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    margin-bottom: 2.5rem !important;
+  }
+  .Footer_footer__pQtti .Footer_logo__fUEOF {
+    display: inline-flex !important;
+    align-items: center;
+    width: auto !important;
+  }
+  .Footer_footer__pQtti .Footer_logo__fUEOF svg,
+  .Footer_footer__pQtti .Footer_logo__fUEOF img {
+    height: clamp(34px, 4vw, 52px) !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+  .Footer_footer__pQtti .Footer_email__nLajh {
+    font-size: clamp(1.6rem, 2.6vw, 2.4rem) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.01em !important;
+    padding: 0 !important;
+    font-weight: 500;
+  }
+
+  /* Awards strip — slimmer pad row and more even spacing. */
+  .Footer_footer__pQtti .Footer_logos__jFNys {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem 2.25rem !important;
+    padding-top: 1.5rem !important;
+  }
+
+  @media (max-width: 720px) {
+    .Footer_footer__pQtti .Footer_top__YBhK_ {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 1rem !important;
+    }
+    .Footer_footer__pQtti .Footer_email__nLajh { font-size: 1rem !important; }
   }
 </style>

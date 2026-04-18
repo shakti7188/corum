@@ -3,10 +3,10 @@ import { brand, ctaLink } from '../data/siteNav';
 import BrandMark from './BrandMark.astro';
 import ArrowIcon from './ArrowIcon.astro';
 ---
-<header class="Header_header__KwdYD" data-modal-hide="true">
+<header class="Header_header__KwdYD" data-modal-hide="true" data-c8-sticky>
   <div class="Header_left">
     <a class="Header_logo____uDV" href="/" aria-label={brand.name}>
-      <BrandMark />
+      <BrandMark variant="dark" />
     </a>
   </div>
   
@@ -61,7 +61,7 @@ import ArrowIcon from './ArrowIcon.astro';
         <div class="MegaDropdown">
           <div class="MegaDropdown_bg"></div>
           <div class="MegaDropdown_inner">
-            <div class="MegaCol">
+            <div class="MegaColWrapper"><div class="MegaCol">
               <h4 class="MegaCol_title">Web3 &amp; Blockchain</h4>
               <a href="/services/development/exchange"><span>CEX &amp; DEX Exchanges</span><span class="MegaCol_desc">Custom exchange platforms</span></a>
               <a href="/services/development/rwa"><span>RWA Marketplace</span><span class="MegaCol_desc">Tokenize real-world assets</span></a>
@@ -157,16 +157,85 @@ import ArrowIcon from './ArrowIcon.astro';
 </header>
 
 <style is:global>
-  /* Base Header Layout */
+  /* Brand palette — gold sampled to match the Corum8 logo mark. Defined on
+     the Header because the Header mounts on every page (Layout-based and
+     the self-headed index.astro). CSS variables cascade, so downstream
+     components can read var(--c8-gold) anywhere. */
+  :root {
+    --c8-gold: #d4a23a;
+    --c8-gold-soft: rgba(212, 162, 58, 0.12);
+    --c8-gold-glow: rgba(212, 162, 58, 0.35);
+  }
+
+  /* Base Header Layout — sticky so it stays available as the user scrolls. */
   .Header_header__KwdYD {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 100;
+    transition: padding 0.3s ease, background-color 0.3s ease,
+                backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease,
+                box-shadow 0.3s ease;
+  }
+  /* Scrolled state — compact bar with a subtle glass surface + hairline.
+     Prefixing with `header` bumps specificity (type + class + attribute)
+     above any kota-core `.Header_header__KwdYD` selector, and every
+     override uses !important so width-specific media rules can't beat it. */
+  header.Header_header__KwdYD[data-scrolled="true"] {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    padding-left: clamp(1rem, 3vw, 2rem) !important;
+    padding-right: clamp(1rem, 3vw, 2rem) !important;
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: saturate(160%) blur(14px) !important;
+    -webkit-backdrop-filter: saturate(160%) blur(14px) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.18) !important;
   }
   .Header_left, .Header_right {
     flex: 0 0 auto;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* Give logo same left breathing room as the CTA has on the right */
+  .Header_left {
+    padding-left: clamp(1rem, 2vw, 2rem);
+  }
+  /* Shrink the logo mark when scrolled */
+  .Header_header__KwdYD .Header_logo____uDV {
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: left center;
+  }
+  header.Header_header__KwdYD[data-scrolled="true"] .Header_logo____uDV {
+    transform: scale(0.78) !important;
+  }
+  header.Header_header__KwdYD[data-scrolled="true"] .Header_logo____uDV svg {
+    width: 2.5rem !important;
+  }
+  /* Tighten menu item padding + slightly shrink links when scrolled */
+  header.Header_header__KwdYD[data-scrolled="true"] .MegaMenu_item {
+    padding: 0.85rem 0 !important;
+    transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .MegaMenu_item {
+    transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .MegaMenu_link {
+    transition: color 0.3s ease, font-size 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  header.Header_header__KwdYD[data-scrolled="true"] .MegaMenu_link {
+    font-size: 0.95rem !important;
+  }
+  /* Shrink header CTA to match the compact bar */
+  .Header_header__KwdYD .Header_button__yG4_K {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+    transform-origin: right center;
+  }
+  header.Header_header__KwdYD[data-scrolled="true"] .Header_button__yG4_K {
+    transform: scale(0.88) !important;
   }
 
   /* Mega Menu Nav Core */
@@ -179,9 +248,13 @@ import ArrowIcon from './ArrowIcon.astro';
   @media (min-width: 1024px) {
     .MegaMenu_nav {
     pointer-events: auto !important; display: flex; }
-    /* Hide the KOTA default hamburger trigger on Desktop since we have our Mega Menu */
-    .PrimaryNavigation_icon__qAQCe { display: none !important; }
+    .PrimaryNavigation_page__DgiUM { display: none !important; }
   }
+  /* Retire the KOTA PrimaryNavigation entirely — our Header owns all nav now.
+     Previously the hamburger was only hidden at >=1024px, so the old drawer
+     leaked through on mobile. Hiding the whole wrapper keeps its background
+     panel and overlay out too. */
+  
 
   .MegaMenu_list {
     display: flex;
@@ -195,6 +268,11 @@ import ArrowIcon from './ArrowIcon.astro';
 
   .MegaMenu_nav, .MegaMenu_list, .MegaMenu_item {
     position: static !important;
+  }
+  /* Items whose dropdown is a MiniDropdown need to anchor it to the trigger,
+     not the full header, so override the static positioning above. */
+  .MegaMenu_item:has(.MiniDropdown) {
+    position: relative !important;
   }
 
   .MegaMenu_item {
@@ -289,9 +367,59 @@ import ArrowIcon from './ArrowIcon.astro';
     z-index: -1;
   }
 
-  
+  /* Mini dropdown (Industries / Resources / About) — tight card, auto-sized */
   .MiniDropdown {
-    min-width: 250px;
+    /* Centre the whole mini panel under its trigger instead of spanning
+       full header width. */
+    left: 50%;
+    right: auto;
+    width: auto;
+    max-width: 320px;
+    transform: translateX(-50%) translateY(6px) scale(0.98);
+  }
+  .MegaMenu_item:hover .MiniDropdown,
+  .MegaMenu_item:focus-within .MiniDropdown {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  .MiniDropdown .MegaDropdown_bg {
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: none;
+  }
+  .MiniDropdown .MegaDropdown_inner {
+    width: 100%;
+    max-width: none;
+    padding: 0.75rem 1rem;
+  }
+  .MiniDropdown .MegaCol {
+    gap: 0;
+    min-width: 0;
+    width: 100%;
+  }
+  .MiniDropdown .MegaCol a {
+    padding: 0.7rem 0.9rem !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    border-radius: 0.6rem;
+    color: #333 !important;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, opacity 0.3s ease !important;
+  }
+  .MiniDropdown .MegaCol a span:first-child {
+    font-size: 1rem !important;
+  }
+  /* Group-hover physics for mini dropdowns — siblings dim while the hovered
+     row lights up with a soft gold wash that echoes the logo mark. Text
+     color stays dark on purpose: yellow text reads poorly on light bg. */
+  .MiniDropdown .MegaCol:hover a {
+    opacity: 0.45;
+  }
+  .MiniDropdown .MegaCol a:hover {
+    opacity: 1 !important;
+    color: #111 !important;
+    background: var(--c8-gold-soft) !important;
+    box-shadow: inset 0 0 0 1px var(--c8-gold-glow);
+    transform: translateX(4px);
   }
 
 
@@ -299,14 +427,20 @@ import ArrowIcon from './ArrowIcon.astro';
   /* Glassmorphism Background */
 
 
-  /* Grid Architecture */
+  /* Grid Architecture
+     Inner shares the exact same centering as .MegaDropdown_bg so the CTA
+     card always sits inside the panel, at any viewport width. */
   .MegaDropdown_inner {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    width: 100%;
+    width: calc(100% - 4rem);
     max-width: 1300px;
     padding: 3.5rem;
-    gap: 0;
+    gap: 2rem;
     justify-content: space-between;
+    box-sizing: border-box;
   }
   .MegaColWrapper {
     flex-shrink: 0;
@@ -404,14 +538,28 @@ import ArrowIcon from './ArrowIcon.astro';
     color: #000 !important;
   }
   .MegaCta .MegaButton:hover {
-    background: #ff6eff !important;
-    color: #fff !important;
+    background: var(--c8-gold) !important;
+    color: #111 !important;
     transform: scale(1.05);
+    box-shadow: 0 10px 30px var(--c8-gold-glow);
   }
 
   .MegaButton {
     width: fit-content;
     border-radius: 2rem;
+  }
+
+  /* KOTA ships the header CTA with a pink (#ff34f3) hover. Re-tint to gold so
+     the primary button accent tracks the logo mark. Text stays light for
+     contrast on the dark pill. */
+  .Header_button__yG4_K:hover {
+    background: var(--c8-gold) !important;
+    color: #111 !important;
+    box-shadow: 0 10px 28px var(--c8-gold-glow);
+  }
+  .Header_button__yG4_K:hover .Header_buttonArrow__frtNz,
+  .Header_button__yG4_K:hover .Header_text__taNU6 {
+    color: #111 !important;
   }
   
   /* Staggered Fade-in Animation for columns */
@@ -432,7 +580,7 @@ import ArrowIcon from './ArrowIcon.astro';
 
   .Header_header__KwdYD {
     transform: none !important;
-    background: transparent !important;
+    background: transparent;
     border-bottom: none;
   }
   
@@ -451,8 +599,10 @@ import ArrowIcon from './ArrowIcon.astro';
     clear: both;
   }
   .MegaCol a span:first-child {
-    font-size: 1.3rem !important;
+    font-size: 1.05rem !important;
     font-weight: 600 !important;
+    color: #111 !important;
+    letter-spacing: -0.02em !important;
   }
   
   /* The Group Hover Physics Engine */
@@ -462,9 +612,9 @@ import ArrowIcon from './ArrowIcon.astro';
   }
   .MegaColWrapper:hover .MegaCol a:hover {
     opacity: 1;
-    transform: scale(1.02) translateX(4px);
-    background: rgba(124, 65, 243, 0.08) !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transform: translateX(4px);
+    background: #f8f8fb !important;
+    border-radius: 12px;
   }
 
   
@@ -480,21 +630,23 @@ import ArrowIcon from './ArrowIcon.astro';
   }
 
   .MegaCol_title {
-    padding-left: 0.75rem;
-    color: #7c41f3 !important;
-    font-size: 1.1rem;
-    font-weight: 700 !important;
+    padding-left: 1rem;
+    color: #888 !important;
+    font-size: 0.75rem;
+    font-weight: 600 !important;
     letter-spacing: 0.15em;
-    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
   }
   
 
 
   .MegaCol_desc {
-    font-size: 0.85rem;
-    color: #666;
+    font-size: 0.8rem;
+    color: #888;
     font-weight: 400;
     line-height: 1.4;
+    margin-top: 0.15rem;
   }
   
   /* Dark CTA panel — white text was unreadable on the earlier light purple. */
@@ -507,3 +659,61 @@ import ArrowIcon from './ArrowIcon.astro';
     color: #ffffff !important;
   }
 </style>
+
+<script is:inline>
+  (() => {
+    const header = document.querySelector('[data-c8-sticky]');
+    if (!header) return;
+    const THRESHOLD = 40;
+
+    const read = () =>
+      window.scrollY ||
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+
+    let lastState = null;
+    const apply = () => {
+      const scrolled = read() > THRESHOLD;
+      if (scrolled === lastState) return;
+      lastState = scrolled;
+      if (scrolled) header.setAttribute('data-scrolled', 'true');
+      else header.removeAttribute('data-scrolled');
+    };
+
+    // 1) Native scroll listeners — window + document catch any dispatcher,
+    //    including smooth-scroll wrappers that sometimes bubble on document.
+    window.addEventListener('scroll', apply, { passive: true, capture: true });
+    document.addEventListener('scroll', apply, { passive: true, capture: true });
+
+    // 2) IntersectionObserver sentinel — flips state when scroll crosses the
+    //    threshold even if no scroll events make it to the listener.
+    const sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText =
+      'position:absolute;top:0;left:0;width:1px;height:' +
+      THRESHOLD +
+      'px;pointer-events:none;';
+    document.body.prepend(sentinel);
+    new IntersectionObserver(
+      (entries) => entries.forEach(() => apply()),
+      { threshold: 0 }
+    ).observe(sentinel);
+
+    // 3) rAF polling — last-resort belt-and-suspenders for any transform-based
+    //    scroll engine (Lenis, locomotive) that doesn't emit scroll at all.
+    let lastY = -1;
+    const tick = () => {
+      const y = read();
+      if (y !== lastY) {
+        lastY = y;
+        apply();
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+
+    apply();
+  })();
+</script>

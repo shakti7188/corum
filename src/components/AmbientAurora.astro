@@ -1,0 +1,154 @@
+<div id="GlobalAurora_Container">
+  <div class="GlobalAurora_Blob blob-1"></div>
+  <div class="GlobalAurora_Blob blob-2"></div>
+  <div class="GlobalAurora_Blob blob-3"></div>
+</div>
+
+<style>
+  #GlobalAurora_Container {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1 !important;
+    pointer-events: none !important;
+    overflow: hidden;
+  }
+
+  .GlobalAurora_Blob {
+    position: absolute;
+    /* Elongated river ribbons — wide and short */
+    width: 60vw;
+    height: 14vw;
+    min-width: 480px;
+    min-height: 160px;
+    top: 50%;
+    left: 50%;
+    margin-top: -7vw;
+    margin-left: -30vw;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.42;
+    will-change: transform;
+    transform-origin: center center;
+    mix-blend-mode: screen;
+  }
+
+  /* River 1 — magenta → pink core */
+  .blob-1 {
+    background: radial-gradient(ellipse at 35% 50%, #ff006e 0%, #f72585 38%, #b5179e 75%, transparent 100%);
+    animation: shimmer1 9s ease-in-out infinite alternate;
+  }
+
+  /* River 2 — electric blue trailing */
+  .blob-2 {
+    width: 55vw;
+    height: 12vw;
+    margin-top: -6vw;
+    margin-left: -27.5vw;
+    background: radial-gradient(ellipse at 60% 50%, #3a86ff 0%, #4361ee 45%, #7209b7 80%, transparent 100%);
+    opacity: 0.38;
+    filter: blur(80px);
+    animation: shimmer2 13s ease-in-out infinite alternate-reverse;
+  }
+
+  /* River 3 — bright cyan/magenta highlight that tracks cursor faster */
+  .blob-3 {
+    width: 38vw;
+    height: 10vw;
+    margin-top: -5vw;
+    margin-left: -19vw;
+    background: radial-gradient(ellipse at 50% 50%, #00b4d8 0%, #f72585 55%, transparent 100%);
+    opacity: 0.32;
+    filter: blur(70px);
+    animation: shimmer3 7s ease-in-out infinite alternate;
+  }
+
+  @keyframes shimmer1 {
+    0%   { filter: blur(90px) hue-rotate(0deg);   opacity: 0.40; }
+    50%  { filter: blur(105px) hue-rotate(20deg); opacity: 0.48; }
+    100% { filter: blur(90px) hue-rotate(-15deg); opacity: 0.36; }
+  }
+  @keyframes shimmer2 {
+    0%   { filter: blur(80px) hue-rotate(0deg);   opacity: 0.36; }
+    50%  { filter: blur(95px) hue-rotate(-25deg); opacity: 0.44; }
+    100% { filter: blur(80px) hue-rotate(15deg);  opacity: 0.32; }
+  }
+  @keyframes shimmer3 {
+    0%   { filter: blur(70px) hue-rotate(0deg);   opacity: 0.30; }
+    50%  { filter: blur(85px) hue-rotate(30deg);  opacity: 0.38; }
+    100% { filter: blur(70px) hue-rotate(-20deg); opacity: 0.28; }
+  }
+
+  @media (prefers-reduced-motion) {
+    #GlobalAurora_Container { display: none; }
+  }
+</style>
+
+<script>
+  function initAmbientAurora() {
+    const b1 = document.querySelector('.blob-1') as HTMLElement | null;
+    const b2 = document.querySelector('.blob-2') as HTMLElement | null;
+    const b3 = document.querySelector('.blob-3') as HTMLElement | null;
+    if (!b1 || !b2 || !b3) return;
+
+    // Cursor target relative to viewport centre (drives the *additional* offset)
+    let targetX = 0, targetY = 0;
+    // Smoothed cursor influence
+    let mx = 0, my = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      // Subtle cursor influence — aurora is owned by autonomous flow
+      targetX = (e.clientX - window.innerWidth  * 0.5) * 0.35;
+      targetY = (e.clientY - window.innerHeight * 0.5) * 0.35;
+    }, { passive: true });
+
+    const start = Date.now();
+
+    function tick() {
+      // Slowed down dramatically — big lazy wave instead of frantic motion
+      const t = (Date.now() - start) * 0.00025;
+
+      // Slow lerp so cursor influence eases in gently
+      mx += (targetX - mx) * 0.025;
+      my += (targetY - my) * 0.025;
+
+      // Always-on river-like motion: each blob flows on its own
+      // sinusoidal path with different periods for a layered current.
+      const vw = window.innerWidth  * 0.01;
+      const vh = window.innerHeight * 0.01;
+
+      // River 1 — huge slow horizontal sweep, gentle vertical wave
+      const x1 = Math.sin(t * 0.7) * 40 * vw + Math.cos(t * 0.4) * 12 * vw;
+      const y1 = Math.sin(t * 0.85) * 22 * vh;
+      const r1 = Math.sin(t * 0.5) * 18;
+
+      // River 2 — opposite direction, even slower
+      const x2 = Math.cos(t * 0.55) * 45 * vw + Math.sin(t * 0.35) * 10 * vw;
+      const y2 = Math.cos(t * 0.65) * 26 * vh;
+      const r2 = Math.cos(t * 0.4) * 22;
+
+      // River 3 — slightly faster but still calm
+      const x3 = Math.sin(t * 1.1) * 30 * vw + Math.cos(t * 1.4) * 8 * vw;
+      const y3 = Math.cos(t * 0.95) * 18 * vh;
+      const r3 = Math.sin(t * 0.8) * 26;
+
+      // Cursor adds gentle additional drift on top of the wave
+      const cx1 = x1 + mx * 0.4;
+      const cy1 = y1 + my * 0.4;
+      const cx2 = x2 + mx * 0.3;
+      const cy2 = y2 + my * 0.3;
+      const cx3 = x3 + mx * 0.6;
+      const cy3 = y3 + my * 0.6;
+
+      b1.style.transform = `translate3d(${cx1}px, ${cy1}px, 0) rotate(${r1}deg) scale(1.05)`;
+      b2.style.transform = `translate3d(${cx2}px, ${cy2}px, 0) rotate(${r2}deg) scale(0.95)`;
+      b3.style.transform = `translate3d(${cx3}px, ${cy3}px, 0) rotate(${r3}deg) scale(1.1)`;
+
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  document.addEventListener('DOMContentLoaded', initAmbientAurora);
+  document.addEventListener('astro:page-load', initAmbientAurora);
+</script>

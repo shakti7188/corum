@@ -87,6 +87,35 @@ function initReveals() {
   // Global lazy-loading for textual site elements (skips elements already controlled by other effects)
   revealFrom('main p:not([class*="Statistic"]):not([class*="hero"]), main h2:not([data-split]):not([class*="Statistic"]):not(.gsap-service-heading), main h3:not([data-split]):not([class*="Statistic"]), main li', { opacity: 0, y: 18 }, { duration: 0.45 });
 
+  // Ethos is next after pinned Services. Trigger off the Services container
+  // (not Ethos itself) so we can start fading Ethos in *while* Services is
+  // still pinned — that overlaps the last card's fade-out with the section
+  // change and removes the blank frame between them.
+  if (!prefersReduced) {
+    const ethosEl = document.querySelector<HTMLElement>('.Ethos_ethos__vP_lg');
+    const servicesContainer = document.querySelector<HTMLElement>('.gsap-services-section');
+    if (ethosEl) {
+      const trigger = servicesContainer || ethosEl;
+      gsap.fromTo(ethosEl,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, ease: 'power2.out',
+          scrollTrigger: {
+            trigger,
+            start: servicesContainer ? 'bottom bottom+=30%' : 'top bottom',
+            end:   servicesContainer ? 'bottom bottom-=5%'  : 'top center',
+            scrub: 1,
+          } }
+      );
+    }
+    document.querySelectorAll<HTMLElement>('.EthosSection_section__hjSSE').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top bottom-=80px', once: true } }
+      );
+    });
+  }
+
   if (prefersReduced) return;
   document.querySelectorAll<HTMLElement>('[class*="AnimatedGrid_grid"]').forEach((grid) => {
     const items = Array.from(grid.children) as HTMLElement[];
@@ -178,8 +207,18 @@ function initMagnetics() {
 function initSwipers() {
   document.querySelectorAll<HTMLElement>('.swiper').forEach((root) => {
     if(window.innerWidth >= 1024 && root.classList.contains('StatisticsCarousel_swiper__PGdj6')) return;
-    const nextBtn = root.querySelector('.swiper-button-next') || root.parentElement?.querySelector('.swiper-panel-next');
-    const prevBtn = root.querySelector('.swiper-button-prev') || root.parentElement?.querySelector('.swiper-panel-prev');
+    // Buttons may live inside the swiper (.TestimonialsCarousel_swiperNav)
+    // OR alongside it in the parent. Check both, in that order.
+    const nextBtn =
+      root.querySelector('.swiper-button-next') ||
+      root.querySelector('.swiper-panel-next') ||
+      root.parentElement?.querySelector('.swiper-panel-next') ||
+      root.closest('.TestimonialsCarousel_container__YAjHa')?.querySelector('.swiper-panel-next');
+    const prevBtn =
+      root.querySelector('.swiper-button-prev') ||
+      root.querySelector('.swiper-panel-prev') ||
+      root.parentElement?.querySelector('.swiper-panel-prev') ||
+      root.closest('.TestimonialsCarousel_container__YAjHa')?.querySelector('.swiper-panel-prev');
     const isTestimonials = root.classList.contains('TestimonialsCarousel_swiper__AMmtm');
 
     if (isTestimonials) {
@@ -480,7 +519,27 @@ function initServicesStacking() {
 
   cards.forEach((card, index) => {
     ScrollTrigger.create({ trigger: card, start: 'top top+=120', endTrigger: container, end: 'bottom bottom', pin: true, pinSpacing: false });
-    if (index < cards.length - 1) gsap.to(card, { scale: 0.85, opacity: 0, transformOrigin: "top center", scrollTrigger: { trigger: cards[index + 1], start: 'top bottom-=15%', end: 'top top+=120', scrub: 1 } });
+    if (index < cards.length - 1) {
+      gsap.to(card, { scale: 0.85, opacity: 0, transformOrigin: "top center", scrollTrigger: { trigger: cards[index + 1], start: 'top bottom-=15%', end: 'top top+=120', scrub: 1 } });
+    } else {
+      // Last card has no follow-on to trigger its exit, so it used to jerk
+      // at the unpin moment. Start fading while the container still has
+      // pinned travel left, finish exactly at the unpin moment — that way
+      // the card is already transparent when it detaches, no pop.
+      // Start fading the last card well before the pin releases so that
+      // by the time Services unpins, the card is already transparent and
+      // Ethos (which reveals at top:bottom) is already fading in.
+      gsap.to(card, {
+        scale: 0.85, opacity: 0, transformOrigin: "top center",
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: container,
+          start: 'bottom bottom+=40%',
+          end: 'bottom bottom-=5%',
+          scrub: 1,
+        },
+      });
+    }
   });
 }
 

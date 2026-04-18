@@ -81,6 +81,7 @@ const devStats = [
      sequence of stations, with generous breathing room between each step. */
   [data-c8-timeline="vertical"] {
     padding: clamp(5rem, 9vw, 8rem) 0 !important;
+    background: transparent !important;
   }
   [data-c8-timeline="vertical"] .Timeline_scroller__D0iTE {
     overflow: visible !important;
@@ -144,7 +145,7 @@ const devStats = [
   [data-c8-timeline="vertical"] .Timeline_block__WRSOn:last-child {
     padding-bottom: 0 !important;
   }
-  /* Numbered node on the spine. */
+  /* Numbered node on the spine — floats freely, no halo ring. */
   [data-c8-timeline="vertical"] .Timeline_block__WRSOn::before {
     content: counter(c8timeline, decimal-leading-zero);
     position: absolute;
@@ -163,10 +164,7 @@ const devStats = [
     letter-spacing: 0.04em;
     font-variant-numeric: tabular-nums;
     z-index: 1;
-    box-shadow:
-      0 0 0 8px var(--c8-timeline-bg, #f4f4f4),
-      0 0 0 9px rgba(0,0,0,0.08),
-      0 10px 24px -8px rgba(0,0,0,0.25);
+    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.25);
     transition: transform 0.35s ease, background 0.35s ease;
   }
   [data-c8-timeline="vertical"] .Timeline_block__WRSOn:hover::before {
@@ -175,19 +173,21 @@ const devStats = [
   [data-c8-timeline="vertical"] .Timeline_image__txoKz {
     display: none !important;
   }
-  /* Step card — subtle surface so the eye understands each block as a station. */
+  /* Step card — white elevated surface with shadow, cards only. The section
+     wrapper and numbered nodes stay background-free so numbers + spine don't
+     read as part of a shared container with the cards. */
   [data-c8-timeline="vertical"] .Timeline_block__WRSOn > div:not(.Timeline_workInvolved__Z_cYT) {
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 18px;
+    background: #ffffff !important;
+    border: 1px solid rgba(0,0,0,0.06) !important;
+    border-radius: 18px !important;
     padding: 1.75rem 2rem !important;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 18px 38px -24px rgba(0,0,0,0.18);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 18px 38px -24px rgba(0,0,0,0.18) !important;
     transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
   }
   [data-c8-timeline="vertical"] .Timeline_block__WRSOn:hover > div:not(.Timeline_workInvolved__Z_cYT) {
     transform: translateY(-3px);
-    border-color: rgba(0,0,0,0.12);
-    box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 24px 46px -20px rgba(0,0,0,0.28);
+    border-color: rgba(0,0,0,0.12) !important;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 24px 46px -20px rgba(0,0,0,0.28) !important;
   }
   [data-c8-timeline="vertical"] .Timeline_blockHeading__hif7t {
     display: flex !important;

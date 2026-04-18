@@ -1,41 +1,44 @@
 ---
-// Latest articles — Corum8 Insights feed
+// Latest articles — Corum8 Insights feed. Hero art reuses clean, text-free
+// photography and gradients from /public/images/ (screened by visually
+// inspecting each candidate; anything with UI mockups, poster copy, or busy
+// collage was rejected).
 const articles = [
   {
-    href: '/insights/web3-gtm-playbook-2026',
-    image: '/images/brand-trend-2026.png',
-    tags: 'Web3, GTM',
-    title: 'The Web3 GTM playbook: how tier-1 launches really happen in 2026',
+    href: '/insights/token-launch-playbook',
+    image: '/images/Statistics-bg-black.jpeg',
+    tags: 'Token Launch',
+    title: 'Anatomy of a tier-1 token launch.',
   },
   {
-    href: '/insights/influencer-economics-kol-roi',
-    image: '/images/Design-with-guts.png',
-    tags: 'Influencer, Growth',
-    title: 'Influencer economics: measuring real ROI across 25,000+ KOLs',
+    href: '/insights/kol-economics',
+    image: '/images/culture-row-1.jpg',
+    tags: 'Influencer',
+    title: 'What 25,000 KOLs taught us about ROI.',
   },
   {
-    href: '/insights/rwa-tokenization-infrastructure-guide',
-    image: '/images/Lovie-awards.png',
-    tags: 'RWA, Development',
-    title: 'Tokenising real-world assets: the institutional infrastructure stack',
+    href: '/insights/exchange-listings',
+    image: '/images/contact-bg-2560x1440.jpg',
+    tags: 'Exchanges',
+    title: 'Inside the CEX listing playbook.',
   },
   {
-    href: '/insights/full-stack-vs-silos-why-it-matters',
-    image: '/images/Rebel-against-boring.png',
-    tags: 'Agency, Strategy',
-    title: 'Full-stack vs silos: why Web3 projects fail without one team',
+    href: '/insights/ai-growth-loops',
+    image: '/images/culture-row-2.jpg',
+    tags: 'AI · Growth',
+    title: 'Building AI-native growth loops.',
   },
   {
-    href: '/insights/seo-aeo-geo-crypto-brands',
-    image: '/images/creative-web-design-inspo-2025.png',
-    tags: 'SEO, AEO',
-    title: 'SEO, AEO & GEO: getting found on Google, AI answers and local search',
+    href: '/insights/rwa-tokenisation',
+    image: '/images/approach.jpg',
+    tags: 'RWA',
+    title: 'Tokenising real-world assets, simplified.',
   },
   {
-    href: '/insights/performance-affiliate-exchange-growth',
-    image: '/images/website-design-inspo.png',
-    tags: 'Affiliate, Performance',
-    title: 'How performance affiliate networks drive $800M+ monthly exchange volume',
+    href: '/insights/community-compounding',
+    image: '/images/sitecare-header-image.webp',
+    tags: 'Community',
+    title: 'Why community is the new moat.',
   },
 ];
 ---
@@ -43,10 +46,18 @@ const articles = [
 <div class="Articles_articles__Wcz2C">
   <div class="DarkThemeSwitch_cover__hn_xc"></div>
   <div class="container">
-    <div class="Articles_heading__zNRl8">
-      <p>
-        <span class="FadeInUp_container___uxva" data-fill="false">Latest insights</span>
-      </p>
+    <div class="Articles_heading__zNRl8 c8-insights-head">
+      <div class="c8-insights-head__text">
+        <p class="c8-insights-head__eyebrow">
+          <span class="FadeInUp_container___uxva" data-fill="false">Latest insights</span>
+        </p>
+        <h2 class="c8-insights-head__title">
+          <span data-blur-reveal="true">Field notes from 1,100+ Web3 campaigns.</span>
+        </h2>
+        <p class="c8-insights-head__sub">
+          Playbooks, teardowns and frameworks pulled straight from live launches — token sales, KOL programmes, exchange listings and full-stack builds.
+        </p>
+      </div>
       <span class="FadeInUp_container___uxva" data-fill="false"><div class="Magnetic_magnetic__LncOy" data-fill="false">
         <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
           <a class="Button_inner__fnyH6" href="/insights"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Read the blog</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
@@ -54,6 +65,41 @@ const articles = [
           </svg></span></a>
         </div></div></span>
     </div>
+
+    <style>
+      /* Tightens the header row — the eyebrow + oversized title + subcopy
+         fills the whitespace that used to sit between "Latest insights" and
+         the grid. Right-side CTA stays aligned to the baseline. */
+      .c8-insights-head {
+        align-items: flex-end !important;
+      }
+      .c8-insights-head__text { max-width: 720px; }
+      .c8-insights-head__eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.82rem;
+        color: #7a7a7a;
+        margin: 0 0 0.75rem !important;
+      }
+      .c8-insights-head__title {
+        font-size: clamp(2rem, 4.2vw, 3.75rem);
+        line-height: 1.02;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        margin: 0 0 1.25rem !important;
+        color: #111;
+      }
+      .c8-insights-head__sub {
+        font-size: 1.05rem;
+        line-height: 1.55;
+        color: #555;
+        margin: 0 !important;
+        max-width: 54ch;
+      }
+      @media (max-width: 900px) {
+        .c8-insights-head__title { font-size: 2.1rem; }
+      }
+    </style>
     <div class="AnimatedGrid_grid__otAMD">
       <div class="Articles_articlesList__CXW8a">
         {articles.map((a) => (
@@ -61,7 +107,7 @@ const articles = [
             <article class="Articles_article__3ZS4Y">
               <figure class="Articles_image__Cvgsi">
                 <span class="Image_image__RAAdZ Image_fill__EiIzS">
-                  <img data-src={a.image} alt="" fetchpriority="low" height="787" width="1400" sizes="auto" class="lazyload" />
+                  <img src={a.image} data-src={a.image} alt="" fetchpriority="low" height="787" width="1400" sizes="auto" class="lazyload" />
                 </span>
               </figure>
               <div class="Articles_text__HhO2L">

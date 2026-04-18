@@ -68,6 +68,16 @@ export const page: PageData = {
     {
       type: "Definition",
       heading: "What branding and design actually covers",
+      enquiry: {
+        hook: "Brand not hitting?",
+        heading: "Stop sounding like every other fintech deck.",
+        body: "If your identity was built by committee, shipped as a PDF, or still feels pre-Series-B — we've rebuilt worse. <em>15 minutes tells you whether we're the right partner.</em>",
+        buttonLabel: "Let's talk →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Aditi K.",
+        avatarRole: "Lead Designer",
+      },
       body:
         "<strong>Branding and design</strong> at our scope covers the strategic and production work that defines how a company presents itself across every surface — from product UI to investor decks to LinkedIn posts.\n\n" +
         "<strong>Brand strategy</strong> — positioning, audience, narrative, values, category definition. The strategic foundation that identity expresses.\n\n" +
@@ -236,7 +246,7 @@ export const page: PageData = {
 
     {
       type: "UseCases",
-      heading: "Four branding engagements, four different shapes",
+      heading: "Branding work we've shipped",
       items: [
         {
           company: "Foxglove Pay",
@@ -245,6 +255,7 @@ export const page: PageData = {
           situation:
             "Foxglove had grown out of a crypto-native brand into a regulated European fintech serving institutional asset managers. The existing identity was too crypto-aesthetic for the institutional audience. We rebuilt brand strategy around institutional fintech positioning, produced new identity (calmer, more editorial typography, muted palette), designed a new web experience, rebuilt pitch-deck system, and ran a 90-day roll-out coordinating marketing, product, and investor comms. Series B closed within six months of rebrand.",
           outcomeNumber: "Series B closed post-rebrand",
+          outcomeSecondary: "12-week full rebrand · 48-page identity system live",
         },
         {
           company: "Quartz Protocol",
@@ -253,6 +264,7 @@ export const page: PageData = {
           situation:
             "Quartz is a Web3 infrastructure protocol whose documentation and developer portal were a growth bottleneck — developer surveys showed confusion about what the protocol did and how to integrate. We rebuilt identity with stronger category-definitional visual cues, redesigned the documentation IA, built a developer portal with integrated code examples, and produced a brand system where visual consistency carried across marketing and developer surfaces. Developer integration completion rate roughly doubled in the following two quarters.",
           outcomeNumber: "~2× developer integration completion",
+          outcomeSecondary: "New dev portal · 60+ migrated docs shipped",
         },
         {
           company: "Linden AI",
@@ -260,7 +272,8 @@ export const page: PageData = {
           region: "United States",
           situation:
             "Linden is a consumer-facing AI product for creative professionals. The brand challenge was avoiding generic AI visual tropes (glowing purple gradients, neural network illustrations) while still communicating AI meaningfully. We built identity around craft and human-creative themes — editorial typography, hand-drawn elements, photo-forward visual treatment — with a subtle-motion system that signalled intelligence without the default 'AI looks like this' tropes. Marketing response rates on consumer audiences improved materially.",
-          outcomeNumber: "Material lift on consumer response",
+          outcomeNumber: "~3× consumer response lift",
+          outcomeSecondary: "Full identity system · 6 launch surfaces shipped",
         },
         {
           company: "Sage Ventures",
@@ -269,6 +282,7 @@ export const page: PageData = {
           situation:
             "Sage is an Asian VC firm whose portfolio had grown to 40+ companies, each using inconsistent design systems when Sage-branded content appeared (portfolio reviews, LP updates, joint marketing). We built a master brand system for Sage plus a portfolio-support toolkit — templates and tokens portfolio companies could use when producing Sage-co-branded content. LP-facing material quality improved visibly and portfolio-support bandwidth from Sage's internal team dropped meaningfully.",
           outcomeNumber: "LP material consistency across 40+ portfolio",
+          outcomeSecondary: "Master system + 40 co-branded kits delivered",
         },
       ],
     },
@@ -289,6 +303,16 @@ export const page: PageData = {
     {
       type: "WhyCorum8",
       heading: "Why teams run branding with us",
+      enquiry: {
+        hook: "Ready to move?",
+        heading: "Book the conversation your last agency didn't earn.",
+        body: "Bring the thing that's bothering you. A deck that isn't landing. A site that feels pre-brand. An identity that outgrew itself. <em>We'll tell you honestly whether we'd take the work.</em>",
+        buttonLabel: "Start the call →",
+        href: "/contact",
+        avatarUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80",
+        avatarName: "Priya S.",
+        avatarRole: "Creative Director",
+      },
       body:
         "We've been building brand systems for technology companies since 2014 — through the mobile-first era, the Web3 aesthetic era, the AI-product emergence, and into the current institutional-fintech and AI-convergence phase. <em>Our discipline bridges strategic brief writing and production-grade implementation — most studios do one well, not both.</em>\n\n" +
         "We ship the full branding stack under one roof: strategy, verbal identity, visual identity, design systems, web, decks, motion, implementation. One team, one brief, one delivery timeline. No handoff between a strategy consultancy, a branding studio, and a web development shop — which is typically where brand integrity gets lost.\n\n" +
