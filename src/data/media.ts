@@ -163,11 +163,11 @@ export const media = {
 
   // Video loops — ambient, decorative. Crawlers skip.
   video: {
-    ambient:  { src: "/assets/video/bg2.mp4",                             alt: "", kind: "video", decorative: true },
+    ambient:  { src: "/media/bg2.mp4",                                    alt: "", kind: "video", decorative: true },
     workReel: { src: "/assets/kota/videos/Company-Loop4-compressed-2.mp4", alt: "", kind: "video", decorative: true },
     featured: { src: "/assets/kota/videos/Featured2-Compressed.mp4",      alt: "", kind: "video", decorative: true },
     // Case-study videos are content, not decoration — keep descriptive alt.
-    fanadise: { src: "/assets/video/fenadise.mp4",                         alt: "Fanadise case-study clip", kind: "video" },
+    fanadise: { src: "/media/fanadise.mp4",                               alt: "Fanadise case-study clip", kind: "video" },
     case:     { src: "/assets/kota/videos/dka-thumbnail-compressed.mp4",   alt: "Case-study thumbnail loop", kind: "video" },
   },
 

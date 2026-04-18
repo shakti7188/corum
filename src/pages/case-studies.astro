@@ -2,197 +2,116 @@
 import Layout from "../layouts/Layout.astro";
 import KotaverseCta from "../components/KotaverseCta.astro";
 
-const caseStudies = [
+const arrowGrad = {
+  id: 'cs',
+  stops: [
+    { offset: '0', color: '#7c41f3' },
+    { offset: '1', color: '#ff6eff' },
+  ],
+};
+
+const projects = [
   {
-    slug: "/case-studies/binance",
-    client: "Binance",
-    tagline: "$800M+ in monthly affiliate volume",
-    scope: "Performance affiliate network for the world's largest exchange.",
-    type: "Performance · Affiliate Network",
-    region: "Global",
-    year: "2023",
-    poster: "/images/upp-featured-mobile.jpg",
+    href: '/case-studies/binance',
+    name: 'Binance',
+    year: '2023',
+    heading: 'Performance affiliate network driving $800M+ monthly exchange volume.',
+    tags: ['Performance Marketing', 'Affiliate Network', 'Exchange'],
+    video: '/media/Company-Loop4-compressed-2.mp4',
+    poster: '/images/upp-featured-mobile.jpg',
   },
   {
-    slug: "/case-studies/cashaa",
-    client: "Cashaa",
-    tagline: "$32M raised at token launch",
-    scope: "Token launch powered by influencer marketing, PR and community activation.",
-    type: "Token Launch · Influencer · PR",
-    region: "Global",
-    year: "2022",
-    poster: "/images/Featured.png",
+    href: '/case-studies/cashaa',
+    name: 'Cashaa',
+    year: '2022',
+    heading: 'Token launch powered by influencer marketing, PR and community activation — $32M raised.',
+    tags: ['Token Launch', 'Influencer Marketing', 'PR', 'Community'],
+    video: '/media/Featured2-Compressed.mp4',
+    poster: '/images/upp-featured-mobile.jpg',
   },
   {
-    slug: "/case-studies/kucoin",
-    client: "KuCoin",
-    tagline: "Tier-1 visibility across priority markets",
-    scope: "Strategic PR programme amplifying brand visibility for a major exchange.",
-    type: "Strategic PR · Exchange",
-    region: "Global",
-    year: "2024",
-    poster: "/images/ig-featured-mobile.jpg",
+    href: '/case-studies/kucoin',
+    name: 'KuCoin',
+    year: '2024',
+    heading: 'Strategic PR programme for a major exchange — amplifying brand visibility in every priority market.',
+    tags: ['Strategic PR', 'Exchange', 'Global Visibility'],
+    video: '/media/Duplicated-Assets.mp4',
+    poster: '/images/ig-featured-mobile.jpg',
   },
   {
-    slug: "/case-studies/fanadise",
-    client: "Fanadise",
-    tagline: "$5M raise, fully subscribed",
-    scope: "Full-stack Web3 growth campaign rallying community behind the raise.",
-    type: "Full-stack Web3 · Growth · Community",
-    region: "Europe",
-    year: "2024",
-    poster: "/images/GOAT-FeaturedImage.webp",
+    href: '/case-studies/fanadise',
+    name: 'Fanadise',
+    year: '2024',
+    heading: 'Full-stack Web3 growth campaign that rallied the community behind a $5M raise.',
+    tags: ['Full-stack Web3', 'Growth Campaign', 'Community'],
+    video: '/media/GOAT-FeatureVideo.mp4',
+    poster: '/images/GOAT-FeaturedImage.webp',
   },
   {
-    slug: "/case-studies/ubuntu-tribe",
-    client: "Ubuntu Tribe",
-    tagline: "Token2049 activation, global reach",
-    scope: "PR, community and influencer programme anchored around Token2049.",
-    type: "PR · Community · Influencer",
-    region: "APAC / Global",
-    year: "2024",
-    poster: "/images/hero.webp",
+    href: '/case-studies/ubuntu-tribe',
+    name: 'Ubuntu Tribe',
+    year: '2024',
+    heading: 'PR, community and influencer programme anchored around a Token2049 activation.',
+    tags: ['PR', 'Community', 'Influencer', 'Token2049 Event'],
+    video: '/media/isi-vid2-1.mp4',
+    poster: '/images/hero.webp',
   },
   {
-    slug: "/case-studies/metarix",
-    client: "Metarix",
-    tagline: "$780K raised",
-    scope: "Full launch across influencers, PR and community converting attention into capital.",
-    type: "Launch · Influencers · PR · Community",
-    region: "APAC",
-    year: "2023",
-    poster: "/images/wogan-featured-2.jpg",
+    href: '/case-studies/metarix',
+    name: 'Metarix',
+    year: '2023',
+    heading: 'Full launch across influencers, PR and community that converted attention into a $780K raise.',
+    tags: ['Influencers', 'PR', 'Community', 'Full Launch'],
+    video: '/media/Featured-compressed.mp4',
+    poster: '/images/wogan-featured-2.jpg',
   },
 ];
 ---
 <Layout title="Case Studies | Corum8">
+<div data-theme="light">
+<section class="Hero_hero__Oyf4n"><div class="container"><div class="Hero_top__RRkYH"><h2><span class="LineByLine_headingOuter__JmusT"><span>Selected work. Real clients. Verifiable numbers.</span></span></h2><figure class="crosshair" aria-hidden="true"><span class="FadeInRotate_container__QE9u9" data-fill="true" data-direction="clockwise"><span class="inner"></span></span></figure><div class="Hero_video__rzcbe"><span class="ScaleFadeIn_container__cK78G" data-fill="true"><span class="ScaleFadeIn_inner__y4reT" data-fill="true"><video src="/media/bg2.mp4" class="Hero_video__rzcbe" autoplay muted loop playsinline></video></span></span></div></div><div class="Hero_bottom__ktiOH"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Case studies</span></div></span></h1><h3 class="Hero_introText__oP34v"><span class="FadeIn_container__bjQVL" data-fill="false"><span>Six engagements across exchanges, token launches, community programmes and performance networks — with the numbers attached.</span></span></h3><div class="Hero_arrow__lxSeM"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z"></path></svg></span></div></div></div></section>
 
-<section class="Hero_hero__zbooM"><div class="container"><div class="Hero_top__UZ6SA"><h2><span class="LineByLine_headingOuter__JmusT"><span>Selected work. Real clients. Verifiable numbers.</span></span></h2></div><div class="Hero_bottom__pLxrT"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Case studies</span></div></span></h1><div class="Hero_arrow__WTdEi"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z" style="stroke-width:0"></path></svg></span></div></div></div></section>
-
-<section class="c8-cases">
-  <div class="container">
-    <p class="c8-cases__lede">Six engagements across exchanges, token launches, community programmes and performance networks. Every number is either the client's own reported figure or an outcome we can walk you through on a call.</p>
-    <div class="c8-cases__grid">
-      {caseStudies.map((c) => (
-        <a class="c8-case-card" href={c.slug}>
-          <div class="c8-case-card__media">
-            <img src={c.poster} alt="" loading="lazy" />
-            <div class="c8-case-card__overlay">
-              <span class="c8-case-card__scope">{c.scope}</span>
+<div class="Work_work__rSI8c" id="case-studies-grid">
+  <div class="DarkThemeSwitch_cover__hn_xc"></div>
+  <div class="Work_projects__A5q77">
+    <div class="AnimatedGrid_grid__otAMD">
+      <div class="container">
+        {projects.map((p) => (
+          <a class="ProjectCard_project__d1wbY ProjectCard_small__xsL92" data-animation="grid-item" href={p.href}>
+            <div class="ProjectCard_projectText__o770X">
+              <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.78 14.78">
+                  <defs>
+                    <linearGradient id={arrowGrad.id} x1="3.54" x2="13.98" y1="3.54" y2="13.99" gradientUnits="userSpaceOnUse">
+                      {arrowGrad.stops.map((s) => <stop offset={s.offset} stop-color={s.color}></stop>)}
+                    </linearGradient>
+                  </defs>
+                  <path fill={`url(#${arrowGrad.id})`} stroke-width="0" d="M13.25 12.18L13.25 0.23 14.78 0.23 14.78 14.76 14.74 14.76 14.74 14.78 0.21 14.78 0.21 13.25 12.18 13.25 0 1.08 1.08 0 13.25 12.18z"></path>
+                </svg>{p.name}
+              </h3>
+              <p>{p.year}</p>
             </div>
-          </div>
-          <div class="c8-case-card__body">
-            <div class="c8-case-card__meta">
-              <span>{c.type}</span>
-              <span>{c.region} · {c.year}</span>
+            <div class="ProjectCard_projectImage__Nfx9I">
+              <div class="ProjectCard_imageOverlay__OCawr">
+                <p class="ProjectCard_heading__1csIW">{p.heading}</p>
+                <ul class="ProjectCard_tags__XdVcf">
+                  {p.tags.map((t) => <li>{t}</li>)}
+                </ul>
+              </div>
+              <span class="Image_image__RAAdZ Image_fill__EiIzS"><img src={p.poster} alt="" fetchpriority="low" loading="lazy" /></span>
+              <video src={p.video} class="ProjectCard_video__AheFz" autoplay muted loop playsinline></video>
             </div>
-            <h3 class="c8-case-card__client">{c.client}</h3>
-            <p class="c8-case-card__tagline">{c.tagline}</p>
-          </div>
-        </a>
-      ))}
+          </a>
+        ))}
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <KotaverseCta
   light="Want a"
   bold="case like these?"
-  subtitle="Book a call. We'll tell you what we'd build, ship and measure first."
+  subtitle="Book a call. We'll tell you what we'd ship and measure first."
 />
-
-<style>
-  .c8-cases {
-    padding: clamp(4rem, 8vw, 8rem) 0;
-    background: #fafafa;
-  }
-  .c8-cases__lede {
-    max-width: 44rem;
-    margin: 0 auto 4rem;
-    text-align: center;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #444;
-  }
-  .c8-cases__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 1.75rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .c8-case-card {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 1.25rem;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .c8-case-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 28px 50px -24px rgba(0, 0, 0, 0.2);
-  }
-  .c8-case-card__media {
-    position: relative;
-    aspect-ratio: 16/10;
-    overflow: hidden;
-    background: #111;
-  }
-  .c8-case-card__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .c8-case-card:hover .c8-case-card__media img {
-    transform: scale(1.04);
-  }
-  .c8-case-card__overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: flex-end;
-    padding: 1.25rem;
-    background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
-  }
-  .c8-case-card__scope {
-    color: #fff;
-    font-size: 0.85rem;
-    line-height: 1.4;
-  }
-  .c8-case-card__body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.5rem 1.75rem 1.75rem;
-  }
-  .c8-case-card__meta {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #888;
-  }
-  .c8-case-card__client {
-    font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: #111;
-    margin: 0;
-  }
-  .c8-case-card__tagline {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #444;
-    margin: 0;
-  }
-</style>
-
+</div>
 </Layout>

@@ -96,7 +96,7 @@ const clients = [
             muted
             loop
             playsinline
-            preload="auto"
+            preload="metadata"
           ></video>
 
           <!-- Bottom gradient veil — darker at the bottom where the text sits,
@@ -145,7 +145,7 @@ const clients = [
        reveal). Framed with thin hairlines top + bottom like the "Featured
        in" strip on the hero. Label sits in the same parenthetical voice. -->
   <div class="c8-showcase__clients">
-    <p class="c8-showcase__clients-label"><span>(Industry leaders we build with)</span></p>
+    <p class="c8-showcase__clients-label">We build for the names you already know.</p>
     <div class="c8-showcase__clients-logos">
       {clients.map((c) => (
         <img src={c.src} alt={c.alt} loading="lazy" class="c8-showcase__client-img" />
@@ -367,36 +367,26 @@ const clients = [
     box-sizing: border-box;
   }
   .c8-showcase__clients-label {
-    margin: 0;
-    font-family: var(--montreal, sans-serif);
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
-    color: #999;
+    margin: 0 0 0.9rem;
+    font-family: var(--syne, var(--montreal, sans-serif));
+    font-size: clamp(1.35rem, 2.2vw, 1.95rem);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: #111;
   }
-  .c8-showcase__clients-label span::before,
-  .c8-showcase__clients-label span::after {
-    content: '';
-    display: inline-block;
-    width: 1.5rem;
-    height: 1px;
-    background: #ccc;
-    vertical-align: middle;
-  }
-  .c8-showcase__clients-label span::before { margin-right: 0.6rem; }
-  .c8-showcase__clients-label span::after  { margin-left: 0.6rem; }
 
   .c8-showcase__clients-logos {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1.25rem 2.5rem;
+    gap: 1.5rem 3.25rem;
   }
   .c8-showcase__client-img {
-    height: 28px;
+    height: 42px;
     width: auto;
-    max-width: 140px;
+    max-width: 180px;
     object-fit: contain;
     filter: grayscale(1) brightness(0.25);
     opacity: 0.75;
@@ -417,8 +407,9 @@ const clients = [
     .c8-showcase__ticks       { display: none; }
 
     .c8-showcase__clients     { padding: 2rem 1.25rem 0.25rem; }
-    .c8-showcase__client-img  { height: 22px; max-width: 110px; }
-    .c8-showcase__clients-logos { gap: 1rem 1.75rem; }
+    .c8-showcase__client-img  { height: 32px; max-width: 140px; }
+    .c8-showcase__clients-logos { gap: 1.1rem 2rem; }
+    .c8-showcase__clients-label { font-size: 1.25rem; margin-bottom: 0.75rem; }
   }
 </style>
 

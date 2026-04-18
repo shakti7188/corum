@@ -2,102 +2,125 @@
 import Layout from "../layouts/Layout.astro";
 import KotaverseCta from "../components/KotaverseCta.astro";
 
-const items = [
-  { title: "Foxglove Pay rebrand", tag: "Identity · Fintech", poster: "/images/Featured.png" },
-  { title: "Quartz Protocol dev portal", tag: "Web3 · Docs", poster: "/images/ISI-Image.png" },
-  { title: "Linden AI launch film", tag: "Motion · AI", poster: "/images/Pison-Image.png" },
-  { title: "Ubuntu Tribe Token2049 booth", tag: "Event · Web3", poster: "/images/DKA-Image.png" },
-  { title: "Metarix launch deck", tag: "Deck · Web3", poster: "/images/wogan-featured-2.jpg" },
-  { title: "KuCoin PR package", tag: "Press · Exchange", poster: "/images/ig-featured-mobile.jpg" },
-  { title: "Cashaa campaign creative", tag: "Campaign · Token", poster: "/images/Design-with-guts.png" },
-  { title: "Sage Ventures portfolio kit", tag: "System · VC", poster: "/images/SteppingStone-Image.png" },
+const arrowGrad = {
+  id: 'gal',
+  stops: [
+    { offset: '0', color: '#7c41f3' },
+    { offset: '1', color: '#ff6eff' },
+  ],
+};
+
+const projects = [
+  {
+    href: '/case-studies/fanadise',
+    name: 'Fanadise launch',
+    year: 'Brand · 2024',
+    heading: 'Full-stack Web3 launch identity for a $5M community raise.',
+    tags: ['Brand', 'Launch', 'Web3'],
+    poster: '/images/GOAT-FeaturedImage.webp',
+  },
+  {
+    href: '/case-studies/metarix',
+    name: 'Metarix deck',
+    year: 'Deck · 2023',
+    heading: 'Investor deck system for a $780K raise across PR, influencer and community.',
+    tags: ['Investor', 'Deck', 'Launch'],
+    poster: '/images/wogan-featured-2.jpg',
+  },
+  {
+    href: '/case-studies/ubuntu-tribe',
+    name: 'Ubuntu Tribe · Token2049',
+    year: 'Event · 2024',
+    heading: 'Event identity and booth programme anchored around Token2049 — PR, community and influencer.',
+    tags: ['Event', 'PR', 'Community'],
+    poster: '/images/hero.webp',
+  },
+  {
+    href: '/case-studies/kucoin',
+    name: 'KuCoin PR kit',
+    year: 'PR · 2024',
+    heading: 'Strategic PR package for a major exchange across priority markets.',
+    tags: ['PR', 'Exchange', 'Global'],
+    poster: '/images/ig-featured-mobile.jpg',
+  },
+  {
+    href: '/case-studies/cashaa',
+    name: 'Cashaa token campaign',
+    year: 'Token · 2022',
+    heading: 'Influencer and PR campaign creative for a $32M token raise.',
+    tags: ['Token', 'Influencer', 'Campaign'],
+    poster: '/images/Design-with-guts.png',
+  },
+  {
+    href: '/case-studies/binance',
+    name: 'Binance affiliate network',
+    year: 'Performance · 2023',
+    heading: 'Performance marketing creative driving $800M+ monthly exchange volume.',
+    tags: ['Performance', 'Affiliate', 'Exchange'],
+    poster: '/images/upp-featured-mobile.jpg',
+  },
+  {
+    href: '/services/marketing/branding',
+    name: 'Branding studio',
+    year: 'Studio',
+    heading: 'Identity systems, design systems, pitch decks and motion for Web3, AI and fintech teams.',
+    tags: ['Identity', 'System', 'Deck', 'Motion'],
+    poster: '/images/ISI-Image.png',
+  },
+  {
+    href: '/services/development/ai',
+    name: 'AI product work',
+    year: 'Product · AI',
+    heading: 'Production AI agents, copilots and RAG pipelines shipped into real customer workflows.',
+    tags: ['AI', 'Product', 'RAG', 'Agents'],
+    poster: '/images/Pison-Image.png',
+  },
 ];
 ---
 <Layout title="Gallery | Corum8">
+<div data-theme="light">
+<section class="Hero_hero__Oyf4n"><div class="container"><div class="Hero_top__RRkYH"><h2><span class="LineByLine_headingOuter__JmusT"><span>The work, the decks, the motion, the shipped identity systems.</span></span></h2><figure class="crosshair" aria-hidden="true"><span class="FadeInRotate_container__QE9u9" data-fill="true" data-direction="clockwise"><span class="inner"></span></span></figure><div class="Hero_video__rzcbe"><span class="ScaleFadeIn_container__cK78G" data-fill="true"><span class="ScaleFadeIn_inner__y4reT" data-fill="true"><video src="/media/bg2.mp4" class="Hero_video__rzcbe" autoplay muted loop playsinline></video></span></span></div></div><div class="Hero_bottom__ktiOH"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Gallery</span></div></span></h1><h3 class="Hero_introText__oP34v"><span class="FadeIn_container__bjQVL" data-fill="false"><span>Selected visual work — identity systems, pitch decks, motion films, event collateral and shipped product surfaces.</span></span></h3><div class="Hero_arrow__lxSeM"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z"></path></svg></span></div></div></div></section>
 
-<section class="Hero_hero__zbooM"><div class="container"><div class="Hero_top__UZ6SA"><h2><span class="LineByLine_headingOuter__JmusT"><span>The work, the decks, the motion, the shipped identity systems.</span></span></h2></div><div class="Hero_bottom__pLxrT"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Gallery</span></div></span></h1><div class="Hero_arrow__WTdEi"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z" style="stroke-width:0"></path></svg></span></div></div></div></section>
-
-<section class="c8-gallery">
-  <div class="container">
-    <p class="c8-gallery__lede">Selected visual work — identity systems, pitch decks, motion films, event collateral and shipped product surfaces. New work lands here monthly.</p>
-    <div class="c8-gallery__grid">
-      {items.map((item) => (
-        <figure class="c8-gallery__item">
-          <div class="c8-gallery__media">
-            <img src={item.poster} alt={item.title} loading="lazy" />
-          </div>
-          <figcaption>
-            <span class="c8-gallery__tag">{item.tag}</span>
-            <span class="c8-gallery__title">{item.title}</span>
-          </figcaption>
-        </figure>
-      ))}
+<div class="Work_work__rSI8c">
+  <div class="DarkThemeSwitch_cover__hn_xc"></div>
+  <div class="Work_projects__A5q77">
+    <div class="AnimatedGrid_grid__otAMD">
+      <div class="container">
+        {projects.map((p) => (
+          <a class="ProjectCard_project__d1wbY ProjectCard_small__xsL92" data-animation="grid-item" href={p.href}>
+            <div class="ProjectCard_projectText__o770X">
+              <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.78 14.78">
+                  <defs>
+                    <linearGradient id={arrowGrad.id} x1="3.54" x2="13.98" y1="3.54" y2="13.99" gradientUnits="userSpaceOnUse">
+                      {arrowGrad.stops.map((s) => <stop offset={s.offset} stop-color={s.color}></stop>)}
+                    </linearGradient>
+                  </defs>
+                  <path fill={`url(#${arrowGrad.id})`} stroke-width="0" d="M13.25 12.18L13.25 0.23 14.78 0.23 14.78 14.76 14.74 14.76 14.74 14.78 0.21 14.78 0.21 13.25 12.18 13.25 0 1.08 1.08 0 13.25 12.18z"></path>
+                </svg>{p.name}
+              </h3>
+              <p>{p.year}</p>
+            </div>
+            <div class="ProjectCard_projectImage__Nfx9I">
+              <div class="ProjectCard_imageOverlay__OCawr">
+                <p class="ProjectCard_heading__1csIW">{p.heading}</p>
+                <ul class="ProjectCard_tags__XdVcf">
+                  {p.tags.map((t) => <li>{t}</li>)}
+                </ul>
+              </div>
+              <span class="Image_image__RAAdZ Image_fill__EiIzS"><img src={p.poster} alt="" fetchpriority="low" loading="lazy" /></span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <KotaverseCta
   light="Want your work"
   bold="in this gallery next?"
   subtitle="Start a project. We'll ship something worth photographing."
 />
-
-<style>
-  .c8-gallery {
-    padding: clamp(4rem, 8vw, 8rem) 0;
-    background: #fafafa;
-  }
-  .c8-gallery__lede {
-    max-width: 44rem;
-    margin: 0 auto 4rem;
-    text-align: center;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #444;
-  }
-  .c8-gallery__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .c8-gallery__item {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  .c8-gallery__media {
-    position: relative;
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    border-radius: 1rem;
-    background: #111;
-  }
-  .c8-gallery__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .c8-gallery__item:hover .c8-gallery__media img {
-    transform: scale(1.04);
-  }
-  .c8-gallery__tag {
-    display: block;
-    font-size: 0.7rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #888;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-  }
-  .c8-gallery__title {
-    font-size: 1.05rem;
-    color: #111;
-    font-weight: 500;
-  }
-</style>
-
+</div>
 </Layout>

@@ -8,7 +8,7 @@
                   Outcome-obsessed.<br> </span></span>
             </h2>
             <p class="EthosHeading_intro__c8">
-              <span data-blur-reveal="true">Every engagement runs the same four moves, in the same order &mdash; shaped by 1,100+ launches across Web3, AI and fintech. Not a template. A discipline. Here&rsquo;s what it looks like from your side of the table.</span>
+              <span data-blur-reveal="true">A battle-tested framework refined across 1,100+ projects. Clear milestones. Measurable outcomes.</span>
             </p>
             <div class="Ethos_sections__tC3Xx">
               <div>
@@ -169,8 +169,11 @@
   .Services_services__YnZAs {
     padding-bottom: 4vh !important;
   }
+  /* Larger runway above Ethos — the Showcase's client-logo strip now sits
+     directly above it, and the section needs real breathing room before the
+     big "Strategy-first / Outcome-obsessed" headline drops in. */
   .Ethos_ethos__vP_lg {
-    padding-top: 2vh !important;
+    padding-top: clamp(6rem, 12vh, 11rem) !important;
   }
   /* Let the Ethos scroll-in reveal take over opacity/transform before GSAP
      hydrates, so the section doesn't flash fully-visible for a frame. */
@@ -244,26 +247,27 @@
     transition: opacity 0.15s ease-out, height 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
-  /* 6. Customer-facing lead-in beneath the big Ethos heading.
-     Span the full 12-col grid track so the paragraph escapes the 88px
-     single-column trap, then center the text inside a tight measure so
-     it reads as a quiet supporting note — not a second headline. */
+  /* Lead-in beneath the big Ethos heading. Spans the full 12-col grid
+     track so the paragraph escapes the 88px single-column trap, then
+     centres inside a comfortable reading measure. Sized at standard body
+     scale — ~1.1rem with 1.6 line-height — so it sits as a proper
+     supporting paragraph, not a whispered footnote. */
   .EthosHeading_intro__c8 {
     grid-column: 1 / -1 !important;
-    max-width: 42rem !important;
-    margin: 1rem auto 4rem !important;
-    font-size: clamp(0.88rem, 0.95vw, 1rem) !important;
+    max-width: 52rem !important;
+    margin: 1.25rem auto 4.5rem !important;
+    font-size: clamp(1.05rem, 1.2vw, 1.2rem) !important;
     line-height: 1.6 !important;
-    color: #444 !important;
+    color: #2a2a2a !important;
     font-weight: 400 !important;
-    letter-spacing: -0.002em !important;
+    letter-spacing: -0.003em !important;
     text-align: center !important;
   }
   @media (max-width: 900px) {
     .EthosHeading_intro__c8 {
-      margin: 0.75rem auto 2.5rem !important;
-      font-size: 0.9rem !important;
-      max-width: 32rem !important;
+      margin: 1rem auto 2.75rem !important;
+      font-size: 1rem !important;
+      max-width: 36rem !important;
     }
   }
 </style>

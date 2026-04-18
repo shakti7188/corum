@@ -25,28 +25,39 @@ const { title } = Astro.props;
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     
+    <!-- Preload only the primary body font. Other subsetted variants fetch
+         lazily as rules need them (saves ~120 KB of blocking requests on
+         first paint). -->
     <link rel="preload" href="/_next/static/media/482a8097102f5f9f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+
+    <!-- Critical CSS (blocking). The kota-core bundle carries layout/body
+         type so first paint needs it. -->
     <link rel="stylesheet" href="/css/kota-core.css">
-    <link rel="preload" href="/_next/static/media/50431d8feb7ceff2-s.p.woff2" as="font" crossorigin="" type="font/woff2">
-    <link rel="stylesheet" href="/css/kota-core.css">
-    <link rel="preload" href="/_next/static/media/54252e86b97de34f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
-    <link rel="stylesheet" href="/css/kota-core.css">
-    <link rel="preload" href="/_next/static/media/bb0bdc9db5c241da-s.p.woff2" as="font" crossorigin="" type="font/woff2">
-    <link rel="stylesheet" href="/css/kota-core.css">
-    
-    <link rel="stylesheet" href="/css/kota-core.css">
-    <link rel="stylesheet" href="/css/13f753c524b3db20.css">
-    <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css">
-    <link rel="stylesheet" href="/css/de01f06c65200d74.css">
-    <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css">
-    <link rel="stylesheet" href="/css/ecdfc97c33854f51.css">
-    <link rel="stylesheet" href="/css/3d63d502945bea5a.css">
-    
-    <!-- Service Pillar / Cluster Layout Extracted CSS Blocks -->
-    <link rel="stylesheet" href="/css/360c1cf90a1ae901.css">
-    <link rel="stylesheet" href="/css/842a33b51ca56037.css">
-    <link rel="stylesheet" href="/css/f84288c45a46068b.css">
-    <link rel="stylesheet" href="/css/df01bcfa5dec6e02.css">
+
+    <!-- Detail/interaction CSS deferred via `media="print"` + `onload` trick —
+         browser still downloads in parallel but they don't block first paint. -->
+    <link rel="stylesheet" href="/css/13f753c524b3db20.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/de01f06c65200d74.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/ecdfc97c33854f51.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/3d63d502945bea5a.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/360c1cf90a1ae901.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/842a33b51ca56037.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/f84288c45a46068b.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/df01bcfa5dec6e02.css" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="/css/13f753c524b3db20.css">
+      <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css">
+      <link rel="stylesheet" href="/css/de01f06c65200d74.css">
+      <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css">
+      <link rel="stylesheet" href="/css/ecdfc97c33854f51.css">
+      <link rel="stylesheet" href="/css/3d63d502945bea5a.css">
+      <link rel="stylesheet" href="/css/360c1cf90a1ae901.css">
+      <link rel="stylesheet" href="/css/842a33b51ca56037.css">
+      <link rel="stylesheet" href="/css/f84288c45a46068b.css">
+      <link rel="stylesheet" href="/css/df01bcfa5dec6e02.css">
+    </noscript>
 
     <!-- Page-specific head (meta, canonical, OG, JSON-LD, etc.) -->
     <slot name="head" />

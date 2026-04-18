@@ -141,7 +141,7 @@ const allCards = [...projects];
               {p.poster && (
                 <span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-src={p.poster} alt="" fetchpriority="low" class="lazyload" /></span>
               )}
-              <video src={p.video} class="ProjectCard_video__AheFz" autoplay="true" muted="true" loop="true" preload={p.size === 'large' ? 'auto' : 'metadata'} playsinline="true"></video>
+              <video data-src={p.video} class="ProjectCard_video__AheFz c8-lazy-video" muted="true" loop="true" preload="none" playsinline="true"></video>
             </div>
           </a>
         ))}
@@ -179,3 +179,43 @@ const allCards = [...projects];
     letter-spacing: 0.01em;
   }
 </style>
+
+<script is:inline>
+  // Lazy-load project-card videos. With 6 cards each carrying 150–600 KB of
+  // video, eager loading would push ~2.5 MB through the wire before a user
+  // has even scrolled. Instead: start at preload="none", swap `data-src → src`
+  // when the card gets within 400 px of the viewport, then autoplay.
+  (function () {
+    var vids = document.querySelectorAll('.c8-lazy-video');
+    if (!vids.length) return;
+
+    var load = function (v) {
+      if (v.dataset.loaded === '1') return;
+      var src = v.getAttribute('data-src');
+      if (!src) return;
+      v.setAttribute('src', src);
+      v.setAttribute('preload', 'metadata');
+      v.dataset.loaded = '1';
+      // `play()` returns a promise on modern browsers; swallow rejections
+      // (autoplay policies may block until user interaction).
+      var p = v.play();
+      if (p && typeof p.catch === 'function') p.catch(function () {});
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      vids.forEach(load);
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          load(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '400px 0px' });
+
+    vids.forEach(function (v) { io.observe(v); });
+  })();
+</script>

@@ -37,3 +37,4 @@ public/assets/
 # local-only working dirs (video trim backups, historical source media)
 .video-backups-originals/
 assets/
+.vercel

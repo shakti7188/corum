@@ -96,7 +96,7 @@ import ArrowIcon from './ArrowIcon.astro';
 
       <!-- Simple Dropdowns -->
       <li class="MegaMenu_item has-dropdown">
-        <a href="/industries" class="MegaMenu_link">Industries <span class="Chevron"></span></a>
+        <span class="MegaMenu_link MegaMenu_link--nohover" role="button" aria-haspopup="true">Industries <span class="Chevron"></span></span>
         <div class="MegaDropdown MiniDropdown">
           <div class="MegaDropdown_bg"></div>
           <div class="MegaDropdown_inner">
@@ -113,7 +113,7 @@ import ArrowIcon from './ArrowIcon.astro';
       </li>
 
       <li class="MegaMenu_item has-dropdown">
-        <a href="/resources" class="MegaMenu_link">Resources <span class="Chevron"></span></a>
+        <span class="MegaMenu_link MegaMenu_link--nohover" role="button" aria-haspopup="true">Resources <span class="Chevron"></span></span>
         <div class="MegaDropdown MiniDropdown">
           <div class="MegaDropdown_bg"></div>
           <div class="MegaDropdown_inner">
@@ -121,8 +121,6 @@ import ArrowIcon from './ArrowIcon.astro';
               <a href="/case-studies">Case Studies</a>
               <a href="/gallery">Gallery</a>
               <a href="/blog">Blog</a>
-              <a href="/insights">Insights</a>
-              <a href="/guides">Guides</a>
             </div>
           </div>
         </div>
@@ -287,6 +285,11 @@ import ArrowIcon from './ArrowIcon.astro';
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s ease;
+  }
+  /* Non-clickable parent (Industries / Resources) — opens dropdown on hover,
+     no direct page navigation. Keep the same visual treatment as <a>. */
+  .MegaMenu_link--nohover {
+    cursor: default;
   }
   .MegaMenu_item:hover .MegaMenu_link {
     opacity: 0.7;

@@ -5,37 +5,37 @@
 // collage was rejected).
 const articles = [
   {
-    href: '/insights/token-launch-playbook',
+    href: '/blog/token-launch-playbook',
     image: '/images/Statistics-bg-black.jpeg',
     tags: 'Token Launch',
     title: 'Anatomy of a tier-1 token launch.',
   },
   {
-    href: '/insights/kol-economics',
+    href: '/blog/kol-economics',
     image: '/images/culture-row-1.jpg',
     tags: 'Influencer',
     title: 'What 25,000 KOLs taught us about ROI.',
   },
   {
-    href: '/insights/exchange-listings',
+    href: '/blog/exchange-listings',
     image: '/images/contact-bg-2560x1440.jpg',
     tags: 'Exchanges',
     title: 'Inside the CEX listing playbook.',
   },
   {
-    href: '/insights/ai-growth-loops',
+    href: '/blog/ai-growth-loops',
     image: '/images/culture-row-2.jpg',
     tags: 'AI · Growth',
     title: 'Building AI-native growth loops.',
   },
   {
-    href: '/insights/rwa-tokenisation',
+    href: '/blog/rwa-tokenisation',
     image: '/images/approach.webp',
     tags: 'RWA',
     title: 'Tokenising real-world assets, simplified.',
   },
   {
-    href: '/insights/community-compounding',
+    href: '/blog/community-compounding',
     image: '/images/sitecare-header-image.webp',
     tags: 'Community',
     title: 'Why community is the new moat.',
@@ -48,53 +48,47 @@ const articles = [
   <div class="container">
     <div class="Articles_heading__zNRl8 c8-insights-head">
       <div class="c8-insights-head__text">
-        <p class="c8-insights-head__eyebrow">
-          <span class="FadeInUp_container___uxva" data-fill="false">Latest insights</span>
-        </p>
         <h2 class="c8-insights-head__title">
-          <span data-blur-reveal="true">Field notes from 1,100+ Web3 campaigns.</span>
+          <span data-blur-reveal="true">Latest Articles</span>
         </h2>
-        <p class="c8-insights-head__sub">
-          Playbooks, teardowns and frameworks pulled straight from live launches — token sales, KOL programmes, exchange listings and full-stack builds.
-        </p>
       </div>
       <span class="FadeInUp_container___uxva" data-fill="false"><div class="Magnetic_magnetic__LncOy" data-fill="false">
         <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
-          <a class="Button_inner__fnyH6" href="/insights"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Read the blog</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
+          <a class="Button_inner__fnyH6" href="/blog"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Read the blog</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
             <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
           </svg></span></a>
         </div></div></span>
     </div>
 
-    <style>
-      /* Tightens the header row — the eyebrow + oversized title + subcopy
-         fills the whitespace that used to sit between "Latest insights" and
-         the grid. Right-side CTA stays aligned to the baseline. */
-      .c8-insights-head {
-        align-items: flex-end !important;
+    <style is:global>
+      /* KOTA ships .Articles_articles__Wcz2C with `background:#000` — this
+         section sits on dark. Add extra top padding so the headline has
+         real room to land after the Testimonials section above. */
+      .Articles_articles__Wcz2C {
+        padding-top: clamp(6rem, 11vh, 10rem) !important;
       }
-      .c8-insights-head__text { max-width: 720px; }
-      .c8-insights-head__eyebrow {
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        font-size: 0.82rem;
-        color: #7a7a7a;
-        margin: 0 0 0.75rem !important;
+      /* Header row — single-line title on the left, "Read the blog" CTA on
+         the right, both on the same baseline. */
+      .c8-insights-head {
+        align-items: center !important;
+      }
+      /* The text cell needs room to fit "Latest Articles" on one line; the
+         flex row lets the right-side CTA claim the remainder. */
+      .c8-insights-head__text {
+        flex: 0 0 auto;
+        max-width: none;
+      }
+      .c8-insights-head__title,
+      .c8-insights-head__title span {
+        white-space: nowrap;
       }
       .c8-insights-head__title {
         font-size: clamp(2rem, 4.2vw, 3.75rem);
         line-height: 1.02;
         font-weight: 500;
         letter-spacing: -0.02em;
-        margin: 0 0 1.25rem !important;
-        color: #111;
-      }
-      .c8-insights-head__sub {
-        font-size: 1.05rem;
-        line-height: 1.55;
-        color: #555;
         margin: 0 !important;
-        max-width: 54ch;
+        color: #fff !important;
       }
       @media (max-width: 900px) {
         .c8-insights-head__title { font-size: 2.1rem; }
@@ -120,7 +114,7 @@ const articles = [
         <div class="Articles_mobileButton__Df7CF">
           <div class="Magnetic_magnetic__LncOy" data-fill="false">
             <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
-              <a class="Button_inner__fnyH6" href="/insights"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Read the blog</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
+              <a class="Button_inner__fnyH6" href="/blog"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Read the blog</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
                 <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
               </svg></span></a>
             </div>

@@ -2,135 +2,101 @@
 import Layout from "../layouts/Layout.astro";
 import KotaverseCta from "../components/KotaverseCta.astro";
 
-const sections = [
+const arrowGrad = {
+  id: 'res',
+  stops: [
+    { offset: '0', color: '#7c41f3' },
+    { offset: '1', color: '#ff6eff' },
+  ],
+};
+
+const projects = [
   {
-    slug: "/case-studies",
-    title: "Case studies",
-    desc: "Six engagements across exchanges, token launches, community programmes and performance networks — with the numbers attached.",
-    tag: "Outcomes",
+    href: '/case-studies',
+    name: 'Case studies',
+    year: 'Outcomes',
+    heading: 'Six engagements across exchanges, token launches, community programmes and performance networks — with the numbers.',
+    tags: ['Exchanges', 'Token Launches', 'Community', 'Performance'],
+    poster: '/images/upp-featured-mobile.jpg',
   },
   {
-    slug: "/gallery",
-    title: "Gallery",
-    desc: "Identity systems, pitch decks, motion graphics and product shipments. The visual work, side by side.",
-    tag: "Visuals",
+    href: '/gallery',
+    name: 'Gallery',
+    year: 'Visuals',
+    heading: 'Identity systems, pitch decks, motion graphics and product shipments — the visual work side by side.',
+    tags: ['Identity', 'Motion', 'Decks', 'Product'],
+    poster: '/images/Featured.png',
   },
   {
-    slug: "/blog",
-    title: "Blog",
-    desc: "Short posts on launches, market movements and the engineering decisions behind the campaigns we run.",
-    tag: "Weekly",
+    href: '/blog',
+    name: 'Blog',
+    year: 'Weekly',
+    heading: 'Short posts on launches, market movements, and the engineering decisions behind the campaigns we run.',
+    tags: ['Launches', 'Engineering', 'Growth'],
+    poster: '/images/bento3.jpg',
   },
   {
-    slug: "/insights",
-    title: "Insights",
-    desc: "Long-form analysis on Web3, AI and fintech — written by the people who shipped the product, not the marketing team.",
-    tag: "Quarterly",
+    href: '/insights',
+    name: 'Insights',
+    year: 'Quarterly',
+    heading: 'Long-form analysis on Web3, AI and fintech — written by the people who shipped the product, not the marketing team.',
+    tags: ['Research', 'Web3', 'AI', 'Fintech'],
+    poster: '/images/bento1-1.jpg',
   },
   {
-    slug: "/guides",
-    title: "Guides",
-    desc: "Step-by-step playbooks: token launches, exchange listings, post-MiCA compliance, AI product GTM. Written to be used.",
-    tag: "How-to",
+    href: '/guides',
+    name: 'Guides',
+    year: 'How-to',
+    heading: 'Step-by-step playbooks: token launches, exchange listings, post-MiCA compliance, AI product GTM. Written to be used.',
+    tags: ['Token Launch', 'Listings', 'Compliance', 'GTM'],
+    poster: '/images/bento4-1.jpg',
   },
 ];
 ---
 <Layout title="Resources | Corum8">
+<div data-theme="light">
+<section class="Hero_hero__Oyf4n"><div class="container"><div class="Hero_top__RRkYH"><h2><span class="LineByLine_headingOuter__JmusT"><span>Everything we've learned shipping 1,100+ launches. Written up.</span></span></h2><figure class="crosshair" aria-hidden="true"><span class="FadeInRotate_container__QE9u9" data-fill="true" data-direction="clockwise"><span class="inner"></span></span></figure><div class="Hero_video__rzcbe"><span class="ScaleFadeIn_container__cK78G" data-fill="true"><span class="ScaleFadeIn_inner__y4reT" data-fill="true"><video src="/media/bg2.mp4" class="Hero_video__rzcbe" autoplay muted loop playsinline></video></span></span></div></div><div class="Hero_bottom__ktiOH"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Resources</span></div></span></h1><h3 class="Hero_introText__oP34v"><span class="FadeIn_container__bjQVL" data-fill="false"><span>Case studies with numbers. Long-form analysis on the categories we work in. Step-by-step playbooks for the launches we run.</span></span></h3><div class="Hero_arrow__lxSeM"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z"></path></svg></span></div></div></div></section>
 
-<section class="Hero_hero__zbooM"><div class="container"><div class="Hero_top__UZ6SA"><h2><span class="LineByLine_headingOuter__JmusT"><span>Everything we've learned shipping 1,100+ launches. Written up.</span></span></h2></div><div class="Hero_bottom__pLxrT"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Resources</span></div></span></h1><div class="Hero_arrow__WTdEi"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z" style="stroke-width:0"></path></svg></span></div></div></div></section>
-
-<section class="c8-resources">
-  <div class="container">
-    <div class="c8-resources__grid">
-      {sections.map((s) => (
-        <a class="c8-resource-card" href={s.slug}>
-          <span class="c8-resource-card__tag">{s.tag}</span>
-          <h3>{s.title}</h3>
-          <p>{s.desc}</p>
-          <span class="c8-resource-card__cta">
-            Open
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" width="14">
-              <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
-            </svg>
-          </span>
-        </a>
-      ))}
+<div class="Work_work__rSI8c">
+  <div class="DarkThemeSwitch_cover__hn_xc"></div>
+  <div class="Work_projects__A5q77">
+    <div class="AnimatedGrid_grid__otAMD">
+      <div class="container">
+        {projects.map((p) => (
+          <a class="ProjectCard_project__d1wbY ProjectCard_small__xsL92" data-animation="grid-item" href={p.href}>
+            <div class="ProjectCard_projectText__o770X">
+              <h3>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.78 14.78">
+                  <defs>
+                    <linearGradient id={arrowGrad.id} x1="3.54" x2="13.98" y1="3.54" y2="13.99" gradientUnits="userSpaceOnUse">
+                      {arrowGrad.stops.map((s) => <stop offset={s.offset} stop-color={s.color}></stop>)}
+                    </linearGradient>
+                  </defs>
+                  <path fill={`url(#${arrowGrad.id})`} stroke-width="0" d="M13.25 12.18L13.25 0.23 14.78 0.23 14.78 14.76 14.74 14.76 14.74 14.78 0.21 14.78 0.21 13.25 12.18 13.25 0 1.08 1.08 0 13.25 12.18z"></path>
+                </svg>{p.name}
+              </h3>
+              <p>{p.year}</p>
+            </div>
+            <div class="ProjectCard_projectImage__Nfx9I">
+              <div class="ProjectCard_imageOverlay__OCawr">
+                <p class="ProjectCard_heading__1csIW">{p.heading}</p>
+                <ul class="ProjectCard_tags__XdVcf">
+                  {p.tags.map((t) => <li>{t}</li>)}
+                </ul>
+              </div>
+              <span class="Image_image__RAAdZ Image_fill__EiIzS"><img src={p.poster} alt="" fetchpriority="low" loading="lazy" /></span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <KotaverseCta
   light="More specific"
   bold="question in mind?"
   subtitle="Skip the reading. Book a call and we'll walk you through it."
 />
-
-<style>
-  .c8-resources {
-    padding: clamp(4rem, 8vw, 8rem) 0;
-    background: #fafafa;
-  }
-  .c8-resources__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .c8-resource-card {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 2.25rem;
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 1.25rem;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.4s ease,
-                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .c8-resource-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--c8-gold);
-    box-shadow: 0 28px 50px -24px rgba(0, 0, 0, 0.18);
-  }
-  .c8-resource-card__tag {
-    font-size: 0.7rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #888;
-    font-weight: 600;
-  }
-  .c8-resource-card h3 {
-    font-size: 1.5rem;
-    letter-spacing: -0.02em;
-    margin: 0;
-    color: #111;
-  }
-  .c8-resource-card p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #444;
-    margin: 0;
-  }
-  .c8-resource-card__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: auto;
-    padding-top: 0.75rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #111;
-  }
-  .c8-resource-card:hover .c8-resource-card__cta svg {
-    transform: translateX(4px);
-  }
-  .c8-resource-card__cta svg {
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-</style>
-
+</div>
 </Layout>

@@ -1,10 +1,15 @@
 ---
-// Service-panel reels — local filler. Swap later when per-service authored
-// motion ships.
+// Service-panel reels — original KOTA homepage videos, pulled locally from
+// kota-content.b-cdn.net/app/uploads/2024/02/ so they deploy with the site
+// instead of hot-linking the CDN. Trimmed to 3s apiece to stay on-page-weight.
+// Panel order follows the original homepage mapping:
+//   homepage.mp4   → panel 1 (was "Web design & development", now Marketing)
+//   homepage-1.mp4 → panel 2 (was "Branding", now PR & Branding)
+//   homepage-3.mp4 → panel 3 (was "Digital Marketing", now Development)
 const cardVideos = {
-  marketing:   '/media/bg2.mp4',
-  pr:          '/media/Company-Loop4-compressed-2.mp4',
-  development: '/media/FF-Shapes-x1.mp4',
+  marketing:   '/media/homepage.mp4',
+  pr:          '/media/homepage-1.mp4',
+  development: '/media/homepage-3.mp4',
 };
 ---
 
@@ -23,7 +28,7 @@ const cardVideos = {
               </div>
             </h2>
           </div>
-          <div class="ServicesPanels_panels__NpKkK gsap-services-container">
+          <div class="ServicesPanels_panels__NpKkK gsap-services-container c8-services-panels">
             <div class="container">
               <div class="AnimatedPanel_panel__eAXfR gsap-service-card">
                 <div>
@@ -49,7 +54,7 @@ const cardVideos = {
                     </div>
                     <div class="ServiceMedia_mediaContainer__WGgZa">
                       <span class="AutoplayVideo_video__zckWy AutoplayVideo_fill__ZPgCR">
-                        <video autoplay muted loop playsinline preload="auto" src={cardVideos.marketing}></video>
+                        <video autoplay muted loop playsinline preload="metadata" src={cardVideos.marketing}></video>
                       </span>
                     </div>
                     <div class="ServicesPanel_panelBackground__O9mDV"></div>
@@ -81,7 +86,7 @@ const cardVideos = {
                     </div>
                     <div class="ServiceMedia_mediaContainer__WGgZa">
                       <span class="AutoplayVideo_video__zckWy AutoplayVideo_fill__ZPgCR">
-                        <video autoplay muted loop playsinline preload="auto" src={cardVideos.pr}></video>
+                        <video autoplay muted loop playsinline preload="metadata" src={cardVideos.pr}></video>
                       </span>
                     </div>
                     <div class="ServicesPanel_panelBackground__O9mDV"></div>
@@ -113,7 +118,7 @@ const cardVideos = {
                     </div>
                     <div class="ServiceMedia_mediaContainer__WGgZa">
                       <span class="AutoplayVideo_video__zckWy AutoplayVideo_fill__ZPgCR">
-                        <video autoplay muted loop playsinline preload="auto" src={cardVideos.development}></video>
+                        <video autoplay muted loop playsinline preload="metadata" src={cardVideos.development}></video>
                       </span>
                     </div>
                     <div class="ServicesPanel_panelBackground__O9mDV"></div>
@@ -124,4 +129,23 @@ const cardVideos = {
             </div>
           </div>
         </div>
+
+<style is:global>
+  /* Tighten the runway BELOW the last service card. KOTA ships the Services
+     panel stack with three 40vh spacers (one per card) + a 25vh bottom
+     margin on the wrapper — great for an isolated services page, wasteful
+     on the homepage where the Showcase video needs to come up immediately
+     after the last card releases its pin.
+
+     Leaving the intra-stack spacers alone (they gate the pinned-slide
+     animation between cards); only killing the spacer that sits AFTER the
+     final card, and collapsing the wrapper's bottom margin. */
+  .c8-services-panels {
+    margin-bottom: 3vh !important;
+  }
+  .c8-services-panels .AnimatedPanel_panel__eAXfR:last-child .AnimatedPanel_spacer__w4GTD {
+    height: 0 !important;
+    display: none !important;
+  }
+</style>
 

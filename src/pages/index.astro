@@ -2,7 +2,6 @@
 import Navigation from '../components/Navigation.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import CloudBackground from '../components/CloudBackground.astro';
 import Hero from '../components/Hero.astro';
 import Services from '../components/Services.astro';
 import Showcase from '../components/Showcase.astro';
@@ -25,22 +24,263 @@ import AmbientAurora from '../components/AmbientAurora.astro';
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- Only preload the primary body font; drop the other three woff2s
+         since they're subsetted variants the browser will fetch lazily as
+         rules need them. Frees ~120 KB of blocking requests on first paint. -->
     <link rel="preload" href="/_next/static/media/482a8097102f5f9f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
-    <link rel="preload" href="/_next/static/media/50431d8feb7ceff2-s.p.woff2" as="font" crossorigin="" type="font/woff2">
-    <link rel="preload" href="/_next/static/media/54252e86b97de34f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
-    <link rel="preload" href="/_next/static/media/bb0bdc9db5c241da-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+
+    <!-- Core KOTA stylesheet carries 95% of the visual rules. Loaded sync so
+         layout paints correctly. The remaining kota fragments below are
+         deferred with `media="print"` then flipped to `all` on load — they
+         carry interaction/detail rules that don't affect first paint. -->
     <link rel="stylesheet" href="/css/c6a848d34dfd7dce.css">
     <link rel="stylesheet" href="/css/0aea7e632ce3cedf.css">
     <link rel="stylesheet" href="/css/053ade63481ccabc.css">
     <link rel="stylesheet" href="/css/e36a1a112c1c5ec8.css">
-    <link rel="stylesheet" href="/css/13f753c524b3db20.css">
-    <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css">
-    <link rel="stylesheet" href="/css/de01f06c65200d74.css">
-    <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css">
-    <link rel="stylesheet" href="/css/ecdfc97c33854f51.css">
-    <link rel="stylesheet" href="/css/3d63d502945bea5a.css">
+    <link rel="stylesheet" href="/css/13f753c524b3db20.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/de01f06c65200d74.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/ecdfc97c33854f51.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/css/3d63d502945bea5a.css" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="/css/13f753c524b3db20.css">
+      <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css">
+      <link rel="stylesheet" href="/css/de01f06c65200d74.css">
+      <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css">
+      <link rel="stylesheet" href="/css/ecdfc97c33854f51.css">
+      <link rel="stylesheet" href="/css/3d63d502945bea5a.css">
+    </noscript>
+
+    <!-- Preloader — inlined CSS + HTML so it paints on the very first frame,
+         before any stylesheet or JS arrives. The whole splash is framed as a
+         typographic stage: 4 corner data cells (city strip, load %, brand
+         meta), a centred italic wordmark with a gold "8", and a gold shimmer
+         line along the bottom that fills with real progress. Fades out on
+         `window.load`. -->
+    <style>
+      #c8-preloader {
+        position: fixed; inset: 0; z-index: 9999;
+        background: #050505;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+        overflow: hidden;
+        transition: opacity 0.9s cubic-bezier(0.6, 0, 0.2, 1),
+                    visibility 0.9s cubic-bezier(0.6, 0, 0.2, 1);
+      }
+      /* Subtle gold-centered vignette + fine grain for richness */
+      #c8-preloader::before {
+        content: '';
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(ellipse at 50% 55%, rgba(212,162,58,0.10) 0%, transparent 55%),
+          radial-gradient(ellipse at 50% 0%,  rgba(255,255,255,0.03) 0%, transparent 40%);
+        pointer-events: none;
+      }
+      #c8-preloader::after {
+        content: '';
+        position: absolute; inset: 0;
+        background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+        background-size: 3px 3px;
+        opacity: 0.55;
+        pointer-events: none;
+        mix-blend-mode: screen;
+      }
+      #c8-preloader.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      #c8-preloader .c8-pl__grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas:
+          "tl tr"
+          "mark mark"
+          "bl br";
+        padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4.5vw, 3.5rem);
+        position: relative;
+        z-index: 1;
+      }
+      #c8-preloader .c8-pl__cell {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.42);
+      }
+      #c8-preloader .c8-pl__cell--tl { grid-area: tl; align-items: flex-start; }
+      #c8-preloader .c8-pl__cell--tr { grid-area: tr; align-items: flex-end;   text-align: right; }
+      #c8-preloader .c8-pl__cell--bl { grid-area: bl; align-items: flex-start; justify-content: flex-end; }
+      #c8-preloader .c8-pl__cell--br { grid-area: br; align-items: flex-end;   justify-content: flex-end; text-align: right; }
+
+      #c8-preloader .c8-pl__label {
+        color: rgba(255,255,255,0.78);
+        letter-spacing: 0.32em;
+      }
+      #c8-preloader .c8-pl__dot {
+        display: inline-block;
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: #d4a23a;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+        box-shadow: 0 0 10px rgba(212,162,58,0.65);
+        animation: c8-pl-pulse 1.4s cubic-bezier(0.6,0,0.3,1) infinite;
+      }
+      @keyframes c8-pl-pulse {
+        0%, 100% { opacity: 0.4; transform: scale(0.9); }
+        50%      { opacity: 1;   transform: scale(1.1); }
+      }
+
+      #c8-preloader .c8-pl__mark {
+        grid-area: mark;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem 0;
+      }
+      #c8-preloader .c8-pl__word {
+        font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+        font-size: clamp(4.5rem, 15vw, 13.5rem);
+        font-weight: 300;
+        line-height: 0.88;
+        letter-spacing: -0.025em;
+        color: #f5f2ec;
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(28px);
+        animation: c8-pl-reveal 1.15s cubic-bezier(0.22, 0.95, 0.28, 1) 0.08s forwards;
+        white-space: nowrap;
+      }
+      #c8-preloader .c8-pl__word em {
+        font-style: italic;
+        font-weight: 400;
+      }
+      #c8-preloader .c8-pl__gold {
+        font-style: italic;
+        background: linear-gradient(135deg, #d4a23a 0%, #f0d183 48%, #d4a23a 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        padding-left: 0.02em;
+      }
+      #c8-preloader .c8-pl__tagline {
+        margin-top: 1.9rem;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: clamp(0.72rem, 1vw, 0.82rem);
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.48);
+        opacity: 0;
+        transform: translateY(14px);
+        animation: c8-pl-reveal 1s cubic-bezier(0.22, 0.95, 0.28, 1) 0.5s forwards;
+      }
+      #c8-preloader .c8-pl__tagline em {
+        font-style: italic;
+        color: rgba(240, 209, 131, 0.9);
+        font-weight: 400;
+        letter-spacing: 0.35em;
+      }
+      @keyframes c8-pl-reveal {
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      #c8-preloader .c8-pl__count {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-variant-numeric: tabular-nums;
+        font-size: clamp(0.78rem, 1.05vw, 0.98rem);
+        letter-spacing: 0.18em;
+        color: #fff;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.08em;
+      }
+      #c8-preloader .c8-pl__pct {
+        font-size: 0.65em;
+        opacity: 0.55;
+        margin-left: 0.15em;
+      }
+
+      #c8-preloader .c8-pl__line {
+        height: 1px;
+        background: rgba(255,255,255,0.08);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+      #c8-preloader .c8-pl__line-fill {
+        position: absolute;
+        top: 0; left: 0; bottom: 0;
+        width: 0%;
+        background: linear-gradient(90deg,
+          rgba(212,162,58,0)   0%,
+          rgba(212,162,58,0.9) 25%,
+          #f0d183              50%,
+          rgba(212,162,58,0.9) 75%,
+          rgba(212,162,58,0)   100%);
+        background-size: 220% 100%;
+        animation: c8-pl-shimmer 2.2s linear infinite;
+        transition: width 0.45s cubic-bezier(0.25, 0, 0.25, 1);
+        box-shadow: 0 0 22px rgba(212,162,58,0.55);
+      }
+      @keyframes c8-pl-shimmer {
+        0%   { background-position: 220% 0; }
+        100% { background-position: -120% 0; }
+      }
+
+      @media (max-width: 640px) {
+        #c8-preloader .c8-pl__cell  { font-size: 0.6rem; letter-spacing: 0.2em; }
+        #c8-preloader .c8-pl__word  { font-size: clamp(3.5rem, 18vw, 6.5rem); }
+        #c8-preloader .c8-pl__grid  { padding: 1.25rem 1.5rem; }
+        #c8-preloader .c8-pl__tagline { margin-top: 1.25rem; font-size: 0.65rem; letter-spacing: 0.3em; }
+      }
+    </style>
   </head>
   <body>
+    <!-- Preloader — typographic stage that fades out once page resources
+         resolve. Four corner cells + a centred italic wordmark + a gold
+         shimmer line that fills with the load progress. -->
+    <div id="c8-preloader" aria-hidden="true">
+      <div class="c8-pl__grid">
+        <div class="c8-pl__cell c8-pl__cell--tl">
+          <span class="c8-pl__label">Corum8</span>
+          <span><span class="c8-pl__dot"></span>Web3 · AI · Fintech</span>
+        </div>
+        <div class="c8-pl__cell c8-pl__cell--tr">
+          <span>Dubai · New York · Mumbai</span>
+          <span>1,100+ launches shipped</span>
+        </div>
+
+        <div class="c8-pl__mark">
+          <span class="c8-pl__word"><em>C</em>orum<span class="c8-pl__gold">8</span></span>
+          <span class="c8-pl__tagline">Strategy-first. <em>Outcome-obsessed.</em></span>
+        </div>
+
+        <div class="c8-pl__cell c8-pl__cell--bl">
+          <span class="c8-pl__label">Loading experience</span>
+          <span>Preparing assets</span>
+        </div>
+        <div class="c8-pl__cell c8-pl__cell--br">
+          <span class="c8-pl__count">
+            <span id="c8-pl-num">00</span><span class="c8-pl__pct">%</span>
+          </span>
+        </div>
+      </div>
+      <div class="c8-pl__line"><div class="c8-pl__line-fill"></div></div>
+    </div>
+
     <AmbientAurora />
     <Navigation />
     <Header />
@@ -53,8 +293,6 @@ import AmbientAurora from '../components/AmbientAurora.astro';
       <Work />
       <Statistics />
       <Testimonials />
-      <!-- Removed blur bridge as per user request -->
-
       <Articles />
       <FaqsList />
       <KotaverseCta />
@@ -66,6 +304,62 @@ import AmbientAurora from '../components/AmbientAurora.astro';
 
     <script>
       import '../scripts/site.ts';
+    </script>
+
+    <script is:inline>
+      // Preloader progression. Two timers run in parallel:
+      //   (a) a soft non-linear climb that drifts toward 97% regardless of
+      //       network speed — so the counter always feels alive
+      //   (b) the real `window.load` event, which hard-completes to 100%,
+      //       pauses briefly so the user reads the full number, then
+      //       dismisses the splash with a smooth cross-fade.
+      // 5s hard safety cap in case a third-party asset hangs.
+      (function () {
+        var pl   = document.getElementById('c8-preloader');
+        if (!pl) return;
+        var num  = document.getElementById('c8-pl-num');
+        var fill = pl.querySelector('.c8-pl__line-fill');
+        var progress = 0;
+        var done = false;
+
+        var render = function () {
+          if (num)  num.textContent  = ('0' + Math.floor(progress)).slice(-2);
+          if (fill) fill.style.width = progress + '%';
+        };
+
+        var drift = setInterval(function () {
+          if (done) return;
+          // Ease toward 97 so the last 3% is reserved for the real load
+          progress = Math.min(progress + (97 - progress) * 0.055, 97);
+          render();
+        }, 75);
+
+        var finish = function () {
+          if (done) return;
+          done = true;
+          clearInterval(drift);
+          // Animate the last leg smoothly to 100
+          var start = progress;
+          var t0 = performance.now();
+          var legDur = 380;
+          var step = function (now) {
+            var t = Math.min((now - t0) / legDur, 1);
+            progress = start + (100 - start) * (1 - Math.pow(1 - t, 3));
+            render();
+            if (t < 1) requestAnimationFrame(step);
+            else setTimeout(function () { pl.classList.add('is-hidden'); }, 360);
+          };
+          requestAnimationFrame(step);
+        };
+
+        if (document.readyState === 'complete') {
+          setTimeout(finish, 280);
+        } else {
+          window.addEventListener('load', function () { setTimeout(finish, 280); });
+        }
+        // Hard cap — if `load` never fires, dismiss anyway
+        setTimeout(finish, 5000);
+      })();
     </script>
 
     <style is:global>
