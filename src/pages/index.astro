@@ -53,233 +53,94 @@ import AmbientAurora from '../components/AmbientAurora.astro';
       <link rel="stylesheet" href="/css/3d63d502945bea5a.css">
     </noscript>
 
-    <!-- Preloader — inlined CSS + HTML so it paints on the very first frame,
-         before any stylesheet or JS arrives. The whole splash is framed as a
-         typographic stage: 4 corner data cells (city strip, load %, brand
-         meta), a centred italic wordmark with a gold "8", and a gold shimmer
-         line along the bottom that fills with real progress. Fades out on
-         `window.load`. -->
+    <!-- Preload the icon so the preloader mark paints instantly. -->
+    <link rel="preload" href="/assets/logo/icon-gold.png" as="image" fetchpriority="high" />
+
+    <!-- Preloader — inlined CSS/HTML so it paints before any stylesheet
+         arrives. Uses the real Corum8 gold icon (no fake wordmark) with a
+         slow-spinning ring around it. Fades out on `window.load`. Matches
+         the preloader on every sub-page (src/layouts/Layout.astro) so the
+         whole site uses one loading mark. -->
     <style>
       #c8-preloader {
-        position: fixed; inset: 0; z-index: 9999;
-        background: #050505;
-        color: #fff;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
         display: flex;
-        flex-direction: column;
-        font-family: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
-        overflow: hidden;
-        transition: opacity 0.9s cubic-bezier(0.6, 0, 0.2, 1),
-                    visibility 0.9s cubic-bezier(0.6, 0, 0.2, 1);
-      }
-      /* Subtle gold-centered vignette + fine grain for richness */
-      #c8-preloader::before {
-        content: '';
-        position: absolute; inset: 0;
-        background:
-          radial-gradient(ellipse at 50% 55%, rgba(212,162,58,0.10) 0%, transparent 55%),
-          radial-gradient(ellipse at 50% 0%,  rgba(255,255,255,0.03) 0%, transparent 40%);
-        pointer-events: none;
-      }
-      #c8-preloader::after {
-        content: '';
-        position: absolute; inset: 0;
-        background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
-        background-size: 3px 3px;
-        opacity: 0.55;
-        pointer-events: none;
-        mix-blend-mode: screen;
-      }
-      #c8-preloader.is-hidden {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-      }
-
-      #c8-preloader .c8-pl__grid {
-        flex: 1;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto 1fr auto;
-        grid-template-areas:
-          "tl tr"
-          "mark mark"
-          "bl br";
-        padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4.5vw, 3.5rem);
-        position: relative;
-        z-index: 1;
-      }
-      #c8-preloader .c8-pl__cell {
-        display: flex;
-        flex-direction: column;
-        gap: 0.35rem;
-        font-size: 0.68rem;
-        letter-spacing: 0.24em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,0.42);
-      }
-      #c8-preloader .c8-pl__cell--tl { grid-area: tl; align-items: flex-start; }
-      #c8-preloader .c8-pl__cell--tr { grid-area: tr; align-items: flex-end;   text-align: right; }
-      #c8-preloader .c8-pl__cell--bl { grid-area: bl; align-items: flex-start; justify-content: flex-end; }
-      #c8-preloader .c8-pl__cell--br { grid-area: br; align-items: flex-end;   justify-content: flex-end; text-align: right; }
-
-      #c8-preloader .c8-pl__label {
-        color: rgba(255,255,255,0.78);
-        letter-spacing: 0.32em;
-      }
-      #c8-preloader .c8-pl__dot {
-        display: inline-block;
-        width: 6px; height: 6px;
-        border-radius: 50%;
-        background: #d4a23a;
-        margin-right: 0.5rem;
-        vertical-align: middle;
-        box-shadow: 0 0 10px rgba(212,162,58,0.65);
-        animation: c8-pl-pulse 1.4s cubic-bezier(0.6,0,0.3,1) infinite;
-      }
-      @keyframes c8-pl-pulse {
-        0%, 100% { opacity: 0.4; transform: scale(0.9); }
-        50%      { opacity: 1;   transform: scale(1.1); }
-      }
-
-      #c8-preloader .c8-pl__mark {
-        grid-area: mark;
-        display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        padding: 2rem 0;
+        background: #0a0a0a;
+        opacity: 1;
+        transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: all;
       }
-      #c8-preloader .c8-pl__word {
-        font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
-        font-size: clamp(4.5rem, 15vw, 13.5rem);
-        font-weight: 300;
-        line-height: 0.88;
-        letter-spacing: -0.025em;
-        color: #f5f2ec;
-        display: inline-block;
+      #c8-preloader.is-done {
         opacity: 0;
-        transform: translateY(28px);
-        animation: c8-pl-reveal 1.15s cubic-bezier(0.22, 0.95, 0.28, 1) 0.08s forwards;
-        white-space: nowrap;
+        pointer-events: none;
       }
-      #c8-preloader .c8-pl__word em {
-        font-style: italic;
-        font-weight: 400;
-      }
-      #c8-preloader .c8-pl__gold {
-        font-style: italic;
-        background: linear-gradient(135deg, #d4a23a 0%, #f0d183 48%, #d4a23a 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        padding-left: 0.02em;
-      }
-      #c8-preloader .c8-pl__tagline {
-        margin-top: 1.9rem;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-size: clamp(0.72rem, 1vw, 0.82rem);
-        letter-spacing: 0.4em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,0.48);
-        opacity: 0;
-        transform: translateY(14px);
-        animation: c8-pl-reveal 1s cubic-bezier(0.22, 0.95, 0.28, 1) 0.5s forwards;
-      }
-      #c8-preloader .c8-pl__tagline em {
-        font-style: italic;
-        color: rgba(240, 209, 131, 0.9);
-        font-weight: 400;
-        letter-spacing: 0.35em;
-      }
-      @keyframes c8-pl-reveal {
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      #c8-preloader .c8-pl__count {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-variant-numeric: tabular-nums;
-        font-size: clamp(0.78rem, 1.05vw, 0.98rem);
-        letter-spacing: 0.18em;
-        color: #fff;
-        font-weight: 500;
-        display: inline-flex;
-        align-items: baseline;
-        gap: 0.08em;
-      }
-      #c8-preloader .c8-pl__pct {
-        font-size: 0.65em;
-        opacity: 0.55;
-        margin-left: 0.15em;
-      }
-
-      #c8-preloader .c8-pl__line {
-        height: 1px;
-        background: rgba(255,255,255,0.08);
+      #c8-preloader .c8-preloader__mark {
+        width: 96px;
+        height: 96px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: relative;
-        overflow: hidden;
-        z-index: 1;
       }
-      #c8-preloader .c8-pl__line-fill {
+      #c8-preloader .c8-preloader__mark::before {
+        content: "";
         position: absolute;
-        top: 0; left: 0; bottom: 0;
-        width: 0%;
-        background: linear-gradient(90deg,
-          rgba(212,162,58,0)   0%,
-          rgba(212,162,58,0.9) 25%,
-          #f0d183              50%,
-          rgba(212,162,58,0.9) 75%,
-          rgba(212,162,58,0)   100%);
-        background-size: 220% 100%;
-        animation: c8-pl-shimmer 2.2s linear infinite;
-        transition: width 0.45s cubic-bezier(0.25, 0, 0.25, 1);
-        box-shadow: 0 0 22px rgba(212,162,58,0.55);
+        inset: -18px;
+        border-radius: 50%;
+        border: 1px solid rgba(212, 162, 58, 0.25);
+        border-top-color: #d4a23a;
+        animation: c8-preloader-spin 1.4s linear infinite;
       }
-      @keyframes c8-pl-shimmer {
-        0%   { background-position: 220% 0; }
-        100% { background-position: -120% 0; }
+      #c8-preloader .c8-preloader__mark img {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+        animation: c8-preloader-pulse 1.8s ease-in-out infinite;
       }
-
-      @media (max-width: 640px) {
-        #c8-preloader .c8-pl__cell  { font-size: 0.6rem; letter-spacing: 0.2em; }
-        #c8-preloader .c8-pl__word  { font-size: clamp(3.5rem, 18vw, 6.5rem); }
-        #c8-preloader .c8-pl__grid  { padding: 1.25rem 1.5rem; }
-        #c8-preloader .c8-pl__tagline { margin-top: 1.25rem; font-size: 0.65rem; letter-spacing: 0.3em; }
+      @keyframes c8-preloader-spin {
+        to { transform: rotate(360deg); }
+      }
+      @keyframes c8-preloader-pulse {
+        0%, 100% { opacity: 0.85; transform: scale(1); }
+        50%      { opacity: 1;    transform: scale(1.04); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #c8-preloader .c8-preloader__mark::before,
+        #c8-preloader .c8-preloader__mark img { animation: none !important; }
       }
     </style>
   </head>
   <body>
-    <!-- Preloader — typographic stage that fades out once page resources
-         resolve. Four corner cells + a centred italic wordmark + a gold
-         shimmer line that fills with the load progress. -->
+    <!-- Corum8 preloader — fades out once the page loads. -->
     <div id="c8-preloader" aria-hidden="true">
-      <div class="c8-pl__grid">
-        <div class="c8-pl__cell c8-pl__cell--tl">
-          <span class="c8-pl__label">Corum8</span>
-          <span><span class="c8-pl__dot"></span>Web3 · AI · Fintech</span>
-        </div>
-        <div class="c8-pl__cell c8-pl__cell--tr">
-          <span>Dubai · New York · Mumbai</span>
-          <span>1,100+ launches shipped</span>
-        </div>
-
-        <div class="c8-pl__mark">
-          <span class="c8-pl__word"><em>C</em>orum<span class="c8-pl__gold">8</span></span>
-          <span class="c8-pl__tagline">Strategy-first. <em>Outcome-obsessed.</em></span>
-        </div>
-
-        <div class="c8-pl__cell c8-pl__cell--bl">
-          <span class="c8-pl__label">Loading experience</span>
-          <span>Preparing assets</span>
-        </div>
-        <div class="c8-pl__cell c8-pl__cell--br">
-          <span class="c8-pl__count">
-            <span id="c8-pl-num">00</span><span class="c8-pl__pct">%</span>
-          </span>
-        </div>
+      <div class="c8-preloader__mark">
+        <img src="/assets/logo/icon-gold.png" alt="" role="presentation" />
       </div>
-      <div class="c8-pl__line"><div class="c8-pl__line-fill"></div></div>
     </div>
+    <script is:inline>
+      (function () {
+        var el = document.getElementById('c8-preloader');
+        if (!el) return;
+        var hide = function () {
+          el.classList.add('is-done');
+          setTimeout(function () { el.remove(); }, 650);
+        };
+        var maxWait = setTimeout(hide, 4000);
+        var ready = function () {
+          clearTimeout(maxWait);
+          setTimeout(hide, 150);
+        };
+        if (document.readyState === 'complete') {
+          ready();
+        } else {
+          window.addEventListener('load', ready, { once: true });
+        }
+      })();
+    </script>
 
     <AmbientAurora />
     <Navigation />
@@ -304,62 +165,6 @@ import AmbientAurora from '../components/AmbientAurora.astro';
 
     <script>
       import '../scripts/site.ts';
-    </script>
-
-    <script is:inline>
-      // Preloader progression. Two timers run in parallel:
-      //   (a) a soft non-linear climb that drifts toward 97% regardless of
-      //       network speed — so the counter always feels alive
-      //   (b) the real `window.load` event, which hard-completes to 100%,
-      //       pauses briefly so the user reads the full number, then
-      //       dismisses the splash with a smooth cross-fade.
-      // 5s hard safety cap in case a third-party asset hangs.
-      (function () {
-        var pl   = document.getElementById('c8-preloader');
-        if (!pl) return;
-        var num  = document.getElementById('c8-pl-num');
-        var fill = pl.querySelector('.c8-pl__line-fill');
-        var progress = 0;
-        var done = false;
-
-        var render = function () {
-          if (num)  num.textContent  = ('0' + Math.floor(progress)).slice(-2);
-          if (fill) fill.style.width = progress + '%';
-        };
-
-        var drift = setInterval(function () {
-          if (done) return;
-          // Ease toward 97 so the last 3% is reserved for the real load
-          progress = Math.min(progress + (97 - progress) * 0.055, 97);
-          render();
-        }, 75);
-
-        var finish = function () {
-          if (done) return;
-          done = true;
-          clearInterval(drift);
-          // Animate the last leg smoothly to 100
-          var start = progress;
-          var t0 = performance.now();
-          var legDur = 380;
-          var step = function (now) {
-            var t = Math.min((now - t0) / legDur, 1);
-            progress = start + (100 - start) * (1 - Math.pow(1 - t, 3));
-            render();
-            if (t < 1) requestAnimationFrame(step);
-            else setTimeout(function () { pl.classList.add('is-hidden'); }, 360);
-          };
-          requestAnimationFrame(step);
-        };
-
-        if (document.readyState === 'complete') {
-          setTimeout(finish, 280);
-        } else {
-          window.addEventListener('load', function () { setTimeout(finish, 280); });
-        }
-        // Hard cap — if `load` never fires, dismiss anyway
-        setTimeout(finish, 5000);
-      })();
     </script>
 
     <style is:global>

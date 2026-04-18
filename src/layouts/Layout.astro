@@ -24,11 +24,73 @@ const { title } = Astro.props;
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
-    
+
+    <!-- Preload brand icon for the preloader so the mark paints immediately
+         (no fetch delay on the loading screen). -->
+    <link rel="preload" href="/assets/logo/icon-gold.png" as="image" fetchpriority="high" />
+
     <!-- Preload only the primary body font. Other subsetted variants fetch
          lazily as rules need them (saves ~120 KB of blocking requests on
          first paint). -->
     <link rel="preload" href="/_next/static/media/482a8097102f5f9f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+
+    <!-- Preloader critical CSS — inlined so the overlay paints before the
+         main stylesheet arrives. Uses the Corum8 gold icon with a subtle
+         pulse + rotate. Fades out on window load. -->
+    <style>
+      #c8-preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0a0a0a;
+        opacity: 1;
+        transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: all;
+      }
+      #c8-preloader.is-done {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #c8-preloader .c8-preloader__mark {
+        width: 96px;
+        height: 96px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      #c8-preloader .c8-preloader__mark::before {
+        content: "";
+        position: absolute;
+        inset: -18px;
+        border-radius: 50%;
+        border: 1px solid rgba(212, 162, 58, 0.25);
+        border-top-color: #d4a23a;
+        animation: c8-preloader-spin 1.4s linear infinite;
+      }
+      #c8-preloader .c8-preloader__mark img {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+        animation: c8-preloader-pulse 1.8s ease-in-out infinite;
+      }
+      @keyframes c8-preloader-spin {
+        to { transform: rotate(360deg); }
+      }
+      @keyframes c8-preloader-pulse {
+        0%, 100% { opacity: 0.85; transform: scale(1); }
+        50%      { opacity: 1;    transform: scale(1.04); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #c8-preloader .c8-preloader__mark::before,
+        #c8-preloader .c8-preloader__mark img {
+          animation: none !important;
+        }
+      }
+    </style>
 
     <!-- Critical CSS (blocking). The kota-core bundle carries layout/body
          type so first paint needs it. -->
@@ -63,6 +125,36 @@ const { title } = Astro.props;
     <slot name="head" />
   </head>
   <body>
+    <!-- Corum8 preloader — visible until window.load fires, then fades out. -->
+    <div id="c8-preloader" aria-hidden="true">
+      <div class="c8-preloader__mark">
+        <img src="/assets/logo/icon-gold.png" alt="" role="presentation" />
+      </div>
+    </div>
+    <script is:inline>
+      (function () {
+        var el = document.getElementById('c8-preloader');
+        if (!el) return;
+        var hide = function () {
+          el.classList.add('is-done');
+          // Remove from DOM after the fade so it can't block interaction.
+          setTimeout(function () { el.remove(); }, 650);
+        };
+        // Don't trap users on slow networks — cap the visible time.
+        var maxWait = setTimeout(hide, 4000);
+        var ready = function () {
+          clearTimeout(maxWait);
+          // Short delay so layout has a beat to settle before the fade.
+          setTimeout(hide, 150);
+        };
+        if (document.readyState === 'complete') {
+          ready();
+        } else {
+          window.addEventListener('load', ready, { once: true });
+        }
+      })();
+    </script>
+
     <AmbientAurora />
     <Navigation />
     <Header />

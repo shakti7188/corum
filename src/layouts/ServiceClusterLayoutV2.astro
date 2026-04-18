@@ -33,6 +33,8 @@ const schemas = schemasForPage(page);
 const heroMedia = page.hero.mediaToken ? resolveMedia(page.hero.mediaToken) : null;
 
 // Map testimonial library entries → shape accepted by Testimonials.astro.
+// Returns "" for companies without a real logo asset — the component then
+// shows the company name as styled text instead of a misleading logo.
 function clientLogoByCompany(company: string): string {
   const n = company.toLowerCase().replace(/[^a-z0-9]/g, "");
   const map: Record<string, string> = {
@@ -52,7 +54,7 @@ function clientLogoByCompany(company: string): string {
     tron: "/clients/tron.png",
     dream11: "/clients/dream11.png",
   };
-  return map[n] ?? "/clients/metamask.png";
+  return map[n] ?? "";
 }
 
 const bgCycle = ["#d7e1d3", "#a8e1ec", "#ffffff", "#f3eadc", "#e6d8f2"];

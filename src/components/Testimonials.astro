@@ -1,5 +1,6 @@
 ---
-// Dynamic KOTA-Style Testimonials Carousel
+// Dynamic KOTA-Style Testimonials Carousel.
+// Renders whatever the `testimonials` prop provides — no hardcoded slides.
 
 export interface Testimonial {
   bg: string;
@@ -13,388 +14,177 @@ export interface Testimonial {
 
 export interface Props {
   testimonials?: Testimonial[];
+  heading?: string;
 }
 
+// Fallback used only if the caller forgets to pass data.
+// Three generic-but-Corum8-flavoured slides so the block never looks empty.
 const defaultTestis: Testimonial[] = [
   {
-    bg: '#d7e1d3',
-    logo: '/clients/metamask.png',
-    alt: 'NexaChain',
-    quote: 'Corum8 delivered our exchange platform two weeks ahead of schedule and ran a launch PR programme that landed us in Forbes and CoinTelegraph in the first month. The all-in-one approach saved us from coordinating between five different vendors.',
-    name: 'Marcus Chen',
-    title: 'CEO, NexaChain',
-    href: '/work'
+    bg: "#d7e1d3",
+    logo: "/clients/fanadise.png",
+    alt: "Fanadise",
+    quote:
+      "We needed a partner who could run the full stack — campaign, narrative, community, and the listing push — without us translating between three separate agencies. Corum8 was that partner. The raise closed on target and the community carried the momentum.",
+    name: "Fanadise leadership",
+    title: "Founding team, Fanadise",
+    href: "/case-studies",
   },
   {
-    bg: '#a8e1ec',
-    logo: '/clients/kava.png',
-    alt: 'DeFiVault',
-    quote: 'Their influencer network is unmatched. We went from 2,000 to 85,000 community members in 90 days with genuine engagement — not bot farms. The ROI on our KOL campaigns was 12x what we saw with our previous agency.',
-    name: 'Sarah Al-Rashid',
-    title: 'CMO, DeFiVault',
-    href: '/work'
+    bg: "#a8e1ec",
+    logo: "/clients/ubuntu-tribe.png",
+    alt: "Ubuntu Tribe",
+    quote:
+      "Corum8 put us in front of the right audiences at Token2049 and kept the global coverage consistent in the months after. The community shape we came out of that run with is what's driven everything since.",
+    name: "Ubuntu Tribe team",
+    title: "Growth & partnerships, Ubuntu Tribe",
+    href: "/case-studies",
   },
   {
-    bg: '#ffffff',
-    logo: '/clients/kucoin.png',
-    alt: 'KuCoin',
-    quote: 'Corum8 rebuilt our entire tokenomics model from the ground up, ensuring deep liquidity mapping. Our token launch hit M in volume within the first 48 hours precisely due to their structural PR push.',
-    name: 'David Z.',
-    title: 'Founder',
-    href: '/work'
-  }
+    bg: "#c4b5f3",
+    logo: "/clients/cashaa.png",
+    alt: "Cashaa",
+    quote:
+      "Corum8 ran the narrative, the media, and the community push around our token event. The execution was clean, the relationships with outlets were already in place, and the team moved at the pace we needed.",
+    name: "Kumar Gaurav",
+    title: "Founder & CEO, Cashaa",
+    href: "/case-studies",
+  },
 ];
 
-const { testimonials = defaultTestis } = Astro.props;
+const {
+  testimonials = defaultTestis,
+  heading = "What our clients say",
+} = Astro.props;
+
+// Defensive — filter empties so a missing testimonial ID doesn't render an empty slide.
+const slides = (testimonials && testimonials.length > 0 ? testimonials : defaultTestis).filter(
+  (t) => t && t.quote
+);
+
+const arrowPath = "m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z";
 ---
 
 <section class="Testimonials_testimonials__AMUEx">
-        <div class="DarkThemeSwitch_cover__hn_xc"></div>
-        <div class="container">
-          <h2 class="Testimonials_heading__k0Yyf">
-            <span class="LineByLine_headingOuter__JmusT"><span>What our clients say</span></span>
-          </h2>
-          <div class="Testimonials_testimonialDesktop__v5dZX">
-            <div class="TestimonialsCarousel_panels__qHnSA">
-              <div class="TestimonialsCarousel_container__YAjHa">
-                <div class="TestimonialsCarousel_swiper__AMmtm swiper">
-                  <div class="swiper-wrapper">
-                    <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                      <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #d7e1d3">
-                        <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                          <figure class="TestimonialsPanel_logo__m6tmz">
-                            <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/metamask.png" alt="NexaChain" fetchpriority="low" height="88" width="180" sizes="auto" class="lazyload"></span>
-                          </figure>
-                          <p class="TestimonialsPanel_description__njfi8">
-                            "Corum8 delivered our exchange platform two weeks ahead of schedule
-                            and ran a launch PR programme that landed us in Forbes and CoinTelegraph
-                            in the first month. The all-in-one approach saved us from coordinating
-                            between five different vendors."
-                          </p>
-                          <div class="TestimonialsPanel_details__ijkyr">
-                            <span class="TestimonialsPanel_name__Spm5c">Marcus Chen</span><span class="TestimonialsPanel_name__Spm5c">CEO, NexaChain</span>
-                          </div>
-                          <div class="TestimonialsPanel_buttons__fOECn">
-                            <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                              <div class="Button_button__JJiqJ" data-direction="forwards">
-                                <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                      <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                              </div>
-                            </div>
+  <div class="DarkThemeSwitch_cover__hn_xc"></div>
+  <div class="container">
+    <h2 class="Testimonials_heading__k0Yyf">
+      <span class="LineByLine_headingOuter__JmusT"><span>{heading}</span></span>
+    </h2>
+
+    <!-- Desktop carousel -->
+    <div class="Testimonials_testimonialDesktop__v5dZX">
+      <div class="TestimonialsCarousel_panels__qHnSA">
+        <div class="TestimonialsCarousel_container__YAjHa">
+          <div class="TestimonialsCarousel_swiper__AMmtm swiper">
+            <div class="swiper-wrapper">
+              {slides.map((t) => (
+                <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
+                  <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style={`background-color: ${t.bg}`}>
+                    <div class="TestimonialsPanel_panelWrap__Lm7Hv">
+                      {t.logo ? (
+                        <figure class="TestimonialsPanel_logo__m6tmz">
+                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea">
+                            <img data-src={t.logo} src={t.logo} alt={t.alt} fetchpriority="low" height="80" width="200" sizes="auto" class="lazyload" />
+                          </span>
+                        </figure>
+                      ) : (
+                        <figure class="TestimonialsPanel_logo__m6tmz TestimonialsPanel_logo--text">
+                          <span class="TestimonialsPanel_companyName">{t.alt}</span>
+                        </figure>
+                      )}
+                      <p class="TestimonialsPanel_description__njfi8">"{t.quote}"</p>
+                      <div class="TestimonialsPanel_details__ijkyr">
+                        <span class="TestimonialsPanel_name__Spm5c">{t.name}</span>
+                        <span class="TestimonialsPanel_name__Spm5c">{t.title}</span>
+                      </div>
+                      <div class="TestimonialsPanel_buttons__fOECn">
+                        <div class="Magnetic_magnetic__LncOy" data-fill="false">
+                          <div class="Button_button__JJiqJ" data-direction="forwards">
+                            <a class="Button_inner__fnyH6" href={t.href}>
+                              <span class="Button_border__hirH2"></span>
+                              <span class="Button_text__IZaCD">
+                                <span class="Button_textInner__JTTHe">View project</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
+                                  <path d={arrowPath} fill="currentColor"></path>
+                                </svg>
+                              </span>
+                            </a>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                      <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #a8e1ec">
-                        <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                          <figure class="TestimonialsPanel_logo__m6tmz">
-                            <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/kava.png" alt="DeFiVault" fetchpriority="low" height="68" width="200" sizes="auto" class="lazyload"></span>
-                          </figure>
-                          <p class="TestimonialsPanel_description__njfi8">
-                            "Their influencer network is unmatched. We went from 2,000 to
-                            85,000 community members in 90 days with genuine engagement —
-                            not bot farms. The ROI on our KOL campaigns was 12x what we
-                            saw with our previous agency."
-                          </p>
-                          <div class="TestimonialsPanel_details__ijkyr">
-                            <span class="TestimonialsPanel_name__Spm5c">Sarah Al-Rashid</span><span class="TestimonialsPanel_name__Spm5c">CMO, DeFiVault</span>
-                          </div>
-                          <div class="TestimonialsPanel_buttons__fOECn">
-                            <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                              <div class="Button_button__JJiqJ" data-direction="forwards">
-                                <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                      <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                      <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #c4b5f3">
-                        <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                          <figure class="TestimonialsPanel_logo__m6tmz">
-                            <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/flappy-bird.png" alt="MetaGrid Studios" fetchpriority="low" height="120" width="200" sizes="auto" class="lazyload"></span>
-                          </figure>
-                          <p class="TestimonialsPanel_description__njfi8">
-                            "We needed both a game-development partner and a marketing team
-                            that understood Web3 gaming. Corum8 built our entire platform and
-                            ran the launch campaign. 500K downloads in the first quarter
-                            speaks for itself."
-                          </p>
-                          <div class="TestimonialsPanel_details__ijkyr">
-                            <span class="TestimonialsPanel_name__Spm5c">James Walker</span><span class="TestimonialsPanel_name__Spm5c">Founder, MetaGrid Studios</span>
-                          </div>
-                          <div class="TestimonialsPanel_buttons__fOECn">
-                            <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                              <div class="Button_button__JJiqJ" data-direction="forwards">
-                                <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                      <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                      <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #f8e5cb">
-                        <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                          <figure class="TestimonialsPanel_logo__m6tmz">
-                            <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/tether.png" alt="StableFlow" fetchpriority="low" height="80" width="180" sizes="auto" class="lazyload"></span>
-                          </figure>
-                          <p class="TestimonialsPanel_description__njfi8">
-                            "The development quality is enterprise-grade. Corum8's smart-contract
-                            team built our stablecoin infrastructure with zero critical
-                            vulnerabilities across three independent audits. That level of code
-                            quality is rare in this space."
-                          </p>
-                          <div class="TestimonialsPanel_details__ijkyr">
-                            <span class="TestimonialsPanel_name__Spm5c">Elena Voronova</span><span class="TestimonialsPanel_name__Spm5c">COO, StableFlow</span>
-                          </div>
-                          <div class="TestimonialsPanel_buttons__fOECn">
-                            <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                              <div class="Button_button__JJiqJ" data-direction="forwards">
-                                <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                      <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                      <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #d7e1d3">
-                        <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                          <figure class="TestimonialsPanel_logo__m6tmz">
-                            <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/etoro.png" alt="TradeAxis" fetchpriority="low" height="40" width="220" sizes="auto" class="lazyload"></span>
-                          </figure>
-                          <p class="TestimonialsPanel_description__njfi8">
-                            "Corum8 manages our entire marketing stack — paid media, PR,
-                            community and influencer campaigns. Having one team that owns
-                            the full funnel means everything is coordinated and nothing
-                            falls through the cracks."
-                          </p>
-                          <div class="TestimonialsPanel_details__ijkyr">
-                            <span class="TestimonialsPanel_name__Spm5c">David Okonkwo</span><span class="TestimonialsPanel_name__Spm5c">VP Growth, TradeAxis</span>
-                          </div>
-                          <div class="TestimonialsPanel_buttons__fOECn">
-                            <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                              <div class="Button_button__JJiqJ" data-direction="forwards">
-                                <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                      <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                      <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #efb2d9">
-                        <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                          <figure class="TestimonialsPanel_logo__m6tmz">
-                            <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/kucoin.png" alt="KuCoin" fetchpriority="low" height="53" width="200" sizes="auto" class="lazyload"></span>
-                          </figure>
-                          <p class="TestimonialsPanel_description__njfi8">
-                            "A partnership, not a project. Corum8 pushed back when it mattered
-                            and our brand is sharper for it — tier-1 press coverage, a sharper
-                            narrative and measurable visibility gains across every priority
-                            market."
-                          </p>
-                          <div class="TestimonialsPanel_details__ijkyr">
-                            <span class="TestimonialsPanel_name__Spm5c">KuCoin Global Team</span><span class="TestimonialsPanel_name__Spm5c">Strategic PR partner</span>
-                          </div>
-                          <div class="TestimonialsPanel_buttons__fOECn">
-                            <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                              <div class="Button_button__JJiqJ" data-direction="forwards">
-                                <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                      <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="TestimonialsCarousel_swiperNav__hRE1L">
-                    <div class="custom-swiper-btn swiper-panel-prev">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                    </div>
-                    <div class="custom-swiper-btn swiper-panel-next">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </div>
                   </div>
                 </div>
+              ))}
+            </div>
+            <div class="TestimonialsCarousel_swiperNav__hRE1L">
+              <div class="custom-swiper-btn swiper-panel-prev">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </div>
+              <div class="custom-swiper-btn swiper-panel-next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
               </div>
             </div>
           </div>
         </div>
-        <div class="Testimonials_testimonialMobile__gCvdw">
-          <div class="TestimonialsCarousel_panels__qHnSA">
-            <div class="TestimonialsCarousel_container__YAjHa">
-              <div class="TestimonialsCarousel_swiper__AMmtm swiper">
-                <div class="swiper-wrapper">
-                  <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                    <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #d7e1d3">
-                      <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                        <figure class="TestimonialsPanel_logo__m6tmz">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/metamask.png" alt="NexaChain" fetchpriority="low" height="88" width="180" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <p class="TestimonialsPanel_description__njfi8">
-                          "Corum8 delivered our exchange platform two weeks ahead of schedule
-                          and ran a launch PR programme that landed us in Forbes and
-                          CoinTelegraph in the first month."
-                        </p>
-                        <div class="TestimonialsPanel_details__ijkyr">
-                          <span class="TestimonialsPanel_name__Spm5c">Marcus Chen</span><span class="TestimonialsPanel_name__Spm5c">CEO, NexaChain</span>
-                        </div>
-                        <div class="TestimonialsPanel_buttons__fOECn">
-                          <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                            <div class="Button_button__JJiqJ" data-direction="forwards">
-                              <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                    <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                            </div>
-                          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile carousel (same data, separate swiper instance) -->
+  <div class="Testimonials_testimonialMobile__gCvdw">
+    <div class="TestimonialsCarousel_panels__qHnSA">
+      <div class="TestimonialsCarousel_container__YAjHa">
+        <div class="TestimonialsCarousel_swiper__AMmtm swiper">
+          <div class="swiper-wrapper">
+            {slides.map((t) => (
+              <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
+                <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style={`background-color: ${t.bg}`}>
+                  <div class="TestimonialsPanel_panelWrap__Lm7Hv">
+                    <figure class="TestimonialsPanel_logo__m6tmz">
+                      <span class="Image_image__RAAdZ Image_intrinsic__JRoea">
+                        <img data-src={t.logo} src={t.logo} alt={t.alt} fetchpriority="low" height="80" width="200" sizes="auto" class="lazyload" />
+                      </span>
+                    </figure>
+                    <p class="TestimonialsPanel_description__njfi8">"{t.quote}"</p>
+                    <div class="TestimonialsPanel_details__ijkyr">
+                      <span class="TestimonialsPanel_name__Spm5c">{t.name}</span>
+                      <span class="TestimonialsPanel_name__Spm5c">{t.title}</span>
+                    </div>
+                    <div class="TestimonialsPanel_buttons__fOECn">
+                      <div class="Magnetic_magnetic__LncOy" data-fill="false">
+                        <div class="Button_button__JJiqJ" data-direction="forwards">
+                          <a class="Button_inner__fnyH6" href={t.href}>
+                            <span class="Button_border__hirH2"></span>
+                            <span class="Button_text__IZaCD">
+                              <span class="Button_textInner__JTTHe">View project</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
+                                <path d={arrowPath} fill="currentColor"></path>
+                              </svg>
+                            </span>
+                          </a>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                    <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #a8e1ec">
-                      <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                        <figure class="TestimonialsPanel_logo__m6tmz">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/kava.png" alt="DeFiVault" fetchpriority="low" height="68" width="200" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <p class="TestimonialsPanel_description__njfi8">
-                          "2,000 to 85,000 community members in 90 days with genuine
-                          engagement — not bot farms. 12x ROI on KOLs vs our previous
-                          agency."
-                        </p>
-                        <div class="TestimonialsPanel_details__ijkyr">
-                          <span class="TestimonialsPanel_name__Spm5c">Sarah Al-Rashid</span><span class="TestimonialsPanel_name__Spm5c">CMO, DeFiVault</span>
-                        </div>
-                        <div class="TestimonialsPanel_buttons__fOECn">
-                          <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                            <div class="Button_button__JJiqJ" data-direction="forwards">
-                              <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                    <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                    <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #c4b5f3">
-                      <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                        <figure class="TestimonialsPanel_logo__m6tmz">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/flappy-bird.png" alt="MetaGrid Studios" fetchpriority="low" height="120" width="200" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <p class="TestimonialsPanel_description__njfi8">
-                          "Corum8 built our entire Web3 gaming platform and ran the launch
-                          campaign. 500K downloads in the first quarter speaks for itself."
-                        </p>
-                        <div class="TestimonialsPanel_details__ijkyr">
-                          <span class="TestimonialsPanel_name__Spm5c">James Walker</span><span class="TestimonialsPanel_name__Spm5c">Founder, MetaGrid Studios</span>
-                        </div>
-                        <div class="TestimonialsPanel_buttons__fOECn">
-                          <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                            <div class="Button_button__JJiqJ" data-direction="forwards">
-                              <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                    <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                    <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #f8e5cb">
-                      <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                        <figure class="TestimonialsPanel_logo__m6tmz">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/tether.png" alt="StableFlow" fetchpriority="low" height="80" width="180" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <p class="TestimonialsPanel_description__njfi8">
-                          "Enterprise-grade quality. Zero critical vulnerabilities in our
-                          stablecoin infrastructure across three independent audits."
-                        </p>
-                        <div class="TestimonialsPanel_details__ijkyr">
-                          <span class="TestimonialsPanel_name__Spm5c">Elena Voronova</span><span class="TestimonialsPanel_name__Spm5c">COO, StableFlow</span>
-                        </div>
-                        <div class="TestimonialsPanel_buttons__fOECn">
-                          <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                            <div class="Button_button__JJiqJ" data-direction="forwards">
-                              <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                    <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                    <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #d7e1d3">
-                      <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                        <figure class="TestimonialsPanel_logo__m6tmz">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/etoro.png" alt="TradeAxis" fetchpriority="low" height="40" width="220" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <p class="TestimonialsPanel_description__njfi8">
-                          "One team that owns our full funnel — paid media, PR, community and
-                          influencer campaigns. Nothing falls through the cracks."
-                        </p>
-                        <div class="TestimonialsPanel_details__ijkyr">
-                          <span class="TestimonialsPanel_name__Spm5c">David Okonkwo</span><span class="TestimonialsPanel_name__Spm5c">VP Growth, TradeAxis</span>
-                        </div>
-                        <div class="TestimonialsPanel_buttons__fOECn">
-                          <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                            <div class="Button_button__JJiqJ" data-direction="forwards">
-                              <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                    <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                    <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style="background-color: #efb2d9">
-                      <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                        <figure class="TestimonialsPanel_logo__m6tmz">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img data-src="/clients/kucoin.png" alt="KuCoin" fetchpriority="low" height="53" width="200" sizes="auto" class="lazyload"></span>
-                        </figure>
-                        <p class="TestimonialsPanel_description__njfi8">
-                          "Tier-1 press coverage, a sharper narrative and measurable visibility
-                          gains across every priority market. Corum8 pushes back when it
-                          matters."
-                        </p>
-                        <div class="TestimonialsPanel_details__ijkyr">
-                          <span class="TestimonialsPanel_name__Spm5c">KuCoin Global Team</span><span class="TestimonialsPanel_name__Spm5c">Strategic PR partner</span>
-                        </div>
-                        <div class="TestimonialsPanel_buttons__fOECn">
-                          <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                            <div class="Button_button__JJiqJ" data-direction="forwards">
-                              <a class="Button_inner__fnyH6" href="/case-studies"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View project</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                    <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="TestimonialsCarousel_swiperNav__hRE1L">
-                  <div class="custom-swiper-btn swiper-panel-prev">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                  </div>
-                  <div class="custom-swiper-btn swiper-panel-next">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+          <div class="TestimonialsCarousel_swiperNav__hRE1L">
+            <div class="custom-swiper-btn swiper-panel-prev">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </div>
+            <div class="custom-swiper-btn swiper-panel-next">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
 <style is:global>
   /* ---------------------------------------------------------------
@@ -412,17 +202,12 @@ const { testimonials = defaultTestis } = Astro.props;
   .Testimonials_testimonials__AMUEx [class*="Testimonials_heading"] {
     color: #0a0a0a !important;
   }
-  /* The KOTA DarkThemeSwitch_cover div on this section used to signal a
-     dark background to any observers. It's decorative only (pointer-events
-     none, z-index 10), but we hide it here so no future script flips the
-     page into dark mode when scrolling through Testimonials. */
   .Testimonials_testimonials__AMUEx .DarkThemeSwitch_cover__hn_xc {
     display: none !important;
   }
 
-  /* Cards — lift the minimum height so quotes breathe instead of packing
-     tight against the avatar + logo. Keeps KOTA's 150px corner radius and
-     12-col inner grid intact. */
+  /* Cards — lift the minimum height so quotes breathe. Keeps KOTA's 150px
+     corner radius and inner grid intact. */
   .Testimonials_testimonials__AMUEx .TestimonialsPanel_panel__QSk4x,
   .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_panel__"] {
     min-height: clamp(540px, 68vh, 680px) !important;
@@ -439,6 +224,22 @@ const { testimonials = defaultTestis } = Astro.props;
   .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_logo"] {
     flex: 0 0 auto;
     margin-bottom: 1.75rem !important;
+  }
+  /* Text-only company name — shown when no logo asset is available.
+     Styled as a small-caps display mark so it reads as a brand label, not
+     as accidental body copy. */
+  .Testimonials_testimonials__AMUEx .TestimonialsPanel_logo--text {
+    display: flex !important;
+    align-items: center;
+    min-height: 80px;
+    margin: 0 0 1.75rem !important;
+  }
+  .Testimonials_testimonials__AMUEx .TestimonialsPanel_companyName {
+    font-size: clamp(1.25rem, 1.6vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #0a0a0a;
+    line-height: 1.1;
   }
   .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_description"] {
     font-size: clamp(1.15rem, 1.5vw, 1.55rem) !important;
