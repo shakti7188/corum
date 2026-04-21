@@ -498,48 +498,107 @@ function initTimelineScrubber() {
 }
 
 // ─── services stacking ────────────────────────────────────────────────────────
+// Three service cards stack with the visual panel centred in the viewport:
+//  - PIN_TOP is computed from the rendered panel height so equal whitespace
+//    sits above AND below each pinned card (not flush against the navbar).
+//  - The "Our Services" heading fades + slides up before card 1 reaches its
+//    pin position, so the title never lingers over a pinned card.
+//  - Scale shrinks from `center center` (not `top center`) so the card
+//    appears to contract in-place rather than collapse downward.
+//  - pinSpacing: false — the 50vh spacer in each card div is the runway.
+//  - anticipatePin: 1 kills the 1-frame layout jerk at pin-start.
 function initServicesStacking() {
   if (prefersReduced) return;
   const container = document.querySelector<HTMLElement>('.gsap-services-container');
   const cards = gsap.utils.toArray<HTMLElement>('.gsap-service-card');
-  const heading = document.querySelector<HTMLElement>('.gsap-service-heading');
-  const section = document.querySelector<HTMLElement>('.gsap-services-section');
-
   if (!container || cards.length === 0) return;
 
-  if (heading && section && cards.length > 0) {
-    ScrollTrigger.create({ trigger: section, start: 'top top+=100', end: 'bottom bottom', pin: heading, pinSpacing: false });
-    gsap.fromTo(heading, { scale: 1, opacity: 1 }, { scale: 0.85, opacity: 0, transformOrigin: "top center", ease: "none", scrollTrigger: { trigger: section, start: 'top top+=100', end: '+=500', scrub: true } });
+  // Measure the rendered visual panel so we can centre it in the viewport.
+  // `.ServicesPanel_panel__YF4OS` is the actual card surface (not the spacer).
+  // Fall back to 13 % of viewport if layout hasn't measured yet.
+  const firstPanel = cards[0]?.querySelector<HTMLElement>('.ServicesPanel_panel__YF4OS');
+  const panelH     = firstPanel?.offsetHeight ?? 0;
+  const navH       = 72; // fixed navbar height
+  const PIN_TOP    = panelH > 80
+    ? Math.max(navH + 16, Math.round((window.innerHeight - panelH) / 2))
+    : Math.round(window.innerHeight * 0.13);
 
-    const arrow = heading.querySelector<HTMLElement>('.ServicesHeading_arrow__L7E0F');
-    if (arrow) {
-      gsap.fromTo(arrow, { rotation: 0 }, { rotation: -45, transformOrigin: "50% 50%", ease: "none", scrollTrigger: { trigger: section, start: 'top top+=100', end: '+=500', scrub: true } });
-    }
+  // Fade the "Our Services" heading out before card 1 pins, so the title
+  // doesn't sit visible above the first pinned card.
+  const heading = document.querySelector<HTMLElement>('.gsap-service-heading');
+  if (heading) {
+    gsap.to(heading, {
+      opacity: 0,
+      y: -28,
+      ease: 'power1.in',
+      scrollTrigger: {
+        trigger: cards[0],
+        start: 'top 70%',           // begin fade when first card is 70% into view
+        end:   `top top+=${PIN_TOP + 60}`, // finish just before card pins
+        scrub: 1,
+      },
+    });
   }
 
-  cards.forEach((card, index) => {
-    ScrollTrigger.create({ trigger: card, start: 'top top+=120', endTrigger: container, end: 'bottom bottom', pin: true, pinSpacing: false });
-    if (index < cards.length - 1) {
-      gsap.to(card, { scale: 0.85, opacity: 0, transformOrigin: "top center", scrollTrigger: { trigger: cards[index + 1], start: 'top bottom-=15%', end: 'top top+=120', scrub: 1 } });
+  // Force the spacer height explicitly on every NON-LAST panel so each
+  // card gets an equal, predictable scroll runway to pin. KOTA's base rule
+  // (40vh) + the grid row-gap were producing cramped, uneven distances —
+  // one dial in JS beats fighting CSS specificity across both stylesheets.
+  // Setting `setProperty(..., 'important')` so nothing in KOTA's cascade
+  // wins, and explicitly clearing any cached height on the parent panel
+  // that ScrollTrigger may have locked during a previous refresh.
+  const SPACER_PX = Math.round(window.innerHeight * 0.8);
+  cards.forEach((card, i) => {
+    const spacer = card.querySelector<HTMLElement>('.AnimatedPanel_spacer__w4GTD');
+    if (!spacer) return;
+    card.style.removeProperty('height');
+    card.style.removeProperty('max-height');
+    if (i === cards.length - 1) {
+      spacer.style.setProperty('height', '0px', 'important');
+      spacer.style.setProperty('display', 'none', 'important');
     } else {
-      // Last card has no follow-on to trigger its exit, so it used to jerk
-      // at the unpin moment. Start fading while the container still has
-      // pinned travel left, finish exactly at the unpin moment — that way
-      // the card is already transparent when it detaches, no pop.
-      // Start fading the last card well before the pin releases so that
-      // by the time Services unpins, the card is already transparent and
-      // Ethos (which reveals at top:bottom) is already fading in.
-      gsap.to(card, {
-        scale: 0.85, opacity: 0, transformOrigin: "top center",
-        ease: 'power1.out',
-        scrollTrigger: {
-          trigger: container,
-          start: 'bottom bottom+=40%',
-          end: 'bottom bottom-=5%',
-          scrub: 1,
-        },
-      });
+      spacer.style.setProperty('height', `${SPACER_PX}px`, 'important');
+      spacer.style.setProperty('display', 'block', 'important');
     }
+  });
+
+  cards.forEach((card) => {
+    (card as HTMLElement).style.willChange = 'transform, opacity';
+
+    ScrollTrigger.create({
+      trigger: card,
+      start: `top top+=${PIN_TOP}`,
+      endTrigger: container,
+      end: 'bottom bottom',
+      pin: true,
+      pinSpacing: false,
+      anticipatePin: 1,
+    });
+  });
+
+  // Each card shrinks + fades from its centre as the NEXT card climbs up.
+  // For the final card there's no following card inside the stack, so we
+  // borrow the very next section (Showcase) as the "arriving" trigger —
+  // this gives the last card the identical fade curve as its siblings.
+  // The container lives two levels deep inside the section wrapper, so
+  // walk up to the section and use *its* next sibling.
+  const sectionWrap = container.closest('.gsap-services-section') as HTMLElement | null;
+  const afterContainer = sectionWrap?.nextElementSibling as HTMLElement | null;
+  cards.forEach((card, i) => {
+    const next = (cards[i + 1] as HTMLElement | undefined) ?? afterContainer;
+    if (!next) return;
+    gsap.to(card, {
+      scale: 0.94,
+      opacity: 0,
+      transformOrigin: 'center center',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: next,
+        start: 'top bottom-=8%',
+        end: `top top+=${PIN_TOP}`,
+        scrub: true,
+      },
+    });
   });
 }
 

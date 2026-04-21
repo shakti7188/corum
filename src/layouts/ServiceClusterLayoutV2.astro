@@ -11,14 +11,14 @@
 //   4. Testimonials  (Testimonials.astro, fed from testimonials library)
 //   5. FAQ  (FaqsList.astro, fed from page FAQs)
 //   6. Discover more  (DiscoverMore.astro, page-specific related pages)
-//   7. Final CTA  (KotaverseCta.astro, page-specific copy)
+//   7. Final CTA  (FinalCta.astro, page-specific copy)
 
 import Layout from "./Layout.astro";
 import ClusterBody from "../components/sections/ClusterBody.astro";
 import Testimonials from "../components/Testimonials.astro";
 import FaqsList from "../components/FaqsList.astro";
 import DiscoverMore from "../components/sections/DiscoverMore.astro";
-import KotaverseCta from "../components/KotaverseCta.astro";
+import FinalCta from "../components/FinalCta.astro";
 import { resolveMedia } from "../data/media";
 import { getTestimonial } from "../data/testimonials";
 import { schemasForPage } from "../data/schema";
@@ -194,7 +194,7 @@ const cta = page.finalCta ?? {};
     )}
 
     <!-- ============ FINAL CTA ============ -->
-    <KotaverseCta
+    <FinalCta
       light={cta.light}
       bold={cta.bold}
       subtitle={cta.subtitle}

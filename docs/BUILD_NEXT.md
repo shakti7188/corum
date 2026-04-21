@@ -39,9 +39,14 @@ Wave 1 target: ~20 pages at full protocol depth. ~80,000 words of content.
 
 ## Later waves (not to be started until Wave 1 ships cleanly)
 
-**Wave 2** — Remaining service clusters (~100 pages)
-**Wave 3** — Industry clusters, GEO, blockchain, comparison, cost guides, use cases (~100 pages)
-**Wave 4** — Ongoing blog + new service pages as trends emerge
+**Scope revised 2026-04-21** — site is now limited to nav-linked pages (~40
+total). Waves 2–4 as originally planned (260+ pages) are parked. If the user
+re-expands scope, see `docs/CORUM8_SITEMAP.md` for the full plan.
+
+**Wave 2 (new definition)** — fill in remaining menu-linked service clusters
+and industry pages that are still pre-protocol scaffolds.
+**Wave 3 (new definition)** — theme migration + visual polish pass on every
+shipped page after the xcentra theme lands.
 
 ---
 

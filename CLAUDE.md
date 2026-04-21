@@ -24,7 +24,16 @@ If the user gives an instruction that conflicts with this protocol, pause and as
 
 ## 1. MISSION
 
-Build a 260+ page Corum8 website that dominates SEO / AEO / GEO by:
+**Scope revised 2026-04-21.** Site is now limited to pages reachable from the
+primary nav (Header + Footer + About dropdown). Roughly ~40 pages total, not
+260+. The full 260-page sitemap in `docs/CORUM8_SITEMAP.md` is parked; if the
+user re-expands scope later, that plan is still intact.
+
+Canonical page inventory = every `href` in `src/data/siteNav.ts` (top nav) +
+the Resources / About children declared inside `src/components/Header.astro`
++ essential utility pages (`/`, `/404`, `/book-a-strategy-call`, `/contact`).
+
+Build a Corum8 marketing site that dominates SEO / AEO / GEO by:
 - Real depth of content (not AI-slop filler)
 - Entity-dense, number-dense writing that AI engines quote verbatim
 - One template per page-type, data-driven pages, shared media pool

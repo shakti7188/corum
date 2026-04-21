@@ -1,0 +1,150 @@
+/* ------------------------------------------------------------------
+   Corum8 site footer — balance pass.
+   Loaded globally via Footer.astro.
+   Goal: email is the row's visual anchor, logo is a calm accent,
+   every row shares one vertical rhythm.
+------------------------------------------------------------------ */
+
+/* Dark panel — shared palette token so the footer tracks the reference
+   design's fintech dark (#0a0b10). */
+.Footer_footer__pQtti {
+  background-color: var(--color-bg-dark) !important;
+}
+
+/* Top row — logo + email. Hairline top-border anchors the footer as
+   one block starting cleanly. Vertically centred on the optical
+   baseline of the email text. */
+.Footer_footer__pQtti .Footer_top__YBhK_ {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1.5rem !important;
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+  margin-bottom: 0 !important;
+}
+
+/* Logo: sized as an accent, not a competing headline. */
+.Footer_footer__pQtti .Footer_logo__fUEOF {
+  display: inline-flex !important;
+  align-items: center;
+  width: auto !important;
+  line-height: 0; /* kill the inline-flex phantom baseline */
+}
+.Footer_footer__pQtti .Footer_logo__fUEOF svg,
+.Footer_footer__pQtti .Footer_logo__fUEOF img {
+  height: clamp(42px, 4.6vw, 60px) !important;
+  width: auto !important;
+  max-width: none !important;
+  display: block;
+}
+
+/* Email: the row's anchor. Bigger than the logo, line-height:1 so
+   its optical baseline matches the logo's centre. Plain white reads
+   calmer next to dense content above (no gradient animation). */
+.Footer_footer__pQtti .Footer_email__nLajh {
+  font-size: clamp(1.9rem, 4.2vw, 3.6rem) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.015em !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-weight: 400 !important;
+  color: #fff !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  animation: none !important;
+}
+.Footer_footer__pQtti .Footer_email__nLajh:hover {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Social + awards row. align-items:center so tall award marks and
+   short text links sit on the same optical line. */
+.Footer_footer__pQtti .Footer_bottom__wxP7Z {
+  align-items: center !important;
+  gap: 2rem !important;
+  padding-top: 2.5rem !important;
+  padding-bottom: 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+.Footer_footer__pQtti .Footer_socialLinks__tA7gt a {
+  line-height: 1 !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.01em;
+}
+
+/* Awards: unified white marks, evenly distributed. */
+.Footer_footer__pQtti .Footer_logos__jFNys {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 2.25rem !important;
+  padding-top: 0 !important;
+}
+.Footer_footer__pQtti .Footer_logos__jFNys img {
+  max-width: 110px;
+  max-height: 26px;
+  height: auto !important;
+  margin: 0 !important;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+.Footer_footer__pQtti .Footer_logos__jFNys img:hover {
+  opacity: 1;
+}
+
+/* Legal + newsletter row — tightens the vertical rhythm. */
+.Footer_footer__pQtti .Footer_last__auU9C {
+  margin: 2.25rem 0 !important;
+  align-items: center !important;
+}
+.Footer_footer__pQtti .Footer_lastNav__at6Kh a {
+  font-size: 0.95rem !important;
+  line-height: 1 !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  transition: color 0.25s ease;
+}
+.Footer_footer__pQtti .Footer_lastNav__at6Kh a:hover {
+  color: #fff !important;
+}
+.Footer_footer__pQtti .Footer_newsletterButton__wp2hz {
+  font-size: 0.95rem !important;
+  line-height: 1 !important;
+  padding: 0.75rem 1.35rem !important;
+  border-width: 1px !important;
+}
+
+/* Copyright row — sectors on the left, copyright on the right. */
+.Footer_footer__pQtti .Footer_copyright__j4atB {
+  padding-top: 1.75rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  align-items: center !important;
+}
+.Footer_footer__pQtti .Footer_copyrightText__f_Lte,
+.Footer_footer__pQtti .Footer_sectorTitle__yEZhb,
+.Footer_footer__pQtti .Footer_sectorItem__0Cx14 {
+  font-size: 0.85rem !important;
+  line-height: 1.4 !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+@media (max-width: 720px) {
+  .Footer_footer__pQtti .Footer_top__YBhK_ {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.25rem !important;
+    padding-top: 2.25rem !important;
+    padding-bottom: 2.25rem !important;
+  }
+  .Footer_footer__pQtti .Footer_email__nLajh {
+    font-size: clamp(1.4rem, 7vw, 2rem) !important;
+  }
+  .Footer_footer__pQtti .Footer_logo__fUEOF svg,
+  .Footer_footer__pQtti .Footer_logo__fUEOF img {
+    height: 40px !important;
+  }
+}

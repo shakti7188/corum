@@ -61,16 +61,24 @@ const articles = [
     </div>
 
     <style is:global>
-      /* KOTA ships .Articles_articles__Wcz2C with `background:#000` — this
-         section sits on dark. Add extra top padding so the headline has
-         real room to land after the Testimonials section above. */
+      /* KOTA ships .Articles_articles__Wcz2C with `background:#000` — flip
+         to the page's light bg so this section lives in the warm family
+         with Showcase / Ethos / Work-reference and contrasts against the
+         Final CTA + Footer dark blocks further down. */
       .Articles_articles__Wcz2C {
+        background-color: var(--color-bg) !important;
         padding-top: clamp(6rem, 11vh, 10rem) !important;
+        padding-bottom: clamp(5rem, 9vh, 8rem) !important;
       }
       /* Header row — single-line title on the left, "Read the blog" CTA on
          the right, both on the same baseline. */
       .c8-insights-head {
         align-items: center !important;
+      }
+      /* FadeInUp wrapper starts display:none and waits for scroll-trigger JS.
+         Force it visible so the button always shows in the header row. */
+      .c8-insights-head .FadeInUp_container___uxva {
+        display: inline-block !important;
       }
       /* The text cell needs room to fit "Latest Articles" on one line; the
          flex row lets the right-side CTA claim the remainder. */
@@ -88,7 +96,36 @@ const articles = [
         font-weight: 500;
         letter-spacing: -0.02em;
         margin: 0 !important;
+        color: #111 !important;
+      }
+      /* Card text → dark ink on light bg. Tag label stays muted. */
+      .Articles_articles__Wcz2C .Articles_title__h86PB {
+        color: #111 !important;
+      }
+      .Articles_articles__Wcz2C .Articles_filterNames__mCWt8 {
+        color: #6b7280 !important;
+      }
+      /* "Read the blog" button — KOTA's white variant uses white borders/text
+         for dark backgrounds. Override to dark so it reads on our light bg.
+         Button_border__hirH2 is the hover-fill element — only tint it on hover. */
+      .Articles_articles__Wcz2C .Button_button__JJiqJ.Button_white__MQaf2 .Button_inner__fnyH6 {
+        color: #111 !important;
+        border-color: rgba(17,17,17,0.55) !important;
+      }
+      .Articles_articles__Wcz2C .Button_button__JJiqJ.Button_white__MQaf2:hover .Button_inner__fnyH6 {
         color: #fff !important;
+        border-color: #111 !important;
+      }
+      .Articles_articles__Wcz2C .Button_button__JJiqJ.Button_white__MQaf2 .Button_border__hirH2 {
+        background: #111 !important;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .Articles_articles__Wcz2C .Button_button__JJiqJ.Button_white__MQaf2:hover .Button_border__hirH2 {
+        opacity: 1 !important;
+      }
+      .Articles_articles__Wcz2C .Button_button__JJiqJ.Button_white__MQaf2 svg path {
+        fill: currentColor;
       }
       @media (max-width: 900px) {
         .c8-insights-head__title { font-size: 2.1rem; }

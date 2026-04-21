@@ -9,8 +9,8 @@
 const arrowGrad = {
   id: 'd',
   stops: [
-    { offset: '0', color: '#7c41f3' },
-    { offset: '1', color: '#ff6eff' },
+    { offset: '0', color: '#d48e1a' },
+    { offset: '1', color: '#ffc857' },
   ],
 };
 
@@ -24,14 +24,32 @@ const arrowGrad = {
 //     tags: ['Global Marketing', 'PR', 'Full-Stack Development', 'Web3 · AI · Fintech'],
 //   }
 
+// Four featured case studies — each one ships with a specific outcome
+// number pulled straight from docs/CONTENT.md. Headings lead with the
+// result so the card reads like a headline, not a brochure. Metarix and
+// Binance kept in the file-level history but hidden from the homepage.
 const projects = [
+  {
+    size: 'small',
+    href: '/work/cashaa',
+    name: 'Cashaa',
+    year: '2022',
+    category: 'Token Launch',
+    heading: '$32M raised',
+    description: 'End-to-end token launch campaign — media outreach across 200+ publications, Tier-1 crypto KOL seeding, and a full community build across Discord and Telegram from zero to active.',
+    tags: ['PR', 'Influencer', 'Community'],
+    video: '/media/Featured2-Compressed.mp4',
+    poster: '/images/upp-featured-mobile.jpg',
+  },
   {
     size: 'small',
     href: '/work/fanadise',
     name: 'Fanadise',
     year: '2024',
-    heading: 'Full-stack Web3 growth campaign that rallied the community behind a $5M raise.',
-    tags: ['Full-stack Web3', 'Growth Campaign', 'Community'],
+    category: 'Web3 Growth',
+    heading: '$5M raised',
+    description: 'Full-stack Web3 fan platform — smart contract development, NFT mechanics and a coordinated multi-channel growth campaign that drove raise momentum from day one.',
+    tags: ['Development', 'Community', 'Influencer'],
     video: '/media/fanadise.mp4',
     poster: '/images/GOAT-FeaturedImage.webp',
   },
@@ -40,8 +58,10 @@ const projects = [
     href: '/work/ubuntu-tribe',
     name: 'Ubuntu Tribe',
     year: '2024',
-    heading: 'PR, community and influencer programme anchored around a Token2049 activation — delivering global presence and community acceleration.',
-    tags: ['PR', 'Community', 'Influencer', 'Token2049 Event'],
+    category: 'Event Launch',
+    heading: 'Token2049 Dubai — global stage',
+    description: 'Compressed, multi-channel launch window around Token2049 Dubai. PR, KOL activation and live community events synchronized across a single 72-hour burst — global presence in under a week.',
+    tags: ['PR', 'KOL', 'Community'],
     video: '/media/isi-vid2-1.mp4',
     poster: '/images/hero.webp',
   },
@@ -50,40 +70,12 @@ const projects = [
     href: '/work/kucoin',
     name: 'KuCoin',
     year: '2024',
-    heading: 'Strategic PR programme for a major exchange — amplifying brand visibility in every priority market.',
-    tags: ['Strategic PR', 'Exchange', 'Global Visibility'],
+    category: 'Strategic PR',
+    heading: 'Tier-1 exchange, every market',
+    description: 'Ongoing strategic PR retainer for one of the world\'s top exchanges — tier-1 publication placement, editorial strategy and proactive narrative management across 30+ priority markets.',
+    tags: ['PR', 'Exchange', 'Global'],
     video: '/media/Duplicated-Assets.mp4',
     poster: '/images/ig-featured-mobile.jpg',
-  },
-  {
-    size: 'small',
-    href: '/work/metarix',
-    name: 'Metarix',
-    year: '2023',
-    heading: 'Full launch across influencers, PR and community that converted attention into a $780K raise.',
-    tags: ['Influencers', 'PR', 'Community', 'Full Launch'],
-    video: '/media/Featured-compressed.mp4',
-    poster: '/images/wogan-featured-2.jpg',
-  },
-  {
-    size: 'small',
-    href: '/work/binance',
-    name: 'Binance',
-    year: '2023',
-    heading: 'Performance affiliate network driving $800M+ monthly exchange volume.',
-    tags: ['Performance Marketing', 'Affiliate Network', 'Exchange'],
-    video: '/media/Company-Loop4-compressed-2.mp4',
-    poster: '/images/upp-featured-mobile.jpg',
-  },
-  {
-    size: 'small',
-    href: '/work/cashaa',
-    name: 'Cashaa',
-    year: '2022',
-    heading: 'Token launch powered by influencer marketing, PR and community activation — $32M raised.',
-    tags: ['Token Launch', 'Influencer Marketing', 'PR', 'Community'],
-    video: '/media/Featured2-Compressed.mp4',
-    poster: '/images/upp-featured-mobile.jpg',
   },
 ];
 
@@ -132,8 +124,10 @@ const allCards = [...projects];
               <p>{p.year}</p>
             </div>
             <div class="ProjectCard_projectImage__Nfx9I">
-              <div class="ProjectCard_imageOverlay__OCawr">
-                <p class="ProjectCard_heading__1csIW">{p.heading}</p>
+              <div class="ProjectCard_imageOverlay__OCawr c8-work-overlay">
+                <span class="c8-work-overlay__category">{p.category}</span>
+                <p class="c8-work-overlay__heading">{p.heading}</p>
+                <p class="c8-work-overlay__desc">{p.description}</p>
                 <ul class="ProjectCard_tags__XdVcf">
                   {p.tags.map((t) => <li>{t}</li>)}
                 </ul>
@@ -160,7 +154,7 @@ const allCards = [...projects];
 
 <style is:global>
   .Work_work__rSI8c {
-    background-color: #000 !important;
+    background-color: var(--color-bg-dark) !important;
     padding-bottom: 15vh;
   }
 
@@ -177,6 +171,143 @@ const allCards = [...projects];
   .ProjectCard_intro__c8 .ProjectCard_projectText__o770X p {
     font-weight: 500;
     letter-spacing: 0.01em;
+  }
+
+  /* Gold "Our Work" title — matches the section's role as the portfolio
+     anchor. KOTA's default is white against the dark panel; re-tint the
+     second half ("Work") to brand gold so it pops the eye at scroll-in. */
+  .Work_work__rSI8c .Work_heading__pbv4g .Work_bottom__rzrzH {
+    background: linear-gradient(135deg, var(--c8-gold) 0%, var(--c8-gold-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Overlay — always visible. Bottom 40% of the card is the "content zone":
+     dark and solid so copy sits clean. Top 60% stays light so the media is
+     the hero. Ramp is tight between the two zones so the handoff is crisp. */
+  .Work_work__rSI8c .ProjectCard_imageOverlay__OCawr.c8-work-overlay {
+    display: flex !important;
+    opacity: 1 !important;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 55%,
+        rgba(0, 0, 0, 0.82) 62%,
+        rgba(0, 0, 0, 0.96) 100%
+      ) !important;
+    justify-content: flex-end;
+    flex-direction: column;
+    gap: 0.6rem;
+    /* Content block reserves ~40% of the card's height so the copy lives
+       inside the dark zone without crowding. */
+    padding: clamp(1.2rem, 2.4vw, 1.75rem) clamp(1.1rem, 2.5vw, 1.85rem) clamp(1.2rem, 2.5vw, 1.85rem) !important;
+    min-height: 40%;
+    transition: background 0.4s ease;
+  }
+  .Work_work__rSI8c .ProjectCard_project__d1wbY:hover .c8-work-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.05) 50%,
+        rgba(0, 0, 0, 0.88) 62%,
+        rgba(0, 0, 0, 0.98) 100%
+      ) !important;
+  }
+
+  /* Category pill — small gold-tinted label above the headline */
+  .c8-work-overlay__category {
+    display: inline-block;
+    width: fit-content;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c8-gold, #f5a623);
+    padding: 0.2rem 0.65rem;
+    border: 1px solid rgba(245, 166, 35, 0.45);
+    border-radius: 999px;
+    background: rgba(245, 166, 35, 0.1);
+    margin-bottom: 0.1rem;
+  }
+
+  /* Main result headline — bigger display size, mid-weight so it reads
+     elegant rather than shouty. */
+  .c8-work-overlay__heading {
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem) !important;
+    font-weight: 500;
+    line-height: 1.15;
+    color: #fff !important;
+    margin: 0;
+    letter-spacing: -0.025em;
+  }
+
+  /* Description — reads clearly under the headline, two lines. */
+  .c8-work-overlay__desc {
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(0.85rem, 1.05vw, 0.95rem);
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.78);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Tag chips */
+  .Work_work__rSI8c .c8-work-overlay .ProjectCard_tags__XdVcf {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+    list-style: none;
+    margin: 0.2rem 0 0;
+    padding: 0;
+  }
+  .Work_work__rSI8c .c8-work-overlay .ProjectCard_tags__XdVcf li {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.22rem 0.58rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: uppercase;
+  }
+
+  /* Hover — lift the whole card, inset a gold border glow, scale the
+     poster/video underneath slightly. No reveal; details already shown. */
+  .Work_work__rSI8c .ProjectCard_project__d1wbY .ProjectCard_projectImage__Nfx9I {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    transition:
+      transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.5s ease;
+  }
+  .Work_work__rSI8c .ProjectCard_project__d1wbY .ProjectCard_projectImage__Nfx9I img,
+  .Work_work__rSI8c .ProjectCard_project__d1wbY .ProjectCard_projectImage__Nfx9I video {
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .Work_work__rSI8c .ProjectCard_project__d1wbY:hover .ProjectCard_projectImage__Nfx9I {
+    transform: translateY(-6px);
+    box-shadow:
+      0 24px 48px -16px rgba(0, 0, 0, 0.5),
+      inset 0 0 0 2px var(--c8-gold);
+  }
+  .Work_work__rSI8c .ProjectCard_project__d1wbY:hover .ProjectCard_projectImage__Nfx9I img,
+  .Work_work__rSI8c .ProjectCard_project__d1wbY:hover .ProjectCard_projectImage__Nfx9I video {
+    transform: scale(1.04);
+  }
+  /* Stop KOTA's default hover-reveal from fighting our always-visible overlay. */
+  .Work_work__rSI8c .ProjectCard_project__d1wbY:hover .ProjectCard_imageOverlay__OCawr {
+    opacity: 1 !important;
   }
 </style>
 

@@ -145,11 +145,26 @@
 
 <style is:global>
   .Statistics_statistics__vWlOY {
-    background-color: #000 !important;
+    background-color: var(--color-bg-dark) !important;
     position: relative;
     min-height: 100vh;
     padding: 0;
     overflow: hidden;
+  }
+  /* Ambient gold halo behind the stack — echoes the FinalCta/FAQ dark
+     panels so the whole dark-section family reads as one family. */
+  .Statistics_statistics__vWlOY::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70vw;
+    height: 60vh;
+    background: radial-gradient(circle, var(--c8-gold-soft) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
   }
 
   .StatisticsCarousel_container__2XA6W {
@@ -188,8 +203,9 @@
     display: inline-block;
     padding: 0.5rem 1rem;
     border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.35);
-    color: #fff;
+    border: 1px solid var(--c8-gold-glow);
+    background: var(--c8-gold-soft);
+    color: var(--c8-gold-light);
     font-size: 0.9rem;
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -233,7 +249,7 @@
   }
   .c8-post__avatar {
     width: 30px; height: 30px; border-radius: 50%;
-    background: linear-gradient(135deg, #f72585, #4361ee);
+    background: linear-gradient(135deg, #f5a623, #ffc857);
     flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
     color: #fff; font-weight: 700; font-size: 0.7rem;
@@ -244,7 +260,7 @@
   .c8-post__handle { font-size: 0.68rem; color: #71717a; }
   .c8-post__platform { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.7; }
   .c8-post__body { font-size: 0.76rem; color: #d4d4d8; margin-bottom: 0.55rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .c8-post__body b { color: #f72585; font-weight: 600; }
+  .c8-post__body b { color: #f5a623; font-weight: 600; }
   .c8-post__stats { display: flex; gap: 0.85rem; font-size: 0.68rem; color: #71717a; padding-top: 0.45rem; border-top: 1px solid rgba(255,255,255,0.06); }
   .c8-post__stats span { display: inline-flex; align-items: center; gap: 0.25rem; }
   .c8-post__stats svg { width: 11px; height: 11px; }
@@ -297,7 +313,7 @@
     font-weight: 700;
     margin-bottom: 0.2rem;
   }
-  .c8-article__pub b { color: #f72585; }
+  .c8-article__pub b { color: #f5a623; }
   .c8-article__headline {
     font-family: 'Georgia', serif;
     font-size: 0.84rem;
@@ -414,7 +430,7 @@
   }
   .c8-product--swap .c8-swap__btn {
     margin-top: auto;
-    background: linear-gradient(90deg, #ff006e, #b5179e);
+    background: linear-gradient(90deg, #d48e1a, #d48e1a);
     border-radius: 8px;
     padding: 0.45rem;
     text-align: center;
@@ -459,7 +475,7 @@
   }
   .c8-product--wallet .c8-phone__bal small { font-size: 0.45rem; opacity: 0.55; display: block; }
   .c8-product--wallet .c8-phone__bal b { font-size: 0.85rem; font-weight: 700; letter-spacing: -0.02em; }
-  .c8-product--wallet .c8-phone__bal span { color: #00b67a; font-size: 0.5rem; margin-left: 3px; }
+  .c8-product--wallet .c8-phone__bal span { color: #f5a623; font-size: 0.5rem; margin-left: 3px; }
   .c8-product--wallet .c8-phone__pills {
     display: flex; justify-content: center; gap: 4px; padding: 0 0.3rem 0.35rem;
   }
@@ -491,7 +507,7 @@
   /* ── 3: Token launch / presale page ───────────────────────────────────── */
   .c8-product--token .c8-product__inner {
     padding: 0.65rem 0.7rem;
-    background: radial-gradient(circle at 80% 0%, rgba(58,134,255,0.15), transparent 60%), #0e1018;
+    background: radial-gradient(circle at 80% 0%, rgba(212,142,26,0.15), transparent 60%), #0e1018;
     color: #fff;
     height: calc(100% - 22px);
     display: flex;
@@ -503,7 +519,7 @@
   }
   .c8-product--token .c8-token__logo {
     width: 22px; height: 22px; border-radius: 50%;
-    background: conic-gradient(from 90deg, #3a86ff, #b5179e, #00b4d8, #3a86ff);
+    background: conic-gradient(from 90deg, #d48e1a, #d48e1a, #ffc857, #d48e1a);
     box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
   }
   .c8-product--token .c8-token__name { font-size: 0.7rem; font-weight: 700; letter-spacing: -0.01em; }
@@ -512,14 +528,14 @@
     margin-left: auto;
     font-size: 0.45rem;
     background: rgba(0,182,122,0.15);
-    color: #00d4a0;
+    color: #f5a623;
     border: 1px solid rgba(0,182,122,0.4);
     padding: 2px 5px;
     border-radius: 4px;
     font-weight: 600;
   }
   .c8-product--token .c8-token__price { font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; }
-  .c8-product--token .c8-token__delta { color: #00d4a0; font-size: 0.5rem; margin-left: 0.35rem; }
+  .c8-product--token .c8-token__delta { color: #f5a623; font-size: 0.5rem; margin-left: 0.35rem; }
   .c8-product--token .c8-token__bar {
     background: rgba(255,255,255,0.08);
     border-radius: 999px;
@@ -528,7 +544,7 @@
   }
   .c8-product--token .c8-token__bar i {
     display: block; height: 100%;
-    background: linear-gradient(90deg, #3a86ff, #b5179e);
+    background: linear-gradient(90deg, #d48e1a, #d48e1a);
     width: 72%;
     border-radius: 999px;
   }
@@ -539,7 +555,7 @@
   .c8-product--token .c8-token__chart {
     flex: 1; min-height: 24px;
     background:
-      linear-gradient(180deg, rgba(58,134,255,0.25) 0%, transparent 80%);
+      linear-gradient(180deg, rgba(212,142,26,0.25) 0%, transparent 80%);
     -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'><polyline points='0,22 8,18 16,20 24,12 32,16 40,8 48,11 56,5 64,9 72,4 80,7 88,3 96,5 100,3 100,30 0,30' fill='black' stroke='black' stroke-width='1' stroke-linejoin='round'/></svg>");
     -webkit-mask-size: 100% 100%;
     mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'><polyline points='0,22 8,18 16,20 24,12 32,16 40,8 48,11 56,5 64,9 72,4 80,7 88,3 96,5 100,3 100,30 0,30' fill='black' stroke='black' stroke-width='1' stroke-linejoin='round'/></svg>");
@@ -548,7 +564,7 @@
   }
   .c8-product--token .c8-token__chart::after {
     content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, #3a86ff, #b5179e, transparent);
+    background: linear-gradient(90deg, transparent, #d48e1a, #d48e1a, transparent);
   }
 
   /* ── 4: NFT marketplace ───────────────────────────────────────────────── */
@@ -587,17 +603,17 @@
   .c8-product--nft .c8-nft__art {
     flex: 1; min-height: 30px;
   }
-  .c8-product--nft .c8-nft__art--a { background: conic-gradient(from 0deg, #ff006e, #ffb703, #ff006e); }
-  .c8-product--nft .c8-nft__art--b { background: linear-gradient(135deg, #00b4d8, #7209b7); }
-  .c8-product--nft .c8-nft__art--c { background: radial-gradient(circle at 30% 30%, #fb7185, #1e1b4b); }
-  .c8-product--nft .c8-nft__art--d { background: linear-gradient(45deg, #00d4a0, #3a86ff, #b5179e); }
+  .c8-product--nft .c8-nft__art--a { background: conic-gradient(from 0deg, #d48e1a, #ffc857, #d48e1a); }
+  .c8-product--nft .c8-nft__art--b { background: linear-gradient(135deg, #ffc857, #b5731a); }
+  .c8-product--nft .c8-nft__art--c { background: radial-gradient(circle at 30% 30%, #ffc857, #1e1b4b); }
+  .c8-product--nft .c8-nft__art--d { background: linear-gradient(45deg, #f5a623, #d48e1a, #d48e1a); }
   .c8-product--nft .c8-nft__info {
     padding: 3px 5px;
     display: flex; justify-content: space-between;
     font-size: 0.42rem;
   }
   .c8-product--nft .c8-nft__info b { font-weight: 600; }
-  .c8-product--nft .c8-nft__info span { color: #00d4a0; font-weight: 600; }
+  .c8-product--nft .c8-nft__info span { color: #f5a623; font-weight: 600; }
 
   /* ── Global Reach visual — animated map / cities pulse ───────────────────── */
   .c8-global-visual {
@@ -613,8 +629,8 @@
   .c8-globe {
     border-radius: 14px;
     background:
-      radial-gradient(ellipse at 30% 30%, rgba(247,37,133,0.15), transparent 40%),
-      radial-gradient(ellipse at 70% 60%, rgba(58,134,255,0.18), transparent 50%),
+      radial-gradient(ellipse at 30% 30%, rgba(245,166,35,0.15), transparent 40%),
+      radial-gradient(ellipse at 70% 60%, rgba(212,142,26,0.18), transparent 50%),
       #0a0a0a;
     border: 1px solid rgba(255,255,255,0.08);
     position: relative;
@@ -625,21 +641,21 @@
     position: absolute;
     width: 10px; height: 10px;
     border-radius: 50%;
-    background: #f72585;
-    box-shadow: 0 0 0 0 rgba(247,37,133,0.7);
+    background: #f5a623;
+    box-shadow: 0 0 0 0 rgba(245,166,35,0.7);
     animation: c8-cityPulse 2.4s ease-out infinite;
     transform: translate(-50%, -50%);
   }
-  .c8-globe__dot--blue { background: #3a86ff; box-shadow: 0 0 0 0 rgba(58,134,255,0.7); animation-name: c8-cityPulseBlue; }
+  .c8-globe__dot--blue { background: #d48e1a; box-shadow: 0 0 0 0 rgba(212,142,26,0.7); animation-name: c8-cityPulseBlue; }
   @keyframes c8-cityPulse {
-    0%   { box-shadow: 0 0 0 0 rgba(247,37,133,0.65); }
-    70%  { box-shadow: 0 0 0 14px rgba(247,37,133,0); }
-    100% { box-shadow: 0 0 0 0 rgba(247,37,133,0); }
+    0%   { box-shadow: 0 0 0 0 rgba(245,166,35,0.65); }
+    70%  { box-shadow: 0 0 0 14px rgba(245,166,35,0); }
+    100% { box-shadow: 0 0 0 0 rgba(245,166,35,0); }
   }
   @keyframes c8-cityPulseBlue {
-    0%   { box-shadow: 0 0 0 0 rgba(58,134,255,0.65); }
-    70%  { box-shadow: 0 0 0 14px rgba(58,134,255,0); }
-    100% { box-shadow: 0 0 0 0 rgba(58,134,255,0); }
+    0%   { box-shadow: 0 0 0 0 rgba(212,142,26,0.65); }
+    70%  { box-shadow: 0 0 0 14px rgba(212,142,26,0); }
+    100% { box-shadow: 0 0 0 0 rgba(212,142,26,0); }
   }
   .c8-cities {
     display: flex; flex-direction: column;

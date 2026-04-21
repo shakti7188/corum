@@ -2,17 +2,47 @@
 
 /* ---------- Design tokens ---------- */
 @theme {
-  --color-bg: #efefef;
+  /* Light base — warm off-white, unified across every light section so the
+     whole page reads as one continuous canvas (not drifting between #efefef,
+     #f4f4f0, #fff). Single source of truth. */
+  --color-bg: #f4f4f0;
   --color-bg-card: #ffffff;
   --color-ink: #000000;
   --color-ink-soft: #1a1a1a;
   --color-ink-mute: #6b6b6b;
   --color-rule: #d6d6d6;
   --color-accent: #b7ff3a;
-  --color-selection: #f74ea1;
+  --color-selection: #f5a623;
+
+  /* Dark-panel palette — used by sections that flip to dark (Footer, the
+     final CTA, and any feature block promoted to a dark panel). Matches
+     the reference design's glass/fintech look. */
+  --color-bg-dark: #0a0b10;
+  --color-bg-dark-2: #111827;
+  --color-ink-on-dark: #ffffff;
+  --color-ink-on-dark-mute: #9ca3af;
+  --color-rule-on-dark: rgba(255, 255, 255, 0.08);
+
+  /* Brand gold — retuned to the reference design's warmer, punchier
+     orange-gold. Single source of truth for every component. */
+  --c8-gold: #f5a623;
+  --c8-gold-light: #ffc857;
+  --c8-gold-dark: #d48e1a;
+  --c8-gold-soft: rgba(245, 166, 35, 0.12);
+  --c8-gold-glow: rgba(245, 166, 35, 0.35);
+
+  /* Glassmorphism — for frosted panels on any background. */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 12px;
+
+  /* Status */
+  --color-positive: #22c55e;
+  --color-negative: #ef4444;
 
   --font-display: "Syne", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", ui-monospace, monospace;
 
   /* Fluid type scale (matched to reference agency ratios) */
   --fs-100: clamp(2.5rem, 7.1vw, 7.5rem);
@@ -72,6 +102,65 @@ body {
   .section-pad { padding-block: var(--space-section); }
 }
 .section-pad-small { padding-block: var(--space-small); }
+
+/* Canonical gold-gradient text — every "accent word" on the page uses this
+   exact gradient so the gold reads as one brand voice, not four near-matches.
+   Apply to a span wrapping the word that should glow. */
+.c8-gold-text {
+  background: linear-gradient(135deg, var(--c8-gold) 0%, var(--c8-gold-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Unified section rhythm — every major block breathes at the same cadence,
+   even when its internal layout is completely different. The clamp matches
+   the "finger-print" vertical spacing used across Hero → FinalCta. */
+.c8-section-pad {
+  padding-block: clamp(5rem, 10vh, 9rem);
+}
+
+/* ---------- Marquee ----------
+   Dual-purpose wrapper. On desktop the track flex-wraps centred (identical
+   to the previous flex-wrap logos layout) with the `__clone` set hidden so
+   nothing is duplicated visually. On mobile the track flips to a single-row
+   nowrap auto-scroller — the cloned set is what lets it loop seamlessly.
+   Apply gap to the track, not the wrapper. */
+.c8-marquee {
+  overflow: hidden;
+  width: 100%;
+}
+.c8-marquee__track {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: inherit; /* the .c8-marquee parent can set gap and the track reads it */
+}
+.c8-marquee__clone { display: none; }
+
+@media (max-width: 900px) {
+  .c8-marquee__track {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: max-content;
+    animation: c8-marquee-scroll var(--c8-marquee-dur, 40s) linear infinite;
+  }
+  .c8-marquee__clone { display: inline-flex; }
+  /* Mobile-only exposure helpers */
+  .c8-marquee__track > * { flex: 0 0 auto; }
+  .c8-marquee:hover .c8-marquee__track,
+  .c8-marquee__track:focus-within { animation-play-state: paused; }
+}
+@keyframes c8-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .c8-marquee__track { animation: none !important; }
+  .c8-marquee__clone { display: none !important; }
+}
 
 /* Lenis smooth scroll */
 html.lenis,
@@ -183,6 +272,139 @@ h3, .h3 { font-size: var(--fs-50); line-height: 1.1; letter-spacing: -0.02em; }
 .rule {
   height: 1px;
   background: var(--color-rule);
+}
+
+/* ---------- Site-wide primary CTA (KOTA Button_button pattern) ----------
+   KOTA's Button is a compound: .Button_button__JJiqJ > .Button_inner__fnyH6
+   (the <a>) > .Button_border__hirH2 (the oval stroke) + .Button_text__IZaCD.
+   Default KOTA style is transparent with a black 2px oval border. We retint
+   the inner <a> to a filled gold pill so every CTA reads as brand-primary,
+   and invert on hover to dark for a high-contrast tell.
+   The .Button_white__MQaf2 variant (used on dark panels) stays white. */
+.Button_button__JJiqJ:not(.Button_white__MQaf2) .Button_inner__fnyH6 {
+  background: var(--c8-gold);
+  color: #111 !important;
+  border-radius: 999px;
+  padding: 0.9rem 1.6rem !important;
+  box-shadow: 0 10px 28px -10px var(--c8-gold-glow);
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+/* Hover — invert to dark panel with gold text. High-contrast signal
+   that the CTA is now pressable. */
+.Button_button__JJiqJ:not(.Button_white__MQaf2):hover .Button_inner__fnyH6 {
+  background: #111;
+  color: var(--c8-gold) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.45);
+}
+.Button_button__JJiqJ:not(.Button_white__MQaf2):hover svg {
+  color: var(--c8-gold) !important;
+}
+
+/* Hide KOTA's oval-stroke border on light buttons since the pill is
+   now solid-filled; the stroke would double-outline the shape. */
+.Button_button__JJiqJ:not(.Button_white__MQaf2) .Button_border__hirH2 {
+  display: none;
+}
+/* Ensure arrow + text inherit the dark ink on the gold fill. */
+.Button_button__JJiqJ:not(.Button_white__MQaf2) svg {
+  color: #111 !important;
+}
+/* KOTA ships .Button_text__IZaCD as display:block, which lets the
+   trailing arrow float on the text baseline — visually off-centre on a
+   pill. Switch to inline-flex + align-items:center so the arrow sits
+   on the optical centreline of the text cap-height. */
+.Button_button__JJiqJ .Button_text__IZaCD {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.6rem;
+}
+.Button_button__JJiqJ .Button_buttonArrow__0W9XI {
+  margin: 0 !important;
+  transform: none !important;
+  flex-shrink: 0;
+}
+
+/* ---------- Reference-design utilities ---------- */
+
+/* Frosted glass panel — works on any background. Adds a gold glow on hover
+   when paired with .glass--interactive. */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+.glass--interactive {
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+.glass--interactive:hover {
+  border-color: var(--c8-gold-glow);
+  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.5), 0 0 40px var(--c8-gold-soft);
+}
+
+/* Gradient-fill text using the brand gold range. */
+.gradient-text {
+  background: linear-gradient(135deg, var(--c8-gold) 0%, var(--c8-gold-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Shimmering border sweep — applied via ::before/::after on the target. */
+@keyframes shimmer-sweep {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer-border {
+  position: relative;
+  background-clip: padding-box;
+  border: 1px solid transparent;
+}
+.shimmer-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--c8-gold-glow) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-sweep 3s linear infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* Gentle floating animation — 10px y-drift over 3s. Matches the reference
+   design's decorative-element motion language. */
+@keyframes float-y {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -10px, 0); }
+}
+.float-y {
+  animation: float-y 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Pulsing gold glow — for CTAs or attention anchors. */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--c8-gold-glow); }
+  50%      { box-shadow: 0 0 0 12px rgba(245, 166, 35, 0); }
+}
+.pulse-glow {
+  animation: pulse-glow 2s ease-out infinite;
 }
 
 /* Reveal baseline — visible by default (progressive enhancement).

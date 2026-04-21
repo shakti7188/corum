@@ -1,32 +1,28 @@
 ---
-// Service-panel reels — original KOTA homepage videos, pulled locally from
-// kota-content.b-cdn.net/app/uploads/2024/02/ so they deploy with the site
-// instead of hot-linking the CDN. Trimmed to 3s apiece to stay on-page-weight.
-// Panel order follows the original homepage mapping:
-//   homepage.mp4   → panel 1 (was "Web design & development", now Marketing)
-//   homepage-1.mp4 → panel 2 (was "Branding", now PR & Branding)
-//   homepage-3.mp4 → panel 3 (was "Digital Marketing", now Development)
-const cardVideos = {
-  marketing:   '/media/homepage.mp4',
-  pr:          '/media/homepage-1.mp4',
-  development: '/media/homepage-3.mp4',
+// Service-panel reels. Marketing now uses a custom animated GIF; the two
+// KOTA mp4s rotate one slot over so PR inherits the former development
+// clip and Full-Stack inherits the former marketing clip.
+const cardMedia = {
+  marketing:   { type: 'gif', src: '/assets/video/marketing.gif' },
+  pr:          { type: 'video', src: '/media/homepage-3.mp4' },
+  development: { type: 'video', src: '/media/homepage.mp4' },
 };
 ---
 
 <div class="Services_services__YnZAs gsap-services-section">
           <div class="container">
-            <h2 class="ServicesHeading_heading__w6gAZ gsap-service-heading">
-              <span><div class="LargeHeading_headingOuter__i9qcd">
-                  <span class="ServicesHeading_heading__w6gAZ">Our</span><span class="ServicesHeading_heading__w6gAZ ServicesHeading_bottom__K8yXu">Services</span>
-                </div></span>
-              <div class="AnimatedArrow_animatedArrow__Q4v7Q">
-                <div class="AnimatedArrow_innerArrow__6mwTB">
-                  <svg class="ServicesHeading_arrow__L7E0F" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 111.42 110.66">
-                    <polygon points="13.65 102.66 109.53 6.67 103.87 1.02 8 97 8 0 0 0 0 110.66 111.42 110.66 111.42 102.66 13.65 102.66"></polygon>
-                  </svg>
-                </div>
-              </div>
-            </h2>
+            <header class="c8-services-title">
+              <p class="c8-services-title__eyebrow">
+                <span class="c8-services-title__dot" aria-hidden="true"></span>
+                What we do
+              </p>
+              <h2 class="c8-services-title__heading">
+                Build, market and <em>scale.</em>
+              </h2>
+              <p class="c8-services-title__sub">
+                Three disciplines, one team — engineered for Web3, AI and fintech brands that need outcomes, not activity.
+              </p>
+            </header>
           </div>
           <div class="ServicesPanels_panels__NpKkK gsap-services-container c8-services-panels">
             <div class="container">
@@ -54,7 +50,7 @@ const cardVideos = {
                     </div>
                     <div class="ServiceMedia_mediaContainer__WGgZa">
                       <span class="AutoplayVideo_video__zckWy AutoplayVideo_fill__ZPgCR">
-                        <video autoplay muted loop playsinline preload="metadata" src={cardVideos.marketing}></video>
+                        <img src={cardMedia.marketing.src} alt="" loading="lazy" />
                       </span>
                     </div>
                     <div class="ServicesPanel_panelBackground__O9mDV"></div>
@@ -86,7 +82,7 @@ const cardVideos = {
                     </div>
                     <div class="ServiceMedia_mediaContainer__WGgZa">
                       <span class="AutoplayVideo_video__zckWy AutoplayVideo_fill__ZPgCR">
-                        <video autoplay muted loop playsinline preload="metadata" src={cardVideos.pr}></video>
+                        <video autoplay muted loop playsinline preload="metadata" src={cardMedia.pr.src}></video>
                       </span>
                     </div>
                     <div class="ServicesPanel_panelBackground__O9mDV"></div>
@@ -94,7 +90,7 @@ const cardVideos = {
                 </div>
                 <div class="AnimatedPanel_spacer__w4GTD"></div>
               </div>
-              <div class="AnimatedPanel_panel__eAXfR gsap-service-card">
+              <div class="AnimatedPanel_panel__eAXfR gsap-service-card c8-service-card-last">
                 <div>
                   <div class="ServicesPanel_panel__YF4OS servicePanel">
                     <div class="ServicesPanel_panelText__iyjwZ">
@@ -118,7 +114,7 @@ const cardVideos = {
                     </div>
                     <div class="ServiceMedia_mediaContainer__WGgZa">
                       <span class="AutoplayVideo_video__zckWy AutoplayVideo_fill__ZPgCR">
-                        <video autoplay muted loop playsinline preload="metadata" src={cardVideos.development}></video>
+                        <video autoplay muted loop playsinline preload="metadata" src={cardMedia.development.src}></video>
                       </span>
                     </div>
                     <div class="ServicesPanel_panelBackground__O9mDV"></div>
@@ -131,21 +127,152 @@ const cardVideos = {
         </div>
 
 <style is:global>
-  /* Tighten the runway BELOW the last service card. KOTA ships the Services
-     panel stack with three 40vh spacers (one per card) + a 25vh bottom
-     margin on the wrapper — great for an isolated services page, wasteful
-     on the homepage where the Showcase video needs to come up immediately
-     after the last card releases its pin.
-
-     Leaving the intra-stack spacers alone (they gate the pinned-slide
-     animation between cards); only killing the spacer that sits AFTER the
-     final card, and collapsing the wrapper's bottom margin. */
-  .c8-services-panels {
-    margin-bottom: 3vh !important;
+  /* Spacer inside each panel — defines how long a card stays pinned
+     before the next one slides up. 50vh matches KOTA's pacing roughly
+     (they use 40vh; we add 10 to compensate for taller card content). */
+  .c8-services-panels .AnimatedPanel_spacer__w4GTD {
+    height: 50vh !important;
+    display: block !important;
   }
-  .c8-services-panels .AnimatedPanel_panel__eAXfR:last-child .AnimatedPanel_spacer__w4GTD {
+
+  /* Service panel cards — reference-design polish. Swap the bare white
+     background for a softly shadowed surface with a gold-glow hover. The
+     panel background is an absolutely-positioned element that sits behind
+     the text + media, so we style it rather than the panel itself. */
+  .c8-services-panels .ServicesPanel_panelBackground__O9mDV {
+    background: linear-gradient(180deg, #ffffff 0%, #fafaf7 100%) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow:
+      0 30px 60px -24px rgba(0, 0, 0, 0.12),
+      0 0 40px -20px var(--c8-gold-soft),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: box-shadow 0.5s ease, border-color 0.5s ease;
+  }
+  .c8-services-panels .gsap-service-card:hover .ServicesPanel_panelBackground__O9mDV {
+    border-color: var(--c8-gold-glow);
+    box-shadow:
+      0 40px 80px -24px rgba(0, 0, 0, 0.18),
+      0 0 60px -10px var(--c8-gold-soft),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  /* Gold hover on service tag chips so they match the brand accent. */
+  .c8-services-panels .ServicesPanel_tag__JYwRk {
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  }
+  .c8-services-panels .ServicesPanel_tag__JYwRk:hover {
+    border-color: var(--c8-gold) !important;
+    background-color: var(--c8-gold) !important;
+    color: #111 !important;
+  }
+
+  /* Marketing card uses an <img> (animated GIF) instead of a <video> — the
+     KOTA AutoplayVideo wrapper only styles `video` natively, so mirror the
+     fill behaviour for any img placed inside it. */
+  .c8-services-panels .AutoplayVideo_video__zckWy img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Custom section title — replaces KOTA's split LargeHeading markup.
+     Flex row: text left, arrow pushed right via flex space-between. */
+  .c8-services-title {
+    display: block !important;
+    max-width: 48rem;
+    margin: 0 0 clamp(2rem, 4.5vh, 3rem) !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .c8-services-title__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c8-gold, #d48e1a);
+    margin: 0 0 1rem !important;
+  }
+  .c8-services-title__dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--c8-gold, #d48e1a);
+    box-shadow: 0 0 10px rgba(212, 142, 26, 0.5);
+  }
+  .c8-services-title__heading {
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: #0a0a0a;
+    margin: 0 0 1rem !important;
+  }
+  .c8-services-title__heading em {
+    font-style: italic;
+    font-family: var(--syne, var(--montreal));
+    font-weight: 400;
+    color: #0a0a0a;
+  }
+  .c8-services-title__sub {
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    line-height: 1.55;
+    color: #555;
+    margin: 0 !important;
+  }
+
+  /* Vertically centre the text + media halves inside each service card. */
+  .c8-services-panels .ServicesPanel_panel__YF4OS {
+    align-items: center !important;
+  }
+
+  /* Tighter top padding on the whole services section. */
+  .gsap-services-section {
+    padding-top: clamp(2rem, 5vh, 4rem) !important;
+    padding-bottom: clamp(5rem, 10vh, 8rem) !important;
+  }
+
+  /* Kill the spacer that sits AFTER the last card — Showcase should come
+     up as soon as the final card releases its pin, no dead air.
+     NOTE: can't use :last-child here because ScrollTrigger wraps every
+     pinned panel in its own pin-spacer div, so every panel ends up as
+     :last-child of its own wrapper. We tag the real last panel with
+     .c8-service-card-last explicitly. */
+  .c8-services-panels .c8-service-card-last .AnimatedPanel_spacer__w4GTD {
     height: 0 !important;
     display: none !important;
+  }
+  /* Gold tint overlay on Full-Stack card video — the source clip has a
+     purple/lavender grade; mix-blend-mode:color shifts hue toward brand gold
+     without affecting luminosity. Keep opacity low so it reads as a warm
+     tone rather than a colour wash. */
+  .c8-services-panels .c8-service-card-last .ServiceMedia_mediaContainer__WGgZa {
+    position: relative;
+  }
+  .c8-services-panels .c8-service-card-last .ServiceMedia_mediaContainer__WGgZa::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(212, 142, 26, 0.28);
+    mix-blend-mode: color;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Gap between last card and Showcase — reduced 70% further (1rem → 0.3rem). */
+  .c8-services-panels {
+    margin: 0.3rem 0 0 !important;
+  }
+  /* KOTA's grid container adds row-gap between panels on top of our spacer,
+     which inflates the scroll distance between pin points. Collapse it so
+     the spacer is the single source of truth for between-card scroll. */
+  .c8-services-panels .container {
+    row-gap: 0 !important;
   }
 </style>
 

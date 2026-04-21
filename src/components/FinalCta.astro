@@ -1,5 +1,6 @@
 ---
 // Final CTA Section — page-specific copy, same design.
+import { resolveMedia } from "../data/media";
 
 export interface Props {
   light?: string;                  // first line of headline
@@ -16,12 +17,14 @@ const {
   buttonLabel = "Book a Strategy Call",
   buttonHref = "/book-a-strategy-call",
 } = Astro.props;
+
+const blob = resolveMedia("video.ctaBlob");
 ---
 
 <section class="FinalCta_wrapper">
   <!-- 3D Animated Background Object -->
   <figure class="FinalCta_videoBackground">
-    <video autoplay loop muted playsinline preload="metadata" src="https://kota-content.b-cdn.net/app/uploads/2024/01/blob-loop-uncompressed_1706098182.mp4"></video>
+    <video autoplay loop muted playsinline preload="metadata" src={blob?.src}></video>
   </figure>
 
   <!-- Foreground Dark Gradient Overlay -->
@@ -45,21 +48,21 @@ const {
   .FinalCta_wrapper {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    background-color: var(--color-bg-dark);
     overflow: hidden;
-    padding: 10rem 0;
+    padding: 8rem 0;
   }
 
   .FinalCta_videoBackground {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 48vw;
-    height: 78vh;
+    width: 38vw;
+    height: 62vh;
     transform: translate(-50%, -50%);
     z-index: 1;
     pointer-events: none;
@@ -76,7 +79,7 @@ const {
   .FinalCta_overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(circle, rgba(0,0,0,0) 0%, #000 80%);
+    background: radial-gradient(circle, rgba(0,0,0,0) 0%, var(--color-bg-dark) 80%);
     z-index: 2;
     pointer-events: none;
   }
@@ -90,11 +93,11 @@ const {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.6rem;
   }
 
   .FinalCta_title {
-    font-size: clamp(2.5rem, 7.1vw, 7.5rem);
+    font-size: clamp(2rem, 5.7vw, 6rem);
     line-height: 1;
     margin: 0;
     letter-spacing: -0.02em;
@@ -102,45 +105,59 @@ const {
     color: #fff;
   }
 
-  .FinalCta_light,
-  .FinalCta_bold {
+  .FinalCta_light {
     font-weight: 400;
     color: #fff;
   }
+  .FinalCta_bold {
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--c8-gold) 0%, var(--c8-gold-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 
   .FinalCta_subtitle {
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: #ffffff; text-shadow: 0 4px 10px rgba(0,0,0,0.8); letter-spacing: 0.25em;
     margin: 0;
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #fff;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 1);
   }
 
   .FinalCta_button {
-    margin-top: 3rem;
+    margin-top: 2.4rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 1.5rem 3.5rem;
+    gap: 0.8rem;
+    padding: 1.2rem 2.8rem;
     border-radius: 4rem;
-    font-size: 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 0.9rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    background: rgba(255,255,255,0.03);
-    backdrop-filter: blur(10px);
-    color: #fff;
     text-decoration: none;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
   }
 
   .FinalCta_button:hover {
     background: var(--c8-gold);
-    color: #111;
     border-color: var(--c8-gold);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 40px var(--c8-gold-glow, rgba(212, 162, 58, 0.45));
+    color: #111;
+    text-shadow: none;
+    transform: scale(1.05);
+  }
+
+  .FinalCta_button:hover path {
+    fill: #111;
   }
 
   .FinalCta_arrow {
@@ -152,33 +169,11 @@ const {
   .FinalCta_button:hover .FinalCta_arrow {
     transform: translateX(8px);
   }
+
   @media (max-width: 1024px) {
     .FinalCta_videoBackground {
-      width: 150vw !important;
-      height: 100vh !important;
+      width: 150vw;
+      height: 100vh;
     }
-  }
-
-  .FinalCta_button {
-    border: 1px solid rgba(255, 255, 255, 0.85) !important;
-    background: rgba(0,0,0,0.4) !important;
-    text-shadow: 0 2px 4px rgba(0,0,0,1) !important;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-  }
-  .FinalCta_button:hover {
-    border: 1px solid var(--c8-gold) !important;
-    background: var(--c8-gold) !important;
-    color: #111 !important;
-    text-shadow: none !important;
-    transform: scale(1.05);
-  }
-  .FinalCta_button:hover path {
-    fill: #111 !important;
-  }
-  .FinalCta_subtitle {
-    color: #ffffff !important;
-    text-shadow: 0 4px 15px rgba(0,0,0,1) !important;
-    font-weight: 600 !important;
   }
 </style>

@@ -206,14 +206,29 @@ const arrowPath = "m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-
     display: none !important;
   }
 
-  /* Cards — lift the minimum height so quotes breathe. Keeps KOTA's 150px
-     corner radius and inner grid intact. */
+  /* Cards — lift the minimum height so quotes breathe, add a premium
+     inset highlight + soft external shadow that matches the reference
+     design's card presentation. Gold edge on hover is the brand tell. */
   .Testimonials_testimonials__AMUEx .TestimonialsPanel_panel__QSk4x,
   .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_panel__"] {
     min-height: clamp(540px, 68vh, 680px) !important;
     padding: 4rem 4.5rem !important;
     display: flex !important;
     align-items: stretch !important;
+    box-shadow:
+      0 30px 60px -24px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.04) !important;
+    border: 1px solid rgba(0, 0, 0, 0.04) !important;
+    transition: box-shadow 0.45s ease, border-color 0.45s ease !important;
+  }
+  .Testimonials_testimonials__AMUEx .TestimonialsPanel_panel__QSk4x:hover,
+  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_panel__"]:hover {
+    box-shadow:
+      0 40px 80px -24px rgba(0, 0, 0, 0.22),
+      0 0 60px -20px var(--c8-gold-soft),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+    border-color: var(--c8-gold-glow) !important;
   }
   .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_panelWrap"] {
     display: flex !important;
@@ -314,8 +329,8 @@ const arrowPath = "m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-
     height: 24px;
   }
   .custom-swiper-btn:hover {
-    background: var(--c8-gold, #d4a23a);
-    border-color: var(--c8-gold, #d4a23a);
+    background: var(--c8-gold, #f5a623);
+    border-color: var(--c8-gold, #f5a623);
     color: #111;
     transform: scale(1.06);
   }

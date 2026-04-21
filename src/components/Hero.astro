@@ -31,7 +31,7 @@ const mediaLogos = [
     <div class="c8-hero__trust">
       <span class="c8-hero__stars" aria-label="4.9 out of 5 stars">
         {Array.from({length: 5}).map(() => (
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#00b67a" stroke="none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#f5a623" stroke="none">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
           </svg>
         ))}
@@ -75,10 +75,15 @@ const mediaLogos = [
   <!-- Press logos strip -->
   <div class="c8-hero__press">
     <p class="c8-hero__press-label"><span>(Featured in)</span></p>
-    <div class="c8-hero__press-logos">
-      {mediaLogos.map((m) => (
-        <img src={m.src} alt={m.alt} loading="lazy" class="c8-hero__press-img" />
-      ))}
+    <div class="c8-hero__press-logos c8-marquee">
+      <div class="c8-marquee__track">
+        {mediaLogos.map((m) => (
+          <img src={m.src} alt={m.alt} loading="lazy" class="c8-hero__press-img" />
+        ))}
+        {mediaLogos.map((m) => (
+          <img src={m.src} alt="" aria-hidden="true" loading="lazy" class="c8-hero__press-img c8-marquee__clone" />
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -86,27 +91,30 @@ const mediaLogos = [
 <style is:global>
   .c8-hero-section {
     position: relative;
-    min-height: 110svh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding-top: 5.5rem;
+    padding-top: 4rem;
   }
 
   .c8-hero__inner {
     flex: 1;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto auto;
     column-gap: clamp(1rem, 2vw, 2rem);
-    row-gap: clamp(1.5rem, 4vh, 3rem);
+    row-gap: clamp(1rem, 2.5vh, 2rem);
     align-items: start;
-    padding: clamp(2rem, 5vh, 4rem) clamp(1.5rem, 5vw, 5rem) clamp(3rem, 7vh, 5rem);
+    align-content: center;
+    padding: clamp(1rem, 3vh, 2.5rem) clamp(1.5rem, 5vw, 5rem) clamp(1.5rem, 4vh, 3rem);
     position: relative;
     z-index: 1;
   }
 
-  /* Row 1 — trust pill, sits centered/left aligned just above the title */
+  /* Row 1 — trust pill, sits centered/left aligned just above the title.
+     Glass surface on light bg: white tint at 65% opacity with a hairline
+     border and gentle lift shadow. Hovered state nudges toward gold. */
   .c8-hero__trust {
     grid-row: 1;
     grid-column: 1 / -1;
@@ -116,14 +124,19 @@ const mediaLogos = [
     align-items: center;
     gap: 0.5rem 0.85rem;
     padding: 0.5rem 1rem;
-    background: rgba(255,255,255,0.65);
-    border: 1px solid rgba(0,0,0,0.06);
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(0, 0, 0, 0.06);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-radius: 999px;
     width: fit-content;
     margin-bottom: -0.5rem;
-    box-shadow: 0 4px 18px -8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 18px -8px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+  .c8-hero__trust:hover {
+    border-color: var(--c8-gold-glow);
+    box-shadow: 0 8px 22px -10px var(--c8-gold-soft), 0 4px 18px -8px rgba(0, 0, 0, 0.1);
   }
   .c8-hero__trust-text {
     font-family: var(--montreal);
@@ -161,16 +174,16 @@ const mediaLogos = [
     font-family: var(--syne, var(--montreal));
     font-weight: 400;
   }
-  .c8-hero__period { color: #00b67a; }
+  .c8-hero__period { color: var(--c8-gold); }
 
   /* Row 3 — subtitle stacked above a prominent CTA pair, left-aligned */
   .c8-hero__footer {
     grid-row: 3;
     grid-column: 1 / -1;
-    align-self: end;
+    align-self: start;
     display: flex;
     flex-direction: column;
-    gap: clamp(1.75rem, 3vh, 2.75rem);
+    gap: clamp(1.25rem, 2.5vh, 2rem);
     max-width: 56rem;
   }
 
@@ -193,29 +206,32 @@ const mediaLogos = [
     flex-wrap: wrap;
   }
 
-  /* Primary CTA — larger, confident outlined pill button */
+  /* Primary CTA — brand-gold pill, filled by default. */
   .c8-hero__cta {
     display: inline-flex;
     align-items: center;
     gap: 0.85rem;
     padding: 1.2rem 2.1rem;
-    background: transparent;
-    color: #0a0a0a;
-    border: 1.5px solid #0a0a0a;
+    background: var(--c8-gold);
+    color: #111;
+    border: 1.5px solid var(--c8-gold);
     border-radius: 999px;
     text-decoration: none;
     font-family: var(--montreal);
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.005em;
     line-height: 1;
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.35s ease, color 0.35s ease;
+    box-shadow: 0 10px 28px -10px var(--c8-gold-glow);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     white-space: nowrap;
   }
   .c8-hero__cta:hover {
     transform: translateY(-2px);
-    background: #0a0a0a;
-    color: #fff;
+    background: #111;
+    border-color: #111;
+    color: var(--c8-gold);
+    box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.45);
   }
   .c8-hero__cta-arrow {
     display: inline-flex;
@@ -265,13 +281,14 @@ const mediaLogos = [
     margin-left: 0.6rem;
   }
 
+  /* Desktop: centred flex-wrap (handled by .c8-marquee__track). Mobile
+     flips to single-row auto-scroller via the global marquee rules. */
   .c8-hero__press-logos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    width: 100%;
     gap: 1rem 2rem;
+    --c8-marquee-dur: 45s;
   }
+  .c8-hero__press-logos .c8-marquee__track { gap: 1rem 2rem; }
 
   .c8-hero__press-img {
     height: 19px;
@@ -301,6 +318,6 @@ const mediaLogos = [
       gap: 0.9rem;
     }
     .c8-hero__press-img { height: 17px; }
-    .c8-hero__press-logos { gap: 0.9rem 1.6rem; }
+    .c8-hero__press-logos .c8-marquee__track { gap: 0 1.6rem; }
   }
 </style>

@@ -169,6 +169,7 @@ export const media = {
     // Case-study videos are content, not decoration — keep descriptive alt.
     fanadise: { src: "/media/fanadise.mp4",                               alt: "Fanadise case-study clip", kind: "video" },
     case:     { src: "/assets/kota/videos/dka-thumbnail-compressed.mp4",   alt: "Case-study thumbnail loop", kind: "video" },
+    ctaBlob:  { src: "https://kota-content.b-cdn.net/app/uploads/2024/01/blob-loop-uncompressed_1706098182.mp4", alt: "", kind: "video", decorative: true },
   },
 
   // Process / approach imagery — used when a page warrants a timeline section.

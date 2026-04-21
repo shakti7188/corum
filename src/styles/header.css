@@ -1,0 +1,461 @@
+/* ------------------------------------------------------------------
+   Corum8 site header — mega-menu, sticky bar, dropdowns.
+   Loaded globally via Header.astro. Brand tokens (--c8-gold*) come
+   from src/styles/global.css.
+------------------------------------------------------------------ */
+
+/* ---------- Shell ----------
+   Solid bg on the header by default so page content doesn't bleed
+   through while scrolling. When scrolled, switches to a frosted glass
+   surface with a hairline + shadow for depth. */
+.Header_header__KwdYD {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-bg) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  transform: none;
+  transition:
+    padding 0.3s ease,
+    background-color 0.3s ease,
+    backdrop-filter 0.3s ease,
+    -webkit-backdrop-filter 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Kill the white rectangle KOTA baked behind the logo (logo PNG is
+   already transparent — we just want the header's own surface behind
+   it, not a separate inset panel). */
+.Header_header__KwdYD .Header_logo____uDV {
+  background: transparent !important;
+}
+
+/* Scrolled state — compact bar with a subtle glass surface + hairline.
+   Prefixing with `header` bumps specificity above the bare class, and
+   every override uses !important so width-specific media rules can't
+   beat it. */
+header.Header_header__KwdYD[data-scrolled="true"] {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  padding-left: clamp(1rem, 3vw, 2rem) !important;
+  padding-right: clamp(1rem, 3vw, 2rem) !important;
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: saturate(160%) blur(14px) !important;
+  -webkit-backdrop-filter: saturate(160%) blur(14px) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.18) !important;
+}
+
+.Header_left,
+.Header_right {
+  flex: 0 0 auto;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Logo breathing room to mirror the right-side CTA padding. */
+.Header_left {
+  padding-left: clamp(1rem, 2vw, 2rem);
+}
+
+.Header_header__KwdYD .Header_logo____uDV {
+  display: inline-flex;
+  align-items: center;
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+header.Header_header__KwdYD[data-scrolled="true"] .Header_logo____uDV {
+  transform: scale(0.78) !important;
+}
+header.Header_header__KwdYD[data-scrolled="true"] .Header_logo____uDV svg {
+  width: 2.5rem !important;
+}
+
+/* Header CTA — shrink to match compact bar when scrolled. */
+.Header_header__KwdYD .Header_button__yG4_K {
+  transform-origin: right center;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    padding 0.35s ease;
+}
+header.Header_header__KwdYD[data-scrolled="true"] .Header_button__yG4_K {
+  transform: scale(0.88) !important;
+}
+
+/* Primary CTA pill — gold by default, inverts to dark on hover for a
+   clear pressable signal. Also force colour on text + arrow so KOTA's
+   theme variables can't override us at interaction time. */
+.Header_button__yG4_K {
+  background: var(--c8-gold) !important;
+  color: #111 !important;
+  border-color: var(--c8-gold) !important;
+  box-shadow: 0 8px 22px -10px var(--c8-gold-glow);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.Header_button__yG4_K .Header_buttonArrow__frtNz,
+.Header_button__yG4_K .Header_text__taNU6 {
+  color: #111 !important;
+}
+.Header_button__yG4_K:hover {
+  background: #111 !important;
+  color: var(--c8-gold) !important;
+  border-color: #111 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
+}
+.Header_button__yG4_K:hover .Header_buttonArrow__frtNz,
+.Header_button__yG4_K:hover .Header_text__taNU6 {
+  color: var(--c8-gold) !important;
+}
+
+/* ---------- Mega menu ---------- */
+.MegaMenu_nav {
+  flex: 1 1 auto;
+  display: none;
+  justify-content: center;
+  pointer-events: auto !important;
+}
+@media (min-width: 1024px) {
+  .MegaMenu_nav { display: flex; }
+  .PrimaryNavigation_page__DgiUM { display: none !important; }
+}
+
+.MegaMenu_list {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.MegaMenu_nav,
+.MegaMenu_list,
+.MegaMenu_item {
+  position: static !important;
+}
+/* Mini dropdowns anchor to the trigger, not the full bar. */
+.MegaMenu_item:has(.MiniDropdown) {
+  position: relative !important;
+}
+
+.MegaMenu_item {
+  padding: 2rem 0;
+  transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+header.Header_header__KwdYD[data-scrolled="true"] .MegaMenu_item {
+  padding: 0.85rem 0 !important;
+}
+
+.MegaMenu_link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--theme-primary);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    color 0.3s ease,
+    font-size 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.MegaMenu_link--nohover {
+  cursor: default;
+}
+.MegaMenu_item:hover .MegaMenu_link {
+  opacity: 0.7;
+}
+header.Header_header__KwdYD[data-scrolled="true"] .MegaMenu_link {
+  font-size: 0.95rem !important;
+}
+
+.Chevron {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.MegaMenu_item:hover .Chevron {
+  transform: rotate(-135deg) translateY(-2px);
+}
+
+/* ---------- Dropdown panel ----------
+   Two fixes for the "closes before my cursor gets there" bug:
+   1. padding-top 0 — visible panel sits flush with menu bar.
+   2. visibility/pointer-events on hover-OUT are delayed so a brief
+      cursor dip doesn't tear the dropdown away. */
+.MegaDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px) scale(0.98);
+  transform-origin: top center;
+  pointer-events: none;
+  z-index: 1000;
+  padding-top: 0;
+  transition:
+    opacity    0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+    transform  0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+    visibility 0s linear 0.5s;
+}
+.MegaMenu_item:hover .MegaDropdown,
+.MegaMenu_item:focus-within .MegaDropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  transition-delay: 0s, 0s, 0s;
+}
+
+/* Invisible hover bridge so diagonal cursor movement keeps hover. */
+.MegaDropdown::before {
+  content: "";
+  position: absolute;
+  top: -2rem;
+  left: 0;
+  right: 0;
+  height: 2rem;
+}
+
+.MegaDropdown_bg {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 4rem);
+  max-width: 1300px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 2rem;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.05);
+  z-index: -1;
+}
+
+.MegaDropdown_inner {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  width: calc(100% - 4rem);
+  max-width: 1300px;
+  padding: 3.5rem;
+  gap: 2rem;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* ---------- Mini dropdown (Industries / Resources / About) ---------- */
+.MiniDropdown {
+  left: 50%;
+  right: auto;
+  width: auto;
+  max-width: 320px;
+  transform: translateX(-50%) translateY(6px) scale(0.98);
+}
+.MegaMenu_item:hover .MiniDropdown,
+.MegaMenu_item:focus-within .MiniDropdown {
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+.MiniDropdown .MegaDropdown_bg {
+  left: 0;
+  transform: none;
+  width: 100%;
+  max-width: none;
+}
+.MiniDropdown .MegaDropdown_inner {
+  width: 100%;
+  max-width: none;
+  padding: 2rem;
+  justify-content: center;
+}
+.MiniDropdown .MegaCol {
+  gap: 0;
+  min-width: 0;
+  width: 100%;
+}
+.MiniDropdown .MegaCol a {
+  padding: 0.7rem 0.9rem !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  border-radius: 0.6rem;
+  color: #333 !important;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    opacity 0.3s ease !important;
+}
+.MiniDropdown .MegaCol a span:first-child {
+  font-size: 1rem !important;
+}
+/* Group-hover: siblings dim, hovered row lights with gold wash. */
+.MiniDropdown .MegaCol:hover a {
+  opacity: 0.45;
+}
+.MiniDropdown .MegaCol a:hover {
+  opacity: 1 !important;
+  color: #111 !important;
+  background: var(--c8-gold-soft) !important;
+  box-shadow: inset 0 0 0 1px var(--c8-gold-glow);
+  transform: translateX(4px);
+}
+
+/* ---------- Columns ---------- */
+.MegaColWrapper {
+  flex: 1;
+  flex-shrink: 0;
+  display: flex;
+  gap: 3rem;
+}
+
+.MegaCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 200px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.MegaMenu_item:hover .MegaCol:nth-child(1) { transition-delay: 0.10s; opacity: 1; transform: translateY(0); }
+.MegaMenu_item:hover .MegaCol:nth-child(2) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+.MegaMenu_item:hover .MegaCol:nth-child(3) { transition-delay: 0.20s; opacity: 1; transform: translateY(0); }
+
+.MegaCol_title {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  color: #888 !important;
+  font-size: 0.75rem;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.MegaCol a {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0.35rem !important;
+  width: 100% !important;
+  padding: 1rem !important;
+  border-radius: 0.75rem;
+  color: #000;
+  font-size: 1.15rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: normal !important;
+  clear: both;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.MegaCol a span {
+  display: block !important;
+  line-height: 1.2 !important;
+  width: 100% !important;
+}
+.MegaCol a span:first-child {
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  color: #111 !important;
+  letter-spacing: -0.02em !important;
+}
+.MegaCol_desc {
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #888;
+}
+
+/* Group-hover physics for the main mega menu columns. */
+.MegaColWrapper:hover .MegaCol a {
+  opacity: 0.4;
+  transform: scale(0.98);
+}
+.MegaColWrapper:hover .MegaCol a:hover {
+  opacity: 1;
+  transform: translateX(4px);
+  background: #f8f8fb !important;
+  border-radius: 12px;
+}
+
+/* ---------- CTA panel inside mega menu ---------- */
+.MegaCta {
+  flex-shrink: 0;
+  width: 320px;
+  min-height: 100%;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #0a0b10 0%, #1a1308 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 1.5rem;
+  opacity: 0;
+  transform: translateY(10px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.MegaMenu_item:hover .MegaCta {
+  transition-delay: 0.25s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Decorative glass orb. */
+.MegaCta::after {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.35) 0%, rgba(245, 166, 35, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.MegaCta p,
+.MegaCta h4,
+.MegaCta a {
+  position: relative;
+  z-index: 1;
+}
+.MegaCta p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #ffffff !important;
+}
+
+.MegaButton {
+  width: fit-content;
+  border-radius: 2rem;
+}
+.MegaCta .MegaButton {
+  background: #fff !important;
+  color: #000 !important;
+}
+.MegaCta .MegaButton:hover {
+  background: var(--c8-gold) !important;
+  color: #111 !important;
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px var(--c8-gold-glow);
+}

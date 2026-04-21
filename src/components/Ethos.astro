@@ -1,273 +1,352 @@
 ---
+// "How we work" — ported from Xcentra's HowItWorks.tsx so the visual
+// grammar matches the reference site exactly: centred cards, flanked
+// "STEP 0x" eyebrow, premium 3D-gradient icon tiles (one accent colour
+// per step), a thin multi-stop connection line running across the icons
+// on desktop. Only the step content is Corum8's.
+
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+  accentStyle: string; // inline background colour for the rail flanks
+  iconId: 'strategy' | 'build' | 'launch' | 'scale';
+}
+
+// Accent rails + SVG-icon gradients all pull from the brand gold family
+// — same palette as the rest of the page, no blue/emerald/amber/purple.
+const steps: Step[] = [
+  {
+    number: '01',
+    title: 'Strategy',
+    description:
+      'Positioning pressure-tested against data from 1,100+ launches. You leave with a wedge you can defend.',
+    accentStyle: 'background:var(--c8-gold)',
+    iconId: 'strategy',
+  },
+  {
+    number: '02',
+    title: 'Build',
+    description:
+      'One team. One Slack. One plan. 95+ in-house specialists — no vendor stack, no handoffs.',
+    accentStyle: 'background:var(--c8-gold)',
+    iconId: 'build',
+  },
+  {
+    number: '03',
+    title: 'Launch',
+    description:
+      'Tier-1 PR, 25,000+ KOLs and community drops — every channel lands inside the same window.',
+    accentStyle: 'background:var(--c8-gold)',
+    iconId: 'launch',
+  },
+  {
+    number: '04',
+    title: 'Scale',
+    description:
+      'Performance, SEO and retention loops that compound. Launch is the start line, not the finish.',
+    accentStyle: 'background:var(--c8-gold)',
+    iconId: 'scale',
+  },
+];
 ---
 
-<div class="Ethos_ethos__vP_lg">
-          <div class="container">
-            <h2 class="EthosHeading_heading__shnxH">
-              <span data-fill="false" data-blur-reveal="true"><span>Strategy-first.<br>
-                  Outcome-obsessed.<br> </span></span>
-            </h2>
-            <p class="EthosHeading_intro__c8">
-              <span data-blur-reveal="true">A battle-tested framework refined across 1,100+ projects. Clear milestones. Measurable outcomes.</span>
-            </p>
-            <div class="Ethos_sections__tC3Xx">
-              <div>
-                <div class="EthosSection_section__hjSSE">
-                  <div class="EthosSection_sectionTrigger__Dbhq8" data-ethos-row>
-                    <div class="EthosSection_sectionHeading___kl5X">
-                      <span class="EthosSection_numberOuter__uo7oD"><span class="EthosSection_number__MbFH_">01/</span></span><span class="EthosSection_headingOuter___3MYl"><h3>Strategy.</h3></span>
-                    </div>
-                    <div class="EthosSection_sectionImage__R8Wnf">
-                      <div class="EthosSection_sectionImageReveal__oz58_" data-ethos-image style="height: 0; overflow: hidden; opacity: 0;">
-                        <div>
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img src="/images/bento3.jpg" alt="" fetchpriority="low" height="554" width="553" sizes="auto" class="lazyload" role="presentation"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <p class="EthosSection_sectionDescription__9BWQV">
-                      We don&rsquo;t start by building. We start by pressure-testing
-                      your market, your wedge and your win condition against data
-                      from 1,100+ launches. You leave this phase with a positioning
-                      you can defend in a board meeting &mdash; and a go-to-market
-                      plan built around the one metric that actually moves your
-                      valuation.
-                    </p>
-                  </div>
-                  <div class="EthosSection_line___wkFr">
-                    <div class="EthosSection_lineInner__7mqkk"></div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="EthosSection_section__hjSSE">
-                  <div class="EthosSection_sectionTrigger__Dbhq8" data-ethos-row>
-                    <div class="EthosSection_sectionHeading___kl5X">
-                      <span class="EthosSection_numberOuter__uo7oD"><span class="EthosSection_number__MbFH_">02/</span></span><span class="EthosSection_headingOuter___3MYl"><h3>Build.</h3></span>
-                    </div>
-                    <div class="EthosSection_sectionImage__R8Wnf">
-                      <div class="EthosSection_sectionImageReveal__oz58_" data-ethos-image style="height: 0; overflow: hidden; opacity: 0;">
-                        <div>
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img src="/images/creative-web-design.jpg" alt="" fetchpriority="low" height="1186" width="1224" sizes="auto" class="lazyload" role="presentation"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <p class="EthosSection_sectionDescription__9BWQV">
-                      You stop managing seven vendors. Our 95+ in-house specialists
-                      &mdash; engineers, designers, copywriters, PR leads, token
-                      economists &mdash; sit in one Slack and ship against one plan.
-                      Whether it&rsquo;s a Solana-native exchange, an RWA tokenization
-                      platform, an AI agent or the brand system wrapped around it,
-                      the product and the story come out aligned.
-                    </p>
-                  </div>
-                  <div class="EthosSection_line___wkFr">
-                    <div class="EthosSection_lineInner__7mqkk"></div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="EthosSection_section__hjSSE">
-                  <div class="EthosSection_sectionTrigger__Dbhq8" data-ethos-row>
-                    <div class="EthosSection_sectionHeading___kl5X">
-                      <span class="EthosSection_numberOuter__uo7oD"><span class="EthosSection_number__MbFH_">03/</span></span><span class="EthosSection_headingOuter___3MYl"><h3>Launch.</h3></span>
-                    </div>
-                    <div class="EthosSection_sectionImage__R8Wnf">
-                      <div class="EthosSection_sectionImageReveal__oz58_" data-ethos-image style="height: 0; overflow: hidden; opacity: 0;">
-                        <div>
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img src="/images/back-end.jpg" alt="" fetchpriority="low" height="1224" width="1224" sizes="auto" class="lazyload" role="presentation"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <p class="EthosSection_sectionDescription__9BWQV">
-                      Launch day shouldn&rsquo;t be a prayer. We coordinate tier-1 PR
-                      across 10,000+ publications, 25,000+ vetted KOLs and
-                      community drops from a single command room &mdash; so the
-                      news story, the KOL thread, the Telegram drop and the
-                      Twitter Space all land inside the same window. No
-                      fragmented momentum. No channels speaking past each other.
-                    </p>
-                  </div>
-                  <div class="EthosSection_line___wkFr">
-                    <div class="EthosSection_lineInner__7mqkk"></div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="EthosSection_section__hjSSE">
-                  <div class="EthosSection_sectionTrigger__Dbhq8" data-ethos-row>
-                    <div class="EthosSection_sectionHeading___kl5X">
-                      <span class="EthosSection_numberOuter__uo7oD"><span class="EthosSection_number__MbFH_">04/</span></span><span class="EthosSection_headingOuter___3MYl"><h3>Scale.</h3></span>
-                    </div>
-                    <div class="EthosSection_sectionImage__R8Wnf">
-                      <div class="EthosSection_sectionImageReveal__oz58_" data-ethos-image style="height: 0; overflow: hidden; opacity: 0;">
-                        <div>
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea"><img src="/images/UPP-V2.png" alt="" fetchpriority="low" height="1500" width="1500" sizes="auto" class="lazyload" role="presentation"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <p class="EthosSection_sectionDescription__9BWQV">
-                      Most agencies leave after the press release. We don&rsquo;t.
-                      Performance sprints, SEO / AEO / GEO, affiliate programmes
-                      and retention loops are where the compounding actually
-                      happens &mdash; and it&rsquo;s the same playbook running
-                      underneath Binance&rsquo;s $800M+ in monthly affiliate volume.
-                      Your TGE is the starting line, not the finish.
-                    </p>
-                  </div>
-                  <div class="EthosSection_line___wkFr">
-                    <div class="EthosSection_lineInner__7mqkk"></div>
-                  </div>
-                </div>
-              </div>
+<section class="c8-ethos">
+  <div class="c8-ethos__inner">
+    <div class="c8-ethos__head">
+      <h2 class="c8-ethos__heading">
+        <span>How Corum8 <span class="c8-ethos__heading-accent">Works</span></span>
+      </h2>
+      <p class="c8-ethos__intro">
+        The exact sequence we&rsquo;ve run across 1,100+ launches — strategy pressure-tested against data, built in-house by one team, launched in a single window, then scaled on compounding loops.
+      </p>
+    </div>
+
+    <div class="c8-ethos__wrap">
+      <div class="c8-ethos__rail" aria-hidden="true">
+        <span class="c8-ethos__rail-line"></span>
+      </div>
+
+      <div class="c8-ethos__grid">
+        {steps.map((s) => (
+          <div class="c8-ethos__step">
+            <div class="c8-ethos__step-top">
+              <span class="c8-ethos__step-rail" style={s.accentStyle}></span>
+              <span class="c8-ethos__step-num">Step {s.number}</span>
+              <span class="c8-ethos__step-rail" style={s.accentStyle}></span>
             </div>
-        </div>
-        <div id="ethos-cursor-tracker" style="position: fixed; pointer-events: none; opacity: 0; z-index: 50; top: 0; left: 0; transform: translate(-50%, -50%); transition: opacity 0.3s ease;">
-           <img src="" alt="" style="width: 300px; height: 300px; object-fit: cover; border-radius: 10px;" />
-        </div>
-</div>
+
+            <div class="c8-ethos__step-icon">
+              {s.iconId === 'strategy' && (
+                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="c8-icon-strategy" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#d48e1a" />
+                      <stop offset="100%" stop-color="#f5a623" />
+                    </linearGradient>
+                    <filter id="c8-icon-strategy-shadow">
+                      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#d48e1a" flood-opacity="0.3" />
+                    </filter>
+                  </defs>
+                  <circle cx="24" cy="24" r="18" fill="url(#c8-icon-strategy)" filter="url(#c8-icon-strategy-shadow)" />
+                  <circle cx="24" cy="24" r="18" fill="#fff" fill-opacity="0.08" />
+                  <circle cx="24" cy="24" r="12" fill="none" stroke="#fff" stroke-width="1.5" stroke-opacity="0.35" />
+                  <circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="1.5" stroke-opacity="0.5" />
+                  <circle cx="24" cy="24" r="2.2" fill="#fff" fill-opacity="0.9" />
+                  <circle cx="18" cy="18" r="5" fill="#fff" fill-opacity="0.1" />
+                </svg>
+              )}
+              {s.iconId === 'build' && (
+                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="c8-icon-build" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#d48e1a" />
+                      <stop offset="100%" stop-color="#f5a623" />
+                    </linearGradient>
+                    <filter id="c8-icon-build-shadow">
+                      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#d48e1a" flood-opacity="0.3" />
+                    </filter>
+                  </defs>
+                  <path
+                    d="M27.5 4.8 24 10l-3.5-5.2-5.6 1.4 1.4 6.2-5.8 2.4-1.4-2.5L4 17.4l4.4 4.4 2.5-1.4 2.4 5.8-6.2 1.4L5.7 33l6.2 1.4 1.4 6.2 5.6-1.4L17.4 44H24l3.5-5.2 5.6 1.4 1.4-6.2 6.2-1.4-1.4-5.6-6.2-1.4 2.4-5.8 2.5 1.4 4.4-4.4-5.1-5.1-2.5 1.4-2.4-5.8 6.2-1.4L33.1 6.2z"
+                    fill="url(#c8-icon-build)"
+                    filter="url(#c8-icon-build-shadow)"
+                    transform="scale(0.88) translate(3.3 3.3)"
+                  />
+                  <circle cx="24" cy="24" r="7" fill="#fff" fill-opacity="0.22" />
+                  <circle cx="24" cy="24" r="3.5" fill="#fff" fill-opacity="0.85" />
+                </svg>
+              )}
+              {s.iconId === 'launch' && (
+                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="c8-icon-launch" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#d48e1a" />
+                      <stop offset="100%" stop-color="#f5a623" />
+                    </linearGradient>
+                    <filter id="c8-icon-launch-shadow">
+                      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#d48e1a" flood-opacity="0.3" />
+                    </filter>
+                  </defs>
+                  <!-- Fuselage -->
+                  <path d="M24 5 C29 10 32 16 32 23 L32 32 L16 32 L16 23 C16 16 19 10 24 5 Z" fill="url(#c8-icon-launch)" filter="url(#c8-icon-launch-shadow)" />
+                  <!-- Highlight -->
+                  <path d="M24 5 C29 10 32 16 32 23 L32 32 L16 32 L16 23 C16 16 19 10 24 5 Z" fill="#fff" fill-opacity="0.1" />
+                  <!-- Window -->
+                  <circle cx="24" cy="19" r="3.5" fill="#fff" fill-opacity="0.85" />
+                  <circle cx="24" cy="19" r="1.8" fill="#111" fill-opacity="0.25" />
+                  <!-- Fins -->
+                  <path d="M16 32 L10 40 L16 36 Z" fill="url(#c8-icon-launch)" />
+                  <path d="M32 32 L38 40 L32 36 Z" fill="url(#c8-icon-launch)" />
+                  <!-- Exhaust -->
+                  <path d="M20 32 L24 42 L28 32 Z" fill="#fff" fill-opacity="0.85" />
+                  <path d="M22 34 L24 40 L26 34 Z" fill="#f5a623" />
+                </svg>
+              )}
+              {s.iconId === 'scale' && (
+                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="c8-icon-scale" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#d48e1a" />
+                      <stop offset="100%" stop-color="#f5a623" />
+                    </linearGradient>
+                    <filter id="c8-icon-scale-shadow">
+                      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#d48e1a" flood-opacity="0.3" />
+                    </filter>
+                  </defs>
+                  <circle cx="24" cy="24" r="18" fill="url(#c8-icon-scale)" filter="url(#c8-icon-scale-shadow)" />
+                  <circle cx="24" cy="24" r="18" fill="#fff" fill-opacity="0.08" />
+                  <!-- Upward trend line -->
+                  <polyline
+                    points="12,30 18,24 23,27 30,18 36,14"
+                    stroke="#fff"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <!-- Arrow head at the peak -->
+                  <polyline
+                    points="30,14 36,14 36,20"
+                    stroke="#fff"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <circle cx="18" cy="16" r="4" fill="#fff" fill-opacity="0.1" />
+                </svg>
+              )}
+            </div>
+
+            <h3 class="c8-ethos__step-title">{s.title}</h3>
+            <p class="c8-ethos__step-body">{s.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
 <style>
-  /* Force number, heading and description to be readable black */
-  .EthosSection_number__MbFH_,
-  .EthosSection_sectionHeading___kl5X h3,
-  .EthosSection_sectionDescription__9BWQV {
-    color: #111 !important;
+  .c8-ethos {
+    padding: clamp(5rem, 10vh, 9rem) 0 clamp(5rem, 9vh, 8rem);
+    background: var(--color-bg);
+    color: var(--color-ink);
+    position: relative;
   }
 
-  /* Horizontal divider between each ethos row */
-  .EthosSection_line___wkFr {
-    display: block !important;
-    width: 100% !important;
-  }
-  .EthosSection_lineInner__7mqkk {
-    background-color: #111 !important;
-    height: 1px !important;
-    width: 100% !important;
-    opacity: 1 !important;
-  }
-
-  /* Rows are fully visible by default; dim siblings when one is hovered */
-  [data-ethos-row] {
-    opacity: 1;
-    transition: opacity 0.4s ease;
+  /* KOTA's .container is a 12-col grid that would squash our step grid
+     to 1 col. Skip it — plain block wrapper with explicit max-width. */
+  .c8-ethos__inner {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: clamp(1.5rem, 5vw, 4rem);
   }
 
-  .Ethos_sections__tC3Xx:hover [data-ethos-row] {
-    opacity: 0.25;
-  }
-  .Ethos_sections__tC3Xx [data-ethos-row]:hover {
-    opacity: 1;
-  }
-</style>
-
-
-
-<style is:global>
-  /* Tighten the gap between "Our Services" (the pinned Full-Stack card
-     unpins at the container's bottom) and Ethos. KOTA ships Services with
-     `padding: 9.375rem 0 50vh` — way too much runway below the reels. */
-  .Services_services__YnZAs {
-    padding-bottom: 4vh !important;
-  }
-  /* Larger runway above Ethos — the Showcase's client-logo strip now sits
-     directly above it, and the section needs real breathing room before the
-     big "Strategy-first / Outcome-obsessed" headline drops in. */
-  .Ethos_ethos__vP_lg {
-    padding-top: clamp(6rem, 12vh, 11rem) !important;
-  }
-  /* Let the Ethos scroll-in reveal take over opacity/transform before GSAP
-     hydrates, so the section doesn't flash fully-visible for a frame. */
-  .Ethos_ethos__vP_lg { will-change: transform, opacity; }
-
-  /* 1. Retrieve the Numbers inline */
-  .EthosSection_numberOuter__uo7oD {
-    display: inline-block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    margin-right: 1.5rem !important;
-    font-family: monospace;
-    font-size: clamp(2rem, 4vw, 4rem) !important;
-    color: #111 !important;
-    font-weight: 300 !important;
-  }
-  .EthosSection_sectionHeading___kl5X {
-    display: flex !important;
-    align-items: center !important;
-    order: 1 !important;
-    z-index: 100 !important;
-    position: relative !important;
+  /* ---------- Heading cluster ---------- */
+  .c8-ethos__head {
+    text-align: center;
+    margin: 0 auto 4rem;
   }
 
-  /* 2. Configure Row and Image Hover Z-Index */
-  .EthosSection_sectionTrigger__Dbhq8 {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    position: relative !important;
-    padding: 3rem 0 !important;
+  .c8-ethos__heading {
+    margin: 0 0 1.25rem;
+    font-size: clamp(2.6rem, 5.6vw, 4.75rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    color: #111;
   }
-  .EthosSection_sectionImage__R8Wnf {
-    position: absolute !important;
-    left: 20% !important;
-    z-index: 0 !important;
-    pointer-events: none !important;
-  }
-
-  /* 3. Text formatting */
-  .EthosSection_sectionDescription__9BWQV {
-    order: 3 !important;
-    flex-basis: 55% !important;
-    max-width: 55% !important;
-    font-size: 1.4rem !important;
-    line-height: 1.6 !important;
-    color: #111 !important;
-    /* User request: 'one side border of column too' -> Left border only */
-    border-left: 2px solid rgba(0,0,0,0.1) !important;
-    padding-left: 2.5rem !important;
-    margin: 0 !important;
-    z-index: 100 !important;
-    position: relative !important;
-  }
-  
-  /* 4. Restore the master thick underline spanning both left and right */
-  .EthosSection_line___wkFr {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  .EthosSection_lineInner__7mqkk {
-    background: #111 !important;
-    height: 3px !important; /* Made thicker */
-    opacity: 0.15 !important;
-    width: 100% !important;
-  }
-  
-  /* 5. Popping speed */
-  .EthosSection_sectionImageReveal__oz58_ {
-    transition: opacity 0.15s ease-out, height 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  .c8-ethos__heading-accent {
+    background: linear-gradient(135deg, var(--c8-gold) 0%, var(--c8-gold-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
 
-  /* Lead-in beneath the big Ethos heading. Spans the full 12-col grid
-     track so the paragraph escapes the 88px single-column trap, then
-     centres inside a comfortable reading measure. Sized at standard body
-     scale — ~1.1rem with 1.6 line-height — so it sits as a proper
-     supporting paragraph, not a whispered footnote. */
-  .EthosHeading_intro__c8 {
-    grid-column: 1 / -1 !important;
-    max-width: 52rem !important;
-    margin: 1.25rem auto 4.5rem !important;
-    font-size: clamp(1.05rem, 1.2vw, 1.2rem) !important;
-    line-height: 1.6 !important;
-    color: #2a2a2a !important;
-    font-weight: 400 !important;
-    letter-spacing: -0.003em !important;
-    text-align: center !important;
+  .c8-ethos__intro {
+    max-width: 48rem;
+    margin: 0 auto;
+    font-size: clamp(1.1rem, 1.3vw, 1.25rem);
+    line-height: 1.6;
+    color: #4a4a4a;
   }
-  @media (max-width: 900px) {
-    .EthosHeading_intro__c8 {
-      margin: 1rem auto 2.75rem !important;
-      font-size: 1rem !important;
-      max-width: 36rem !important;
+
+  /* ---------- Grid wrapper + rail ---------- */
+  .c8-ethos__wrap {
+    position: relative;
+  }
+
+  .c8-ethos__rail {
+    display: none;
+    position: absolute;
+    top: calc(1.5rem + 18px + 1rem + 40px); /* centre on icon row */
+    left: calc(12.5% + 40px);
+    right: calc(12.5% + 40px);
+    pointer-events: none;
+  }
+  .c8-ethos__rail-line {
+    display: block;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      rgba(147, 197, 253, 0.4) 0%,
+      rgba(252, 211, 77, 0.6) 50%,
+      rgba(196, 181, 253, 0.4) 100%
+    );
+  }
+
+  .c8-ethos__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* ---------- Step card ---------- */
+  .c8-ethos__step {
+    position: relative;
+    text-align: center;
+  }
+
+  .c8-ethos__step-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .c8-ethos__step-rail {
+    display: inline-block;
+    height: 3px;
+    width: 1.5rem;
+    border-radius: 999px;
+    opacity: 0.3;
+  }
+  .c8-ethos__step-num {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(107, 114, 128, 0.6);
+  }
+
+  .c8-ethos__step-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.25rem;
+    border-radius: 1rem;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 20px 28px -16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .c8-ethos__step-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+  .c8-ethos__step:hover .c8-ethos__step-icon {
+    transform: scale(1.05);
+    box-shadow: 0 28px 40px -18px rgba(0, 0, 0, 0.14);
+  }
+
+  .c8-ethos__step-title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.35rem, 1.75vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: #111;
+  }
+
+  .c8-ethos__step-body {
+    margin: 0;
+    font-size: clamp(0.95rem, 1vw, 1rem);
+    line-height: 1.65;
+    color: #474a52;
+  }
+
+  /* ---------- Breakpoints ---------- */
+  @media (min-width: 640px) {
+    .c8-ethos__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .c8-ethos__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 2rem;
+    }
+    .c8-ethos__rail {
+      display: block;
+    }
+    .c8-ethos__step {
+      z-index: 1; /* icon tile sits above the rail */
     }
   }
 </style>
