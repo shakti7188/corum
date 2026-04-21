@@ -1,721 +1,988 @@
 ---
-import { brand, ctaLink } from '../data/siteNav';
-import BrandMark from './BrandMark.astro';
-import ArrowIcon from './ArrowIcon.astro';
+// Header — mega-menu navbar ported from localhost:8008 reference design.
+// Self-contained: all CSS + JS live in this file.
+// Replaces both the old KOTA Header.astro and Navigation.astro flyout.
 ---
-<header class="Header_header__KwdYD" data-modal-hide="true" data-c8-sticky>
-  <div class="Header_left">
-    <a class="Header_logo____uDV" href="/" aria-label={brand.name}>
-      <BrandMark variant="dark" />
+
+<header class="navbar navbar--on-dark" id="navbar">
+  <div class="navbar-inner">
+    <a href="/" class="navbar-logo">
+      <img src="/assets/logo/logo-dark.png" alt="Corum8" height="32" id="logoDark" style="display:none;">
+      <img src="/assets/logo/logo-white.png" alt="Corum8" height="32" id="logoWhite" style="">
     </a>
-  </div>
-  
-  <nav class="MegaMenu_nav">
-    <ul class="MegaMenu_list">
-      <!-- Non-Dropdown Links -->
-      <li class="MegaMenu_item"><a href="/" class="MegaMenu_link">Home</a></li>
-      
-      <!-- Marketing Mega Menu -->
-      <li class="MegaMenu_item has-dropdown">
-        <a href="/services/marketing" class="MegaMenu_link">Marketing <span class="Chevron"></span></a>
-        
-        <div class="MegaDropdown">
-          <div class="MegaDropdown_bg"></div>
-          <div class="MegaDropdown_inner">
-            <div class="MegaColWrapper"><div class="MegaCol">
-              <h4 class="MegaCol_title">Growth &amp; Digital</h4>
-              <a href="/services/marketing/performance-marketing"><span>Performance Marketing</span><span class="MegaCol_desc">Full-funnel ads across Meta, Google & X</span></a>
-              <a href="/services/marketing/seo"><span>SEO, AEO &amp; GEO</span><span class="MegaCol_desc">Rank on Google, appear in AI answers</span></a>
-              <a href="/services/marketing/social-media"><span>Social Media Management</span><span class="MegaCol_desc">Platform-native strategy & reporting</span></a>
-              <a href="/services/marketing/b2b-marketing"><span>B2B &amp; Lead Generation</span><span class="MegaCol_desc">ABM, LinkedIn outreach & CRM pipelines</span></a>
-            </div>
-            <div class="MegaCol">
-              <h4 class="MegaCol_title">PR &amp; Branding</h4>
-              <a href="/services/marketing/pr"><span>Crypto PR &amp; Media</span><span class="MegaCol_desc">Coverage across 10,000+ publications</span></a>
-              <a href="/services/marketing/branding"><span>Branding &amp; Design Studio</span><span class="MegaCol_desc">Identity, pitch decks & motion graphics</span></a>
-              <a href="/services/marketing/content"><span>Content Marketing</span><span class="MegaCol_desc">Blogs, whitepapers & thought leadership</span></a>
-            </div>
-            <div class="MegaCol">
-              <h4 class="MegaCol_title">Web3 Specific</h4>
-              <a href="/services/marketing/influencer-marketing"><span>Influencer &amp; KOL Marketing</span><span class="MegaCol_desc">25,000+ vetted influencers globally</span></a>
-              <a href="/services/marketing/community"><span>Community Building</span><span class="MegaCol_desc">Telegram, Discord & organic growth</span></a>
-              <a href="/services/marketing/listing"><span>Exchange Listings</span><span class="MegaCol_desc">CEX listing strategy & market making</span></a>
-            </div></div>
-            <div class="MegaCta">
-              <p>25,000+ influencers. 10,000+ media outlets. Full-funnel campaigns.</p>
-              <a href="/contact" class="Header_button__yG4_K MegaButton">
-                <span class="Header_text__taNU6">
-                  <span>Get Started</span>
-                  <ArrowIcon class="Header_buttonArrow__frtNz" />
-                </span>
+
+    <nav class="nav-links" id="navLinks">
+
+      <!-- ── Marketing Mega Menu ── -->
+      <div class="nav-item" id="navMarketing">
+        <a href="/services/marketing" class="nav-link">
+          Marketing <i data-lucide="chevron-down" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-left:2px;"></i>
+        </a>
+        <div class="mega-menu">
+          <div class="mega-menu-inner">
+
+            <div class="mega-menu-category">
+              <div class="mega-menu-category-title">Growth &amp; Digital</div>
+              <a href="/services/marketing/performance-marketing" class="mega-menu-link">
+                <i data-lucide="target"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Performance Marketing</span>
+                  <span class="mega-menu-link-desc">Meta, Google, LinkedIn, X &amp; onchain ads with full-funnel conversion tracking</span>
+                </div>
+              </a>
+              <a href="/services/marketing/seo" class="mega-menu-link">
+                <i data-lucide="search"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">SEO, AEO &amp; GEO</span>
+                  <span class="mega-menu-link-desc">Rank on Google, appear in AI answers, dominate local search — all three</span>
+                </div>
+              </a>
+              <a href="/services/marketing/social-media" class="mega-menu-link">
+                <i data-lucide="share-2"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Social Media Management</span>
+                  <span class="mega-menu-link-desc">Platform-native content strategy with performance reporting across all channels</span>
+                </div>
+              </a>
+              <a href="/services/marketing/b2b-marketing" class="mega-menu-link">
+                <i data-lucide="briefcase"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">B2B Marketing &amp; Lead Generation</span>
+                  <span class="mega-menu-link-desc">Account-based marketing, LinkedIn outreach, and CRM-ready lead pipelines</span>
+                </div>
+              </a>
+              <a href="/services/marketing/web3-growth" class="mega-menu-link">
+                <i data-lucide="rocket"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Web3 Growth Marketing</span>
+                  <span class="mega-menu-link-desc">GTM planning, positioning, and campaign architecture for Web3 brands</span>
+                </div>
+              </a>
+              <a href="/services/marketing/marketing-strategy" class="mega-menu-link">
+                <i data-lucide="compass"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Marketing Strategy &amp; GTM</span>
+                  <span class="mega-menu-link-desc">Strategic roadmaps from positioning to full-funnel execution</span>
+                </div>
               </a>
             </div>
-          </div>
-        </div>
-      </li>
 
-      <!-- Development Mega Menu -->
-      <li class="MegaMenu_item has-dropdown">
-        <a href="/services/development" class="MegaMenu_link">Development <span class="Chevron"></span></a>
-        
-        <div class="MegaDropdown">
-          <div class="MegaDropdown_bg"></div>
-          <div class="MegaDropdown_inner">
-            <div class="MegaColWrapper"><div class="MegaCol">
-              <h4 class="MegaCol_title">Web3 &amp; Blockchain</h4>
-              <a href="/services/development/exchange"><span>CEX &amp; DEX Exchanges</span><span class="MegaCol_desc">Custom exchange platforms</span></a>
-              <a href="/services/development/rwa"><span>RWA Marketplace</span><span class="MegaCol_desc">Tokenize real-world assets</span></a>
-              <a href="/services/development/wallet"><span>Wallet Infrastructure</span><span class="MegaCol_desc">Enterprise-grade wallet systems</span></a>
-              <a href="/services/development/defi"><span>DeFi &amp; Staking Platforms</span><span class="MegaCol_desc">Battle-tested DeFi protocols</span></a>
-            </div>
-            <div class="MegaCol">
-              <h4 class="MegaCol_title">AI &amp; Core Tech</h4>
-              <a href="/services/development/ai"><span>AI &amp; Automation</span><span class="MegaCol_desc">Production AI systems & workflows</span></a>
-              <a href="/services/development/mobile-web"><span>Mobile &amp; Web Apps</span><span class="MegaCol_desc">High-performance applications</span></a>
-              <a href="/services/development/token"><span>Token &amp; Stablecoin</span><span class="MegaCol_desc">End-to-end token launches</span></a>
-              <a href="/services/development/blockchain-layer"><span>Blockchain L0/L1/L2</span><span class="MegaCol_desc">Custom layer development</span></a>
-            </div>
-            <div class="MegaCol">
-              <h4 class="MegaCol_title">Fintech &amp; Trading</h4>
-              <a href="/services/development/payment"><span>Payment Solutions</span><span class="MegaCol_desc">Crypto-fiat gateways & payment rails</span></a>
-              <a href="/services/development/trading"><span>Trading Bots &amp; Tools</span><span class="MegaCol_desc">Automated trading infrastructure</span></a>
-              <a href="/services/development/nft"><span>NFT Marketplace</span><span class="MegaCol_desc">Custom NFT platforms & launchpad</span></a>
-            </div></div>
-            <div class="MegaCta">
-              <p>200+ products delivered. 40+ white-label solutions ready to deploy.</p>
-              <a href="/contact" class="Header_button__yG4_K MegaButton">
-                <span class="Header_text__taNU6">
-                  <span>View Products</span>
-                  <ArrowIcon class="Header_buttonArrow__frtNz" />
-                </span>
+            <div class="mega-menu-category">
+              <div class="mega-menu-category-title">PR &amp; Branding</div>
+              <a href="/services/marketing/pr" class="mega-menu-link">
+                <i data-lucide="newspaper"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Crypto PR &amp; Media Coverage</span>
+                  <span class="mega-menu-link-desc">Global press coverage across 10,000+ publications — Reuters to CoinTelegraph</span>
+                </div>
+              </a>
+              <a href="/services/marketing/branding" class="mega-menu-link">
+                <i data-lucide="palette"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Branding &amp; Design Studio</span>
+                  <span class="mega-menu-link-desc">Complete brand identity, pitch decks, motion graphics, and creative production</span>
+                </div>
+              </a>
+              <a href="/services/marketing/content" class="mega-menu-link">
+                <i data-lucide="crown"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Content Marketing</span>
+                  <span class="mega-menu-link-desc">Blogs, whitepapers, thought leadership and SEO-first content production</span>
+                </div>
+              </a>
+              <a href="/services/marketing/ooh-print-media" class="mega-menu-link">
+                <i data-lucide="monitor"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">OOH &amp; Print Media</span>
+                  <span class="mega-menu-link-desc">Billboards, transit ads, print media, and global outdoor campaigns</span>
+                </div>
+              </a>
+              <a href="/services/marketing/personal-branding" class="mega-menu-link">
+                <i data-lucide="user-check"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Personal Branding</span>
+                  <span class="mega-menu-link-desc">Founder and executive branding for thought leadership positioning</span>
+                </div>
+              </a>
+              <a href="/services/marketing/celebrity-marketing" class="mega-menu-link">
+                <i data-lucide="star"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Celebrity Marketing</span>
+                  <span class="mega-menu-link-desc">Celebrity endorsements, shoots, and large-scale brand campaigns</span>
+                </div>
               </a>
             </div>
-          </div>
-        </div>
-      </li>
 
-      <!-- Simple Dropdowns -->
-      <li class="MegaMenu_item has-dropdown">
-        <span class="MegaMenu_link MegaMenu_link--nohover" role="button" aria-haspopup="true">Industries <span class="Chevron"></span></span>
-        <div class="MegaDropdown MiniDropdown">
-          <div class="MegaDropdown_bg"></div>
-          <div class="MegaDropdown_inner">
-            <div class="MegaCol">
-              <a href="/industries/web3">Web3 &amp; Crypto</a>
-              <a href="/industries/startups">Startups</a>
-              <a href="/industries/saas">SaaS</a>
-              <a href="/industries/fintech">Fintech</a>
-              <a href="/industries/ai">AI</a>
-              <a href="/industries/enterprise">Enterprise</a>
+            <div class="mega-menu-category">
+              <div class="mega-menu-category-title">Web3 Specific</div>
+              <a href="/services/marketing/influencer-marketing" class="mega-menu-link">
+                <i data-lucide="megaphone"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Influencer &amp; KOL Marketing</span>
+                  <span class="mega-menu-link-desc">25,000+ vetted influencers across 15+ verticals, managed end-to-end</span>
+                </div>
+              </a>
+              <a href="/services/marketing/community" class="mega-menu-link">
+                <i data-lucide="message-circle"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Community Building &amp; Growth</span>
+                  <span class="mega-menu-link-desc">Telegram, Discord, X communities built with organic engagement systems</span>
+                </div>
+              </a>
+              <a href="/services/marketing/listing" class="mega-menu-link">
+                <i data-lucide="list-checks"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Exchange Listings</span>
+                  <span class="mega-menu-link-desc">CoinMarketCap, CoinGecko, and exchange listing support end-to-end</span>
+                </div>
+              </a>
+              <a href="/services/marketing/token-sale" class="mega-menu-link">
+                <i data-lucide="badge-dollar-sign"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Token Sale Marketing</span>
+                  <span class="mega-menu-link-desc">Pre-sale, public sale, and launch campaign execution</span>
+                </div>
+              </a>
+              <a href="/services/marketing/events" class="mega-menu-link">
+                <i data-lucide="calendar"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Events</span>
+                  <span class="mega-menu-link-desc">Conferences, side-events, and private investor meets worldwide</span>
+                </div>
+              </a>
+              <a href="/services/marketing/exchange-volume" class="mega-menu-link">
+                <i data-lucide="trending-up"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Exchange Volume &amp; Liquidity</span>
+                  <span class="mega-menu-link-desc">Market making support, volume strategy, and liquidity ramp-up</span>
+                </div>
+              </a>
             </div>
-          </div>
-        </div>
-      </li>
 
-      <li class="MegaMenu_item has-dropdown">
-        <span class="MegaMenu_link MegaMenu_link--nohover" role="button" aria-haspopup="true">Resources <span class="Chevron"></span></span>
-        <div class="MegaDropdown MiniDropdown">
-          <div class="MegaDropdown_bg"></div>
-          <div class="MegaDropdown_inner">
-            <div class="MegaCol">
-              <a href="/case-studies">Case Studies</a>
-              <a href="/gallery">Gallery</a>
-              <a href="/blog">Blog</a>
+            <div class="mega-menu-cta">
+              <div class="mega-menu-cta-label">Get Started</div>
+              <div>
+                <h4>Grow With Us</h4>
+                <p>25,000+ influencers. 10,000+ media outlets. Full-funnel campaigns that deliver measurable ROI.</p>
+              </div>
+              <a href="/contact" class="c8-btn c8-btn-gold c8-btn-sm">
+                Book Strategy Call <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+              </a>
             </div>
+
           </div>
         </div>
-      </li>
+      </div>
 
-      <li class="MegaMenu_item has-dropdown">
-        <a href="/about" class="MegaMenu_link">About <span class="Chevron"></span></a>
-        <div class="MegaDropdown MiniDropdown">
-          <div class="MegaDropdown_bg"></div>
-          <div class="MegaDropdown_inner">
-            <div class="MegaCol">
-              <a href="/about">Company</a>
-              <a href="/about/careers">Careers</a>
-              <a href="/contact">Contact</a>
+      <!-- ── Development Mega Menu ── -->
+      <div class="nav-item" id="navDev">
+        <a href="/services/development" class="nav-link">
+          Development <i data-lucide="chevron-down" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-left:2px;"></i>
+        </a>
+        <div class="mega-menu">
+          <div class="mega-menu-inner">
+
+            <div class="mega-menu-category">
+              <div class="mega-menu-category-title">Web3 &amp; Blockchain</div>
+              <a href="/services/development/exchange" class="mega-menu-link">
+                <i data-lucide="arrow-left-right"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">CEX &amp; DEX Exchange Development</span>
+                  <span class="mega-menu-link-desc">Custom exchange platforms built for security, speed, and regulatory readiness</span>
+                </div>
+              </a>
+              <a href="/services/development/rwa" class="mega-menu-link">
+                <i data-lucide="building-2"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">RWA Marketplace Development</span>
+                  <span class="mega-menu-link-desc">Tokenize real-world assets with institutional-grade marketplace infrastructure</span>
+                </div>
+              </a>
+              <a href="/services/development/wallet" class="mega-menu-link">
+                <i data-lucide="wallet"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Wallet Infrastructure</span>
+                  <span class="mega-menu-link-desc">Enterprise-grade wallet systems — custodial, non-custodial, MPC-secured</span>
+                </div>
+              </a>
+              <a href="/services/development/defi" class="mega-menu-link">
+                <i data-lucide="layers"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">DeFi &amp; Staking Platforms</span>
+                  <span class="mega-menu-link-desc">Battle-tested DeFi protocols with audit-ready smart contract architecture</span>
+                </div>
+              </a>
+              <a href="/services/development/blockchain-layer" class="mega-menu-link">
+                <i data-lucide="network"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Blockchain Layer Development</span>
+                  <span class="mega-menu-link-desc">Custom L0/L1/L2 infrastructure for sovereign blockchain ecosystems</span>
+                </div>
+              </a>
+              <a href="/services/development/token" class="mega-menu-link">
+                <i data-lucide="coins"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Token &amp; Stablecoin Infrastructure</span>
+                  <span class="mega-menu-link-desc">End-to-end token launches with tokenomics, smart contracts, and stablecoin rails</span>
+                </div>
+              </a>
+              <a href="/services/development/smart-contracts" class="mega-menu-link">
+                <i data-lucide="file-code"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Smart Contract Development</span>
+                  <span class="mega-menu-link-desc">Secure, audit-ready smart contracts with best-practice architecture</span>
+                </div>
+              </a>
+              <a href="/services/development/nft" class="mega-menu-link">
+                <i data-lucide="image"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">NFT &amp; Marketplace Development</span>
+                  <span class="mega-menu-link-desc">NFT collections, utilities, and full marketplace platforms</span>
+                </div>
+              </a>
             </div>
+
+            <div class="mega-menu-category">
+              <div class="mega-menu-category-title">AI &amp; Core Tech</div>
+              <a href="/services/development/ai" class="mega-menu-link">
+                <i data-lucide="brain"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">AI &amp; Automation Solutions</span>
+                  <span class="mega-menu-link-desc">Production AI systems that automate operations and multiply team output</span>
+                </div>
+              </a>
+              <a href="/services/development/mobile-web" class="mega-menu-link">
+                <i data-lucide="smartphone"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Mobile &amp; Web Applications</span>
+                  <span class="mega-menu-link-desc">High-performance apps for fintech, Web3, and consumer platforms</span>
+                </div>
+              </a>
+              <a href="/services/development/game" class="mega-menu-link">
+                <i data-lucide="gamepad-2"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Game Development</span>
+                  <span class="mega-menu-link-desc">Game production from concept to launch — traditional and token-enabled</span>
+                </div>
+              </a>
+              <a href="/services/development/ecommerce" class="mega-menu-link">
+                <i data-lucide="shopping-cart"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">E-commerce Solutions</span>
+                  <span class="mega-menu-link-desc">Modern e-commerce with Web3-ready payment options</span>
+                </div>
+              </a>
+              <a href="/services/development/website" class="mega-menu-link">
+                <i data-lucide="globe"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Website Development</span>
+                  <span class="mega-menu-link-desc">High-converting websites with modern UX and SEO-first structure</span>
+                </div>
+              </a>
+              <a href="/services/development/automation" class="mega-menu-link">
+                <i data-lucide="cog"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Automation Solutions</span>
+                  <span class="mega-menu-link-desc">Business automation that reduces manual work and improves speed</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="mega-menu-category">
+              <div class="mega-menu-category-title">Fintech &amp; Trading</div>
+              <a href="/services/development/payment" class="mega-menu-link">
+                <i data-lucide="credit-card"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Fintech &amp; Payments</span>
+                  <span class="mega-menu-link-desc">Payment rails connecting crypto and fiat for real-world business</span>
+                </div>
+              </a>
+              <a href="/services/development/trading" class="mega-menu-link">
+                <i data-lucide="candlestick-chart"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">MT4/MT5 Broker Platforms</span>
+                  <span class="mega-menu-link-desc">Trading-ready broker infrastructure with operational modules</span>
+                </div>
+              </a>
+              <a href="/services/development/referral-mlm" class="mega-menu-link">
+                <i data-lucide="users"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Referral &amp; MLM Platforms</span>
+                  <span class="mega-menu-link-desc">Enterprise-grade referral and affiliate growth systems</span>
+                </div>
+              </a>
+              <a href="/services/development/metaverse" class="mega-menu-link">
+                <i data-lucide="headset"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Metaverse Development</span>
+                  <span class="mega-menu-link-desc">Immersive metaverse experiences and virtual environments</span>
+                </div>
+              </a>
+              <a href="/services/development/enterprise-blockchain" class="mega-menu-link">
+                <i data-lucide="shield-check"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Enterprise Blockchain</span>
+                  <span class="mega-menu-link-desc">Custom enterprise builds for automation, traceability, and compliance</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="mega-menu-cta">
+              <div class="mega-menu-cta-label">White-Label</div>
+              <div>
+                <h4>See Our Products Live</h4>
+                <p>Explore production-ready demos of our exchanges, wallets, RWA platforms, and more.</p>
+              </div>
+              <a href="/contact" class="c8-btn c8-btn-gold c8-btn-sm">
+                View Demos <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+              </a>
+            </div>
+
           </div>
         </div>
-      </li>
+      </div>
 
-    </ul>
-  </nav>
+      <!-- ── Industries Dropdown ── -->
+      <div class="nav-item" id="navIndustries">
+        <a href="/industries" class="nav-link">
+          Industries <i data-lucide="chevron-down" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-left:2px;"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="/industries/web3" class="dropdown-link">Web3 &amp; Crypto</a>
+          <a href="/industries/startups" class="dropdown-link">Startups</a>
+          <a href="/industries/saas" class="dropdown-link">SaaS</a>
+          <a href="/industries/fintech" class="dropdown-link">Fintech</a>
+          <a href="/industries/ai" class="dropdown-link">AI</a>
+          <a href="/industries/enterprise" class="dropdown-link">Enterprise</a>
+        </div>
+      </div>
 
-  <div class="Header_right">
-    <a class="Header_button__yG4_K" href={ctaLink.href}>
-      <span class="Header_text__taNU6">
-        <span>{ctaLink.shortLabel}</span>
-        <ArrowIcon class="Header_buttonArrow__frtNz" />
-      </span>
+      <!-- ── Resources Dropdown ── -->
+      <div class="nav-item" id="navResources">
+        <a href="/resources" class="nav-link">
+          Resources <i data-lucide="chevron-down" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-left:2px;"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="/case-studies" class="dropdown-link">Case Studies</a>
+          <a href="/gallery" class="dropdown-link">Gallery</a>
+          <a href="/blog" class="dropdown-link">Blog</a>
+          <a href="/insights" class="dropdown-link">Insights</a>
+          <a href="/guides" class="dropdown-link">Guides</a>
+        </div>
+      </div>
+
+      <!-- ── About Dropdown ── -->
+      <div class="nav-item" id="navAbout">
+        <a href="/about" class="nav-link">
+          About <i data-lucide="chevron-down" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-left:2px;"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="/about" class="dropdown-link">Company</a>
+          <a href="/about/team" class="dropdown-link">Team</a>
+          <a href="/about/careers" class="dropdown-link">Careers</a>
+          <a href="/contact" class="dropdown-link">Contact</a>
+        </div>
+      </div>
+
+    </nav>
+
+    <a href="/contact" class="nav-cta desktop-only">
+      Book a Strategy Call
+      <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
     </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
 
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/services/marketing" class="mobile-nav-link">Marketing</a>
+  <a href="/services/development" class="mobile-nav-link">Development</a>
+  <a href="/resources" class="mobile-nav-link">Resources</a>
+  <a href="/about" class="mobile-nav-link">About</a>
+  <a href="/contact" class="mobile-nav-link">Contact</a>
+  <a href="/contact" class="c8-btn c8-btn-gold mobile-nav-link" style="margin-top:1rem;">Book a Strategy Call</a>
+</div>
+
 <style is:global>
-  /* Brand palette — gold sampled to match the Corum8 logo mark. Defined on
-     the Header because the Header mounts on every page (Layout-based and
-     the self-headed index.astro). CSS variables cascade, so downstream
-     components can read var(--c8-gold) anywhere. */
+  /* ─── CSS tokens scoped to navbar components ─── */
   :root {
-    --c8-gold: #d4a23a;
-    --c8-gold-soft: rgba(212, 162, 58, 0.12);
-    --c8-gold-glow: rgba(212, 162, 58, 0.35);
+    --nb-brand-gold:     #E8A817;
+    --nb-brand-gold-rgb: 232, 168, 23;
+    --nb-brand-gold-hover: #F0B429;
+    --nb-brand-dark:     #222222;
+    --nb-bg-elevated:    #FFFFFF;
+    --nb-bg-glass:       rgba(247, 246, 243, 0.92);
+    --nb-bg-dark:        #111111;
+    --nb-text-primary:   #222222;
+    --nb-text-secondary: #4A4A4A;
+    --nb-text-muted:     #888888;
+    --nb-text-on-dark:   #F0F0F0;
+    --nb-text-on-dark-muted: #B0B0B0;
+    --nb-border-subtle:  rgba(0,0,0,0.05);
+    --nb-border-default: rgba(0,0,0,0.08);
+    --nb-shadow-lg:      0 8px 40px rgba(0,0,0,0.08);
+    --nb-shadow-glow:    0 0 40px rgba(232,168,23,0.15);
+    --nb-ease-expo:      cubic-bezier(0.16,1,0.3,1);
+    --nb-ease-quart:     cubic-bezier(0.76,0,0.24,1);
+    --nb-radius-sm:      8px;
+    --nb-radius-lg:      20px;
+    --nb-radius-pill:    9999px;
   }
 
-  /* Base Header Layout — sticky so it stays available as the user scrolls. */
-  .Header_header__KwdYD {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    transition: padding 0.3s ease, background-color 0.3s ease,
-                backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease,
-                box-shadow 0.3s ease;
-  }
-  /* Scrolled state — compact bar with a subtle glass surface + hairline.
-     Prefixing with `header` bumps specificity (type + class + attribute)
-     above any kota-core `.Header_header__KwdYD` selector, and every
-     override uses !important so width-specific media rules can't beat it. */
-  header.Header_header__KwdYD[data-scrolled="true"] {
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-    padding-left: clamp(1rem, 3vw, 2rem) !important;
-    padding-right: clamp(1rem, 3vw, 2rem) !important;
-    background-color: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: saturate(160%) blur(14px) !important;
-    -webkit-backdrop-filter: saturate(160%) blur(14px) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-    box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.18) !important;
-  }
-  .Header_left, .Header_right {
-    flex: 0 0 auto;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  /* Give logo same left breathing room as the CTA has on the right */
-  .Header_left {
-    padding-left: clamp(1rem, 2vw, 2rem);
-  }
-  /* Shrink the logo mark when scrolled */
-  .Header_header__KwdYD .Header_logo____uDV {
-    display: inline-flex;
-    align-items: center;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    transform-origin: left center;
-  }
-  header.Header_header__KwdYD[data-scrolled="true"] .Header_logo____uDV {
-    transform: scale(0.78) !important;
-  }
-  header.Header_header__KwdYD[data-scrolled="true"] .Header_logo____uDV svg {
-    width: 2.5rem !important;
-  }
-  /* Tighten menu item padding + slightly shrink links when scrolled */
-  header.Header_header__KwdYD[data-scrolled="true"] .MegaMenu_item {
-    padding: 0.85rem 0 !important;
-    transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .MegaMenu_item {
-    transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .MegaMenu_link {
-    transition: color 0.3s ease, font-size 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  header.Header_header__KwdYD[data-scrolled="true"] .MegaMenu_link {
-    font-size: 0.95rem !important;
-  }
-  /* Shrink header CTA to match the compact bar */
-  .Header_header__KwdYD .Header_button__yG4_K {
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
-    transform-origin: right center;
-  }
-  header.Header_header__KwdYD[data-scrolled="true"] .Header_button__yG4_K {
-    transform: scale(0.88) !important;
+  @keyframes c8NavLineExpand {
+    0%   { transform: scaleX(0); opacity: 0; }
+    30%  { opacity: 1; }
+    100% { transform: scaleX(1); opacity: 1; }
   }
 
-  /* Mega Menu Nav Core */
-  .MegaMenu_nav {
-    pointer-events: auto !important;
-    flex: 1 1 auto;
-    display: none; /* Hide on mobile to fallback to Nav.astro slider */
-    justify-content: center;
-  }
-  @media (min-width: 1024px) {
-    .MegaMenu_nav {
-    pointer-events: auto !important; display: flex; }
-    .PrimaryNavigation_page__DgiUM { display: none !important; }
-  }
-  /* Retire the KOTA PrimaryNavigation entirely — our Header owns all nav now.
-     Previously the hamburger was only hidden at >=1024px, so the old drawer
-     leaked through on mobile. Hiding the whole wrapper keeps its background
-     panel and overlay out too. */
-  
-
-  .MegaMenu_list {
-    display: flex;
-    gap: 2.5rem;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  /* ─── Navbar shell ─── */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    padding: 16px 0;
+    transition: all 0.4s var(--nb-ease-expo);
   }
 
-
-  .MegaMenu_nav, .MegaMenu_list, .MegaMenu_item {
-    position: static !important;
-  }
-  /* Items whose dropdown is a MiniDropdown need to anchor it to the trigger,
-     not the full header, so override the static positioning above. */
-  .MegaMenu_item:has(.MiniDropdown) {
-    position: relative !important;
-  }
-
-  .MegaMenu_item {
-    padding: 2rem 0;
-  }
-
-  .MegaMenu_link {
-    color: var(--theme-primary);
-    font-size: 1.1rem;
-    font-weight: 500;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.3s ease;
-  }
-  /* Non-clickable parent (Industries / Resources) — opens dropdown on hover,
-     no direct page navigation. Keep the same visual treatment as <a>. */
-  .MegaMenu_link--nohover {
-    cursor: default;
-  }
-  .MegaMenu_item:hover .MegaMenu_link {
-    opacity: 0.7;
-  }
-
-  .Chevron {
-    width: 8px;
-    height: 8px;
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
-    transform: rotate(45deg) translateY(-2px);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .MegaMenu_item:hover .Chevron {
-    transform: rotate(-135deg) translateY(-2px);
-  }
-
-  /* The Dropdown Container
-     Two fixes for the "closes before my cursor gets there" bug:
-     1. padding-top 0 so the visible panel sits flush with the menu bar — no
-        empty gap for the cursor to fall into.
-     2. visibility/pointer-events are delayed on hover-OUT only, so leaving
-        the menu briefly doesn't tear the dropdown away. A 150ms grace window
-        lets the cursor travel onto the panel without the bridge disappearing.
-  */
-  .MegaDropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(6px) scale(0.98);
-    transform-origin: top center;
-    transition:
-      opacity    0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
-      transform  0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
-      visibility 0s linear 0.5s;
-    pointer-events: none;
-    z-index: 1000;
-    padding-top: 0;
-  }
-  .MegaMenu_item:hover .MegaDropdown,
-  .MegaMenu_item:focus-within .MegaDropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-    /* Cancel the out-delay for show */
-    transition-delay: 0s, 0s, 0s;
-  }
-
-  /* Invisible hover bridge — spans the full width between menu bar and panel
-     so diagonal cursor movement to the dropdown never drops hover. */
-  .MegaDropdown::before {
+  .navbar::after {
     content: '';
     position: absolute;
-    top: -2rem;
-    left: 0;
-    right: 0;
-    height: 2rem;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent,
+      rgba(0,0,0,0.05) 20%,
+      rgba(0,0,0,0.08) 50%,
+      rgba(0,0,0,0.05) 80%,
+      transparent
+    );
+    transform: scaleX(0);
+    transform-origin: center;
+    animation: c8NavLineExpand 1.2s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
   }
 
-  /* The Glass Background sits flush with header bottom */
-  .MegaDropdown_bg {
-    position: absolute;
-    top: 0; left: 50%; transform: translateX(-50%);
-    width: calc(100% - 4rem); max-width: 1300px; bottom: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 2rem;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.05);
-    z-index: -1;
+  .navbar--on-dark::after {
+    background: linear-gradient(90deg,
+      transparent,
+      rgba(255,255,255,0.06) 20%,
+      rgba(255,255,255,0.12) 50%,
+      rgba(255,255,255,0.06) 80%,
+      transparent
+    );
   }
 
-  /* Mini dropdown (Industries / Resources / About) — tight card, auto-sized */
-  .MiniDropdown {
-    /* Centre the whole mini panel under its trigger instead of spanning
-       full header width. */
-    left: 50%;
-    right: auto;
-    width: auto;
-    max-width: 320px;
-    transform: translateX(-50%) translateY(6px) scale(0.98);
+  .navbar--on-dark .nav-link { color: rgba(255,255,255,0.75); }
+  .navbar--on-dark .nav-link:hover { color: #fff; }
+  .navbar--on-dark .menu-toggle span { background: #fff; }
+
+  .navbar.scrolled {
+    background: var(--nb-bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--nb-border-subtle);
+    padding: 10px 0;
   }
-  .MegaMenu_item:hover .MiniDropdown,
-  .MegaMenu_item:focus-within .MiniDropdown {
-    transform: translateX(-50%) translateY(0) scale(1);
+  .navbar.scrolled .nav-link { color: var(--nb-text-secondary); }
+  .navbar.scrolled .nav-link:hover { color: var(--nb-text-primary); }
+  .navbar.scrolled .menu-toggle span { background: var(--nb-text-primary); }
+
+  .navbar.mega-open,
+  .navbar.navbar--on-dark.mega-open {
+    background: var(--nb-bg-elevated) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--nb-border-subtle);
   }
-  .MiniDropdown .MegaDropdown_bg {
-    left: 0;
-    transform: none;
-    width: 100%;
-    max-width: none;
+  .navbar.mega-open .nav-link,
+  .navbar.navbar--on-dark.mega-open .nav-link {
+    color: var(--nb-text-secondary) !important;
   }
-  .MiniDropdown .MegaDropdown_inner {
-    width: 100%;
-    max-width: none;
-    padding: 0.75rem 1rem;
+  .navbar.mega-open .nav-link:hover,
+  .navbar.navbar--on-dark.mega-open .nav-link:hover {
+    color: var(--nb-text-primary) !important;
   }
-  .MiniDropdown .MegaCol {
-    gap: 0;
-    min-width: 0;
-    width: 100%;
-  }
-  .MiniDropdown .MegaCol a {
-    padding: 0.7rem 0.9rem !important;
-    font-size: 1rem !important;
-    font-weight: 500 !important;
-    border-radius: 0.6rem;
-    color: #333 !important;
-    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, opacity 0.3s ease !important;
-  }
-  .MiniDropdown .MegaCol a span:first-child {
-    font-size: 1rem !important;
-  }
-  /* Group-hover physics for mini dropdowns — siblings dim while the hovered
-     row lights up with a soft gold wash that echoes the logo mark. Text
-     color stays dark on purpose: yellow text reads poorly on light bg. */
-  .MiniDropdown .MegaCol:hover a {
-    opacity: 0.45;
-  }
-  .MiniDropdown .MegaCol a:hover {
-    opacity: 1 !important;
-    color: #111 !important;
-    background: var(--c8-gold-soft) !important;
-    box-shadow: inset 0 0 0 1px var(--c8-gold-glow);
-    transform: translateX(4px);
+  .navbar.mega-open .nav-cta,
+  .navbar.navbar--on-dark.mega-open .nav-cta {
+    background: var(--nb-brand-dark) !important;
+    color: #fff !important;
   }
 
-
-
-  /* Glassmorphism Background */
-
-
-  /* Grid Architecture
-     Inner shares the exact same centering as .MegaDropdown_bg so the CTA
-     card always sits inside the panel, at any viewport width. */
-  .MegaDropdown_inner {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+  .navbar-inner {
     display: flex;
-    width: calc(100% - 4rem);
-    max-width: 1300px;
-    padding: 3.5rem;
-    gap: 2rem;
+    align-items: center;
     justify-content: space-between;
-    box-sizing: border-box;
-  }
-  .MegaColWrapper {
-    flex-shrink: 0;
-    display: flex;
-    gap: 3rem;
-    flex: 1;
+    width: 100%;
+    padding: 0 clamp(24px, 5vw, 80px);
   }
 
-  .MiniDropdown .MegaDropdown_inner {
-    padding: 2rem;
-    justify-content: center;
-  }
-
-  .MegaCol {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    min-width: 200px;
-  }
-
-  .MegaCol_title {
-    color: #999;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-  }
-
-  .MegaCol a {
-    color: #000;
-    font-size: 1.15rem;
+  /* ─── Logo ─── */
+  .navbar-logo {
+    display: flex; align-items: center;
+    z-index: 60;
     text-decoration: none;
-    font-weight: 500;
-    position: relative;
-    padding-bottom: 0.25rem;
-    width: fit-content;
-    transition: color 0.3s ease;
+  }
+  .navbar-logo img { height: 32px; width: auto; }
+  .navbar-logo:hover { opacity: 0.9; }
+
+  /* ─── Nav links row ─── */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
   }
 
-  /* Premium Hover Underline Animation */
-  .MegaCol a::after {
+  .nav-link {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--nb-text-secondary);
+    position: relative;
+    padding: 8px 0;
+    text-decoration: none;
+    transition: color 0.3s var(--nb-ease-expo);
+    white-space: nowrap;
+  }
+  .nav-link::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0;
-    width: 0%;
-    height: 1px;
-    background: linear-gradient(90deg, #7c41f3, #ff6eff);
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%; height: 2px;
+    background: var(--nb-brand-gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s var(--nb-ease-expo);
   }
-  .MegaCol a:hover {
-    color: #000;
+  .nav-link:hover::after,
+  .nav-link.active::after { transform: scaleX(1); transform-origin: left; }
+  .nav-link:hover { color: var(--nb-text-primary); }
+  .nav-link.active { color: var(--nb-brand-gold); }
+
+  /* ─── Nav CTA button ─── */
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: var(--nb-radius-pill);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--nb-brand-dark);
+    text-decoration: none;
+    transition: all 0.3s var(--nb-ease-expo);
+    white-space: nowrap;
   }
-  .MegaCol a:hover::after {
-    width: 100%;
+  .nav-cta:hover {
+    background: var(--nb-brand-gold);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: var(--nb-shadow-glow);
   }
 
-  /* Mega CTA Block */
-  .MegaCta {
-    flex-shrink: 0;
-    background: linear-gradient(135deg, #1B0F2A 0%, #300C39 100%) !important;
-    border-radius: 1.5rem;
-    padding: 2.5rem;
+  /* ─── Mega Menu ─── */
+  .nav-item { position: relative; }
+
+  .mega-menu {
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: var(--nb-bg-elevated);
+    border-bottom: 1px solid var(--nb-border-default);
+    padding: 32px clamp(24px, 5vw, 80px) 40px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: all 0.35s var(--nb-ease-expo);
+    box-shadow: var(--nb-shadow-lg);
+    z-index: 190;
+  }
+  .navbar.scrolled .mega-menu { top: 52px; }
+
+  .nav-item:hover .mega-menu,
+  .nav-item.active .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .mega-menu-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 280px;
+    gap: 32px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .mega-menu-category-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    color: var(--nb-text-muted);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--nb-border-subtle);
+  }
+
+  .mega-menu-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--nb-radius-sm);
+    color: var(--nb-text-secondary);
+    transition: all 0.2s var(--nb-ease-expo);
+    text-decoration: none;
+    margin-bottom: 2px;
+  }
+  .mega-menu-link:hover { background: rgba(var(--nb-brand-gold-rgb),0.05); }
+
+  .mega-menu-link i {
+    width: 15px; height: 15px;
+    opacity: 0.35; flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .mega-menu-link:hover i { opacity: 1; color: var(--nb-brand-gold); }
+
+  .mega-menu-link-text {
+    display: flex; flex-direction: column; gap: 1px; min-width: 0;
+  }
+  .mega-menu-link-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--nb-text-primary);
+    line-height: 1.3;
+  }
+  .mega-menu-link-desc {
+    font-size: 0.7rem;
+    color: var(--nb-text-muted);
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .mega-menu-cta {
+    background: var(--nb-bg-dark);
+    border-radius: var(--nb-radius-lg);
+    padding: 28px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.5rem;
-    width: 320px;
-    min-height: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    position: relative;
-    overflow: hidden;
+    gap: 16px;
+    align-self: start;
   }
-  /* Decorative Glass Orb inside CTA */
-  .MegaCta::after {
-    content: ""; position: absolute;
-    width: 250px; height: 250px;
-    background: radial-gradient(circle, rgba(255,110,255,0.4) 0%, rgba(124,65,243,0) 70%);
-    top: -50px; right: -50px;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .MegaCta p, .MegaCta h4, .MegaCta a {
-    position: relative; z-index: 1;
-  }
-  .MegaCta p {
-    color: #F8F8F8 !important;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin: 0;
-    font-weight: 500;
-  }
-  .MegaCta .MegaButton {
-    background: #fff !important;
-    color: #000 !important;
-  }
-  .MegaCta .MegaButton:hover {
-    background: var(--c8-gold) !important;
-    color: #111 !important;
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px var(--c8-gold-glow);
-  }
-
-  .MegaButton {
-    width: fit-content;
-    border-radius: 2rem;
-  }
-
-  /* KOTA ships the header CTA with a pink (#ff34f3) hover. Re-tint to gold so
-     the primary button accent tracks the logo mark. Text stays light for
-     contrast on the dark pill. */
-  .Header_button__yG4_K:hover {
-    background: var(--c8-gold) !important;
-    color: #111 !important;
-    box-shadow: 0 10px 28px var(--c8-gold-glow);
-  }
-  .Header_button__yG4_K:hover .Header_buttonArrow__frtNz,
-  .Header_button__yG4_K:hover .Header_text__taNU6 {
-    color: #111 !important;
-  }
-  
-  /* Staggered Fade-in Animation for columns */
-  .MegaCol {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .MegaMenu_item:hover .MegaCol:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
-  .MegaMenu_item:hover .MegaCol:nth-child(2) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
-  .MegaMenu_item:hover .MegaCol:nth-child(3) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
-  .MegaMenu_item:hover .MegaCta { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
-  .MegaCta {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .Header_header__KwdYD {
-    transform: none !important;
-    background: transparent;
-    border-bottom: none;
-  }
-  
-  /* Mega Col Subtext & Color Enhancements */
-
-  .MegaCol a {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.35rem !important;
-    padding: 1rem !important;
-    border-radius: 0.75rem;
-    width: 100% !important;
-    white-space: normal !important;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    clear: both;
-  }
-  .MegaCol a span:first-child {
-    font-size: 1.05rem !important;
-    font-weight: 600 !important;
-    color: #111 !important;
-    letter-spacing: -0.02em !important;
-  }
-  
-  /* The Group Hover Physics Engine */
-  .MegaColWrapper:hover .MegaCol a {
-    opacity: 0.4;
-    transform: scale(0.98);
-  }
-  .MegaColWrapper:hover .MegaCol a:hover {
-    opacity: 1;
-    transform: translateX(4px);
-    background: #f8f8fb !important;
-    border-radius: 12px;
-  }
-
-  
-  .MegaCol a span {
-    display: block !important;
-    line-height: 1.2 !important;
-    width: 100% !important;
-  }
-
-  
-  .MegaCol a::after {
-    display: none !important; /* Disable underline, replace with block highlight */
-  }
-
-  .MegaCol_title {
-    padding-left: 1rem;
-    color: #888 !important;
-    font-size: 0.75rem;
-    font-weight: 600 !important;
-    letter-spacing: 0.15em;
+  .mega-menu-cta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    letter-spacing: 0.2em;
+    color: var(--nb-brand-gold);
   }
-  
+  .mega-menu-cta h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--nb-text-on-dark);
+    margin: 0 0 6px;
+    line-height: 1.3;
+  }
+  .mega-menu-cta p {
+    font-size: 0.78rem;
+    color: var(--nb-text-on-dark-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .mega-menu-cta .c8-btn { width: 100%; justify-content: center; margin-top: 4px; }
 
+  /* ─── Simple Dropdown (Industries, Resources, About) ─── */
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid var(--nb-border-subtle);
+    border-radius: var(--nb-radius-lg);
+    padding: 12px;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s var(--nb-ease-expo);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    z-index: 100;
+  }
+  .nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .dropdown-link {
+    display: block;
+    padding: 10px 16px;
+    font-size: 0.88rem;
+    color: var(--nb-text-secondary);
+    border-radius: var(--nb-radius-sm);
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+  .dropdown-link:hover {
+    color: var(--nb-brand-gold);
+    background: rgba(var(--nb-brand-gold-rgb),0.06);
+  }
 
-  .MegaCol_desc {
-    font-size: 0.8rem;
-    color: #888;
-    font-weight: 400;
-    line-height: 1.4;
-    margin-top: 0.15rem;
+  /* Dark state dropdown */
+  .navbar--on-dark .dropdown-menu {
+    background: rgba(20,20,20,0.95);
+    border-color: rgba(255,255,255,0.08);
   }
-  
-  /* Dark CTA panel — white text was unreadable on the earlier light purple. */
-  .MegaCta {
-    flex-shrink: 0;
-    background: linear-gradient(135deg, #1B0F2A 0%, #300C39 100%) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
+  .navbar--on-dark .dropdown-link { color: var(--nb-text-on-dark-muted); }
+  .navbar--on-dark .dropdown-link:hover {
+    color: var(--nb-brand-gold);
+    background: rgba(var(--nb-brand-gold-rgb),0.1);
   }
-  .MegaCta p {
-    color: #ffffff !important;
+
+  /* ─── Buttons (used only in this navbar context) ─── */
+  .c8-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 32px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: var(--nb-radius-pill);
+    transition: all 0.3s var(--nb-ease-expo);
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    border: none;
+  }
+  .c8-btn-gold {
+    background: var(--nb-brand-gold);
+    color: #fff;
+  }
+  .c8-btn-gold:hover {
+    background: var(--nb-brand-gold-hover);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--nb-shadow-glow);
+  }
+  .c8-btn-sm { padding: 10px 20px; font-size: 0.82rem; }
+
+  /* ─── Mobile toggle ─── */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    width: 28px;
+    cursor: pointer;
+    z-index: 210;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .menu-toggle span {
+    display: block; width: 100%; height: 2px;
+    background: var(--nb-text-primary);
+    border-radius: 2px;
+    transition: all 0.3s var(--nb-ease-expo);
+    transform-origin: center;
+  }
+  .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  /* ─── Mobile menu overlay ─── */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: #f7f6f3;
+    z-index: 205;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 0.6s var(--nb-ease-quart);
+  }
+  .mobile-menu.open { clip-path: inset(0 0 0 0); }
+  .mobile-menu .mobile-nav-link {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--nb-text-primary);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s var(--nb-ease-expo);
+  }
+  .mobile-menu.open .mobile-nav-link { opacity: 1; transform: translateY(0); }
+  .mobile-menu.open .mobile-nav-link:nth-child(1) { transition-delay: 0.08s; }
+  .mobile-menu.open .mobile-nav-link:nth-child(2) { transition-delay: 0.13s; }
+  .mobile-menu.open .mobile-nav-link:nth-child(3) { transition-delay: 0.18s; }
+  .mobile-menu.open .mobile-nav-link:nth-child(4) { transition-delay: 0.23s; }
+  .mobile-menu.open .mobile-nav-link:nth-child(5) { transition-delay: 0.28s; }
+  .mobile-menu.open .mobile-nav-link:nth-child(6) { transition-delay: 0.33s; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 1280px) {
+    .mega-menu-inner {
+      grid-template-columns: 1fr 1fr 280px;
+    }
+    .mega-menu-category:nth-child(3) { display: none; }
+    .nav-links { gap: 20px; }
+  }
+
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: flex; }
+    .nav-cta.desktop-only { display: none; }
+  }
+
+  /* Compensate for fixed navbar on non-hero pages */
+  body.has-fixed-nav main > *:first-child {
+    padding-top: 80px;
   }
 </style>
 
 <script is:inline>
-  (() => {
-    const header = document.querySelector('[data-c8-sticky]');
-    if (!header) return;
-    const THRESHOLD = 40;
-
-    const read = () =>
-      window.scrollY ||
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
-
-    let lastState = null;
-    const apply = () => {
-      const scrolled = read() > THRESHOLD;
-      if (scrolled === lastState) return;
-      lastState = scrolled;
-      if (scrolled) header.setAttribute('data-scrolled', 'true');
-      else header.removeAttribute('data-scrolled');
+  /* Load Lucide icons, then init navbar */
+  (function () {
+    var s = document.createElement('script');
+    s.src = 'https://unpkg.com/lucide@0.525.0/dist/umd/lucide.min.js';
+    s.onload = function () {
+      if (window.lucide) window.lucide.createIcons();
     };
+    document.head.appendChild(s);
+  })();
+</script>
 
-    // 1) Native scroll listeners — window + document catch any dispatcher,
-    //    including smooth-scroll wrappers that sometimes bubble on document.
-    window.addEventListener('scroll', apply, { passive: true, capture: true });
-    document.addEventListener('scroll', apply, { passive: true, capture: true });
+<script is:inline>
+  /* Navbar: scroll detection, logo swap, mega menu, mobile toggle, active page */
+  (function () {
+    'use strict';
 
-    // 2) IntersectionObserver sentinel — flips state when scroll crosses the
-    //    threshold even if no scroll events make it to the listener.
-    const sentinel = document.createElement('div');
-    sentinel.setAttribute('aria-hidden', 'true');
-    sentinel.style.cssText =
-      'position:absolute;top:0;left:0;width:1px;height:' +
-      THRESHOLD +
-      'px;pointer-events:none;';
-    document.body.prepend(sentinel);
-    new IntersectionObserver(
-      (entries) => entries.forEach(() => apply()),
-      { threshold: 0 }
-    ).observe(sentinel);
+    var navbar     = document.getElementById('navbar');
+    var menuToggle = document.getElementById('menuToggle');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var logoDark   = document.getElementById('logoDark');
+    var logoWhite  = document.getElementById('logoWhite');
+    if (!navbar) return;
 
-    // 3) rAF polling — last-resort belt-and-suspenders for any transform-based
-    //    scroll engine (Lenis, locomotive) that doesn't emit scroll at all.
-    let lastY = -1;
-    const tick = () => {
-      const y = read();
-      if (y !== lastY) {
-        lastY = y;
-        apply();
+    /* ── Scroll + logo swap ── */
+    function handleScroll() {
+      var scrolled = window.scrollY > 50;
+      if (scrolled) {
+        navbar.classList.add('scrolled');
+        if (logoDark && logoWhite) {
+          logoDark.style.display = 'block';
+          logoWhite.style.display = 'none';
+        }
+      } else {
+        navbar.classList.remove('scrolled');
+        if (logoDark && logoWhite) {
+          var onDark = navbar.classList.contains('navbar--on-dark');
+          logoDark.style.display  = onDark ? 'none'  : 'block';
+          logoWhite.style.display = onDark ? 'block' : 'none';
+        }
       }
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
+    }
 
-    apply();
+    var scrollTick = false;
+    window.addEventListener('scroll', function () {
+      if (!scrollTick) {
+        requestAnimationFrame(function () { handleScroll(); scrollTick = false; });
+        scrollTick = true;
+      }
+    }, { passive: true });
+    handleScroll();
+
+    /* ── Mobile menu ── */
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', function () {
+        var open = mobileMenu.classList.contains('open');
+        mobileMenu.classList.toggle('open', !open);
+        menuToggle.classList.toggle('active', !open);
+        document.body.classList.toggle('menu-open', !open);
+      });
+      mobileMenu.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileMenu.classList.remove('open');
+          menuToggle.classList.remove('active');
+          document.body.classList.remove('menu-open');
+        });
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+          mobileMenu.classList.remove('open');
+          menuToggle.classList.remove('active');
+          document.body.classList.remove('menu-open');
+        }
+      });
+    }
+
+    /* ── Mega menu (desktop hover) ── */
+    var megaCloseTimer = null;
+
+    function openMega(item) {
+      clearTimeout(megaCloseTimer);
+      document.querySelectorAll('.nav-item').forEach(function (o) {
+        if (o !== item) o.classList.remove('active');
+      });
+      item.classList.add('active');
+      navbar.classList.add('mega-open');
+      if (logoDark && logoWhite) {
+        logoDark.style.display  = 'block';
+        logoWhite.style.display = 'none';
+      }
+    }
+
+    function closeMega() {
+      megaCloseTimer = setTimeout(function () {
+        document.querySelectorAll('.nav-item').forEach(function (i) {
+          i.classList.remove('active');
+        });
+        navbar.classList.remove('mega-open');
+        handleScroll();
+      }, 180);
+    }
+
+    document.querySelectorAll('.nav-item').forEach(function (item) {
+      var megaPanel = item.querySelector('.mega-menu');
+      item.addEventListener('mouseenter', function () { openMega(item); });
+      item.addEventListener('mouseleave', function () { closeMega(); });
+      if (megaPanel) {
+        megaPanel.addEventListener('mouseenter', function () {
+          clearTimeout(megaCloseTimer);
+          item.classList.add('active');
+          navbar.classList.add('mega-open');
+        });
+        megaPanel.addEventListener('mouseleave', function () { closeMega(); });
+      }
+    });
+
+    /* ── Active page highlight ── */
+    var currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-link').forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (href && href !== '/' && currentPath.startsWith(href)) {
+        link.classList.add('active');
+      }
+    });
   })();
 </script>
