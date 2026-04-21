@@ -32,9 +32,9 @@ public/js/
 public/fonts/
 public/images/
 public/media/
-public/assets/
+# public/assets/ — committed so Vercel build can serve them
 
 # local-only working dirs (video trim backups, historical source media)
 .video-backups-originals/
-assets/
+/assets/
 .vercel
