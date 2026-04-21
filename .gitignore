@@ -25,14 +25,8 @@ pnpm-debug.log*
 # scraped reference site (local-only input, not redistributed)
 raw-clone/
 
-# third-party assets pulled from raw-clone (kept local, not committed)
-public/_next/
-public/css/
-public/js/
-public/fonts/
-public/images/
-public/media/
-# public/assets/ — committed so Vercel build can serve them
+# third-party assets pulled from raw-clone — now committed so Vercel can serve them
+# (kept here as reference of which folders originated from raw-clone)
 
 # local-only working dirs (video trim backups, historical source media)
 .video-backups-originals/

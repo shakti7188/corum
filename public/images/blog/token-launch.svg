@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 787" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="tlBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b0b2e"/>
+      <stop offset="1" stop-color="#3a1468"/>
+    </linearGradient>
+    <radialGradient id="tlGlow" cx="50%" cy="60%" r="45%">
+      <stop offset="0" stop-color="#d4a23a" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#d4a23a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1400" height="787" fill="url(#tlBg)"/>
+  <rect width="1400" height="787" fill="url(#tlGlow)"/>
+  <g transform="translate(700 420)" stroke="#d4a23a" stroke-width="3" fill="none" opacity="0.85">
+    <circle r="190"/>
+    <circle r="130"/>
+    <circle r="70"/>
+  </g>
+  <g transform="translate(700 420)" fill="#d4a23a" opacity="0.9">
+    <circle r="22"/>
+  </g>
+  <g transform="translate(700 420)" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.25">
+    <circle r="260"/>
+    <circle r="330"/>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 787" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="rwaBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a1208"/>
+      <stop offset="1" stop-color="#3a2610"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="787" fill="url(#rwaBg)"/>
+  <g transform="translate(360 180)" fill="none" stroke="#d4a23a" stroke-width="1.5" opacity="0.7">
+    <g>
+      <rect x="0" y="0" width="90" height="90" rx="8"/>
+      <rect x="130" y="0" width="90" height="90" rx="8"/>
+      <rect x="260" y="0" width="90" height="90" rx="8"/>
+      <rect x="390" y="0" width="90" height="90" rx="8"/>
+      <rect x="520" y="0" width="90" height="90" rx="8"/>
+      <rect x="650" y="0" width="90" height="90" rx="8"/>
+    </g>
+    <g transform="translate(0 130)">
+      <rect x="0" y="0" width="90" height="90" rx="8" fill="#d4a23a" opacity="0.25"/>
+      <rect x="130" y="0" width="90" height="90" rx="8"/>
+      <rect x="260" y="0" width="90" height="90" rx="8" fill="#d4a23a" opacity="0.45"/>
+      <rect x="390" y="0" width="90" height="90" rx="8"/>
+      <rect x="520" y="0" width="90" height="90" rx="8" fill="#d4a23a" opacity="0.25"/>
+      <rect x="650" y="0" width="90" height="90" rx="8"/>
+    </g>
+    <g transform="translate(0 260)">
+      <rect x="0" y="0" width="90" height="90" rx="8"/>
+      <rect x="130" y="0" width="90" height="90" rx="8" fill="#d4a23a" opacity="0.45"/>
+      <rect x="260" y="0" width="90" height="90" rx="8"/>
+      <rect x="390" y="0" width="90" height="90" rx="8" fill="#d4a23a" opacity="0.7"/>
+      <rect x="520" y="0" width="90" height="90" rx="8"/>
+      <rect x="650" y="0" width="90" height="90" rx="8" fill="#d4a23a" opacity="0.25"/>
+    </g>
+  </g>
+</svg>
