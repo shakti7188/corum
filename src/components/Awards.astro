@@ -28,20 +28,35 @@ const awards: Award[] = [
 ---
 
 <section class="c8-awards">
+  <!-- Layer 1: video bg + readability veil (same pattern as Hero) -->
+  <div class="c8-awards__bg" aria-hidden="true">
+    <video
+      class="c8-awards__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="/images/hero.webp">
+      <source src="/media/bg2.mp4" type="video/mp4" />
+    </video>
+    <div class="c8-awards__veil"></div>
+  </div>
+
   <div class="c8-awards__wash" aria-hidden="true"></div>
   <div class="c8-awards__inner">
-    <header class="c8-awards__head">
-      <h2 class="c8-awards__heading">
+    <header class="c8-awards__head" data-reveal-stagger="100">
+      <h2 class="c8-awards__heading" data-reveal="up">
         Recognized across<br/><em>the industry</em>
       </h2>
-      <p class="c8-awards__sub">
+      <p class="c8-awards__sub" data-reveal="up">
         50+ industry awards for excellence in development, marketing and creative execution — earned on results, not pitches.
       </p>
     </header>
 
-    <div class="c8-awards__grid">
+    <div class="c8-awards__grid" data-reveal-stagger="90">
       {awards.map((a) => (
-        <article class="c8-awards__card">
+        <article class="c8-awards__card" data-reveal="scale">
           <div class="c8-awards__logo">
             <img src={a.logo} alt={a.alt} loading="lazy" />
           </div>
@@ -58,21 +73,51 @@ const awards: Award[] = [
   .c8-awards {
     position: relative;
     padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 5rem);
-    background: linear-gradient(180deg, #ffffff 0%, #faf7ef 55%, #f4efe2 100%);
+    background: #0a0a0a;
+    color: #fff;
     overflow: hidden;
     isolation: isolate;
   }
 
-  /* Soft gold vignette — a very subtle radial glow behind the grid so the
-     section has some warmth without going full dark-hero treatment. Kept
-     light-touch on purpose; the page is predominantly cream. */
+  /* ── Video bg + veil — mirrors the Hero treatment ── */
+  .c8-awards__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .c8-awards__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    background: #0a0a0a;
+  }
+  .c8-awards__veil {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(420px circle at 20% 10%,
+        rgba(245, 166, 35, 0.18) 0%,
+        rgba(245, 166, 35, 0.06) 38%,
+        transparent 65%),
+      linear-gradient(180deg,
+        rgba(10, 10, 10, 0.75) 0%,
+        rgba(10, 10, 10, 0.55) 45%,
+        rgba(10, 10, 10, 0.78) 100%);
+  }
+
+  /* Soft gold vignette layered on top of the veil — warms the dark bg. */
   .c8-awards__wash {
     position: absolute;
     inset: -10%;
-    z-index: 0;
+    z-index: 1;
     pointer-events: none;
     background:
-      radial-gradient(ellipse 60% 45% at 50% 35%, var(--c8-gold-soft, rgba(245, 166, 35, 0.12)) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 45% at 50% 35%, rgba(245, 166, 35, 0.10) 0%, transparent 70%),
       radial-gradient(ellipse 40% 30% at 20% 80%, rgba(245, 166, 35, 0.06) 0%, transparent 70%),
       radial-gradient(ellipse 35% 30% at 85% 75%, rgba(245, 166, 35, 0.07) 0%, transparent 70%);
     filter: blur(8px);
@@ -80,7 +125,7 @@ const awards: Award[] = [
 
   .c8-awards__inner {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 1280px;
     margin: 0 auto;
   }
@@ -96,21 +141,23 @@ const awards: Award[] = [
     font-weight: 400;
     line-height: 1.02;
     letter-spacing: -0.025em;
-    color: #0a0a0a;
+    color: #ffffff;
     margin: 0 0 1rem;
+    text-shadow: 0 2px 28px rgba(0, 0, 0, 0.45);
   }
   .c8-awards__heading em {
     font-style: italic;
     font-family: var(--syne, var(--montreal));
     font-weight: 400;
-    color: #0a0a0a;
+    color: var(--c8-gold, #f5a623);
   }
   .c8-awards__sub {
     font-family: var(--montreal, system-ui, sans-serif);
     font-size: clamp(1rem, 1.2vw, 1.15rem);
     line-height: 1.55;
-    color: #555;
+    color: rgba(255, 255, 255, 0.78);
     margin: 0;
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
   }
 
   /* 6 cards across on wide screens, scaling down like the reference. */
@@ -130,25 +177,29 @@ const awards: Award[] = [
     align-items: center;
     gap: 0.65rem;
     padding: clamp(1.1rem, 1.8vw, 1.6rem) clamp(0.75rem, 1.2vw, 1.15rem);
-    background: linear-gradient(180deg, #ffffff 0%, #fdfbf5 100%);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     text-align: center;
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
     box-shadow:
-      0 18px 38px -20px rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+      0 18px 38px -20px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
     transition:
       transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
       border-color 0.4s ease,
+      background 0.4s ease,
       box-shadow 0.4s ease;
   }
   .c8-awards__card:hover {
     transform: translateY(-4px);
-    border-color: var(--c8-gold-glow, rgba(245, 166, 35, 0.35));
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--c8-gold-glow, rgba(245, 166, 35, 0.45));
     box-shadow:
-      0 26px 52px -20px rgba(0, 0, 0, 0.14),
-      0 0 50px -10px var(--c8-gold-soft, rgba(245, 166, 35, 0.12)),
-      0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+      0 26px 52px -20px rgba(0, 0, 0, 0.7),
+      0 0 50px -10px var(--c8-gold-glow, rgba(245, 166, 35, 0.35)),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   .c8-awards__logo {
@@ -164,7 +215,8 @@ const awards: Award[] = [
     max-width: 70%;
     width: auto;
     object-fit: contain;
-    filter: grayscale(1) brightness(0.4);
+    /* Logos are dark-ink PNGs — invert to white for the dark surface. */
+    filter: brightness(0) invert(1);
     opacity: 0.75;
     transition: opacity 0.3s ease, filter 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
@@ -180,26 +232,26 @@ const awards: Award[] = [
     font-weight: 600;
     letter-spacing: -0.005em;
     line-height: 1.25;
-    color: #0a0a0a;
+    color: #ffffff;
     margin: 0.3rem 0 0;
   }
   .c8-awards__issuer {
     font-family: var(--montreal, system-ui, sans-serif);
     font-size: 0.78rem;
-    color: #777;
+    color: rgba(255, 255, 255, 0.62);
     margin: 0;
     letter-spacing: 0.005em;
   }
 
-  /* Gold year pill — mirrors the reference exactly, tinted to our gold. */
+  /* Gold year pill — warmer on the dark surface. */
   .c8-awards__year {
     display: inline-block;
     margin-top: 0.3rem;
     padding: 0.22rem 0.7rem;
     border-radius: 999px;
-    background: var(--c8-gold-soft, rgba(245, 166, 35, 0.12));
-    border: 1px solid rgba(245, 166, 35, 0.3);
-    color: var(--c8-gold-dark, #d48e1a);
+    background: rgba(245, 166, 35, 0.14);
+    border: 1px solid rgba(245, 166, 35, 0.4);
+    color: #f5c96b;
     font-family: var(--montreal, monospace);
     font-size: 0.66rem;
     font-weight: 700;
@@ -215,4 +267,21 @@ const awards: Award[] = [
     .c8-awards__logo { height: 48px; }
     .c8-awards__logo img { max-height: 48px; }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c8-awards__video { display: none; }
+  }
 </style>
+
+<script is:inline>
+  /* Pause Awards bg video when prefers-reduced-motion is set. */
+  (function () {
+    var video = document.querySelector('.c8-awards__video');
+    if (!video) return;
+    var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches) {
+      try { video.pause(); } catch (e) {}
+      video.removeAttribute('autoplay');
+    }
+  })();
+</script>

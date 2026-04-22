@@ -38,8 +38,7 @@ const projects = [
     heading: '$32M raised',
     description: 'End-to-end token launch campaign — media outreach across 200+ publications, Tier-1 crypto KOL seeding, and a full community build across Discord and Telegram from zero to active.',
     tags: ['PR', 'Influencer', 'Community'],
-    video: '/media/Featured2-Compressed.mp4',
-    poster: '/images/upp-featured-mobile.jpg',
+    poster: '/images/cashaa.jpg',
   },
   {
     size: 'small',
@@ -50,8 +49,7 @@ const projects = [
     heading: '$5M raised',
     description: 'Full-stack Web3 fan platform — smart contract development, NFT mechanics and a coordinated multi-channel growth campaign that drove raise momentum from day one.',
     tags: ['Development', 'Community', 'Influencer'],
-    video: '/media/fanadise.mp4',
-    poster: '/images/GOAT-FeaturedImage.webp',
+    poster: '/images/fanadise.png',
   },
   {
     size: 'small',
@@ -62,8 +60,10 @@ const projects = [
     heading: 'Token2049 Dubai — global stage',
     description: 'Compressed, multi-channel launch window around Token2049 Dubai. PR, KOL activation and live community events synchronized across a single 72-hour burst — global presence in under a week.',
     tags: ['PR', 'KOL', 'Community'],
-    video: '/media/isi-vid2-1.mp4',
-    poster: '/images/hero.webp',
+    logo: '/clients/ubuntu-tribe.png',
+    // Ubuntu Tribe uses a static image instead of a video clip — the case
+    // is a live-event moment that reads better as a single strong photo.
+    poster: '/images/utribe.png',
   },
   {
     size: 'small',
@@ -74,8 +74,7 @@ const projects = [
     heading: 'Tier-1 exchange, every market',
     description: 'Ongoing strategic PR retainer for one of the world\'s top exchanges — tier-1 publication placement, editorial strategy and proactive narrative management across 30+ priority markets.',
     tags: ['PR', 'Exchange', 'Global'],
-    video: '/media/Duplicated-Assets.mp4',
-    poster: '/images/ig-featured-mobile.jpg',
+    poster: '/images/KuCoin.jpg',
   },
 ];
 
@@ -125,6 +124,9 @@ const allCards = [...projects];
             </div>
             <div class="ProjectCard_projectImage__Nfx9I">
               <div class="ProjectCard_imageOverlay__OCawr c8-work-overlay">
+                {p.logo && (
+                  <img src={p.logo} alt={p.name} class="c8-work-overlay__logo" />
+                )}
                 <span class="c8-work-overlay__category">{p.category}</span>
                 <p class="c8-work-overlay__heading">{p.heading}</p>
                 <p class="c8-work-overlay__desc">{p.description}</p>
@@ -135,7 +137,9 @@ const allCards = [...projects];
               {p.poster && (
                 <span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-src={p.poster} alt="" fetchpriority="low" class="lazyload" /></span>
               )}
-              <video data-src={p.video} class="ProjectCard_video__AheFz c8-lazy-video" muted="true" loop="true" preload="none" playsinline="true"></video>
+              {p.video && (
+                <video data-src={p.video} class="ProjectCard_video__AheFz c8-lazy-video" muted="true" loop="true" preload="none" playsinline="true"></video>
+              )}
             </div>
           </a>
         ))}
@@ -216,6 +220,19 @@ const allCards = [...projects];
         rgba(0, 0, 0, 0.88) 62%,
         rgba(0, 0, 0, 0.98) 100%
       ) !important;
+  }
+
+  /* Client logo badge — sits at the top of the overlay content zone,
+     above the category pill. White version reads clean on dark gradient. */
+  .c8-work-overlay__logo {
+    display: block;
+    height: 28px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+    margin-bottom: 0.6rem;
   }
 
   /* Category pill — small gold-tinted label above the headline */

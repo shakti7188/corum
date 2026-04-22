@@ -1,0 +1,181 @@
+---
+// "Join 1,100+ brands who trust Corum8" — Quad-style bordered mesh grid.
+//
+// Design references the Quad SaaS template's "Join 500,000 customers" block:
+// - Big, centered heading with the customer count highlighted in the accent colour
+// - Optional muted subtitle
+// - Client logos in a bounded grid where every cell shares hairline borders
+//   with its neighbours (mesh pattern). Implemented with `gap: 1px` over a
+//   tinted background — simpler + more responsive than per-cell border rules.
+// - 21 logos in 3 rows × 7 cols on desktop, re-flowing to 5 cols on tablet,
+//   3 cols on mobile.
+
+const clients = [
+  // Row 1 — Tier-1 global brands
+  { src: '/clients/binance.png',       alt: 'Binance' },
+  { src: '/clients/kucoin.png',        alt: 'KuCoin' },
+  { src: '/clients/okx.png',           alt: 'OKX' },
+  { src: '/clients/metamask.png',      alt: 'MetaMask' },
+  { src: '/clients/tether.png',        alt: 'Tether' },
+  { src: '/clients/tron.png',          alt: 'TRON' },
+  { src: '/clients/etoro.png',         alt: 'eToro' },
+  // Row 2
+  { src: '/clients/gate-io.png',       alt: 'Gate.io' },
+  { src: '/clients/coinmarketcap.png', alt: 'CoinMarketCap' },
+  { src: '/clients/wazirx.png',        alt: 'WazirX' },
+  { src: '/clients/kava.png',          alt: 'Kava' },
+  { src: '/clients/eos.png',           alt: 'EOS' },
+  { src: '/clients/dream11.png',       alt: 'Dream11' },
+  { src: '/clients/iotex.png',         alt: 'IoTeX' },
+  // Row 3
+  { src: '/clients/Plasmapay.png',     alt: 'PlasmaPay' },
+  { src: '/clients/salamantex.png',    alt: 'Salamantex' },
+  { src: '/clients/cobox.png',         alt: 'Cobox' },
+  { src: '/clients/metarix.png',       alt: 'Metarix' },
+  { src: '/clients/fanadise.png',      alt: 'Fanadise' },
+  { src: '/clients/ubuntu-tribe.png',  alt: 'Ubuntu Tribe' },
+  { src: '/clients/flappy-bird.png',   alt: 'Flappy Bird' },
+];
+---
+
+<section class="c8-trusted">
+  <div class="c8-trusted__inner">
+
+    <header class="c8-trusted__head">
+      <p class="c8-trusted__eyebrow">Trusted worldwide</p>
+      <h2 class="c8-trusted__title">
+        Join <span class="c8-trusted__count">1,100+ brands</span> around<br />
+        the world who trust Corum8
+      </h2>
+      <p class="c8-trusted__sub">
+        From Binance to early-stage founders &mdash; one partner across marketing, PR and development.
+      </p>
+    </header>
+
+    <div class="c8-trusted__grid" role="list" aria-label="Clients">
+      {clients.map((c) => (
+        <div class="c8-trusted__cell" role="listitem">
+          <img src={c.src} alt={c.alt} loading="lazy" class="c8-trusted__img" />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style is:global>
+  .c8-trusted {
+    width: 100%;
+    background: #ffffff;
+    padding: clamp(3rem, 8vh, 6rem) clamp(1rem, 4vw, 3rem);
+  }
+  .c8-trusted__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 5vh, 3.5rem);
+  }
+
+  /* ── Head ── */
+  .c8-trusted__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    text-align: center;
+  }
+  .c8-trusted__eyebrow {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--c8-gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .c8-trusted__eyebrow::before,
+  .c8-trusted__eyebrow::after {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--c8-gold);
+    opacity: 0.6;
+  }
+  .c8-trusted__title {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    color: #0a0a0a;
+    max-width: 32ch;
+  }
+  .c8-trusted__count {
+    color: var(--c8-gold);
+    font-style: italic;
+    font-family: var(--syne, var(--montreal));
+    font-weight: 400;
+  }
+  .c8-trusted__sub {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+    color: #555;
+    line-height: 1.55;
+    max-width: 52ch;
+  }
+
+  /* ── Grid mesh — every cell is bordered via gap:1px over a tinted bg ── */
+  .c8-trusted__grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 1px;
+    background: #E7E4DC;
+    border: 1px solid #E7E4DC;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .c8-trusted__cell {
+    aspect-ratio: 5 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(0.75rem, 1.5vw, 1.5rem);
+    background: #ffffff;
+    transition: background 0.3s ease;
+  }
+  .c8-trusted__cell:hover {
+    background: #FAF7EF;
+  }
+  .c8-trusted__img {
+    max-height: 42px;
+    max-width: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.3);
+    opacity: 0.75;
+    transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  }
+  .c8-trusted__cell:hover .c8-trusted__img {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.04);
+  }
+
+  @media (max-width: 1024px) {
+    .c8-trusted__grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .c8-trusted__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-radius: 14px;
+    }
+    .c8-trusted__cell { padding: 0.75rem; }
+    .c8-trusted__img { max-height: 30px; }
+  }
+</style>

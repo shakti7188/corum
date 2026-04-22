@@ -53,11 +53,11 @@ const verticals = ['Web3', 'AI Tech', 'DeFi', 'Gaming', 'Fintech', 'Lifestyle', 
 const centerVideo = resolveMedia('video.ambient');
 ---
 
-<section class="c8-reach">
+<section class="c8-reach" data-pause-offscreen>
   <div class="c8-reach__inner">
 
-    <!-- LEFT — orbital visual -->
-    <div class="c8-reach__visual">
+    <!-- RIGHT (desktop) — orbital visual -->
+    <div class="c8-reach__visual" data-reveal="right">
       <div class="c8-reach__glow"></div>
 
       <div class="c8-reach__ring c8-reach__ring--1"></div>
@@ -90,8 +90,8 @@ const centerVideo = resolveMedia('video.ambient');
       ))}
     </div>
 
-    <!-- RIGHT — content, stats, tags, CTA -->
-    <div class="c8-reach__body">
+    <!-- LEFT (desktop) — content, stats, tags, CTA -->
+    <div class="c8-reach__body" data-reveal="left" data-reveal-delay="120">
       <h2 class="c8-reach__heading">
         25,000+ Influencers.<br />
         <span class="c8-reach__heading-accent">Global Reach.</span>
@@ -141,9 +141,26 @@ const centerVideo = resolveMedia('video.ambient');
 <style>
   .c8-reach {
     padding: clamp(5rem, 10vh, 9rem) 0;
-    background: var(--color-bg);
+    /* Full-width pure white slab — alternates rhythm against the warm-cream
+       Services / ServicesAlt / Articles sections above + below. */
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     overflow: hidden;
+    position: relative;
   }
+  /* Soft gold wash in the corners so the white isn't clinical. */
+  .c8-reach::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(900px circle at 10% 10%, rgba(245,166,35,0.06) 0%, transparent 55%),
+      radial-gradient(800px circle at 95% 90%, rgba(245,166,35,0.05) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .c8-reach > * { position: relative; z-index: 1; }
 
   .c8-reach__inner {
     width: 100%;
@@ -522,7 +539,10 @@ const centerVideo = resolveMedia('video.ambient');
   ------------------------------------------------------------------ */
   @media (min-width: 1024px) {
     .c8-reach__inner {
-      flex-direction: row;
+      /* Reverse on desktop so the orbital visual lands on the RIGHT and
+         the copy stack lands on the LEFT — alternating rhythm against
+         ServicesAlt (media left, text right) directly above. */
+      flex-direction: row-reverse;
       align-items: center;
       gap: 5rem;
     }

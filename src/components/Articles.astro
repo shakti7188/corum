@@ -1,163 +1,432 @@
 ---
-// Latest articles — Corum8 Insights feed. Hero art reuses clean, text-free
-// photography and gradients from /public/images/ (screened by visually
-// inspecting each candidate; anything with UI mockups, poster copy, or busy
-// collage was rejected).
+// Latest insights — Corum8-native bento grid (replaces the KOTA
+// Articles_articles layout). Six insight tiles in six different sizes so
+// the section feels editorial rather than a uniform 3-up row. Variable
+// box-sizes pull the eye around the grid and let the hero piece breathe.
+//
+// Grid layout (4 cols × 3 rows, 220px rows):
+//   ┌───────────────────────┬─────────┬─────────┐
+//   │                       │         │         │
+//   │      FEATURED         │  TALL   │  S (3)  │
+//   │      (2×2, #1)        │  (1×2,  ├─────────┤
+//   │                       │   #2)   │  S (4)  │
+//   ├───────────┬───────────┴─────────┴─────────┤
+//   │  MED (5)  │           MED (6)             │
+//   └───────────┴───────────────────────────────┘
+
 const articles = [
   {
     href: '/blog/token-launch-playbook',
     image: '/images/Statistics-bg-black.jpeg',
-    tags: 'Token Launch',
+    tag: 'Token Launch',
     title: 'Anatomy of a tier-1 token launch.',
+    excerpt: 'The 90-day runway behind an exchange listing — what actually moves the needle, and what burns capital for no reason.',
+    readTime: '9 min read',
+    variant: 'featured',
   },
   {
     href: '/blog/kol-economics',
     image: '/images/culture-row-1.jpg',
-    tags: 'Influencer',
+    tag: 'Influencer',
     title: 'What 25,000 KOLs taught us about ROI.',
+    excerpt: 'Three years of data from vetted creators across X, YouTube and Telegram.',
+    readTime: '7 min',
+    variant: 'tall',
   },
   {
     href: '/blog/exchange-listings',
     image: '/images/contact-bg-2560x1440.jpg',
-    tags: 'Exchanges',
+    tag: 'Exchanges',
     title: 'Inside the CEX listing playbook.',
+    readTime: '6 min',
+    variant: 'small',
   },
   {
     href: '/blog/ai-growth-loops',
     image: '/images/culture-row-2.jpg',
-    tags: 'AI · Growth',
+    tag: 'AI · Growth',
     title: 'Building AI-native growth loops.',
+    readTime: '5 min',
+    variant: 'small',
   },
   {
     href: '/blog/rwa-tokenisation',
     image: '/images/approach.webp',
-    tags: 'RWA',
-    title: 'Tokenising real-world assets, simplified.',
+    tag: 'RWA',
+    title: 'Tokenising real-world assets.',
+    excerpt: 'Why MiCA and VARA changed the RWA calculus for every fintech issuer.',
+    readTime: '8 min read',
+    variant: 'medium',
   },
   {
     href: '/blog/community-compounding',
     image: '/images/sitecare-header-image.webp',
-    tags: 'Community',
+    tag: 'Community',
     title: 'Why community is the new moat.',
+    excerpt: 'Discord, Telegram and X don\u2019t win markets. Compounding trust does — and it\u2019s measurable.',
+    readTime: '10 min read',
+    variant: 'medium-wide',
   },
 ];
 ---
 
-<div class="Articles_articles__Wcz2C">
-  <div class="DarkThemeSwitch_cover__hn_xc"></div>
-  <div class="container">
-    <div class="Articles_heading__zNRl8 c8-insights-head">
-      <div class="c8-insights-head__text">
-        <h2 class="c8-insights-head__title">
-          <span data-blur-reveal="true">Latest Articles</span>
+<section class="c8-insights">
+  <div class="c8-insights__inner">
+
+    <!-- Head row — eyebrow / headline / CTA -->
+    <header class="c8-insights__head" data-reveal-stagger="90">
+      <div class="c8-insights__head-text">
+        <p class="c8-insights__eyebrow" data-reveal="left">
+          <span class="c8-insights__dot" aria-hidden="true"></span>
+          Latest insights
+        </p>
+        <h2 class="c8-insights__title" data-reveal="up">
+          Field notes from <em>the front line.</em>
         </h2>
+        <p class="c8-insights__sub" data-reveal="up">
+          Playbooks, post-mortems and pattern spotting from inside real Web3, AI and fintech launches — written by the operators, not the intern pool.
+        </p>
       </div>
-      <span class="FadeInUp_container___uxva" data-fill="false"><div class="Magnetic_magnetic__LncOy" data-fill="false">
-        <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
-          <a class="Button_inner__fnyH6" href="/blog"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Read the blog</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-            <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
-          </svg></span></a>
-        </div></div></span>
+
+      <a class="c8-insights__head-cta" href="/blog" data-reveal="right">
+        <span>Read the blog</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" aria-hidden="true">
+          <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
+        </svg>
+      </a>
+    </header>
+
+    <!-- Bento grid -->
+    <div class="c8-insights__bento" data-reveal-stagger="110">
+      {articles.map((a) => (
+        <a
+          class={`c8-insights__tile c8-insights__tile--${a.variant}`}
+          href={a.href}
+          data-reveal={a.variant === 'featured' ? 'up' : a.variant === 'tall' ? 'right' : a.variant === 'small' ? 'scale' : 'up'}
+        >
+          <div class="c8-insights__media">
+            <img src={a.image} alt="" loading="lazy" decoding="async" />
+            <span class="c8-insights__veil" aria-hidden="true"></span>
+          </div>
+
+          <div class="c8-insights__body">
+            <div class="c8-insights__meta">
+              <span class="c8-insights__tag">{a.tag}</span>
+              <span class="c8-insights__time">{a.readTime}</span>
+            </div>
+            <h3 class="c8-insights__card-title">{a.title}</h3>
+            {a.excerpt && (
+              <p class="c8-insights__excerpt">{a.excerpt}</p>
+            )}
+            <span class="c8-insights__arrow" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17">
+                <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
     </div>
 
-    <style is:global>
-      /* KOTA ships .Articles_articles__Wcz2C with `background:#000` — flip
-         to the page's light bg so this section lives in the warm family
-         with Showcase / Ethos / Work-reference and contrasts against the
-         Final CTA + Footer dark blocks further down. */
-      .Articles_articles__Wcz2C {
-        background-color: var(--color-bg) !important;
-        padding-top: clamp(6rem, 11vh, 10rem) !important;
-        padding-bottom: clamp(5rem, 9vh, 8rem) !important;
-      }
-      /* Header row — single-line title on the left, "Read the blog" CTA on
-         the right, both on the same baseline. */
-      .c8-insights-head {
-        align-items: center !important;
-      }
-      /* FadeInUp wrapper starts display:none and waits for scroll-trigger JS.
-         Force it visible so the button always shows in the header row. */
-      .c8-insights-head .FadeInUp_container___uxva {
-        display: inline-block !important;
-      }
-      /* The text cell needs room to fit "Latest Articles" on one line; the
-         flex row lets the right-side CTA claim the remainder. */
-      .c8-insights-head__text {
-        flex: 0 0 auto;
-        max-width: none;
-      }
-      .c8-insights-head__title,
-      .c8-insights-head__title span {
-        white-space: nowrap;
-      }
-      .c8-insights-head__title {
-        font-size: clamp(2rem, 4.2vw, 3.75rem);
-        line-height: 1.02;
-        font-weight: 500;
-        letter-spacing: -0.02em;
-        margin: 0 !important;
-        color: #111 !important;
-      }
-      /* Card text → dark ink on light bg. Tag label stays muted. */
-      .Articles_articles__Wcz2C .Articles_title__h86PB {
-        color: #111 !important;
-      }
-      .Articles_articles__Wcz2C .Articles_filterNames__mCWt8 {
-        color: #6b7280 !important;
-      }
-      /* "Read the blog" button — KOTA's white variant uses white borders/text
-         for dark backgrounds. Override to dark so it reads on our light bg.
-         Button_border__hirH2 is the hover-fill element — only tint it on hover. */
-      .Articles_articles__Wcz2C .Button_button__JJiqJ.Button_white__MQaf2 .Button_inner__fnyH6 {
-        color: #111 !important;
-        border-color: rgba(17,17,17,0.55) !important;
-      }
-      .Articles_articles__Wcz2C .Button_button__JJiqJ.Button_white__MQaf2:hover .Button_inner__fnyH6 {
-        color: #fff !important;
-        border-color: #111 !important;
-      }
-      .Articles_articles__Wcz2C .Button_button__JJiqJ.Button_white__MQaf2 .Button_border__hirH2 {
-        background: #111 !important;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      .Articles_articles__Wcz2C .Button_button__JJiqJ.Button_white__MQaf2:hover .Button_border__hirH2 {
-        opacity: 1 !important;
-      }
-      .Articles_articles__Wcz2C .Button_button__JJiqJ.Button_white__MQaf2 svg path {
-        fill: currentColor;
-      }
-      @media (max-width: 900px) {
-        .c8-insights-head__title { font-size: 2.1rem; }
-      }
-    </style>
-    <div class="AnimatedGrid_grid__otAMD">
-      <div class="Articles_articlesList__CXW8a">
-        {articles.map((a) => (
-          <a data-animation="grid-item" href={a.href}>
-            <article class="Articles_article__3ZS4Y">
-              <figure class="Articles_image__Cvgsi">
-                <span class="Image_image__RAAdZ Image_fill__EiIzS">
-                  <img src={a.image} data-src={a.image} alt="" fetchpriority="low" height="787" width="1400" sizes="auto" class="lazyload" />
-                </span>
-              </figure>
-              <div class="Articles_text__HhO2L">
-                <p class="Articles_filterNames__mCWt8">{a.tags}</p>
-                <h3 class="Articles_title__h86PB">{a.title}</h3>
-              </div>
-            </article>
-          </a>
-        ))}
-        <div class="Articles_mobileButton__Df7CF">
-          <div class="Magnetic_magnetic__LncOy" data-fill="false">
-            <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
-              <a class="Button_inner__fnyH6" href="/blog"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Read the blog</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
-              </svg></span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-</div>
+</section>
+
+<style is:global>
+  /* ─── Section shell ─── */
+  .c8-insights {
+    width: 100%;
+    background: var(--color-bg);
+    color: #0a0a0a;
+    padding: clamp(5rem, 10vh, 9rem) clamp(1.5rem, 5vw, 5rem);
+    position: relative;
+    overflow: hidden;
+  }
+  .c8-insights::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(900px circle at 95% 8%,  rgba(245,166,35,0.06) 0%, transparent 55%),
+      radial-gradient(700px circle at 5% 95%,  rgba(245,166,35,0.04) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .c8-insights__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  /* ─── Head row ─── */
+  .c8-insights__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
+    flex-wrap: wrap;
+  }
+  .c8-insights__head-text { max-width: 44rem; }
+
+  .c8-insights__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c8-gold, #d48e1a);
+    margin: 0 0 1rem;
+  }
+  .c8-insights__dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--c8-gold, #d48e1a);
+    box-shadow: 0 0 10px rgba(212, 142, 26, 0.5);
+  }
+  .c8-insights__title {
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: #0a0a0a;
+    margin: 0 0 1rem;
+  }
+  .c8-insights__title em {
+    font-style: italic;
+    font-family: var(--syne, var(--montreal));
+    font-weight: 400;
+    color: var(--c8-gold, #d48e1a);
+  }
+  .c8-insights__sub {
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    line-height: 1.55;
+    color: #555;
+    margin: 0;
+  }
+
+  .c8-insights__head-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.9rem 1.45rem;
+    background: transparent;
+    color: #111;
+    border: 1.5px solid #111;
+    border-radius: 999px;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: 0.94rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.35s ease, color 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease;
+  }
+  .c8-insights__head-cta svg { width: 14px; height: 14px; transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .c8-insights__head-cta:hover {
+    background: var(--c8-gold);
+    border-color: var(--c8-gold);
+    color: #111;
+    transform: translateY(-1px);
+  }
+  .c8-insights__head-cta:hover svg { transform: translate(2px, -2px); }
+
+  /* ─── Bento grid ─── */
+  .c8-insights__bento {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: clamp(200px, 22vh, 260px);
+    gap: clamp(1rem, 1.6vw, 1.4rem);
+  }
+
+  /* Per-variant placements — 4 cols × 3 rows. */
+  .c8-insights__tile--featured    { grid-column: span 2; grid-row: span 2; }
+  .c8-insights__tile--tall        { grid-column: span 1; grid-row: span 2; }
+  .c8-insights__tile--small       { grid-column: span 1; grid-row: span 1; }
+  .c8-insights__tile--medium      { grid-column: span 1; grid-row: span 1; }
+  .c8-insights__tile--medium-wide { grid-column: span 3; grid-row: span 1; }
+
+  /* ─── Tile base ─── */
+  .c8-insights__tile {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    isolation: isolate;
+    box-shadow:
+      0 24px 48px -28px rgba(0, 0, 0, 0.35),
+      0 0 40px -24px var(--c8-gold-soft, rgba(245,166,35,0.22)),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+  }
+  .c8-insights__tile:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 36px 64px -24px rgba(0, 0, 0, 0.45),
+      0 0 60px -18px var(--c8-gold-glow, rgba(245,166,35,0.4));
+  }
+
+  /* Media layer — fills the whole tile. */
+  .c8-insights__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .c8-insights__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .c8-insights__tile:hover .c8-insights__media img { transform: scale(1.06); }
+
+  /* Veil — stronger at the bottom so title/excerpt read on any image. */
+  .c8-insights__veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.15) 0%,
+      rgba(0, 0, 0, 0.38) 45%,
+      rgba(0, 0, 0, 0.82) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Body — bottom-anchored stack. */
+  .c8-insights__body {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(1.1rem, 1.8vw, 1.6rem);
+    gap: 0.65rem;
+  }
+
+  .c8-insights__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .c8-insights__tag {
+    display: inline-block;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(245, 166, 35, 0.22);
+    border: 1px solid rgba(245, 166, 35, 0.4);
+    color: #f5c96b;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .c8-insights__time {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .c8-insights__card-title {
+    margin: 0;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-weight: 500;
+    letter-spacing: -0.018em;
+    line-height: 1.15;
+    color: #fff;
+    text-wrap: balance;
+  }
+  .c8-insights__excerpt {
+    margin: 0;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: 0.96rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 40rem;
+  }
+
+  /* Variant-specific typography — bigger type on the featured tile. */
+  .c8-insights__tile--featured .c8-insights__card-title     { font-size: clamp(1.6rem, 2.6vw, 2.3rem); }
+  .c8-insights__tile--tall .c8-insights__card-title         { font-size: clamp(1.2rem, 1.6vw, 1.45rem); }
+  .c8-insights__tile--medium .c8-insights__card-title       { font-size: clamp(1.2rem, 1.6vw, 1.45rem); }
+  .c8-insights__tile--medium-wide .c8-insights__card-title  { font-size: clamp(1.4rem, 2vw, 1.75rem); }
+  .c8-insights__tile--small .c8-insights__card-title        { font-size: clamp(1.05rem, 1.3vw, 1.18rem); }
+
+  /* Arrow chip in bottom-right of every tile. */
+  .c8-insights__arrow {
+    position: absolute;
+    top: clamp(1rem, 1.6vw, 1.4rem);
+    right: clamp(1rem, 1.6vw, 1.4rem);
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #fff;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.35s ease, border-color 0.35s ease;
+  }
+  .c8-insights__arrow svg { width: 14px; height: 14px; fill: currentColor; }
+  .c8-insights__tile:hover .c8-insights__arrow {
+    background: var(--c8-gold, #f5a623);
+    border-color: var(--c8-gold, #f5a623);
+    color: #111;
+    transform: translate(2px, -2px) rotate(-4deg);
+  }
+
+  /* ─── Breakpoints ─── */
+  /* Tablet — collapse to 2 cols, every tile 1×1 or 1×2 so nothing gets
+     orphaned. */
+  @media (max-width: 960px) {
+    .c8-insights__bento {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: 220px;
+    }
+    .c8-insights__tile--featured    { grid-column: span 2; grid-row: span 2; }
+    .c8-insights__tile--tall        { grid-column: span 1; grid-row: span 2; }
+    .c8-insights__tile--small       { grid-column: span 1; grid-row: span 1; }
+    .c8-insights__tile--medium      { grid-column: span 1; grid-row: span 1; }
+    .c8-insights__tile--medium-wide { grid-column: span 2; grid-row: span 1; }
+
+    .c8-insights__head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  /* Mobile — single column, every tile a 220px strip. */
+  @media (max-width: 640px) {
+    .c8-insights__bento {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 220px;
+    }
+    .c8-insights__tile--featured,
+    .c8-insights__tile--tall,
+    .c8-insights__tile--small,
+    .c8-insights__tile--medium,
+    .c8-insights__tile--medium-wide {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+    .c8-insights__tile--featured { grid-row: span 2; }
+
+    .c8-insights__excerpt { display: none; }
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+// Thin "As featured in" press marquee.
+// Sits directly below the merged Hero. Reuses the global .c8-marquee pattern.
+// Media logos were moved out of Hero.astro into this dedicated strip so the
+// hero stays focused and the media proof gets its own breathing room.
+
+const mediaLogos = [
+  { src: '/media-logos/Forbes.webp',          alt: 'Forbes' },
+  { src: '/media-logos/Bloomberg.webp',       alt: 'Bloomberg' },
+  { src: '/media-logos/nasdaq.webp',          alt: 'Nasdaq' },
+  { src: '/media-logos/reuters.png',          alt: 'Reuters' },
+  { src: '/media-logos/cnbc.png',             alt: 'CNBC' },
+  { src: '/media-logos/yahoo-finance.png',    alt: 'Yahoo Finance' },
+  { src: '/media-logos/business-insider.png', alt: 'Business Insider' },
+  { src: '/media-logos/Benzinga.webp',        alt: 'Benzinga' },
+  { src: '/media-logos/TechBullion.webp',     alt: 'TechBullion' },
+  { src: '/media-logos/USAtoday.webp',        alt: 'USA Today' },
+  { src: '/media-logos/Coindesk.webp',        alt: 'CoinDesk' },
+  { src: '/media-logos/cointelegraph.png',    alt: 'Cointelegraph' },
+  { src: '/media-logos/bitcoin-magazine.png', alt: 'Bitcoin Magazine' },
+  { src: '/media-logos/blockworks.png',       alt: 'Blockworks' },
+  { src: '/media-logos/decrypt.png',          alt: 'Decrypt' },
+  { src: '/media-logos/theblock.png',         alt: 'The Block' },
+  { src: '/media-logos/hackernoon.png',       alt: 'HackerNoon' },
+  { src: '/media-logos/cryptoslate.png',      alt: 'CryptoSlate' },
+];
+---
+
+<section class="c8-press">
+  <p class="c8-press__label"><span>As featured in</span></p>
+  <div class="c8-press__logos c8-marquee">
+    <div class="c8-marquee__track">
+      {mediaLogos.map((m) => (
+        <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
+      ))}
+      {mediaLogos.map((m) => (
+        <img src={m.src} alt="" aria-hidden="true" loading="lazy" class="c8-press__img c8-marquee__clone" />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .c8-press {
+    width: 100%;
+    background: #F7F6F3;
+    padding: 1.5rem clamp(1.5rem, 5vw, 5rem) 1.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .c8-press__label {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #888;
+  }
+  .c8-press__label span::before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: #ccc;
+    vertical-align: middle;
+    margin-right: 0.6rem;
+  }
+  .c8-press__label span::after {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: #ccc;
+    vertical-align: middle;
+    margin-left: 0.6rem;
+  }
+  .c8-press__logos {
+    width: 100%;
+    gap: 1rem 2rem;
+    --c8-marquee-dur: 45s;
+  }
+  .c8-press__logos .c8-marquee__track { gap: 1rem 2.25rem; }
+  .c8-press__img {
+    height: 20px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.3);
+    opacity: 0.72;
+    transition: opacity 0.25s ease, filter 0.25s ease;
+  }
+  .c8-press__img:hover { filter: none; opacity: 1; }
+
+  @media (max-width: 768px) {
+    .c8-press { padding: 1.25rem 1rem 1.5rem; }
+    .c8-press__img { height: 17px; }
+    .c8-press__logos .c8-marquee__track { gap: 0 1.6rem; }
+  }
+</style>

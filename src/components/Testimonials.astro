@@ -72,9 +72,21 @@ const arrowPath = "m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-
       <span class="LineByLine_headingOuter__JmusT"><span>{heading}</span></span>
     </h2>
 
-    <!-- Desktop carousel -->
-    <div class="Testimonials_testimonialDesktop__v5dZX">
-      <div class="TestimonialsCarousel_panels__qHnSA">
+    <!-- Desktop: video (left) + carousel (right) -->
+    <div class="Testimonials_testimonialDesktop__v5dZX c8-testi-desktop-grid">
+      <div class="c8-testi-video">
+        <div class="c8-testi-video__frame">
+          <iframe
+            src="https://www.youtube.com/embed/wHMfo38ZbN8?rel=0"
+            title="Corum8 client testimonial"
+            loading="lazy"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="TestimonialsCarousel_panels__qHnSA c8-testi-carousel-col">
         <div class="TestimonialsCarousel_container__YAjHa">
           <div class="TestimonialsCarousel_swiper__AMmtm swiper">
             <div class="swiper-wrapper">
@@ -204,6 +216,120 @@ const arrowPath = "m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-
   }
   .Testimonials_testimonials__AMUEx .DarkThemeSwitch_cover__hn_xc {
     display: none !important;
+  }
+
+  /* ---------------------------------------------------------------
+     Force heading ABOVE everything, video+review grid BELOW.
+
+     KOTA's default layout puts .Testimonials_heading (grid-column: span 6)
+     next to .Testimonials_testimonialDesktop (grid-column: span 6) inside
+     a 12-col `.container` — i.e. heading on the left, carousel on the
+     right. We override both to span the full width so heading sits on
+     top and the video+review 2-column grid sits below it — matching the
+     pattern every other section on the page uses. */
+  .Testimonials_testimonials__AMUEx .container {
+    row-gap: clamp(2rem, 4.5vh, 3rem);
+  }
+  .Testimonials_testimonials__AMUEx .Testimonials_heading__k0Yyf {
+    grid-column: 1 / -1 !important;
+    align-self: start !important;
+    text-align: left;
+    font-size: clamp(2rem, 4vw, 3.25rem) !important;
+    line-height: 1.05 !important;
+    margin: 0 0 0.5rem !important;
+  }
+  .Testimonials_testimonials__AMUEx .Testimonials_testimonialDesktop__v5dZX {
+    grid-column: 1 / -1 !important;
+  }
+
+  /* Clean 2-column split on desktop: YouTube testimonial video on the
+     left, a SINGLE review card on the right. The default Swiper
+     "creative effect" on testimonials peeks the next slide with a small
+     translate + 0.85 opacity — that peek read as a third column next to
+     the video. We hide all non-active slides in this layout so only one
+     review card ever shows. Navigation arrows still cycle through them. */
+  .Testimonials_testimonials__AMUEx .c8-testi-desktop-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.75rem);
+    align-items: center;
+  }
+  .c8-testi-video {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+  .c8-testi-video__frame {
+    position: relative;
+    width: 100%;
+    /* Near-square so the video column's height lines up with the review
+       card on the right (review card min-height ~380–500px). 16:9 was
+       too short; 1:1 was too tall with padding. 5:4 lands in the middle
+       and matches the card height closely on desktop. */
+    aspect-ratio: 5 / 4;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #000;
+    box-shadow:
+      0 30px 60px -24px rgba(0, 0, 0, 0.28),
+      0 0 0 1px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.45s ease, transform 0.45s ease;
+  }
+  /* YouTube iframe itself stays 16:9 inside the 5:4 frame. Letterboxed
+     black bars on top/bottom keep the video readable — we set the
+     iframe to fit by width and center it vertically. */
+  .c8-testi-video__frame iframe {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    transform: translateY(-50%);
+    border: 0;
+  }
+  .c8-testi-video__frame:hover {
+    box-shadow:
+      0 40px 80px -24px rgba(0, 0, 0, 0.32),
+      0 0 60px -18px var(--c8-gold-soft, rgba(245,166,35,0.35)),
+      0 0 0 1px var(--c8-gold-glow, rgba(245,166,35,0.45));
+    transform: translateY(-2px);
+  }
+  .c8-testi-carousel-col { min-width: 0; }
+
+  /* Kill the peek of adjacent slides inside the desktop grid. Only the
+     currently-active swiper-slide renders, so the right column shows a
+     single clean review card that pairs 1:1 with the video on the left. */
+  .c8-testi-desktop-grid .swiper-slide:not(.swiper-slide-active) {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateX(0) !important;
+  }
+  .c8-testi-desktop-grid .swiper-slide.swiper-slide-active {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+
+  /* Review card inside the 2-col layout — shorter than the global default
+     so it pairs visually with a 16:9 video rather than towering over it. */
+  .c8-testi-desktop-grid .TestimonialsPanel_panel__QSk4x,
+  .c8-testi-desktop-grid [class*="TestimonialsPanel_panel__"] {
+    min-height: clamp(380px, 48vh, 500px) !important;
+    padding: 2.5rem 2.75rem !important;
+  }
+  .c8-testi-desktop-grid [class*="TestimonialsPanel_description"] {
+    font-size: clamp(1rem, 1.25vw, 1.2rem) !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Tablet + mobile: single column, video stacks on top, carousel below.
+     Below the desktop breakpoint the site swaps to the mobile swiper, so
+     this intermediate stack handles ~768–1023px cleanly. */
+  @media (max-width: 1023px) {
+    .Testimonials_testimonials__AMUEx .c8-testi-desktop-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
   }
 
   /* Cards — lift the minimum height so quotes breathe, add a premium

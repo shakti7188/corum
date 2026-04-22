@@ -1,0 +1,605 @@
+---
+// Alt "What we do" variant — Quad-style pill tabs on a white bar, with
+// a tight horizontal panel below: video on the left, text card on the
+// right. Typography mirrors the main Services section above so both
+// variants read as one family.
+//
+// Media reuses the main Services assets (no custom animations):
+//   - Marketing:   /assets/video/marketing.gif
+//   - PR:          /media/homepage-3.mp4
+//   - Development: /media/homepage.mp4
+
+// Small inline SVG icon set for the feature rows.
+const ICON = {
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5" stroke-linecap="round"/>',
+  spark:  '<path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M6 18l3-3M15 9l3-3" stroke-linecap="round"/>',
+  mic:    '<rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke-linecap="round"/>',
+  globe:  '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke-linecap="round"/>',
+  brand:  '<path d="M4 7l8-4 8 4v10l-8 4-8-4V7z" stroke-linejoin="round"/><path d="M4 7l8 4 8-4M12 11v10" stroke-linejoin="round"/>',
+  cpu:    '<rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke-linecap="round"/>',
+  shield: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>',
+  rocket: '<path d="M14 4s6 0 6 6c0 0-4 0-6 2l-4 4-4-2 4-4c2-2 4-6 4-6z" stroke-linejoin="round"/><path d="M6 14l4 4M14 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" stroke-linecap="round"/>',
+};
+
+const tabs = [
+  {
+    id: 'marketing',
+    label: 'Marketing & Growth',
+    media: { type: 'gif', src: '/assets/video/marketing.gif' },
+    headline: 'Growth, measured in dollars — <em>not impressions.</em>',
+    desc: 'Paid, SEO and influencer campaigns run by one team against one growth model. Every channel earns its place on the spend sheet, or it comes off it.',
+    features: [
+      { icon: ICON.target, title: 'Performance marketing',  body: 'Meta, Google, X and TikTok tuned daily against CAC and ROAS — not vanity impressions.' },
+      { icon: ICON.search, title: 'SEO, AEO & GEO',         body: 'Content built for Google, Perplexity and ChatGPT at the same time — the engines that actually cite answers.' },
+      { icon: ICON.spark,  title: 'Influencer & KOL',       body: '25,000+ vetted creators across X, YouTube and Telegram — run in-house, never brokered.' },
+    ],
+    cta: { href: '/services/marketing', label: 'Explore marketing' },
+  },
+  {
+    id: 'pr',
+    label: 'PR & Branding',
+    media: { type: 'video', src: '/media/homepage-3.mp4' },
+    headline: 'Coverage that <em>shifts perception.</em>',
+    desc: 'Tier-1 media relationships and brand systems that earn trust before the first click. Forbes, Bloomberg, Reuters — the reporters already know us.',
+    features: [
+      { icon: ICON.mic,   title: 'Tier-1 media desks',    body: 'Forbes, Bloomberg, Reuters, CoinDesk and TechCrunch — exclusives and bylines, not vanity aggregator links.' },
+      { icon: ICON.globe, title: 'Founder positioning',   body: 'Podcast tours, Token2049 keynotes and op-eds in Business Insider — thought leadership you can\u2019t miss.' },
+      { icon: ICON.brand, title: 'Brand systems',         body: 'Identity, voice and asset libraries built to survive a listing week and the first real crisis intact.' },
+    ],
+    cta: { href: '/services/marketing/pr', label: 'Explore PR & branding' },
+  },
+  {
+    id: 'dev',
+    label: 'Full-Stack Development',
+    media: { type: 'video', src: '/media/homepage.mp4' },
+    headline: 'Ship the product, <em>not the promise.</em>',
+    desc: 'Exchanges, wallets, RWA marketplaces and AI platforms — shipped by the senior teams behind $120M+ in live client revenue.',
+    features: [
+      { icon: ICON.cpu,    title: 'CEX, DEX & custody',  body: 'Order books, matching engines and Fireblocks-backed custody — built for mainnet traffic from day one.' },
+      { icon: ICON.shield, title: 'Tokens, RWA & DeFi',  body: 'Solidity and Rust by senior engineers. Halborn, CertiK and Trail of Bits audits before anything ships.' },
+      { icon: ICON.rocket, title: 'AI & agent platforms',body: 'RAG pipelines, fine-tuned models and multi-agent orchestration — shipped for real users, not pitch decks.' },
+    ],
+    cta: { href: '/services/development', label: 'Explore development' },
+  },
+];
+---
+
+<section class="c8-srv-alt">
+  <div class="c8-srv-alt__inner">
+
+    <header class="c8-srv-alt__head" data-reveal-stagger="90">
+      <p class="c8-srv-alt__eyebrow" data-reveal="right">
+        <span class="c8-srv-alt__dot" aria-hidden="true"></span>
+        What we do
+      </p>
+      <h2 class="c8-srv-alt__heading" data-reveal="up">
+        One partner. Three <em>disciplines.</em>
+      </h2>
+      <p class="c8-srv-alt__sub" data-reveal="up">
+        Marketing, PR and development &mdash; specialists in-house, wired into each other from day one.
+      </p>
+    </header>
+
+    {/* ─── White pill tab bar ─── */}
+    <div class="c8-srv-alt__tabs-wrap" data-reveal="scale" data-reveal-delay="150">
+      <div class="c8-srv-alt__tabs" role="tablist" aria-label="Services">
+        <span class="c8-srv-alt__tab-glide" aria-hidden="true"></span>
+        {tabs.map((tab, i) => (
+          <button
+            class={`c8-srv-alt__tab-btn ${i === 0 ? 'is-active' : ''}`}
+            data-tab={tab.id}
+            role="tab"
+            type="button"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls={`c8-srv-panel-${tab.id}`}
+          >
+            <span>{tab.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    {/* ─── Panels (media left · text card right) ─── */}
+    <div class="c8-srv-alt__panels" data-reveal="up" data-reveal-delay="250">
+      {tabs.map((tab, i) => (
+        <div
+          class={`c8-srv-alt__panel ${i === 0 ? 'is-active' : ''}`}
+          id={`c8-srv-panel-${tab.id}`}
+          data-tab={tab.id}
+          role="tabpanel"
+        >
+          {/* ── Media ── */}
+          <div class="c8-srv-alt__media">
+            {tab.media.type === 'video' ? (
+              <video
+                muted
+                loop
+                playsinline
+                preload={i === 0 ? 'metadata' : 'none'}
+                src={tab.media.src}
+                data-c8-no-auto-pause
+              ></video>
+            ) : (
+              <img src={tab.media.src} alt="" loading="lazy" />
+            )}
+          </div>
+
+          {/* ── Text card (white surface) ── */}
+          <div class="c8-srv-alt__text">
+            <h3 class="c8-srv-alt__panel-heading" set:html={tab.headline} />
+            <p class="c8-srv-alt__panel-desc">{tab.desc}</p>
+
+            <ul class="c8-srv-alt__features">
+              {tab.features.map((f, fi) => (
+                <li class="c8-srv-alt__feature" style={`--c8-feat-delay: ${0.2 + fi * 0.1}s`}>
+                  <span class="c8-srv-alt__feature-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" set:html={f.icon} />
+                  </span>
+                  <div class="c8-srv-alt__feature-body">
+                    <h4 class="c8-srv-alt__feature-title">{f.title}</h4>
+                    <p class="c8-srv-alt__feature-desc">{f.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <a class="c8-srv-alt__cta" href={tab.cta.href}>
+              <span>{tab.cta.label}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" aria-hidden="true">
+                <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style is:global>
+  /* ─── Section shell — mirrors main Services treatment ─── */
+  .c8-srv-alt {
+    width: 100%;
+    background: var(--color-bg);
+    color: #0a0a0a;
+    padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 5rem);
+    position: relative;
+    overflow: hidden;
+  }
+  .c8-srv-alt::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(900px circle at 90% 8%,  rgba(245,166,35,0.07) 0%, transparent 55%),
+      radial-gradient(700px circle at 5% 100%, rgba(245,166,35,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .c8-srv-alt__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  /* ─── Head ─── */
+  .c8-srv-alt__head {
+    max-width: 48rem;
+    margin: 0 auto clamp(2rem, 4vh, 3rem);
+    text-align: center;
+  }
+  .c8-srv-alt__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c8-gold, #d48e1a);
+    margin: 0 0 1rem;
+  }
+  .c8-srv-alt__dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--c8-gold, #d48e1a);
+    box-shadow: 0 0 10px rgba(212, 142, 26, 0.5);
+  }
+  .c8-srv-alt__heading {
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: #0a0a0a;
+    margin: 0 0 1rem;
+  }
+  .c8-srv-alt__heading em {
+    font-style: italic;
+    font-family: var(--syne, var(--montreal));
+    font-weight: 400;
+    color: var(--c8-gold, #d48e1a);
+  }
+  .c8-srv-alt__sub {
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    line-height: 1.55;
+    color: #555;
+    margin: 0;
+  }
+
+  /* ─── White pill tab bar ─── */
+  .c8-srv-alt__tabs-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 clamp(2rem, 4vh, 3rem);
+  }
+  .c8-srv-alt__tabs {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow:
+      0 20px 48px -28px rgba(0, 0, 0, 0.2),
+      0 4px 14px -8px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+  .c8-srv-alt__tab-glide {
+    position: absolute;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    border-radius: 999px;
+    background: #0f0f10;
+    box-shadow:
+      0 10px 24px -12px rgba(0, 0, 0, 0.45),
+      0 2px 6px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: left 0.55s cubic-bezier(0.16, 1, 0.3, 1), width 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 0;
+    left: 0.5rem;
+    width: 0;
+    pointer-events: none;
+  }
+  .c8-srv-alt__tab-btn {
+    position: relative;
+    z-index: 1;
+    appearance: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.8rem 1.4rem;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(0.88rem, 1.02vw, 1rem);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    color: #4a4a4a;
+    border-radius: 999px;
+    transition: color 0.35s ease;
+    white-space: nowrap;
+  }
+  .c8-srv-alt__tab-btn:hover { color: #0a0a0a; }
+  .c8-srv-alt__tab-btn.is-active { color: #fff; }
+
+  /* ─── Panels (horizontal: media left · text right) ─── */
+  .c8-srv-alt__panels {
+    position: relative;
+    min-height: clamp(480px, 58vh, 620px);
+  }
+  .c8-srv-alt__panel {
+    display: grid;
+    /* 50/50 — media column can never be wider than the text card. */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.75rem);
+    align-items: stretch;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .c8-srv-alt__panel.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    position: relative;
+  }
+
+  /* ─── Media (left) — reuses Services videos ─── */
+  .c8-srv-alt__media {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #000;
+    box-shadow:
+      0 40px 80px -42px rgba(0, 0, 0, 0.22),
+      0 0 60px -34px var(--c8-gold-soft, rgba(245,166,35,0.22)),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    min-height: 100%;
+  }
+  .c8-srv-alt__media video,
+  .c8-srv-alt__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .c8-srv-alt__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.18) 100%);
+    pointer-events: none;
+  }
+
+  /* ─── Text card (right) — WHITE surface ─── */
+  .c8-srv-alt__text {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 22px;
+    padding: clamp(1.6rem, 2.4vw, 2.4rem);
+    box-shadow:
+      0 40px 80px -42px rgba(0, 0, 0, 0.18),
+      0 4px 14px -8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    min-width: 0;
+  }
+  .c8-srv-alt__panel-heading {
+    margin: 0;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: #0a0a0a;
+  }
+  .c8-srv-alt__panel-heading em {
+    font-style: italic;
+    font-family: var(--syne, var(--montreal));
+    font-weight: 400;
+    color: var(--c8-gold, #d48e1a);
+  }
+  .c8-srv-alt__panel-desc {
+    margin: 0;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(1rem, 1.12vw, 1.1rem);
+    line-height: 1.55;
+    color: #333;
+    max-width: 42rem;
+  }
+
+  /* Feature rows — icon bubble + title + body */
+  .c8-srv-alt__features {
+    list-style: none;
+    margin: 0.25rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .c8-srv-alt__feature {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(0.9rem, 1.3vw, 1.1rem);
+    align-items: flex-start;
+    padding: clamp(0.85rem, 1.2vw, 1rem) clamp(0.9rem, 1.3vw, 1.1rem);
+    background: #fafaf7;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 14px;
+    opacity: 0;
+    transform: translateX(14px);
+    transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  }
+  .c8-srv-alt__panel.is-active .c8-srv-alt__feature {
+    animation: c8-srv-feat-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--c8-feat-delay, 0s);
+  }
+  @keyframes c8-srv-feat-in {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .c8-srv-alt__feature:hover {
+    border-color: rgba(245, 166, 35, 0.4);
+    background: #ffffff;
+    transform: translateX(2px);
+    box-shadow: 0 12px 24px -18px rgba(0, 0, 0, 0.15);
+  }
+  .c8-srv-alt__feature-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(42px, 3.8vw, 50px);
+    height: clamp(42px, 3.8vw, 50px);
+    border-radius: 50%;
+    background: rgba(245, 166, 35, 0.12);
+    color: var(--c8-gold, #d48e1a);
+    transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
+  }
+  .c8-srv-alt__feature-icon svg { width: 55%; height: 55%; }
+  .c8-srv-alt__feature:hover .c8-srv-alt__feature-icon {
+    background: var(--c8-gold, #d48e1a);
+    color: #fff;
+    transform: rotate(-6deg);
+  }
+  .c8-srv-alt__feature-body { min-width: 0; }
+  .c8-srv-alt__feature-title {
+    margin: 0 0 0.25rem;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(1rem, 1.1vw, 1.08rem);
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    color: #0a0a0a;
+    line-height: 1.25;
+  }
+  .c8-srv-alt__feature-desc {
+    margin: 0;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(0.9rem, 0.98vw, 0.98rem);
+    line-height: 1.5;
+    color: #555;
+  }
+
+  /* CTA — matches main Services pill */
+  .c8-srv-alt__cta {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.9rem 1.45rem;
+    background: transparent;
+    color: #111;
+    border: 1.5px solid #111;
+    border-radius: 999px;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: 0.96rem;
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 0.3rem;
+    transition: background 0.35s ease, color 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease;
+  }
+  .c8-srv-alt__cta svg {
+    width: 14px; height: 14px;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .c8-srv-alt__cta:hover {
+    background: var(--c8-gold);
+    border-color: var(--c8-gold);
+    color: #111;
+    transform: translateY(-1px);
+  }
+  .c8-srv-alt__cta:hover svg { transform: translate(2px, -2px); }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 960px) {
+    .c8-srv-alt__panels { min-height: auto; }
+    .c8-srv-alt__panel {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .c8-srv-alt__media {
+      min-height: auto;
+      aspect-ratio: 16 / 10;
+    }
+  }
+  @media (max-width: 640px) {
+    .c8-srv-alt__tabs { padding: 0.35rem; gap: 0.15rem; }
+    .c8-srv-alt__tab-btn { padding: 0.6rem 1rem; font-size: 0.82rem; }
+    .c8-srv-alt__tabs-wrap { overflow-x: auto; justify-content: flex-start; padding: 0 0.25rem; }
+    .c8-srv-alt__feature { padding: 0.85rem 0.95rem; gap: 0.75rem; }
+  }
+
+  /* ─── Reduced motion ─── */
+  @media (prefers-reduced-motion: reduce) {
+    .c8-srv-alt__feature { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+    .c8-srv-alt__media video { display: none; }
+  }
+</style>
+
+<script is:inline>
+  /* ServicesAlt tab controller.
+     - Toggles .is-active on buttons + panels.
+     - Moves the glide pill behind the active tab (position + width).
+     - Re-triggers panel animations by toggling the class with a forced
+       reflow so feature rows replay every time a tab is clicked. */
+  (function () {
+    var wrap   = document.querySelector('.c8-srv-alt__tabs');
+    var glide  = document.querySelector('.c8-srv-alt__tab-glide');
+    var btns   = document.querySelectorAll('.c8-srv-alt__tab-btn');
+    var panels = document.querySelectorAll('.c8-srv-alt__panel');
+    if (!wrap || !glide || !btns.length || !panels.length) return;
+
+    function moveGlide(btn) {
+      if (!btn) return;
+      var w = wrap.getBoundingClientRect();
+      var b = btn.getBoundingClientRect();
+      glide.style.left  = (b.left - w.left) + 'px';
+      glide.style.width = b.width + 'px';
+    }
+
+    function syncVideos() {
+      /* Only the active panel's video plays. The other two stay paused
+         and never burn decode work. preload="none" on non-first panels
+         means the video file isn't even fetched until its tab is picked. */
+      panels.forEach(function (p) {
+        var video = p.querySelector('video');
+        if (!video) return;
+        if (p.classList.contains('is-active')) {
+          if (video.getAttribute('preload') === 'none') {
+            video.setAttribute('preload', 'metadata');
+          }
+          try { video.load(); } catch (e) {}
+          var pr = video.play();
+          if (pr && typeof pr.catch === 'function') pr.catch(function () {});
+        } else {
+          try { video.pause(); } catch (e) {}
+        }
+      });
+    }
+
+    function activate(tabId, btn) {
+      btns.forEach(function (b) {
+        var active = b.dataset.tab === tabId;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      panels.forEach(function (p) {
+        var active = p.dataset.tab === tabId;
+        if (active) {
+          p.classList.remove('is-active');
+          void p.offsetWidth;
+          p.classList.add('is-active');
+        } else {
+          p.classList.remove('is-active');
+        }
+      });
+      moveGlide(btn);
+      syncVideos();
+    }
+
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () { activate(btn.dataset.tab, btn); });
+    });
+
+    /* Pause the whole section's video when the section scrolls off-screen;
+       resume the active panel's video when it scrolls back in. Saves a
+       full video decode whenever the user is elsewhere on the page. */
+    var section = document.querySelector('.c8-srv-alt');
+    if (section && 'IntersectionObserver' in window) {
+      var sio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            syncVideos();
+          } else {
+            panels.forEach(function (p) {
+              var v = p.querySelector('video');
+              if (v) { try { v.pause(); } catch (e) {} }
+            });
+          }
+        });
+      }, { rootMargin: '200px 0px', threshold: 0 });
+      sio.observe(section);
+    }
+
+    requestAnimationFrame(function () {
+      var initial = document.querySelector('.c8-srv-alt__tab-btn.is-active') || btns[0];
+      moveGlide(initial);
+      syncVideos();
+    });
+    window.addEventListener('resize', function () {
+      var active = document.querySelector('.c8-srv-alt__tab-btn.is-active');
+      moveGlide(active);
+    });
+  })();
+</script>

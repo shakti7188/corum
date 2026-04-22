@@ -1,0 +1,142 @@
+---
+// Alt variant of the "Trusted worldwide" section — single-line heading
+// above a full-colour marquee of client logos. Placed ABOVE the main
+// ClientLogos (mesh grid) section so the two treatments can be compared
+// side by side.
+//
+// Differences from the main ClientLogos:
+//   - One-line heading ("Join our 1,100+ clients around the world…")
+//   - No mesh grid — single horizontal marquee
+//   - Logos in full colour (no grayscale/brightness filter)
+//   - Slightly larger logo size (clamp 42–60px instead of 30–42px)
+
+const clients = [
+  { src: '/clients/binance.png',       alt: 'Binance' },
+  { src: '/clients/kucoin.png',        alt: 'KuCoin' },
+  { src: '/clients/okx.png',           alt: 'OKX' },
+  { src: '/clients/metamask.png',      alt: 'MetaMask' },
+  { src: '/clients/tether.png',        alt: 'Tether' },
+  { src: '/clients/tron.png',          alt: 'TRON' },
+  { src: '/clients/etoro.png',         alt: 'eToro' },
+  { src: '/clients/gate-io.png',       alt: 'Gate.io' },
+  { src: '/clients/coinmarketcap.png', alt: 'CoinMarketCap' },
+  { src: '/clients/wazirx.png',        alt: 'WazirX' },
+  { src: '/clients/kava.png',          alt: 'Kava' },
+  { src: '/clients/eos.png',           alt: 'EOS' },
+  { src: '/clients/dream11.png',       alt: 'Dream11' },
+  { src: '/clients/iotex.png',         alt: 'IoTeX' },
+  { src: '/clients/Plasmapay.png',     alt: 'PlasmaPay' },
+  { src: '/clients/salamantex.png',    alt: 'Salamantex' },
+  { src: '/clients/cobox.png',         alt: 'Cobox' },
+  { src: '/clients/metarix.png',       alt: 'Metarix' },
+  { src: '/clients/fanadise.png',      alt: 'Fanadise' },
+  { src: '/clients/ubuntu-tribe.png',  alt: 'Ubuntu Tribe' },
+  { src: '/clients/flappy-bird.png',   alt: 'Flappy Bird' },
+];
+---
+
+<section class="c8-clients-alt">
+
+  <h2 class="c8-clients-alt__title" data-reveal="up">
+    Join <span class="c8-clients-alt__count">1,100+ clients</span> around the world
+  </h2>
+
+  <div class="c8-clients-alt__marquee c8-marquee" aria-label="Clients" data-reveal="fade" data-reveal-delay="180">
+    <div class="c8-marquee__track">
+      {clients.map((c) => (
+        <img src={c.src} alt={c.alt} loading="lazy" class="c8-clients-alt__img" />
+      ))}
+      {clients.map((c) => (
+        <img src={c.src} alt="" aria-hidden="true" loading="lazy" class="c8-clients-alt__img c8-marquee__clone" />
+      ))}
+    </div>
+  </div>
+
+</section>
+
+<style is:global>
+  .c8-clients-alt {
+    width: 100%;
+    background: #ffffff;
+    padding: clamp(2.75rem, 7vh, 4.5rem) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.25rem, 3vh, 2rem);
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* Variant label — helps client identify which design they're looking at */
+  .c8-clients-alt__tag-row { display: flex; justify-content: center; }
+  .c8-clients-alt__variant-tag {
+    font-family: var(--montreal);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--c8-gold);
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(245,166,35,0.35);
+    border-radius: 999px;
+    background: rgba(245,166,35,0.05);
+  }
+
+  .c8-clients-alt__title {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    color: #0a0a0a;
+    max-width: none;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+    white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .c8-clients-alt__title { white-space: normal; }
+  }
+  .c8-clients-alt__count {
+    color: #0a0a0a;
+    font-style: normal;
+    font-family: var(--montreal);
+    font-weight: 400;
+  }
+
+  .c8-clients-alt__marquee {
+    width: 100%;
+    --c8-marquee-dur: 55s;
+    mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+  .c8-clients-alt__marquee .c8-marquee__track {
+    gap: clamp(0.6rem, 1.25vw, 1.1rem);
+    align-items: center;
+    /* Always scroll — override global rule that only animates below 900px */
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: max-content;
+    animation: c8-marquee-scroll var(--c8-marquee-dur, 55s) linear infinite;
+  }
+  .c8-clients-alt__marquee .c8-marquee__track > * { flex: 0 0 auto; }
+  .c8-clients-alt__marquee .c8-marquee__clone { display: inline-flex; }
+  .c8-clients-alt__marquee:hover .c8-marquee__track { animation-play-state: paused; }
+  .c8-clients-alt__img {
+    /* Full colour — no grayscale filter, no opacity dim */
+    height: clamp(42px, 5vw, 60px);
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    opacity: 1;
+    filter: none;
+    transition: transform 0.3s ease;
+  }
+  .c8-clients-alt__img:hover { transform: scale(1.08); }
+
+  @media (max-width: 640px) {
+    .c8-clients-alt__img { height: 38px; }
+    .c8-clients-alt__marquee .c8-marquee__track { gap: 2rem; }
+    .c8-clients-alt__title { font-size: 1.3rem; }
+  }
+</style>

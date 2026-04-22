@@ -342,46 +342,151 @@
         </div>
       </div>
 
-      <!-- ── Industries Dropdown ── -->
+      <!-- ── Industries Mega Menu ── -->
+      <!-- Promoted from simple dropdown to mega menu so Industries, Resources,
+           Marketing and Development all share a single unified menu style.
+           Two categories + a CTA card, using the compact 3-col grid below. -->
       <div class="nav-item" id="navIndustries">
         <a href="/industries" class="nav-link">
           Industries <i data-lucide="chevron-down" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-left:2px;"></i>
         </a>
-        <div class="dropdown-menu">
-          <a href="/industries/web3" class="dropdown-link">Web3 &amp; Crypto</a>
-          <a href="/industries/startups" class="dropdown-link">Startups</a>
-          <a href="/industries/saas" class="dropdown-link">SaaS</a>
-          <a href="/industries/fintech" class="dropdown-link">Fintech</a>
-          <a href="/industries/ai" class="dropdown-link">AI</a>
-          <a href="/industries/enterprise" class="dropdown-link">Enterprise</a>
+        <div class="mega-menu">
+          <div class="mega-menu-inner mega-menu-inner--compact">
+
+            <div class="mega-menu-category">
+              <div class="mega-menu-category-title">By Sector</div>
+              <a href="/industries/web3" class="mega-menu-link">
+                <i data-lucide="coins"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Web3 &amp; Crypto</span>
+                  <span class="mega-menu-link-desc">Token launches, exchanges, DeFi, NFT platforms, and protocol growth</span>
+                </div>
+              </a>
+              <a href="/industries/ai" class="mega-menu-link">
+                <i data-lucide="brain"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">AI</span>
+                  <span class="mega-menu-link-desc">AI products, automation platforms, and ML-driven SaaS</span>
+                </div>
+              </a>
+              <a href="/industries/fintech" class="mega-menu-link">
+                <i data-lucide="banknote"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Fintech</span>
+                  <span class="mega-menu-link-desc">Payments, banking platforms, trading venues, and compliance-ready builds</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="mega-menu-category">
+              <div class="mega-menu-category-title">By Stage</div>
+              <a href="/industries/startups" class="mega-menu-link">
+                <i data-lucide="rocket"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Startups</span>
+                  <span class="mega-menu-link-desc">Seed to Series B — go-to-market, launch execution, growth systems</span>
+                </div>
+              </a>
+              <a href="/industries/saas" class="mega-menu-link">
+                <i data-lucide="cloud"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">SaaS</span>
+                  <span class="mega-menu-link-desc">B2B SaaS platforms scaling revenue through SEO, content, and paid</span>
+                </div>
+              </a>
+              <a href="/industries/enterprise" class="mega-menu-link">
+                <i data-lucide="building-2"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Enterprise</span>
+                  <span class="mega-menu-link-desc">Regulated industries, custom blockchain, and enterprise-grade stacks</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="mega-menu-cta">
+              <div class="mega-menu-cta-label">Proof</div>
+              <div>
+                <h4>See our work</h4>
+                <p>1,100+ projects delivered across Web3, AI and fintech — outcomes with real numbers.</p>
+              </div>
+              <a href="/case-studies" class="c8-btn c8-btn-gold c8-btn-sm">
+                Case Studies <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+              </a>
+            </div>
+
+          </div>
         </div>
       </div>
 
-      <!-- ── Resources Dropdown ── -->
+      <!-- ── Resources Mega Menu ── -->
       <div class="nav-item" id="navResources">
         <a href="/resources" class="nav-link">
           Resources <i data-lucide="chevron-down" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-left:2px;"></i>
         </a>
-        <div class="dropdown-menu">
-          <a href="/case-studies" class="dropdown-link">Case Studies</a>
-          <a href="/gallery" class="dropdown-link">Gallery</a>
-          <a href="/blog" class="dropdown-link">Blog</a>
-          <a href="/insights" class="dropdown-link">Insights</a>
-          <a href="/guides" class="dropdown-link">Guides</a>
+        <div class="mega-menu">
+          <div class="mega-menu-inner mega-menu-inner--compact">
+
+            <div class="mega-menu-category">
+              <div class="mega-menu-category-title">Work Showcase</div>
+              <a href="/case-studies" class="mega-menu-link">
+                <i data-lucide="trophy"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Case Studies</span>
+                  <span class="mega-menu-link-desc">Outcome-led proof across Binance, Cashaa, Fanadise, KuCoin and more</span>
+                </div>
+              </a>
+              <a href="/gallery" class="mega-menu-link">
+                <i data-lucide="image"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Gallery</span>
+                  <span class="mega-menu-link-desc">Visual portfolio — launches, brand systems, and campaign creative</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="mega-menu-category">
+              <div class="mega-menu-category-title">Content &amp; Knowledge</div>
+              <a href="/blog" class="mega-menu-link">
+                <i data-lucide="rss"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Blog</span>
+                  <span class="mega-menu-link-desc">Field notes on Web3, AI and fintech marketing &amp; development</span>
+                </div>
+              </a>
+              <a href="/insights" class="mega-menu-link">
+                <i data-lucide="lightbulb"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Insights</span>
+                  <span class="mega-menu-link-desc">Deep analysis on market trends, launches, and growth mechanics</span>
+                </div>
+              </a>
+              <a href="/guides" class="mega-menu-link">
+                <i data-lucide="book-open"></i>
+                <div class="mega-menu-link-text">
+                  <span class="mega-menu-link-name">Guides</span>
+                  <span class="mega-menu-link-desc">Practical playbooks for founders running launches and raising capital</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="mega-menu-cta">
+              <div class="mega-menu-cta-label">Talk to Us</div>
+              <div>
+                <h4>Field notes from a decade of execution</h4>
+                <p>10+ years shipping product and campaigns. Talk to a strategist who's done the work.</p>
+              </div>
+              <a href="/contact" class="c8-btn c8-btn-gold c8-btn-sm">
+                Talk to a Strategist <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+              </a>
+            </div>
+
+          </div>
         </div>
       </div>
 
-      <!-- ── About Dropdown ── -->
+      <!-- ── About (simple link — no dropdown) ── -->
       <div class="nav-item" id="navAbout">
-        <a href="/about" class="nav-link">
-          About <i data-lucide="chevron-down" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-left:2px;"></i>
-        </a>
-        <div class="dropdown-menu">
-          <a href="/about" class="dropdown-link">Company</a>
-          <a href="/about/team" class="dropdown-link">Team</a>
-          <a href="/about/careers" class="dropdown-link">Careers</a>
-          <a href="/contact" class="dropdown-link">Contact</a>
-        </div>
+        <a href="/about" class="nav-link">About</a>
       </div>
 
     </nav>
@@ -584,6 +689,15 @@
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+  }
+
+  /* Compact variant used by Industries + Resources — two categories
+     + CTA card instead of three. Keeps Marketing / Development /
+     Industries / Resources visually unified under a single mega-menu
+     style, just narrower because there's less to show. */
+  .mega-menu-inner--compact {
+    grid-template-columns: 1fr 1fr 280px;
+    max-width: 1100px;
   }
 
   .mega-menu-category-title {
@@ -807,6 +921,16 @@
       grid-template-columns: 1fr 1fr 280px;
     }
     .mega-menu-category:nth-child(3) { display: none; }
+
+    /* Compact mega menus (Industries, Resources) drop to one category
+       + CTA at narrow widths to avoid a cramped grid. */
+    .mega-menu-inner--compact {
+      grid-template-columns: 1fr 280px;
+    }
+    .mega-menu-inner--compact .mega-menu-category:nth-child(2) {
+      display: none;
+    }
+
     .nav-links { gap: 20px; }
   }
 

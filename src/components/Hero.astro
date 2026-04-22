@@ -1,33 +1,38 @@
 ---
-import HeroNetwork from './HeroNetwork.astro';
-
-const mediaLogos = [
-  { src: '/media-logos/Forbes.webp',          alt: 'Forbes' },
-  { src: '/media-logos/Bloomberg.webp',       alt: 'Bloomberg' },
-  { src: '/media-logos/nasdaq.webp',          alt: 'Nasdaq' },
-  { src: '/media-logos/reuters.png',          alt: 'Reuters' },
-  { src: '/media-logos/cnbc.png',             alt: 'CNBC' },
-  { src: '/media-logos/yahoo-finance.png',    alt: 'Yahoo Finance' },
-  { src: '/media-logos/business-insider.png', alt: 'Business Insider' },
-  { src: '/media-logos/Benzinga.webp',        alt: 'Benzinga' },
-  { src: '/media-logos/TechBullion.webp',     alt: 'TechBullion' },
-  { src: '/media-logos/USAtoday.webp',        alt: 'USA Today' },
-  { src: '/media-logos/Coindesk.webp',        alt: 'CoinDesk' },
-  { src: '/media-logos/cointelegraph.png',    alt: 'Cointelegraph' },
-  { src: '/media-logos/bitcoin-magazine.png', alt: 'Bitcoin Magazine' },
-  { src: '/media-logos/blockworks.png',       alt: 'Blockworks' },
-  { src: '/media-logos/decrypt.png',          alt: 'Decrypt' },
-  { src: '/media-logos/theblock.png',         alt: 'The Block' },
-  { src: '/media-logos/hackernoon.png',       alt: 'HackerNoon' },
-  { src: '/media-logos/cryptoslate.png',      alt: 'CryptoSlate' },
-];
+// Full-bleed hero: small eyebrow-sized lead + huge gold rotator as the
+// visual anchor, stats band pinned to the bottom.
+//
+// Animations (all respect prefers-reduced-motion):
+//   - Typewriter rotator (types → holds → backspaces → next word).
+//   - Count-up on every stat (ease-out cubic, 180ms stagger).
+//   - Cursor-tracking gold glow on the veil (pointer devices only).
+//   - Stagger fade-up on load.
+//   - CTA shimmer sweep every 6s.
+//
+// Typography: everything is straight Montreal. No italics anywhere.
 ---
 
 <section class="c8-hero-section">
-  <HeroNetwork />
+
+  <!-- Layer 1: video background + readability veil -->
+  <div class="c8-hero__bg" aria-hidden="true">
+    <video
+      class="c8-hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="/images/hero.webp">
+      <source src="/media/bg2.mp4" type="video/mp4" />
+    </video>
+    <div class="c8-hero__veil"></div>
+  </div>
+
+  <!-- Layer 2: narrative content -->
   <div class="c8-hero__inner">
 
-    <!-- Trust pill — sits as a preheader directly above the title -->
+    <!-- Full trust pill -->
     <div class="c8-hero__trust">
       <span class="c8-hero__stars" aria-label="4.9 out of 5 stars">
         {Array.from({length: 5}).map(() => (
@@ -37,287 +42,602 @@ const mediaLogos = [
         ))}
       </span>
       <span class="c8-hero__trust-text"><strong>4.9</strong> Trustpilot</span>
-      <span class="c8-hero__trust-sep">/</span>
+      <span class="c8-hero__trust-sep" aria-hidden="true">/</span>
       <span class="c8-hero__trust-text"><strong>50+</strong> Awards</span>
-      <span class="c8-hero__trust-sep">/</span>
+      <span class="c8-hero__trust-sep" aria-hidden="true">/</span>
       <span class="c8-hero__trust-text"><strong>30+</strong> Countries</span>
     </div>
 
-    <!-- Headline: imperative, parallel, asymmetric -->
+    <!-- Headline: small lead + huge typewriter rotator -->
     <h1 class="c8-hero__headline">
-      <span class="c8-hero__line c8-hero__line--1">
-        Build brands<span class="c8-hero__period">.</span>
-      </span>
-      <span class="c8-hero__line c8-hero__line--2">
-        <em>Win</em> markets<span class="c8-hero__period">.</span>
+      <span class="c8-hero__lead">Your growth partner for</span>
+      <span class="c8-hero__dyn">
+        <span class="c8-hero__sr">Web3, AI, and fintech.</span>
+        <span
+          class="c8-hero__rotator"
+          data-words='["Web3 &amp; Crypto","AI &amp; SaaS","Fintech","Tech Startups"]'
+          aria-hidden="true">Web3</span><span class="c8-hero__period" aria-hidden="true">.</span>
       </span>
     </h1>
 
-    <!-- Bottom: paragraph + CTA stacked together on the left, with room to breathe -->
-    <div class="c8-hero__footer">
-      <p class="c8-hero__sub">
-        Marketing, PR &amp; full-stack development for Web3, AI and high-growth companies.
-      </p>
-      <div class="c8-hero__ctas">
-        <a class="c8-hero__cta" href="/contact">
-          <span class="c8-hero__cta-text">Book a Strategy Call</span>
-          <span class="c8-hero__cta-arrow" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17">
-              <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
-            </svg>
-          </span>
-        </a>
-      </div>
+    <!-- Subtitle -->
+    <p class="c8-hero__sub">
+      Marketing, PR and full-stack development &mdash; from one team.
+    </p>
+
+    <!-- Single CTA -->
+    <div class="c8-hero__ctas">
+      <a class="c8-hero__cta" href="/contact">
+        <span class="c8-hero__cta-text">Book a Strategy Call</span>
+        <span class="c8-hero__cta-arrow" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17">
+            <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
+          </svg>
+        </span>
+      </a>
     </div>
 
   </div>
 
-  <!-- Press logos strip -->
-  <div class="c8-hero__press">
-    <p class="c8-hero__press-label"><span>(Featured in)</span></p>
-    <div class="c8-hero__press-logos c8-marquee">
-      <div class="c8-marquee__track">
-        {mediaLogos.map((m) => (
-          <img src={m.src} alt={m.alt} loading="lazy" class="c8-hero__press-img" />
-        ))}
-        {mediaLogos.map((m) => (
-          <img src={m.src} alt="" aria-hidden="true" loading="lazy" class="c8-hero__press-img c8-marquee__clone" />
-        ))}
-      </div>
+  <!-- Layer 3: glass stats band, pinned to bottom -->
+  <aside class="c8-hero__stats" aria-label="Corum8 by the numbers">
+    <div class="c8-hero__stat">
+      <span class="c8-hero__stat-num"
+            data-end="1100"
+            data-suffix="+"
+            data-format="comma">0+</span>
+      <span class="c8-hero__stat-label">Brands scaled</span>
     </div>
-  </div>
+    <div class="c8-hero__stat">
+      <span class="c8-hero__stat-num"
+            data-end="120"
+            data-prefix="$"
+            data-suffix="M+">$0M+</span>
+      <span class="c8-hero__stat-label">Revenue driven</span>
+    </div>
+    <div class="c8-hero__stat">
+      <span class="c8-hero__stat-num"
+            data-end="25000"
+            data-suffix="+"
+            data-format="comma">0+</span>
+      <span class="c8-hero__stat-label">Creators in network</span>
+    </div>
+    <div class="c8-hero__stat">
+      <span class="c8-hero__stat-num"
+            data-end="10"
+            data-suffix="+">0+</span>
+      <span class="c8-hero__stat-label">Years building winners</span>
+    </div>
+  </aside>
+
 </section>
 
 <style is:global>
+  /* ─── Section shell ─── */
   .c8-hero-section {
     position: relative;
     min-height: 100svh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding-top: 4rem;
+    color: #fff;
+    isolation: isolate;
+    --c8-hero-cx: 82%;
+    --c8-hero-cy: 28%;
   }
 
+  /* ─── Layer 1: video bg + veil ─── */
+  .c8-hero__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .c8-hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    background: #0a0a0a;
+  }
+  .c8-hero__veil {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(420px circle at var(--c8-hero-cx) var(--c8-hero-cy),
+        rgba(245,166,35,0.22) 0%,
+        rgba(245,166,35,0.08) 38%,
+        transparent 65%),
+      linear-gradient(180deg,
+        rgba(10,10,10,0.6) 0%,
+        rgba(10,10,10,0.30) 38%,
+        rgba(10,10,10,0.50) 72%,
+        rgba(10,10,10,0.82) 100%);
+  }
+
+  /* ─── Layer 2: content ─── */
   .c8-hero__inner {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto auto auto;
-    column-gap: clamp(1rem, 2vw, 2rem);
-    row-gap: clamp(1rem, 2.5vh, 2rem);
-    align-items: start;
-    align-content: center;
-    padding: clamp(1rem, 3vh, 2.5rem) clamp(1.5rem, 5vw, 5rem) clamp(1.5rem, 4vh, 3rem);
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    flex: 1;
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(1.1rem, 2.4vh, 1.8rem);
+    padding: clamp(5.5rem, 11vh, 7rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 4vh, 3rem);
   }
 
-  /* Row 1 — trust pill, sits centered/left aligned just above the title.
-     Glass surface on light bg: white tint at 65% opacity with a hairline
-     border and gentle lift shadow. Hovered state nudges toward gold. */
+  /* Staggered rise-in on load */
+  .c8-hero__trust,
+  .c8-hero__headline,
+  .c8-hero__sub,
+  .c8-hero__ctas,
+  .c8-hero__stat {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: c8-hero-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .c8-hero__trust    { animation-delay: 0.10s; }
+  .c8-hero__headline { animation-delay: 0.25s; }
+  .c8-hero__sub      { animation-delay: 0.55s; }
+  .c8-hero__ctas     { animation-delay: 0.80s; }
+  .c8-hero__stat:nth-child(1) { animation-delay: 1.05s; }
+  .c8-hero__stat:nth-child(2) { animation-delay: 1.18s; }
+  .c8-hero__stat:nth-child(3) { animation-delay: 1.31s; }
+  .c8-hero__stat:nth-child(4) { animation-delay: 1.44s; }
+
+  @keyframes c8-hero-rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Screen-reader only utility */
+  .c8-hero__sr {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  /* ─── Trust pill (full) ─── */
   .c8-hero__trust {
-    grid-row: 1;
-    grid-column: 1 / -1;
-    align-self: end;
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem 0.85rem;
     padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.65);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.16);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 999px;
     width: fit-content;
-    margin-bottom: -0.5rem;
-    box-shadow: 0 4px 18px -8px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 6px 24px -10px rgba(0,0,0,0.4);
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
   }
   .c8-hero__trust:hover {
-    border-color: var(--c8-gold-glow);
-    box-shadow: 0 8px 22px -10px var(--c8-gold-soft), 0 4px 18px -8px rgba(0, 0, 0, 0.1);
+    border-color: rgba(245,166,35,0.45);
+    background: rgba(255,255,255,0.12);
+    box-shadow: 0 10px 30px -10px rgba(245,166,35,0.25), 0 6px 24px -10px rgba(0,0,0,0.4);
   }
+  .c8-hero__stars { display: inline-flex; align-items: center; gap: 1px; }
   .c8-hero__trust-text {
     font-family: var(--montreal);
     font-size: 0.78rem;
-    color: #555;
+    color: rgba(255,255,255,0.82);
     white-space: nowrap;
   }
-  .c8-hero__trust-text strong { color: #0a0a0a; font-weight: 600; margin-right: 0.2rem; }
-  .c8-hero__trust-sep { color: #cbcbcb; font-size: 0.78rem; user-select: none; }
-  .c8-hero__stars { display: inline-flex; align-items: center; gap: 1px; }
+  .c8-hero__trust-text strong {
+    color: #fff;
+    font-weight: 600;
+    margin-right: 0.2rem;
+  }
+  .c8-hero__trust-sep {
+    color: rgba(255,255,255,0.3);
+    font-size: 0.78rem;
+    user-select: none;
+  }
 
-  /* Row 2 — Headline */
+  /* ─── Headline ─── */
   .c8-hero__headline {
-    grid-row: 2;
-    grid-column: 1 / -1;
-    align-self: start;
-    margin: 0.5rem 0 0;
-    display: flex;
-    flex-direction: column;
-    font-family: var(--montreal);
-    font-size: clamp(3.5rem, 11vw, 11rem);
-    font-weight: 400;
-    line-height: 0.92;
-    letter-spacing: -0.03em;
-    color: #0a0a0a;
-  }
-  .c8-hero__line { display: block; }
-  .c8-hero__line--1 { padding-left: 0; }
-  .c8-hero__line--2 {
-    padding-left: clamp(2rem, 8vw, 6rem);
-    margin-top: 0.1em;
-  }
-  .c8-hero__headline em {
-    font-style: italic;
-    font-family: var(--syne, var(--montreal));
-    font-weight: 400;
-  }
-  .c8-hero__period { color: var(--c8-gold); }
-
-  /* Row 3 — subtitle stacked above a prominent CTA pair, left-aligned */
-  .c8-hero__footer {
-    grid-row: 3;
-    grid-column: 1 / -1;
-    align-self: start;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1.25rem, 2.5vh, 2rem);
-    max-width: 56rem;
-  }
-
-  .c8-hero__sub {
-    font-family: var(--montreal);
-    font-size: clamp(1.15rem, 1.45vw, 1.45rem);
-    line-height: 1.55;
-    font-weight: 400;
-    color: #3a3a3a;
     margin: 0;
-    max-width: 42rem;
-    letter-spacing: -0.005em;
-  }
-  .c8-hero__sub strong { color: #0a0a0a; font-weight: 500; }
-
-  .c8-hero__ctas {
     display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: clamp(0.2rem, 0.6vh, 0.55rem);
+    font-family: var(--montreal);
+    font-weight: 400;
+    color: #fff;
+    max-width: 100%;
   }
 
-  /* Primary CTA — brand-gold pill, filled by default. */
+  /* Small lead — eyebrow-sized, sits above the big rotator */
+  .c8-hero__lead {
+    font-size: clamp(2rem, 4.2vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: rgba(255,255,255,0.88);
+    text-shadow: 0 1px 14px rgba(0,0,0,0.3);
+  }
+
+  /* Huge dynamic line — straight, not italic */
+  .c8-hero__dyn {
+    display: inline-flex;
+    align-items: baseline;
+    font-family: var(--montreal);
+    font-size: clamp(4rem, 13vw, 10rem);
+    font-weight: 500;
+    font-style: normal;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    color: var(--c8-gold);
+    text-shadow: 0 2px 28px rgba(0,0,0,0.45);
+  }
+
+  /* Typewriter rotator — blinking gold cursor trails the typed word */
+  .c8-hero__rotator {
+    position: relative;
+    display: inline-block;
+    min-width: 1ch;
+    white-space: nowrap;
+    font-style: normal;
+  }
+  .c8-hero__rotator::after {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 0.78em;
+    background: var(--c8-gold);
+    margin-left: 10px;
+    vertical-align: -0.04em;
+    animation: c8-hero-blink 1s steps(2, end) infinite;
+    border-radius: 1px;
+  }
+  @keyframes c8-hero-blink {
+    0%, 50%   { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  .c8-hero__period {
+    color: var(--c8-gold);
+    font-style: normal;
+  }
+
+  /* ─── Subtitle ─── */
+  .c8-hero__sub {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 42rem;
+    color: rgba(255,255,255,0.82);
+    letter-spacing: -0.005em;
+    text-shadow: 0 1px 14px rgba(0,0,0,0.3);
+  }
+
+  /* ─── CTA ─── */
+  .c8-hero__ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
   .c8-hero__cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.85rem;
-    padding: 1.2rem 2.1rem;
+    gap: 0.8rem;
+    padding: 1.1rem 1.9rem;
     background: var(--c8-gold);
     color: #111;
     border: 1.5px solid var(--c8-gold);
     border-radius: 999px;
     text-decoration: none;
     font-family: var(--montreal);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     letter-spacing: -0.005em;
     line-height: 1;
-    box-shadow: 0 10px 28px -10px var(--c8-gold-glow);
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 14px 36px -12px rgba(245,166,35,0.55), 0 2px 6px rgba(0,0,0,0.25);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 0.35s ease,
+                color 0.35s ease,
+                box-shadow 0.35s ease,
+                border-color 0.35s ease;
     white-space: nowrap;
+  }
+  .c8-hero__cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255,255,255,0.55) 50%,
+      transparent 100%);
+    animation: c8-hero-shimmer 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .c8-hero__cta-text,
+  .c8-hero__cta-arrow { position: relative; z-index: 1; }
+  @keyframes c8-hero-shimmer {
+    0%   { left: -120%; }
+    22%  { left: 140%; }
+    100% { left: 140%; }
   }
   .c8-hero__cta:hover {
     transform: translateY(-2px);
-    background: #111;
-    border-color: #111;
+    background: #0a0a0a;
+    border-color: #0a0a0a;
     color: var(--c8-gold);
-    box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 18px 40px -12px rgba(0,0,0,0.6);
   }
   .c8-hero__cta-arrow {
     display: inline-flex;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .c8-hero__cta-arrow svg { width: 100%; height: 100%; fill: currentColor; }
   .c8-hero__cta:hover .c8-hero__cta-arrow { transform: translate(3px, -3px); }
 
-  /* Press strip — centered */
-  .c8-hero__press {
+  /* ─── Layer 3: glass stats band ─── */
+  .c8-hero__stats {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     width: 100%;
-    border-top: 1px solid rgba(0,0,0,0.08);
-    padding: 1.5rem clamp(1.5rem, 5vw, 5rem) 2rem;
+    padding: 1.4rem clamp(1.5rem, 5vw, 5rem);
+    background: rgba(10,10,10,0.42);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .c8-hero__stat {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1.1rem;
-    text-align: center;
+    gap: 0.35rem;
+    padding: 0.2rem clamp(0.75rem, 1.5vw, 1.5rem);
+    border-left: 1px solid rgba(255,255,255,0.1);
   }
-  .c8-hero__press-label {
-    margin: 0;
+  .c8-hero__stat:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+  .c8-hero__stat-idx {
     font-family: var(--montreal);
-    font-size: 0.68rem;
-    text-transform: uppercase;
+    font-size: 0.64rem;
+    font-weight: 600;
     letter-spacing: 0.22em;
-    color: #999;
-    text-align: center;
+    text-transform: uppercase;
+    color: rgba(245,166,35,0.8);
   }
-  .c8-hero__press-label span::before {
-    content: '';
-    display: inline-block;
-    width: 1.5rem;
-    height: 1px;
-    background: #ccc;
-    vertical-align: middle;
-    margin-right: 0.6rem;
+  /* Straight Montreal, not italic */
+  .c8-hero__stat-num {
+    font-family: var(--montreal);
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    color: var(--c8-gold);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
   }
-  .c8-hero__press-label span::after {
-    content: '';
-    display: inline-block;
-    width: 1.5rem;
-    height: 1px;
-    background: #ccc;
-    vertical-align: middle;
-    margin-left: 0.6rem;
+  .c8-hero__stat-label {
+    font-family: var(--montreal);
+    font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+    font-weight: 500;
+    color: rgba(255,255,255,0.82);
+    letter-spacing: -0.005em;
+    text-transform: none;
   }
 
-  /* Desktop: centred flex-wrap (handled by .c8-marquee__track). Mobile
-     flips to single-row auto-scroller via the global marquee rules. */
-  .c8-hero__press-logos {
-    width: 100%;
-    gap: 1rem 2rem;
-    --c8-marquee-dur: 45s;
+  /* ─── Reduced-motion: kill the show, keep legibility ─── */
+  @media (prefers-reduced-motion: reduce) {
+    .c8-hero__trust,
+    .c8-hero__headline,
+    .c8-hero__sub,
+    .c8-hero__ctas,
+    .c8-hero__stat {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    .c8-hero__rotator::after,
+    .c8-hero__cta::before {
+      animation: none !important;
+      opacity: 0;
+    }
   }
-  .c8-hero__press-logos .c8-marquee__track { gap: 1rem 2rem; }
 
-  .c8-hero__press-img {
-    height: 19px;
-    width: auto;
-    max-width: 110px;
-    object-fit: contain;
-    filter: grayscale(1) brightness(0.25);
-    opacity: 0.75;
-    transition: opacity 0.25s ease, filter 0.25s ease;
-  }
-  .c8-hero__press-img:hover { filter: none; opacity: 1; }
-
+  /* ─── Responsive ─── */
   @media (max-width: 900px) {
     .c8-hero__inner {
-      grid-template-columns: repeat(6, 1fr);
-      row-gap: 1.75rem;
+      padding: clamp(5.5rem, 10vh, 7rem) 1.5rem clamp(2rem, 4vh, 2.5rem);
+      gap: 1.25rem;
     }
-    .c8-hero__headline { font-size: clamp(2.6rem, 11vw, 4.5rem); }
-    .c8-hero__line--2 { padding-left: clamp(1.5rem, 8vw, 4rem); }
-    .c8-hero__footer {
-      grid-column: 1 / -1;
-      gap: 1.5rem;
+    .c8-hero__lead { font-size: clamp(1.1rem, 3.2vw, 1.6rem); }
+    .c8-hero__dyn  { font-size: clamp(3rem, 14vw, 5.6rem); }
+    .c8-hero__sub  { font-size: 1.02rem; }
+    .c8-hero__cta  { padding: 1rem 1.65rem; font-size: 1rem; }
+
+    /* Stats fold to 2×2 */
+    .c8-hero__stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem 0;
+      padding: 1.1rem clamp(1.25rem, 5vw, 2rem);
     }
-    .c8-hero__cta { padding: 1rem 1.65rem; font-size: 1rem; }
-    .c8-hero__ctas { gap: 1rem; }
-    .c8-hero__press {
-      gap: 0.9rem;
+    .c8-hero__stat {
+      padding: 0.2rem 0.85rem;
+      border-left: 1px solid rgba(255,255,255,0.08);
     }
-    .c8-hero__press-img { height: 17px; }
-    .c8-hero__press-logos .c8-marquee__track { gap: 0 1.6rem; }
+    .c8-hero__stat:nth-child(odd) {
+      border-left: none;
+      padding-left: 0;
+    }
+  }
+  @media (max-width: 480px) {
+    .c8-hero__lead { font-size: 1rem; }
+    .c8-hero__dyn  { font-size: clamp(2.4rem, 15vw, 3.6rem); }
+    .c8-hero__trust-text { font-size: 0.72rem; }
+    .c8-hero__stat-num { font-size: 1.4rem; }
+    .c8-hero__stat-label { font-size: 0.8rem; }
   }
 </style>
+
+<script is:inline>
+  /* Hero bootstrap — runs only when Hero.astro is on the page.
+       1. Flip navbar to its on-dark variant.
+       2. Pause the bg video if prefers-reduced-motion.
+       3. Typewriter rotator (types → holds → deletes → next word).
+       4. Count-up every stat.
+       5. Cursor-following gold glow (pointer devices only). */
+  (function () {
+    var navbar = document.getElementById('navbar');
+    if (navbar) navbar.classList.add('navbar--on-dark');
+
+    var section = document.querySelector('.c8-hero-section');
+    var video   = document.querySelector('.c8-hero__video');
+    var mq      = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function applyMotionPref() {
+      if (mq.matches && video) {
+        try { video.pause(); } catch (e) {}
+        video.removeAttribute('autoplay');
+      }
+    }
+    applyMotionPref();
+    if (mq.addEventListener)  mq.addEventListener('change', applyMotionPref);
+    else if (mq.addListener)  mq.addListener(applyMotionPref);
+
+    /* ── Typewriter rotator ── */
+    var rotator = document.querySelector('.c8-hero__rotator');
+    if (rotator) {
+      var words = [];
+      try { words = JSON.parse(rotator.getAttribute('data-words') || '[]'); }
+      catch (e) { words = []; }
+
+      if (words.length) {
+        if (mq.matches) {
+          // Static fallback: show all words slash-separated
+          rotator.textContent = words.join(' / ');
+        } else {
+          var idx = 0;
+          var charIdx = 0;
+          var deleting = false;
+          var timer = null;
+          var typeSpeed = 85;
+          var deleteSpeed = 45;
+          var holdAfterType = 1800;
+          var holdAfterDelete = 320;
+
+          function tick() {
+            var word = words[idx];
+            if (!deleting) {
+              charIdx++;
+              rotator.textContent = word.slice(0, charIdx);
+              if (charIdx === word.length) {
+                deleting = true;
+                timer = setTimeout(tick, holdAfterType);
+                return;
+              }
+              timer = setTimeout(tick, typeSpeed + Math.random() * 40);
+            } else {
+              charIdx--;
+              rotator.textContent = word.slice(0, charIdx);
+              if (charIdx === 0) {
+                deleting = false;
+                idx = (idx + 1) % words.length;
+                timer = setTimeout(tick, holdAfterDelete);
+                return;
+              }
+              timer = setTimeout(tick, deleteSpeed + Math.random() * 20);
+            }
+          }
+
+          // Seed: clear placeholder and kick off after fade-in settles
+          rotator.textContent = '';
+          timer = setTimeout(tick, 900);
+
+          // Pause when tab is hidden so cursor blink stays aligned with state
+          document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+              if (timer) { clearTimeout(timer); timer = null; }
+            } else if (!timer) {
+              timer = setTimeout(tick, 300);
+            }
+          });
+        }
+      }
+    }
+
+    /* ── Count-up stats ── */
+    var stats = Array.prototype.slice.call(document.querySelectorAll('.c8-hero__stat-num'));
+    function formatStat(value, el) {
+      var prefix = el.dataset.prefix || '';
+      var suffix = el.dataset.suffix || '';
+      var format = el.dataset.format || '';
+      var rounded = Math.round(value);
+      var display = format === 'comma' ? rounded.toLocaleString('en-US') : String(rounded);
+      return prefix + display + suffix;
+    }
+    function animateStat(el, delay) {
+      var end = parseFloat(el.dataset.end);
+      if (isNaN(end)) return;
+      if (mq.matches) {
+        el.textContent = formatStat(end, el);
+        return;
+      }
+      var duration = 1700 + Math.random() * 300;
+      var startTime = 0;
+      function tick(now) {
+        if (!startTime) startTime = now;
+        var t = Math.min(1, (now - startTime) / duration);
+        var eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = formatStat(eased * end, el);
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      setTimeout(function () { requestAnimationFrame(tick); }, delay);
+    }
+    stats.forEach(function (el, i) {
+      animateStat(el, 1150 + i * 180);
+    });
+
+    /* ── Cursor-following gold glow (pointer devices only) ── */
+    if (section && window.matchMedia('(pointer: fine)').matches && !mq.matches) {
+      var targetX = 82, targetY = 28;
+      var currentX = 82, currentY = 28;
+      var rafId = null;
+
+      function render() {
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+        section.style.setProperty('--c8-hero-cx', currentX.toFixed(2) + '%');
+        section.style.setProperty('--c8-hero-cy', currentY.toFixed(2) + '%');
+        if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+          rafId = requestAnimationFrame(render);
+        } else {
+          rafId = null;
+        }
+      }
+
+      section.addEventListener('mousemove', function (e) {
+        var rect = section.getBoundingClientRect();
+        targetX = ((e.clientX - rect.left) / rect.width) * 100;
+        targetY = ((e.clientY - rect.top)  / rect.height) * 100;
+        if (!rafId) rafId = requestAnimationFrame(render);
+      });
+
+      section.addEventListener('mouseleave', function () {
+        targetX = 82; targetY = 28;
+        if (!rafId) rafId = requestAnimationFrame(render);
+      });
+    }
+  })();
+</script>

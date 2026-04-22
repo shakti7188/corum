@@ -1,192 +1,113 @@
 ---
-// Service-panel reels. Marketing now uses a custom animated GIF; the two
-// KOTA mp4s rotate one slot over so PR inherits the former development
-// clip and Full-Stack inherits the former marketing clip.
-const cardMedia = {
-  marketing:   { type: 'gif', src: '/assets/video/marketing.gif' },
-  pr:          { type: 'video', src: '/media/homepage-3.mp4' },
-  development: { type: 'video', src: '/media/homepage.mp4' },
-};
+// Services — unpinned static grid. Previously GSAP-pinned each card with
+// 50vh scroll-distance spacers (~150vh total scroll for a 60vh visual).
+// Now three equal-footprint cards in a grid so the section reads in one
+// viewport and the rest of the page gets closer to the fold.
+const cards = [
+  {
+    title: 'Marketing & Growth',
+    media: { type: 'gif', src: '/assets/video/marketing.gif' },
+    tags: [
+      { label: 'Performance marketing', href: '/services/marketing/performance-marketing' },
+      { label: 'SEO, AEO & GEO',        href: '/services/marketing/seo-aeo-geo' },
+      { label: 'Web3 growth',           href: '/services/marketing/web3-growth' },
+      { label: 'B2B lead gen',          href: '/services/marketing/b2b-marketing' },
+      { label: 'Social media',          href: '/services/marketing/social-media' },
+    ],
+    desc: 'Full-funnel paid media, SEO and onchain ads that compound month over month — built for Web3, AI and fintech brands that need scale, not vanity metrics.',
+    ctaHref: 'service/web-design-development',
+    goldTint: false,
+  },
+  {
+    title: 'PR & Branding',
+    media: { type: 'video', src: '/media/homepage-3.mp4' },
+    tags: [
+      { label: 'Crypto PR',          href: '/services/marketing/crypto-pr' },
+      { label: 'Influencer & KOL',   href: '/services/marketing/influencer-marketing' },
+      { label: 'Community',          href: '/services/marketing/community-building' },
+      { label: 'Branding & design',  href: '/services/marketing/branding-design' },
+    ],
+    desc: 'Global press across 10,000+ publications, 25,000+ vetted influencers and end-to-end community building — the signal engine behind every tier-1 Web3 launch.',
+    ctaHref: 'service/branding',
+    goldTint: false,
+  },
+  {
+    title: 'Full-Stack Development',
+    media: { type: 'video', src: '/media/homepage.mp4' },
+    tags: [
+      { label: 'CEX & DEX',         href: '/services/development/exchange-development' },
+      { label: 'RWA platforms',     href: '/services/development/rwa-marketplace' },
+      { label: 'AI & automation',   href: '/services/development/ai-solutions' },
+      { label: 'Wallet infra',      href: '/services/development/wallet-infrastructure' },
+      { label: 'DeFi & staking',    href: '/services/development/defi-staking' },
+    ],
+    desc: 'Production-grade exchanges, wallets, RWA marketplaces, DeFi protocols and AI agents — engineered for security, speed and institutional compliance.',
+    ctaHref: 'service/digital-marketing',
+    goldTint: true,
+  },
+];
 ---
 
-<div class="Services_services__YnZAs gsap-services-section">
-          <div class="container">
-            <header class="c8-services-title">
-              <p class="c8-services-title__eyebrow">
-                <span class="c8-services-title__dot" aria-hidden="true"></span>
-                What we do
-              </p>
-              <h2 class="c8-services-title__heading">
-                Build, market and <em>scale.</em>
-              </h2>
-              <p class="c8-services-title__sub">
-                Three disciplines, one team — engineered for Web3, AI and fintech brands that need outcomes, not activity.
-              </p>
-            </header>
+<section class="c8-services">
+  <div class="c8-services__inner">
+    <header class="c8-services__head" data-reveal-stagger="90">
+      <p class="c8-services__eyebrow" data-reveal="left">
+        <span class="c8-services__dot" aria-hidden="true"></span>
+        What we do
+      </p>
+      <h2 class="c8-services__heading" data-reveal="up">
+        Build, market and <em>scale.</em>
+      </h2>
+      <p class="c8-services__sub" data-reveal="up">
+        Three disciplines, one team — engineered for Web3, AI and fintech brands that need outcomes, not activity.
+      </p>
+    </header>
+
+    <div class="c8-services__grid" data-reveal-stagger="140">
+      {cards.map((card, idx) => (
+        <article class={`c8-services__card${card.goldTint ? ' c8-services__card--gold' : ''}`} data-reveal={idx === 1 ? 'up' : (idx === 0 ? 'left' : 'right')}>
+          <div class="c8-services__media">
+            {card.media.type === 'video' ? (
+              <video autoplay muted loop playsinline preload="metadata" src={card.media.src}></video>
+            ) : (
+              <img src={card.media.src} alt="" loading="lazy" />
+            )}
           </div>
-          <div class="ServicesPanels_panels__NpKkK gsap-services-container c8-services-panels">
-            <div class="container">
-              <div class="AnimatedPanel_panel__eAXfR gsap-service-card">
-                <div>
-                  <div class="ServicesPanel_panel__YF4OS servicePanel">
-                    <div class="ServicesPanel_panelText__iyjwZ">
-                      <h3 class="ServicesPanel_panelHeading__5Sy4s">
-                        Marketing &amp; Growth
-                      </h3>
-                      <div class="ServicesPanel_tags__6NQOl">
-                        <a class="ServicesPanel_tag__JYwRk" href="/services/marketing/performance-marketing">Performance marketing</a><a class="ServicesPanel_tag__JYwRk" href="/services/marketing/seo-aeo-geo">SEO, AEO &amp; GEO</a><a class="ServicesPanel_tag__JYwRk" href="/services/marketing/web3-growth">Web3 growth</a><a class="ServicesPanel_tag__JYwRk" href="/services/marketing/b2b-marketing">B2B lead gen</a><a class="ServicesPanel_tag__JYwRk" href="/services/marketing/social-media">Social media</a>
-                      </div>
-                      <p class="ServicesPanel_panelMainText__4F0TZ">
-                        Full-funnel paid media, SEO and onchain ads that compound
-                        month over month — built for Web3, AI and fintech brands
-                        that need scale, not vanity metrics.
-                      </p>
-                      <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                        <div class="Button_button__JJiqJ" data-direction="forwards">
-                          <a class="Button_inner__fnyH6" href="service/web-design-development"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Find out more</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ServiceMedia_mediaContainer__WGgZa">
-                      <span class="AutoplayVideo_video__zckWy AutoplayVideo_fill__ZPgCR">
-                        <img src={cardMedia.marketing.src} alt="" loading="lazy" />
-                      </span>
-                    </div>
-                    <div class="ServicesPanel_panelBackground__O9mDV"></div>
-                  </div>
-                </div>
-                <div class="AnimatedPanel_spacer__w4GTD"></div>
-              </div>
-              <div class="AnimatedPanel_panel__eAXfR gsap-service-card">
-                <div>
-                  <div class="ServicesPanel_panel__YF4OS servicePanel">
-                    <div class="ServicesPanel_panelText__iyjwZ">
-                      <h3 class="ServicesPanel_panelHeading__5Sy4s">
-                        PR &amp; Branding
-                      </h3>
-                      <div class="ServicesPanel_tags__6NQOl">
-                        <a class="ServicesPanel_tag__JYwRk" href="/services/marketing/crypto-pr">Crypto PR</a><a class="ServicesPanel_tag__JYwRk" href="/services/marketing/influencer-marketing">Influencer &amp; KOL</a><a class="ServicesPanel_tag__JYwRk" href="/services/marketing/community-building">Community</a><a class="ServicesPanel_tag__JYwRk" href="/services/marketing/branding-design">Branding &amp; design</a>
-                      </div>
-                      <p class="ServicesPanel_panelMainText__4F0TZ">
-                        Global press across 10,000+ publications, 25,000+ vetted
-                        influencers and end-to-end community building — the
-                        signal engine behind every tier-1 Web3 launch.
-                      </p>
-                      <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                        <div class="Button_button__JJiqJ" data-direction="forwards">
-                          <a class="Button_inner__fnyH6" href="service/branding"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Find out more</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ServiceMedia_mediaContainer__WGgZa">
-                      <span class="AutoplayVideo_video__zckWy AutoplayVideo_fill__ZPgCR">
-                        <video autoplay muted loop playsinline preload="metadata" src={cardMedia.pr.src}></video>
-                      </span>
-                    </div>
-                    <div class="ServicesPanel_panelBackground__O9mDV"></div>
-                  </div>
-                </div>
-                <div class="AnimatedPanel_spacer__w4GTD"></div>
-              </div>
-              <div class="AnimatedPanel_panel__eAXfR gsap-service-card c8-service-card-last">
-                <div>
-                  <div class="ServicesPanel_panel__YF4OS servicePanel">
-                    <div class="ServicesPanel_panelText__iyjwZ">
-                      <h3 class="ServicesPanel_panelHeading__5Sy4s">
-                        Full-Stack Development
-                      </h3>
-                      <div class="ServicesPanel_tags__6NQOl">
-                        <a class="ServicesPanel_tag__JYwRk" href="/services/development/exchange-development">CEX &amp; DEX</a><a class="ServicesPanel_tag__JYwRk" href="/services/development/rwa-marketplace">RWA platforms</a><a class="ServicesPanel_tag__JYwRk" href="/services/development/ai-solutions">AI &amp; automation</a><a class="ServicesPanel_tag__JYwRk" href="/services/development/wallet-infrastructure">Wallet infra</a><a class="ServicesPanel_tag__JYwRk" href="/services/development/defi-staking">DeFi &amp; staking</a>
-                      </div>
-                      <p class="ServicesPanel_panelMainText__4F0TZ">
-                        Production-grade exchanges, wallets, RWA marketplaces,
-                        DeFi protocols and AI agents — engineered for security,
-                        speed and institutional compliance.
-                      </p>
-                      <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                        <div class="Button_button__JJiqJ" data-direction="forwards">
-                          <a class="Button_inner__fnyH6" href="service/digital-marketing"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Find out more</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ServiceMedia_mediaContainer__WGgZa">
-                      <span class="AutoplayVideo_video__zckWy AutoplayVideo_fill__ZPgCR">
-                        <video autoplay muted loop playsinline preload="metadata" src={cardMedia.development.src}></video>
-                      </span>
-                    </div>
-                    <div class="ServicesPanel_panelBackground__O9mDV"></div>
-                  </div>
-                </div>
-                <div class="AnimatedPanel_spacer__w4GTD"></div>
-              </div>
+          <div class="c8-services__body">
+            <h3 class="c8-services__card-title">{card.title}</h3>
+            <div class="c8-services__tags">
+              {card.tags.map((t) => (
+                <a class="c8-services__tag" href={t.href}>{t.label}</a>
+              ))}
             </div>
+            <p class="c8-services__desc">{card.desc}</p>
+            <a class="c8-services__cta" href={card.ctaHref}>
+              <span>Find out more</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" aria-hidden="true">
+                <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
+              </svg>
+            </a>
           </div>
-        </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
 
 <style is:global>
-  /* Spacer inside each panel — defines how long a card stays pinned
-     before the next one slides up. 50vh matches KOTA's pacing roughly
-     (they use 40vh; we add 10 to compensate for taller card content). */
-  .c8-services-panels .AnimatedPanel_spacer__w4GTD {
-    height: 50vh !important;
-    display: block !important;
+  .c8-services {
+    padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 5rem);
+    background: var(--color-bg);
+    color: #0a0a0a;
   }
+  .c8-services__inner { max-width: 1440px; margin: 0 auto; }
 
-  /* Service panel cards — reference-design polish. Swap the bare white
-     background for a softly shadowed surface with a gold-glow hover. The
-     panel background is an absolutely-positioned element that sits behind
-     the text + media, so we style it rather than the panel itself. */
-  .c8-services-panels .ServicesPanel_panelBackground__O9mDV {
-    background: linear-gradient(180deg, #ffffff 0%, #fafaf7 100%) !important;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow:
-      0 30px 60px -24px rgba(0, 0, 0, 0.12),
-      0 0 40px -20px var(--c8-gold-soft),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    transition: box-shadow 0.5s ease, border-color 0.5s ease;
-  }
-  .c8-services-panels .gsap-service-card:hover .ServicesPanel_panelBackground__O9mDV {
-    border-color: var(--c8-gold-glow);
-    box-shadow:
-      0 40px 80px -24px rgba(0, 0, 0, 0.18),
-      0 0 60px -10px var(--c8-gold-soft),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
-
-  /* Gold hover on service tag chips so they match the brand accent. */
-  .c8-services-panels .ServicesPanel_tag__JYwRk {
-    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-  }
-  .c8-services-panels .ServicesPanel_tag__JYwRk:hover {
-    border-color: var(--c8-gold) !important;
-    background-color: var(--c8-gold) !important;
-    color: #111 !important;
-  }
-
-  /* Marketing card uses an <img> (animated GIF) instead of a <video> — the
-     KOTA AutoplayVideo wrapper only styles `video` natively, so mirror the
-     fill behaviour for any img placed inside it. */
-  .c8-services-panels .AutoplayVideo_video__zckWy img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* Custom section title — replaces KOTA's split LargeHeading markup.
-     Flex row: text left, arrow pushed right via flex space-between. */
-  .c8-services-title {
-    display: block !important;
+  /* Title block (preserved from the previous Services design) */
+  .c8-services__head {
     max-width: 48rem;
-    margin: 0 0 clamp(2rem, 4.5vh, 3rem) !important;
-    padding: 0 !important;
-    opacity: 1 !important;
-    transform: none !important;
+    margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
   }
-  .c8-services-title__eyebrow {
+  .c8-services__eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
@@ -196,83 +117,171 @@ const cardMedia = {
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--c8-gold, #d48e1a);
-    margin: 0 0 1rem !important;
+    margin: 0 0 1rem;
   }
-  .c8-services-title__dot {
+  .c8-services__dot {
     width: 6px; height: 6px; border-radius: 50%;
     background: var(--c8-gold, #d48e1a);
     box-shadow: 0 0 10px rgba(212, 142, 26, 0.5);
   }
-  .c8-services-title__heading {
+  .c8-services__heading {
     font-family: var(--montreal, system-ui, sans-serif);
     font-size: clamp(2.25rem, 5vw, 3.75rem);
     font-weight: 400;
     line-height: 1.02;
     letter-spacing: -0.025em;
     color: #0a0a0a;
-    margin: 0 0 1rem !important;
+    margin: 0 0 1rem;
   }
-  .c8-services-title__heading em {
+  .c8-services__heading em {
     font-style: italic;
     font-family: var(--syne, var(--montreal));
     font-weight: 400;
-    color: #0a0a0a;
   }
-  .c8-services-title__sub {
+  .c8-services__sub {
     font-family: var(--montreal, system-ui, sans-serif);
     font-size: clamp(1rem, 1.2vw, 1.15rem);
     line-height: 1.55;
     color: #555;
-    margin: 0 !important;
+    margin: 0;
   }
 
-  /* Vertically centre the text + media halves inside each service card. */
-  .c8-services-panels .ServicesPanel_panel__YF4OS {
-    align-items: center !important;
+  /* Card grid — 3 desktop / 2 tablet / 1 mobile. */
+  .c8-services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 2vw, 1.75rem);
+  }
+  @media (max-width: 1100px) { .c8-services__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .c8-services__grid { grid-template-columns: 1fr; } }
+
+  /* Card surface — same premium-quiet treatment as the old pinned cards. */
+  .c8-services__card {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #ffffff 0%, #fafaf7 100%);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+      0 20px 44px -24px rgba(0, 0, 0, 0.12),
+      0 0 30px -20px var(--c8-gold-soft),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+  .c8-services__card:hover {
+    transform: translateY(-5px);
+    border-color: var(--c8-gold-glow);
+    box-shadow:
+      0 32px 64px -24px rgba(0, 0, 0, 0.18),
+      0 0 50px -10px var(--c8-gold-soft),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
-  /* Tighter top padding on the whole services section. */
-  .gsap-services-section {
-    padding-top: clamp(2rem, 5vh, 4rem) !important;
-    padding-bottom: clamp(5rem, 10vh, 8rem) !important;
-  }
-
-  /* Kill the spacer that sits AFTER the last card — Showcase should come
-     up as soon as the final card releases its pin, no dead air.
-     NOTE: can't use :last-child here because ScrollTrigger wraps every
-     pinned panel in its own pin-spacer div, so every panel ends up as
-     :last-child of its own wrapper. We tag the real last panel with
-     .c8-service-card-last explicitly. */
-  .c8-services-panels .c8-service-card-last .AnimatedPanel_spacer__w4GTD {
-    height: 0 !important;
-    display: none !important;
-  }
-  /* Gold tint overlay on Full-Stack card video — the source clip has a
-     purple/lavender grade; mix-blend-mode:color shifts hue toward brand gold
-     without affecting luminosity. Keep opacity low so it reads as a warm
-     tone rather than a colour wash. */
-  .c8-services-panels .c8-service-card-last .ServiceMedia_mediaContainer__WGgZa {
+  /* Media tile on top. 16:10 keeps it shorter than 16:9 so cards stay tight. */
+  .c8-services__media {
     position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #000;
   }
-  .c8-services-panels .c8-service-card-last .ServiceMedia_mediaContainer__WGgZa::after {
+  .c8-services__media video,
+  .c8-services__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Gold tint on the Full-Stack card to warm the purple-graded source clip. */
+  .c8-services__card--gold .c8-services__media::after {
     content: '';
     position: absolute;
     inset: 0;
     background: rgba(212, 142, 26, 0.28);
     mix-blend-mode: color;
     pointer-events: none;
-    z-index: 1;
   }
 
-  /* Gap between last card and Showcase — reduced 70% further (1rem → 0.3rem). */
-  .c8-services-panels {
-    margin: 0.3rem 0 0 !important;
+  /* Body stack */
+  .c8-services__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: clamp(1.25rem, 2vw, 1.75rem);
+    flex: 1;
   }
-  /* KOTA's grid container adds row-gap between panels on top of our spacer,
-     which inflates the scroll distance between pin points. Collapse it so
-     the spacer is the single source of truth for between-card scroll. */
-  .c8-services-panels .container {
-    row-gap: 0 !important;
+  .c8-services__card-title {
+    margin: 0;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: clamp(1.35rem, 1.7vw, 1.55rem);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: #0a0a0a;
+    line-height: 1.2;
+  }
+
+  .c8-services__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.5rem;
+  }
+  .c8-services__tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 999px;
+    color: #3a3a3a;
+    text-decoration: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  }
+  .c8-services__tag:hover {
+    border-color: var(--c8-gold);
+    background-color: var(--c8-gold);
+    color: #111;
+  }
+
+  .c8-services__desc {
+    margin: 0;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #555;
+    flex: 1;
+  }
+
+  /* CTA — pill, mirrors the site-wide button treatment. */
+  .c8-services__cta {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.75rem 1.2rem;
+    background: transparent;
+    color: #111;
+    border: 1.5px solid #111;
+    border-radius: 999px;
+    font-family: var(--montreal, system-ui, sans-serif);
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 0.25rem;
+    transition: background 0.35s ease, color 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease;
+  }
+  .c8-services__cta svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .c8-services__cta:hover {
+    background: var(--c8-gold);
+    border-color: var(--c8-gold);
+    color: #111;
+    transform: translateY(-1px);
+  }
+  .c8-services__cta:hover svg {
+    transform: translate(2px, -2px);
   }
 </style>
-
