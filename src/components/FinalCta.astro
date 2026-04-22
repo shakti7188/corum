@@ -31,13 +31,13 @@ const blob = resolveMedia("video.ctaBlob");
   <div class="FinalCta_overlay"></div>
 
   <!-- Content -->
-  <div class="FinalCta_content">
-    <h2 class="FinalCta_title">
+  <div class="FinalCta_content" data-reveal-stagger="140">
+    <h2 class="FinalCta_title" data-reveal="up">
       <span class="FinalCta_light">{light}</span><br/>
       <span class="FinalCta_bold">{bold}</span>
     </h2>
-    <p class="FinalCta_subtitle">{subtitle}</p>
-    <a href={buttonHref} class="FinalCta_button">
+    <p class="FinalCta_subtitle" data-reveal="up">{subtitle}</p>
+    <a href={buttonHref} class="FinalCta_button" data-reveal="scale">
       {buttonLabel}
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 15" class="FinalCta_arrow"><path d="M17 7.5S17 7.5 17 7.5c0-.2-.1-.5-.2-.6L9.2.2C8.9-.1 8.4-.1 8.1.2c-.3.3-.3.8 0 1.1l6.3 5.5H.8C.3 6.8 0 7.1 0 7.6c0 .4.3.8.8.8h13.7l-6.3 5.5c-.3.3-.3.8 0 1.1.2.2.4.3.6.3s.4-.1.5-.2l7.6-6.7c.2-.2.2-.4.2-.6 0 0 0 0 0 0Z" fill="currentColor"/></svg>
     </a>

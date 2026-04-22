@@ -1,26 +1,27 @@
 ---
 import "../styles/global.css";
-import Navigation from '../components/Navigation.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Hero from '../components/Hero.astro';
-import PressLogos from '../components/PressLogos.astro';
-import ClientLogos from '../components/ClientLogos.astro';
-import ClientLogosAlt from '../components/ClientLogosAlt.astro';
-import Services from '../components/Services.astro';
-import ServicesAlt from '../components/ServicesAlt.astro';
-import Ethos from '../components/Ethos.astro';
-import Work from '../components/Work.astro';
-// Statistics kept for reference — swapped out in favour of InfluencerReach.
-// import Statistics from '../components/Statistics.astro';
+
+import Navigation      from '../components/Navigation.astro';
+import Header          from '../components/Header.astro';
+import Footer          from '../components/Footer.astro';
+import Preloader       from '../components/Preloader.astro';
+
+import Hero            from '../components/Hero.astro';
+import PressLogos      from '../components/PressLogos.astro';
+import ClientLogosAlt  from '../components/ClientLogosAlt.astro';
+import Services        from '../components/Services.astro';
+import ServicesAlt     from '../components/ServicesAlt.astro';
 import InfluencerReach from '../components/InfluencerReach.astro';
-import Awards from '../components/Awards.astro';
-import Testimonials from '../components/Testimonials.astro';
-import Articles from '../components/Articles.astro';
-import FaqsList from '../components/FaqsList.astro';
-import FinalCta from '../components/FinalCta.astro';
-import WhatsAppButton from '../components/WhatsAppButton.astro';
-import ScrollReveal from '../components/ScrollReveal.astro';
+import Awards          from '../components/Awards.astro';
+import Ethos           from '../components/Ethos.astro';
+import Work            from '../components/Work.astro';
+import Testimonials    from '../components/Testimonials.astro';
+import Articles        from '../components/Articles.astro';
+import FaqsList        from '../components/FaqsList.astro';
+import FinalCta        from '../components/FinalCta.astro';
+
+import WhatsAppButton  from '../components/WhatsAppButton.astro';
+import ScrollReveal    from '../components/ScrollReveal.astro';
 ---
 <!doctype html>
 <html lang="en" class="__variable_a78db3 __variable_ab8453">
@@ -28,135 +29,63 @@ import ScrollReveal from '../components/ScrollReveal.astro';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Corum8 — preview</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
 
-    <!-- Only preload the primary body font; drop the other three woff2s
-         since they're subsetted variants the browser will fetch lazily as
-         rules need them. Frees ~120 KB of blocking requests on first paint. -->
-    <link rel="preload" href="/_next/static/media/482a8097102f5f9f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
+    <link rel="icon"            type="image/png" href="/favicon.png" />
+    <link rel="shortcut icon"   type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon"                  href="/favicon.png" />
 
-    <!-- Core KOTA stylesheet carries 95% of the visual rules. Loaded sync so
-         layout paints correctly. The remaining kota fragments below are
-         deferred with `media="print"` then flipped to `all` on load — they
-         carry interaction/detail rules that don't affect first paint. -->
-    <link rel="stylesheet" href="/css/c6a848d34dfd7dce.css">
-    <link rel="stylesheet" href="/css/0aea7e632ce3cedf.css">
-    <link rel="stylesheet" href="/css/053ade63481ccabc.css">
-    <link rel="stylesheet" href="/css/e36a1a112c1c5ec8.css">
-    <link rel="stylesheet" href="/css/13f753c524b3db20.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="/css/de01f06c65200d74.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="/css/ecdfc97c33854f51.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="/css/3d63d502945bea5a.css" media="print" onload="this.media='all'">
+    <!--
+      Asset preloads
+      ──────────────
+      One primary body-font woff2 (the rest are subsetted variants the
+      browser will fetch lazily as rules need them), one brand icon for
+      the preloader mark, and one hero video. The hero video is reused
+      by InfluencerReach + Awards — preloading it once lets the HTTP
+      cache serve all three <video> consumers from a single fetch.
+    -->
+    <link rel="preload" href="/_next/static/media/482a8097102f5f9f-s.p.woff2" as="font"  type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/logo/icon-gold.png"                    as="image" fetchpriority="high" />
+    <link rel="preload" href="/media/bg2.mp4"                                as="video" type="video/mp4" />
+
+    <!--
+      KOTA stylesheet fragments
+      ─────────────────────────
+      The first four carry ~95% of the layout rules and load sync so the
+      page paints correctly. The remainder are interaction / detail rules
+      that don't affect first paint, so they're deferred via `media=print`
+      then flipped to `all` on load. <noscript> fallback restores them for
+      users without JS.
+    -->
+    <link rel="stylesheet" href="/css/c6a848d34dfd7dce.css" />
+    <link rel="stylesheet" href="/css/0aea7e632ce3cedf.css" />
+    <link rel="stylesheet" href="/css/053ade63481ccabc.css" />
+    <link rel="stylesheet" href="/css/e36a1a112c1c5ec8.css" />
+    <link rel="stylesheet" href="/css/13f753c524b3db20.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="/css/de01f06c65200d74.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="/css/ecdfc97c33854f51.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="/css/3d63d502945bea5a.css" media="print" onload="this.media='all'" />
     <noscript>
-      <link rel="stylesheet" href="/css/13f753c524b3db20.css">
-      <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css">
-      <link rel="stylesheet" href="/css/de01f06c65200d74.css">
-      <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css">
-      <link rel="stylesheet" href="/css/ecdfc97c33854f51.css">
-      <link rel="stylesheet" href="/css/3d63d502945bea5a.css">
+      <link rel="stylesheet" href="/css/13f753c524b3db20.css" />
+      <link rel="stylesheet" href="/css/57c1cf65c8fee4f0.css" />
+      <link rel="stylesheet" href="/css/de01f06c65200d74.css" />
+      <link rel="stylesheet" href="/css/d7d67e4e7d8a2a37.css" />
+      <link rel="stylesheet" href="/css/ecdfc97c33854f51.css" />
+      <link rel="stylesheet" href="/css/3d63d502945bea5a.css" />
     </noscript>
-
-    <!-- Preload the icon so the preloader mark paints instantly. -->
-    <link rel="preload" href="/assets/logo/icon-gold.png" as="image" fetchpriority="high" />
-
-    <!-- Preloader — inlined CSS/HTML so it paints before any stylesheet
-         arrives. Uses the real Corum8 gold icon (no fake wordmark) with a
-         slow-spinning ring around it. Fades out on `window.load`. Matches
-         the preloader on every sub-page (src/layouts/Layout.astro) so the
-         whole site uses one loading mark. -->
-    <style>
-      #c8-preloader {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #0a0a0a;
-        opacity: 1;
-        transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-        pointer-events: all;
-      }
-      #c8-preloader.is-done {
-        opacity: 0;
-        pointer-events: none;
-      }
-      #c8-preloader .c8-preloader__mark {
-        width: 96px;
-        height: 96px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-      }
-      #c8-preloader .c8-preloader__mark::before {
-        content: "";
-        position: absolute;
-        inset: -18px;
-        border-radius: 50%;
-        border: 1px solid rgba(245, 166, 35, 0.25);
-        border-top-color: #f5a623;
-        animation: c8-preloader-spin 1.4s linear infinite;
-      }
-      #c8-preloader .c8-preloader__mark img {
-        width: 64px;
-        height: 64px;
-        object-fit: contain;
-        animation: c8-preloader-pulse 1.8s ease-in-out infinite;
-      }
-      @keyframes c8-preloader-spin {
-        to { transform: rotate(360deg); }
-      }
-      @keyframes c8-preloader-pulse {
-        0%, 100% { opacity: 0.85; transform: scale(1); }
-        50%      { opacity: 1;    transform: scale(1.04); }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        #c8-preloader .c8-preloader__mark::before,
-        #c8-preloader .c8-preloader__mark img { animation: none !important; }
-      }
-    </style>
   </head>
+
   <body>
-    <!-- Corum8 preloader — fades out once the page loads. -->
-    <div id="c8-preloader" aria-hidden="true">
-      <div class="c8-preloader__mark">
-        <img src="/assets/logo/icon-gold.png" alt="" role="presentation" />
-      </div>
-    </div>
-    <script is:inline>
-      (function () {
-        var el = document.getElementById('c8-preloader');
-        if (!el) return;
-        var hide = function () {
-          el.classList.add('is-done');
-          setTimeout(function () { el.remove(); }, 650);
-        };
-        var maxWait = setTimeout(hide, 4000);
-        var ready = function () {
-          clearTimeout(maxWait);
-          setTimeout(hide, 150);
-        };
-        if (document.readyState === 'complete') {
-          ready();
-        } else {
-          window.addEventListener('load', ready, { once: true });
-        }
-      })();
-    </script>
+    <Preloader />
 
     <Navigation />
     <Header />
 
-    <main style="position: relative; z-index: 1;">
+    <main>
       <Hero />
       <PressLogos />
       <ClientLogosAlt />
-      <ClientLogos />
       <Services />
       <ServicesAlt />
       <InfluencerReach />
@@ -173,7 +102,7 @@ import ScrollReveal from '../components/ScrollReveal.astro';
 
     <WhatsAppButton />
 
-    <!-- Quad-style scroll reveals: auto section fade-up + directional item reveals -->
+    <!-- Global scroll-reveal controller (runs once, observes every main > *) -->
     <ScrollReveal />
 
     <script>
@@ -182,54 +111,7 @@ import ScrollReveal from '../components/ScrollReveal.astro';
 
     <style is:global>
       body { margin: 0; background: var(--color-bg); }
-      .hero {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        align-items: flex-end;
-        padding: 0 clamp(1.5rem, 4vw, 4rem) clamp(4rem, 10vh, 8rem);
-        overflow: hidden;
-      }
-      .hero-inner { position: relative; z-index: 1; max-width: 60rem; color: #111; }
-      .hero-eyebrow {
-        font-size: 0.9rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        opacity: 0.7;
-        margin: 0 0 1.5rem;
-      }
-      .hero-title {
-        font-size: clamp(3rem, 9vw, 8rem);
-        line-height: 0.95;
-        letter-spacing: -0.025em;
-        font-weight: 400;
-        margin: 0 0 2rem;
-      }
-      .hero-title span { display: block; }
-      .hero-sub {
-        font-size: clamp(1.1rem, 1.5vw, 1.4rem);
-        max-width: 40rem;
-        line-height: 1.5;
-        margin: 0 0 2.5rem;
-        opacity: 0.85;
-      }
-      .hero-cta {
-        display: inline-block;
-        padding: 1rem 1.75rem;
-        border: 1px solid #111;
-        border-radius: 999px;
-        color: #111;
-        text-decoration: none;
-        font-weight: 500;
-        transition: background 0.3s, color 0.3s;
-      }
-      .hero-cta:hover { background: #111; color: #fff; }
-      .scroll-demo {
-        padding: 10rem 2rem;
-        background: #111;
-        color: #eee;
-        text-align: center;
-      }
+      main { position: relative; z-index: 1; }
     </style>
   </body>
 </html>

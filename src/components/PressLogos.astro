@@ -78,12 +78,29 @@ const mediaLogos = [
     vertical-align: middle;
     margin-left: 0.6rem;
   }
+  /* Desktop + tablet (>768px): STATIC single centered row. No scrolling.
+     Overflow is clipped by the container + faded by the edge mask so the
+     row reads as intentional, never cut off. Clones hidden.
+     Mobile override below re-enables the scrolling marquee. */
   .c8-press__logos {
     width: 100%;
-    gap: 1rem 2rem;
+    overflow: hidden;
     --c8-marquee-dur: 45s;
+    mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
   }
-  .c8-press__logos .c8-marquee__track { gap: 1rem 2.25rem; }
+  .c8-press__logos .c8-marquee__track {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: clamp(1.25rem, 2.4vw, 2.25rem);
+    animation: none;
+  }
+  .c8-press__logos .c8-marquee__track > * { flex: 0 0 auto; }
+  /* Clones only serve the mobile scroll loop — hide on desktop. */
+  .c8-press__logos .c8-marquee__clone { display: none; }
   .c8-press__img {
     height: 20px;
     width: auto;
@@ -95,9 +112,18 @@ const mediaLogos = [
   }
   .c8-press__img:hover { filter: none; opacity: 1; }
 
+  /* Mobile: 18 press logos won't fit in a 375px viewport — re-enable the
+     scrolling marquee with clones for seamless wrap. */
   @media (max-width: 768px) {
     .c8-press { padding: 1.25rem 1rem 1.5rem; }
     .c8-press__img { height: 17px; }
-    .c8-press__logos .c8-marquee__track { gap: 0 1.6rem; }
+    .c8-press__logos .c8-marquee__track {
+      width: max-content;
+      justify-content: flex-start;
+      gap: 1.6rem;
+      animation: c8-marquee-scroll var(--c8-marquee-dur, 45s) linear infinite;
+    }
+    .c8-press__logos .c8-marquee__clone { display: inline-flex; }
+    .c8-press__logos:hover .c8-marquee__track { animation-play-state: paused; }
   }
 </style>

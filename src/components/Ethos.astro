@@ -53,11 +53,11 @@ const steps: Step[] = [
 
 <section class="c8-ethos">
   <div class="c8-ethos__inner">
-    <div class="c8-ethos__head">
-      <h2 class="c8-ethos__heading">
+    <div class="c8-ethos__head" data-reveal-stagger="110">
+      <h2 class="c8-ethos__heading" data-reveal="up">
         <span>How Corum8 <span class="c8-ethos__heading-accent">Works</span></span>
       </h2>
-      <p class="c8-ethos__intro">
+      <p class="c8-ethos__intro" data-reveal="up">
         The exact sequence we&rsquo;ve run across 1,100+ launches — strategy pressure-tested against data, built in-house by one team, launched in a single window, then scaled on compounding loops.
       </p>
     </div>
@@ -67,9 +67,9 @@ const steps: Step[] = [
         <span class="c8-ethos__rail-line"></span>
       </div>
 
-      <div class="c8-ethos__grid">
-        {steps.map((s) => (
-          <div class="c8-ethos__step">
+      <div class="c8-ethos__grid" data-reveal-stagger="120">
+        {steps.map((s, i) => (
+          <div class="c8-ethos__step" data-reveal={i % 2 === 0 ? 'up' : 'scale'}>
             <div class="c8-ethos__step-top">
               <span class="c8-ethos__step-rail" style={s.accentStyle}></span>
               <span class="c8-ethos__step-num">Step {s.number}</span>

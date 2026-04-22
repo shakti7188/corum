@@ -1,0 +1,90 @@
+---
+// Corum8 preloader — paints on first byte, before any external stylesheet
+// has arrived. Dark ground, brand icon, slow-spinning gold ring. Fades
+// out on `window.load`, hard-removes itself after the fade.
+//
+// Markup, CSS, and the fade-out script are all inlined on purpose: the
+// whole point of a preloader is that it works without waiting on anything.
+// Kept in one file so the piece is easy to lift out or swap wholesale.
+---
+
+<div id="c8-preloader" aria-hidden="true">
+  <div class="c8-preloader__mark">
+    <img src="/assets/logo/icon-gold.png" alt="" role="presentation" />
+  </div>
+</div>
+
+<style is:global>
+  #c8-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+    opacity: 1;
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: all;
+  }
+  #c8-preloader.is-done {
+    opacity: 0;
+    pointer-events: none;
+  }
+  #c8-preloader .c8-preloader__mark {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #c8-preloader .c8-preloader__mark::before {
+    content: "";
+    position: absolute;
+    inset: -18px;
+    border-radius: 50%;
+    border: 1px solid rgba(245, 166, 35, 0.25);
+    border-top-color: #f5a623;
+    animation: c8-preloader-spin 1.4s linear infinite;
+  }
+  #c8-preloader .c8-preloader__mark img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    animation: c8-preloader-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes c8-preloader-spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes c8-preloader-pulse {
+    0%, 100% { opacity: 0.85; transform: scale(1); }
+    50%      { opacity: 1;    transform: scale(1.04); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #c8-preloader .c8-preloader__mark::before,
+    #c8-preloader .c8-preloader__mark img { animation: none !important; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var el = document.getElementById('c8-preloader');
+    if (!el) return;
+    var hide = function () {
+      el.classList.add('is-done');
+      setTimeout(function () { el.remove(); }, 650);
+    };
+    // Hard ceiling in case `load` never fires (stuck asset, offline, etc.)
+    var maxWait = setTimeout(hide, 4000);
+    var ready = function () {
+      clearTimeout(maxWait);
+      setTimeout(hide, 150);
+    };
+    if (document.readyState === 'complete') {
+      ready();
+    } else {
+      window.addEventListener('load', ready, { once: true });
+    }
+  })();
+</script>

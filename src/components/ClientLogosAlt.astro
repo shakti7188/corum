@@ -41,7 +41,7 @@ const clients = [
     Join <span class="c8-clients-alt__count">1,100+ clients</span> around the world
   </h2>
 
-  <div class="c8-clients-alt__marquee c8-marquee" aria-label="Clients" data-reveal="fade" data-reveal-delay="180">
+  <div class="c8-clients-alt__marquee c8-marquee" aria-label="Clients">
     <div class="c8-marquee__track">
       {clients.map((c) => (
         <img src={c.src} alt={c.alt} loading="lazy" class="c8-clients-alt__img" />
@@ -85,35 +85,44 @@ const clients = [
   .c8-clients-alt__title {
     margin: 0;
     font-family: var(--montreal);
-    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-size: clamp(1.3rem, 2.4vw, 1.75rem);
     font-weight: 400;
-    letter-spacing: -0.025em;
-    line-height: 1.12;
-    color: #0a0a0a;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: rgba(10, 10, 10, 0.55);
     max-width: none;
     padding: 0 clamp(1rem, 4vw, 3rem);
     white-space: nowrap;
   }
   @media (max-width: 640px) {
-    .c8-clients-alt__title { white-space: normal; }
+    .c8-clients-alt__title {
+      white-space: normal;
+      font-size: 1.05rem;
+    }
   }
+  /* Whole sentence reads as one — count inherits the same transparent
+     weight as the rest of the title. */
   .c8-clients-alt__count {
-    color: #0a0a0a;
+    color: inherit;
     font-style: normal;
     font-family: var(--montreal);
-    font-weight: 400;
+    font-weight: inherit;
   }
 
+  /* Single scrolling marquee — always animates, every viewport. Clones
+     provide seamless wrap. Mask fades the edges so overflow reads as
+     intentional rather than clipped. */
   .c8-clients-alt__marquee {
     width: 100%;
+    overflow: hidden;
     --c8-marquee-dur: 55s;
     mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
   }
   .c8-clients-alt__marquee .c8-marquee__track {
-    gap: clamp(0.6rem, 1.25vw, 1.1rem);
+    display: flex;
+    gap: clamp(0.75rem, 1.5vw, 1.5rem);
     align-items: center;
-    /* Always scroll — override global rule that only animates below 900px */
     flex-wrap: nowrap;
     justify-content: flex-start;
     width: max-content;
@@ -136,7 +145,7 @@ const clients = [
 
   @media (max-width: 640px) {
     .c8-clients-alt__img { height: 38px; }
-    .c8-clients-alt__marquee .c8-marquee__track { gap: 2rem; }
+    .c8-clients-alt__marquee .c8-marquee__track { gap: 1rem; }
     .c8-clients-alt__title { font-size: 1.3rem; }
   }
 </style>

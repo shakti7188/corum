@@ -47,7 +47,7 @@ const {
   <div class="FAQCustom_glow"></div>
   <div class="FAQCustom_container">
     
-    <div class="FAQCustom_left">
+    <div class="FAQCustom_left" data-reveal="left">
       <div class="FAQCustom_header">
         <h2 class="FAQCustom_title">
           <span class="FAQCustom_titleLight">{titleLight}</span><br/>
@@ -58,9 +58,9 @@ const {
     </div>
 
     <div class="FAQCustom_right">
-      <div class="FAQCustom_grid">
-        {faqs.map((faq) => (
-          <div class="FAQCustom_card">
+      <div class="FAQCustom_grid" data-reveal-stagger="90">
+        {faqs.map((faq, i) => (
+          <div class="FAQCustom_card" data-reveal={i % 2 === 0 ? 'right' : 'up'}>
             <button class="FAQCustom_question">
               <span class="FAQCustom_qText">{faq.question}</span>
               <div class="FAQCustom_iconWrap"><span class="FAQCustom_icon"></span></div>
