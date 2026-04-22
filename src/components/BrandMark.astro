@@ -1,0 +1,48 @@
+---
+import { brand } from '../data/siteNav';
+interface Props {
+  /**
+   * Logo variant:
+   *  - `dark`   → logo-dark.png  (for light backgrounds, e.g. header)
+   *  - `white`  → logo-white.png (for dark backgrounds, e.g. footer)
+   *  - `icon`   → icon-gold.png  (square gold mark only)
+   */
+  variant?: 'dark' | 'white' | 'icon';
+  /** Kept for backwards compatibility with callers passing fill="#fff" */
+  fill?: string;
+  class?: string;
+}
+const { variant, fill, class: className = '' } = Astro.props;
+const resolved = variant ?? (fill === '#fff' ? 'white' : 'dark');
+const src =
+  resolved === 'white' ? '/assets/logo/logo-white.png'
+  : resolved === 'icon' ? '/assets/logo/icon-gold.png'
+  : '/assets/logo/logo-dark.png';
+---
+<img src={src} alt={brand.name} class={`BrandMark ${className}`} />
+
+<style is:global>
+  .BrandMark {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .Header_logo____uDV .BrandMark {
+    height: 44px;
+    width: auto;
+  }
+  /* KOTA's .Footer_logo__fUEOF is a fixed 90x72 square from the old SVG mark.
+     The new full-width PNG logo needs the span to flex wider. */
+  .Footer_logo__fUEOF {
+    width: auto !important;
+    height: auto !important;
+    display: inline-block !important;
+  }
+  .Footer_logo__fUEOF .BrandMark {
+    height: 72px;
+    width: auto;
+    max-width: 320px;
+  }
+</style>
