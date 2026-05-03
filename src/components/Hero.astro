@@ -36,7 +36,7 @@
     <div class="c8-hero__trust">
       <span class="c8-hero__stars" aria-label="4.9 out of 5 stars">
         {Array.from({length: 5}).map(() => (
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#f5a623" stroke="none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#f2bf22" stroke="none">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
           </svg>
         ))}
@@ -143,8 +143,8 @@
     pointer-events: none;
     background:
       radial-gradient(420px circle at var(--c8-hero-cx) var(--c8-hero-cy),
-        rgba(245,166,35,0.22) 0%,
-        rgba(245,166,35,0.08) 38%,
+        rgba(242,191,34,0.22) 0%,
+        rgba(242,191,34,0.08) 38%,
         transparent 65%),
       linear-gradient(180deg,
         rgba(10,10,10,0.6) 0%,
@@ -222,9 +222,9 @@
     transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
   }
   .c8-hero__trust:hover {
-    border-color: rgba(245,166,35,0.45);
+    border-color: rgba(242,191,34,0.45);
     background: rgba(255,255,255,0.12);
-    box-shadow: 0 10px 30px -10px rgba(245,166,35,0.25), 0 6px 24px -10px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 30px -10px rgba(242,191,34,0.25), 0 6px 24px -10px rgba(0,0,0,0.4);
   }
   .c8-hero__stars { display: inline-flex; align-items: center; gap: 1px; }
   .c8-hero__trust-text {
@@ -250,7 +250,7 @@
     display: flex;
     flex-direction: column;
     gap: clamp(0.2rem, 0.6vh, 0.55rem);
-    font-family: var(--montreal);
+    font-family: var(--font-display);
     font-weight: 400;
     color: #fff;
     max-width: 100%;
@@ -270,7 +270,7 @@
   .c8-hero__dyn {
     display: inline-flex;
     align-items: baseline;
-    font-family: var(--montreal);
+    font-family: var(--font-display);
     font-size: clamp(4rem, 13vw, 10rem);
     font-weight: 500;
     font-style: normal;
@@ -340,7 +340,7 @@
     line-height: 1;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 14px 36px -12px rgba(245,166,35,0.55), 0 2px 6px rgba(0,0,0,0.25);
+    box-shadow: 0 14px 36px -12px rgba(242,191,34,0.55), 0 2px 6px rgba(0,0,0,0.25);
     transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
                 background 0.35s ease,
                 color 0.35s ease,
@@ -410,9 +410,10 @@
     border-left: none;
     padding-left: 0;
   }
-  /* Straight Montreal, not italic */
+  /* Display font for stat digits — pulled into Cocogoose so the figures
+     read with the same brand display weight as the headline. */
   .c8-hero__stat-num {
-    font-family: var(--montreal);
+    font-family: var(--font-display);
     font-style: normal;
     font-weight: 500;
     font-size: clamp(1.5rem, 2.4vw, 2.1rem);

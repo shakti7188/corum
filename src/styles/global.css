@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* ---------- Self-hosted brand display font (sourced from corum8.com) ---------- */
+@font-face {
+  font-family: 'Cocogoose';
+  src: url('/fonts/Cocogoose.woff2') format('woff2');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ---------- Design tokens ---------- */
 @theme {
   /* Light base — warm off-white, unified across every light section so the
@@ -12,7 +21,7 @@
   --color-ink-mute: #6b6b6b;
   --color-rule: #d6d6d6;
   --color-accent: #b7ff3a;
-  --color-selection: #f5a623;
+  --color-selection: #f2bf22;
 
   /* Dark-panel palette — used by sections that flip to dark (Footer, the
      final CTA, and any feature block promoted to a dark panel). Matches
@@ -23,13 +32,14 @@
   --color-ink-on-dark-mute: #9ca3af;
   --color-rule-on-dark: rgba(255, 255, 255, 0.08);
 
-  /* Brand gold — retuned to the reference design's warmer, punchier
-     orange-gold. Single source of truth for every component. */
-  --c8-gold: #f5a623;
-  --c8-gold-light: #ffc857;
-  --c8-gold-dark: #d48e1a;
-  --c8-gold-soft: rgba(245, 166, 35, 0.12);
-  --c8-gold-glow: rgba(245, 166, 35, 0.35);
+  /* Brand yellow — sourced from corum8.com (the original brand site).
+     #f2bf22 is the primary CTA / accent yellow used 28+ times across
+     the old site's CSS. #da9e49 is the .c-brown text-accent shade. */
+  --c8-gold: #f2bf22;
+  --c8-gold-light: #f4cb4e;
+  --c8-gold-dark: #da9e49;
+  --c8-gold-soft: rgba(242, 191, 34, 0.12);
+  --c8-gold-glow: rgba(242, 191, 34, 0.35);
 
   /* Glassmorphism — for frosted panels on any background. */
   --glass-bg: rgba(255, 255, 255, 0.05);
@@ -40,7 +50,7 @@
   --color-positive: #22c55e;
   --color-negative: #ef4444;
 
-  --font-display: "Syne", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cocogoose", "Syne", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", ui-monospace, monospace;
 
@@ -207,6 +217,13 @@ html.lenis body {
   line-height: 0.95;
 }
 
+/* Headings adopt the Cocogoose-led display stack site-wide. The legacy
+   kota-core.css applies Montreal to every heading via its compiled rules
+   (the Next.js __montreal_a78db3 class on <html>) — this rule overrides
+   that so all h1–h6 read in the brand display font. */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: var(--font-display);
+}
 h1, .h1 { font-size: var(--fs-100); line-height: 1; letter-spacing: -0.03em; }
 h2, .h2 { font-size: var(--fs-60); line-height: 1; letter-spacing: -0.03em; }
 h3, .h3 { font-size: var(--fs-50); line-height: 1.1; letter-spacing: -0.02em; }
@@ -401,7 +418,7 @@ h3, .h3 { font-size: var(--fs-50); line-height: 1.1; letter-spacing: -0.02em; }
 /* Pulsing gold glow — for CTAs or attention anchors. */
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 0 0 var(--c8-gold-glow); }
-  50%      { box-shadow: 0 0 0 12px rgba(245, 166, 35, 0); }
+  50%      { box-shadow: 0 0 0 12px rgba(242, 191, 34, 0); }
 }
 .pulse-glow {
   animation: pulse-glow 2s ease-out infinite;

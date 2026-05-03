@@ -33,6 +33,10 @@ const { title } = Astro.props;
          first paint). -->
     <link rel="preload" href="/_next/static/media/482a8097102f5f9f-s.p.woff2" as="font" crossorigin="" type="font/woff2">
 
+    <!-- Preload the Cocogoose display font — used for every heading. Avoids
+         the heading FOUT on first paint. -->
+    <link rel="preload" href="/fonts/Cocogoose.woff2" as="font" type="font/woff2" crossorigin>
+
     <!-- Preloader critical CSS — inlined so the overlay paints before the
          main stylesheet arrives. Uses the Corum8 gold icon with a subtle
          pulse + rotate. Fades out on window load. -->
@@ -66,8 +70,8 @@ const { title } = Astro.props;
         position: absolute;
         inset: -18px;
         border-radius: 50%;
-        border: 1px solid rgba(245, 166, 35, 0.25);
-        border-top-color: #f5a623;
+        border: 1px solid rgba(242, 191, 34, 0.25);
+        border-top-color: #f2bf22;
         animation: c8-preloader-spin 1.4s linear infinite;
       }
       #c8-preloader .c8-preloader__mark img {
