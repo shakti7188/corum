@@ -33,22 +33,41 @@ const clients = [
   { src: '/clients/ubuntu-tribe.png',  alt: 'Ubuntu Tribe' },
   { src: '/clients/flappy-bird.png',   alt: 'Flappy Bird' },
 ];
+
+// Split into two rows for the dual-row marquee. Both rows move in the
+// same direction at slightly different speeds so the effect reads as
+// continuous motion, not duelling marquees.
+const half = Math.ceil(clients.length / 2);
+const rowA = clients.slice(0, half);
+const rowB = clients.slice(half);
 ---
 
 <section class="c8-clients-alt">
 
   <h2 class="c8-clients-alt__title" data-reveal="up">
-    Join <span class="c8-clients-alt__count">1,100+ clients</span> around the world
+    Trusted by <span class="c8-clients-alt__count">1,100+ brands</span> around the world
   </h2>
 
-  <div class="c8-clients-alt__marquee c8-marquee" aria-label="Clients">
-    <div class="c8-marquee__track">
-      {clients.map((c) => (
-        <img src={c.src} alt={c.alt} loading="lazy" class="c8-clients-alt__img" />
-      ))}
-      {clients.map((c) => (
-        <img src={c.src} alt="" aria-hidden="true" loading="lazy" class="c8-clients-alt__img c8-marquee__clone" />
-      ))}
+  <div class="c8-clients-alt__rows" aria-label="Clients">
+    <div class="c8-clients-alt__marquee c8-clients-alt__marquee--a c8-marquee">
+      <div class="c8-marquee__track">
+        {rowA.map((c) => (
+          <img src={c.src} alt={c.alt} loading="lazy" class="c8-clients-alt__img" />
+        ))}
+        {rowA.map((c) => (
+          <img src={c.src} alt="" aria-hidden="true" loading="lazy" class="c8-clients-alt__img c8-marquee__clone" />
+        ))}
+      </div>
+    </div>
+    <div class="c8-clients-alt__marquee c8-clients-alt__marquee--b c8-marquee">
+      <div class="c8-marquee__track">
+        {rowB.map((c) => (
+          <img src={c.src} alt={c.alt} loading="lazy" class="c8-clients-alt__img" />
+        ))}
+        {rowB.map((c) => (
+          <img src={c.src} alt="" aria-hidden="true" loading="lazy" class="c8-clients-alt__img c8-marquee__clone" />
+        ))}
+      </div>
     </div>
   </div>
 
@@ -109,16 +128,23 @@ const clients = [
     font-weight: inherit;
   }
 
-  /* Single scrolling marquee — always animates, every viewport. Clones
-     provide seamless wrap. Mask fades the edges so overflow reads as
-     intentional rather than clipped. */
+  /* Two-row marquee — both rows scroll left to right, slightly different
+     speeds so the motion reads as continuous, not echoing. Clones wrap
+     seamlessly. Mask fades the edges for an intentional crop. */
+  .c8-clients-alt__rows {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
   .c8-clients-alt__marquee {
     width: 100%;
     overflow: hidden;
-    --c8-marquee-dur: 55s;
     mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
   }
+  .c8-clients-alt__marquee--a { --c8-marquee-dur: 50s; }
+  .c8-clients-alt__marquee--b { --c8-marquee-dur: 65s; }
   .c8-clients-alt__marquee .c8-marquee__track {
     display: flex;
     gap: clamp(0.75rem, 1.5vw, 1.5rem);

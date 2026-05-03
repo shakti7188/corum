@@ -24,57 +24,33 @@ const arrowGrad = {
 //     tags: ['Global Marketing', 'PR', 'Full-Stack Development', 'Web3 · AI · Fintech'],
 //   }
 
-// Four featured case studies — each one ships with a specific outcome
-// number pulled straight from docs/CONTENT.md. Headings lead with the
-// result so the card reads like a headline, not a brochure. Metarix and
-// Binance kept in the file-level history but hidden from the homepage.
+// Two featured case studies — homepage trim per the redesign brief. The
+// goal is depth over breadth: bigger visuals, clearer outcomes. Cashaa
+// and Binance lead because they're the loudest commercial wins in the
+// portfolio. The other case studies (Fanadise, Ubuntu Tribe, KuCoin,
+// Metarix) live on /work and are still indexed elsewhere.
 const projects = [
   {
-    size: 'small',
+    size: 'large',
     href: '/work/cashaa',
     name: 'Cashaa',
     year: '2022',
     category: 'Token Launch',
     heading: '$32M raised',
-    description: 'End-to-end token launch campaign — media outreach across 200+ publications, Tier-1 crypto KOL seeding, and a full community build across Discord and Telegram from zero to active.',
+    description: 'End-to-end token launch — global press outreach across 200+ publications, Tier-1 crypto KOL seeding, and a community built from zero to active across Discord and Telegram.',
     tags: ['PR', 'Influencer', 'Community'],
     poster: '/images/cashaa.jpg',
   },
   {
-    size: 'small',
-    href: '/work/fanadise',
-    name: 'Fanadise',
+    size: 'large',
+    href: '/work/binance',
+    name: 'Binance',
     year: '2024',
-    category: 'Web3 Growth',
-    heading: '$5M raised',
-    description: 'Full-stack Web3 fan platform — smart contract development, NFT mechanics and a coordinated multi-channel growth campaign that drove raise momentum from day one.',
-    tags: ['Development', 'Community', 'Influencer'],
-    poster: '/images/fanadise.png',
-  },
-  {
-    size: 'small',
-    href: '/work/ubuntu-tribe',
-    name: 'Ubuntu Tribe',
-    year: '2024',
-    category: 'Event Launch',
-    heading: 'Token2049 Dubai — global stage',
-    description: 'Compressed, multi-channel launch window around Token2049 Dubai. PR, KOL activation and live community events synchronized across a single 72-hour burst — global presence in under a week.',
-    tags: ['PR', 'KOL', 'Community'],
-    logo: '/clients/ubuntu-tribe.png',
-    // Ubuntu Tribe uses a static image instead of a video clip — the case
-    // is a live-event moment that reads better as a single strong photo.
-    poster: '/images/utribe.png',
-  },
-  {
-    size: 'small',
-    href: '/work/kucoin',
-    name: 'KuCoin',
-    year: '2024',
-    category: 'Strategic PR',
-    heading: 'Tier-1 exchange, every market',
-    description: 'Ongoing strategic PR retainer for one of the world\'s top exchanges — tier-1 publication placement, editorial strategy and proactive narrative management across 30+ priority markets.',
-    tags: ['PR', 'Exchange', 'Global'],
-    poster: '/images/KuCoin.jpg',
+    category: 'Affiliate Network',
+    heading: '$800M+ monthly volume',
+    description: 'Built and scaled the affiliate network behind Binance India — drove $800M+ in monthly exchange volume through curated KOL partnerships, programmatic referral growth, and ongoing brand activation.',
+    tags: ['PR', 'Growth', 'Community'],
+    poster: '/images/Binance.jpg',
   },
 ];
 

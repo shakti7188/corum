@@ -1,33 +1,34 @@
 ---
-// Final CTA Section — page-specific copy, same design.
-import { resolveMedia } from "../data/media";
+// Final CTA — single static premium image background (no animated blob).
+// Brief: "Remove animated backgrounds. Add a strong static image
+// (team / tech / global)." Headline + subtitle + button. Done.
 
 export interface Props {
-  light?: string;                  // first line of headline
-  bold?: string;                   // second line, emphasised
+  light?: string;
+  bold?: string;
   subtitle?: string;
   buttonLabel?: string;
   buttonHref?: string;
+  image?: string;
 }
 
 const {
   light = "Ready to",
   bold = "build, launch & scale?",
-  subtitle = "One team. Full stack. Dubai · US · India.",
-  buttonLabel = "Book a Strategy Call",
+  subtitle = "One integrated team. US · EU · UAE · INDIA.",
+  buttonLabel = "Book Strategy Call",
   buttonHref = "/book-a-strategy-call",
+  image = "https://images.unsplash.com/photo-1552581234-26160f608093?w=1920&h=1080&fit=crop",
 } = Astro.props;
-
-const blob = resolveMedia("video.ctaBlob");
 ---
 
 <section class="FinalCta_wrapper">
-  <!-- 3D Animated Background Object -->
-  <figure class="FinalCta_videoBackground">
-    <video autoplay loop muted playsinline preload="metadata" src={blob?.src}></video>
+  <!-- Static premium image background (no animation per the redesign brief) -->
+  <figure class="FinalCta_imageBackground">
+    <img src={image} alt="" loading="lazy" />
   </figure>
 
-  <!-- Foreground Dark Gradient Overlay -->
+  <!-- Foreground darkening overlay so type stays legible -->
   <div class="FinalCta_overlay"></div>
 
   <!-- Content -->
@@ -57,29 +58,29 @@ const blob = resolveMedia("video.ctaBlob");
     padding: 8rem 0;
   }
 
-  .FinalCta_videoBackground {
+  .FinalCta_imageBackground {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 38vw;
-    height: 62vh;
-    transform: translate(-50%, -50%);
+    inset: 0;
+    margin: 0;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.9;
+    overflow: hidden;
   }
 
-  .FinalCta_videoBackground video {
+  .FinalCta_imageBackground img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    mix-blend-mode: screen;
+    object-position: center;
+    filter: saturate(0.6) brightness(0.45);
   }
 
   .FinalCta_overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(circle, rgba(0,0,0,0) 0%, var(--color-bg-dark) 80%);
+    background:
+      radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(10,11,16,0.82) 80%),
+      linear-gradient(180deg, rgba(10,11,16,0.5) 0%, rgba(10,11,16,0.85) 100%);
     z-index: 2;
     pointer-events: none;
   }
@@ -171,9 +172,6 @@ const blob = resolveMedia("video.ctaBlob");
   }
 
   @media (max-width: 1024px) {
-    .FinalCta_videoBackground {
-      width: 150vw;
-      height: 100vh;
-    }
+    .FinalCta_wrapper { padding: 6rem 1.5rem; min-height: 70vh; }
   }
 </style>

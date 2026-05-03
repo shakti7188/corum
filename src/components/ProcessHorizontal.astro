@@ -1,0 +1,169 @@
+---
+// ProcessHorizontal — 4-step engagement timeline rendered as a horizontal
+// rail. Strategy → Build → Launch → Scale. One line each, no timeline
+// commitments per CLAUDE.md (we describe the phase, not the duration).
+// Steps highlight on intersection so the flow reads as the user scrolls in.
+
+const steps = [
+  {
+    num: '01',
+    title: 'Strategy',
+    body: 'Audit, positioning and a clear plan to win — sharpened with founders, signed off as one document.',
+  },
+  {
+    num: '02',
+    title: 'Build',
+    body: 'Brand, product, content, contracts — built by the same team that runs the launch.',
+  },
+  {
+    num: '03',
+    title: 'Launch',
+    body: 'Press, KOL, community and paid coordinated to a single moment. Momentum, not a press release.',
+  },
+  {
+    num: '04',
+    title: 'Scale',
+    body: 'Compounding monthly — paid scaling, narrative refresh, ongoing PR and community ops.',
+  },
+];
+---
+
+<section class="c8-process">
+  <div class="c8-process__inner">
+    <header class="c8-process__head" data-reveal-stagger="100">
+      <p class="c8-process__eyebrow" data-reveal="up">— How we work</p>
+      <h2 class="c8-process__heading" data-reveal="up">
+        Four steps. <span class="c8-process__heading-accent">One team.</span>
+      </h2>
+    </header>
+
+    <div class="c8-process__rail" data-reveal-stagger="120">
+      {steps.map((s, i) => (
+        <div class="c8-process__step" data-reveal="up">
+          <span class="c8-process__step-num">{s.num}</span>
+          <h3 class="c8-process__step-title">{s.title}</h3>
+          <p class="c8-process__step-body">{s.body}</p>
+          {i < steps.length - 1 && (
+            <span class="c8-process__connector" aria-hidden="true"></span>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .c8-process {
+    background: var(--color-bg);
+    color: #0a0a0a;
+    padding: clamp(4.5rem, 9vh, 7rem) clamp(1.5rem, 5vw, 5rem);
+  }
+  .c8-process__inner {
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+  .c8-process__head {
+    max-width: 48rem;
+    margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
+  }
+  .c8-process__eyebrow {
+    margin: 0 0 1rem;
+    font-family: var(--montreal);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c8-gold-dark);
+  }
+  .c8-process__heading {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+  }
+  .c8-process__heading-accent {
+    color: var(--c8-gold-dark);
+  }
+
+  /* ─── Rail (4 columns desktop, stacks on mobile) ─── */
+  .c8-process__rail {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1.5rem, 2.5vw, 2.25rem);
+    position: relative;
+  }
+
+  .c8-process__step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 14px;
+    box-shadow: 0 12px 28px -20px rgba(0, 0, 0, 0.18);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .c8-process__step:hover {
+    transform: translateY(-4px);
+    border-color: var(--c8-gold-glow);
+    box-shadow: 0 20px 38px -18px rgba(0,0,0,0.22), 0 0 36px -12px var(--c8-gold-soft);
+  }
+
+  .c8-process__step-num {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--c8-gold-dark);
+  }
+  .c8-process__step-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: #0a0a0a;
+  }
+  .c8-process__step-body {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #555;
+  }
+
+  /* Connector arrow between desktop steps */
+  .c8-process__connector {
+    position: absolute;
+    top: 50%;
+    right: -1.4rem;
+    width: 1rem;
+    height: 1px;
+    background: var(--c8-gold);
+    z-index: 1;
+  }
+  .c8-process__connector::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid var(--c8-gold);
+    border-right: 1px solid var(--c8-gold);
+  }
+
+  @media (max-width: 1024px) {
+    .c8-process__rail { grid-template-columns: repeat(2, 1fr); }
+    .c8-process__connector { display: none; }
+  }
+  @media (max-width: 600px) {
+    .c8-process__rail { grid-template-columns: 1fr; }
+  }
+</style>

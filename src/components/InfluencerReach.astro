@@ -93,13 +93,12 @@ const centerVideo = resolveMedia('video.ambient');
     <!-- LEFT (desktop) — content, stats, tags, CTA -->
     <div class="c8-reach__body" data-reveal="left" data-reveal-delay="120">
       <h2 class="c8-reach__heading">
-        25,000+ Influencers.<br />
-        <span class="c8-reach__heading-accent">Global Reach.</span>
+        Community is the <span class="c8-reach__heading-accent">moat.</span>
       </h2>
       <p class="c8-reach__lede">
-        Our vetted network spans every vertical that matters — crypto, finance,
-        tech, gaming, lifestyle and beyond. Human connection paired with deep
-        data analytics for full ROI attribution globally.
+        25,000+ vetted creators across 15+ verticals and 30+ regions, with
+        1.2B+ in addressable reach. Human relationships, programmatic
+        attribution, and the pipes to deploy a campaign in a week — not a quarter.
       </p>
 
       <div class="c8-reach__stats">
@@ -114,6 +113,10 @@ const centerVideo = resolveMedia('video.ambient');
         <div class="c8-reach__stat">
           <div class="c8-reach__stat-num">30+</div>
           <div class="c8-reach__stat-lbl">Regions</div>
+        </div>
+        <div class="c8-reach__stat">
+          <div class="c8-reach__stat-num">1.2B+</div>
+          <div class="c8-reach__stat-lbl">Reach</div>
         </div>
       </div>
 
@@ -438,9 +441,12 @@ const centerVideo = resolveMedia('video.ambient');
 
   .c8-reach__stats {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
     margin-bottom: 2.5rem;
+  }
+  @media (max-width: 640px) {
+    .c8-reach__stats { grid-template-columns: repeat(2, 1fr); }
   }
   .c8-reach__stat {
     padding: 1.25rem 0.75rem;
