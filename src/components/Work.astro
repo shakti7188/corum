@@ -1,345 +1,370 @@
 ---
-// Work section — simplified to match the raw-clone KOTA treatment:
-// • Heading + right-side copy aside (instead of single centered heading)
-// • Each card shows only brand name + year; the tags / one-line heading
-//   move into the hover image overlay, which KOTA already wires up via
-//   ProjectCard_imageOverlay__OCawr.
-// The grid positions and slide-in animation are preserved — only the
-// internal card composition changed.
-const arrowGrad = {
-  id: 'd',
-  stops: [
-    { offset: '0', color: '#da9e49' },
-    { offset: '1', color: '#f4cb4e' },
-  ],
-};
+// Work — featured case studies as a Swiper carousel.
+// 1 row, 3 items per view on desktop, 2 on tablet, 1 on mobile.
+// Each card: media + result chip + outcome headline + description.
+// Swiper init is handled by `src/scripts/site.ts`'s default `.swiper`
+// initializer (slidesPerView: 'auto', uses .swiper-panel-prev / -next
+// for navigation), so this component just provides the markup.
 
-// Intro / Corum8 brand video moved out of this grid into the new Showcase
-// section above Ethos (src/components/Showcase.astro). Keeping the data
-// shape here in case we want to reintroduce it later:
-//   {
-//     size: 'large', isIntro: true, href: '#our-work', name: 'Corum8',
-//     year: '2026', video: '/media/bg2.mp4',
-//     heading: 'We build, market and scale Web3, AI and fintech companies that refuse to blend in.',
-//     tags: ['Global Marketing', 'PR', 'Full-Stack Development', 'Web3 · AI · Fintech'],
-//   }
-
-// Two featured case studies — homepage trim per the redesign brief. The
-// goal is depth over breadth: bigger visuals, clearer outcomes. Cashaa
-// and Binance lead because they're the loudest commercial wins in the
-// portfolio. The other case studies (Fanadise, Ubuntu Tribe, KuCoin,
-// Metarix) live on /work and are still indexed elsewhere.
 const projects = [
   {
-    size: 'large',
     href: '/work/cashaa',
     name: 'Cashaa',
     year: '2022',
     category: 'Token Launch',
     heading: '$32M raised',
-    description: 'End-to-end token launch — global press outreach across 200+ publications, Tier-1 crypto KOL seeding, and a community built from zero to active across Discord and Telegram.',
+    description: 'End-to-end token launch — global press across 200+ publications, Tier-1 KOL seeding, and a community built from zero across Discord and Telegram.',
     tags: ['PR', 'Influencer', 'Community'],
     poster: '/images/cashaa.jpg',
   },
   {
-    size: 'large',
     href: '/work/binance',
     name: 'Binance',
     year: '2024',
     category: 'Affiliate Network',
-    heading: '$800M+ monthly volume',
-    description: 'Built and scaled the affiliate network behind Binance India — drove $800M+ in monthly exchange volume through curated KOL partnerships, programmatic referral growth, and ongoing brand activation.',
+    heading: '$800M+ monthly',
+    description: 'Built the affiliate network behind Binance India — drove $800M+ in monthly volume through curated KOL partnerships and programmatic referral growth.',
     tags: ['PR', 'Growth', 'Community'],
-    poster: '/images/Binance.jpg',
+    poster: '/clients/binance.png',
+  },
+  {
+    href: '/work/fanadise',
+    name: 'Fanadise',
+    year: '2024',
+    category: 'Web3 Growth',
+    heading: '$5M raised',
+    description: 'Full-stack Web3 fan platform — smart contracts, NFT mechanics and a coordinated multi-channel growth campaign that drove raise momentum from day one.',
+    tags: ['Development', 'Community', 'Influencer'],
+    poster: '/images/fanadise.png',
+  },
+  {
+    href: '/work/ubuntu-tribe',
+    name: 'Ubuntu Tribe',
+    year: '2024',
+    category: 'Event Launch',
+    heading: 'Token2049 — global stage',
+    description: 'Compressed multi-channel launch around Token2049 Dubai. PR, KOL activation and live community moments synchronized into a single 72-hour burst.',
+    tags: ['PR', 'KOL', 'Community'],
+    poster: '/images/utribe.png',
+  },
+  {
+    href: '/work/kucoin',
+    name: 'KuCoin',
+    year: '2024',
+    category: 'Strategic PR',
+    heading: 'Tier-1 reach, every market',
+    description: 'Ongoing strategic PR retainer — tier-1 placement, editorial strategy and proactive narrative management across 30+ priority markets.',
+    tags: ['PR', 'Exchange', 'Global'],
+    poster: '/images/KuCoin.jpg',
+  },
+  {
+    href: '/work/metarix',
+    name: 'Metarix',
+    year: '2023',
+    category: 'Token Raise',
+    heading: '$780K raised',
+    description: 'Pre-launch community engineering, KOL seeding and PR — a full launch stack that turned a quiet pre-seed into a credible Web3 pre-token raise.',
+    tags: ['Community', 'Influencer', 'PR'],
+    poster: '/clients/metarix.png',
   },
 ];
-
-const allCards = [...projects];
 ---
 
-<div class="Work_work__rSI8c" id="our-work">
-  <div class="DarkThemeSwitch_cover__hn_xc"></div>
-  <div class="container">
-    <div class="Work_text__WI9A4">
-      <h2 class="Work_heading__pbv4g">
-        <div class="LargeHeading_headingOuter__i9qcd">
-          <span class="Work_heading__pbv4g">Our</span><span class="Work_heading__pbv4g Work_bottom__rzrzH">Work</span>
-        </div>
+<section class="c8-work" id="our-work">
+  <div class="c8-work__inner">
+    <header class="c8-work__head">
+      <p class="c8-work__eyebrow" data-reveal="up">— Featured work</p>
+      <h2 class="c8-work__heading" data-reveal="up">
+        Brands we've made <span class="c8-work__heading-accent">a damn site better.</span>
       </h2>
-      <div class="Work_rightText__zx_Y0" data-reveal="right">
-        <h3>
-          <span data-blur-reveal="true">Making brands a damn site better.</span>
-        </h3>
-        <p>
-          <span data-blur-reveal="true">Featured work across Web3, AI and fintech — token launches, PR programmes and full-stack growth campaigns engineered to move markets.</span>
-        </p>
+      <div class="c8-work__nav" aria-hidden="true">
+        <button type="button" class="c8-work__navBtn swiper-panel-prev" aria-label="Previous case studies">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button type="button" class="c8-work__navBtn swiper-panel-next" aria-label="Next case studies">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
       </div>
-    </div>
-  </div>
-  <div class="Work_projects__A5q77">
-    <div class="AnimatedGrid_grid__otAMD">
-      <div class="container">
-        {allCards.map((p) => (
-          <a
-            class={`ProjectCard_project__d1wbY ${p.size === 'large' ? 'ProjectCard_large__JOQbv' : 'ProjectCard_small__xsL92'}${p.isIntro ? ' ProjectCard_intro__c8' : ''}`}
-            data-animation="grid-item"
-            href={p.href}
-          >
-            <div class="ProjectCard_projectText__o770X">
-              <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.78 14.78">
-                  <defs>
-                    <linearGradient id={arrowGrad.id} x1="3.54" x2="13.98" y1="3.54" y2="13.99" gradientUnits="userSpaceOnUse">
-                      {arrowGrad.stops.map((s) => <stop offset={s.offset} stop-color={s.color}></stop>)}
-                    </linearGradient>
-                  </defs>
-                  <path fill={`url(#${arrowGrad.id})`} stroke-width="0" d="M13.25 12.18L13.25 0.23 14.78 0.23 14.78 14.76 14.74 14.76 14.74 14.78 0.21 14.78 0.21 13.25 12.18 13.25 0 1.08 1.08 0 13.25 12.18z"></path>
-                </svg>{p.name}
-              </h3>
-              <p>{p.year}</p>
+    </header>
+
+    <div class="c8-work__carousel swiper">
+      <div class="swiper-wrapper">
+        {projects.map((p) => (
+          <a class="c8-work__card swiper-slide" href={p.href}>
+            <div class="c8-work__media">
+              <img src={p.poster} alt={`${p.name} case study`} loading="lazy" />
+              <div class="c8-work__veil"></div>
+              <span class="c8-work__cat">{p.category}</span>
             </div>
-            <div class="ProjectCard_projectImage__Nfx9I">
-              <div class="ProjectCard_imageOverlay__OCawr c8-work-overlay">
-                {p.logo && (
-                  <img src={p.logo} alt={p.name} class="c8-work-overlay__logo" />
-                )}
-                <span class="c8-work-overlay__category">{p.category}</span>
-                <p class="c8-work-overlay__heading">{p.heading}</p>
-                <p class="c8-work-overlay__desc">{p.description}</p>
-                <ul class="ProjectCard_tags__XdVcf">
-                  {p.tags.map((t) => <li>{t}</li>)}
-                </ul>
+            <div class="c8-work__body">
+              <div class="c8-work__meta">
+                <span class="c8-work__name">{p.name}</span>
+                <span class="c8-work__year">{p.year}</span>
               </div>
-              {p.poster && (
-                <span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-src={p.poster} alt="" fetchpriority="low" class="lazyload" /></span>
-              )}
-              {p.video && (
-                <video data-src={p.video} class="ProjectCard_video__AheFz c8-lazy-video" muted="true" loop="true" preload="none" playsinline="true"></video>
-              )}
+              <h3 class="c8-work__result">{p.heading}</h3>
+              <p class="c8-work__desc">{p.description}</p>
+              <ul class="c8-work__tags">
+                {p.tags.map((t) => <li>{t}</li>)}
+              </ul>
             </div>
           </a>
         ))}
-        <div class="Work_buttonContainer__Owbmu">
-          <span class="FadeInUp_container___uxva" data-fill="false"><div class="Magnetic_magnetic__LncOy" data-fill="false">
-            <div class="Button_button__JJiqJ Button_white__MQaf2" data-direction="forwards">
-              <a class="Button_inner__fnyH6" href="/work"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">View all projects</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a>
-            </div>
-          </div></span>
-        </div>
       </div>
     </div>
+
+    <div class="c8-work__cta-row">
+      <a class="c8-work__cta" href="/work">
+        <span>View all case studies</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
   </div>
-</div>
+</section>
 
 <style is:global>
-  .Work_work__rSI8c {
-    background-color: var(--color-bg-dark) !important;
-    padding-bottom: 15vh;
+  .c8-work {
+    background: var(--color-bg-dark);
+    color: #fff;
+    padding: clamp(4.5rem, 9vh, 7rem) 0 clamp(4rem, 8vh, 6rem);
+    overflow: hidden;
+  }
+  .c8-work__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 5rem);
   }
 
-  /* Grid preserves KOTA's spacing but we add a little extra room beneath the
-     intro card so the Corum8 video isn't crowded by the first small case. */
-  .Work_projects__A5q77 .AnimatedGrid_grid__otAMD .container {
-    row-gap: 4rem !important;
-    column-gap: 2.5rem !important;
+  .c8-work__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin: 0 0 clamp(2.5rem, 4vh, 3.5rem);
   }
-  .ProjectCard_intro__c8 { margin-bottom: 1.5rem !important; }
-  .Work_buttonContainer__Owbmu { margin-top: 5rem !important; }
-
-  /* Intro card reads as brand statement rather than case-study metric. */
-  .ProjectCard_intro__c8 .ProjectCard_projectText__o770X p {
-    font-weight: 500;
-    letter-spacing: 0.01em;
+  .c8-work__eyebrow {
+    margin: 0 0 1rem;
+    font-family: var(--montreal);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c8-gold-dark);
+  }
+  .c8-work__heading {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+    flex: 1 1 28rem;
+    max-width: 38rem;
+  }
+  .c8-work__heading-accent {
+    color: var(--c8-gold-dark);
+    font-weight: 400;
   }
 
-  /* Gold "Our Work" title — matches the section's role as the portfolio
-     anchor. KOTA's default is white against the dark panel; re-tint the
-     second half ("Work") to brand gold so it pops the eye at scroll-in. */
-  .Work_work__rSI8c .Work_heading__pbv4g .Work_bottom__rzrzH {
-    background: linear-gradient(135deg, var(--c8-gold) 0%, var(--c8-gold-light) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent !important;
-    -webkit-text-fill-color: transparent;
+  .c8-work__nav {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .c8-work__navBtn {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  }
+  .c8-work__navBtn:hover:not(:disabled) {
+    background: var(--c8-gold);
+    border-color: var(--c8-gold);
+    color: #111;
+    transform: translateY(-2px);
+  }
+  .c8-work__navBtn.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
   }
 
-  /* Overlay — always visible. Bottom 40% of the card is the "content zone":
-     dark and solid so copy sits clean. Top 60% stays light so the media is
-     the hero. Ramp is tight between the two zones so the handoff is crisp. */
-  .Work_work__rSI8c .ProjectCard_imageOverlay__OCawr.c8-work-overlay {
-    display: flex !important;
-    opacity: 1 !important;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0) 55%,
-        rgba(0, 0, 0, 0.82) 62%,
-        rgba(0, 0, 0, 0.96) 100%
-      ) !important;
-    justify-content: flex-end;
+  /* ─── Carousel ─── */
+  .c8-work__carousel {
+    width: 100%;
+    overflow: visible;
+    padding-bottom: 0.5rem;
+  }
+  .c8-work__carousel .swiper-wrapper {
+    align-items: stretch;
+  }
+
+  /* Slide width — 3 per view on desktop, 2 on tablet, 1 on mobile.
+     Spacing handled by site.ts (spaceBetween: 32 on the default init). */
+  .c8-work__card {
+    width: calc((100% - 64px) / 3);
+    height: auto;
+    display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    /* Content block reserves ~40% of the card's height so the copy lives
-       inside the dark zone without crowding. */
-    padding: clamp(1.2rem, 2.4vw, 1.75rem) clamp(1.1rem, 2.5vw, 1.85rem) clamp(1.2rem, 2.5vw, 1.85rem) !important;
-    min-height: 40%;
-    transition: background 0.4s ease;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 18px 40px -22px rgba(0,0,0,0.6);
   }
-  .Work_work__rSI8c .ProjectCard_project__d1wbY:hover .c8-work-overlay {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.05) 50%,
-        rgba(0, 0, 0, 0.88) 62%,
-        rgba(0, 0, 0, 0.98) 100%
-      ) !important;
+  .c8-work__card:hover {
+    transform: translateY(-6px);
+    border-color: var(--c8-gold-glow);
+    box-shadow: 0 28px 60px -22px rgba(0,0,0,0.7), 0 0 50px -12px var(--c8-gold-soft);
   }
 
-  /* Client logo badge — sits at the top of the overlay content zone,
-     above the category pill. White version reads clean on dark gradient. */
-  .c8-work-overlay__logo {
-    display: block;
-    height: 28px;
-    width: auto;
-    max-width: 120px;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
-    opacity: 0.9;
-    margin-bottom: 0.6rem;
+  @media (max-width: 1100px) {
+    .c8-work__card { width: calc((100% - 32px) / 2); }
+  }
+  @media (max-width: 700px) {
+    .c8-work__card { width: 86%; }
   }
 
-  /* Category pill — small gold-tinted label above the headline */
-  .c8-work-overlay__category {
-    display: inline-block;
-    width: fit-content;
-    font-family: var(--montreal, system-ui, sans-serif);
+  /* Media tile */
+  .c8-work__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+    background: #000;
+  }
+  .c8-work__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .c8-work__card:hover .c8-work__media img {
+    transform: scale(1.04);
+  }
+  .c8-work__veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%);
+    pointer-events: none;
+  }
+  .c8-work__cat {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    font-family: var(--montreal);
     font-size: 0.62rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--c8-gold, #f2bf22);
-    padding: 0.2rem 0.65rem;
-    border: 1px solid rgba(242, 191, 34, 0.45);
+    color: var(--c8-gold-dark);
+    padding: 0.28rem 0.7rem;
+    border: 1px solid rgba(242,191,34,0.4);
     border-radius: 999px;
-    background: rgba(242, 191, 34, 0.1);
-    margin-bottom: 0.1rem;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
 
-  /* Main result headline — bigger display size, mid-weight so it reads
-     elegant rather than shouty. */
-  .c8-work-overlay__heading {
-    font-family: var(--montreal, system-ui, sans-serif);
-    font-size: clamp(1.5rem, 2.8vw, 2.1rem) !important;
-    font-weight: 500;
-    line-height: 1.15;
-    color: #fff !important;
+  /* Body */
+  .c8-work__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 1.4rem 1.4rem 1.5rem;
+    flex: 1;
+  }
+  .c8-work__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--montreal);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+  }
+  .c8-work__name {
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.02em;
+  }
+  .c8-work__year {
+    color: rgba(255,255,255,0.45);
+  }
+  .c8-work__result {
     margin: 0;
-    letter-spacing: -0.025em;
-  }
-
-  /* Description — reads clearly under the headline, two lines. */
-  .c8-work-overlay__desc {
-    font-family: var(--montreal, system-ui, sans-serif);
-    font-size: clamp(0.85rem, 1.05vw, 0.95rem);
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1.8vw, 1.55rem);
     font-weight: 400;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .c8-work__desc {
     margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.72);
+    flex: 1;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-
-  /* Tag chips */
-  .Work_work__rSI8c .c8-work-overlay .ProjectCard_tags__XdVcf {
+  .c8-work__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem 0.5rem;
+    gap: 0.35rem;
     list-style: none;
-    margin: 0.2rem 0 0;
+    margin: 0.3rem 0 0;
     padding: 0;
   }
-  .Work_work__rSI8c .c8-work-overlay .ProjectCard_tags__XdVcf li {
+  .c8-work__tags li {
+    font-family: var(--montreal);
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.05em;
-    padding: 0.22rem 0.58rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 999px;
-    color: rgba(255, 255, 255, 0.75);
     text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    color: rgba(255,255,255,0.7);
   }
 
-  /* Hover — lift the whole card, inset a gold border glow, scale the
-     poster/video underneath slightly. No reveal; details already shown. */
-  .Work_work__rSI8c .ProjectCard_project__d1wbY .ProjectCard_projectImage__Nfx9I {
-    position: relative;
-    overflow: hidden;
-    border-radius: 1.25rem;
-    transition:
-      transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
-      box-shadow 0.5s ease;
+  .c8-work__cta-row {
+    display: flex;
+    justify-content: center;
+    margin: clamp(2.5rem, 4vh, 3.5rem) 0 0;
   }
-  .Work_work__rSI8c .ProjectCard_project__d1wbY .ProjectCard_projectImage__Nfx9I img,
-  .Work_work__rSI8c .ProjectCard_project__d1wbY .ProjectCard_projectImage__Nfx9I video {
-    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  .c8-work__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.95rem 1.6rem;
+    border-radius: 999px;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--montreal);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
   }
-  .Work_work__rSI8c .ProjectCard_project__d1wbY:hover .ProjectCard_projectImage__Nfx9I {
-    transform: translateY(-6px);
-    box-shadow:
-      0 24px 48px -16px rgba(0, 0, 0, 0.5),
-      inset 0 0 0 2px var(--c8-gold);
-  }
-  .Work_work__rSI8c .ProjectCard_project__d1wbY:hover .ProjectCard_projectImage__Nfx9I img,
-  .Work_work__rSI8c .ProjectCard_project__d1wbY:hover .ProjectCard_projectImage__Nfx9I video {
-    transform: scale(1.04);
-  }
-  /* Stop KOTA's default hover-reveal from fighting our always-visible overlay. */
-  .Work_work__rSI8c .ProjectCard_project__d1wbY:hover .ProjectCard_imageOverlay__OCawr {
-    opacity: 1 !important;
+  .c8-work__cta:hover {
+    background: var(--c8-gold);
+    border-color: var(--c8-gold);
+    color: #111;
+    transform: translateY(-2px);
   }
 </style>
-
-<script is:inline>
-  // Lazy-load project-card videos. With 6 cards each carrying 150–600 KB of
-  // video, eager loading would push ~2.5 MB through the wire before a user
-  // has even scrolled. Instead: start at preload="none", swap `data-src → src`
-  // when the card gets within 400 px of the viewport, then autoplay.
-  (function () {
-    var vids = document.querySelectorAll('.c8-lazy-video');
-    if (!vids.length) return;
-
-    var load = function (v) {
-      if (v.dataset.loaded === '1') return;
-      var src = v.getAttribute('data-src');
-      if (!src) return;
-      v.setAttribute('src', src);
-      v.setAttribute('preload', 'metadata');
-      v.dataset.loaded = '1';
-      // `play()` returns a promise on modern browsers; swallow rejections
-      // (autoplay policies may block until user interaction).
-      var p = v.play();
-      if (p && typeof p.catch === 'function') p.catch(function () {});
-    };
-
-    if (!('IntersectionObserver' in window)) {
-      vids.forEach(load);
-      return;
-    }
-
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          load(entry.target);
-          io.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '400px 0px' });
-
-    vids.forEach(function (v) { io.observe(v); });
-  })();
-</script>

@@ -47,7 +47,7 @@ const awards: Award[] = [
   <div class="c8-awards__inner">
     <header class="c8-awards__head" data-reveal-stagger="100">
       <h2 class="c8-awards__heading" data-reveal="up">
-        Recognized across<br/><em>the industry</em>
+        Recognized across<br/><span class="c8-awards__heading-accent">the industry.</span>
       </h2>
       <p class="c8-awards__sub" data-reveal="up">
         50+ industry awards for excellence in development, marketing and creative execution — earned on results, not pitches.
@@ -136,20 +136,19 @@ const awards: Award[] = [
     margin: 0 auto clamp(2.5rem, 5vh, 4rem);
   }
   .c8-awards__heading {
-    font-family: var(--montreal, system-ui, sans-serif);
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
     font-weight: 400;
-    line-height: 1.02;
-    letter-spacing: -0.025em;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     color: #ffffff;
     margin: 0 0 1rem;
     text-shadow: 0 2px 28px rgba(0, 0, 0, 0.45);
   }
-  .c8-awards__heading em {
-    font-style: italic;
-    font-family: var(--syne, var(--montreal));
+  .c8-awards__heading-accent {
+    font-style: normal;
     font-weight: 400;
-    color: var(--c8-gold, #f2bf22);
+    color: var(--c8-gold-dark);
   }
   .c8-awards__sub {
     font-family: var(--montreal, system-ui, sans-serif);
