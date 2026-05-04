@@ -2,165 +2,255 @@
 import { brand, socialLinks } from '../data/siteNav';
 import BrandMark from './BrandMark.astro';
 
-// Four-column site map per the redesign brief: Company / Services /
-// Industries / Contact. Each column owns ~5 links so the footer reads
-// as a clear navigation surface. Email subscription replaces the
-// previous newsletter button. Awards strip removed (Awards section
-// now lives in the body of the page, compact).
+// Footer rebuilt to match the reference layout the user shared:
+//   • Top band: world-map image on the left, yellow newsletter card
+//     on the right with heading + email field + subscribe button.
+//   • Bottom band: 4 columns — brand+socials, Quick Links, Category
+//     List, Contact Information (icon + line each).
 
-const company = [
-  { label: 'About',         href: '/about' },
-  { label: 'Careers',       href: '/careers' },
-  { label: 'Case Studies',  href: '/case-studies' },
-  { label: 'Insights',      href: '/blog' },
-  { label: 'Awards',        href: '/about/awards' },
+const quickLinks = [
+  { label: 'Home',         href: '/' },
+  { label: 'About Us',     href: '/about' },
+  { label: 'Services',     href: '/services' },
+  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Insights',     href: '/blog' },
+  { label: 'Contact Us',   href: '/contact' },
 ];
 
-const services = [
+const categories = [
   { label: 'Growth & Marketing',        href: '/services/marketing/performance-marketing' },
-  { label: 'PR, Community & Influence', href: '/services/marketing/pr' },
+  { label: 'Public Relations',          href: '/services/marketing/pr' },
+  { label: 'Influencer & KOL',          href: '/services/marketing/influencer-marketing' },
+  { label: 'Community Building',        href: '/services/marketing/community' },
   { label: 'Full-Stack Development',    href: '/services/development/exchange' },
-  { label: 'Token & Listings',          href: '/services/marketing/listing' },
   { label: 'Branding & Design',         href: '/services/marketing/branding' },
 ];
 
-const industries = [
-  { label: 'Web3 & Crypto', href: '/industries/web3' },
-  { label: 'AI',            href: '/industries/ai' },
-  { label: 'Fintech',       href: '/industries/fintech' },
-  { label: 'SaaS',          href: '/industries/saas' },
-  { label: 'Enterprise',    href: '/industries/enterprise' },
-  { label: 'Robotics',      href: '/industries/robotics' },
-];
+const contact = {
+  email:   'hello@corum8.com',
+  address: 'US · EU · UAE · INDIA',
+  phone:   '+1 (302) 200-3000',
+};
+
+// Premium dark world-map image (Unsplash) for the left tile.
+const mapImage = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=900&fit=crop';
 ---
 
 <footer class="c8-footer">
-  <div class="c8-footer__inner">
-
-    <!-- Top: brand mark + bold standout email link (kept from KOTA energy
-         but re-laid as a single horizontal row above the nav columns). -->
-    <div class="c8-footer__top">
-      <a class="c8-footer__brand" href="/" aria-label="Corum8 home">
-        <BrandMark variant="white" />
-      </a>
-      <a class="c8-footer__bigEmail" href={`mailto:${brand.email}`}>
-        {brand.email}
-      </a>
+  <!-- Top band — newsletter card with world-map tile -->
+  <div class="c8-footer__top">
+    <figure class="c8-footer__map">
+      <img src={mapImage} alt="" loading="lazy" />
+    </figure>
+    <div class="c8-footer__sub">
+      <h2 class="c8-footer__sub-heading">Join Our Web3, AI &amp; Fintech Insider Briefing</h2>
+      <form class="c8-footer__sub-form" action="/subscribe" method="post" novalidate>
+        <input
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="Enter Your Email"
+          aria-label="Email address"
+          class="c8-footer__sub-input"
+        />
+        <button type="submit" class="c8-footer__sub-btn">
+          <span>Subscribe</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="7" y1="17" x2="17" y2="7"/>
+            <polyline points="7 7 17 7 17 17"/>
+          </svg>
+        </button>
+      </form>
     </div>
+  </div>
 
-    <!-- 4-column site map + email subscription -->
-    <div class="c8-footer__columns">
-      <nav class="c8-footer__col" aria-label="Company links">
-        <h3 class="c8-footer__col-title">Company</h3>
-        <ul>
-          {company.map((l) => (
-            <li><a href={l.href}>{l.label}</a></li>
-          ))}
-        </ul>
-      </nav>
-      <nav class="c8-footer__col" aria-label="Services links">
-        <h3 class="c8-footer__col-title">Services</h3>
-        <ul>
-          {services.map((l) => (
-            <li><a href={l.href}>{l.label}</a></li>
-          ))}
-        </ul>
-      </nav>
-      <nav class="c8-footer__col" aria-label="Industries links">
-        <h3 class="c8-footer__col-title">Industries</h3>
-        <ul>
-          {industries.map((l) => (
-            <li><a href={l.href}>{l.label}</a></li>
-          ))}
-        </ul>
-      </nav>
-      <div class="c8-footer__col c8-footer__col--contact">
-        <h3 class="c8-footer__col-title">Contact</h3>
-        <p class="c8-footer__contact-line">
-          <a href={`mailto:${brand.email}`}>{brand.email}</a>
-        </p>
-        <p class="c8-footer__contact-line">US · EU · UAE · INDIA</p>
-
-        <form class="c8-footer__sub" action="/subscribe" method="post" novalidate>
-          <label for="c8-footer-email" class="c8-footer__sub-label">Get the monthly briefing</label>
-          <div class="c8-footer__sub-row">
-            <input
-              id="c8-footer-email"
-              type="email"
-              name="email"
-              required
-              autocomplete="email"
-              placeholder="you@company.com"
-              class="c8-footer__sub-input"
-            />
-            <button type="submit" class="c8-footer__sub-btn">Subscribe</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Bottom row: socials + copyright -->
-    <div class="c8-footer__base">
-      <div class="c8-footer__socials">
+  <!-- Bottom band — brand + 3 link columns -->
+  <div class="c8-footer__bottom">
+    <div class="c8-footer__col c8-footer__col--brand">
+      <a class="c8-footer__brand" href="/" aria-label={`${brand.name} home`}>
+        <BrandMark variant="black" />
+      </a>
+      <p class="c8-footer__about">
+        Corum8 is a global Web3, AI and fintech growth partner — pairing earned
+        media, KOL networks and full-stack engineering under one roof to help
+        founders ship, launch and scale.
+      </p>
+      <ul class="c8-footer__socials" aria-label="Social media">
         {socialLinks.map((s) => (
-          <a href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
+          <li>
+            <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+              <span class="c8-footer__social-icon">
+                {s.label === 'LinkedIn' && (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.62 0 4.29 2.38 4.29 5.48v6.26ZM5.34 7.43A2.06 2.06 0 1 1 5.33 3.31a2.06 2.06 0 0 1 .01 4.12Zm-1.78 13.02h3.55V9H3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
+                )}
+                {s.label === 'Telegram' && (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.94 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0Zm5 7.22c.1 0 .32.02.46.14a.51.51 0 0 1 .17.33c.02.09.04.3.02.47-.18 1.9-.96 6.5-1.36 8.62-.17.9-.5 1.2-.82 1.23-.7.07-1.23-.46-1.9-.9-1.06-.69-1.66-1.12-2.68-1.8-1.19-.78-.42-1.21.26-1.91.17-.18 3.25-2.97 3.3-3.23 0-.03.02-.15-.05-.21s-.18-.05-.25-.03c-.1.03-1.79 1.14-5.06 3.34-.48.33-.91.5-1.3.49-.43-.01-1.25-.24-1.87-.44-.75-.25-1.34-.38-1.3-.79.03-.22.33-.44.9-.66 3.5-1.53 5.83-2.53 7-3.02 3.33-1.39 4.02-1.62 4.48-1.63Z"/></svg>
+                )}
+                {s.label === 'Instagram' && (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.7 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.22-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92C8.42 2.17 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.74 2.69 21.32.27 16.95.07 15.67.01 15.26 0 12 0Zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg>
+                )}
+                {s.label === 'X/Twitter' && (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.68l7.73-8.83L1.25 2.25h6.83l4.71 6.23 5.45-6.23ZM17.08 19.77h1.83L7.08 4.13H5.12l11.96 15.64Z"/></svg>
+                )}
+              </span>
+            </a>
+          </li>
         ))}
-      </div>
-      <p class="c8-footer__copy">© {new Date().getFullYear()} {brand.name}. All rights reserved.</p>
+      </ul>
     </div>
+
+    <div class="c8-footer__col">
+      <h3 class="c8-footer__col-title">Quick Links</h3>
+      <ul>
+        {quickLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div class="c8-footer__col">
+      <h3 class="c8-footer__col-title">Category List</h3>
+      <ul>
+        {categories.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div class="c8-footer__col">
+      <h3 class="c8-footer__col-title">Contact Information</h3>
+      <ul class="c8-footer__contact">
+        <li>
+          <span class="c8-footer__contact-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+          </span>
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        </li>
+        <li>
+          <span class="c8-footer__contact-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <span>{contact.address}</span>
+        </li>
+        <li>
+          <span class="c8-footer__contact-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          </span>
+          <a href={`tel:${contact.phone.replace(/\s+/g,'')}`}>{contact.phone}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Copyright strip -->
+  <div class="c8-footer__copy">
+    <span>© {new Date().getFullYear()} {brand.name}. All rights reserved.</span>
+    <span>Built in US · EU · UAE · INDIA.</span>
   </div>
 </footer>
 
 <style is:global>
   .c8-footer {
-    background: #0a0a0a;
-    color: #fff;
-    padding: clamp(3.5rem, 7vh, 5.5rem) clamp(1.5rem, 5vw, 5rem) 2rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    background: #efeeea;
+    color: #0a0a0a;
+    padding: clamp(2rem, 4vh, 3rem) clamp(1.5rem, 5vw, 5rem) 1.5rem;
   }
-  .c8-footer__inner {
-    max-width: 1320px;
-    margin: 0 auto;
-  }
+
+  /* ─── TOP BAND ─── */
   .c8-footer__top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    margin: 0 auto clamp(2.5rem, 5vh, 3.5rem);
+    max-width: 1320px;
+  }
+  .c8-footer__map {
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+  .c8-footer__map img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .c8-footer__sub {
+    background: var(--c8-gold);
+    padding: clamp(1.5rem, 3.5vw, 3rem) clamp(1.5rem, 4vw, 3.5rem);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin: 0 0 clamp(2.5rem, 5vh, 4rem);
-    padding-bottom: clamp(2rem, 4vh, 3rem);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    justify-content: center;
+    gap: clamp(1.5rem, 3vh, 2.25rem);
   }
-  .c8-footer__brand {
-    display: inline-block;
-    width: 4.5rem;
-    color: #fff;
-  }
-  .c8-footer__bigEmail {
+  .c8-footer__sub-heading {
+    margin: 0;
     font-family: var(--font-display);
-    font-size: clamp(2rem, 6.4vw, 5.4rem);
+    font-size: clamp(1.5rem, 2.6vw, 2.4rem);
     font-weight: 400;
-    line-height: 1;
+    line-height: 1.1;
     letter-spacing: -0.025em;
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s ease;
+    color: #0a0a0a;
+    max-width: 28ch;
   }
-  .c8-footer__bigEmail:hover { color: var(--c8-gold); }
+  .c8-footer__sub-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    align-items: center;
+  }
+  .c8-footer__sub-input {
+    flex: 1 1 280px;
+    min-width: 0;
+    padding: 1rem 1.4rem;
+    border-radius: 999px;
+    border: 0;
+    background: #fff;
+    color: #0a0a0a;
+    font-family: var(--montreal);
+    font-size: 0.95rem;
+    outline: 0;
+    box-shadow: 0 8px 18px -12px rgba(0,0,0,0.18);
+  }
+  .c8-footer__sub-input::placeholder { color: #888; }
+  .c8-footer__sub-input:focus { box-shadow: 0 8px 18px -8px rgba(0,0,0,0.22); }
+  .c8-footer__sub-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-radius: 999px;
+    border: 0;
+    background: #fff;
+    color: #0a0a0a;
+    font-family: var(--montreal);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    white-space: nowrap;
+  }
+  .c8-footer__sub-btn:hover {
+    background: #0a0a0a;
+    color: #fff;
+    transform: translateY(-1px);
+  }
 
-  .c8-footer__columns {
+  /* ─── BOTTOM BAND ─── */
+  .c8-footer__bottom {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(1.5rem, 3vw, 3rem);
-    margin: 0 0 clamp(2.5rem, 5vh, 4rem);
+    grid-template-columns: 1.4fr 1fr 1.1fr 1.2fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    max-width: 1320px;
+    margin: 0 auto clamp(2rem, 4vh, 3rem);
   }
   .c8-footer__col-title {
-    margin: 0 0 1rem;
-    font-family: var(--montreal);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--c8-gold);
+    margin: 0 0 1.1rem;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: #0a0a0a;
   }
   .c8-footer__col ul {
     margin: 0;
@@ -168,134 +258,119 @@ const industries = [
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.6rem;
   }
   .c8-footer__col a {
     font-family: var(--montreal);
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.72);
-    text-decoration: none;
-    transition: color 0.25s ease, transform 0.25s ease;
-    display: inline-block;
-  }
-  .c8-footer__col a:hover {
-    color: #fff;
-    transform: translateX(2px);
-  }
-
-  /* Contact column — looser layout, contains the subscribe form. */
-  .c8-footer__col--contact {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-  .c8-footer__contact-line {
-    margin: 0;
-    font-family: var(--montreal);
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.72);
-  }
-  .c8-footer__contact-line a {
-    color: rgba(255,255,255,0.72);
+    font-size: 0.92rem;
+    color: #4f5563;
     text-decoration: none;
     transition: color 0.25s ease;
   }
-  .c8-footer__contact-line a:hover { color: var(--c8-gold); }
+  .c8-footer__col a:hover {
+    color: var(--c8-gold-dark);
+  }
 
-  /* Subscribe form */
-  .c8-footer__sub {
-    margin-top: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  .c8-footer__col--brand .c8-footer__brand {
+    display: inline-block;
+    width: 4.5rem;
+    color: #0a0a0a;
+    margin-bottom: 1rem;
   }
-  .c8-footer__sub-label {
+  .c8-footer__about {
+    margin: 0 0 1.4rem;
     font-family: var(--montreal);
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 0.02em;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: #4f5563;
+    max-width: 28rem;
   }
-  .c8-footer__sub-row {
+  .c8-footer__socials {
     display: flex;
-    gap: 0.5rem;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
+    gap: 0.55rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .c8-footer__socials a {
+    width: 36px;
+    height: 36px;
     border-radius: 999px;
-    padding: 0.3rem 0.4rem 0.3rem 1rem;
-    transition: border-color 0.3s ease, background 0.3s ease;
+    background: #d8d6d0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a0a0a;
+    text-decoration: none;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
   }
-  .c8-footer__sub-row:focus-within {
-    border-color: var(--c8-gold-glow);
-    background: rgba(255,255,255,0.08);
-  }
-  .c8-footer__sub-input {
-    flex: 1;
-    background: transparent;
-    border: 0;
-    outline: 0;
-    color: #fff;
-    font-family: var(--montreal);
-    font-size: 0.95rem;
-    padding: 0.55rem 0;
-    min-width: 0;
-  }
-  .c8-footer__sub-input::placeholder {
-    color: rgba(255,255,255,0.35);
-  }
-  .c8-footer__sub-btn {
+  .c8-footer__socials a:hover {
     background: var(--c8-gold);
-    color: #111;
-    border: 0;
-    padding: 0.55rem 1.1rem;
-    border-radius: 999px;
-    font-family: var(--montreal);
-    font-size: 0.88rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.25s ease, transform 0.25s ease, color 0.25s ease;
-    white-space: nowrap;
-  }
-  .c8-footer__sub-btn:hover {
-    background: #fff;
-    color: #111;
+    color: #0a0a0a;
     transform: translateY(-1px);
   }
+  .c8-footer__social-icon { display: inline-flex; }
 
-  /* Bottom: socials + copyright */
-  .c8-footer__base {
+  /* Contact list — icon + line */
+  .c8-footer__contact {
+    gap: 0.85rem !important;
+  }
+  .c8-footer__contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    color: #4f5563;
+    font-family: var(--montreal);
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+  .c8-footer__contact a {
+    color: #4f5563;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+  .c8-footer__contact a:hover {
+    color: var(--c8-gold-dark);
+  }
+  .c8-footer__contact-icon {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: #d8d6d0;
+    color: #0a0a0a;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.05rem;
+  }
+
+  /* Copyright strip */
+  .c8-footer__copy {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 1.25rem;
-    padding-top: clamp(1.5rem, 3vh, 2.25rem);
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-  .c8-footer__socials {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-  }
-  .c8-footer__socials a {
-    font-family: var(--montreal);
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.65);
-    text-decoration: none;
-    transition: color 0.25s ease;
-  }
-  .c8-footer__socials a:hover { color: var(--c8-gold); }
-  .c8-footer__copy {
-    margin: 0;
+    gap: 0.5rem;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding-top: 1.25rem;
+    max-width: 1320px;
+    margin: 0 auto;
     font-family: var(--montreal);
     font-size: 0.82rem;
-    color: rgba(255,255,255,0.45);
+    color: #707682;
   }
 
+  /* ─── Responsive ─── */
   @media (max-width: 1024px) {
-    .c8-footer__columns { grid-template-columns: repeat(2, 1fr); }
+    .c8-footer__top { grid-template-columns: 1fr; }
+    .c8-footer__map { aspect-ratio: 16 / 7; }
+    .c8-footer__bottom { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
-    .c8-footer__columns { grid-template-columns: 1fr; gap: 2rem; }
-    .c8-footer__base { flex-direction: column; align-items: flex-start; }
+    .c8-footer__bottom { grid-template-columns: 1fr; gap: 2rem; }
+    .c8-footer__sub { padding: 1.5rem; }
+    .c8-footer__sub-heading { font-size: 1.4rem; }
+    .c8-footer__copy { flex-direction: column; align-items: flex-start; }
   }
 </style>
