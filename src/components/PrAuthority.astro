@@ -1,10 +1,9 @@
 ---
 // PR Authority — dark editorial band that stages the earned-media
-// proof points. Headline is the brand thesis ("Coverage that moves
-// markets."), the proof is the 8,250+ confirmed placements, the
-// active press relationships, and a Tier-1 logo strip led by the
-// outlets the client called out: CoinTelegraph, Decrypt, TechCrunch,
-// Blockworks, Yahoo Finance.
+// proof points. Includes a layered "coverage wall" visual between
+// the heading and stats: mock article preview cards from the named
+// Tier-1 outlets, with a circular lens floating across them as if
+// scanning the placements.
 
 const tierOneLogos = [
   { src: '/media-logos/cointelegraph.png',   alt: 'CoinTelegraph' },
@@ -15,6 +14,61 @@ const tierOneLogos = [
   { src: '/media-logos/Bloomberg.webp',      alt: 'Bloomberg' },
   { src: '/media-logos/Coindesk.webp',       alt: 'CoinDesk' },
   { src: '/media-logos/theblock.png',        alt: 'The Block' },
+];
+
+// Mock-article cards for the coverage wall. Headlines are written
+// to feel plausibly drafted from Corum8 case-study outcomes — they
+// reference real numbers (Cashaa $32M, Binance $800M+ monthly,
+// Fanadise $5M) but the article URLs are illustrative, not real.
+type Article = {
+  outlet: string;
+  logo: string;
+  invertLogo?: boolean;
+  headline: string;
+  meta: string;
+  cls: string;
+};
+const articles: Article[] = [
+  {
+    outlet: 'CoinTelegraph',
+    logo: '/media-logos/cointelegraph.png',
+    invertLogo: true,
+    headline: 'Inside the Affiliate Network Driving $800M+ in Monthly Volume',
+    meta: 'Markets · 5 min read',
+    cls: 'a-1',
+  },
+  {
+    outlet: 'Forbes',
+    logo: '/media-logos/Forbes.webp',
+    invertLogo: true,
+    headline: 'How One Agency Is Powering The Next Wave Of Web3 Brands',
+    meta: 'Crypto · Editorial',
+    cls: 'a-2',
+  },
+  {
+    outlet: 'Decrypt',
+    logo: '/media-logos/decrypt.png',
+    invertLogo: true,
+    headline: 'The Community Playbook Behind Cashaa\'s $32M Raise',
+    meta: 'Long read · Web3',
+    cls: 'a-3',
+  },
+  {
+    outlet: 'Yahoo Finance',
+    logo: '/media-logos/yahoo-finance.png',
+    invertLogo: true,
+    headline: 'Earned Media in Crypto: Why Founders Are Doubling Down on PR',
+    meta: 'Finance · Op-ed',
+    cls: 'a-4',
+  },
+  {
+    outlet: 'Bloomberg',
+    logo: '/media-logos/Bloomberg.webp',
+    invertLogo: true,
+    headline: 'Crypto Communications Matures — Inside the Quiet Operators',
+    meta: 'Industry brief',
+    cls: 'a-5',
+  },
 ];
 ---
 
@@ -36,6 +90,32 @@ const tierOneLogos = [
         in front of investors, partners and customers — quarter after quarter.
       </p>
     </header>
+
+    <!-- Coverage wall — layered article preview cards with a lens
+         drifting across them. Decorative; backed by real outlet
+         logos and case-study numbers in the headlines. -->
+    <div class="c8-pr__wall" aria-hidden="true">
+      <div class="c8-pr__wall-grid">
+        {articles.map((a) => (
+          <article class={`c8-pr__article ${a.cls}`}>
+            <header class="c8-pr__article-meta">
+              <img src={a.logo} alt="" class={`c8-pr__article-logo${a.invertLogo ? ' c8-pr__article-logo--invert' : ''}`} />
+              <span class="c8-pr__article-time">{a.meta}</span>
+            </header>
+            <p class="c8-pr__article-headline">{a.headline}</p>
+            <span class="c8-pr__article-rule"></span>
+            <span class="c8-pr__article-foot">— {a.outlet}</span>
+          </article>
+        ))}
+      </div>
+      <!-- Floating lens — a circular ring that drifts across the wall
+           with a soft gold-tinted backdrop highlight inside. -->
+      <div class="c8-pr__lens" aria-hidden="true">
+        <span class="c8-pr__lens-ring"></span>
+        <span class="c8-pr__lens-handle"></span>
+        <span class="c8-pr__lens-flare"></span>
+      </div>
+    </div>
 
     <div class="c8-pr__stats" data-reveal-stagger="120">
       <div class="c8-pr__stat" data-reveal="up">
@@ -129,6 +209,199 @@ const tierOneLogos = [
   .c8-pr__sub--soft {
     color: rgba(255,255,255,0.6);
     font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  }
+
+  /* ─── Coverage wall ─── */
+  .c8-pr__wall {
+    position: relative;
+    width: 100%;
+    height: clamp(280px, 38vw, 420px);
+    margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
+    isolation: isolate;
+  }
+  .c8-pr__wall-grid {
+    position: absolute;
+    inset: 0;
+  }
+  .c8-pr__article {
+    position: absolute;
+    background: rgba(20, 20, 24, 0.92);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 1rem 1.1rem 1rem;
+    width: clamp(220px, 24vw, 290px);
+    color: rgba(255,255,255,0.9);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow:
+      0 14px 36px -18px rgba(0,0,0,0.65),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.5s ease;
+    will-change: transform;
+  }
+  .c8-pr__article:hover {
+    border-color: var(--c8-gold-glow);
+    z-index: 5;
+  }
+
+  /* Each article card sits at its own anchor + tilt + float keyframe
+     so the wall reads as scattered editorial coverage, not a grid. */
+  .c8-pr__article.a-1 { top:  6%; left:  4%; transform: rotate(-2.2deg); animation: c8-pr-float-a 9s ease-in-out infinite; }
+  .c8-pr__article.a-2 { top:  2%; left: 32%; transform: rotate(1.8deg);  animation: c8-pr-float-b 11s ease-in-out infinite 1.5s; }
+  .c8-pr__article.a-3 { top: 12%; right: 5%; transform: rotate(-1.4deg); animation: c8-pr-float-a 10s ease-in-out infinite 0.8s; }
+  .c8-pr__article.a-4 { bottom: 4%; left: 18%; transform: rotate(2.4deg); animation: c8-pr-float-b 12s ease-in-out infinite 2.4s; }
+  .c8-pr__article.a-5 { bottom: 10%; right: 22%; transform: rotate(-1.8deg); animation: c8-pr-float-a 10.5s ease-in-out infinite 1.2s; }
+
+  @keyframes c8-pr-float-a {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -10px; }
+  }
+  @keyframes c8-pr-float-b {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 8px; }
+  }
+
+  .c8-pr__article-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin: 0 0 0.7rem;
+  }
+  .c8-pr__article-logo {
+    height: 14px;
+    width: auto;
+    max-width: 90px;
+    object-fit: contain;
+    opacity: 0.8;
+  }
+  .c8-pr__article-logo--invert {
+    filter: brightness(0) invert(1);
+  }
+  .c8-pr__article-time {
+    font-family: var(--montreal);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+  }
+  .c8-pr__article-headline {
+    margin: 0 0 0.65rem;
+    font-family: var(--font-display);
+    font-size: clamp(0.92rem, 1.1vw, 1rem);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #fff;
+    /* Clamp to keep cards uniform height-wise */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .c8-pr__article-rule {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--c8-gold-dark);
+    opacity: 0.55;
+    margin: 0 0 0.55rem;
+  }
+  .c8-pr__article-foot {
+    font-family: var(--montreal);
+    font-size: 0.7rem;
+    color: var(--c8-gold-dark);
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── Lens ─── */
+  .c8-pr__lens {
+    position: absolute;
+    width: clamp(120px, 14vw, 180px);
+    height: clamp(120px, 14vw, 180px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: c8-pr-lens-drift 14s ease-in-out infinite;
+    z-index: 6;
+    filter: drop-shadow(0 18px 36px rgba(0,0,0,0.45));
+  }
+  .c8-pr__lens-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 4px solid rgba(242, 191, 34, 0.78);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+      0 0 24px rgba(242, 191, 34, 0.35);
+    background:
+      radial-gradient(circle at 35% 30%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 35%),
+      radial-gradient(circle at center, rgba(242, 191, 34, 0.10) 0%, rgba(242, 191, 34, 0.04) 60%, transparent 100%);
+  }
+  /* Subtle inner highlight ring — sells the convex glass feel. */
+  .c8-pr__lens-ring::before {
+    content: '';
+    position: absolute;
+    inset: 6%;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.35);
+  }
+  /* The handle — short stick at the lower-right at a typical loupe angle. */
+  .c8-pr__lens-handle {
+    position: absolute;
+    width: 24%;
+    height: 7%;
+    bottom: 4%;
+    right: -10%;
+    transform: rotate(45deg);
+    transform-origin: 0% 50%;
+    background: linear-gradient(90deg, rgba(242,191,34,0.85) 0%, rgba(218,158,73,0.7) 100%);
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.45);
+  }
+  /* Glint — a small white highlight that drifts within the lens. */
+  .c8-pr__lens-flare {
+    position: absolute;
+    width: 26%;
+    height: 26%;
+    left: 22%;
+    top: 18%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 70%);
+    animation: c8-pr-lens-glint 6s ease-in-out infinite;
+  }
+  @keyframes c8-pr-lens-drift {
+    0%   { left: 18%; top: 32%; }
+    25%  { left: 62%; top: 18%; }
+    50%  { left: 78%; top: 60%; }
+    75%  { left: 32%; top: 70%; }
+    100% { left: 18%; top: 32%; }
+  }
+  @keyframes c8-pr-lens-glint {
+    0%, 100% { transform: translate(0, 0); opacity: 0.8; }
+    50%      { transform: translate(8%, 6%); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .c8-pr__article,
+    .c8-pr__lens,
+    .c8-pr__lens-flare {
+      animation: none !important;
+    }
+    .c8-pr__lens { left: 50%; top: 50%; }
+  }
+  @media (max-width: 768px) {
+    /* On mobile the wall would be too cramped — collapse to 3 stacked cards
+       and a smaller lens. */
+    .c8-pr__wall { height: 360px; }
+    .c8-pr__article { width: 78%; padding: 0.85rem 1rem; }
+    .c8-pr__article.a-1 { top:  4%; left: 4%; }
+    .c8-pr__article.a-2 { top: 28%; left: 14%; }
+    .c8-pr__article.a-3 { top: 56%; right: 4%; }
+    .c8-pr__article.a-4,
+    .c8-pr__article.a-5 { display: none; }
+    .c8-pr__lens { width: 110px; height: 110px; }
   }
 
   /* ─── Stats row ─── */
