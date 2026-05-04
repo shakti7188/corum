@@ -280,9 +280,11 @@ const articles: Article[] = [
     animation: c8-pr-float-b 11s ease-in-out infinite 1.2s;
   }
   .c8-pr__article.a-3 {
-    /* Decrypt — moved up to fill the empty upper-left area, overflows
-       leftward into the gutter so the cluster bleeds out of column. */
-    top: 6%;      left: -8%;
+    /* Decrypt — anchored mid-left of the cluster. User-tuned values
+       from a DevTools dial-in: 22% top / 5% left reads better than
+       the earlier upper-left overflow because it gives the cluster
+       a real left-right balance against CoinTelegraph at the top. */
+    top: 22%;     left: 5%;
     --c8-pr-rot: -1.4deg;
     z-index: 1;
     animation: c8-pr-float-a 10s ease-in-out infinite 0.6s;
@@ -584,9 +586,9 @@ const articles: Article[] = [
        bottom, which scans diagonally rather than in a predictable
        circle. */
     var waypoints = [
-      { x: 18, y: 22, hold: 2100 }, // a-3 Decrypt (top-left)
       { x: 70, y: 16, hold: 1800 }, // a-1 CoinTelegraph (top-right)
-      { x: 80, y: 56, hold: 1500 }, // a-2 Forbes (mid-right)
+      { x: 22, y: 42, hold: 2100 }, // a-3 Decrypt (mid-left, user-tuned)
+      { x: 80, y: 60, hold: 1500 }, // a-2 Forbes (mid-right)
       { x: 52, y: 86, hold: 1700 }, // a-4 Yahoo (bottom-centre)
     ];
 
