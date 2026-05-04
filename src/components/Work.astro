@@ -68,6 +68,7 @@ const projects = [
     tags: ['Community', 'Influencer', 'PR'],
     poster: '/clients/metarix.png',
     posterMode: 'logo',
+    darkLogo: true,
   },
 ];
 ---
@@ -93,7 +94,7 @@ const projects = [
       <div class="swiper-wrapper">
         {projects.map((p) => (
           <a class="c8-work__card swiper-slide" href={p.href}>
-            <div class={`c8-work__media${p.posterMode === 'logo' ? ' c8-work__media--logo' : ''}`}>
+            <div class={`c8-work__media${p.posterMode === 'logo' ? ' c8-work__media--logo' : ''}${p.darkLogo ? ' c8-work__media--invert' : ''}`}>
               <img src={p.poster} alt={`${p.name} case study`} loading="lazy" />
               <div class="c8-work__veil"></div>
               <span class="c8-work__cat">{p.category}</span>
@@ -258,6 +259,12 @@ const projects = [
   .c8-work__media--logo img {
     object-fit: contain;
     padding: clamp(2rem, 5vw, 3rem);
+  }
+  /* Some client logos ship as dark line-art on transparent backgrounds.
+     On the dark card surface they vanish — invert to white so they read. */
+  .c8-work__media--invert img {
+    filter: brightness(0) invert(1);
+    opacity: 0.92;
   }
   .c8-work__card:hover .c8-work__media--logo img {
     transform: scale(1.06);
