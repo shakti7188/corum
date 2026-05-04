@@ -1,12 +1,31 @@
 ---
-// Services — unpinned static grid. Previously GSAP-pinned each card with
-// 50vh scroll-distance spacers (~150vh total scroll for a 60vh visual).
-// Now three equal-footprint cards in a grid so the section reads in one
-// viewport and the rest of the page gets closer to the fold.
-const cards = [
+// Services — left: vertically-stacked service title cards. Right: a
+// large feature image that swaps to match whichever card is active.
+// Pattern lifted from the ackrolix.com/in/ reference; only the data
+// + brand voice are ours.
+//
+// Interaction: hover (mouseenter) or focus on a card promotes it to
+// .is-active; the right panel's matching image flips its .is-active
+// class and crossfades. Click still navigates the CTA.
+
+type Card = {
+  num: string;
+  title: string;
+  tagline: string;
+  desc: string;
+  tags: { label: string; href: string }[];
+  ctaHref: string;
+  ctaLabel: string;
+  image: string;
+  imageAlt: string;
+};
+
+const cards: Card[] = [
   {
+    num: '01',
     title: 'Growth & Marketing',
-    media: { type: 'gif', src: '/assets/video/marketing.gif' },
+    tagline: 'Full-funnel paid + organic — built to compound.',
+    desc: 'Performance media, SEO, on-chain ads and lifecycle systems engineered for Web3, AI and fintech brands that want scale, not vanity metrics.',
     tags: [
       { label: 'Performance marketing', href: '/services/marketing/performance-marketing' },
       { label: 'SEO, AEO & GEO',        href: '/services/marketing/seo-aeo-geo' },
@@ -14,273 +33,437 @@ const cards = [
       { label: 'B2B lead gen',          href: '/services/marketing/b2b-marketing' },
       { label: 'Social media',          href: '/services/marketing/social-media' },
     ],
-    desc: 'Full-funnel paid media, SEO and onchain ads that compound month over month — built for Web3, AI and fintech brands that need scale, not vanity metrics.',
-    ctaHref: 'service/web-design-development',
-    goldTint: false,
+    ctaHref: '/services/marketing/performance-marketing',
+    ctaLabel: 'Explore Growth',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=80&auto=format&fit=crop',
+    imageAlt: 'Marketing analytics dashboard on a laptop screen',
   },
   {
+    num: '02',
     title: 'PR, Community & Influence',
-    media: { type: 'video', src: '/media/homepage-3.mp4' },
+    tagline: 'The signal engine behind tier-1 launches.',
+    desc: '25,000+ vetted creators, 10,000+ press outlets and end-to-end community building — pitches written, releases shipped, communities built from zero.',
     tags: [
       { label: 'Community building',     href: '/services/marketing/community-building' },
       { label: 'Influencer & KOL',       href: '/services/marketing/influencer-marketing' },
-      { label: 'Crypto PR',              href: '/services/marketing/crypto-pr' },
-      { label: 'Branding & design',      href: '/services/marketing/branding-design' },
+      { label: 'Crypto PR',              href: '/services/marketing/pr' },
+      { label: 'Branding & design',      href: '/services/marketing/branding' },
     ],
-    desc: '25,000+ vetted creators, 10,000+ press outlets and end-to-end community building — the signal engine behind every tier-1 launch we run.',
-    ctaHref: 'service/branding',
-    goldTint: false,
+    ctaHref: '/services/marketing/pr',
+    ctaLabel: 'Explore PR & Community',
+    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1400&q=80&auto=format&fit=crop',
+    imageAlt: 'Microphone in front of an audience at a press event',
   },
   {
+    num: '03',
     title: 'Full-Stack Development',
-    media: { type: 'video', src: '/media/homepage.mp4' },
+    tagline: 'Production-grade infra, security-first.',
+    desc: 'Exchanges, wallets, RWA marketplaces, DeFi protocols and AI agents — engineered for security, speed and institutional compliance.',
     tags: [
-      { label: 'CEX & DEX',         href: '/services/development/exchange-development' },
-      { label: 'RWA platforms',     href: '/services/development/rwa-marketplace' },
-      { label: 'AI & automation',   href: '/services/development/ai-solutions' },
-      { label: 'Wallet infra',      href: '/services/development/wallet-infrastructure' },
-      { label: 'DeFi & staking',    href: '/services/development/defi-staking' },
+      { label: 'CEX & DEX',         href: '/services/development/exchange' },
+      { label: 'RWA platforms',     href: '/services/development/rwa' },
+      { label: 'AI & automation',   href: '/services/development/ai' },
+      { label: 'Wallet infra',      href: '/services/development/wallet' },
+      { label: 'DeFi & staking',    href: '/services/development/defi' },
     ],
-    desc: 'Production-grade exchanges, wallets, RWA marketplaces, DeFi protocols and AI agents — engineered for security, speed and institutional compliance.',
-    ctaHref: 'service/digital-marketing',
-    goldTint: true,
+    ctaHref: '/services/development/exchange',
+    ctaLabel: 'Explore Development',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1400&q=80&auto=format&fit=crop',
+    imageAlt: 'Code editor on a developer\'s monitor',
   },
 ];
 ---
 
-<section class="c8-services">
-  <div class="c8-services__inner">
-    <header class="c8-services__head" data-reveal-stagger="90">
-      <p class="c8-services__eyebrow" data-reveal="left">
-        <span class="c8-services__dot" aria-hidden="true"></span>
-        What we do
-      </p>
-      <h2 class="c8-services__heading" data-reveal="up">
-        Build, market and <span class="c8-services__heading-accent">scale.</span>
+<section class="c8-svc">
+  <div class="c8-svc__inner">
+    <header class="c8-svc__head" data-reveal-stagger="100">
+      <p class="c8-svc__eyebrow" data-reveal="up">— What we do</p>
+      <h2 class="c8-svc__heading" data-reveal="up">
+        Build, market and <span class="c8-svc__heading-accent">scale.</span>
       </h2>
-      <p class="c8-services__sub" data-reveal="up">
+      <p class="c8-svc__sub" data-reveal="up">
         Three disciplines, one team — engineered for Web3, AI and fintech brands that need outcomes, not activity.
       </p>
     </header>
 
-    <div class="c8-services__grid" data-reveal-stagger="140">
-      {cards.map((card, idx) => (
-        <article class={`c8-services__card${card.goldTint ? ' c8-services__card--gold' : ''}`} data-reveal={idx === 1 ? 'up' : (idx === 0 ? 'left' : 'right')}>
-          <div class="c8-services__media">
-            {card.media.type === 'video' ? (
-              <video autoplay muted loop playsinline preload="metadata" src={card.media.src}></video>
-            ) : (
-              <img src={card.media.src} alt="" loading="lazy" />
-            )}
-          </div>
-          <div class="c8-services__body">
-            <h3 class="c8-services__card-title">{card.title}</h3>
-            <div class="c8-services__tags">
-              {card.tags.map((t) => (
-                <a class="c8-services__tag" href={t.href}>{t.label}</a>
-              ))}
+    <div class="c8-svc__panel" data-reveal="up">
+      <!-- LEFT — vertically-stacked service cards -->
+      <div class="c8-svc__cards" role="tablist" aria-label="Service pillars">
+        {cards.map((c, i) => (
+          <button
+            type="button"
+            class={`c8-svc__card${i === 0 ? ' is-active' : ''}`}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls={`c8-svc-image-${i}`}
+            data-svc-index={i}
+          >
+            <div class="c8-svc__card-row">
+              <span class="c8-svc__card-num">{c.num}</span>
+              <span class="c8-svc__card-arrow" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
             </div>
-            <p class="c8-services__desc">{card.desc}</p>
-            <a class="c8-services__cta" href={card.ctaHref}>
-              <span>Find out more</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" aria-hidden="true">
-                <path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path>
-              </svg>
-            </a>
-          </div>
-        </article>
-      ))}
+            <h3 class="c8-svc__card-title">{c.title}</h3>
+            <p class="c8-svc__card-tagline">{c.tagline}</p>
+            <div class="c8-svc__card-detail">
+              <p class="c8-svc__card-desc">{c.desc}</p>
+              <ul class="c8-svc__card-tags">
+                {c.tags.map((t) => <li><a href={t.href} onclick="event.stopPropagation();">{t.label}</a></li>)}
+              </ul>
+              <a class="c8-svc__card-cta" href={c.ctaHref} onclick="event.stopPropagation();">
+                <span>{c.ctaLabel}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <!-- RIGHT — image stack, only the active one is visible -->
+      <div class="c8-svc__media">
+        {cards.map((c, i) => (
+          <figure
+            class={`c8-svc__media-fig${i === 0 ? ' is-active' : ''}`}
+            id={`c8-svc-image-${i}`}
+            role="tabpanel"
+            aria-hidden={i === 0 ? 'false' : 'true'}
+          >
+            <img src={c.image} alt={c.imageAlt} loading="lazy" />
+            <span class="c8-svc__media-veil"></span>
+            <figcaption class="c8-svc__media-caption">
+              <span class="c8-svc__media-num">{c.num}</span>
+              <span class="c8-svc__media-title">{c.title}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
 <style is:global>
-  .c8-services {
-    padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 5rem);
+  .c8-svc {
     background: var(--color-bg);
     color: #0a0a0a;
+    padding: clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 5rem);
   }
-  .c8-services__inner { max-width: var(--c8-section-max, 1320px); margin: 0 auto; }
+  .c8-svc__inner { max-width: var(--c8-section-max, 1320px); margin: 0 auto; }
 
-  /* Title block (preserved from the previous Services design) */
-  .c8-services__head {
+  .c8-svc__head {
     max-width: 48rem;
     margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
   }
-  .c8-services__eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: var(--montreal, system-ui, sans-serif);
-    font-size: 0.72rem;
+  .c8-svc__eyebrow {
+    margin: 0 0 1rem;
+    font-family: var(--montreal);
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--c8-gold, #da9e49);
+    color: var(--c8-gold-dark);
+  }
+  .c8-svc__heading {
     margin: 0 0 1rem;
-  }
-  .c8-services__dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--c8-gold, #da9e49);
-    box-shadow: 0 0 10px rgba(212, 142, 26, 0.5);
-  }
-  .c8-services__heading {
     font-family: var(--font-display);
     font-size: clamp(1.9rem, 4.2vw, 3.1rem);
     font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.03em;
-    color: #0a0a0a;
-    margin: 0 0 1rem;
   }
-  .c8-services__heading-accent {
-    color: var(--c8-gold-dark);
-    font-style: normal;
-  }
-  .c8-services__sub {
-    font-family: var(--montreal, system-ui, sans-serif);
+  .c8-svc__heading-accent { color: var(--c8-gold-dark); }
+  .c8-svc__sub {
+    margin: 0;
+    font-family: var(--montreal);
     font-size: clamp(1rem, 1.2vw, 1.15rem);
     line-height: 1.55;
     color: #555;
-    margin: 0;
   }
 
-  /* Card grid — 3 desktop / 2 tablet / 1 mobile. */
-  .c8-services__grid {
+  /* ─── Two-column panel: left cards, right image ─── */
+  .c8-svc__panel {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1.25rem, 2vw, 1.75rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: clamp(1.5rem, 2.5vw, 2.5rem);
+    align-items: stretch;
   }
-  @media (max-width: 1100px) { .c8-services__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 640px)  { .c8-services__grid { grid-template-columns: 1fr; } }
 
-  /* Card surface — same premium-quiet treatment as the old pinned cards. */
-  .c8-services__card {
+  /* ── LEFT — cards ── */
+  .c8-svc__cards {
     display: flex;
     flex-direction: column;
-    background: linear-gradient(180deg, #ffffff 0%, #fafaf7 100%);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow:
-      0 20px 44px -24px rgba(0, 0, 0, 0.12),
-      0 0 30px -20px var(--c8-gold-soft),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    gap: 0.65rem;
   }
-  .c8-services__card:hover {
-    transform: translateY(-5px);
-    border-color: var(--c8-gold-glow);
-    box-shadow:
-      0 32px 64px -24px rgba(0, 0, 0, 0.18),
-      0 0 50px -10px var(--c8-gold-soft),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
-
-  /* Media tile on top. 16:10 keeps it shorter than 16:9 so cards stay tight. */
-  .c8-services__media {
+  .c8-svc__card {
+    /* Reset native button so it can act as a card */
+    appearance: none;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #ffffff;
+    text-align: left;
+    padding: 1.25rem 1.5rem;
+    border-radius: 14px;
+    cursor: pointer;
+    color: #0a0a0a;
+    font-family: inherit;
+    transition: border-color 0.4s ease,
+                background 0.4s ease,
+                box-shadow 0.4s ease,
+                transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: #000;
   }
-  .c8-services__media video,
-  .c8-services__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  .c8-svc__card:hover { border-color: rgba(218, 158, 73, 0.4); }
+  .c8-svc__card.is-active {
+    border-color: var(--c8-gold-dark);
+    background: #fff;
+    box-shadow:
+      0 22px 48px -22px rgba(0,0,0,0.18),
+      0 0 36px -12px var(--c8-gold-soft);
   }
-  /* Gold tint on the Full-Stack card to warm the purple-graded source clip. */
-  .c8-services__card--gold .c8-services__media::after {
+  /* Subtle gold rail on the active card's left edge */
+  .c8-svc__card.is-active::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: rgba(212, 142, 26, 0.28);
-    mix-blend-mode: color;
-    pointer-events: none;
+    top: 0; bottom: 0; left: 0;
+    width: 3px;
+    background: var(--c8-gold);
   }
 
-  /* Body stack */
-  .c8-services__body {
+  .c8-svc__card-row {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     gap: 1rem;
-    padding: clamp(1.25rem, 2vw, 1.75rem);
-    flex: 1;
   }
-  .c8-services__card-title {
-    margin: 0;
-    font-family: var(--montreal, system-ui, sans-serif);
-    font-size: clamp(1.35rem, 1.7vw, 1.55rem);
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    color: #0a0a0a;
-    line-height: 1.2;
+  .c8-svc__card-num {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--c8-gold-dark);
+    opacity: 0.85;
+  }
+  .c8-svc__card-arrow {
+    display: inline-flex;
+    color: #888;
+    transition: color 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .c8-svc__card.is-active .c8-svc__card-arrow,
+  .c8-svc__card:hover .c8-svc__card-arrow {
+    color: var(--c8-gold-dark);
+    transform: translateX(3px);
   }
 
-  .c8-services__tags {
+  .c8-svc__card-title {
+    margin: 0.4rem 0 0.3rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+  .c8-svc__card-tagline {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #4a4a4a;
+  }
+
+  /* Detail block — collapsed when card is inactive, expanded when
+     active. Uses grid-template-rows: 0fr → 1fr trick for smooth
+     auto-height transition. */
+  .c8-svc__card-detail {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+                margin-top 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 0.4s ease;
+    margin-top: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+  .c8-svc__card.is-active .c8-svc__card-detail {
+    grid-template-rows: 1fr;
+    margin-top: 1rem;
+    opacity: 1;
+  }
+  .c8-svc__card-detail > * {
+    /* The first child needs min-height 0 so the grid-row collapse works. */
+    min-height: 0;
+  }
+  .c8-svc__card-detail > :first-child { padding-bottom: 0.85rem; }
+
+  .c8-svc__card-desc {
+    margin: 0 0 0.85rem;
+    font-family: var(--montreal);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: #555;
+  }
+  .c8-svc__card-tags {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem 0.5rem;
+    gap: 0.4rem;
   }
-  .c8-services__tag {
+  .c8-svc__card-tags a {
+    display: inline-block;
+    font-family: var(--montreal);
     font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 0.28rem 0.65rem;
+    border: 1px solid rgba(0,0,0,0.12);
     border-radius: 999px;
     color: #3a3a3a;
     text-decoration: none;
-    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
   }
-  .c8-services__tag:hover {
+  .c8-svc__card-tags a:hover {
     border-color: var(--c8-gold);
-    background-color: var(--c8-gold);
+    background: var(--c8-gold);
     color: #111;
   }
-
-  .c8-services__desc {
-    margin: 0;
-    font-family: var(--montreal, system-ui, sans-serif);
-    font-size: 0.95rem;
-    line-height: 1.55;
-    color: #555;
-    flex: 1;
-  }
-
-  /* CTA — pill, mirrors the site-wide button treatment. */
-  .c8-services__cta {
-    align-self: flex-start;
+  .c8-svc__card-cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    padding: 0.75rem 1.2rem;
-    background: transparent;
-    color: #111;
+    gap: 0.5rem;
+    padding: 0.7rem 1.1rem;
     border: 1.5px solid #111;
     border-radius: 999px;
-    font-family: var(--montreal, system-ui, sans-serif);
-    font-size: 0.88rem;
-    font-weight: 500;
+    color: #111;
     text-decoration: none;
-    margin-top: 0.25rem;
-    transition: background 0.35s ease, color 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease;
+    font-family: var(--montreal);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   }
-  .c8-services__cta svg {
-    width: 14px;
-    height: 14px;
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .c8-services__cta:hover {
+  .c8-svc__card-cta:hover {
     background: var(--c8-gold);
     border-color: var(--c8-gold);
     color: #111;
     transform: translateY(-1px);
   }
-  .c8-services__cta:hover svg {
-    transform: translate(2px, -2px);
+
+  /* ── RIGHT — image panel ── */
+  .c8-svc__media {
+    position: sticky;
+    top: 6rem;
+    align-self: stretch;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0a0a0a;
+    aspect-ratio: 4 / 5;
+    /* Cap the height so the image doesn't outgrow the cards stack on
+       very wide viewports. */
+    max-height: clamp(540px, 78vh, 760px);
+    box-shadow:
+      0 30px 60px -28px rgba(0,0,0,0.32),
+      0 0 0 1px rgba(0,0,0,0.06);
+  }
+  .c8-svc__media-fig {
+    margin: 0;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .c8-svc__media-fig.is-active {
+    opacity: 1;
+  }
+  .c8-svc__media-fig img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 8s ease-out;
+  }
+  .c8-svc__media-fig.is-active img {
+    /* Slow Ken-Burns nudge while a service is active. */
+    transform: scale(1.04);
+  }
+  .c8-svc__media-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.05) 55%,
+      rgba(0,0,0,0.6) 100%
+    );
+  }
+  .c8-svc__media-caption {
+    position: absolute;
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.4rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    color: #fff;
+    z-index: 1;
+  }
+  .c8-svc__media-num {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.65);
+  }
+  .c8-svc__media-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 1024px) {
+    .c8-svc__panel {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .c8-svc__media {
+      position: relative;
+      top: auto;
+      order: -1; /* image first on narrow viewports */
+      aspect-ratio: 16 / 11;
+      max-height: none;
+    }
   }
 </style>
+
+<script is:inline>
+  function startSvcSwap() {
+    var cards  = document.querySelectorAll('.c8-svc__card');
+    var images = document.querySelectorAll('.c8-svc__media-fig');
+    if (!cards.length || !images.length) return;
+
+    function activate(i) {
+      for (var n = 0; n < cards.length; n++) {
+        var on = (n === i);
+        cards[n].classList.toggle('is-active', on);
+        cards[n].setAttribute('aria-selected', on ? 'true' : 'false');
+        if (images[n]) {
+          images[n].classList.toggle('is-active', on);
+          images[n].setAttribute('aria-hidden', on ? 'false' : 'true');
+        }
+      }
+    }
+
+    Array.prototype.forEach.call(cards, function (card, i) {
+      // Hover (pointer-fine), focus (keyboard), and click all activate.
+      card.addEventListener('mouseenter', function () { activate(i); });
+      card.addEventListener('focus',      function () { activate(i); });
+      card.addEventListener('click',      function () { activate(i); });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startSvcSwap, { once: true });
+  } else {
+    startSvcSwap();
+  }
+</script>
