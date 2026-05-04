@@ -68,7 +68,7 @@ const articles: Article[] = [
   <div class="c8-pr__inner">
     <header class="c8-pr__head" data-reveal-stagger="100">
       <div class="c8-pr__head-text">
-        <p class="c8-pr__eyebrow" data-reveal="up">— Public Relations &amp; Earned Media</p>
+        <p class="c8-pr__eyebrow" data-reveal="up">Public Relations &amp; Earned Media</p>
         <h2 class="c8-pr__heading" data-reveal="up">
           Coverage that <span class="c8-pr__heading-accent">moves markets.</span>
         </h2>
@@ -260,34 +260,36 @@ const articles: Article[] = [
   }
   .c8-pr__article:hover { border-color: var(--c8-gold-glow); z-index: 5; }
 
-  /* 4-card press cluster — diagonal cascade top-right → bottom-left.
-     Card a-1 (CoinTelegraph) overflows the cell leftward so the
-     cluster bleeds into the gap between text and wall — defeats the
-     tidy two-column read.
-
-     Anchors are chosen so cards step down + leftward in a deliberate
-     cascade (not random scatter). Each card is z-stacked so later
-     cards sit slightly above earlier ones, like a fanned stack. */
+  /* 4-card press cluster — Decrypt now anchors the upper-left so the
+     top half of the wall doesn't read empty. Cards still scatter at
+     varied tilts and one card (a-3 Decrypt) overflows the cell
+     leftward so the cluster bleeds into the text/wall gutter, which
+     defeats the tidy 50/50 column read. */
   .c8-pr__article.a-1 {
-    top: 0;       right: 14%;
+    /* CoinTelegraph — top-right anchor */
+    top: 0;       right: 12%;
     --c8-pr-rot: -2.5deg;
-    z-index: 1;
+    z-index: 2;
     animation: c8-pr-float-a 9s ease-in-out infinite;
   }
   .c8-pr__article.a-2 {
-    top: 22%;     right: -4%;
+    /* Forbes — pushed down to mid-right so it doesn't crowd the top */
+    top: 42%;     right: -4%;
     --c8-pr-rot: 1.8deg;
-    z-index: 2;
+    z-index: 3;
     animation: c8-pr-float-b 11s ease-in-out infinite 1.2s;
   }
   .c8-pr__article.a-3 {
-    top: 48%;     left: 8%;
+    /* Decrypt — moved up to fill the empty upper-left area, overflows
+       leftward into the gutter so the cluster bleeds out of column. */
+    top: 6%;      left: -8%;
     --c8-pr-rot: -1.4deg;
-    z-index: 3;
+    z-index: 1;
     animation: c8-pr-float-a 10s ease-in-out infinite 0.6s;
   }
   .c8-pr__article.a-4 {
-    bottom: 2%;   right: 22%;
+    /* Yahoo Finance — bottom-centre, lowest z so it tucks under */
+    bottom: 0;    right: 22%;
     --c8-pr-rot: 2.2deg;
     z-index: 4;
     animation: c8-pr-float-b 12s ease-in-out infinite 2.0s;
@@ -575,12 +577,17 @@ const articles: Article[] = [
 
     /* Waypoints — anchored on the four cards' approximate centres so
        the lens "reads" each in turn. Coordinates are % of the wall.
-       hold = milliseconds spent reading at each card. */
+       hold = milliseconds spent reading at each card.
+
+       Order matches the new card layout (Decrypt now top-left, was
+       mid-left). The path traces top-left → top-right → mid-right →
+       bottom, which scans diagonally rather than in a predictable
+       circle. */
     var waypoints = [
-      { x: 70, y: 16, hold: 1900 }, // a-1 CoinTelegraph (top-right)
-      { x: 78, y: 36, hold: 1500 }, // a-2 Forbes (right)
-      { x: 30, y: 60, hold: 2200 }, // a-3 Decrypt (mid-left)
-      { x: 50, y: 86, hold: 1700 }, // a-4 Yahoo (bottom-centre)
+      { x: 18, y: 22, hold: 2100 }, // a-3 Decrypt (top-left)
+      { x: 70, y: 16, hold: 1800 }, // a-1 CoinTelegraph (top-right)
+      { x: 80, y: 56, hold: 1500 }, // a-2 Forbes (mid-right)
+      { x: 52, y: 86, hold: 1700 }, // a-4 Yahoo (bottom-centre)
     ];
 
     var idx  = 0;
