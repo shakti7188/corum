@@ -61,14 +61,6 @@ const articles: Article[] = [
     meta: 'Finance · Op-ed',
     cls: 'a-4',
   },
-  {
-    outlet: 'Bloomberg',
-    logo: '/media-logos/Bloomberg.webp',
-    invertLogo: true,
-    headline: 'Crypto Communications Matures — Inside the Quiet Operators',
-    meta: 'Industry brief',
-    cls: 'a-5',
-  },
 ];
 ---
 
@@ -254,23 +246,79 @@ const articles: Article[] = [
     box-shadow:
       0 14px 36px -18px rgba(0,0,0,0.65),
       inset 0 1px 0 rgba(255,255,255,0.04);
-    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.5s ease;
+    /* Rotation + scale come from CSS variables so the lens-hover effect
+       can change scale without fighting the per-card rotation. The
+       float keyframe animates `translate` (a separate property), so
+       they all compose cleanly. */
+    --c8-pr-rot: 0deg;
+    --c8-pr-scl: 1;
+    transform: rotate(var(--c8-pr-rot)) scale(var(--c8-pr-scl));
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.45s ease,
+                box-shadow 0.45s ease,
+                background 0.45s ease;
     will-change: transform;
   }
-  .c8-pr__article:hover {
-    border-color: var(--c8-gold-glow);
-    z-index: 5;
+  .c8-pr__article:hover { border-color: var(--c8-gold-glow); z-index: 5; }
+
+  /* 4-card press cluster — diagonal cascade top-right → bottom-left.
+     Card a-1 (CoinTelegraph) overflows the cell leftward so the
+     cluster bleeds into the gap between text and wall — defeats the
+     tidy two-column read.
+
+     Anchors are chosen so cards step down + leftward in a deliberate
+     cascade (not random scatter). Each card is z-stacked so later
+     cards sit slightly above earlier ones, like a fanned stack. */
+  .c8-pr__article.a-1 {
+    top: 0;       right: 14%;
+    --c8-pr-rot: -2.5deg;
+    z-index: 1;
+    animation: c8-pr-float-a 9s ease-in-out infinite;
+  }
+  .c8-pr__article.a-2 {
+    top: 22%;     right: -4%;
+    --c8-pr-rot: 1.8deg;
+    z-index: 2;
+    animation: c8-pr-float-b 11s ease-in-out infinite 1.2s;
+  }
+  .c8-pr__article.a-3 {
+    top: 48%;     left: 8%;
+    --c8-pr-rot: -1.4deg;
+    z-index: 3;
+    animation: c8-pr-float-a 10s ease-in-out infinite 0.6s;
+  }
+  .c8-pr__article.a-4 {
+    bottom: 2%;   right: 22%;
+    --c8-pr-rot: 2.2deg;
+    z-index: 4;
+    animation: c8-pr-float-b 12s ease-in-out infinite 2.0s;
   }
 
-  /* Cards anchored within the right column, intentionally overflowing
-     leftward (negative left values) so the cluster bleeds into the
-     gap between the text and the wall — defeats the strict 2-column
-     read. */
-  .c8-pr__article.a-1 { top:  4%;  left: -10%; transform: rotate(-3deg); animation: c8-pr-float-a 9s ease-in-out infinite; }
-  .c8-pr__article.a-2 { top:  0;   right:  4%; transform: rotate(2deg);  animation: c8-pr-float-b 11s ease-in-out infinite 1.5s; }
-  .c8-pr__article.a-3 { top: 38%;  left:  10%; transform: rotate(-1.5deg); animation: c8-pr-float-a 10s ease-in-out infinite 0.8s; }
-  .c8-pr__article.a-4 { bottom: 6%; right: -6%; transform: rotate(2.6deg); animation: c8-pr-float-b 12s ease-in-out infinite 2.4s; }
-  .c8-pr__article.a-5 { bottom: 0;  left:  28%; transform: rotate(-2deg); animation: c8-pr-float-a 10.5s ease-in-out infinite 1.2s; }
+  /* The card the lens is currently focused on. Slight scale up, gold
+     halo, brighter background, headline gets sharper white. */
+  .c8-pr__article.is-lensed {
+    --c8-pr-scl: 1.06;
+    border-color: var(--c8-gold-dark);
+    background: rgba(28, 28, 32, 0.96);
+    box-shadow:
+      0 18px 48px -16px rgba(0,0,0,0.7),
+      0 0 0 1px var(--c8-gold-dark),
+      0 0 28px rgba(242, 191, 34, 0.32),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+    z-index: 4;
+  }
+  .c8-pr__article.is-lensed .c8-pr__article-headline {
+    color: #fff;
+  }
+  .c8-pr__article.is-lensed .c8-pr__article-rule {
+    background: var(--c8-gold);
+    opacity: 1;
+    width: 36px;
+    transition: width 0.5s ease, background 0.4s ease, opacity 0.4s ease;
+  }
+  .c8-pr__article.is-lensed .c8-pr__article-foot {
+    color: var(--c8-gold);
+  }
 
   @keyframes c8-pr-float-a {
     0%, 100% { translate: 0 0; }
@@ -339,12 +387,20 @@ const articles: Article[] = [
     position: absolute;
     width: clamp(90px, 10vw, 130px);
     height: clamp(90px, 10vw, 130px);
-    left: 30%;
-    top: 30%;
+    /* Position is driven by JS (see <script> below) — set initial state
+       so the lens has somewhere to sit before the script kicks in. */
+    left: 12%;
+    top: 24%;
     pointer-events: none;
-    animation: c8-pr-lens-drift 14s ease-in-out infinite;
     z-index: 6;
     filter: drop-shadow(0 18px 36px rgba(0,0,0,0.45));
+    /* The translate property carries the per-frame micro-jitter while
+       left/top carry the waypoint motion. They stack cleanly. */
+    transition: filter 0.4s ease;
+  }
+  .c8-pr__lens.is-focused {
+    filter: drop-shadow(0 22px 44px rgba(0,0,0,0.55))
+            drop-shadow(0 0 18px rgba(242, 191, 34, 0.35));
   }
   .c8-pr__lens-ring {
     position: absolute;
@@ -391,24 +447,18 @@ const articles: Article[] = [
     background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 70%);
     animation: c8-pr-lens-glint 6s ease-in-out infinite;
   }
-  @keyframes c8-pr-lens-drift {
-    0%   { left: 12%; top: 24%; }
-    25%  { left: 58%; top: 6%;  }
-    50%  { left: 64%; top: 56%; }
-    75%  { left: 22%; top: 62%; }
-    100% { left: 12%; top: 24%; }
-  }
   @keyframes c8-pr-lens-glint {
     0%, 100% { transform: translate(0, 0); opacity: 0.8; }
     50%      { transform: translate(8%, 6%); opacity: 1; }
   }
   @media (prefers-reduced-motion: reduce) {
     .c8-pr__article,
-    .c8-pr__lens,
     .c8-pr__lens-flare {
       animation: none !important;
     }
-    .c8-pr__lens { left: 50%; top: 50%; }
+    /* Reduced-motion: park the lens centred and stop the drive script
+       (handled in <script> below by checking matchMedia). */
+    .c8-pr__lens { left: 50%; top: 50%; transform: translate(-50%, -50%); }
   }
   /* Below 900px the head stacks (text on top, wall below). Hide the wall
      entirely on small phones — we don't want it adding height there. On
@@ -490,3 +540,123 @@ const articles: Article[] = [
     .c8-pr__logo { height: 22px; }
   }
 </style>
+
+<script is:inline>
+  /* Lens drive — replaces the previous CSS keyframe loop with a
+     waypoint-based motion model so the lens reads as someone actually
+     scanning the press wall:
+
+       • Eased moves (easeInOutQuart) between waypoints — slow start,
+         fast middle, slow end. Not a constant linear drift.
+       • Variable leg duration scaled by distance + a randomised
+         component, so two passes of the same loop don't time-match.
+       • Hold/"reading" pauses at each card — not just an animation
+         endpoint, an actual stop with realistic dwell time.
+       • Micro-jitter (low-frequency sine waves) drifts the position
+         a fraction of a percent in real time so the lens never sits
+         perfectly still even while "reading."
+
+     While that's running, an overlap check toggles the .is-lensed
+     class on whichever card the lens centre currently sits over —
+     CSS handles the gold halo + scale + headline whiten. */
+  function startLensDrive() {
+    var wall  = document.querySelector('.c8-pr__wall');
+    if (!wall) return;
+    var lens  = wall.querySelector('.c8-pr__lens');
+    var cards = Array.prototype.slice.call(wall.querySelectorAll('.c8-pr__article'));
+    if (!lens || cards.length === 0) return;
+
+    var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches) return; // CSS parks the lens centred for reduced-motion users.
+
+    /* Waypoints — anchored on the four cards' approximate centres so
+       the lens "reads" each in turn. Coordinates are % of the wall.
+       hold = milliseconds spent reading at each card. */
+    var waypoints = [
+      { x: 70, y: 16, hold: 1900 }, // a-1 CoinTelegraph (top-right)
+      { x: 78, y: 36, hold: 1500 }, // a-2 Forbes (right)
+      { x: 30, y: 60, hold: 2200 }, // a-3 Decrypt (mid-left)
+      { x: 50, y: 86, hold: 1700 }, // a-4 Yahoo (bottom-centre)
+    ];
+
+    var idx  = 0;
+    var from = waypoints[waypoints.length - 1];
+    var to   = waypoints[0];
+    var dur  = 1400;
+    var t0   = performance.now();
+    var phase = 'moving'; // 'moving' or 'holding'
+
+    function easeInOutQuart(t) {
+      return t < 0.5
+        ? 8 * t * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 4) / 2;
+    }
+
+    function nextLeg() {
+      from = to;
+      idx = (idx + 1) % waypoints.length;
+      to = waypoints[idx];
+      var dx = to.x - from.x, dy = to.y - from.y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      // Distance-scaled duration + random jitter — every leg differs.
+      dur = 800 + dist * 24 + Math.random() * 700;
+      t0 = performance.now();
+      phase = 'moving';
+    }
+
+    function checkOverlap() {
+      var lensRect = lens.getBoundingClientRect();
+      var cx = lensRect.left + lensRect.width / 2;
+      var cy = lensRect.top + lensRect.height / 2;
+      var anyHit = false;
+      for (var i = 0; i < cards.length; i++) {
+        var r = cards[i].getBoundingClientRect();
+        var hit =
+          cx >= r.left && cx <= r.right &&
+          cy >= r.top  && cy <= r.bottom;
+        cards[i].classList.toggle('is-lensed', hit);
+        if (hit) anyHit = true;
+      }
+      lens.classList.toggle('is-focused', anyHit);
+    }
+
+    function tick(now) {
+      var x, y;
+      if (phase === 'moving') {
+        var t = Math.min(1, (now - t0) / dur);
+        var e = easeInOutQuart(t);
+        x = from.x + (to.x - from.x) * e;
+        y = from.y + (to.y - from.y) * e;
+        if (t >= 1) {
+          phase = 'holding';
+          t0 = now;
+        }
+      } else {
+        // Holding at the waypoint — micro-jitter only.
+        x = to.x;
+        y = to.y;
+        if ((now - t0) >= to.hold) nextLeg();
+      }
+
+      // Always-on micro-jitter — low-amplitude sine waves at
+      // different frequencies so the motion never feels mechanical.
+      var jx = Math.sin(now * 0.0011) * 0.55 + Math.sin(now * 0.0027) * 0.18;
+      var jy = Math.cos(now * 0.0009) * 0.55 + Math.cos(now * 0.0031) * 0.16;
+
+      lens.style.left = (x + jx) + '%';
+      lens.style.top  = (y + jy) + '%';
+
+      checkOverlap();
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  // Wait for DOM if we got hoisted to <head>.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startLensDrive, { once: true });
+  } else {
+    startLensDrive();
+  }
+</script>
