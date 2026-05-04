@@ -248,6 +248,27 @@ function initSwipers() {
       return;
     }
 
+    // Work case-study carousel — fixed 3-per-view on desktop, 2 tablet, 1 mobile.
+    const isWorkCarousel = root.classList.contains('c8-work__carousel');
+    if (isWorkCarousel) {
+      new Swiper(root, {
+        modules: [Navigation, A11y, Keyboard],
+        slidesPerView: 1,
+        spaceBetween: 20,
+        breakpoints: {
+          700:  { slidesPerView: 2, spaceBetween: 24 },
+          1100: { slidesPerView: 3, spaceBetween: 32 },
+        },
+        grabCursor: true,
+        keyboard: { enabled: true },
+        navigation: (nextBtn || prevBtn)
+          ? { nextEl: nextBtn as HTMLElement, prevEl: prevBtn as HTMLElement }
+          : false,
+        a11y: { enabled: true },
+      });
+      return;
+    }
+
     new Swiper(root, {
       modules: [Navigation, Pagination, A11y, Keyboard],
       slidesPerView: 'auto',
