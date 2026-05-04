@@ -28,21 +28,28 @@
   /* ────────────────────────────────────────────────────────────────────
      Base item reveal — blur + fade + tiny directional nudge.
      The blur → focus transition is what sells the "loading in" feel.
+
+     Fail-safe state: items are visible by default. Only the
+     .c8-reveal-init class (added by JS at script-run time) hides them
+     for the entry animation. If JS doesn't run, never runs, or errors
+     out, nothing stays invisible — the user sees rendered content.
      ──────────────────────────────────────────────────────────────────── */
   [data-reveal] {
-    opacity: 0;
     transition:
       opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
       transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--c8-reveal-delay, 0ms);
   }
-  [data-reveal="up"]    { transform: translate3d(0, 80px, 0); }
-  [data-reveal="down"]  { transform: translate3d(0, -80px, 0); }
-  [data-reveal="left"]  { transform: translate3d(-110px, 0, 0); }
-  [data-reveal="right"] { transform: translate3d(110px, 0, 0); }
-  [data-reveal="scale"] { transform: scale(0.86); }
-  [data-reveal="fade"]  { transform: none; }
-  [data-reveal="tilt"]  { transform: translate3d(0, 70px, 0) rotate(-3deg); }
+  [data-reveal].c8-reveal-init {
+    opacity: 0;
+  }
+  [data-reveal].c8-reveal-init[data-reveal="up"]    { transform: translate3d(0, 80px, 0); }
+  [data-reveal].c8-reveal-init[data-reveal="down"]  { transform: translate3d(0, -80px, 0); }
+  [data-reveal].c8-reveal-init[data-reveal="left"]  { transform: translate3d(-110px, 0, 0); }
+  [data-reveal].c8-reveal-init[data-reveal="right"] { transform: translate3d(110px, 0, 0); }
+  [data-reveal].c8-reveal-init[data-reveal="scale"] { transform: scale(0.86); }
+  [data-reveal].c8-reveal-init[data-reveal="fade"]  { transform: none; }
+  [data-reveal].c8-reveal-init[data-reveal="tilt"]  { transform: translate3d(0, 70px, 0) rotate(-3deg); }
 
   /* will-change only during the active reveal — NOT permanent. Keeping it
      on thousands of elements forever hurts scroll perf more than it helps. */
@@ -50,23 +57,33 @@
     will-change: opacity, transform;
   }
 
+  /* !important here is deliberate. The reveal init rules (especially
+     the per-direction transforms with two attribute selectors) have
+     higher specificity than this single-class selector, so without
+     !important the element stays translated/blurred even after we've
+     added the .is-revealed class. The whole point of this safety net
+     is "never let content stay invisible," so we win the cascade
+     unconditionally. */
   [data-reveal].is-revealed {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1) rotate(0);
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) scale(1) rotate(0) !important;
   }
 
   /* ────────────────────────────────────────────────────────────────────
      Section-level auto-reveal — every main > * gets a subtle fade-in on
-     scroll entry. No transform on the whole section (the child items
-     carry the directional motion); the section just materialises.
+     scroll entry. Same fail-safe pattern as items: the .c8-reveal-init
+     class is what hides the section, and JS adds it at script-run time.
+     If JS never runs, sections stay visible.
      ──────────────────────────────────────────────────────────────────── */
   main > .c8-reveal-section {
-    opacity: 0;
     transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  main > .c8-reveal-section.c8-reveal-init {
+    opacity: 0;
     will-change: opacity;
   }
   main > .c8-reveal-section.is-revealed {
-    opacity: 1;
+    opacity: 1 !important;
   }
 
   /* First section (Hero) paints immediately — never un-reveal the fold. */
@@ -88,15 +105,14 @@
     animation-play-state: paused !important;
   }
 
-  /* Browsers that support content-visibility get a cheap win — sections
-     below the fold skip rendering work until they're near the viewport.
-     Skip the first section so the Hero paints immediately. */
-  @supports (content-visibility: auto) {
-    main > .c8-reveal-section + .c8-reveal-section {
-      content-visibility: auto;
-      contain-intrinsic-size: 900px 1000px;
-    }
-  }
+  /* NOTE: an earlier version of this file used `content-visibility: auto`
+     on below-the-fold sections as a perf shortcut. It interacted badly
+     with our IntersectionObserver-based reveal: the browser skipped
+     rendering of the section's children, the observer fired against an
+     unrendered subtree, and absolutely-positioned overlays (Industries
+     card text, etc.) ended up with the bg painted but the foreground
+     content stuck at opacity:0 until a re-scroll forced a re-layout.
+     Removed deliberately — keep the reveal animation, drop the perf hack. */
 
   /* ────────────────────────────────────────────────────────────────────
      Reduced motion — everything visible, no blur, no transform.
@@ -127,13 +143,24 @@
       window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Tag direct main > * as reveal sections so CSS sets initial state.
+    // Tag direct main > * as reveal sections, and apply c8-reveal-init
+    // to the sections + every [data-reveal] item so they start hidden.
+    // We do this in JS rather than as the default CSS state so that if
+    // JS never runs, nothing stays invisible.
     var mainEl = document.querySelector('main');
     if (mainEl) {
       Array.prototype.forEach.call(mainEl.children, function (child) {
         child.classList.add('c8-reveal-section');
+        // Skip the first section (Hero) — it paints immediately and
+        // never un-reveals.
+        if (child !== mainEl.children[0]) {
+          child.classList.add('c8-reveal-init');
+        }
       });
     }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-reveal]'), function (el) {
+      el.classList.add('c8-reveal-init');
+    });
 
     // Auto-stagger: walk every data-reveal-stagger container and assign
     // sequential --c8-reveal-delay to each direct [data-reveal] child.
@@ -199,6 +226,65 @@
     document
       .querySelectorAll('[data-reveal], .c8-reveal-section')
       .forEach(function (el) { io.observe(el); });
+
+    /* ────────────────────────────────────────────────────────────────
+       Safety net — three layers of fallback so no element stays
+       hidden when it shouldn't:
+
+       1. Scroll-driven rescue (rAF-throttled) — every scroll input
+          checks for [data-reveal] / sections currently in the
+          viewport but missing .is-revealed, and adds it. Catches the
+          IO timing edge cases where the observer was attached before
+          the element was ready.
+
+       2. Window load + 600ms scan — same logic, fires once after
+          page settles.
+
+       3. Hard cap at 3s after script run — any element STILL stuck
+          at .c8-reveal-init regardless of viewport position gets
+          force-revealed. The reveal animation is decoration; broken
+          rendering is not acceptable. */
+
+    function rescueVisible() {
+      var vh = window.innerHeight || document.documentElement.clientHeight || 800;
+      var hidden = document.querySelectorAll('[data-reveal]:not(.is-revealed), .c8-reveal-section:not(.is-revealed)');
+      Array.prototype.forEach.call(hidden, function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < vh && r.bottom > 0) {
+          el.classList.add('is-revealed');
+        }
+      });
+    }
+
+    // Layer 1 — scroll-driven, throttled with rAF.
+    var scrollPending = false;
+    window.addEventListener('scroll', function () {
+      if (scrollPending) return;
+      scrollPending = true;
+      requestAnimationFrame(function () {
+        scrollPending = false;
+        rescueVisible();
+      });
+    }, { passive: true });
+
+    // Layer 2 — window load + 600ms.
+    if (document.readyState === 'complete') {
+      setTimeout(rescueVisible, 600);
+    } else {
+      window.addEventListener('load', function () {
+        setTimeout(rescueVisible, 600);
+      }, { once: true });
+    }
+
+    // Layer 3 — hard cap. After 3s, force-reveal anything still stuck
+    // at the initial-hidden state. This is the "never let content stay
+    // invisible because of a JS quirk" failsafe.
+    setTimeout(function () {
+      Array.prototype.forEach.call(
+        document.querySelectorAll('.c8-reveal-init:not(.is-revealed)'),
+        function (el) { el.classList.add('is-revealed'); }
+      );
+    }, 3000);
 
     /* ────────────────────────────────────────────────────────────────
        Perf observer #1 — pause every <video> when it scrolls off-screen
