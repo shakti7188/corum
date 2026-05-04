@@ -687,7 +687,7 @@
     grid-template-columns: 1fr 1fr 1fr 280px;
     gap: 32px;
     width: 100%;
-    max-width: 1400px;
+    max-width: var(--c8-section-max, 1320px);
     margin: 0 auto;
   }
 
@@ -916,7 +916,7 @@
   .mobile-menu.open .mobile-nav-link:nth-child(6) { transition-delay: 0.33s; }
 
   /* ─── Responsive ─── */
-  @media (max-width: 1280px) {
+  @media (max-width: var(--c8-section-max, 1320px)) {
     .mega-menu-inner {
       grid-template-columns: 1fr 1fr 280px;
     }
