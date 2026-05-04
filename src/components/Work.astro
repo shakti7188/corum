@@ -26,6 +26,7 @@ const projects = [
     description: 'Built the affiliate network behind Binance India — drove $800M+ in monthly volume through curated KOL partnerships and programmatic referral growth.',
     tags: ['PR', 'Growth', 'Community'],
     poster: '/clients/binance.png',
+    posterMode: 'logo',
   },
   {
     href: '/work/fanadise',
@@ -66,6 +67,7 @@ const projects = [
     description: 'Pre-launch community engineering, KOL seeding and PR — a full launch stack that turned a quiet pre-seed into a credible Web3 pre-token raise.',
     tags: ['Community', 'Influencer', 'PR'],
     poster: '/clients/metarix.png',
+    posterMode: 'logo',
   },
 ];
 ---
@@ -91,7 +93,7 @@ const projects = [
       <div class="swiper-wrapper">
         {projects.map((p) => (
           <a class="c8-work__card swiper-slide" href={p.href}>
-            <div class="c8-work__media">
+            <div class={`c8-work__media${p.posterMode === 'logo' ? ' c8-work__media--logo' : ''}`}>
               <img src={p.poster} alt={`${p.name} case study`} loading="lazy" />
               <div class="c8-work__veil"></div>
               <span class="c8-work__cat">{p.category}</span>
@@ -244,6 +246,21 @@ const projects = [
   }
   .c8-work__card:hover .c8-work__media img {
     transform: scale(1.04);
+  }
+  /* Logo-only treatment: when no proper case-study hero photo exists,
+     center the brand mark with breathing room on a softer dark surface
+     so it reads as an intentional title card instead of a cropped logo. */
+  .c8-work__media--logo {
+    background:
+      radial-gradient(ellipse at center, rgba(242,191,34,0.06) 0%, transparent 65%),
+      linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  }
+  .c8-work__media--logo img {
+    object-fit: contain;
+    padding: clamp(2rem, 5vw, 3rem);
+  }
+  .c8-work__card:hover .c8-work__media--logo img {
+    transform: scale(1.06);
   }
   .c8-work__veil {
     position: absolute;
