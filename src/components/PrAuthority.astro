@@ -1,48 +1,54 @@
 ---
-// PR Authority — dark editorial band that stages the PR proof points
-// just below the Community / Influencer section. Headline is the brand
-// thesis ("Coverage that moves markets."), the proof is two big numbers
-// (8,000+ coverage pieces, 40,000+ media touches) and a Tier-1 logo
-// strip. No grid, no marquee — quiet, magazine-feel layout.
+// PR Authority — dark editorial band that stages the earned-media
+// proof points. Headline is the brand thesis ("Coverage that moves
+// markets."), the proof is the 8,250+ confirmed placements, the
+// active press relationships, and a Tier-1 logo strip led by the
+// outlets the client called out: CoinTelegraph, Decrypt, TechCrunch,
+// Blockworks, Yahoo Finance.
 
 const tierOneLogos = [
+  { src: '/media-logos/cointelegraph.png',   alt: 'CoinTelegraph' },
+  { src: '/media-logos/decrypt.png',         alt: 'Decrypt' },
+  { src: '/media-logos/blockworks.png',      alt: 'Blockworks' },
+  { src: '/media-logos/yahoo-finance.png',   alt: 'Yahoo Finance' },
   { src: '/media-logos/Forbes.webp',         alt: 'Forbes' },
   { src: '/media-logos/Bloomberg.webp',      alt: 'Bloomberg' },
-  { src: '/media-logos/cointelegraph.png',   alt: 'CoinTelegraph' },
-  { src: '/media-logos/nasdaq.webp',         alt: 'Nasdaq' },
   { src: '/media-logos/Coindesk.webp',       alt: 'CoinDesk' },
-  { src: '/media-logos/cnbc.png',            alt: 'CNBC' },
-  { src: '/media-logos/yahoo-finance.png',   alt: 'Yahoo Finance' },
-  { src: '/media-logos/reuters.png',         alt: 'Reuters' },
+  { src: '/media-logos/theblock.png',        alt: 'The Block' },
 ];
 ---
 
 <section class="c8-pr">
   <div class="c8-pr__inner">
     <header class="c8-pr__head" data-reveal-stagger="100">
-      <p class="c8-pr__eyebrow" data-reveal="up">— Press authority</p>
+      <p class="c8-pr__eyebrow" data-reveal="up">— Public Relations &amp; Earned Media</p>
       <h2 class="c8-pr__heading" data-reveal="up">
         Coverage that <span class="c8-pr__heading-accent">moves markets.</span>
       </h2>
       <p class="c8-pr__sub" data-reveal="up">
-        We've placed clients in every Tier-1 outlet that matters — across token launches,
-        category-defining product reveals, and ongoing narrative work. The relationships
-        are real, the placements are earned, and the coverage compounds.
+        Earned, not bought. We've secured <strong>8,250+ placements</strong> across
+        CoinTelegraph, Decrypt, TechCrunch, Blockworks, Yahoo Finance and the rest
+        of the Tier-1 list — the pitches we write, the releases we ship, and the
+        relationships we've spent a decade building.
+      </p>
+      <p class="c8-pr__sub c8-pr__sub--soft" data-reveal="up">
+        From launch-week splashes to ongoing media programmes that keep your narrative
+        in front of investors, partners and customers — quarter after quarter.
       </p>
     </header>
 
     <div class="c8-pr__stats" data-reveal-stagger="120">
       <div class="c8-pr__stat" data-reveal="up">
-        <span class="c8-pr__stat-num">8,000+</span>
-        <span class="c8-pr__stat-lbl">Coverage pieces secured</span>
-      </div>
-      <div class="c8-pr__stat" data-reveal="up">
-        <span class="c8-pr__stat-num">40,000+</span>
-        <span class="c8-pr__stat-lbl">Media touches across campaigns</span>
+        <span class="c8-pr__stat-num">8,250+</span>
+        <span class="c8-pr__stat-lbl">Earned placements to date</span>
       </div>
       <div class="c8-pr__stat" data-reveal="up">
         <span class="c8-pr__stat-num">10,000+</span>
-        <span class="c8-pr__stat-lbl">Outlets in active relationship</span>
+        <span class="c8-pr__stat-lbl">Active press relationships</span>
+      </div>
+      <div class="c8-pr__stat" data-reveal="up">
+        <span class="c8-pr__stat-num">30+</span>
+        <span class="c8-pr__stat-lbl">Markets covered worldwide</span>
       </div>
     </div>
 
@@ -110,8 +116,19 @@ const tierOneLogos = [
     font-family: var(--montreal);
     font-size: clamp(1rem, 1.2vw, 1.15rem);
     line-height: 1.6;
-    color: rgba(255,255,255,0.72);
+    color: rgba(255,255,255,0.78);
     max-width: 48rem;
+  }
+  .c8-pr__sub strong {
+    color: #fff;
+    font-weight: 600;
+  }
+  .c8-pr__sub + .c8-pr__sub {
+    margin-top: 1rem;
+  }
+  .c8-pr__sub--soft {
+    color: rgba(255,255,255,0.6);
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
   }
 
   /* ─── Stats row ─── */
