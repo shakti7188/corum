@@ -1,47 +1,80 @@
 ---
-// Industries — six premium category cards that replace the homepage's
-// blog/Articles section per the redesign brief. Each card is a stock image
-// + overlay text + slight zoom-on-hover. Verticals match the brief's
-// recommended set (Web3, AI, Fintech, SaaS, Enterprise, Robotics).
+// Industries — editorial 3×2 card grid. Earlier version used full-bleed
+// stock photos that didn't earn their keep. This version drops imagery
+// entirely and leads with content: numbered index, big industry name,
+// short blurb, a small geometric SVG accent in muted gold (chosen per
+// industry), a hairline rule, and an "Explore" link with arrow.
 
-const industries = [
+type Industry = {
+  num: string;
+  name: string;
+  blurb: string;
+  proof: string;
+  href: string;
+  icon: 'hex' | 'neural' | 'card' | 'cloud' | 'tower' | 'circuit';
+};
+
+const industries: Industry[] = [
   {
+    num: '01',
     name: 'Web3',
-    blurb: 'Tokens, exchanges, infra, on-chain everything.',
-    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop',
+    blurb: 'Tokens, exchanges, on-chain infra and the launches that move them.',
+    proof: 'Cashaa · Binance · Fanadise',
     href: '/industries/web3',
+    icon: 'hex',
   },
   {
+    num: '02',
     name: 'AI',
-    blurb: 'Foundation models, agents, AI-native products.',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
+    blurb: 'Foundation models, agents, AI-native products taking position now.',
+    proof: 'GTM for AI-first builders',
     href: '/industries/ai',
+    icon: 'neural',
   },
   {
+    num: '03',
     name: 'Fintech',
-    blurb: 'Cards, payments, lending, embedded finance.',
-    image: 'https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=800&h=600&fit=crop',
+    blurb: 'Cards, payments, lending, embedded finance — regulated and ready.',
+    proof: 'Salamantex · MiCA-aware',
     href: '/industries/fintech',
+    icon: 'card',
   },
   {
+    num: '04',
     name: 'SaaS',
-    blurb: 'B2B platforms, vertical SaaS, dev tools.',
-    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop',
+    blurb: 'B2B platforms, vertical SaaS, dev tools — Series A through Series C.',
+    proof: 'Pre-seed → Series C',
     href: '/industries/saas',
+    icon: 'cloud',
   },
   {
+    num: '05',
     name: 'Enterprise',
-    blurb: 'Top-down digital transformation programmes.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
+    blurb: 'Top-down digital transformation, brand programmes, internal narrative.',
+    proof: '30+ markets, global rollouts',
     href: '/industries/enterprise',
+    icon: 'tower',
   },
   {
+    num: '06',
     name: 'Robotics',
-    blurb: 'Hardware-software, automation, deep-tech.',
-    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop',
+    blurb: 'Hardware-software stacks, automation, deep-tech going to market.',
+    proof: 'Frontier hardware briefs',
     href: '/industries/robotics',
+    icon: 'circuit',
   },
 ];
+
+// Geometric SVG accents — minimal, ~32px, gold stroke. Each industry
+// gets a different shape so the grid carries variety without imagery.
+const icons: Record<Industry['icon'], string> = {
+  hex:     `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><polygon points="12,7 17,9.5 17,14.5 12,17 7,14.5 7,9.5"/></svg>`,
+  neural:  `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="12" r="1.6"/><line x1="6.6" y1="7.2" x2="10.6" y2="11"/><line x1="6.6" y1="16.8" x2="10.6" y2="13"/><line x1="13.6" y1="12" x2="17" y2="12"/></svg>`,
+  card:    `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><line x1="3" y1="10.5" x2="21" y2="10.5"/><line x1="7" y1="15.5" x2="11" y2="15.5"/></svg>`,
+  cloud:   `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .9-7.9 6 6 0 0 0-11.7 1.4A4 4 0 0 0 7 18z"/><line x1="9" y1="13" x2="9" y2="17"/><line x1="13" y1="11" x2="13" y2="17"/></svg>`,
+  tower:   `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="4" y="3" width="7" height="18"/><rect x="13" y="8" width="7" height="13"/><line x1="6" y1="7" x2="9" y2="7"/><line x1="6" y1="11" x2="9" y2="11"/><line x1="6" y1="15" x2="9" y2="15"/><line x1="15" y1="12" x2="18" y2="12"/><line x1="15" y1="16" x2="18" y2="16"/></svg>`,
+  circuit: `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><line x1="12" y1="3" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="3" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="21" y2="12"/><circle cx="12" cy="3" r="1.2"/><circle cx="12" cy="21" r="1.2"/><circle cx="3" cy="12" r="1.2"/><circle cx="21" cy="12" r="1.2"/></svg>`,
+};
 ---
 
 <section class="c8-ind">
@@ -53,17 +86,20 @@ const industries = [
       </h2>
     </header>
 
-    <div class="c8-ind__grid" data-reveal-stagger="120">
+    <div class="c8-ind__grid" data-reveal-stagger="100">
       {industries.map((i) => (
         <a class="c8-ind__card" href={i.href} data-reveal="up">
-          <div class="c8-ind__media">
-            <img src={i.image} alt={`${i.name} industry`} loading="lazy" />
-            <div class="c8-ind__veil"></div>
+          <div class="c8-ind__row">
+            <span class="c8-ind__num">{i.num}</span>
+            <span class="c8-ind__icon" set:html={icons[i.icon]} />
           </div>
-          <div class="c8-ind__text">
-            <h3 class="c8-ind__name">{i.name}</h3>
-            <p class="c8-ind__blurb">{i.blurb}</p>
-          </div>
+          <h3 class="c8-ind__name">{i.name}</h3>
+          <p class="c8-ind__blurb">{i.blurb}</p>
+          <span class="c8-ind__rule"></span>
+          <span class="c8-ind__foot">
+            <span class="c8-ind__proof">{i.proof}</span>
+            <span class="c8-ind__arrow" aria-hidden="true">→</span>
+          </span>
         </a>
       ))}
     </div>
@@ -106,87 +142,124 @@ const industries = [
     font-weight: 400;
   }
 
+  /* ─── Grid ─── */
   .c8-ind__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1rem, 1.6vw, 1.5rem);
+    gap: clamp(0.85rem, 1.4vw, 1.25rem);
   }
 
+  /* ─── Card ─── */
   .c8-ind__card {
     position: relative;
-    display: block;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: clamp(1.25rem, 1.8vw, 1.65rem);
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 14px;
     text-decoration: none;
-    color: #fff;
+    color: #0a0a0a;
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
+    box-shadow: 0 14px 32px -22px rgba(0,0,0,0.18);
     isolation: isolate;
-    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
-    box-shadow: 0 18px 38px -22px rgba(0,0,0,0.4);
+  }
+  .c8-ind__card::before {
+    /* Gold corner glow that emerges on hover. */
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60%; height: 60%;
+    background: radial-gradient(ellipse at top right,
+      var(--c8-gold-soft) 0%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    border-radius: inherit;
   }
   .c8-ind__card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 28px 56px -22px rgba(0,0,0,0.5), 0 0 50px -12px var(--c8-gold-soft);
+    border-color: var(--c8-gold-glow);
+    box-shadow: 0 22px 48px -22px rgba(0,0,0,0.22), 0 0 36px -12px var(--c8-gold-soft);
   }
+  .c8-ind__card:hover::before { opacity: 1; }
+  .c8-ind__card:hover .c8-ind__icon { color: var(--c8-gold); transform: scale(1.06); }
+  .c8-ind__card:hover .c8-ind__arrow { transform: translateX(4px); color: var(--c8-gold-dark); }
 
-  .c8-ind__media {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-  }
-  .c8-ind__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .c8-ind__card:hover .c8-ind__media img {
-    transform: scale(1.06);
-  }
-  .c8-ind__veil {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(0,0,0,0.05) 0%,
-      rgba(0,0,0,0.15) 45%,
-      rgba(0,0,0,0.85) 100%
-    );
-  }
-
-  .c8-ind__text {
-    position: absolute;
-    left: 1.5rem;
-    right: 1.5rem;
-    bottom: 1.4rem;
+  /* Top row: numbered index on the left, geometric icon on the right. */
+  .c8-ind__row {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    z-index: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
-  .c8-ind__name {
-    margin: 0;
+  .c8-ind__num {
     font-family: var(--font-display);
-    font-size: clamp(1.35rem, 2vw, 1.75rem);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--c8-gold-dark);
+    opacity: 0.85;
+  }
+  .c8-ind__icon {
+    width: 30px;
+    height: 30px;
+    color: var(--c8-gold-dark);
+    display: inline-flex;
+    transition: color 0.4s ease, transform 0.4s ease;
+  }
+  .c8-ind__icon svg { width: 100%; height: 100%; }
+
+  .c8-ind__name {
+    margin: 0.2rem 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
     font-weight: 400;
-    line-height: 1.05;
+    line-height: 1;
     letter-spacing: -0.025em;
-    color: #fff;
+    color: #0a0a0a;
   }
   .c8-ind__blurb {
     margin: 0;
     font-family: var(--montreal);
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: rgba(255,255,255,0.82);
-    max-width: 24rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: #555;
+    flex: 1;
+  }
+  .c8-ind__rule {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 0.4rem 0 0;
+  }
+  .c8-ind__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-family: var(--montreal);
+    font-size: 0.78rem;
+  }
+  .c8-ind__proof {
+    color: #6b6b6b;
+    letter-spacing: 0.005em;
+  }
+  .c8-ind__arrow {
+    color: #888;
+    font-size: 1rem;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.35s ease;
   }
 
   @media (max-width: 1024px) {
     .c8-ind__grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
-    .c8-ind__grid { grid-template-columns: 1fr; gap: 1rem; }
-    .c8-ind__card { aspect-ratio: 16 / 11; }
+    .c8-ind__grid { grid-template-columns: 1fr; gap: 0.75rem; }
   }
 </style>
