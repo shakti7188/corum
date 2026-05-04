@@ -248,6 +248,25 @@ function initSwipers() {
       return;
     }
 
+    // Testimonial carousel — single slide visible, fades between slides.
+    const isTestiCarousel = root.classList.contains('c8-testi__carousel');
+    if (isTestiCarousel) {
+      new Swiper(root, {
+        modules: [Navigation, A11y, Keyboard],
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        grabCursor: true,
+        keyboard: { enabled: true },
+        navigation: (nextBtn || prevBtn)
+          ? { nextEl: nextBtn as HTMLElement, prevEl: prevBtn as HTMLElement }
+          : false,
+        a11y: { enabled: true },
+        autoplay: false,
+      });
+      return;
+    }
+
     // Work case-study carousel — fixed 3-per-view on desktop, 2 tablet, 1 mobile.
     const isWorkCarousel = root.classList.contains('c8-work__carousel');
     if (isWorkCarousel) {

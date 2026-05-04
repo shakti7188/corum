@@ -1,197 +1,118 @@
 ---
-// Dynamic KOTA-Style Testimonials Carousel.
-// Renders whatever the `testimonials` prop provides — no hardcoded slides.
+// Testimonials — clean two-column band per the redesign brief.
+// Left: a single video testimonial (autoplay-muted YouTube embed).
+// Right: a Swiper carousel of text reviews drawn from the real-client
+// testimonials in src/data/testimonials.ts.
+//
+// Swiper init for this component uses the .c8-testi__carousel hook
+// in src/scripts/site.ts (slidesPerView: 1, fade through with prev/
+// next nav). The shared .swiper-panel-prev/-next pattern is already
+// wired in the default init.
 
-export interface Testimonial {
-  bg: string;
-  logo: string;
-  alt: string;
-  quote: string;
-  name: string;
-  title: string;
-  href: string;
-}
+import { testimonials as allTestimonials } from '../data/testimonials';
 
-export interface Props {
-  testimonials?: Testimonial[];
-  heading?: string;
-}
-
-// Fallback used only if the caller forgets to pass data.
-// Three generic-but-Corum8-flavoured slides so the block never looks empty.
-const defaultTestis: Testimonial[] = [
-  {
-    bg: "#d7e1d3",
-    logo: "/clients/fanadise.png",
-    alt: "Fanadise",
-    quote:
-      "We needed a partner who could run the full stack — campaign, narrative, community, and the listing push — without us translating between three separate agencies. Corum8 was that partner. The raise closed on target and the community carried the momentum.",
-    name: "Fanadise leadership",
-    title: "Founding team, Fanadise",
-    href: "/case-studies",
-  },
-  {
-    bg: "#a8e1ec",
-    logo: "/clients/ubuntu-tribe.png",
-    alt: "Ubuntu Tribe",
-    quote:
-      "Corum8 put us in front of the right audiences at Token2049 and kept the global coverage consistent in the months after. The community shape we came out of that run with is what's driven everything since.",
-    name: "Ubuntu Tribe team",
-    title: "Growth & partnerships, Ubuntu Tribe",
-    href: "/case-studies",
-  },
-  {
-    bg: "#c4b5f3",
-    logo: "/clients/cashaa.png",
-    alt: "Cashaa",
-    quote:
-      "Corum8 ran the narrative, the media, and the community push around our token event. The execution was clean, the relationships with outlets were already in place, and the team moved at the pace we needed.",
-    name: "Kumar Gaurav",
-    title: "Founder & CEO, Cashaa",
-    href: "/case-studies",
-  },
+// Hand-pick the 6 strongest real-client reviews for the homepage.
+// Order biased toward the highest-impact named outcomes first.
+const picks = [
+  'cashaa-kumar',
+  'fanadise-founder',
+  'ubuntu-tribe-team',
+  'cobox-adaa',
+  'salamantex-rene',
+  'metarix-founder',
 ];
+const slides = picks
+  .map((id) => allTestimonials.find((t) => t.id === id))
+  .filter(Boolean) as typeof allTestimonials;
 
-const {
-  testimonials = defaultTestis,
-  heading = "What our clients say",
-} = Astro.props;
+// Pair company id -> client logo path. Falls back gracefully if
+// missing — the carousel still renders the quote + author block.
+const companyLogo: Record<string, { src: string; invert?: boolean }> = {
+  Cashaa:        { src: '/clients/cashaa.png' },
+  Fanadise:      { src: '/clients/fanadise.png' },
+  'Ubuntu Tribe':{ src: '/clients/ubuntu-tribe.png' },
+  Cobox:         { src: '/clients/cobox.png' },
+  Salamantex:    { src: '/clients/salamantex.png' },
+  Metarix:       { src: '/clients/metarix.png', invert: true },
+};
 
-// Defensive — filter empties so a missing testimonial ID doesn't render an empty slide.
-const slides = (testimonials && testimonials.length > 0 ? testimonials : defaultTestis).filter(
-  (t) => t && t.quote
-);
-
-const arrowPath = "m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z";
+const heroVideoId = 'wHMfo38ZbN8'; // existing client testimonial reel
 ---
 
-<section class="Testimonials_testimonials__AMUEx">
-  <div class="DarkThemeSwitch_cover__hn_xc"></div>
-  <div class="container">
-    <h2 class="Testimonials_heading__k0Yyf" data-reveal="up">
-      <span class="LineByLine_headingOuter__JmusT"><span>{heading}</span></span>
-    </h2>
+<section class="c8-testi">
+  <div class="c8-testi__inner">
+    <header class="c8-testi__head" data-reveal-stagger="100">
+      <p class="c8-testi__eyebrow" data-reveal="up">— Client voices</p>
+      <h2 class="c8-testi__heading" data-reveal="up">
+        Real teams. <span class="c8-testi__heading-accent">Real outcomes.</span>
+      </h2>
+    </header>
 
-    <!-- Desktop: video (left) + carousel (right) -->
-    <div class="Testimonials_testimonialDesktop__v5dZX c8-testi-desktop-grid" data-reveal-stagger="160">
-      <div class="c8-testi-video" data-reveal="left">
-        <div class="c8-testi-video__frame">
+    <div class="c8-testi__grid" data-reveal-stagger="160">
+      <!-- LEFT — video testimonial (autoplay-muted) -->
+      <div class="c8-testi__video" data-reveal="left">
+        <div class="c8-testi__video-frame">
           <iframe
-            src="https://www.youtube.com/embed/wHMfo38ZbN8?rel=0"
+            src={`https://www.youtube.com/embed/${heroVideoId}?rel=0&autoplay=1&mute=1&loop=1&playlist=${heroVideoId}&modestbranding=1&controls=1`}
             title="Corum8 client testimonial"
             loading="lazy"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="autoplay; encrypted-media; picture-in-picture"
             allowfullscreen
           ></iframe>
         </div>
       </div>
-      <div class="TestimonialsCarousel_panels__qHnSA c8-testi-carousel-col" data-reveal="right">
-        <div class="TestimonialsCarousel_container__YAjHa">
-          <div class="TestimonialsCarousel_swiper__AMmtm swiper">
-            <div class="swiper-wrapper">
-              {slides.map((t) => (
-                <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                  <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style={`background-color: ${t.bg}`}>
-                    <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                      {t.logo ? (
-                        <figure class="TestimonialsPanel_logo__m6tmz">
-                          <span class="Image_image__RAAdZ Image_intrinsic__JRoea">
-                            <img data-src={t.logo} src={t.logo} alt={t.alt} fetchpriority="low" height="80" width="200" sizes="auto" class="lazyload" />
-                          </span>
-                        </figure>
-                      ) : (
-                        <figure class="TestimonialsPanel_logo__m6tmz TestimonialsPanel_logo--text">
-                          <span class="TestimonialsPanel_companyName">{t.alt}</span>
-                        </figure>
-                      )}
-                      <p class="TestimonialsPanel_description__njfi8">"{t.quote}"</p>
-                      <div class="TestimonialsPanel_details__ijkyr">
-                        <span class="TestimonialsPanel_name__Spm5c">{t.name}</span>
-                        <span class="TestimonialsPanel_name__Spm5c">{t.title}</span>
-                      </div>
-                      <div class="TestimonialsPanel_buttons__fOECn">
-                        <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                          <div class="Button_button__JJiqJ" data-direction="forwards">
-                            <a class="Button_inner__fnyH6" href={t.href}>
-                              <span class="Button_border__hirH2"></span>
-                              <span class="Button_text__IZaCD">
-                                <span class="Button_textInner__JTTHe">View project</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                  <path d={arrowPath} fill="currentColor"></path>
-                                </svg>
-                              </span>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+
+      <!-- RIGHT — text testimonial carousel -->
+      <div class="c8-testi__carousel-col" data-reveal="right">
+        <div class="c8-testi__carousel swiper">
+          <div class="swiper-wrapper">
+            {slides.map((t) => {
+              const logo = companyLogo[t.company];
+              return (
+                <article class="c8-testi__slide swiper-slide">
+                  {logo ? (
+                    <img
+                      src={logo.src}
+                      alt={t.company}
+                      loading="lazy"
+                      class={`c8-testi__logo${logo.invert ? ' c8-testi__logo--invert' : ''}`}
+                    />
+                  ) : (
+                    <span class="c8-testi__logo c8-testi__logo--text">{t.company}</span>
+                  )}
+
+                  <div class="c8-testi__stars" aria-label={`${t.rating || 5} out of 5 stars`}>
+                    {Array.from({ length: 5 }).map(() => (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#da9e49" stroke="none" aria-hidden="true">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                      </svg>
+                    ))}
                   </div>
-                </div>
-              ))}
-            </div>
-            <div class="TestimonialsCarousel_swiperNav__hRE1L">
-              <div class="custom-swiper-btn swiper-panel-prev">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              </div>
-              <div class="custom-swiper-btn swiper-panel-next">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-              </div>
-            </div>
+
+                  <blockquote class="c8-testi__quote">
+                    <p>"{t.quote}"</p>
+                  </blockquote>
+
+                  <footer class="c8-testi__author">
+                    <span class="c8-testi__author-name">{t.author}</span>
+                    <span class="c8-testi__author-role">{t.role}, {t.company}{t.location ? ` · ${t.location}` : ''}</span>
+                    {t.outcome && (
+                      <span class="c8-testi__outcome">{t.outcome}</span>
+                    )}
+                  </footer>
+                </article>
+              );
+            })}
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Mobile carousel (same data, separate swiper instance) -->
-  <div class="Testimonials_testimonialMobile__gCvdw">
-    <div class="TestimonialsCarousel_panels__qHnSA">
-      <div class="TestimonialsCarousel_container__YAjHa">
-        <div class="TestimonialsCarousel_swiper__AMmtm swiper">
-          <div class="swiper-wrapper">
-            {slides.map((t) => (
-              <div class="TestimonialsCarousel_swiperSlide__lovqP swiper-slide">
-                <div class="TestimonialsPanel_panel__QSk4x testimonialPanel" style={`background-color: ${t.bg}`}>
-                  <div class="TestimonialsPanel_panelWrap__Lm7Hv">
-                    <figure class="TestimonialsPanel_logo__m6tmz">
-                      <span class="Image_image__RAAdZ Image_intrinsic__JRoea">
-                        <img data-src={t.logo} src={t.logo} alt={t.alt} fetchpriority="low" height="80" width="200" sizes="auto" class="lazyload" />
-                      </span>
-                    </figure>
-                    <p class="TestimonialsPanel_description__njfi8">"{t.quote}"</p>
-                    <div class="TestimonialsPanel_details__ijkyr">
-                      <span class="TestimonialsPanel_name__Spm5c">{t.name}</span>
-                      <span class="TestimonialsPanel_name__Spm5c">{t.title}</span>
-                    </div>
-                    <div class="TestimonialsPanel_buttons__fOECn">
-                      <div class="Magnetic_magnetic__LncOy" data-fill="false">
-                        <div class="Button_button__JJiqJ" data-direction="forwards">
-                          <a class="Button_inner__fnyH6" href={t.href}>
-                            <span class="Button_border__hirH2"></span>
-                            <span class="Button_text__IZaCD">
-                              <span class="Button_textInner__JTTHe">View project</span>
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI">
-                                <path d={arrowPath} fill="currentColor"></path>
-                              </svg>
-                            </span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div class="TestimonialsCarousel_swiperNav__hRE1L">
-            <div class="custom-swiper-btn swiper-panel-prev">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            </div>
-            <div class="custom-swiper-btn swiper-panel-next">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </div>
-          </div>
+        <div class="c8-testi__nav">
+          <button type="button" class="c8-testi__navBtn swiper-panel-prev" aria-label="Previous testimonial">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="c8-testi__navBtn swiper-panel-next" aria-label="Next testimonial">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -199,269 +120,218 @@ const arrowPath = "m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-
 </section>
 
 <style is:global>
-  /* ---------------------------------------------------------------
-     Light-theme override — KOTA ships Testimonials with a baked-in
-     `background:#000; color:#fff` on `.Testimonials_testimonials__AMUEx`.
-     Reset both so the section sits on the page's light body colour. The
-     pastel testimonial cards (#d7e1d3, #a8e1ec, #c4b5f3, #f8e5cb, etc.)
-     carry all the visual interest now — they pop harder against light
-     than they did against black. Heading swaps to dark for contrast. */
-  .Testimonials_testimonials__AMUEx {
-    background: transparent !important;
-    color: #0a0a0a !important;
+  .c8-testi {
+    background: var(--color-bg);
+    color: #0a0a0a;
+    padding: clamp(4.5rem, 9vh, 7rem) clamp(1.5rem, 5vw, 5rem);
   }
-  .Testimonials_testimonials__AMUEx .Testimonials_heading__k0Yyf,
-  .Testimonials_testimonials__AMUEx [class*="Testimonials_heading"] {
-    color: #0a0a0a !important;
-  }
-  .Testimonials_testimonials__AMUEx .DarkThemeSwitch_cover__hn_xc {
-    display: none !important;
+  .c8-testi__inner {
+    max-width: 1320px;
+    margin: 0 auto;
   }
 
-  /* ---------------------------------------------------------------
-     Force heading ABOVE everything, video+review grid BELOW.
+  .c8-testi__head {
+    max-width: 48rem;
+    margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
+  }
+  .c8-testi__eyebrow {
+    margin: 0 0 1rem;
+    font-family: var(--montreal);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c8-gold-dark);
+  }
+  .c8-testi__heading {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .c8-testi__heading-accent {
+    color: var(--c8-gold-dark);
+    font-weight: 400;
+  }
 
-     KOTA's default layout puts .Testimonials_heading (grid-column: span 6)
-     next to .Testimonials_testimonialDesktop (grid-column: span 6) inside
-     a 12-col `.container` — i.e. heading on the left, carousel on the
-     right. We override both to span the full width so heading sits on
-     top and the video+review 2-column grid sits below it — matching the
-     pattern every other section on the page uses. */
-  .Testimonials_testimonials__AMUEx .container {
-    row-gap: clamp(2rem, 4.5vh, 3rem);
-  }
-  .Testimonials_testimonials__AMUEx .Testimonials_heading__k0Yyf {
-    grid-column: 1 / -1 !important;
-    align-self: start !important;
-    text-align: left;
-    font-size: clamp(2rem, 4vw, 3.25rem) !important;
-    line-height: 1.05 !important;
-    margin: 0 0 0.5rem !important;
-  }
-  .Testimonials_testimonials__AMUEx .Testimonials_testimonialDesktop__v5dZX {
-    grid-column: 1 / -1 !important;
-  }
-
-  /* Clean 2-column split on desktop: YouTube testimonial video on the
-     left, a SINGLE review card on the right. The default Swiper
-     "creative effect" on testimonials peeks the next slide with a small
-     translate + 0.85 opacity — that peek read as a third column next to
-     the video. We hide all non-active slides in this layout so only one
-     review card ever shows. Navigation arrows still cycle through them. */
-  .Testimonials_testimonials__AMUEx .c8-testi-desktop-grid {
-    display: grid !important;
+  /* ─── Two-column grid ─── */
+  .c8-testi__grid {
+    display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: clamp(1.5rem, 3vw, 2.75rem);
-    align-items: center;
+    align-items: stretch;
   }
-  .c8-testi-video {
+  @media (max-width: 1023px) {
+    .c8-testi__grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  /* ─── LEFT — Video ─── */
+  .c8-testi__video {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     min-width: 0;
   }
-  .c8-testi-video__frame {
+  .c8-testi__video-frame {
     position: relative;
     width: 100%;
-    /* Near-square so the video column's height lines up with the review
-       card on the right (review card min-height ~380–500px). 16:9 was
-       too short; 1:1 was too tall with padding. 5:4 lands in the middle
-       and matches the card height closely on desktop. */
     aspect-ratio: 5 / 4;
-    border-radius: 24px;
+    border-radius: 20px;
     overflow: hidden;
     background: #000;
     box-shadow:
-      0 30px 60px -24px rgba(0, 0, 0, 0.28),
+      0 30px 60px -28px rgba(0, 0, 0, 0.32),
       0 0 0 1px rgba(0, 0, 0, 0.06);
     transition: box-shadow 0.45s ease, transform 0.45s ease;
   }
-  /* YouTube iframe itself stays 16:9 inside the 5:4 frame. Letterboxed
-     black bars on top/bottom keep the video readable — we set the
-     iframe to fit by width and center it vertically. */
-  .c8-testi-video__frame iframe {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    transform: translateY(-50%);
-    border: 0;
-  }
-  .c8-testi-video__frame:hover {
+  .c8-testi__video-frame:hover {
     box-shadow:
-      0 40px 80px -24px rgba(0, 0, 0, 0.32),
-      0 0 60px -18px var(--c8-gold-soft, rgba(242,191,34,0.35)),
-      0 0 0 1px var(--c8-gold-glow, rgba(242,191,34,0.45));
+      0 40px 80px -28px rgba(0, 0, 0, 0.4),
+      0 0 60px -18px var(--c8-gold-soft),
+      0 0 0 1px var(--c8-gold-glow);
     transform: translateY(-2px);
   }
-  .c8-testi-carousel-col { min-width: 0; }
-
-  /* Kill the peek of adjacent slides inside the desktop grid. Only the
-     currently-active swiper-slide renders, so the right column shows a
-     single clean review card that pairs 1:1 with the video on the left. */
-  .c8-testi-desktop-grid .swiper-slide:not(.swiper-slide-active) {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    transform: translateX(0) !important;
-  }
-  .c8-testi-desktop-grid .swiper-slide.swiper-slide-active {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-  }
-
-  /* Review card inside the 2-col layout — shorter than the global default
-     so it pairs visually with a 16:9 video rather than towering over it. */
-  .c8-testi-desktop-grid .TestimonialsPanel_panel__QSk4x,
-  .c8-testi-desktop-grid [class*="TestimonialsPanel_panel__"] {
-    min-height: clamp(380px, 48vh, 500px) !important;
-    padding: 2.5rem 2.75rem !important;
-  }
-  .c8-testi-desktop-grid [class*="TestimonialsPanel_description"] {
-    font-size: clamp(1rem, 1.25vw, 1.2rem) !important;
-    line-height: 1.5 !important;
-  }
-
-  /* Tablet + mobile: single column, video stacks on top, carousel below.
-     Below the desktop breakpoint the site swaps to the mobile swiper, so
-     this intermediate stack handles ~768–1023px cleanly. */
-  @media (max-width: 1023px) {
-    .Testimonials_testimonials__AMUEx .c8-testi-desktop-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-  }
-
-  /* Cards — lift the minimum height so quotes breathe, add a premium
-     inset highlight + soft external shadow that matches the reference
-     design's card presentation. Gold edge on hover is the brand tell. */
-  .Testimonials_testimonials__AMUEx .TestimonialsPanel_panel__QSk4x,
-  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_panel__"] {
-    min-height: clamp(540px, 68vh, 680px) !important;
-    padding: 4rem 4.5rem !important;
-    display: flex !important;
-    align-items: stretch !important;
-    box-shadow:
-      0 30px 60px -24px rgba(0, 0, 0, 0.18),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.04) !important;
-    border: 1px solid rgba(0, 0, 0, 0.04) !important;
-    transition: box-shadow 0.45s ease, border-color 0.45s ease !important;
-  }
-  .Testimonials_testimonials__AMUEx .TestimonialsPanel_panel__QSk4x:hover,
-  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_panel__"]:hover {
-    box-shadow:
-      0 40px 80px -24px rgba(0, 0, 0, 0.22),
-      0 0 60px -20px var(--c8-gold-soft),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
-    border-color: var(--c8-gold-glow) !important;
-  }
-  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_panelWrap"] {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important;
-    width: 100% !important;
-  }
-  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_logo"] {
-    flex: 0 0 auto;
-    margin-bottom: 1.75rem !important;
-  }
-  /* Text-only company name — shown when no logo asset is available.
-     Styled as a small-caps display mark so it reads as a brand label, not
-     as accidental body copy. */
-  .Testimonials_testimonials__AMUEx .TestimonialsPanel_logo--text {
-    display: flex !important;
-    align-items: center;
-    min-height: 80px;
-    margin: 0 0 1.75rem !important;
-  }
-  .Testimonials_testimonials__AMUEx .TestimonialsPanel_companyName {
-    font-size: clamp(1.25rem, 1.6vw, 1.6rem);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: #0a0a0a;
-    line-height: 1.1;
-  }
-  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_description"] {
-    font-size: clamp(1.15rem, 1.5vw, 1.55rem) !important;
-    line-height: 1.55 !important;
-    flex: 1 1 auto;
-    margin-bottom: 2rem !important;
-  }
-  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_details"] {
-    margin-top: auto !important;
-  }
-  .Testimonials_testimonials__AMUEx [class*="TestimonialsPanel_buttons"] {
-    margin-top: 1.5rem !important;
-  }
-
-  /* Nav — bottom-right of the card, unfilled icon-only buttons. */
-  .Testimonials_testimonials__AMUEx .TestimonialsCarousel_swiper__AMmtm {
-    position: relative;
-  }
-  .TestimonialsCarousel_swiperNav__hRE1L {
+  .c8-testi__video-frame iframe {
     position: absolute;
-    right: 2rem;
-    bottom: 1.75rem;
-    top: auto;
-    left: auto;
-    padding: 0 !important;
-    margin: 0 !important;
-    pointer-events: none !important;
-    z-index: 20;
-    display: flex !important;
-    gap: 0.9rem;
-  }
-  .TestimonialsCarousel_swiperNav__hRE1L .custom-swiper-btn {
-    position: static;
-    width: 52px;
-    height: 52px;
-    border-radius: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     border: 0;
-    background: transparent !important;
-    box-shadow: none !important;
-    backdrop-filter: none;
-    color: #0a0a0a;
+  }
+
+  /* ─── RIGHT — Carousel column ─── */
+  .c8-testi__carousel-col {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+  }
+  .c8-testi__carousel {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+  .c8-testi__slide {
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.18);
+    height: auto;
+    min-height: clamp(380px, 48vh, 480px);
+  }
+
+  .c8-testi__logo {
+    height: 32px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    align-self: flex-start;
+  }
+  .c8-testi__logo--invert {
+    filter: brightness(0);
+    opacity: 0.78;
+  }
+  .c8-testi__logo--text {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    color: #0a0a0a;
+    line-height: 1.2;
+  }
+
+  .c8-testi__stars {
+    display: inline-flex;
+    gap: 2px;
     align-items: center;
+  }
+
+  .c8-testi__quote {
+    margin: 0;
+    flex: 1;
+  }
+  .c8-testi__quote p {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.55;
+    color: #1a1a1a;
+    letter-spacing: -0.005em;
+  }
+
+  .c8-testi__author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 1rem;
+    margin-top: auto;
+  }
+  .c8-testi__author-name {
+    font-family: var(--montreal);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0a0a0a;
+    letter-spacing: -0.005em;
+  }
+  .c8-testi__author-role {
+    font-family: var(--montreal);
+    font-size: 0.85rem;
+    color: #6b6b6b;
+  }
+  .c8-testi__outcome {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    padding: 0.28rem 0.7rem;
+    background: rgba(242, 191, 34, 0.12);
+    border: 1px solid rgba(242, 191, 34, 0.4);
+    border-radius: 999px;
+    font-family: var(--montreal);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--c8-gold-dark);
+  }
+
+  /* ─── Nav ─── */
+  .c8-testi__nav {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    align-self: flex-end;
+    padding-right: 0.5rem;
+  }
+  .c8-testi__navBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: transparent;
+    border: 1.5px solid rgba(0, 0, 0, 0.18);
+    color: #0a0a0a;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition: color 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
-    pointer-events: auto !important;
-    z-index: 21;
-    padding: 0;
-    transform: none;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
   }
-  .TestimonialsCarousel_swiperNav__hRE1L .custom-swiper-btn svg {
-    width: 40px;
-    height: 40px;
-    stroke: currentColor;
-    stroke-width: 1.5;
-  }
-  .TestimonialsCarousel_swiperNav__hRE1L .custom-swiper-btn:hover {
-    transform: translateX(2px) scale(1.05);
-    color: #000;
-  }
-  .TestimonialsCarousel_swiperNav__hRE1L .swiper-panel-prev:hover {
-    transform: translateX(-2px) scale(1.05);
-  }
-  .TestimonialsCarousel_swiperNav__hRE1L .custom-swiper-btn.swiper-button-disabled {
-    opacity: 0.25;
-    pointer-events: none !important;
-  }
-  .custom-swiper-btn svg {
-    stroke: currentColor;
-    width: 24px;
-    height: 24px;
-  }
-  .custom-swiper-btn:hover {
-    background: var(--c8-gold, #f2bf22);
-    border-color: var(--c8-gold, #f2bf22);
+  .c8-testi__navBtn:hover:not(.swiper-button-disabled) {
+    background: var(--c8-gold);
+    border-color: var(--c8-gold);
     color: #111;
-    transform: scale(1.06);
+    transform: translateY(-2px);
   }
-  .custom-swiper-btn.swiper-button-disabled {
+  .c8-testi__navBtn.swiper-button-disabled {
     opacity: 0.3;
-    pointer-events: none;
+    cursor: not-allowed;
   }
 </style>
