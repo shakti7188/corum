@@ -1,80 +1,121 @@
 ---
-// Industries — editorial 3×2 card grid. Earlier version used full-bleed
-// stock photos that didn't earn their keep. This version drops imagery
-// entirely and leads with content: numbered index, big industry name,
-// short blurb, a small geometric SVG accent in muted gold (chosen per
-// industry), a hairline rule, and an "Explore" link with arrow.
+// Industries — vertical title carousel.
+// LEFT: stacked industry titles. The active one is highlighted with
+//   a gold rail, white-on-gold treatment, and a thin progress bar
+//   underneath that fills as the auto-advance timer ticks.
+// RIGHT: content panel that swaps to match — full-bleed image with
+//   industry name, blurb, key services, and a CTA. Crossfades on
+//   change.
+//
+// Interaction: auto-advances top→bottom every 6s, restarts on every
+// title click, and pauses while the user hovers the panel (so they
+// can read a slide they care about). Reduced-motion users get a
+// static first slide and the click/keyboard nav still works.
 
 type Industry = {
   num: string;
   name: string;
+  tagline: string;
   blurb: string;
-  proof: string;
+  bullets: string[];
+  cta: string;
   href: string;
-  icon: 'hex' | 'neural' | 'card' | 'cloud' | 'tower' | 'circuit';
+  image: string;
+  imageAlt: string;
 };
 
 const industries: Industry[] = [
   {
     num: '01',
     name: 'Web3',
-    blurb: 'Tokens, exchanges, on-chain infra and the launches that move them.',
-    proof: 'Cashaa · Binance · Fanadise',
+    tagline: 'Tokens, exchanges, on-chain infra.',
+    blurb: 'We work with the founders building Web3 — from token launches to listed exchanges to live protocols carrying real volume.',
+    bullets: [
+      'Token launches with live community + Tier-1 PR',
+      'CEX & DEX engineering, listings and market-making intros',
+      'Wallet, staking and RWA platform development',
+    ],
+    cta: 'Explore Web3 work',
     href: '/industries/web3',
-    icon: 'hex',
+    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1600&q=80&auto=format&fit=crop',
+    imageAlt: 'Web3 / crypto chain visualisation',
   },
   {
     num: '02',
     name: 'AI',
-    blurb: 'Foundation models, agents, AI-native products taking position now.',
-    proof: 'GTM for AI-first builders',
+    tagline: 'Foundation-model native products.',
+    blurb: 'GTM, brand, and engineering for the AI-first companies setting category in 2026 — agents, foundation-model wrappers, and AI-native SaaS.',
+    bullets: [
+      'Positioning + launch for AI products that need investor narrative',
+      'Foundation-model integrations and agent workflows',
+      'AI-native SEO, AEO and GEO so the right answer engines surface you',
+    ],
+    cta: 'Explore AI work',
     href: '/industries/ai',
-    icon: 'neural',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1600&q=80&auto=format&fit=crop',
+    imageAlt: 'Abstract AI / neural visualisation',
   },
   {
     num: '03',
     name: 'Fintech',
-    blurb: 'Cards, payments, lending, embedded finance — regulated and ready.',
-    proof: 'Salamantex · MiCA-aware',
+    tagline: 'Cards, payments, embedded finance.',
+    blurb: 'Regulated fintech brands that need both the engineering rigour and the marketing surface to compete with incumbents.',
+    bullets: [
+      'Card programmes, lending and embedded-finance launches',
+      'MiCA / VARA / FCA-aware compliance narrative',
+      'Payment infrastructure and on-chain settlement',
+    ],
+    cta: 'Explore Fintech work',
     href: '/industries/fintech',
-    icon: 'card',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&q=80&auto=format&fit=crop',
+    imageAlt: 'Fintech card visualisation',
   },
   {
     num: '04',
     name: 'SaaS',
-    blurb: 'B2B platforms, vertical SaaS, dev tools — Series A through Series C.',
-    proof: 'Pre-seed → Series C',
+    tagline: 'B2B platforms, vertical SaaS, dev tools.',
+    blurb: 'From pre-seed positioning through Series-C scale — full-funnel growth, brand, and dev tooling for B2B platforms shipping into noisy markets.',
+    bullets: [
+      'Performance media + content engines tuned for SQL pipeline',
+      'Marketing site + dashboard product UX',
+      'Founder-led PR + thought leadership programmes',
+    ],
+    cta: 'Explore SaaS work',
     href: '/industries/saas',
-    icon: 'cloud',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80&auto=format&fit=crop',
+    imageAlt: 'Analytics dashboard on a screen',
   },
   {
     num: '05',
     name: 'Enterprise',
-    blurb: 'Top-down digital transformation, brand programmes, internal narrative.',
-    proof: '30+ markets, global rollouts',
+    tagline: 'Top-down digital transformation.',
+    blurb: 'Brand programmes, internal narrative, and execution muscle for enterprise teams running multi-region, multi-stakeholder rollouts.',
+    bullets: [
+      'Global brand systems and country-level activation',
+      'Internal narrative + change-management programmes',
+      'Performance + PR across 30+ markets',
+    ],
+    cta: 'Explore Enterprise work',
     href: '/industries/enterprise',
-    icon: 'tower',
+    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=80&auto=format&fit=crop',
+    imageAlt: 'Modern boardroom strategy session',
   },
   {
     num: '06',
     name: 'Robotics',
-    blurb: 'Hardware-software stacks, automation, deep-tech going to market.',
-    proof: 'Frontier hardware briefs',
+    tagline: 'Hardware-software, deep-tech.',
+    blurb: 'Frontier hardware companies translating engineering proof into investor-ready narrative, channel and brand.',
+    bullets: [
+      'Hardware launch positioning and investor briefs',
+      'Technical content + thought leadership for engineering audiences',
+      'Channel and partnership marketing programmes',
+    ],
+    cta: 'Explore Robotics work',
     href: '/industries/robotics',
-    icon: 'circuit',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&q=80&auto=format&fit=crop',
+    imageAlt: 'Robotic arm in a factory',
   },
 ];
-
-// Geometric SVG accents — minimal, ~32px, gold stroke. Each industry
-// gets a different shape so the grid carries variety without imagery.
-const icons: Record<Industry['icon'], string> = {
-  hex:     `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><polygon points="12,7 17,9.5 17,14.5 12,17 7,14.5 7,9.5"/></svg>`,
-  neural:  `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="12" r="1.6"/><line x1="6.6" y1="7.2" x2="10.6" y2="11"/><line x1="6.6" y1="16.8" x2="10.6" y2="13"/><line x1="13.6" y1="12" x2="17" y2="12"/></svg>`,
-  card:    `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><line x1="3" y1="10.5" x2="21" y2="10.5"/><line x1="7" y1="15.5" x2="11" y2="15.5"/></svg>`,
-  cloud:   `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .9-7.9 6 6 0 0 0-11.7 1.4A4 4 0 0 0 7 18z"/><line x1="9" y1="13" x2="9" y2="17"/><line x1="13" y1="11" x2="13" y2="17"/></svg>`,
-  tower:   `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="4" y="3" width="7" height="18"/><rect x="13" y="8" width="7" height="13"/><line x1="6" y1="7" x2="9" y2="7"/><line x1="6" y1="11" x2="9" y2="11"/><line x1="6" y1="15" x2="9" y2="15"/><line x1="15" y1="12" x2="18" y2="12"/><line x1="15" y1="16" x2="18" y2="16"/></svg>`,
-  circuit: `<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><line x1="12" y1="3" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="3" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="21" y2="12"/><circle cx="12" cy="3" r="1.2"/><circle cx="12" cy="21" r="1.2"/><circle cx="3" cy="12" r="1.2"/><circle cx="21" cy="12" r="1.2"/></svg>`,
-};
 ---
 
 <section class="c8-ind">
@@ -86,22 +127,63 @@ const icons: Record<Industry['icon'], string> = {
       </h2>
     </header>
 
-    <div class="c8-ind__grid" data-reveal-stagger="100">
-      {industries.map((i) => (
-        <a class="c8-ind__card" href={i.href} data-reveal="up">
-          <div class="c8-ind__row">
-            <span class="c8-ind__num">{i.num}</span>
-            <span class="c8-ind__icon" set:html={icons[i.icon]} />
-          </div>
-          <h3 class="c8-ind__name">{i.name}</h3>
-          <p class="c8-ind__blurb">{i.blurb}</p>
-          <span class="c8-ind__rule"></span>
-          <span class="c8-ind__foot">
-            <span class="c8-ind__proof">{i.proof}</span>
-            <span class="c8-ind__arrow" aria-hidden="true">→</span>
-          </span>
-        </a>
-      ))}
+    <div class="c8-ind__panel" data-reveal="up">
+      <!-- LEFT — clickable industry titles -->
+      <ol class="c8-ind__list" role="tablist" aria-label="Industries">
+        {industries.map((i, idx) => (
+          <li class="c8-ind__list-item">
+            <button
+              type="button"
+              class={`c8-ind__title${idx === 0 ? ' is-active' : ''}`}
+              role="tab"
+              aria-selected={idx === 0 ? 'true' : 'false'}
+              aria-controls={`c8-ind-panel-${idx}`}
+              data-ind-index={idx}
+            >
+              <span class="c8-ind__title-num">{i.num}</span>
+              <span class="c8-ind__title-name">{i.name}</span>
+              <span class="c8-ind__title-tag">{i.tagline}</span>
+              <span class="c8-ind__progress" aria-hidden="true"><span class="c8-ind__progress-bar"></span></span>
+            </button>
+          </li>
+        ))}
+      </ol>
+
+      <!-- RIGHT — content panels (only the active one is visible) -->
+      <div class="c8-ind__stage" id="c8-ind-stage">
+        {industries.map((i, idx) => (
+          <article
+            class={`c8-ind__slide${idx === 0 ? ' is-active' : ''}`}
+            id={`c8-ind-panel-${idx}`}
+            role="tabpanel"
+            aria-hidden={idx === 0 ? 'false' : 'true'}
+          >
+            <figure class="c8-ind__media">
+              <img src={i.image} alt={i.imageAlt} loading="lazy" />
+              <span class="c8-ind__media-veil"></span>
+            </figure>
+            <div class="c8-ind__body">
+              <span class="c8-ind__body-num">{i.num} · {i.tagline}</span>
+              <h3 class="c8-ind__body-name">{i.name}</h3>
+              <p class="c8-ind__body-blurb">{i.blurb}</p>
+              <ul class="c8-ind__body-points">
+                {i.bullets.map((b) => (
+                  <li>
+                    <span class="c8-ind__body-tick" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <a class="c8-ind__body-cta" href={i.href}>
+                <span>{i.cta}</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -112,10 +194,8 @@ const icons: Record<Industry['icon'], string> = {
     color: #0a0a0a;
     padding: clamp(4.5rem, 9vh, 7rem) clamp(1.5rem, 5vw, 5rem);
   }
-  .c8-ind__inner {
-    max-width: var(--c8-section-max, 1320px);
-    margin: 0 auto;
-  }
+  .c8-ind__inner { max-width: var(--c8-section-max, 1320px); margin: 0 auto; }
+
   .c8-ind__head {
     max-width: 48rem;
     margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
@@ -142,124 +222,382 @@ const icons: Record<Industry['icon'], string> = {
     font-weight: 400;
   }
 
-  /* ─── Grid ─── */
-  .c8-ind__grid {
+  /* ─── Panel: left titles, right stage ─── */
+  .c8-ind__panel {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(0.85rem, 1.4vw, 1.25rem);
+    grid-template-columns: minmax(220px, 0.85fr) minmax(0, 2.15fr);
+    gap: clamp(1.25rem, 2.5vw, 2.5rem);
+    align-items: stretch;
+  }
+  @media (max-width: 900px) {
+    .c8-ind__panel {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
   }
 
-  /* ─── Card ─── */
-  .c8-ind__card {
-    position: relative;
+  /* ── LEFT — title list ── */
+  .c8-ind__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
-    padding: clamp(1.25rem, 1.8vw, 1.65rem);
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 14px;
-    text-decoration: none;
-    color: #0a0a0a;
-    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-                border-color 0.4s ease,
-                box-shadow 0.4s ease;
-    box-shadow: 0 14px 32px -22px rgba(0,0,0,0.18);
-    isolation: isolate;
+    gap: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
   }
-  .c8-ind__card::before {
-    /* Gold corner glow that emerges on hover. */
+  .c8-ind__list-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .c8-ind__title {
+    appearance: none;
+    width: 100%;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+    padding: 1.1rem 0.5rem 1.1rem 1rem;
+    color: #6b6b6b;
+    font-family: inherit;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0.85rem;
+    align-items: baseline;
+    position: relative;
+    transition: color 0.4s ease, padding-left 0.4s ease, background 0.4s ease;
+  }
+  .c8-ind__title::before {
+    /* Gold left rail. Hidden by default; expands when active. */
     content: '';
     position: absolute;
-    top: 0; right: 0;
-    width: 60%; height: 60%;
-    background: radial-gradient(ellipse at top right,
-      var(--c8-gold-soft) 0%, transparent 70%);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-    z-index: -1;
-    border-radius: inherit;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--c8-gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  .c8-ind__card:hover {
-    transform: translateY(-4px);
-    border-color: var(--c8-gold-glow);
-    box-shadow: 0 22px 48px -22px rgba(0,0,0,0.22), 0 0 36px -12px var(--c8-gold-soft);
+  .c8-ind__title:hover {
+    color: #0a0a0a;
+    padding-left: 1.4rem;
   }
-  .c8-ind__card:hover::before { opacity: 1; }
-  .c8-ind__card:hover .c8-ind__icon { color: var(--c8-gold); transform: scale(1.06); }
-  .c8-ind__card:hover .c8-ind__arrow { transform: translateX(4px); color: var(--c8-gold-dark); }
+  .c8-ind__title.is-active {
+    color: #0a0a0a;
+    padding-left: 1.4rem;
+  }
+  .c8-ind__title.is-active::before { transform: scaleY(1); }
 
-  /* Top row: numbered index on the left, geometric icon on the right. */
-  .c8-ind__row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-  .c8-ind__num {
+  .c8-ind__title-num {
+    grid-column: 1; grid-row: 1 / span 2;
     font-family: var(--font-display);
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.18em;
     color: var(--c8-gold-dark);
-    opacity: 0.85;
+    align-self: center;
+    opacity: 0.65;
+    transition: opacity 0.35s ease;
   }
-  .c8-ind__icon {
-    width: 30px;
-    height: 30px;
-    color: var(--c8-gold-dark);
-    display: inline-flex;
-    transition: color 0.4s ease, transform 0.4s ease;
-  }
-  .c8-ind__icon svg { width: 100%; height: 100%; }
+  .c8-ind__title.is-active .c8-ind__title-num,
+  .c8-ind__title:hover .c8-ind__title-num { opacity: 1; }
 
-  .c8-ind__name {
-    margin: 0.2rem 0 0;
+  .c8-ind__title-name {
+    grid-column: 2; grid-row: 1;
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .c8-ind__title-tag {
+    grid-column: 2; grid-row: 2;
+    margin-top: 0.3rem;
+    font-family: var(--montreal);
+    font-size: 0.78rem;
+    color: #888;
+    letter-spacing: 0.005em;
+    /* Collapse the tag on inactive items so the list stays scannable. */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 0.4s ease,
+                margin-top 0.4s ease;
+  }
+  .c8-ind__title.is-active .c8-ind__title-tag {
+    max-height: 2rem;
+    opacity: 1;
+  }
+
+  /* Progress bar — only renders under the active title and fills as
+     the auto-advance timer counts down. JS toggles the animation
+     restart on each tick. */
+  .c8-ind__progress {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: block;
+    height: 1px;
+    margin-top: 0.65rem;
+    background: rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .c8-ind__title.is-active .c8-ind__progress { opacity: 1; }
+  .c8-ind__progress-bar {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: var(--c8-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .c8-ind__title.is-active .c8-ind__progress-bar {
+    animation: c8-ind-progress var(--c8-ind-dur, 6000ms) linear forwards;
+  }
+  .c8-ind__title.is-paused .c8-ind__progress-bar {
+    animation-play-state: paused;
+  }
+  @keyframes c8-ind-progress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* ── RIGHT — stage ── */
+  .c8-ind__stage {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0a0a0a;
+    aspect-ratio: 16 / 10;
+    min-height: 460px;
+    box-shadow:
+      0 30px 60px -28px rgba(0, 0, 0, 0.32),
+      0 0 0 1px rgba(0, 0, 0, 0.06);
+  }
+  .c8-ind__slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .c8-ind__slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .c8-ind__media {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+  .c8-ind__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.02);
+    transition: transform 8s ease-out;
+  }
+  .c8-ind__slide.is-active .c8-ind__media img {
+    transform: scale(1.08);
+  }
+  .c8-ind__media-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.6) 30%,
+      rgba(0,0,0,0.18) 60%,
+      rgba(0,0,0,0.18) 100%
+    );
+  }
+
+  .c8-ind__body {
+    position: relative;
+    z-index: 1;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    color: #fff;
+    max-width: 36rem;
+  }
+  .c8-ind__body-num {
+    display: inline-block;
+    margin: 0 0 0.5rem;
+    font-family: var(--montreal);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c8-gold);
+  }
+  .c8-ind__body-name {
+    margin: 0 0 0.6rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
     font-weight: 400;
     line-height: 1;
     letter-spacing: -0.025em;
-    color: #0a0a0a;
+    color: #fff;
   }
-  .c8-ind__blurb {
-    margin: 0;
+  .c8-ind__body-blurb {
+    margin: 0 0 0.85rem;
+    font-family: var(--montreal);
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    line-height: 1.55;
+    color: rgba(255,255,255,0.86);
+  }
+  .c8-ind__body-points {
+    list-style: none;
+    margin: 0 0 1.2rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .c8-ind__body-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
     font-family: var(--montreal);
     font-size: 0.92rem;
-    line-height: 1.5;
-    color: #555;
-    flex: 1;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.78);
   }
-  .c8-ind__rule {
-    display: block;
-    height: 1px;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.08);
-    margin: 0.4rem 0 0;
-  }
-  .c8-ind__foot {
-    display: flex;
+  .c8-ind__body-tick {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: rgba(242, 191, 34, 0.16);
+    color: var(--c8-gold);
+    flex: 0 0 auto;
+    margin-top: 0.05rem;
+  }
+  .c8-ind__body-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.35rem;
+    border-radius: 999px;
+    background: var(--c8-gold);
+    color: #111;
+    text-decoration: none;
     font-family: var(--montreal);
-    font-size: 0.78rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 12px 28px -10px rgba(242, 191, 34, 0.4);
   }
-  .c8-ind__proof {
-    color: #6b6b6b;
-    letter-spacing: 0.005em;
-  }
-  .c8-ind__arrow {
-    color: #888;
-    font-size: 1rem;
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.35s ease;
+  .c8-ind__body-cta:hover {
+    background: #fff;
+    color: #111;
+    transform: translateY(-2px);
   }
 
-  @media (max-width: 1024px) {
-    .c8-ind__grid { grid-template-columns: repeat(2, 1fr); }
+  /* Mobile stack */
+  @media (max-width: 900px) {
+    .c8-ind__stage { aspect-ratio: 5 / 4; min-height: 380px; }
+    .c8-ind__title { padding: 0.9rem 0.5rem 0.9rem 1rem; }
   }
-  @media (max-width: 600px) {
-    .c8-ind__grid { grid-template-columns: 1fr; gap: 0.75rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c8-ind__title.is-active .c8-ind__progress-bar { animation: none; transform: scaleX(1); }
+    .c8-ind__slide { transition: none; }
+    .c8-ind__media img { transition: none; transform: none; }
   }
 </style>
+
+<script is:inline>
+  /* Industries auto-rotating carousel:
+       - default 6 second tick
+       - click on a title jumps + restarts the timer
+       - hover anywhere in the panel pauses (so the user has time
+         to actually read the slide), resumes on mouseleave
+       - reduced-motion users get a static first slide
+  */
+  function startIndCarousel() {
+    var panel  = document.querySelector('.c8-ind__panel');
+    if (!panel) return;
+    var titles = panel.querySelectorAll('.c8-ind__title');
+    var slides = panel.querySelectorAll('.c8-ind__slide');
+    if (!titles.length || titles.length !== slides.length) return;
+
+    var DURATION = 6000;
+    var index = 0;
+    var timer = null;
+    var paused = false;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function activate(i) {
+      index = i;
+      for (var n = 0; n < titles.length; n++) {
+        var on = (n === i);
+        titles[n].classList.toggle('is-active', on);
+        titles[n].setAttribute('aria-selected', on ? 'true' : 'false');
+        slides[n].classList.toggle('is-active', on);
+        slides[n].setAttribute('aria-hidden', on ? 'false' : 'true');
+      }
+      // Restart progress-bar animation by removing + forcing reflow + readding
+      // (we toggle is-active via the loop above, the keyframe restarts on
+      // each is-active gain naturally).
+    }
+
+    function tick() {
+      if (paused) { schedule(); return; }
+      var next = (index + 1) % titles.length;
+      activate(next);
+      schedule();
+    }
+    function schedule() {
+      if (timer) clearTimeout(timer);
+      if (reduceMotion) return;
+      timer = setTimeout(tick, DURATION);
+    }
+    function reset() {
+      if (timer) clearTimeout(timer);
+      schedule();
+    }
+
+    panel.style.setProperty('--c8-ind-dur', DURATION + 'ms');
+
+    // Click handlers
+    Array.prototype.forEach.call(titles, function (t, i) {
+      t.addEventListener('click', function () {
+        activate(i);
+        reset();
+      });
+      t.addEventListener('focus', function () {
+        // keyboard nav: focusing a title also activates it
+        if (document.activeElement === t) activate(i);
+        reset();
+      });
+    });
+
+    // Pause on hover anywhere in the panel so the user can read.
+    panel.addEventListener('mouseenter', function () {
+      paused = true;
+      Array.prototype.forEach.call(titles, function (t) { t.classList.add('is-paused'); });
+    });
+    panel.addEventListener('mouseleave', function () {
+      paused = false;
+      Array.prototype.forEach.call(titles, function (t) { t.classList.remove('is-paused'); });
+      reset();
+    });
+
+    // Initial tick
+    schedule();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startIndCarousel, { once: true });
+  } else {
+    startIndCarousel();
+  }
+</script>
