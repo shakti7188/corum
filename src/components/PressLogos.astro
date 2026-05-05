@@ -5,28 +5,61 @@
 // shows two rows of CLIENT logos instead of media outlets, per
 // user direction. Label updated to "Trusted by 1,100+ brands".
 
+// Source: every brand the user dropped into /assets/clients2/, copied
+// into /public/clients/ so Astro can serve them as static assets.
+// Order is curated so the biggest CEX/wallet names + case-study
+// brands lead row A, project clients fill row B, and the longer tail
+// of specialist + media-partner brands fills row C.
 const clients = [
-  { src: '/clients/binance.png',       alt: 'Binance' },
-  { src: '/clients/kucoin.png',        alt: 'KuCoin' },
-  { src: '/clients/okx.png',           alt: 'OKX' },
-  { src: '/clients/metamask.png',      alt: 'MetaMask' },
-  { src: '/clients/tether.png',        alt: 'Tether' },
-  { src: '/clients/tron.png',          alt: 'TRON' },
-  { src: '/clients/etoro.png',         alt: 'eToro' },
-  { src: '/clients/gate-io.png',       alt: 'Gate.io' },
-  { src: '/clients/coinmarketcap.png', alt: 'CoinMarketCap' },
-  { src: '/clients/wazirx.png',        alt: 'WazirX' },
-  { src: '/clients/kava.png',          alt: 'Kava' },
-  { src: '/clients/eos.png',           alt: 'EOS' },
-  { src: '/clients/dream11.png',       alt: 'Dream11' },
-  { src: '/clients/iotex.png',         alt: 'IoTeX' },
-  { src: '/clients/Plasmapay.png',     alt: 'PlasmaPay' },
-  { src: '/clients/salamantex.png',    alt: 'Salamantex' },
-  { src: '/clients/cobox.png',         alt: 'Cobox' },
-  { src: '/clients/metarix.png',       alt: 'Metarix' },
-  { src: '/clients/fanadise.png',      alt: 'Fanadise' },
-  { src: '/clients/ubuntu-tribe.png',  alt: 'Ubuntu Tribe' },
-  { src: '/clients/flappy-bird.png',   alt: 'Flappy Bird' },
+  // Row A — tier-1 brands + case-study clients
+  { src: '/clients/binance.png',          alt: 'Binance' },
+  { src: '/clients/Cashaa.webp',          alt: 'Cashaa' },
+  { src: '/clients/kucoin.png',           alt: 'KuCoin' },
+  { src: '/clients/okx.png',              alt: 'OKX' },
+  { src: '/clients/metamask.png',         alt: 'MetaMask' },
+  { src: '/clients/tether.png',           alt: 'Tether' },
+  { src: '/clients/tron.png',             alt: 'TRON' },
+  { src: '/clients/etoro.png',            alt: 'eToro' },
+  { src: '/clients/gate-io.png',          alt: 'Gate.io' },
+  { src: '/clients/coinmarketcap.png',    alt: 'CoinMarketCap' },
+  { src: '/clients/wazirx.png',           alt: 'WazirX' },
+  { src: '/clients/kava.png',             alt: 'Kava' },
+  { src: '/clients/eos.png',              alt: 'EOS' },
+  { src: '/clients/dream11.png',          alt: 'Dream11' },
+  { src: '/clients/iotex.png',            alt: 'IoTeX' },
+  { src: '/clients/fanadise.png',         alt: 'Fanadise' },
+  // Row B — case-study + project clients
+  { src: '/clients/metarix.png',          alt: 'Metarix' },
+  { src: '/clients/ubuntu-tribe.png',     alt: 'Ubuntu Tribe' },
+  { src: '/clients/salamantex.png',       alt: 'Salamantex' },
+  { src: '/clients/cobox.png',            alt: 'Cobox' },
+  { src: '/clients/Plasmapay.png',        alt: 'PlasmaPay' },
+  { src: '/clients/radar.webp',           alt: 'Radar' },
+  { src: '/clients/lendefi.webp',         alt: 'Lendefi' },
+  { src: '/clients/befaster.webp',        alt: 'BeFaster' },
+  { src: '/clients/aimedis.webp',         alt: 'Aimedis' },
+  { src: '/clients/bfcl.webp',            alt: 'BFCL' },
+  { src: '/clients/obortech.png',         alt: 'OborTech' },
+  { src: '/clients/cointelligence.png',   alt: 'Cointelligence' },
+  { src: '/clients/crypto-tower.png',     alt: 'Crypto Tower' },
+  { src: '/clients/metavisa.png',         alt: 'MetaVisa' },
+  { src: '/clients/chingari.png',         alt: 'Chingari' },
+  { src: '/clients/433-token.webp',       alt: '433 Token' },
+  // Row C — specialists + media partners
+  { src: '/clients/Eulium.webp',          alt: 'Eulium' },
+  { src: '/clients/Goldkoise.webp',       alt: 'Goldkoise' },
+  { src: '/clients/ozonex.webp',          alt: 'Ozonex' },
+  { src: '/clients/refine-medium.webp',   alt: 'Refine Medium' },
+  { src: '/clients/ambcrypto.png',        alt: 'AMB Crypto' },
+  { src: '/clients/beincrypto.png',       alt: 'BeInCrypto' },
+  { src: '/clients/coingape.png',         alt: 'CoinGape' },
+  { src: '/clients/coinfunda.png',        alt: 'CoinFunda' },
+  { src: '/clients/coinjournal.png',      alt: 'CoinJournal' },
+  { src: '/clients/crypto-briefing.png',  alt: 'Crypto Briefing' },
+  { src: '/clients/dailycoin.png',        alt: 'DailyCoin' },
+  { src: '/clients/zycrypto.png',         alt: 'ZyCrypto' },
+  { src: '/clients/maga-trump.png',       alt: 'MAGA Trump' },
+  { src: '/clients/flappy-bird.png',      alt: 'Flappy Bird' },
 ];
 
 // Split into three rows of 7 logos each so the strip carries more
