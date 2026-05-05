@@ -227,28 +227,36 @@ export const articles = [
 
 export const faqs = [
   {
-    q: "How much does a project with Corum8 cost?",
-    a: "Most engagements fall between £30k and £150k depending on scope. Smaller brand or site builds start around £30k; larger platform builds with custom functionality, content production and post-launch support sit toward the upper end. We'll put a tailored estimate together after the first discovery call.",
+    q: "What's the scope of a typical Corum8 engagement?",
+    a: "Engagements range from a single launch sprint to multi-quarter retainers covering brand, growth, PR, community and product engineering. The cost drivers are scope (one discipline vs. all of them), regulatory complexity (token launches and licensed fintech carry compliance overhead), audit depth, and the number of regions you're activating. We'll scope a fixed proposal after the first call.",
   },
   {
-    q: "How long does a typical project take?",
-    a: "A standard brand-and-website build runs 12–14 weeks from kickoff to launch. Timelines flex with the complexity of the work and how quickly we can get sign-off on key decisions along the way.",
+    q: "How fast can we go from kickoff to launch?",
+    a: "It depends on the work — a press-led launch moment can ship in weeks; a fully-engineered exchange or licensed fintech build sits at the other end. The biggest timeline drivers are decision speed on your side, the depth of compliance review, third-party integrations (custody, KYC, listings) and content production volume. We give you a phased plan after discovery so you know what each stage takes.",
   },
   {
-    q: "What does the process look like?",
-    a: "Discovery and strategy, followed by design, then build, then launch and handover. Each stage ends with a review and a decision, so nothing slips quietly from one phase to the next. You get one producer and one creative lead across the whole project.",
+    q: "Which industries do you work with?",
+    a: "Web3 (tokens, exchanges, infra), AI (foundation-model integrations, AI-native SaaS), fintech (cards, payments, embedded finance), B2B SaaS, enterprise transformation, and frontier hardware/robotics. Inside each category we work across the full lifecycle — from pre-seed positioning through Series-C scale and post-token operations.",
   },
   {
-    q: "Do you work with teams outside the UK?",
-    a: "Yes. Roughly half of our work is with teams outside the UK. Calls land in whichever time zone makes sense for your team — we default to your working hours, not ours.",
+    q: "Where are you based, and which time zones do you cover?",
+    a: "We're a global team with anchors in the US, EU, UAE and India. Calls land in whichever working hours suit your team — we default to your time zone, not ours. Active client work runs across 30+ markets in any given quarter.",
   },
   {
-    q: "Can you help after launch?",
-    a: "Yes. We offer retained support for ongoing design, development, content and marketing work. Clients can book sprints monthly or keep a small team on call for iteration.",
+    q: "Do you handle the full launch or just specific pieces?",
+    a: "Both. Some clients hire us for one discipline — usually PR, community or development — and others bring us in to run the full launch end-to-end. The advantage of the full-stack engagement is that the same team writing the press pitch is in the room with the engineers shipping the product, so the narrative and the work stay aligned.",
   },
   {
-    q: "What platforms do you build on?",
-    a: "Most marketing sites are built on modern JS stacks (Astro, Next.js) with a headless CMS. Commerce work is usually Shopify or a headless commerce platform. We pick the tool that fits the team that'll own it long-term.",
+    q: "What happens after launch?",
+    a: "Most engagements transition into a retainer covering ongoing PR, community ops, performance media and product iteration. We also support quarterly narrative refreshes, post-launch coverage waves, exchange-listing follow-throughs and any compliance updates the regulatory environment forces. The team that built the launch stays on it.",
+  },
+  {
+    q: "How do we get started?",
+    a: "Book a strategy call. We use the first 45 minutes to understand the company, the audience, the budget envelope and the specific outcome you need. Within a week of that call we deliver a written proposal with phased scope, deliverables, team structure and a fixed-fee or retained quote. No procurement-ese, no decks of stock photos.",
+  },
+  {
+    q: "What separates Corum8 from a typical agency?",
+    a: "One integrated team across marketing, PR, community and engineering — not three separate vendors and a coordinator in the middle. Real numbers behind the work: 1,100+ shipped projects, $120M+ in client revenue, 8,250+ earned placements, 25,000+ vetted creators in network. And anchors in the four markets that actually matter for global launches: US, EU, UAE, India.",
   },
 ];
 

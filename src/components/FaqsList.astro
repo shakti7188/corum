@@ -1,325 +1,281 @@
 ---
-// Corum8 Premium Bespoke FAQ Redesign
+// FAQ — clean accordion on a white slab. Two-column header (left:
+// eyebrow + heading, right: support note + book-call CTA), then a
+// vertical stack of questions with smooth height transitions on
+// open/close. Plus icon rotates to minus on open.
+//
+// Multiple questions can be open at once — the user is comparing
+// answers, not navigating a single thread.
 
-export interface Props {
-  titleLight?: string;
-  titleBold?: string;
-  subtitle?: string;
-  faqs?: { question: string; answer: string }[];
-}
-
-const defaultFaqs = [
-  {
-    question: "What types of projects does Corum8 work with?",
-    answer: "Crypto projects, centralized and decentralized exchanges, AI and SaaS companies, fintech brands, gaming studios, enterprises and ambitious founders across 30+ regions. If you're building in Web3, AI or emerging tech, we're built to serve you."
-  },
-  {
-    question: "How is Corum8 different from other Web3 agencies?",
-    answer: "Full-stack development and marketing under one roof — strategy, design, build, PR, community and growth coordinated by a single team. 1,100+ projects, 50+ awards and 10+ years in Web3 mean our frameworks are battle-tested at scale."
-  },
-  {
-    question: "Can you handle both development and marketing for our project?",
-    answer: "Yes — that's our core strength. Most projects fail because dev and marketing operate in silos. We align the tech roadmap with the GTM plan from day one, so launches are coordinated and the message is consistent across every touchpoint."
-  },
-  {
-    question: "What is the typical engagement timeline?",
-    answer: "A focused PR or influencer campaign can launch in 1–2 weeks. A full development project typically runs 8–16 weeks. Strategic retainers are month-to-month with flexible scaling. We start with a strategy session to define the right timeline for your goals."
-  },
-  {
-    question: "Where is Corum8 headquartered?",
-    answer: "HQ is in Dubai, UAE, with operational offices in the United States and India. Our 95+ specialists work across time zones to provide global coverage with local market understanding."
-  },
-  {
-    question: "Do you offer white-label services for other agencies?",
-    answer: "Yes. White-label development and marketing for agencies, consultancies and resellers worldwide. Your clients get our execution quality under your brand, with dedicated account management and confidential workflows."
-  }
-];
-
-const {
-  titleLight = "Your",
-  titleBold = "Questions.",
-  subtitle = "Straight answers on how we plan, build and scale Web3 brands.",
-  faqs = defaultFaqs
-} = Astro.props;
+import { faqs } from '../data/content';
 ---
 
-<section class="FAQCustom_wrapper" id="faq">
-  <div class="FAQCustom_glow"></div>
-  <div class="FAQCustom_container">
-    
-    <div class="FAQCustom_left" data-reveal="left">
-      <div class="FAQCustom_header">
-        <h2 class="FAQCustom_title">
-          <span class="FAQCustom_titleLight">{titleLight}</span><br/>
-          <span class="FAQCustom_titleBold">{titleBold}</span>
+<section class="c8-faq">
+  <div class="c8-faq__inner">
+    <header class="c8-faq__head" data-reveal-stagger="100">
+      <div class="c8-faq__head-text">
+        <p class="c8-faq__eyebrow" data-reveal="up">Frequently asked</p>
+        <h2 class="c8-faq__heading" data-reveal="up">
+          Answered honestly. <span class="c8-faq__heading-accent">No procurement-ese.</span>
         </h2>
-        <p class="FAQCustom_subtitle">{subtitle}</p>
       </div>
-    </div>
+      <aside class="c8-faq__aside" data-reveal="up">
+        <p class="c8-faq__aside-text">Have a question we haven't covered?</p>
+        <a class="c8-faq__aside-cta" href="/contact">
+          <span>Book a strategy call</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </aside>
+    </header>
 
-    <div class="FAQCustom_right">
-      <div class="FAQCustom_grid" data-reveal-stagger="90">
-        {faqs.map((faq, i) => (
-          <div class="FAQCustom_card" data-reveal={i % 2 === 0 ? 'right' : 'up'}>
-            <button class="FAQCustom_question">
-              <span class="FAQCustom_qText">{faq.question}</span>
-              <div class="FAQCustom_iconWrap"><span class="FAQCustom_icon"></span></div>
-            </button>
-            <div class="FAQCustom_answerWrapper">
-              <div class="FAQCustom_answerInner">
-                <p class="FAQCustom_answer">{faq.answer}</p>
-              </div>
+    <ol class="c8-faq__list" data-reveal-stagger="60">
+      {faqs.map((f, i) => (
+        <li class="c8-faq__item" data-reveal="up">
+          <button
+            type="button"
+            class="c8-faq__q"
+            aria-expanded={i === 0 ? 'true' : 'false'}
+            aria-controls={`c8-faq-a-${i}`}
+            data-faq-index={i}
+          >
+            <span class="c8-faq__q-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="c8-faq__q-text">{f.q}</span>
+            <span class="c8-faq__q-icon" aria-hidden="true">
+              <span class="c8-faq__q-bar c8-faq__q-bar--h"></span>
+              <span class="c8-faq__q-bar c8-faq__q-bar--v"></span>
+            </span>
+          </button>
+          <div
+            class="c8-faq__a"
+            id={`c8-faq-a-${i}`}
+            role="region"
+            aria-hidden={i === 0 ? 'false' : 'true'}
+            data-open={i === 0 ? 'true' : 'false'}
+          >
+            <div class="c8-faq__a-inner">
+              <p>{f.a}</p>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-
+        </li>
+      ))}
+    </ol>
   </div>
 </section>
 
-<style>
-  /* 
-    CORUM8 BESPOKE FAQ DESIGN
-    Features a modern sticky-sidebar split layout, evading all KOTA global generic containers.
-  */
-  
-  .FAQCustom_wrapper {
-    position: relative;
-    background-color: var(--color-bg-dark);
-    color: var(--color-ink-on-dark);
-    padding: 8rem 0;
-    overflow: hidden;
+<style is:global>
+  .c8-faq {
+    background: #ffffff;
+    color: #0a0a0a;
+    padding: clamp(4rem, 8vh, 6rem) clamp(1.5rem, 5vw, 5rem);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
   }
-
-  /* Ambient gold glow — pushes the dark panel toward the reference design's
-     aesthetic instead of KOTA's original purple ambient. */
-  .FAQCustom_glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60vw;
-    height: 60vh;
-    background: radial-gradient(circle, var(--c8-gold-soft) 0%, rgba(0, 0, 0, 0) 70%);
-    transform: translate(-50%, -50%);
-    filter: blur(80px);
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  /* Completely custom container isolating the scope from KOTA's grid system */
-  .FAQCustom_container {
-    position: relative;
-    z-index: 10;
+  .c8-faq__inner {
     max-width: var(--c8-section-max, 1320px);
     margin: 0 auto;
-    padding: 0 4vw;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
   }
 
-  @media (min-width: 768px) {
-    .FAQCustom_container {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-    
-    .FAQCustom_left {
-      flex: 0 0 35%;
-      position: sticky;
-      top: 25vh; /* Premium sticky scrolling block */
-      align-self: flex-start;
-    }
-
-    .FAQCustom_right {
-      flex: 0 0 55%;
-    }
+  /* ─── Head: 2-col on desktop (text left, aside right) ─── */
+  .c8-faq__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: end;
+    margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
   }
-
-  .FAQCustom_header {
-    margin-bottom: 2rem;
+  @media (max-width: 900px) {
+    .c8-faq__head { grid-template-columns: 1fr; align-items: start; gap: 1rem; }
   }
-
-  .FAQCustom_title {
-    font-size: clamp(2.5rem, 7.1vw, 7.5rem);
-    line-height: 1;
-    margin: 0 0 1rem 0;
-    letter-spacing: -0.02em;
-    font-weight: 400;
-    color: #fff;
-  }
-
-  .FAQCustom_titleLight,
-  .FAQCustom_titleBold {
-    font-weight: 400;
-    color: #fff;
-  }
-
-  .FAQCustom_subtitle {
-    font-size: 1.1rem;
-    color: #999;
-    letter-spacing: 0.1em;
-    line-height: 1.6;
+  .c8-faq__head-text { max-width: 36rem; }
+  .c8-faq__eyebrow {
+    margin: 0 0 1rem;
+    font-family: var(--montreal);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    max-width: 80%;
-    margin-top: 2rem;
+    color: var(--c8-gold-dark);
+  }
+  .c8-faq__heading {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .c8-faq__heading-accent {
+    color: var(--c8-gold-dark);
+    font-weight: 400;
   }
 
-  .FAQCustom_grid {
+  .c8-faq__aside {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .c8-faq__aside-text {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.92rem;
+    color: #555;
+  }
+  .c8-faq__aside-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    background: var(--c8-gold);
+    color: #111;
+    text-decoration: none;
+    border-radius: 999px;
+    font-family: var(--montreal);
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 24px -10px rgba(242, 191, 34, 0.45);
+  }
+  .c8-faq__aside-cta:hover {
+    background: #0a0a0a;
+    color: var(--c8-gold);
+    transform: translateY(-2px);
+  }
+
+  /* ─── Accordion list ─── */
+  .c8-faq__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .c8-faq__item {
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  /* Question row — clickable button. Three-column grid: number,
+     question text, plus/minus icon. */
+  .c8-faq__q {
+    appearance: none;
     width: 100%;
-  }
-
-  /* Glassmorphic cards */
-  .FAQCustom_card {
-    background: rgba(25, 25, 25, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 1.5rem;
-    backdrop-filter: blur(10px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    width: 100%;
-  }
-
-  .FAQCustom_card:hover {
-    background: rgba(40, 40, 40, 0.6);
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateX(4px);
-  }
-
-  .FAQCustom_card.is-open {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: var(--c8-gold-glow, rgba(242, 191, 34, 0.35));
-    box-shadow: 0 0 40px -10px var(--c8-gold-soft);
-  }
-
-  .FAQCustom_question {
-    display: flex;
-    width: 100%;
-    background: none;
-    border: none;
-    color: #fff;
-    font-family: inherit;
+    background: transparent;
+    border: 0;
     text-align: left;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
     cursor: pointer;
-    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
-    font-weight: 500;
-    letter-spacing: -0.5px;
-    line-height: 1.4;
-  }
-
-  .FAQCustom_qText {
-    padding-right: 2rem;
-  }
-
-  /* Custom animated Icon Logic - BIGGER */
-  .FAQCustom_iconWrap {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    display: flex;
-    justify-content: center;
+    color: #0a0a0a;
+    padding: clamp(1.2rem, 2vw, 1.6rem) 0.25rem clamp(1.2rem, 2vw, 1.6rem) 0.25rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: clamp(0.85rem, 1.4vw, 1.4rem);
     align-items: center;
-    flex-shrink: 0;
+    font-family: inherit;
+    transition: padding-left 0.4s ease, color 0.3s ease;
+  }
+  .c8-faq__q:hover { padding-left: 0.85rem; }
+  .c8-faq__q[aria-expanded="true"] { padding-left: 0.85rem; }
+
+  .c8-faq__q-num {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--c8-gold-dark);
+    opacity: 0.75;
+    transition: opacity 0.3s ease;
+  }
+  .c8-faq__q[aria-expanded="true"] .c8-faq__q-num,
+  .c8-faq__q:hover .c8-faq__q-num { opacity: 1; }
+
+  .c8-faq__q-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: #0a0a0a;
+  }
+
+  /* Plus icon — two crossed bars. The vertical bar collapses to
+     scaleY(0) when expanded, leaving a horizontal minus. */
+  .c8-faq__q-icon {
+    width: 22px;
+    height: 22px;
     position: relative;
-    transition: all 0.3s ease;
+    display: inline-block;
+    flex: 0 0 auto;
+    color: var(--c8-gold-dark);
   }
-
-  .FAQCustom_card:hover .FAQCustom_iconWrap {
-    border-color: rgba(255,255,255,0.6);
-  }
-
-  .FAQCustom_icon, .FAQCustom_icon::before {
-    content: '';
+  .c8-faq__q-bar {
     position: absolute;
-    background: #fff;
-    width: 20px;
-    height: 2.5px;
-    border-radius: 2px;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 0.3s ease;
+  }
+  .c8-faq__q-bar--h {
+    left: 0; right: 0; top: 50%;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+  .c8-faq__q-bar--v {
+    top: 0; bottom: 0; left: 50%;
+    width: 2px;
+    transform: translateX(-50%) scaleY(1);
+    transform-origin: center;
+  }
+  .c8-faq__q[aria-expanded="true"] .c8-faq__q-bar--v {
+    transform: translateX(-50%) scaleY(0);
+  }
+  .c8-faq__q[aria-expanded="true"] .c8-faq__q-icon {
+    color: var(--c8-gold);
   }
 
-  .FAQCustom_icon::before {
-    transform: rotate(90deg);
-  }
-
-  /* Minus creation when open */
-  .FAQCustom_card.is-open .FAQCustom_icon::before {
-    transform: rotate(0deg);
-  }
-  
-  .FAQCustom_card.is-open .FAQCustom_iconWrap {
-    background: #fff;
-    border-color: #fff;
-  }
-  
-  .FAQCustom_card.is-open .FAQCustom_icon,
-  .FAQCustom_card.is-open .FAQCustom_icon::before {
-    background: #000;
-  }
-
-  /* Smooth Grid Accordion — only works if the inner row can actually shrink */
-  .FAQCustom_answerWrapper {
+  /* Answer panel — uses the grid-template-rows 0fr → 1fr trick for
+     a smooth auto-height transition. */
+  .c8-faq__a {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: grid-template-rows 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-
-  .FAQCustom_card.is-open .FAQCustom_answerWrapper {
-    grid-template-rows: 1fr;
-  }
-
-  .FAQCustom_answerInner {
-    min-height: 0;
+  .c8-faq__a[data-open="true"] { grid-template-rows: 1fr; }
+  .c8-faq__a-inner {
     overflow: hidden;
+    min-height: 0;
   }
-
-  .FAQCustom_answer {
-    color: #a1a1aa;
-    font-size: 1.15rem;
-    line-height: 1.6;
+  .c8-faq__a p {
     margin: 0;
-    font-weight: 300;
-    padding: 0 4rem 2.5rem 2rem;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    padding: 0 2.5rem 1.6rem 2.6rem;
+    font-family: var(--montreal);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #4a4a4a;
+    max-width: 56rem;
   }
-  
-  .FAQCustom_card.is-open .FAQCustom_answer {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.1s;
+  @media (max-width: 600px) {
+    .c8-faq__a p { padding-left: 0.25rem; padding-right: 0.5rem; }
   }
 </style>
 
-<script>
-  // Simple Vanilla JS to handle exclusive smooth accordion toggles
-  document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.FAQCustom_card');
-    
-    cards.forEach(card => {
-      const button = card.querySelector('.FAQCustom_question');
-      if (!button) return;
-      
-      button.addEventListener('click', () => {
-        const isOpen = card.classList.contains('is-open');
-        
-        // Close all other cards identically to a true accordion
-        cards.forEach(c => c.classList.remove('is-open'));
-        
-        // Open this one if it was closed
-        if (!isOpen) {
-          card.classList.add('is-open');
+<script is:inline>
+  function startFaqs() {
+    var buttons = document.querySelectorAll('.c8-faq__q');
+    if (!buttons.length) return;
+    Array.prototype.forEach.call(buttons, function (btn) {
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+        var panelId = btn.getAttribute('aria-controls');
+        var panel = panelId ? document.getElementById(panelId) : null;
+        if (panel) {
+          panel.setAttribute('data-open', open ? 'false' : 'true');
+          panel.setAttribute('aria-hidden', open ? 'true' : 'false');
         }
       });
     });
-  });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startFaqs, { once: true });
+  } else {
+    startFaqs();
+  }
 </script>
