@@ -6,31 +6,52 @@
 // user direction. Label updated to "Trusted by 1,100+ brands".
 
 const clients = [
-  { src: '/clients/binance.png',       alt: 'Binance' },
-  { src: '/clients/kucoin.png',        alt: 'KuCoin' },
-  { src: '/clients/okx.png',           alt: 'OKX' },
-  { src: '/clients/metamask.png',      alt: 'MetaMask' },
-  { src: '/clients/tether.png',        alt: 'Tether' },
-  { src: '/clients/tron.png',          alt: 'TRON' },
-  { src: '/clients/etoro.png',         alt: 'eToro' },
-  { src: '/clients/gate-io.png',       alt: 'Gate.io' },
-  { src: '/clients/coinmarketcap.png', alt: 'CoinMarketCap' },
-  { src: '/clients/wazirx.png',        alt: 'WazirX' },
-  { src: '/clients/kava.png',          alt: 'Kava' },
-  { src: '/clients/eos.png',           alt: 'EOS' },
-  { src: '/clients/dream11.png',       alt: 'Dream11' },
-  { src: '/clients/iotex.png',         alt: 'IoTeX' },
-  { src: '/clients/Plasmapay.png',     alt: 'PlasmaPay' },
-  { src: '/clients/salamantex.png',    alt: 'Salamantex' },
-  { src: '/clients/cobox.png',         alt: 'Cobox' },
-  { src: '/clients/metarix.png',       alt: 'Metarix' },
-  { src: '/clients/fanadise.png',      alt: 'Fanadise' },
-  { src: '/clients/ubuntu-tribe.png',  alt: 'Ubuntu Tribe' },
-  { src: '/clients/flappy-bird.png',   alt: 'Flappy Bird' },
+  // Row A — biggest names + case-study brands lead
+  { src: '/clients/binance.png',          alt: 'Binance' },
+  { src: '/clients/Cashaa.webp',          alt: 'Cashaa' },
+  { src: '/clients/kucoin.png',           alt: 'KuCoin' },
+  { src: '/clients/okx.png',              alt: 'OKX' },
+  { src: '/clients/metamask.png',         alt: 'MetaMask' },
+  { src: '/clients/tether.png',           alt: 'Tether' },
+  { src: '/clients/tron.png',             alt: 'TRON' },
+  { src: '/clients/etoro.png',            alt: 'eToro' },
+  { src: '/clients/gate-io.png',          alt: 'Gate.io' },
+  { src: '/clients/coinmarketcap.png',    alt: 'CoinMarketCap' },
+  { src: '/clients/wazirx.png',           alt: 'WazirX' },
+  { src: '/clients/kava.png',             alt: 'Kava' },
+  { src: '/clients/dream11.png',          alt: 'Dream11' },
+  // Row B — tier-2 case studies + recognised projects
+  { src: '/clients/fanadise.png',         alt: 'Fanadise' },
+  { src: '/clients/metarix.png',          alt: 'Metarix' },
+  { src: '/clients/ubuntu-tribe.png',     alt: 'Ubuntu Tribe' },
+  { src: '/clients/salamantex.png',       alt: 'Salamantex' },
+  { src: '/clients/cobox.png',            alt: 'Cobox' },
+  { src: '/clients/eos.png',              alt: 'EOS' },
+  { src: '/clients/iotex.png',            alt: 'IoTeX' },
+  { src: '/clients/Plasmapay.png',        alt: 'PlasmaPay' },
+  { src: '/clients/Vertex.webp',          alt: 'Vertex' },
+  { src: '/clients/Sigma.webp',           alt: 'Sigma' },
+  { src: '/clients/radar.webp',           alt: 'Radar' },
+  { src: '/clients/lendefi.webp',         alt: 'Lendefi' },
+  { src: '/clients/befaster.webp',        alt: 'BeFaster' },
+  // Row C — project / specialist clients
+  { src: '/clients/aimedis.webp',         alt: 'Aimedis' },
+  { src: '/clients/bfcl.webp',            alt: 'BFCL' },
+  { src: '/clients/futuro-coin.webp',     alt: 'Futuro Coin' },
+  { src: '/clients/obortech.webp',        alt: 'OborTech' },
+  { src: '/clients/ozonex.webp',          alt: 'Ozonex' },
+  { src: '/clients/refine-medium.webp',   alt: 'Refine Medium' },
+  { src: '/clients/433-token.webp',       alt: '433 Token' },
+  { src: '/clients/Eulium.webp',          alt: 'Eulium' },
+  { src: '/clients/Goldkoise.webp',       alt: 'Goldkoise' },
+  { src: '/clients/karuschain.webp',      alt: 'Karuschain' },
+  { src: '/clients/newscrypto.webp',      alt: 'NewsCrypto' },
+  { src: '/clients/definer.webp',         alt: 'Definer' },
+  { src: '/clients/flappy-bird.png',      alt: 'Flappy Bird' },
 ];
 
-// Split into three rows of 7 logos each so the strip carries more
-// brands without overflowing horizontally. Big names lead row A.
+// Split into three rows of ~equal length. The first row carries the
+// strongest commercial proof (case-study brands + biggest tier-1 names).
 const third = Math.ceil(clients.length / 3);
 const rowA = clients.slice(0, third);
 const rowB = clients.slice(third, third * 2);
