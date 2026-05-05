@@ -1,41 +1,63 @@
 ---
-// Thin "As featured in" press marquee.
-// Sits directly below the merged Hero. Reuses the global .c8-marquee pattern.
-// Media logos were moved out of Hero.astro into this dedicated strip so the
-// hero stays focused and the media proof gets its own breathing room.
+// Client trust strip — sits directly below the merged Hero. Same
+// design treatment as the previous "As featured in" press strip
+// (compact label + horizontal logo rail with edge fade), but now
+// shows two rows of CLIENT logos instead of media outlets, per
+// user direction. Label updated to "Trusted by 1,100+ brands".
 
-const mediaLogos = [
-  { src: '/media-logos/Forbes.webp',          alt: 'Forbes' },
-  { src: '/media-logos/Bloomberg.webp',       alt: 'Bloomberg' },
-  { src: '/media-logos/nasdaq.webp',          alt: 'Nasdaq' },
-  { src: '/media-logos/reuters.png',          alt: 'Reuters' },
-  { src: '/media-logos/cnbc.png',             alt: 'CNBC' },
-  { src: '/media-logos/yahoo-finance.png',    alt: 'Yahoo Finance' },
-  { src: '/media-logos/business-insider.png', alt: 'Business Insider' },
-  { src: '/media-logos/Benzinga.webp',        alt: 'Benzinga' },
-  { src: '/media-logos/TechBullion.webp',     alt: 'TechBullion' },
-  { src: '/media-logos/USAtoday.webp',        alt: 'USA Today' },
-  { src: '/media-logos/Coindesk.webp',        alt: 'CoinDesk' },
-  { src: '/media-logos/cointelegraph.png',    alt: 'Cointelegraph' },
-  { src: '/media-logos/bitcoin-magazine.png', alt: 'Bitcoin Magazine' },
-  { src: '/media-logos/blockworks.png',       alt: 'Blockworks' },
-  { src: '/media-logos/decrypt.png',          alt: 'Decrypt' },
-  { src: '/media-logos/theblock.png',         alt: 'The Block' },
-  { src: '/media-logos/hackernoon.png',       alt: 'HackerNoon' },
-  { src: '/media-logos/cryptoslate.png',      alt: 'CryptoSlate' },
+const clients = [
+  { src: '/clients/binance.png',       alt: 'Binance' },
+  { src: '/clients/kucoin.png',        alt: 'KuCoin' },
+  { src: '/clients/okx.png',           alt: 'OKX' },
+  { src: '/clients/metamask.png',      alt: 'MetaMask' },
+  { src: '/clients/tether.png',        alt: 'Tether' },
+  { src: '/clients/tron.png',          alt: 'TRON' },
+  { src: '/clients/etoro.png',         alt: 'eToro' },
+  { src: '/clients/gate-io.png',       alt: 'Gate.io' },
+  { src: '/clients/coinmarketcap.png', alt: 'CoinMarketCap' },
+  { src: '/clients/wazirx.png',        alt: 'WazirX' },
+  { src: '/clients/kava.png',          alt: 'Kava' },
+  { src: '/clients/eos.png',           alt: 'EOS' },
+  { src: '/clients/dream11.png',       alt: 'Dream11' },
+  { src: '/clients/iotex.png',         alt: 'IoTeX' },
+  { src: '/clients/Plasmapay.png',     alt: 'PlasmaPay' },
+  { src: '/clients/salamantex.png',    alt: 'Salamantex' },
+  { src: '/clients/cobox.png',         alt: 'Cobox' },
+  { src: '/clients/metarix.png',       alt: 'Metarix' },
+  { src: '/clients/fanadise.png',      alt: 'Fanadise' },
+  { src: '/clients/ubuntu-tribe.png',  alt: 'Ubuntu Tribe' },
+  { src: '/clients/flappy-bird.png',   alt: 'Flappy Bird' },
 ];
+
+// Split into two rows of ~equal length. The first row carries the
+// bigger-name brands so the section opens with strongest proof.
+const half = Math.ceil(clients.length / 2);
+const rowA = clients.slice(0, half);
+const rowB = clients.slice(half);
 ---
 
 <section class="c8-press">
-  <p class="c8-press__label"><span>As featured in</span></p>
-  <div class="c8-press__logos c8-marquee">
-    <div class="c8-marquee__track">
-      {mediaLogos.map((m) => (
-        <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
-      ))}
-      {mediaLogos.map((m) => (
-        <img src={m.src} alt="" aria-hidden="true" loading="lazy" class="c8-press__img c8-marquee__clone" />
-      ))}
+  <p class="c8-press__label"><span>Trusted by 1,100+ brands</span></p>
+  <div class="c8-press__rows">
+    <div class="c8-press__logos c8-press__logos--a c8-marquee">
+      <div class="c8-marquee__track">
+        {rowA.map((m) => (
+          <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
+        ))}
+        {rowA.map((m) => (
+          <img src={m.src} alt="" aria-hidden="true" loading="lazy" class="c8-press__img c8-marquee__clone" />
+        ))}
+      </div>
+    </div>
+    <div class="c8-press__logos c8-press__logos--b c8-marquee">
+      <div class="c8-marquee__track">
+        {rowB.map((m) => (
+          <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
+        ))}
+        {rowB.map((m) => (
+          <img src={m.src} alt="" aria-hidden="true" loading="lazy" class="c8-press__img c8-marquee__clone" />
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -44,7 +66,7 @@ const mediaLogos = [
   .c8-press {
     width: 100%;
     background: #F7F6F3;
-    padding: 1.5rem clamp(1.5rem, 5vw, 5rem) 1.75rem;
+    padding: 1.75rem clamp(1.5rem, 5vw, 5rem) 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,17 +100,26 @@ const mediaLogos = [
     vertical-align: middle;
     margin-left: 0.6rem;
   }
-  /* Desktop + tablet (>768px): STATIC single centered row. No scrolling.
-     Overflow is clipped by the container + faded by the edge mask so the
-     row reads as intentional, never cut off. Clones hidden.
-     Mobile override below re-enables the scrolling marquee. */
+
+  .c8-press__rows {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  /* Desktop + tablet (>768px): STATIC centred rows, no scroll. Overflow
+     clipped + faded at the edges. Mobile override re-enables the
+     scrolling marquee. */
   .c8-press__logos {
     width: 100%;
     overflow: hidden;
-    --c8-marquee-dur: 45s;
+    --c8-marquee-dur: 50s;
     mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
   }
+  .c8-press__logos--a { --c8-marquee-dur: 50s; }
+  .c8-press__logos--b { --c8-marquee-dur: 65s; }
   .c8-press__logos .c8-marquee__track {
     display: flex;
     flex-wrap: nowrap;
@@ -99,29 +130,28 @@ const mediaLogos = [
     animation: none;
   }
   .c8-press__logos .c8-marquee__track > * { flex: 0 0 auto; }
-  /* Clones only serve the mobile scroll loop — hide on desktop. */
   .c8-press__logos .c8-marquee__clone { display: none; }
   .c8-press__img {
-    height: 20px;
+    height: 22px;
     width: auto;
     max-width: 120px;
     object-fit: contain;
     filter: grayscale(1) brightness(0.3);
     opacity: 0.72;
-    transition: opacity 0.25s ease, filter 0.25s ease;
+    transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
   }
-  .c8-press__img:hover { filter: none; opacity: 1; }
+  .c8-press__img:hover { filter: none; opacity: 1; transform: scale(1.04); }
 
-  /* Mobile: 18 press logos won't fit in a 375px viewport — re-enable the
-     scrolling marquee with clones for seamless wrap. */
+  /* Mobile: re-enable scrolling marquee for both rows so 11+ logos
+     don't get cut off in a narrow viewport. */
   @media (max-width: 768px) {
     .c8-press { padding: 1.25rem 1rem 1.5rem; }
-    .c8-press__img { height: 17px; }
+    .c8-press__img { height: 18px; }
     .c8-press__logos .c8-marquee__track {
       width: max-content;
       justify-content: flex-start;
       gap: 1.6rem;
-      animation: c8-marquee-scroll var(--c8-marquee-dur, 45s) linear infinite;
+      animation: c8-marquee-scroll var(--c8-marquee-dur, 50s) linear infinite;
     }
     .c8-press__logos .c8-marquee__clone { display: inline-flex; }
     .c8-press__logos:hover .c8-marquee__track { animation-play-state: paused; }
