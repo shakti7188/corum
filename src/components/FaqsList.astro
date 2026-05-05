@@ -1,14 +1,7 @@
 ---
-// FAQ — two-pane interactive index.
-// LEFT (~40%): a clickable list of every question (numbered, with a
-//   gold left rail that fills on the active one).
-// RIGHT (~60%): a single large answer panel — big number watermark
-//   in the corner, question repeated as the panel header, the answer
-//   body, plus a footer with "Still have a question?" + CTA.
-//
-// Only one question is open at a time. Clicking a question on the
-// left swaps the right panel via a fast crossfade. Keyboard arrows
-// (Up/Down) cycle through questions when a question is focused.
+// FAQ — centered single-column accordion. One question open at a time.
+// No yellow / gold accents — kept entirely in neutral black/grey so it
+// reads as quiet editorial rather than branded.
 
 import { faqs } from '../data/content';
 ---
@@ -16,59 +9,54 @@ import { faqs } from '../data/content';
 <section class="c8-faq">
   <div class="c8-faq__inner">
     <header class="c8-faq__head" data-reveal-stagger="100">
-      <div class="c8-faq__head-text">
-        <p class="c8-faq__eyebrow" data-reveal="up">Frequently asked</p>
-        <h2 class="c8-faq__heading" data-reveal="up">
-          Answered honestly. <span class="c8-faq__heading-accent">No procurement-ese.</span>
-        </h2>
-      </div>
-      <div class="c8-faq__progress" aria-hidden="true">
-        <span class="c8-faq__progress-count"><span class="c8-faq__progress-current">01</span><span class="c8-faq__progress-sep"> / </span><span class="c8-faq__progress-total">{String(faqs.length).padStart(2, '0')}</span></span>
-      </div>
+      <p class="c8-faq__eyebrow" data-reveal="up">Frequently asked</p>
+      <h2 class="c8-faq__heading" data-reveal="up">
+        Answered honestly. <span class="c8-faq__heading-accent">No procurement-ese.</span>
+      </h2>
+      <p class="c8-faq__sub" data-reveal="up">
+        Eight questions we hear often, answered with the same honesty we'd give in a strategy call.
+      </p>
     </header>
 
-    <div class="c8-faq__panel" data-reveal="up">
-      <!-- LEFT — questions index -->
-      <ol class="c8-faq__list" role="tablist" aria-label="Frequently asked questions">
-        {faqs.map((f, i) => (
-          <li class="c8-faq__item">
-            <button
-              type="button"
-              class={`c8-faq__q${i === 0 ? ' is-active' : ''}`}
-              role="tab"
-              aria-selected={i === 0 ? 'true' : 'false'}
-              aria-controls="c8-faq-stage"
-              data-faq-index={i}
-            >
-              <span class="c8-faq__q-num">{String(i + 1).padStart(2, '0')}</span>
-              <span class="c8-faq__q-text">{f.q}</span>
-              <span class="c8-faq__q-arrow" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </span>
-            </button>
-          </li>
-        ))}
-      </ol>
+    <ol class="c8-faq__list" data-reveal-stagger="60">
+      {faqs.map((f, i) => (
+        <li class="c8-faq__item" data-reveal="up">
+          <button
+            type="button"
+            class={`c8-faq__q${i === 0 ? ' is-active' : ''}`}
+            aria-expanded={i === 0 ? 'true' : 'false'}
+            aria-controls={`c8-faq-a-${i}`}
+            data-faq-index={i}
+          >
+            <span class="c8-faq__q-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="c8-faq__q-text">{f.q}</span>
+            <span class="c8-faq__q-icon" aria-hidden="true">
+              <span class="c8-faq__q-bar c8-faq__q-bar--h"></span>
+              <span class="c8-faq__q-bar c8-faq__q-bar--v"></span>
+            </span>
+          </button>
+          <div
+            class="c8-faq__a"
+            id={`c8-faq-a-${i}`}
+            role="region"
+            aria-hidden={i === 0 ? 'false' : 'true'}
+            data-open={i === 0 ? 'true' : 'false'}
+          >
+            <div class="c8-faq__a-inner">
+              <p>{f.a}</p>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
 
-      <!-- RIGHT — single answer stage -->
-      <div class="c8-faq__stage" id="c8-faq-stage" role="tabpanel" aria-live="polite">
-        <span class="c8-faq__stage-watermark" aria-hidden="true">
-          <span class="c8-faq__stage-watermark-num">01</span>
-        </span>
-        <div class="c8-faq__stage-inner">
-          <p class="c8-faq__stage-num">Question · <span data-stage-num>01</span></p>
-          <h3 class="c8-faq__stage-q" data-stage-q>{faqs[0].q}</h3>
-          <p class="c8-faq__stage-a" data-stage-a>{faqs[0].a}</p>
-          <footer class="c8-faq__stage-foot">
-            <span class="c8-faq__stage-foot-text">Still have a question?</span>
-            <a class="c8-faq__stage-foot-cta" href="/contact">
-              <span>Book a strategy call</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-          </footer>
-        </div>
-      </div>
-    </div>
+    <footer class="c8-faq__foot" data-reveal="up">
+      <p class="c8-faq__foot-text">Still have a question?</p>
+      <a class="c8-faq__foot-cta" href="/contact">
+        <span>Book a strategy call</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </footer>
   </div>
 </section>
 
@@ -80,23 +68,18 @@ import { faqs } from '../data/content';
     border-top: 1px solid rgba(0,0,0,0.05);
     border-bottom: 1px solid rgba(0,0,0,0.05);
   }
+  /* Inner intentionally narrower than the global section rail —
+     long-form copy reads better in a tighter measure. */
   .c8-faq__inner {
-    max-width: var(--c8-section-max, 1320px);
+    max-width: 780px;
     margin: 0 auto;
   }
 
-  /* ─── Head — heading on the left, big counter on the right ─── */
+  /* ─── Head — centered ─── */
   .c8-faq__head {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-    align-items: end;
-    margin: 0 0 clamp(2rem, 4vh, 2.75rem);
+    text-align: center;
+    margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
   }
-  @media (max-width: 900px) {
-    .c8-faq__head { grid-template-columns: 1fr; align-items: start; gap: 1rem; }
-  }
-  .c8-faq__head-text { max-width: 36rem; }
   .c8-faq__eyebrow {
     margin: 0 0 1rem;
     font-family: var(--montreal);
@@ -104,10 +87,10 @@ import { faqs } from '../data/content';
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--c8-gold-dark);
+    color: #6b6b6b;
   }
   .c8-faq__heading {
-    margin: 0;
+    margin: 0 0 0.85rem;
     font-family: var(--font-display);
     font-size: clamp(1.9rem, 4.2vw, 3.1rem);
     font-weight: 400;
@@ -115,303 +98,197 @@ import { faqs } from '../data/content';
     letter-spacing: -0.03em;
   }
   .c8-faq__heading-accent {
-    color: var(--c8-gold-dark);
+    color: #6b6b6b;
     font-weight: 400;
   }
-  .c8-faq__progress {
-    justify-self: end;
-    align-self: end;
-    font-family: var(--font-display);
-    font-size: clamp(0.85rem, 1vw, 0.95rem);
-    letter-spacing: 0.18em;
-    color: #888;
-  }
-  .c8-faq__progress-current {
-    color: var(--c8-gold-dark);
-    font-size: clamp(1.2rem, 1.6vw, 1.5rem);
-    font-weight: 400;
-  }
-  .c8-faq__progress-sep,
-  .c8-faq__progress-total { font-weight: 400; }
-
-  /* ─── Panel: 2-col index + stage ─── */
-  .c8-faq__panel {
-    display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: clamp(1.25rem, 2.5vw, 2rem);
-    align-items: stretch;
-  }
-  @media (max-width: 900px) {
-    .c8-faq__panel { grid-template-columns: 1fr; gap: 1rem; }
+  .c8-faq__sub {
+    margin: 0 auto;
+    max-width: 38rem;
+    font-family: var(--montreal);
+    font-size: 0.98rem;
+    line-height: 1.55;
+    color: #555;
   }
 
-  /* ── LEFT — question list ── */
+  /* ─── List ─── */
   .c8-faq__list {
     list-style: none;
     margin: 0;
     padding: 0;
-    border-top: 1px solid rgba(0,0,0,0.08);
+    border-top: 1px solid rgba(0,0,0,0.1);
   }
   .c8-faq__item {
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
   }
+
+  /* Question row */
   .c8-faq__q {
     appearance: none;
     width: 100%;
     background: transparent;
     border: 0;
-    cursor: pointer;
     text-align: left;
-    color: #6b6b6b;
-    font-family: inherit;
-    padding: 1rem 0.5rem 1rem 1rem;
+    cursor: pointer;
+    color: #0a0a0a;
+    padding: clamp(1.2rem, 2vw, 1.5rem) 0.5rem;
     display: grid;
     grid-template-columns: auto 1fr auto;
-    column-gap: 0.85rem;
+    column-gap: clamp(0.85rem, 1.4vw, 1.4rem);
     align-items: center;
-    position: relative;
-    transition: color 0.4s ease, padding-left 0.4s ease, background 0.4s ease;
-  }
-  /* Gold left rail — appears on active. */
-  .c8-faq__q::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--c8-gold);
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-family: inherit;
+    transition: padding-left 0.4s ease, background 0.4s ease, color 0.3s ease;
   }
   .c8-faq__q:hover {
-    color: #0a0a0a;
-    padding-left: 1.4rem;
+    background: rgba(0, 0, 0, 0.02);
   }
   .c8-faq__q.is-active {
-    color: #0a0a0a;
-    padding-left: 1.4rem;
-    background: linear-gradient(90deg, rgba(242, 191, 34, 0.06) 0%, transparent 60%);
+    background: rgba(0, 0, 0, 0.025);
   }
-  .c8-faq__q.is-active::before { transform: scaleY(1); }
 
   .c8-faq__q-num {
     font-family: var(--font-display);
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.18em;
-    color: var(--c8-gold-dark);
-    opacity: 0.65;
-    transition: opacity 0.35s ease;
+    color: rgba(0, 0, 0, 0.45);
+    transition: color 0.35s ease;
   }
   .c8-faq__q.is-active .c8-faq__q-num,
-  .c8-faq__q:hover .c8-faq__q-num { opacity: 1; }
+  .c8-faq__q:hover .c8-faq__q-num { color: #0a0a0a; }
 
   .c8-faq__q-text {
     font-family: var(--font-display);
-    font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
     font-weight: 400;
     line-height: 1.3;
     letter-spacing: -0.015em;
-  }
-
-  .c8-faq__q-arrow {
-    display: inline-flex;
-    color: #aaa;
-    transition: color 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .c8-faq__q.is-active .c8-faq__q-arrow,
-  .c8-faq__q:hover .c8-faq__q-arrow {
-    color: var(--c8-gold-dark);
-    transform: translateX(3px);
-  }
-
-  /* ── RIGHT — answer stage ── */
-  .c8-faq__stage {
-    position: relative;
-    border-radius: 18px;
-    overflow: hidden;
-    background:
-      linear-gradient(135deg, #fafaf6 0%, #f4f4f0 100%);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    padding: clamp(1.75rem, 3vw, 2.5rem);
-    min-height: 380px;
-    isolation: isolate;
-  }
-  .c8-faq__stage::before {
-    /* Soft gold corner glow that anchors the panel visually. */
-    content: '';
-    position: absolute;
-    top: -10%; right: -10%;
-    width: 50%; height: 60%;
-    background: radial-gradient(ellipse at top right,
-      var(--c8-gold-soft) 0%, transparent 65%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .c8-faq__stage-watermark {
-    position: absolute;
-    top: clamp(0.5rem, 2vh, 1rem);
-    right: clamp(1.2rem, 2.5vw, 2rem);
-    pointer-events: none;
-    z-index: 0;
-    line-height: 0.8;
-  }
-  .c8-faq__stage-watermark-num {
-    font-family: var(--font-display);
-    font-size: clamp(7rem, 18vw, 14rem);
-    font-weight: 400;
-    color: rgba(218, 158, 73, 0.08);
-    letter-spacing: -0.05em;
-    transition: color 0.6s ease;
-  }
-  .c8-faq__stage-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    height: 100%;
-    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .c8-faq__stage.is-swapping .c8-faq__stage-inner {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  .c8-faq__stage-num {
-    margin: 0;
-    font-family: var(--montreal);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--c8-gold-dark);
-  }
-  .c8-faq__stage-q {
-    margin: 0 0 0.5rem;
-    font-family: var(--font-display);
-    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
     color: #0a0a0a;
-    max-width: 42rem;
   }
-  .c8-faq__stage-a {
+
+  /* Plus icon — vertical bar collapses to scaleY(0) on open. */
+  .c8-faq__q-icon {
+    width: 22px;
+    height: 22px;
+    position: relative;
+    display: inline-block;
+    flex: 0 0 auto;
+    color: rgba(0, 0, 0, 0.55);
+    transition: color 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .c8-faq__q-bar {
+    position: absolute;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .c8-faq__q-bar--h {
+    left: 0; right: 0; top: 50%;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+  .c8-faq__q-bar--v {
+    top: 0; bottom: 0; left: 50%;
+    width: 2px;
+    transform: translateX(-50%) scaleY(1);
+    transform-origin: center;
+  }
+  .c8-faq__q.is-active .c8-faq__q-bar--v {
+    transform: translateX(-50%) scaleY(0);
+  }
+  .c8-faq__q.is-active .c8-faq__q-icon {
+    color: #0a0a0a;
+    transform: rotate(180deg);
+  }
+
+  /* Answer — auto-height transition via grid-template-rows. */
+  .c8-faq__a {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    background: rgba(0, 0, 0, 0.025);
+  }
+  .c8-faq__a[data-open="true"] { grid-template-rows: 1fr; }
+  .c8-faq__a-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+  .c8-faq__a p {
     margin: 0;
+    padding: 0.4rem 2.6rem 1.6rem 2.7rem;
     font-family: var(--montreal);
-    font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+    font-size: 0.98rem;
     line-height: 1.65;
     color: #4a4a4a;
-    max-width: 50rem;
-    flex: 1;
   }
-  .c8-faq__stage-foot {
+  @media (max-width: 600px) {
+    .c8-faq__a p { padding-left: 0.75rem; padding-right: 0.5rem; }
+  }
+
+  /* ─── Footer CTA ─── */
+  .c8-faq__foot {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
     gap: 0.85rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-    padding-top: 1rem;
-    margin-top: 0.5rem;
+    margin: clamp(2.5rem, 5vh, 3.5rem) 0 0;
+    text-align: center;
   }
-  .c8-faq__stage-foot-text {
+  .c8-faq__foot-text {
+    margin: 0;
     font-family: var(--montreal);
-    font-size: 0.85rem;
+    font-size: 0.92rem;
     color: #6b6b6b;
   }
-  .c8-faq__stage-foot-cta {
+  .c8-faq__foot-cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1.2rem;
-    background: var(--c8-gold);
-    color: #111;
+    gap: 0.55rem;
+    padding: 0.85rem 1.5rem;
+    background: #0a0a0a;
+    color: #fff;
     text-decoration: none;
     border-radius: 999px;
     font-family: var(--montreal);
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 10px 24px -10px rgba(242, 191, 34, 0.45);
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
   }
-  .c8-faq__stage-foot-cta:hover {
-    background: #0a0a0a;
-    color: var(--c8-gold);
+  .c8-faq__foot-cta:hover {
+    background: #fff;
+    color: #0a0a0a;
+    box-shadow: inset 0 0 0 1.5px #0a0a0a;
     transform: translateY(-2px);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .c8-faq__stage-inner { transition: none; }
   }
 </style>
 
 <script is:inline>
+  /* Single-open accordion. Clicking a question:
+     1. Closes whichever question was open.
+     2. Opens the clicked one.
+     If the clicked question is already open, it closes (so the user
+     can fully collapse the section if they want). */
   function startFaqs() {
     var buttons = document.querySelectorAll('.c8-faq__q');
-    var stage   = document.getElementById('c8-faq-stage');
-    var stageQ  = stage && stage.querySelector('[data-stage-q]');
-    var stageA  = stage && stage.querySelector('[data-stage-a]');
-    var stageN  = stage && stage.querySelector('[data-stage-num]');
-    var watermark = stage && stage.querySelector('.c8-faq__stage-watermark-num');
-    var progressCurrent = document.querySelector('.c8-faq__progress-current');
-    if (!buttons.length || !stage || !stageQ || !stageA) return;
+    var panels  = document.querySelectorAll('.c8-faq__a');
+    if (!buttons.length || !panels.length) return;
 
-    // Read FAQ data from the buttons (question text already rendered).
-    // Answers were rendered into the first stage on load — we need the
-    // full set, so we attach data attributes to each button at boot.
-    var data = Array.prototype.map.call(buttons, function (b, i) {
-      return {
-        num: String(i + 1).padStart(2, '0'),
-        q: (b.querySelector('.c8-faq__q-text') || {}).textContent || '',
-        // The answer for index 0 is in the stage; later indexes need
-        // to be sourced. Astro already injected them as data on the
-        // button via b.dataset.faqIndex, but the actual answer text
-        // wasn't passed. We'll inline-store answers from a hidden
-        // mirror below.
-      };
-    });
-
-    // Pull answer text from the page-injected hidden mirror.
-    var answers = window.__c8FaqAnswers || [];
-
-    function setActive(i) {
-      for (var n = 0; n < buttons.length; n++) {
-        var on = (n === i);
-        buttons[n].classList.toggle('is-active', on);
-        buttons[n].setAttribute('aria-selected', on ? 'true' : 'false');
-      }
-      // Crossfade the stage content out, swap, fade back in.
-      stage.classList.add('is-swapping');
-      setTimeout(function () {
-        stageQ.textContent = data[i].q;
-        stageA.textContent = answers[i] || '';
-        stageN.textContent = data[i].num;
-        if (watermark)        watermark.textContent = data[i].num;
-        if (progressCurrent)  progressCurrent.textContent = data[i].num;
-        // Allow the next frame to apply before removing the transition class
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            stage.classList.remove('is-swapping');
-          });
-        });
-      }, 220);
+    function setOpen(index) {
+      Array.prototype.forEach.call(buttons, function (b, i) {
+        var on = (i === index);
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-expanded', on ? 'true' : 'false');
+        if (panels[i]) {
+          panels[i].setAttribute('data-open', on ? 'true' : 'false');
+          panels[i].setAttribute('aria-hidden', on ? 'false' : 'true');
+        }
+      });
     }
 
     Array.prototype.forEach.call(buttons, function (b, i) {
-      b.addEventListener('click', function () { setActive(i); });
-      b.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-          e.preventDefault();
-          var next = (i + 1) % buttons.length;
-          buttons[next].focus();
-          setActive(next);
-        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-          e.preventDefault();
-          var prev = (i - 1 + buttons.length) % buttons.length;
-          buttons[prev].focus();
-          setActive(prev);
-        }
+      b.addEventListener('click', function () {
+        var alreadyOpen = b.getAttribute('aria-expanded') === 'true';
+        // -1 = no-op / close all, otherwise open i.
+        setOpen(alreadyOpen ? -1 : i);
       });
     });
   }
@@ -421,12 +298,4 @@ import { faqs } from '../data/content';
   } else {
     startFaqs();
   }
-</script>
-
-<!-- Answers are written into a global so the swap script has access
-     to all of them without re-reading the FAQ data file at runtime.
-     This is a build-time inline of the same `faqs` import the
-     component uses, so the strings stay in sync. -->
-<script is:inline define:vars={{ faqAnswers: faqs.map((f) => f.a) }}>
-  window.__c8FaqAnswers = faqAnswers;
 </script>
