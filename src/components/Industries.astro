@@ -190,11 +190,30 @@ const industries: Industry[] = [
 
 <style is:global>
   .c8-ind {
-    background: var(--color-bg);
-    color: #0a0a0a;
+    background: #0a0a0a;
+    color: #fff;
     padding: clamp(4.5rem, 9vh, 7rem) clamp(1.5rem, 5vw, 5rem);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
   }
-  .c8-ind__inner { max-width: var(--c8-section-max, 1320px); margin: 0 auto; }
+  /* Soft gold corner washes so the dark slab isn't flat. */
+  .c8-ind::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(900px circle at 92% 18%, rgba(242,191,34,0.06) 0%, transparent 60%),
+      radial-gradient(800px circle at 5% 95%, rgba(242,191,34,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .c8-ind__inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--c8-section-max, 1320px);
+    margin: 0 auto;
+  }
 
   .c8-ind__head {
     max-width: 48rem;
@@ -207,7 +226,7 @@ const industries: Industry[] = [
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--c8-gold-dark);
+    color: var(--c8-gold);
   }
   .c8-ind__heading {
     margin: 0;
@@ -216,6 +235,7 @@ const industries: Industry[] = [
     font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.03em;
+    color: #fff;
   }
   .c8-ind__heading-accent {
     color: var(--c8-gold-dark);
@@ -244,10 +264,10 @@ const industries: Industry[] = [
     display: flex;
     flex-direction: column;
     gap: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
   .c8-ind__list-item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   .c8-ind__title {
     appearance: none;
@@ -257,7 +277,7 @@ const industries: Industry[] = [
     cursor: pointer;
     text-align: left;
     padding: 1.1rem 0.5rem 1.1rem 1rem;
-    color: #6b6b6b;
+    color: rgba(255, 255, 255, 0.55);
     font-family: inherit;
     display: grid;
     grid-template-columns: auto 1fr;
@@ -279,11 +299,11 @@ const industries: Industry[] = [
     transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .c8-ind__title:hover {
-    color: #0a0a0a;
+    color: #fff;
     padding-left: 1.4rem;
   }
   .c8-ind__title.is-active {
-    color: #0a0a0a;
+    color: #fff;
     padding-left: 1.4rem;
   }
   .c8-ind__title.is-active::before { transform: scaleY(1); }
@@ -294,9 +314,9 @@ const industries: Industry[] = [
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.18em;
-    color: var(--c8-gold-dark);
+    color: var(--c8-gold);
     align-self: center;
-    opacity: 0.65;
+    opacity: 0.55;
     transition: opacity 0.35s ease;
   }
   .c8-ind__title.is-active .c8-ind__title-num,
@@ -315,7 +335,7 @@ const industries: Industry[] = [
     margin-top: 0.3rem;
     font-family: var(--montreal);
     font-size: 0.78rem;
-    color: #888;
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 0.005em;
     /* Collapse the tag on inactive items so the list stays scannable. */
     max-height: 0;
@@ -339,7 +359,7 @@ const industries: Industry[] = [
     display: block;
     height: 1px;
     margin-top: 0.65rem;
-    background: rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.08);
     overflow: hidden;
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -369,12 +389,15 @@ const industries: Industry[] = [
     position: relative;
     border-radius: 18px;
     overflow: hidden;
-    background: #0a0a0a;
+    background: #050505;
     aspect-ratio: 16 / 10;
     min-height: 460px;
+    /* Single hairline + soft gold-tinted shadow so the stage reads
+       as a slightly raised tile against the dark section, not a
+       disconnected dark slab. */
     box-shadow:
-      0 30px 60px -28px rgba(0, 0, 0, 0.32),
-      0 0 0 1px rgba(0, 0, 0, 0.06);
+      0 30px 60px -28px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.06);
   }
   .c8-ind__slide {
     position: absolute;
