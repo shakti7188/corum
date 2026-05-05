@@ -29,11 +29,12 @@ const clients = [
   { src: '/clients/flappy-bird.png',   alt: 'Flappy Bird' },
 ];
 
-// Split into two rows of ~equal length. The first row carries the
-// bigger-name brands so the section opens with strongest proof.
-const half = Math.ceil(clients.length / 2);
-const rowA = clients.slice(0, half);
-const rowB = clients.slice(half);
+// Split into three rows of 7 logos each so the strip carries more
+// brands without overflowing horizontally. Big names lead row A.
+const third = Math.ceil(clients.length / 3);
+const rowA = clients.slice(0, third);
+const rowB = clients.slice(third, third * 2);
+const rowC = clients.slice(third * 2);
 ---
 
 <section class="c8-press">
@@ -55,6 +56,16 @@ const rowB = clients.slice(half);
           <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
         ))}
         {rowB.map((m) => (
+          <img src={m.src} alt="" aria-hidden="true" loading="lazy" class="c8-press__img c8-marquee__clone" />
+        ))}
+      </div>
+    </div>
+    <div class="c8-press__logos c8-press__logos--c c8-marquee">
+      <div class="c8-marquee__track">
+        {rowC.map((m) => (
+          <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
+        ))}
+        {rowC.map((m) => (
           <img src={m.src} alt="" aria-hidden="true" loading="lazy" class="c8-press__img c8-marquee__clone" />
         ))}
       </div>
@@ -105,7 +116,7 @@ const rowB = clients.slice(half);
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.35rem;
   }
 
   /* Desktop + tablet (>768px): STATIC centred rows, no scroll. Overflow
@@ -118,22 +129,29 @@ const rowB = clients.slice(half);
     mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
   }
-  .c8-press__logos--a { --c8-marquee-dur: 50s; }
-  .c8-press__logos--b { --c8-marquee-dur: 65s; }
+  .c8-press__logos--a { --c8-marquee-dur: 60s; }
+  .c8-press__logos--b { --c8-marquee-dur: 75s; }
+  .c8-press__logos--c { --c8-marquee-dur: 68s; }
+  /* All three rows scroll continuously on every viewport — clones
+     provide the seamless wrap, edge mask fades the cuts. Different
+     durations per row so they don't echo. */
   .c8-press__logos .c8-marquee__track {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    width: 100%;
-    /* Tight gap because the client PNGs (600×160 canvases) carry their
-       own internal whitespace padding — adding a generous CSS gap on
-       top makes the row look sparse. */
-    gap: clamp(0.25rem, 0.6vw, 0.5rem);
-    animation: none;
+    width: max-content;
+    /* Zero gap — the client PNGs (600×160 canvases) carry generous
+       internal padding around the brand mark already. */
+    gap: 0;
+    animation: c8-marquee-scroll var(--c8-marquee-dur, 60s) linear infinite;
   }
+  /* Row B scrolls in the OPPOSITE direction so the strip reads as
+     organic motion, not three rails moving the same way. */
+  .c8-press__logos--b .c8-marquee__track { animation-direction: reverse; }
   .c8-press__logos .c8-marquee__track > * { flex: 0 0 auto; }
-  .c8-press__logos .c8-marquee__clone { display: none; }
+  .c8-press__logos .c8-marquee__clone { display: inline-flex; }
+  .c8-press__logos:hover .c8-marquee__track { animation-play-state: paused; }
   .c8-press__img {
     /* Bumped to 36px so the logo content inside each canvas reads at
        a usable size despite the in-PNG padding. */
@@ -147,18 +165,10 @@ const rowB = clients.slice(half);
   }
   .c8-press__img:hover { filter: none; opacity: 1; transform: scale(1.04); }
 
-  /* Mobile: re-enable scrolling marquee for both rows so 11+ logos
-     don't get cut off in a narrow viewport. */
+  /* Mobile — same scrolling behaviour as desktop, just smaller logos
+     and tighter section padding. */
   @media (max-width: 768px) {
     .c8-press { padding: 1.25rem 1rem 1.5rem; }
     .c8-press__img { height: 30px; max-width: 130px; }
-    .c8-press__logos .c8-marquee__track {
-      width: max-content;
-      justify-content: flex-start;
-      gap: 0.6rem;
-      animation: c8-marquee-scroll var(--c8-marquee-dur, 50s) linear infinite;
-    }
-    .c8-press__logos .c8-marquee__clone { display: inline-flex; }
-    .c8-press__logos:hover .c8-marquee__track { animation-play-state: paused; }
   }
 </style>
