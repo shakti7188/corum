@@ -13,7 +13,7 @@ const quickLinks = [
   { label: 'About Us',     href: '/about' },
   { label: 'Services',     href: '/services' },
   { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Insights',     href: '/blog' },
+  { label: 'Careers',      href: '/careers' },
   { label: 'Contact Us',   href: '/contact' },
 ];
 
@@ -76,28 +76,6 @@ const mapImage = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w
         media, KOL networks and full-stack engineering under one roof to help
         founders ship, launch and scale.
       </p>
-      <ul class="c8-footer__socials" aria-label="Social media">
-        {socialLinks.map((s) => (
-          <li>
-            <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
-              <span class="c8-footer__social-icon">
-                {s.label === 'LinkedIn' && (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.62 0 4.29 2.38 4.29 5.48v6.26ZM5.34 7.43A2.06 2.06 0 1 1 5.33 3.31a2.06 2.06 0 0 1 .01 4.12Zm-1.78 13.02h3.55V9H3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
-                )}
-                {s.label === 'Telegram' && (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.94 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0Zm5 7.22c.1 0 .32.02.46.14a.51.51 0 0 1 .17.33c.02.09.04.3.02.47-.18 1.9-.96 6.5-1.36 8.62-.17.9-.5 1.2-.82 1.23-.7.07-1.23-.46-1.9-.9-1.06-.69-1.66-1.12-2.68-1.8-1.19-.78-.42-1.21.26-1.91.17-.18 3.25-2.97 3.3-3.23 0-.03.02-.15-.05-.21s-.18-.05-.25-.03c-.1.03-1.79 1.14-5.06 3.34-.48.33-.91.5-1.3.49-.43-.01-1.25-.24-1.87-.44-.75-.25-1.34-.38-1.3-.79.03-.22.33-.44.9-.66 3.5-1.53 5.83-2.53 7-3.02 3.33-1.39 4.02-1.62 4.48-1.63Z"/></svg>
-                )}
-                {s.label === 'Instagram' && (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.7 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.22-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92C8.42 2.17 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.74 2.69 21.32.27 16.95.07 15.67.01 15.26 0 12 0Zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg>
-                )}
-                {s.label === 'X/Twitter' && (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.68l7.73-8.83L1.25 2.25h6.83l4.71 6.23 5.45-6.23ZM17.08 19.77h1.83L7.08 4.13H5.12l11.96 15.64Z"/></svg>
-                )}
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
     </div>
 
     <div class="c8-footer__col">
@@ -139,10 +117,32 @@ const mapImage = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w
     </div>
   </div>
 
-  <!-- Copyright strip -->
+  <!-- Bottom strip — socials (left), copyright (centre), region anchor (right) -->
   <div class="c8-footer__copy">
-    <span>© {new Date().getFullYear()} {brand.name}. All rights reserved.</span>
-    <span>Built in US · EU · UAE · INDIA.</span>
+    <ul class="c8-footer__socials" aria-label="Social media">
+      {socialLinks.map((s) => (
+        <li>
+          <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+            <span class="c8-footer__social-icon">
+              {s.label === 'LinkedIn' && (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.62 0 4.29 2.38 4.29 5.48v6.26ZM5.34 7.43A2.06 2.06 0 1 1 5.33 3.31a2.06 2.06 0 0 1 .01 4.12Zm-1.78 13.02h3.55V9H3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
+              )}
+              {s.label === 'Telegram' && (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.94 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0Zm5 7.22c.1 0 .32.02.46.14a.51.51 0 0 1 .17.33c.02.09.04.3.02.47-.18 1.9-.96 6.5-1.36 8.62-.17.9-.5 1.2-.82 1.23-.7.07-1.23-.46-1.9-.9-1.06-.69-1.66-1.12-2.68-1.8-1.19-.78-.42-1.21.26-1.91.17-.18 3.25-2.97 3.3-3.23 0-.03.02-.15-.05-.21s-.18-.05-.25-.03c-.1.03-1.79 1.14-5.06 3.34-.48.33-.91.5-1.3.49-.43-.01-1.25-.24-1.87-.44-.75-.25-1.34-.38-1.3-.79.03-.22.33-.44.9-.66 3.5-1.53 5.83-2.53 7-3.02 3.33-1.39 4.02-1.62 4.48-1.63Z"/></svg>
+              )}
+              {s.label === 'Instagram' && (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.7 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.22-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92C8.42 2.17 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.74 2.69 21.32.27 16.95.07 15.67.01 15.26 0 12 0Zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg>
+              )}
+              {s.label === 'X/Twitter' && (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.68l7.73-8.83L1.25 2.25h6.83l4.71 6.23 5.45-6.23ZM17.08 19.77h1.83L7.08 4.13H5.12l11.96 15.64Z"/></svg>
+              )}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <span class="c8-footer__copy-text">© {new Date().getFullYear()} {brand.name}. All rights reserved.</span>
+    <span class="c8-footer__copy-region">Built in US · EU · UAE · INDIA.</span>
   </div>
 </footer>
 
@@ -273,9 +273,9 @@ const mapImage = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w
 
   .c8-footer__col--brand .c8-footer__brand {
     display: inline-block;
-    width: 4.5rem;
+    width: 6.5rem;
     color: #0a0a0a;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
   }
   .c8-footer__about {
     margin: 0 0 1.4rem;
@@ -345,13 +345,13 @@ const mapImage = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w
     margin-top: 0.05rem;
   }
 
-  /* Copyright strip */
+  /* Bottom strip: socials (left) · copyright (centre) · region (right) */
   .c8-footer__copy {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
+    gap: 1rem;
     border-top: 1px solid rgba(0,0,0,0.08);
     padding-top: 1.25rem;
     max-width: var(--c8-section-max, 1320px);
@@ -360,6 +360,8 @@ const mapImage = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w
     font-size: 0.82rem;
     color: #707682;
   }
+  .c8-footer__copy-text { text-align: center; flex: 1; }
+  .c8-footer__copy-region { text-align: right; }
 
   /* ─── Responsive ─── */
   @media (max-width: 1024px) {
@@ -371,6 +373,8 @@ const mapImage = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w
     .c8-footer__bottom { grid-template-columns: 1fr; gap: 2rem; }
     .c8-footer__sub { padding: 1.5rem; }
     .c8-footer__sub-heading { font-size: 1.4rem; }
-    .c8-footer__copy { flex-direction: column; align-items: flex-start; }
+    .c8-footer__copy { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .c8-footer__copy-text,
+    .c8-footer__copy-region { text-align: left; flex: none; }
   }
 </style>
