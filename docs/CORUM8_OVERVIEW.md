@@ -1,4 +1,4 @@
-# CORUM8 — Complete Site Overview & Brand Brief
+# CORUM8 — Complete Overview & Brand Brief
 
 ---
 
@@ -26,7 +26,7 @@ NOTE - we gonna run ads on google , meta and LinkedIn . SO, whole content should
 - **PR media outlets:** 10,000+
 - **Managed ad spend:** $10M+
 - **White-label products:** 40+
-- **Industries served:** Web3 & Crypto, AI, Fintech, SaaS, Startups, Enterprise
+- **Industries served:** Web3 & Crypto, AI, Fintech, SaaS, Startups, Enterprise, Robotics
 
 ---
 
@@ -99,25 +99,15 @@ NOTE - we gonna run ads on google , meta and LinkedIn . SO, whole content should
 - Fintech
 - AI
 - Enterprise
+Robotics 
 
 ---
 
-### Resources
-*Simple dropdown*
-- Case Studies
-- Gallery
-- Blog
-- Insights
-- Guides
+### Case Studies
 
 ---
 
 ### About
-*Simple dropdown*
-- Company
-- Team
-- Careers
-- Contact
 
 ---
 
@@ -214,7 +204,7 @@ Corum8 has won **50+ industry awards**. The following are featured:
 | Entrepreneur Award | Emmi Empire | 2024 |
 | Industry Recognition | IISA | 2023 |
 | Dubai Expo Recognition | Dubai Expo | 2020 |
-
+and many more , total 50+ awards .
 ---
 
 ## Testimonials
@@ -222,7 +212,8 @@ Corum8 has won **50+ industry awards**. The following are featured:
 1. **Kumar Gaurav** — Founder & CEO, Cashaa — *"Professional execution, strong media reach, seamless and results-driven."*
 2. **Adaa** — Cobox Metaverse — *"Praised consistency, community strengthening, and engagement quality."*
 3. **Rene Pomassl** — Founder, Salamantex — *"Professional, clear communication, reliable timelines, solid output."*
-4. **Video testimonial available** — YouTube (embedded on site)
+4. create one more from given clients  
+**Video testimonial available** — YouTube ([embedded on site](https://www.youtube.com/watch?v=wHMfo38ZbN8&t=11s)) show it on side of reviews carasousel .
 
 ---
 
@@ -247,45 +238,8 @@ Corum8 has won **50+ industry awards**. The following are featured:
 
 ---
 
-# DESIGNER BRIEF — For Lovable / Figma / External Design Handoff
-
-*Everything below is optional context. Delete any section you don't need.*
-
----
-
-### Brand Colour Palette
-
-| Token | Value | Usage |
-|-------|-------|-------|
-| Brand Gold | `#F5A623` | Primary CTA, highlights, accents |
-| Gold Light | `#FFC857` | Hover states, gradient end |
-| Gold Soft (glow) | `rgba(245,166,35,0.12)` | Background washes, card halos |
-| Dark Background | `#0a0a0a` | Hero, Work section, dark panels |
-| Off-White Body | `#F7F6F3` | Main page background |
-| Card Surface | `#FFFFFF` | Cards, dropdowns |
-| Text Primary | `#0a0a0a` | Headings, body |
-| Text Secondary | `#3a3a3a` | Subheadings, para text |
-| Text Muted | `#888888` | Labels, captions |
-
----
 
 ### Typography
-
-| Role | Font | Weight |
-|------|------|--------|
-| Display headings | PP Neue Montreal (variable) | 400 (regular) |
-| Italic accent | Syne | 400 italic |
-| UI / nav / body | Inter | 400–600 |
-| Code / labels | JetBrains Mono | 600 |
-
-Heading sizes use `clamp()` fluid scaling — approximate desktop sizes:
-- H1: ~8–11rem
-- H2: ~2.65rem
-- H3: ~1.65rem
-- Body: 1rem, line-height 1.72
-
----
-
 
 ### SEO / AEO Technical Notes
 

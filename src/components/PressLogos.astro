@@ -1,73 +1,54 @@
 ---
-// Client trust strip — sits directly below the merged Hero. Same
-// design treatment as the previous "As featured in" press strip
-// (compact label + horizontal logo rail with edge fade), but now
-// shows two rows of CLIENT logos instead of media outlets, per
-// user direction. Label updated to "Trusted by 1,100+ brands".
-
-// Source: every brand the user dropped into /assets/clients2/, copied
-// into /public/clients/ so Astro can serve them as static assets.
-// Order is curated so the biggest CEX/wallet names + case-study
-// brands lead row A, project clients fill row B, and the longer tail
-// of specialist + media-partner brands fills row C.
+// Client trust strip — three-row CSS marquee of normalized client
+// wordmarks. All assets are .webp at 280x80 max, transparent canvas,
+// trim-cropped so every logo lands at uniform optical weight inside
+// a fixed-dimension tile wrapper. See scripts/normalize-logos.ts for
+// the source pipeline (drop / color-invert / crop / trim / resize).
 const clients = [
   // Row A — tier-1 brands + case-study clients
-  { src: '/clients/binance.png',          alt: 'Binance' },
-  { src: '/clients/Cashaa.webp',          alt: 'Cashaa' },
-  { src: '/clients/kucoin.png',           alt: 'KuCoin' },
-  { src: '/clients/okx.png',              alt: 'OKX' },
-  { src: '/clients/metamask.png',         alt: 'MetaMask' },
-  { src: '/clients/tether.png',           alt: 'Tether' },
-  { src: '/clients/tron.png',             alt: 'TRON' },
-  { src: '/clients/etoro.png',            alt: 'eToro' },
-  { src: '/clients/gate-io.png',          alt: 'Gate.io' },
-  { src: '/clients/coinmarketcap.png',    alt: 'CoinMarketCap' },
-  { src: '/clients/wazirx.png',           alt: 'WazirX' },
-  { src: '/clients/kava.png',             alt: 'Kava' },
-  { src: '/clients/eos.png',              alt: 'EOS' },
-  { src: '/clients/dream11.png',          alt: 'Dream11' },
-  { src: '/clients/iotex.png',            alt: 'IoTeX' },
-  { src: '/clients/fanadise.png',         alt: 'Fanadise' },
+  { src: '/clients/binance.webp',         alt: 'Binance' },
+  { src: '/clients/cashaa.webp',          alt: 'Cashaa' },
+  { src: '/clients/kucoin.webp',          alt: 'KuCoin' },
+  { src: '/clients/okx.webp',             alt: 'OKX' },
+  { src: '/clients/metamask.webp',        alt: 'MetaMask' },
+  { src: '/clients/tether.webp',          alt: 'Tether' },
+  { src: '/clients/tron.webp',            alt: 'TRON' },
+  { src: '/clients/etoro.webp',           alt: 'eToro' },
+  { src: '/clients/gate-io.webp',         alt: 'Gate.io' },
+  { src: '/clients/coinmarketcap.webp',   alt: 'CoinMarketCap' },
+  { src: '/clients/wazirx.webp',          alt: 'WazirX' },
+  { src: '/clients/kava.webp',            alt: 'Kava' },
+  { src: '/clients/eos.webp',             alt: 'EOS Network' },
+  { src: '/clients/dream11.webp',         alt: 'Dream11' },
+  { src: '/clients/iotex.webp',           alt: 'IoTeX' },
+  { src: '/clients/fanadise.webp',        alt: 'Fanadise' },
   // Row B — case-study + project clients
-  { src: '/clients/metarix.png',          alt: 'Metarix' },
-  { src: '/clients/ubuntu-tribe.png',     alt: 'Ubuntu Tribe' },
-  { src: '/clients/salamantex.png',       alt: 'Salamantex' },
-  { src: '/clients/cobox.png',            alt: 'Cobox' },
-  { src: '/clients/Plasmapay.png',        alt: 'PlasmaPay' },
+  { src: '/clients/salamantex.webp',      alt: 'Salamantex' },
+  { src: '/clients/plasmapay.webp',       alt: 'PlasmaPay' },
   { src: '/clients/radar.webp',           alt: 'Radar' },
   { src: '/clients/lendefi.webp',         alt: 'Lendefi' },
-  { src: '/clients/befaster.webp',        alt: 'BeFaster' },
-  { src: '/clients/aimedis.webp',         alt: 'Aimedis' },
   { src: '/clients/bfcl.webp',            alt: 'BFCL' },
-  { src: '/clients/obortech.png',         alt: 'OborTech' },
-  { src: '/clients/cointelligence.png',   alt: 'Cointelligence' },
-  { src: '/clients/crypto-tower.png',     alt: 'Crypto Tower' },
-  { src: '/clients/metavisa.png',         alt: 'MetaVisa' },
-  { src: '/clients/chingari.png',         alt: 'Chingari' },
+  { src: '/clients/obortech.webp',        alt: 'OborTech' },
+  { src: '/clients/cointelligence.webp',  alt: 'Cointelligence' },
+  { src: '/clients/chingari.webp',        alt: 'Chingari' },
   { src: '/clients/433-token.webp',       alt: '433 Token' },
   // Row C — specialists + media partners
-  { src: '/clients/Eulium.webp',          alt: 'Eulium' },
-  { src: '/clients/Goldkoise.webp',       alt: 'Goldkoise' },
   { src: '/clients/ozonex.webp',          alt: 'Ozonex' },
-  { src: '/clients/refine-medium.webp',   alt: 'Refine Medium' },
-  { src: '/clients/ambcrypto.png',        alt: 'AMB Crypto' },
-  { src: '/clients/beincrypto.png',       alt: 'BeInCrypto' },
-  { src: '/clients/coingape.png',         alt: 'CoinGape' },
-  { src: '/clients/coinfunda.png',        alt: 'CoinFunda' },
-  { src: '/clients/coinjournal.png',      alt: 'CoinJournal' },
-  { src: '/clients/crypto-briefing.png',  alt: 'Crypto Briefing' },
-  { src: '/clients/dailycoin.png',        alt: 'DailyCoin' },
-  { src: '/clients/zycrypto.png',         alt: 'ZyCrypto' },
-  { src: '/clients/maga-trump.png',       alt: 'MAGA Trump' },
-  { src: '/clients/flappy-bird.png',      alt: 'Flappy Bird' },
+  { src: '/clients/ambcrypto.webp',       alt: 'AMB Crypto' },
+  { src: '/clients/beincrypto.webp',      alt: 'BeInCrypto' },
+  { src: '/clients/coingape.webp',        alt: 'CoinGape' },
+  { src: '/clients/coinfunda.webp',       alt: 'CoinFunda' },
+  { src: '/clients/coinjournal.webp',     alt: 'CoinJournal' },
+  { src: '/clients/crypto-briefing.webp', alt: 'Crypto Briefing' },
+  { src: '/clients/zycrypto.webp',        alt: 'ZyCrypto' },
 ];
 
-// Split into three rows of 7 logos each so the strip carries more
-// brands without overflowing horizontally. Big names lead row A.
-const third = Math.ceil(clients.length / 3);
-const rowA = clients.slice(0, third);
-const rowB = clients.slice(third, third * 2);
-const rowC = clients.slice(third * 2);
+// Split across three rows. Row A gets tier-1 (16), Row B project
+// clients (11), Row C specialists + media (9). Different lengths
+// per row are fine — each row marquees independently.
+const rowA = clients.slice(0, 16);
+const rowB = clients.slice(16, 27);
+const rowC = clients.slice(27);
 ---
 
 <section class="c8-press">
@@ -76,30 +57,42 @@ const rowC = clients.slice(third * 2);
     <div class="c8-press__logos c8-press__logos--a c8-marquee">
       <div class="c8-marquee__track">
         {rowA.map((m) => (
-          <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
+          <div class="c8-press__tile">
+            <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
+          </div>
         ))}
         {rowA.map((m) => (
-          <img src={m.src} alt="" aria-hidden="true" loading="lazy" class="c8-press__img c8-marquee__clone" />
+          <div class="c8-press__tile c8-marquee__clone" aria-hidden="true">
+            <img src={m.src} alt="" loading="lazy" class="c8-press__img" />
+          </div>
         ))}
       </div>
     </div>
     <div class="c8-press__logos c8-press__logos--b c8-marquee">
       <div class="c8-marquee__track">
         {rowB.map((m) => (
-          <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
+          <div class="c8-press__tile">
+            <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
+          </div>
         ))}
         {rowB.map((m) => (
-          <img src={m.src} alt="" aria-hidden="true" loading="lazy" class="c8-press__img c8-marquee__clone" />
+          <div class="c8-press__tile c8-marquee__clone" aria-hidden="true">
+            <img src={m.src} alt="" loading="lazy" class="c8-press__img" />
+          </div>
         ))}
       </div>
     </div>
     <div class="c8-press__logos c8-press__logos--c c8-marquee">
       <div class="c8-marquee__track">
         {rowC.map((m) => (
-          <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
+          <div class="c8-press__tile">
+            <img src={m.src} alt={m.alt} loading="lazy" class="c8-press__img" />
+          </div>
         ))}
         {rowC.map((m) => (
-          <img src={m.src} alt="" aria-hidden="true" loading="lazy" class="c8-press__img c8-marquee__clone" />
+          <div class="c8-press__tile c8-marquee__clone" aria-hidden="true">
+            <img src={m.src} alt="" loading="lazy" class="c8-press__img" />
+          </div>
         ))}
       </div>
     </div>
@@ -162,9 +155,12 @@ const rowC = clients.slice(third * 2);
     mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
   }
-  .c8-press__logos--a { --c8-marquee-dur: 60s; }
-  .c8-press__logos--b { --c8-marquee-dur: 75s; }
-  .c8-press__logos--c { --c8-marquee-dur: 68s; }
+  /* Durations picked so no row is the obvious "fastest" — middle row
+     leads, bottom drags, top sits between. Wider spread also breaks
+     any visual sync between rows. */
+  .c8-press__logos--a { --c8-marquee-dur: 71s; }
+  .c8-press__logos--b { --c8-marquee-dur: 47s; }
+  .c8-press__logos--c { --c8-marquee-dur: 95s; }
   /* All three rows scroll continuously on every viewport — clones
      provide the seamless wrap, edge mask fades the cuts. Different
      durations per row so they don't echo. */
@@ -174,34 +170,60 @@ const rowC = clients.slice(third * 2);
     justify-content: flex-start;
     align-items: center;
     width: max-content;
-    /* Zero gap — the client PNGs (600×160 canvases) carry generous
-       internal padding around the brand mark already. */
-    gap: 0;
+    /* Tight gap — tile wrappers carry their own width slot, so the
+       inter-tile space just needs to keep adjacent logos from kissing. */
+    gap: 0.35rem;
     animation: c8-marquee-scroll var(--c8-marquee-dur, 60s) linear infinite;
   }
-  /* Row B scrolls in the OPPOSITE direction so the strip reads as
-     organic motion, not three rails moving the same way. */
-  .c8-press__logos--b .c8-marquee__track { animation-direction: reverse; }
+  /* All three rows scroll in the same direction; only the durations
+     differ (set per row above), so the rows stay phase-offset and
+     don't echo, but the eye reads a single unified motion. */
   .c8-press__logos .c8-marquee__track > * { flex: 0 0 auto; }
-  .c8-press__logos .c8-marquee__clone { display: inline-flex; }
   .c8-press__logos:hover .c8-marquee__track { animation-play-state: paused; }
+
+  /* Tile wrapper — FIXED-dimension flex slot. Width is fixed (not min)
+     so every tile takes the same horizontal slot regardless of the
+     logo's aspect ratio — the marquee reads as a uniform grid. Logos
+     wider than the slot are scaled down via max-width: 100%. */
+  .c8-press__tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 170px;
+    padding: 0 0.5rem;
+    flex: 0 0 170px;
+  }
   .c8-press__img {
-    /* Bumped to 36px so the logo content inside each canvas reads at
-       a usable size despite the in-PNG padding. */
-    height: 36px;
+    /* Fixed visible height — all logos render at the same vertical
+       size regardless of their source aspect ratio. Width adjusts
+       proportionally; max-width caps at the tile so ultra-wide
+       wordmarks scale down rather than overflow. */
+    height: 28px;
     width: auto;
-    max-width: 150px;
+    max-width: 100%;
     object-fit: contain;
-    filter: grayscale(1) brightness(0.3);
-    opacity: 0.72;
+    /* Unified dark-grey treatment that still preserves each logo's
+       internal tonal variation (MetaMask's fox, BFCL's lion etc. would
+       collapse to solid blobs with brightness(0), so we use a softer
+       chain): grayscale removes hue, brightness(0.45) pulls the whole
+       tonal range down, contrast(1.55) re-stretches it so internals
+       stay readable, drop-shadow adds a sub-pixel halo for sharpness
+       on the light bg. Hover restores full colour. */
+    filter: grayscale(1) brightness(0.45) contrast(1.55) drop-shadow(0 0 0.4px rgba(0,0,0,0.45));
+    opacity: 0.85;
     transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
   }
-  .c8-press__img:hover { filter: none; opacity: 1; transform: scale(1.04); }
+  .c8-press__tile:hover .c8-press__img {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.04);
+  }
 
-  /* Mobile — same scrolling behaviour as desktop, just smaller logos
-     and tighter section padding. */
   @media (max-width: 768px) {
     .c8-press { padding: 1.25rem 1rem 1.5rem; }
-    .c8-press__img { height: 30px; max-width: 130px; }
+    .c8-press__tile { height: 36px; width: 130px; flex-basis: 130px; padding: 0 0.4rem; }
+    .c8-press__img { height: 22px; }
+    .c8-press__logos .c8-marquee__track { gap: 0.25rem; }
   }
 </style>

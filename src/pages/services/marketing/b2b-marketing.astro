@@ -1,5 +1,315 @@
 ---
-import Layout from "../../../layouts/ServiceClusterLayoutV2.astro";
-import { page } from "../../../data/pages/services/marketing/b2b-marketing";
+import "../../../styles/global.css";
 ---
-<Layout page={page} />
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>B2B Lead Generation | Corum8</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="bg-[#f3f0ff] text-[#0b0a2e] font-sans antialiased overflow-x-hidden selection:bg-[#0b0a2e] selection:text-white">
+    <main class="relative z-10 pt-20 lg:pt-32 pb-24 overflow-hidden" id="smooth-wrapper">
+      <div id="smooth-content">
+        
+        <!-- HERO SPLIT -->
+        <section class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center min-h-[85vh]">
+          <div class="max-w-xl gs-reveal-left">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0b0a2e]/10 text-[#0b0a2e] font-bold text-xs tracking-widest uppercase mb-8">
+              B2B Outreach Engine
+            </div>
+            <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-[#0b0a2e] leading-[1.05] mb-6">
+              Fill your pipeline with <br/>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-800">Qualified Leads</span>
+            </h1>
+            <p class="text-xl text-[#0b0a2e]/70 leading-relaxed mb-10">
+              We build automated outbound engines that engage decision-makers, book meetings, and accelerate your sales cycle predictably.
+            </p>
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <a href="#" class="px-8 py-4 rounded-xl bg-[#0b0a2e] hover:bg-[#1a1854] text-white font-bold text-lg transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-[#0b0a2e]/20">
+                Book a Demo
+              </a>
+              <div class="flex flex-col">
+                <div class="flex text-amber-400 text-xl mb-1">★★★★★</div>
+                <span class="text-sm font-semibold text-[#0b0a2e]/60">4.9/5 from 200+ Reviews</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- HERO MOCKUP -->
+          <div class="relative w-full max-w-[500px] mx-auto lg:ml-auto gs-reveal-right">
+            <!-- Inbox Window -->
+            <div class="bg-white rounded-2xl shadow-[0_30px_60px_-15px_rgba(11,10,46,0.15)] overflow-hidden border border-slate-200 flex flex-col transform transition-transform hover:scale-[1.02] duration-500">
+              <!-- Window Header -->
+              <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex items-center gap-3">
+                <div class="flex gap-1.5">
+                  <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                  <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                  <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                </div>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Campaign Manager</span>
+              </div>
+              
+              <!-- Inbox List -->
+              <div class="p-4 space-y-3">
+                <div class="p-4 rounded-xl border border-[#0b0a2e]/10 bg-[#f3f0ff] flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-full bg-indigo-200 flex-shrink-0"></div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-center mb-1">
+                      <strong class="text-sm text-slate-900 truncate">Sarah Jenkins</strong>
+                      <span class="text-[10px] text-slate-400">10:42 AM</span>
+                    </div>
+                    <p class="text-xs text-slate-600 truncate">Interested in your enterprise plan, let's chat...</p>
+                  </div>
+                  <div class="px-2 py-1 bg-red-100 text-red-700 text-[10px] font-bold rounded">Hot Lead</div>
+                </div>
+
+                <div class="p-4 rounded-xl border border-slate-100 bg-white flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-full bg-emerald-200 flex-shrink-0"></div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-center mb-1">
+                      <strong class="text-sm text-slate-900 truncate">Michael Chen</strong>
+                      <span class="text-[10px] text-slate-400">Yesterday</span>
+                    </div>
+                    <p class="text-xs text-slate-600 truncate">Can we schedule a call for Tuesday?</p>
+                  </div>
+                  <div class="px-2 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded">Meeting</div>
+                </div>
+
+                <div class="p-4 rounded-xl border border-slate-100 bg-white flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-full bg-amber-200 flex-shrink-0"></div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-center mb-1">
+                      <strong class="text-sm text-slate-900 truncate">David Rodriguez</strong>
+                      <span class="text-[10px] text-slate-400">Yesterday</span>
+                    </div>
+                    <p class="text-xs text-slate-600 truncate">Reviewing the proposal internally.</p>
+                  </div>
+                  <div class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded">Follow Up</div>
+                </div>
+              </div>
+              
+              <div class="p-4 border-t border-slate-100">
+                <div class="w-full py-3 bg-[#6c5ce7] hover:bg-[#5b4cdb] text-white text-center rounded-lg font-bold text-sm cursor-pointer transition-colors">
+                  Schedule Campaign
+                </div>
+              </div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="absolute -right-8 top-12 bg-white rounded-xl shadow-lg p-3 border border-slate-100 flex items-center gap-2 animate-[float-y_4s_ease-in-out_infinite]">
+              <div class="w-8 h-8 rounded bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold">✓</div>
+              <span class="text-xs font-bold">Meeting Booked</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- CLIENTS -->
+        <section class="py-12 bg-transparent border-t border-indigo-100 mt-10 gs-reveal">
+          <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-sm font-bold tracking-widest text-[#0b0a2e]/40 uppercase mb-8">Trusted by B2B Revenue Teams</p>
+            <div class="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-60">
+              <div class="text-2xl font-black italic tracking-tighter">Gong</div>
+              <div class="text-2xl font-black uppercase">Outreach</div>
+              <div class="text-2xl font-black">SalesLoft</div>
+              <div class="text-2xl font-black tracking-widest uppercase">Apollo</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- THE PROCESS (DARK SECTION) -->
+        <section class="mt-32 py-24 lg:py-32 bg-[#0b0a2e] text-white rounded-t-[40px] lg:rounded-[80px] mx-0 lg:mx-8">
+          <div class="max-w-7xl mx-auto px-6 lg:px-12 gs-reveal">
+            <div class="grid lg:grid-cols-12 gap-16">
+              <div class="lg:col-span-5">
+                <h2 class="text-5xl lg:text-6xl font-extrabold mb-6 leading-[1.1]">How we generate meetings</h2>
+                <p class="text-[#a29eff] text-xl mb-10">A systematic approach to predictable revenue</p>
+                <a href="#" class="px-8 py-4 inline-block rounded-xl bg-white text-[#0b0a2e] font-bold text-lg hover:bg-slate-100 transition-colors">
+                  Get Started
+                </a>
+              </div>
+              
+              <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6">
+                <!-- Step 1 -->
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors gs-reveal">
+                  <span class="text-6xl font-extrabold text-white/10 block mb-6">01</span>
+                  <h3 class="text-2xl font-bold mb-4">Target & Extract</h3>
+                  <p class="text-slate-400 leading-relaxed">We scrape highly targeted decision-makers using intent data and verify all contact information to ensure zero bounces.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors sm:-translate-y-8 gs-reveal" style="transition-delay: 100ms;">
+                  <span class="text-6xl font-extrabold text-white/10 block mb-6">02</span>
+                  <h3 class="text-2xl font-bold mb-4">Personalized Outreach</h3>
+                  <p class="text-slate-400 leading-relaxed">AI-driven personalization sequences that hit the primary inbox and resonate directly with prospect pain points.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors gs-reveal" style="transition-delay: 200ms;">
+                  <span class="text-6xl font-extrabold text-white/10 block mb-6">03</span>
+                  <h3 class="text-2xl font-bold mb-4">Close & Scale</h3>
+                  <p class="text-slate-400 leading-relaxed">We handle the replies, overcome initial objections, and book qualified meetings directly onto your sales team's calendar.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FEATURE HIGHLIGHT -->
+        <section class="py-32 bg-white">
+          <div class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="order-2 lg:order-1 gs-reveal-left">
+              <div class="bg-slate-50 p-8 lg:p-12 rounded-3xl border border-slate-200">
+                <h3 class="text-3xl font-extrabold text-slate-900 mb-8">Lead Qualification Framework</h3>
+                <ul class="space-y-6">
+                  {[
+                    'Verified Decision Maker (C-Level/VP)',
+                    'Confirmed active budget for your category',
+                    'Expressed direct interest via reply',
+                    'Ready to buy within 90 days'
+                  ].map(item => (
+                    <li class="flex items-center gap-4 text-lg font-medium text-slate-700">
+                      <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div class="order-1 lg:order-2 gs-reveal-right">
+              <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 leading-[1.1]">Stop wasting time on bad leads</h2>
+              <p class="text-xl text-slate-600 leading-relaxed mb-8">
+                Our multi-channel approach ensures that when your sales team gets on a call, the prospect is already educated, qualified, and actively looking for your solution. We handle the dirty work so you can focus on closing.
+              </p>
+              <a href="#" class="text-[#6c5ce7] font-bold text-lg hover:underline inline-flex items-center gap-2">
+                Learn more about our criteria <span class="text-xl">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- METRICS -->
+        <section class="py-24 bg-[#6c5ce7] text-white">
+          <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/20 gs-reveal">
+            <div class="py-4">
+              <h3 class="text-5xl font-extrabold mb-2">2.5M+</h3>
+              <p class="text-indigo-200 font-medium">Emails Sent</p>
+            </div>
+            <div class="py-4">
+              <h3 class="text-5xl font-extrabold mb-2">45k</h3>
+              <p class="text-indigo-200 font-medium">Meetings Booked</p>
+            </div>
+            <div class="py-4">
+              <h3 class="text-5xl font-extrabold mb-2">82%</h3>
+              <p class="text-indigo-200 font-medium">Open Rate</p>
+            </div>
+            <div class="py-4">
+              <h3 class="text-5xl font-extrabold mb-2">$120M</h3>
+              <p class="text-indigo-200 font-medium">Pipeline Generated</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="py-32 bg-[#f3f0ff]">
+          <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-20 gs-reveal">
+              <h2 class="text-4xl lg:text-5xl font-extrabold text-[#0b0a2e] mb-6">Don't just take our word for it</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 gs-reveal">
+                <p class="text-xl text-slate-700 leading-relaxed mb-8 italic">"Corum8's outreach engine fundamentally changed our business. We went from scraping by on referrals to having 20+ qualified enterprise demos booked every single week."</p>
+                <div class="flex items-center gap-4">
+                  <div class="w-14 h-14 bg-indigo-100 rounded-full"></div>
+                  <div>
+                    <h4 class="font-bold text-slate-900 text-lg">Alex Mercer</h4>
+                    <p class="text-slate-500">VP of Sales at SaaSify</p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 gs-reveal" style="transition-delay: 100ms;">
+                <p class="text-xl text-slate-700 leading-relaxed mb-8 italic">"The lead quality is unmatched. The prospects actually show up to the calls knowing what we do and ready to talk pricing. It's the highest ROI channel we have."</p>
+                <div class="flex items-center gap-4">
+                  <div class="w-14 h-14 bg-indigo-100 rounded-full"></div>
+                  <div>
+                    <h4 class="font-bold text-slate-900 text-lg">Samantha Wright</h4>
+                    <p class="text-slate-500">Founder, DataSync</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="py-32 bg-white">
+          <div class="max-w-4xl mx-auto px-6 text-center gs-reveal">
+            <h2 class="text-5xl lg:text-6xl font-extrabold text-[#0b0a2e] mb-8 leading-[1.1]">Ready to scale your revenue?</h2>
+            <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">Stop worrying about where your next deal is coming from. Let our automated outbound engine fill your calendar.</p>
+            <a href="/contact" class="px-10 py-5 rounded-xl bg-[#6c5ce7] hover:bg-[#5b4cdb] text-white font-bold text-xl transition-all shadow-xl shadow-indigo-200 hover:-translate-y-1 inline-block">
+              Get Your Custom Blueprint
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js" is:inline></script>
+    
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          direction: 'vertical',
+          gestureDirection: 'vertical',
+          smooth: true
+        });
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const revealElements = document.querySelectorAll(".gs-reveal");
+        revealElements.forEach((el) => {
+          gsap.fromTo(el, { autoAlpha: 0, y: 50 }, {
+            duration: 1, autoAlpha: 1, y: 0,
+            ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
+          });
+        });
+
+        const revealLeft = document.querySelectorAll(".gs-reveal-left");
+        revealLeft.forEach((el) => {
+          gsap.fromTo(el, { autoAlpha: 0, x: -50 }, {
+            duration: 1, autoAlpha: 1, x: 0,
+            ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
+          });
+        });
+
+        const revealRight = document.querySelectorAll(".gs-reveal-right");
+        revealRight.forEach((el) => {
+          gsap.fromTo(el, { autoAlpha: 0, x: 50 }, {
+            duration: 1, autoAlpha: 1, x: 0,
+            ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
+          });
+        });
+      });
+    </script>
+
+    <style is:global>
+      body { font-family: 'DM Sans', sans-serif; }
+      @keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    </style>
+  </body>
+</html>

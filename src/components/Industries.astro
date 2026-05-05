@@ -3,15 +3,18 @@
 // LEFT: stacked industry titles. The active one is highlighted with
 //   a gold rail, white-on-gold treatment, and a thin progress bar
 //   underneath that fills as the auto-advance timer ticks.
-// RIGHT: content panel that swaps to match — full-bleed image with
-//   industry name, blurb, key services, and a CTA. Crossfades on
-//   change.
+// RIGHT: a thematic *photo collage* per industry — three Unsplash
+//   images placed around the stage with subtle float animations.
+//   Crossfades on industry rotation; each image floats independently
+//   so the stage feels alive without distracting motion.
 //
 // Interaction: auto-advances top→bottom every 6s, restarts on every
-// title click, and pauses while the user hovers the panel (so they
-// can read a slide they care about). Reduced-motion users get a
-// static first slide and the click/keyboard nav still works.
+// title click, and pauses while the user hovers the panel.
 
+type Image = {
+  src: string;
+  alt: string;
+};
 type Industry = {
   num: string;
   name: string;
@@ -20,9 +23,15 @@ type Industry = {
   bullets: string[];
   cta: string;
   href: string;
-  image: string;
-  imageAlt: string;
+  accent: string;
+  images: [Image, Image, Image];
 };
+
+// Unsplash hot-linked images. The query suffix (?w=900&q=80…)
+// requests a sized + format-optimised version directly from
+// Unsplash's CDN — no local copy needed.
+const u = (id: string, w = 900) =>
+  `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
 
 const industries: Industry[] = [
   {
@@ -37,8 +46,12 @@ const industries: Industry[] = [
     ],
     cta: 'Explore Web3 work',
     href: '/industries/web3',
-    image: 'https://images.unsplash.com/photo-1644361566696-3d442b5b482a?w=1600&q=80&auto=format&fit=crop',
-    imageAlt: 'Web3 token and on-chain visual',
+    accent: '#F2BF22',
+    images: [
+      { src: u('1644361566696-3d442b5b482a'), alt: 'Web3 token concept' },
+      { src: u('1639762681485-074b7f938ba0'), alt: 'Cryptocurrency coins' },
+      { src: u('1518544801976-3e159e50e5bb'), alt: 'Trading dashboard' },
+    ],
   },
   {
     num: '02',
@@ -52,8 +65,12 @@ const industries: Industry[] = [
     ],
     cta: 'Explore AI work',
     href: '/industries/ai',
-    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1600&q=80&auto=format&fit=crop',
-    imageAlt: 'Humanoid AI robot',
+    accent: '#A78BFA',
+    images: [
+      { src: u('1620712943543-bcc4688e7485'), alt: 'Humanoid AI face' },
+      { src: u('1531297484001-80022131f5a1'), alt: 'Code on a screen' },
+      { src: u('1518770660439-4636190af475'), alt: 'Circuit board detail' },
+    ],
   },
   {
     num: '03',
@@ -67,8 +84,12 @@ const industries: Industry[] = [
     ],
     cta: 'Explore Fintech work',
     href: '/industries/fintech',
-    image: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=1600&q=80&auto=format&fit=crop',
-    imageAlt: 'Fintech / digital banking on a phone',
+    accent: '#34D399',
+    images: [
+      { src: u('1601597111158-2fceff292cdc'), alt: 'Mobile banking app' },
+      { src: u('1556742049-0cfed4f6a45d'), alt: 'Credit cards' },
+      { src: u('1554224155-6726b3ff858f'), alt: 'Currency closeup' },
+    ],
   },
   {
     num: '04',
@@ -82,8 +103,12 @@ const industries: Industry[] = [
     ],
     cta: 'Explore SaaS work',
     href: '/industries/saas',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80&auto=format&fit=crop',
-    imageAlt: 'Analytics dashboard on a screen',
+    accent: '#60A5FA',
+    images: [
+      { src: u('1460925895917-afdab827c52f'), alt: 'Analytics dashboard' },
+      { src: u('1551288049-bebda4e38f71'), alt: 'Workspace with laptop' },
+      { src: u('1556761175-5973dc0f32e7'), alt: 'Team strategy session' },
+    ],
   },
   {
     num: '05',
@@ -97,8 +122,12 @@ const industries: Industry[] = [
     ],
     cta: 'Explore Enterprise work',
     href: '/industries/enterprise',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=80&auto=format&fit=crop',
-    imageAlt: 'Modern boardroom strategy session',
+    accent: '#FB923C',
+    images: [
+      { src: u('1542744173-8e7e53415bb0'), alt: 'Modern boardroom' },
+      { src: u('1497366216548-37526070297c'), alt: 'Office workspace' },
+      { src: u('1486406146926-c627a92ad1ab'), alt: 'Skyscraper financial district' },
+    ],
   },
   {
     num: '06',
@@ -112,8 +141,12 @@ const industries: Industry[] = [
     ],
     cta: 'Explore Robotics work',
     href: '/industries/robotics',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&q=80&auto=format&fit=crop',
-    imageAlt: 'Robotic arm in a factory',
+    accent: '#F472B6',
+    images: [
+      { src: u('1581091226825-a6a2a5aee158'), alt: 'Robotic arm in factory' },
+      { src: u('1535378917042-10a22c95931a'), alt: 'Robot face detail' },
+      { src: u('1565008576549-57569a49371d'), alt: 'Industrial automation' },
+    ],
   },
 ];
 ---
@@ -149,7 +182,7 @@ const industries: Industry[] = [
         ))}
       </ol>
 
-      <!-- RIGHT — content panels (only the active one is visible) -->
+      <!-- RIGHT — photo collage stage per industry -->
       <div class="c8-ind__stage" id="c8-ind-stage">
         {industries.map((i, idx) => (
           <article
@@ -157,11 +190,17 @@ const industries: Industry[] = [
             id={`c8-ind-panel-${idx}`}
             role="tabpanel"
             aria-hidden={idx === 0 ? 'false' : 'true'}
+            style={`--ind-accent: ${i.accent};`}
           >
-            <figure class="c8-ind__media">
-              <img src={i.image} alt={i.imageAlt} loading="lazy" />
-              <span class="c8-ind__media-veil"></span>
-            </figure>
+            <div class="c8-ind__scene" aria-hidden="true">
+              <div class="c8-ind__plate"></div>
+              {i.images.map((img, ix) => (
+                <figure class={`ind-photo ind-photo--${ix}`}>
+                  <img src={img.src} alt={img.alt} loading="lazy" />
+                </figure>
+              ))}
+            </div>
+
             <div class="c8-ind__body">
               <span class="c8-ind__body-num">{i.num} · {i.tagline}</span>
               <h3 class="c8-ind__body-name">{i.name}</h3>
@@ -197,7 +236,6 @@ const industries: Industry[] = [
     overflow: hidden;
     isolation: isolate;
   }
-  /* Soft gold corner washes so the dark slab isn't flat. */
   .c8-ind::before {
     content: '';
     position: absolute;
@@ -232,14 +270,14 @@ const industries: Industry[] = [
     margin: 0;
     font-family: var(--font-display);
     font-size: clamp(1.9rem, 4.2vw, 3.1rem);
-    font-weight: 400;
+    font-weight: 350;
     line-height: 1.05;
     letter-spacing: -0.03em;
     color: #fff;
   }
   .c8-ind__heading-accent {
     color: var(--c8-gold-dark);
-    font-weight: 400;
+    font-weight: 350;
   }
 
   /* ─── Panel: left titles, right stage ─── */
@@ -288,7 +326,6 @@ const industries: Industry[] = [
     transition: color 0.4s ease, padding-left 0.4s ease, background 0.4s ease;
   }
   .c8-ind__title::before {
-    /* Gold left rail. Hidden by default; expands when active. */
     content: '';
     position: absolute;
     left: 0; top: 0; bottom: 0;
@@ -298,14 +335,8 @@ const industries: Industry[] = [
     transform-origin: top;
     transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  .c8-ind__title:hover {
-    color: #fff;
-    padding-left: 1.4rem;
-  }
-  .c8-ind__title.is-active {
-    color: #fff;
-    padding-left: 1.4rem;
-  }
+  .c8-ind__title:hover { color: #fff; padding-left: 1.4rem; }
+  .c8-ind__title.is-active { color: #fff; padding-left: 1.4rem; }
   .c8-ind__title.is-active::before { transform: scaleY(1); }
 
   .c8-ind__title-num {
@@ -326,7 +357,7 @@ const industries: Industry[] = [
     grid-column: 2; grid-row: 1;
     font-family: var(--font-display);
     font-size: clamp(1.15rem, 1.7vw, 1.5rem);
-    font-weight: 400;
+    font-weight: 350;
     line-height: 1;
     letter-spacing: -0.02em;
   }
@@ -337,7 +368,6 @@ const industries: Industry[] = [
     font-size: 0.78rem;
     color: rgba(255, 255, 255, 0.55);
     letter-spacing: 0.005em;
-    /* Collapse the tag on inactive items so the list stays scannable. */
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -350,9 +380,6 @@ const industries: Industry[] = [
     opacity: 1;
   }
 
-  /* Progress bar — only renders under the active title and fills as
-     the auto-advance timer counts down. JS toggles the animation
-     restart on each tick. */
   .c8-ind__progress {
     grid-column: 1 / -1;
     grid-row: 3;
@@ -376,9 +403,7 @@ const industries: Industry[] = [
   .c8-ind__title.is-active .c8-ind__progress-bar {
     animation: c8-ind-progress var(--c8-ind-dur, 6000ms) linear forwards;
   }
-  .c8-ind__title.is-paused .c8-ind__progress-bar {
-    animation-play-state: paused;
-  }
+  .c8-ind__title.is-paused .c8-ind__progress-bar { animation-play-state: paused; }
   @keyframes c8-ind-progress {
     from { transform: scaleX(0); }
     to   { transform: scaleX(1); }
@@ -389,12 +414,8 @@ const industries: Industry[] = [
     position: relative;
     border-radius: 18px;
     overflow: hidden;
-    background: #050505;
-    aspect-ratio: 16 / 10;
-    min-height: 460px;
-    /* Single hairline + soft gold-tinted shadow so the stage reads
-       as a slightly raised tile against the dark section, not a
-       disconnected dark slab. */
+    background: linear-gradient(180deg, #0e0e0e 0%, #050505 100%);
+    min-height: 580px;
     box-shadow:
       0 30px 60px -28px rgba(0, 0, 0, 0.5),
       0 0 0 1px rgba(255, 255, 255, 0.06);
@@ -403,7 +424,7 @@ const industries: Industry[] = [
     position: absolute;
     inset: 0;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
@@ -413,44 +434,130 @@ const industries: Industry[] = [
     pointer-events: auto;
   }
 
-  .c8-ind__media {
+  .c8-ind__scene {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 320px;
+  }
+  .c8-ind__plate {
     position: absolute;
     inset: 0;
-    margin: 0;
-    overflow: hidden;
+    background-image:
+      radial-gradient(circle at center, rgba(255,255,255,0.05) 1px, transparent 1.5px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 35%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 35%, transparent 80%);
+    opacity: 0.7;
   }
-  .c8-ind__media img {
+  .c8-ind__slide::before {
+    content: '';
+    position: absolute;
+    top: 25%;
+    right: 12%;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--ind-accent) 0%, transparent 65%);
+    opacity: 0.18;
+    pointer-events: none;
+    filter: blur(28px);
+  }
+
+  /* ── Photo collage cards ── */
+  .ind-photo {
+    position: absolute;
+    margin: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow:
+      0 26px 54px -22px rgba(0,0,0,0.7),
+      0 0 0 1px rgba(255,255,255,0.06);
+    background: #111;
+    will-change: transform;
+  }
+  .ind-photo img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.02);
     transition: transform 8s ease-out;
   }
-  .c8-ind__slide.is-active .c8-ind__media img {
-    transform: scale(1.08);
-  }
-  .c8-ind__media-veil {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      0deg,
-      rgba(0,0,0,0.92) 0%,
-      rgba(0,0,0,0.6) 30%,
-      rgba(0,0,0,0.18) 60%,
-      rgba(0,0,0,0.18) 100%
-    );
+  .c8-ind__slide.is-active .ind-photo img {
+    transform: scale(1.05);
   }
 
+  /* Three positions per stage. Each photo floats independently with
+     a different delay + duration so the collage feels alive. */
+  .ind-photo--0 {
+    top: 8%;
+    left: 4%;
+    width: 38%;
+    aspect-ratio: 4 / 3;
+    transform: rotate(-1.5deg);
+    animation: ind-float-a 7.5s ease-in-out infinite;
+  }
+  .ind-photo--1 {
+    top: 14%;
+    right: 6%;
+    width: 36%;
+    aspect-ratio: 5 / 4;
+    transform: rotate(1.8deg);
+    z-index: 2;
+    animation: ind-float-b 9s ease-in-out infinite;
+    animation-delay: -2.5s;
+  }
+  .ind-photo--2 {
+    bottom: 8%;
+    left: 28%;
+    width: 36%;
+    aspect-ratio: 16 / 10;
+    transform: rotate(-0.8deg);
+    z-index: 3;
+    animation: ind-float-c 10.5s ease-in-out infinite;
+    animation-delay: -5s;
+  }
+
+  /* Three differently-shaped float cycles so the photos never lock-step. */
+  @keyframes ind-float-a {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(-1.5deg); }
+    50%      { transform: translate3d(6px, -10px, 0) rotate(-0.6deg); }
+  }
+  @keyframes ind-float-b {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(1.8deg); }
+    50%      { transform: translate3d(-8px, 8px, 0) rotate(0.6deg); }
+  }
+  @keyframes ind-float-c {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(-0.8deg); }
+    50%      { transform: translate3d(4px, -7px, 0) rotate(0.4deg); }
+  }
+
+  /* Reveal animation as a slide enters */
+  .c8-ind__slide.is-active .ind-photo {
+    animation-play-state: running;
+  }
+  .c8-ind__slide:not(.is-active) .ind-photo {
+    animation-play-state: paused;
+  }
+
+  @media (max-width: 1100px) {
+    .ind-photo--0 { width: 44%; }
+    .ind-photo--1 { width: 42%; }
+    .ind-photo--2 { width: 42%; left: 25%; }
+  }
+
+  /* ── Body ── */
   .c8-ind__body {
     position: relative;
     z-index: 1;
-    padding: clamp(1.5rem, 3vw, 2.5rem);
+    padding: clamp(1.25rem, 2.3vw, 1.85rem) clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem);
     color: #fff;
-    max-width: 36rem;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    flex: 0 0 auto;
   }
   .c8-ind__body-num {
     display: inline-block;
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.4rem;
     font-family: var(--montreal);
     font-size: 0.72rem;
     font-weight: 600;
@@ -459,10 +566,10 @@ const industries: Industry[] = [
     color: var(--c8-gold);
   }
   .c8-ind__body-name {
-    margin: 0 0 0.6rem;
+    margin: 0 0 0.5rem;
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
-    font-weight: 400;
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    font-weight: 350;
     line-height: 1;
     letter-spacing: -0.025em;
     color: #fff;
@@ -470,25 +577,26 @@ const industries: Industry[] = [
   .c8-ind__body-blurb {
     margin: 0 0 0.85rem;
     font-family: var(--montreal);
-    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    font-size: clamp(0.92rem, 1.05vw, 1rem);
     line-height: 1.55;
-    color: rgba(255,255,255,0.86);
+    color: rgba(255,255,255,0.82);
+    max-width: 38rem;
   }
   .c8-ind__body-points {
     list-style: none;
-    margin: 0 0 1.2rem;
+    margin: 0 0 1.1rem;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.45rem 1.4rem;
   }
   .c8-ind__body-points li {
     display: flex;
     align-items: flex-start;
-    gap: 0.55rem;
+    gap: 0.5rem;
     font-family: var(--montreal);
-    font-size: 0.92rem;
-    line-height: 1.45;
+    font-size: 0.86rem;
+    line-height: 1.4;
     color: rgba(255,255,255,0.78);
   }
   .c8-ind__body-tick {
@@ -507,13 +615,13 @@ const industries: Industry[] = [
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.85rem 1.35rem;
+    padding: 0.75rem 1.25rem;
     border-radius: 999px;
     background: var(--c8-gold);
     color: #111;
     text-decoration: none;
     font-family: var(--montreal);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
     transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 12px 28px -10px rgba(242, 191, 34, 0.4);
@@ -524,27 +632,19 @@ const industries: Industry[] = [
     transform: translateY(-2px);
   }
 
-  /* Mobile stack */
   @media (max-width: 900px) {
-    .c8-ind__stage { aspect-ratio: 5 / 4; min-height: 380px; }
+    .c8-ind__stage { min-height: 660px; }
     .c8-ind__title { padding: 0.9rem 0.5rem 0.9rem 1rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .c8-ind__title.is-active .c8-ind__progress-bar { animation: none; transform: scaleX(1); }
     .c8-ind__slide { transition: none; }
-    .c8-ind__media img { transition: none; transform: none; }
+    .ind-photo { animation: none !important; }
   }
 </style>
 
 <script is:inline>
-  /* Industries auto-rotating carousel:
-       - default 6 second tick
-       - click on a title jumps + restarts the timer
-       - hover anywhere in the panel pauses (so the user has time
-         to actually read the slide), resumes on mouseleave
-       - reduced-motion users get a static first slide
-  */
   function startIndCarousel() {
     var panel  = document.querySelector('.c8-ind__panel');
     if (!panel) return;
@@ -567,9 +667,6 @@ const industries: Industry[] = [
         slides[n].classList.toggle('is-active', on);
         slides[n].setAttribute('aria-hidden', on ? 'false' : 'true');
       }
-      // Restart progress-bar animation by removing + forcing reflow + readding
-      // (we toggle is-active via the loop above, the keyframe restarts on
-      // each is-active gain naturally).
     }
 
     function tick() {
@@ -590,20 +687,14 @@ const industries: Industry[] = [
 
     panel.style.setProperty('--c8-ind-dur', DURATION + 'ms');
 
-    // Click handlers
     Array.prototype.forEach.call(titles, function (t, i) {
-      t.addEventListener('click', function () {
-        activate(i);
-        reset();
-      });
+      t.addEventListener('click', function () { activate(i); reset(); });
       t.addEventListener('focus', function () {
-        // keyboard nav: focusing a title also activates it
         if (document.activeElement === t) activate(i);
         reset();
       });
     });
 
-    // Pause on hover anywhere in the panel so the user can read.
     panel.addEventListener('mouseenter', function () {
       paused = true;
       Array.prototype.forEach.call(titles, function (t) { t.classList.add('is-paused'); });
@@ -614,7 +705,6 @@ const industries: Industry[] = [
       reset();
     });
 
-    // Initial tick
     schedule();
   }
 

@@ -1,0 +1,221 @@
+---
+import "../../../styles/global.css";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Email Marketing | Corum8</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="bg-[#fafafa] text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-blue-200">
+    <main class="relative z-10 pt-20 lg:pt-32 pb-24 overflow-hidden" id="smooth-wrapper">
+      <div id="smooth-content">
+
+        <!-- Background Decor -->
+        <div class="absolute top-0 left-1/2 -z-10 w-[1000px] h-[600px] bg-gradient-to-b from-blue-100 to-transparent rounded-b-full pointer-events-none -translate-x-1/2 opacity-60"></div>
+
+        <!-- HERO CENTERED -->
+        <section class="max-w-5xl mx-auto px-6 text-center relative z-10 min-h-[80vh] flex flex-col justify-center">
+          <div class="gs-reveal">
+            <div class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-blue-50 text-blue-600 font-bold text-sm mb-8 shadow-sm border border-blue-100">
+              ✨ Campaign Builder 2.0 Available Now
+            </div>
+            <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
+              Convert Leads with <br/>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Automated Emails</span>
+            </h1>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto mb-10">
+              Design beautiful emails in minutes, set up advanced triggers, and watch your conversion rates soar without writing a single line of code.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="#" class="px-10 py-5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-600/40 w-full sm:w-auto">
+                Start Free Trial
+              </a>
+              <a href="#demo" class="px-10 py-5 rounded-full bg-white border border-slate-200 text-slate-700 font-bold text-lg hover:border-blue-600 hover:text-blue-600 transition-all w-full sm:w-auto">
+                See How It Works
+              </a>
+            </div>
+            <p class="text-sm text-slate-500 font-medium mt-6">No credit card required. Cancel anytime.</p>
+          </div>
+        </section>
+
+        <!-- LOGOS -->
+        <section class="py-12 border-y border-slate-200 bg-white gs-reveal">
+          <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-12 lg:gap-24 opacity-50">
+            <div class="text-2xl font-black italic tracking-tighter">MailChimp</div>
+            <div class="text-2xl font-black uppercase">SendGrid</div>
+            <div class="text-2xl font-black">ActiveCampaign</div>
+            <div class="text-2xl font-black tracking-widest uppercase">Klaviyo</div>
+          </div>
+        </section>
+
+        <!-- EDITOR MOCKUP -->
+        <section id="demo" class="max-w-6xl mx-auto px-6 mt-32 relative z-20">
+          <div class="text-center max-w-3xl mx-auto mb-16 gs-reveal">
+            <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">Drag, drop, and convert</h2>
+            <p class="text-xl text-slate-600">Our intuitive builder lets anyone create pixel-perfect, responsive emails that render beautifully on every device.</p>
+          </div>
+
+          <div class="rounded-3xl border border-slate-200 bg-white shadow-[0_50px_100px_-20px_rgba(50,50,93,0.15)] flex flex-col md:flex-row overflow-hidden relative group transition-transform duration-700 hover:shadow-[0_60px_120px_-20px_rgba(50,50,93,0.25)] gs-reveal">
+            <!-- Sidebar -->
+            <div class="w-full md:w-64 bg-slate-50 border-b md:border-b-0 md:border-r border-slate-200 p-6 flex flex-row md:flex-col gap-4">
+              {['Heading', 'Text', 'Image', 'Button', 'Spacer', 'Social Links', 'HTML'].map(tool => (
+                <div class="flex-1 md:flex-none bg-white border border-slate-200 rounded-xl p-4 flex items-center gap-3 font-bold text-slate-600 shadow-sm cursor-pointer hover:border-blue-400 hover:text-blue-600 transition-colors">
+                  <div class="w-6 h-6 rounded bg-blue-100 flex-shrink-0"></div>
+                  <span class="hidden md:inline">{tool}</span>
+                </div>
+              ))}
+            </div>
+            <!-- Canvas -->
+            <div class="flex-1 bg-slate-100/50 p-8 lg:p-16 flex flex-col items-center">
+              <div class="w-full max-w-md bg-white border border-slate-200 shadow-xl rounded-2xl p-8 flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-blue-600 rounded-2xl mb-6"></div>
+                <h3 class="text-2xl font-extrabold text-slate-900 mb-4">Welcome to our Newsletter</h3>
+                <p class="text-slate-500 mb-6 text-sm">Thanks for subscribing. Here are the latest updates from our community.</p>
+                <div class="w-full h-40 bg-slate-100 rounded-xl mb-6 flex items-center justify-center text-slate-400 font-semibold border-2 border-dashed border-slate-300">Drop Image Here</div>
+                <div class="px-8 py-3 bg-blue-600 text-white rounded-lg font-bold w-full">Read the full story</div>
+              </div>
+            </div>
+            
+            <!-- Floating Badge -->
+            <div class="absolute top-10 right-10 bg-white rounded-2xl p-6 shadow-2xl border border-slate-100 flex flex-col items-center animate-[float-y_5s_ease-in-out_infinite_reverse]">
+              <span class="text-slate-500 font-bold text-sm mb-1 uppercase tracking-wider">Avg Open Rate</span>
+              <span class="text-4xl font-extrabold text-emerald-500">64.2%</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- STATS STRIP -->
+        <section class="bg-blue-600 text-white py-24 mt-40">
+          <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
+            <div class="gs-reveal">
+              <h2 class="text-6xl lg:text-7xl font-extrabold mb-4">10M+</h2>
+              <p class="text-blue-200 text-xl font-medium">Emails Sent Monthly</p>
+            </div>
+            <div class="gs-reveal" style="transition-delay: 100ms;">
+              <h2 class="text-6xl lg:text-7xl font-extrabold mb-4">98%</h2>
+              <p class="text-blue-200 text-xl font-medium">Inbox Delivery Rate</p>
+            </div>
+            <div class="gs-reveal" style="transition-delay: 200ms;">
+              <h2 class="text-6xl lg:text-7xl font-extrabold mb-4">3.5x</h2>
+              <p class="text-blue-200 text-xl font-medium">Average ROI Increase</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- AUTOMATION FLOW -->
+        <section class="py-32 bg-slate-50 border-b border-slate-200">
+          <div class="text-center max-w-3xl mx-auto mb-20 px-6 gs-reveal">
+            <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">Visual Automation Builder</h2>
+            <p class="text-xl text-slate-600">Build complex customer journeys with a simple, visual drag-and-drop interface. Automate your sales funnel while you sleep.</p>
+          </div>
+          
+          <div class="max-w-4xl mx-auto flex flex-col items-center relative z-10 px-6 gs-reveal">
+            <!-- Node 1 -->
+            <div class="px-8 py-4 bg-indigo-50 border-2 border-indigo-200 text-indigo-700 font-bold rounded-xl shadow-md z-10 relative">
+              Trigger: New Subscriber Joins
+            </div>
+            <div class="w-1 h-12 bg-slate-300"></div>
+            
+            <!-- Node 2 -->
+            <div class="px-8 py-4 bg-white border border-slate-200 text-slate-800 font-bold rounded-xl shadow-md z-10 relative">
+              Action: Send Welcome Email
+            </div>
+            <div class="w-1 h-12 bg-slate-300"></div>
+            
+            <!-- Condition Box -->
+            <div class="px-4 py-2 bg-white border border-slate-200 text-slate-500 font-bold text-sm rounded-full shadow-sm z-10 relative">
+              Wait 2 Days
+            </div>
+            <div class="w-1 h-12 bg-slate-300"></div>
+            
+            <!-- Split -->
+            <div class="w-full max-w-md relative flex justify-between items-start pt-6">
+              <!-- Horizontal Connector -->
+              <div class="absolute top-0 left-[20%] right-[20%] h-1 bg-slate-300"></div>
+              
+              <!-- Path A -->
+              <div class="flex flex-col items-center flex-1">
+                <div class="w-1 h-6 bg-slate-300 -mt-6"></div>
+                <div class="px-3 py-1 bg-white border border-slate-200 text-slate-500 font-bold text-xs rounded-full shadow-sm z-10 relative mb-4">
+                  Opened Email
+                </div>
+                <div class="px-6 py-4 bg-emerald-50 border-2 border-emerald-200 text-emerald-700 font-bold rounded-xl shadow-md z-10 relative text-center">
+                  Send 20% Discount
+                </div>
+              </div>
+              
+              <!-- Path B -->
+              <div class="flex flex-col items-center flex-1">
+                <div class="w-1 h-6 bg-slate-300 -mt-6"></div>
+                <div class="px-3 py-1 bg-white border border-slate-200 text-slate-500 font-bold text-xs rounded-full shadow-sm z-10 relative mb-4">
+                  Did Not Open
+                </div>
+                <div class="px-6 py-4 bg-amber-50 border-2 border-amber-200 text-amber-700 font-bold rounded-xl shadow-md z-10 relative text-center">
+                  Resend with new Subject
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="max-w-5xl mx-auto px-6 lg:px-12 mt-32 mb-32 gs-reveal">
+          <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[40px] p-12 lg:p-20 text-center text-white relative overflow-hidden shadow-2xl">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-50"></div>
+            <div class="relative z-10">
+              <h2 class="text-4xl lg:text-6xl font-extrabold mb-6">Drive more sales with every send.</h2>
+              <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-10">Experience the email marketing platform built for growth.</p>
+              <a href="/contact" class="px-10 py-5 rounded-full bg-white text-blue-600 font-bold text-xl hover:shadow-xl hover:scale-105 transition-transform inline-block">
+                Create your free account
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js" is:inline></script>
+    
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          direction: 'vertical',
+          gestureDirection: 'vertical',
+          smooth: true
+        });
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const revealElements = document.querySelectorAll(".gs-reveal");
+        revealElements.forEach((el) => {
+          gsap.fromTo(el, { autoAlpha: 0, y: 50 }, {
+            duration: 1, autoAlpha: 1, y: 0,
+            ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
+          });
+        });
+      });
+    </script>
+
+    <style is:global>
+      body { font-family: 'Inter', sans-serif; }
+      @keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    </style>
+  </body>
+</html>

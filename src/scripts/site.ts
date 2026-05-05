@@ -2,7 +2,7 @@ import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Swiper from 'swiper';
-import { Navigation, Pagination, A11y, Keyboard, EffectCreative } from 'swiper/modules';
+import { Navigation, Pagination, A11y, Keyboard, EffectCreative, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -268,22 +268,30 @@ function initSwipers() {
     }
 
     // Work case-study carousel — fixed 3-per-view on desktop, 2 tablet, 1 mobile.
+    // Auto-advances on a 4.5s interval, loops, pauses on hover so the user
+    // can read a card they care about, and resumes after pointer leaves.
     const isWorkCarousel = root.classList.contains('c8-work__carousel');
     if (isWorkCarousel) {
       new Swiper(root, {
-        modules: [Navigation, A11y, Keyboard],
+        modules: [Navigation, A11y, Keyboard, Autoplay],
         slidesPerView: 1,
         spaceBetween: 20,
         breakpoints: {
           700:  { slidesPerView: 2, spaceBetween: 24 },
           1100: { slidesPerView: 3, spaceBetween: 32 },
         },
+        loop: true,
         grabCursor: true,
         keyboard: { enabled: true },
         navigation: (nextBtn || prevBtn)
           ? { nextEl: nextBtn as HTMLElement, prevEl: prevBtn as HTMLElement }
           : false,
         a11y: { enabled: true },
+        autoplay: {
+          delay: 4500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        },
       });
       return;
     }

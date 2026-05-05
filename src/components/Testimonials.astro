@@ -28,12 +28,9 @@ const slides = picks
 // Pair company id -> client logo path. Falls back gracefully if
 // missing — the carousel still renders the quote + author block.
 const companyLogo: Record<string, { src: string; invert?: boolean }> = {
-  Cashaa:        { src: '/clients/cashaa.png' },
-  Fanadise:      { src: '/clients/fanadise.png' },
-  'Ubuntu Tribe':{ src: '/clients/ubuntu-tribe.png' },
-  Cobox:         { src: '/clients/cobox.png' },
-  Salamantex:    { src: '/clients/salamantex.png' },
-  Metarix:       { src: '/clients/metarix.png', invert: true },
+  Cashaa:        { src: '/clients/cashaa.webp' },
+  Fanadise:      { src: '/clients/fanadise.webp' },
+  Salamantex:    { src: '/clients/salamantex.webp' },
 };
 
 const heroVideoId = 'wHMfo38ZbN8'; // existing client testimonial reel
@@ -147,13 +144,13 @@ const heroVideoId = 'wHMfo38ZbN8'; // existing client testimonial reel
     margin: 0;
     font-family: var(--font-display);
     font-size: clamp(1.9rem, 4.2vw, 3.1rem);
-    font-weight: 400;
+    font-weight: 350;
     line-height: 1.05;
     letter-spacing: -0.03em;
   }
   .c8-testi__heading-accent {
     color: var(--c8-gold-dark);
-    font-weight: 400;
+    font-weight: 350;
   }
 
   /* ─── Two-column grid ─── */
@@ -241,7 +238,7 @@ const heroVideoId = 'wHMfo38ZbN8'; // existing client testimonial reel
   .c8-testi__logo--text {
     font-family: var(--font-display);
     font-size: 1.4rem;
-    font-weight: 400;
+    font-weight: 350;
     letter-spacing: -0.015em;
     color: #0a0a0a;
     line-height: 1.2;
@@ -261,7 +258,7 @@ const heroVideoId = 'wHMfo38ZbN8'; // existing client testimonial reel
     margin: 0;
     font-family: var(--montreal);
     font-size: clamp(1.05rem, 1.3vw, 1.25rem);
-    font-weight: 400;
+    font-weight: 350;
     line-height: 1.55;
     color: #1a1a1a;
     letter-spacing: -0.005em;

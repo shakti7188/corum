@@ -50,7 +50,10 @@
 
     <!-- Headline: single decisive statement, no rotator -->
     <h1 class="c8-hero__headline">
-      <span class="c8-hero__title">Build brands that <span class="c8-hero__title-accent">dominate markets.</span></span>
+      <span class="c8-hero__title">
+        <span class="c8-hero__title-line">Build Brands That</span>
+        <span class="c8-hero__title-accent">Dominate Markets.</span>
+      </span>
     </h1>
 
     <!-- Subtitle -->
@@ -147,16 +150,9 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background:
-      radial-gradient(420px circle at var(--c8-hero-cx) var(--c8-hero-cy),
-        rgba(242,191,34,0.22) 0%,
-        rgba(242,191,34,0.08) 38%,
-        transparent 65%),
-      linear-gradient(180deg,
-        rgba(10,10,10,0.6) 0%,
-        rgba(10,10,10,0.30) 38%,
-        rgba(10,10,10,0.50) 72%,
-        rgba(10,10,10,0.82) 100%);
+    /* Flat dark overlay — no gradients. Opacity tuned for readable
+       body text against the underlying media. */
+    background: rgba(10, 10, 10, 0.66);
   }
 
   /* ─── Layer 2: content ─── */
@@ -172,7 +168,7 @@
     justify-content: center;
     align-items: flex-start;
     gap: clamp(1.1rem, 2.4vh, 1.8rem);
-    padding: clamp(5.5rem, 11vh, 7rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 4vh, 3rem);
+    padding: clamp(5.5rem, 11vh, 7rem) clamp(1.25rem, 3.2vw, 3.25rem) clamp(2rem, 4vh, 3rem);
   }
 
   /* Staggered rise-in on load */
@@ -256,22 +252,25 @@
   .c8-hero__headline {
     margin: 0;
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 350;
     color: #fff;
     max-width: 22ch;
   }
   .c8-hero__title {
     display: block;
-    font-size: clamp(2.4rem, 5.8vw, 4.6rem);
-    font-weight: 400;
-    line-height: 1.06;
-    letter-spacing: -0.03em;
+    font-size: clamp(2.15rem, 5.1vw, 4rem);
+    font-weight: 350;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
     text-shadow: 0 2px 28px rgba(0,0,0,0.45);
   }
+  /* Break each line onto its own row so the natural wrap doesn't
+     drop "dominate" onto the first line. */
+  .c8-hero__title-line { display: block; }
   .c8-hero__title-accent {
     color: var(--c8-gold-dark);
-    font-weight: 400;
-    display: inline;
+    font-weight: 350;
+    display: block;
   }
 
   /* ─── Region row — global agency presence ─── */
@@ -304,7 +303,7 @@
     margin: 0;
     font-family: var(--montreal);
     font-size: clamp(1.05rem, 1.35vw, 1.3rem);
-    font-weight: 400;
+    font-weight: 350;
     line-height: 1.5;
     max-width: 42rem;
     color: rgba(255,255,255,0.82);
@@ -420,7 +419,7 @@
   .c8-hero__stat-num {
     font-family: var(--font-display);
     font-style: normal;
-    font-weight: 400;
+    font-weight: 350;
     font-size: clamp(1.4rem, 2.1vw, 1.85rem);
     color: var(--c8-gold-dark);
     letter-spacing: -0.02em;

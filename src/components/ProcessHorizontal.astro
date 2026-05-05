@@ -1,8 +1,12 @@
 ---
-// ProcessHorizontal — 4-step engagement timeline rendered as a horizontal
-// rail. Strategy → Build → Launch → Scale. One line each, no timeline
-// commitments per CLAUDE.md (we describe the phase, not the duration).
-// Steps highlight on intersection so the flow reads as the user scrolls in.
+// ProcessHorizontal — 4-step engagement journey rendered as a CENTRED
+// horizontal sequence. Each step is a circular gold-ringed badge with
+// the numeral inside; below the badge sits the title and body, centred
+// in its own column. A thin horizontal gold thread runs between each
+// pair of badges so the row reads as one continuous flow.
+//
+// Strategy → Build → Launch → Scale. No timeline commitments per
+// CLAUDE.md (we describe the phase, not the duration).
 
 const steps = [
   {
@@ -35,20 +39,27 @@ const steps = [
       <h2 class="c8-process__heading" data-reveal="up">
         Four steps. <span class="c8-process__heading-accent">One team.</span>
       </h2>
+      <p class="c8-process__sub" data-reveal="up">
+        One team carries you from the first whiteboard sketch to the second-year retainer. No handoffs. No relays.
+      </p>
     </header>
 
-    <div class="c8-process__rail" data-reveal-stagger="120">
+    <ol class="c8-process__chain" data-reveal-stagger="120">
       {steps.map((s, i) => (
-        <div class="c8-process__step" data-reveal="up">
-          <span class="c8-process__step-num">{s.num}</span>
+        <li class="c8-process__step" data-reveal="up" style={`--step-i: ${i};`}>
+          <div class="c8-process__node">
+            {i > 0 && <span class="c8-process__thread c8-process__thread--left" aria-hidden="true"></span>}
+            {i < steps.length - 1 && <span class="c8-process__thread c8-process__thread--right" aria-hidden="true"></span>}
+            <div class="c8-process__badge">
+              <span class="c8-process__badge-ring" aria-hidden="true"></span>
+              <span class="c8-process__badge-num">{s.num}</span>
+            </div>
+          </div>
           <h3 class="c8-process__step-title">{s.title}</h3>
           <p class="c8-process__step-body">{s.body}</p>
-          {i < steps.length - 1 && (
-            <span class="c8-process__connector" aria-hidden="true"></span>
-          )}
-        </div>
+        </li>
       ))}
-    </div>
+    </ol>
   </div>
 </section>
 
@@ -56,15 +67,34 @@ const steps = [
   .c8-process {
     background: var(--color-bg);
     color: #0a0a0a;
-    padding: clamp(4.5rem, 9vh, 7rem) clamp(1.5rem, 5vw, 5rem);
+    padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 5vw, 5rem);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Subtle dotted grid backdrop — gives depth without stealing focus
+     from the chain. */
+  .c8-process::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at center, rgba(0,0,0,0.06) 1px, transparent 1.5px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, #000 25%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, #000 25%, transparent 75%);
+    opacity: 0.65;
+    pointer-events: none;
   }
   .c8-process__inner {
+    position: relative;
     max-width: var(--c8-section-max, 1320px);
     margin: 0 auto;
   }
+
+  /* ── Header (centred) ── */
   .c8-process__head {
-    max-width: 48rem;
-    margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
+    max-width: 38rem;
+    margin: 0 auto clamp(3rem, 6vh, 4.5rem);
+    text-align: center;
   }
   .c8-process__eyebrow {
     margin: 0 0 1rem;
@@ -78,21 +108,33 @@ const steps = [
   .c8-process__heading {
     margin: 0;
     font-family: var(--font-display);
-    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
-    font-weight: 400;
+    font-size: clamp(2rem, 4.4vw, 3.2rem);
+    font-weight: 350;
     line-height: 1.05;
     letter-spacing: -0.03em;
   }
   .c8-process__heading-accent {
     color: var(--c8-gold-dark);
-    font-weight: 400;
+    font-weight: 350;
+  }
+  .c8-process__sub {
+    margin: 1rem auto 0;
+    max-width: 30rem;
+    font-family: var(--montreal);
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    line-height: 1.55;
+    color: rgba(0,0,0,0.6);
   }
 
-  /* ─── Rail (4 columns desktop, stacks on mobile) ─── */
-  .c8-process__rail {
+  /* ── Horizontal chain — 4 columns ── */
+  .c8-process__chain {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: clamp(1.5rem, 2.5vw, 2.25rem);
+    gap: clamp(1.5rem, 2.5vw, 2.5rem);
+    max-width: 64rem;
     position: relative;
   }
 
@@ -100,32 +142,105 @@ const steps = [
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
-    padding: 1.5rem;
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 14px;
-    box-shadow: 0 12px 28px -20px rgba(0, 0, 0, 0.18);
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
-  }
-  .c8-process__step:hover {
-    transform: translateY(-4px);
-    border-color: var(--c8-gold-glow);
-    box-shadow: 0 20px 38px -18px rgba(0,0,0,0.22), 0 0 36px -12px var(--c8-gold-soft);
+    align-items: center;
+    text-align: center;
   }
 
-  .c8-process__step-num {
+  /* Wraps badge + horizontal threads on either side */
+  .c8-process__node {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 86px;
+    margin-bottom: 1.4rem;
+  }
+
+  /* Threads run from each badge edge toward the column edge so two
+     adjacent steps' threads meet in the gutter and read as one
+     continuous gold line. */
+  .c8-process__thread {
+    position: absolute;
+    top: 50%;
+    height: 1.5px;
+    background: linear-gradient(to right,
+      rgba(242,191,34,0) 0%,
+      rgba(242,191,34,0.7) 30%,
+      rgba(242,191,34,0.85) 100%);
+    border-radius: 2px;
+    transform: translateY(-50%);
+  }
+  .c8-process__thread--left {
+    left: 0;
+    width: calc(50% - 50px);
+    background: linear-gradient(to left,
+      rgba(242,191,34,0) 0%,
+      rgba(242,191,34,0.7) 30%,
+      rgba(242,191,34,0.85) 100%);
+  }
+  .c8-process__thread--right {
+    right: 0;
+    width: calc(50% - 50px);
+  }
+
+  /* ── Badge ── */
+  .c8-process__badge {
+    position: relative;
+    z-index: 2;
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 18px 36px -22px rgba(0,0,0,0.22),
+      0 0 0 1px rgba(0,0,0,0.04);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+  }
+  .c8-process__badge-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background:
+      conic-gradient(from 0deg,
+        var(--c8-gold) 0deg,
+        var(--c8-gold-glow, rgba(242,191,34,0.5)) 60deg,
+        transparent 60deg 360deg
+      );
+    opacity: 0.85;
+    transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.2,0.8,0.2,1);
+    z-index: -1;
+    -webkit-mask: radial-gradient(circle, transparent 56%, #000 57%);
+            mask: radial-gradient(circle, transparent 56%, #000 57%);
+  }
+  .c8-process__step:hover .c8-process__badge {
+    transform: translateY(-3px);
+    box-shadow:
+      0 24px 50px -22px rgba(0,0,0,0.32),
+      0 0 0 1px rgba(0,0,0,0.04),
+      0 0 36px -10px rgba(242,191,34,0.5);
+  }
+  .c8-process__step:hover .c8-process__badge-ring {
+    transform: rotate(120deg);
+    opacity: 1;
+  }
+  .c8-process__badge-num {
     font-family: var(--font-display);
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-size: 1.55rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
     color: var(--c8-gold-dark);
   }
+
+  /* ── Step content ── */
   .c8-process__step-title {
-    margin: 0;
+    margin: 0 0 0.55rem;
     font-family: var(--font-display);
-    font-size: clamp(1.2rem, 1.7vw, 1.45rem);
-    font-weight: 400;
+    font-size: clamp(1.25rem, 1.9vw, 1.55rem);
+    font-weight: 350;
     line-height: 1.1;
     letter-spacing: -0.02em;
     color: #0a0a0a;
@@ -136,35 +251,56 @@ const steps = [
     font-size: 0.95rem;
     line-height: 1.55;
     color: #555;
+    max-width: 16rem;
   }
 
-  /* Connector arrow between desktop steps */
-  .c8-process__connector {
-    position: absolute;
-    top: 50%;
-    right: -1.4rem;
-    width: 1rem;
-    height: 1px;
-    background: var(--c8-gold);
-    z-index: 1;
-  }
-  .c8-process__connector::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
-    width: 6px;
-    height: 6px;
-    border-top: 1px solid var(--c8-gold);
-    border-right: 1px solid var(--c8-gold);
+  /* ── Tablet: 2x2 grid, each row keeps the connecting thread ── */
+  @media (max-width: 900px) {
+    .c8-process__chain {
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(2rem, 4vh, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+      max-width: 32rem;
+    }
+    /* On the wrapped row, threads on far-left of step 0 and far-right
+       of step 1's pair don't have a partner; CSS keeps them but they
+       still anchor visually as gold accents leading into / out of the
+       row. */
   }
 
-  @media (max-width: 1024px) {
-    .c8-process__rail { grid-template-columns: repeat(2, 1fr); }
-    .c8-process__connector { display: none; }
-  }
+  /* ── Mobile: single column, vertical thread between steps ── */
   @media (max-width: 600px) {
-    .c8-process__rail { grid-template-columns: 1fr; }
+    .c8-process__chain {
+      grid-template-columns: 1fr;
+      gap: clamp(2.5rem, 5vh, 3.5rem);
+      max-width: 22rem;
+    }
+    .c8-process__node { height: 74px; }
+    .c8-process__badge { width: 74px; height: 74px; }
+    .c8-process__badge-num { font-size: 1.35rem; }
+    /* Hide horizontal threads on mobile and add a vertical one
+       between consecutive steps so the chain still reads as a
+       continuous flow. */
+    .c8-process__thread { display: none; }
+    .c8-process__step:not(:first-child) .c8-process__node::before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1.5px;
+      height: clamp(2.5rem, 5vh, 3.5rem);
+      background: linear-gradient(to bottom,
+        rgba(242,191,34,0) 0%,
+        rgba(242,191,34,0.7) 40%,
+        rgba(242,191,34,0.85) 100%);
+      border-radius: 2px;
+    }
+    .c8-process__step-title { font-size: 1.3rem; }
+    .c8-process__step-body { font-size: 0.95rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c8-process__badge,
+    .c8-process__badge-ring { transition: none; }
   }
 </style>
