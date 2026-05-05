@@ -1,77 +1,193 @@
 ---
-// Services — left: vertically-stacked service title cards. Right: a
-// large feature image that swaps to match whichever card is active.
-// Pattern lifted from the ackrolix.com/in/ reference; only the data
-// + brand voice are ours.
+// Services — 9-discipline interactive grid.
 //
-// Interaction: hover (mouseenter) or focus on a card promotes it to
-// .is-active; the right panel's matching image flips its .is-active
-// class and crossfades. Click still navigates the CTA.
+// Each card has a custom inline SVG illustration that animates both
+// always-on (subtle, breathing motion so the grid feels alive) and on
+// hover (a stronger, scoped animation that cues the service). The grid
+// also picks up a 3D mouse-tracking tilt on pointer-fine devices, so
+// cards lean toward the cursor as the user moves through the panel.
 
-type Card = {
+type Service = {
   num: string;
   title: string;
-  tagline: string;
-  desc: string;
-  tags: { label: string; href: string }[];
-  ctaHref: string;
-  ctaLabel: string;
-  image: string;
-  imageAlt: string;
+  blurb: string;
+  href: string;
+  iconKey: 'community' | 'growth' | 'influencer' | 'pr' | 'listing' | 'seo' | 'blockchain' | 'ai' | 'apps';
 };
 
-const cards: Card[] = [
+const services: Service[] = [
   {
     num: '01',
-    title: 'Growth & Marketing',
-    tagline: 'Full-funnel paid + organic — built to compound.',
-    desc: 'Performance media, SEO, on-chain ads and lifecycle systems engineered for Web3, AI and fintech brands that want scale, not vanity metrics.',
-    tags: [
-      { label: 'Performance marketing', href: '/services/marketing/performance-marketing' },
-      { label: 'SEO, AEO & GEO',        href: '/services/marketing/seo-aeo-geo' },
-      { label: 'Web3 growth',           href: '/services/marketing/web3-growth' },
-      { label: 'B2B lead gen',          href: '/services/marketing/b2b-marketing' },
-      { label: 'Social media',          href: '/services/marketing/social-media' },
-    ],
-    ctaHref: '/services/marketing/performance-marketing',
-    ctaLabel: 'Explore Growth',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=80&auto=format&fit=crop',
-    imageAlt: 'Marketing analytics dashboard on a laptop screen',
+    title: 'Community Building',
+    blurb: 'Telegram, Discord, X — built from zero, moderated daily, kept active long after launch.',
+    href: '/services/marketing/community',
+    iconKey: 'community',
   },
   {
     num: '02',
-    title: 'PR, Community & Influence',
-    tagline: 'The signal engine behind tier-1 launches.',
-    desc: '25,000+ vetted creators, 10,000+ press outlets and end-to-end community building — pitches written, releases shipped, communities built from zero.',
-    tags: [
-      { label: 'Community building',     href: '/services/marketing/community-building' },
-      { label: 'Influencer & KOL',       href: '/services/marketing/influencer-marketing' },
-      { label: 'Crypto PR',              href: '/services/marketing/pr' },
-      { label: 'Branding & design',      href: '/services/marketing/branding' },
-    ],
-    ctaHref: '/services/marketing/pr',
-    ctaLabel: 'Explore PR & Community',
-    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1400&q=80&auto=format&fit=crop',
-    imageAlt: 'Microphone in front of an audience at a press event',
+    title: 'Growth Hack Marketing',
+    blurb: 'Funnels, referral loops, and onchain growth experiments that compound month over month.',
+    href: '/services/marketing/web3-growth',
+    iconKey: 'growth',
   },
   {
     num: '03',
-    title: 'Full-Stack Development',
-    tagline: 'Production-grade infra, security-first.',
-    desc: 'Exchanges, wallets, RWA marketplaces, DeFi protocols and AI agents — engineered for security, speed and institutional compliance.',
-    tags: [
-      { label: 'CEX & DEX',         href: '/services/development/exchange' },
-      { label: 'RWA platforms',     href: '/services/development/rwa' },
-      { label: 'AI & automation',   href: '/services/development/ai' },
-      { label: 'Wallet infra',      href: '/services/development/wallet' },
-      { label: 'DeFi & staking',    href: '/services/development/defi' },
-    ],
-    ctaHref: '/services/development/exchange',
-    ctaLabel: 'Explore Development',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1400&q=80&auto=format&fit=crop',
-    imageAlt: 'Code editor on a developer\'s monitor',
+    title: 'Influencer Marketing',
+    blurb: '25,000+ vetted KOLs across 15+ verticals — sourced, briefed, and managed end-to-end.',
+    href: '/services/marketing/influencer-marketing',
+    iconKey: 'influencer',
+  },
+  {
+    num: '04',
+    title: 'Public Relations',
+    blurb: '8,250+ earned placements across CoinTelegraph, Forbes, Decrypt, Bloomberg and the Tier-1 list.',
+    href: '/services/marketing/pr',
+    iconKey: 'pr',
+  },
+  {
+    num: '05',
+    title: 'Listing & Trending',
+    blurb: 'Exchange listings (CEX & DEX), CoinMarketCap, CoinGecko — placement plus trending campaigns.',
+    href: '/services/marketing/listing',
+    iconKey: 'listing',
+  },
+  {
+    num: '06',
+    title: 'Social Media & SEO',
+    blurb: 'Platform-native social, organic + AI-engine search visibility (SEO, AEO, GEO).',
+    href: '/services/marketing/seo',
+    iconKey: 'seo',
+  },
+  {
+    num: '07',
+    title: 'Full-Stack Blockchain Development',
+    blurb: 'Exchanges, wallets, RWA platforms, DeFi protocols — production-grade, security-audited.',
+    href: '/services/development/exchange',
+    iconKey: 'blockchain',
+  },
+  {
+    num: '08',
+    title: 'AI Development',
+    blurb: 'Foundation-model integrations, AI agents, automation pipelines for AI-native products.',
+    href: '/services/development/ai',
+    iconKey: 'ai',
+  },
+  {
+    num: '09',
+    title: 'Website & Mobile Apps',
+    blurb: 'Marketing sites, dashboards, and native iOS/Android apps — design + engineering as one.',
+    href: '/services/development/mobile-web',
+    iconKey: 'apps',
   },
 ];
+
+// Inline SVGs. Each one is built from a few small parts so individual
+// pieces can be animated independently via CSS keyframes scoped to
+// the card. All icons stroke `currentColor` so card-level theming
+// drives them.
+const icons: Record<Service['iconKey'], string> = {
+  community: `
+    <svg viewBox="0 0 60 60" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line class="i-link i-link-1" x1="30" y1="30" x2="14" y2="14"/>
+      <line class="i-link i-link-2" x1="30" y1="30" x2="46" y2="14"/>
+      <line class="i-link i-link-3" x1="30" y1="30" x2="14" y2="46"/>
+      <line class="i-link i-link-4" x1="30" y1="30" x2="46" y2="46"/>
+      <circle class="i-node i-node-1" cx="14" cy="14" r="4.5"/>
+      <circle class="i-node i-node-2" cx="46" cy="14" r="4.5"/>
+      <circle class="i-node i-node-3" cx="14" cy="46" r="4.5"/>
+      <circle class="i-node i-node-4" cx="46" cy="46" r="4.5"/>
+      <circle class="i-hub" cx="30" cy="30" r="5.5" fill="currentColor" fill-opacity="0.15"/>
+    </svg>
+  `,
+  growth: `
+    <svg viewBox="0 0 60 60" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="6" y1="50" x2="54" y2="50"/>
+      <rect class="i-bar i-bar-1" x="11" y="36" width="7" height="14" rx="1"/>
+      <rect class="i-bar i-bar-2" x="22" y="28" width="7" height="22" rx="1"/>
+      <rect class="i-bar i-bar-3" x="33" y="20" width="7" height="30" rx="1"/>
+      <rect class="i-bar i-bar-4" x="44" y="12" width="7" height="38" rx="1"/>
+      <polyline class="i-line" points="14,38 25,30 36,22 47,14"/>
+      <polygon class="i-arrow" points="47,14 41,14 47,20" fill="currentColor"/>
+    </svg>
+  `,
+  influencer: `
+    <svg viewBox="0 0 60 60" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path class="i-mega" d="M10 24 L10 36 L20 36 L42 46 L42 14 L20 24 Z"/>
+      <line class="i-mega" x1="42" y1="20" x2="46" y2="18"/>
+      <line class="i-mega" x1="42" y1="30" x2="48" y2="30"/>
+      <line class="i-mega" x1="42" y1="40" x2="46" y2="42"/>
+      <path class="i-wave i-wave-1" d="M50 22 Q54 30 50 38" />
+      <path class="i-wave i-wave-2" d="M53 18 Q60 30 53 42" />
+    </svg>
+  `,
+  pr: `
+    <svg viewBox="0 0 60 60" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path class="i-bubble" d="M10 14 H50 V40 H32 L24 50 L24 40 H10 Z"/>
+      <line class="i-line-1" x1="16" y1="22" x2="44" y2="22"/>
+      <line class="i-line-2" x1="16" y1="28" x2="38" y2="28"/>
+      <line class="i-line-3" x1="16" y1="34" x2="30" y2="34"/>
+      <circle class="i-burst" cx="48" cy="14" r="3" fill="currentColor"/>
+    </svg>
+  `,
+  listing: `
+    <svg viewBox="0 0 60 60" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polygon class="i-pyr" points="30,8 54,52 6,52"/>
+      <line x1="14" y1="40" x2="46" y2="40"/>
+      <line x1="22" y1="28" x2="38" y2="28"/>
+      <path class="i-arrow-up" d="M30 56 L30 14 M22 22 L30 14 L38 22" />
+    </svg>
+  `,
+  seo: `
+    <svg viewBox="0 0 60 60" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="6" y="6" width="42" height="42" rx="3"/>
+      <line x1="6" y1="20" x2="48" y2="20"/>
+      <line x1="6" y1="34" x2="48" y2="34"/>
+      <line x1="20" y1="6" x2="20" y2="48"/>
+      <line x1="34" y1="6" x2="34" y2="48"/>
+      <circle class="i-lens" cx="42" cy="42" r="9" fill="rgba(255,255,255,0.95)"/>
+      <line class="i-lens-handle" x1="49" y1="49" x2="56" y2="56" stroke-width="2.4"/>
+    </svg>
+  `,
+  blockchain: `
+    <svg viewBox="0 0 60 60" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect class="i-block i-block-1" x="6"  y="22" width="14" height="14" rx="2"/>
+      <rect class="i-block i-block-2" x="23" y="22" width="14" height="14" rx="2"/>
+      <rect class="i-block i-block-3" x="40" y="22" width="14" height="14" rx="2"/>
+      <line class="i-conn" x1="20" y1="29" x2="23" y2="29"/>
+      <line class="i-conn" x1="37" y1="29" x2="40" y2="29"/>
+      <circle cx="13" cy="29" r="2" fill="currentColor"/>
+      <circle cx="30" cy="29" r="2" fill="currentColor"/>
+      <circle cx="47" cy="29" r="2" fill="currentColor"/>
+    </svg>
+  `,
+  ai: `
+    <svg viewBox="0 0 60 60" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line class="i-edge" x1="14" y1="14" x2="30" y2="30"/>
+      <line class="i-edge" x1="46" y1="14" x2="30" y2="30"/>
+      <line class="i-edge" x1="14" y1="46" x2="30" y2="30"/>
+      <line class="i-edge" x1="46" y1="46" x2="30" y2="30"/>
+      <line class="i-edge" x1="14" y1="14" x2="14" y2="46"/>
+      <line class="i-edge" x1="46" y1="14" x2="46" y2="46"/>
+      <circle class="i-neuron i-n-1" cx="14" cy="14" r="3.5" fill="currentColor"/>
+      <circle class="i-neuron i-n-2" cx="46" cy="14" r="3.5" fill="currentColor"/>
+      <circle class="i-neuron i-n-3" cx="14" cy="46" r="3.5" fill="currentColor"/>
+      <circle class="i-neuron i-n-4" cx="46" cy="46" r="3.5" fill="currentColor"/>
+      <circle class="i-neuron i-n-c" cx="30" cy="30" r="5" fill="currentColor"/>
+    </svg>
+  `,
+  apps: `
+    <svg viewBox="0 0 60 60" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect class="i-screen i-screen-web" x="4" y="14" width="34" height="26" rx="2"/>
+      <line x1="4" y1="20" x2="38" y2="20"/>
+      <circle cx="9" cy="17" r="0.9" fill="currentColor"/>
+      <circle cx="13" cy="17" r="0.9" fill="currentColor"/>
+      <rect class="i-screen i-screen-app" x="36" y="20" width="20" height="36" rx="3"/>
+      <line x1="36" y1="26" x2="56" y2="26"/>
+      <line x1="36" y1="50" x2="56" y2="50"/>
+      <circle cx="46" cy="53" r="1" fill="currentColor"/>
+    </svg>
+  `,
+};
 ---
 
 <section class="c8-svc">
@@ -79,65 +195,28 @@ const cards: Card[] = [
     <header class="c8-svc__head" data-reveal-stagger="100">
       <p class="c8-svc__eyebrow" data-reveal="up">What we do</p>
       <h2 class="c8-svc__heading" data-reveal="up">
-        Build, market and <span class="c8-svc__heading-accent">scale.</span>
+        Nine disciplines. <span class="c8-svc__heading-accent">One integrated team.</span>
       </h2>
       <p class="c8-svc__sub" data-reveal="up">
-        Three disciplines, one team — engineered for Web3, AI and fintech brands that need outcomes, not activity.
+        From zero-to-launch growth campaigns through institutional-grade engineering — all of it shipped under one roof, on one timeline, by one accountable team.
       </p>
     </header>
 
-    <div class="c8-svc__panel" data-reveal="up">
-      <!-- LEFT — vertically-stacked service cards -->
-      <div class="c8-svc__cards" role="tablist" aria-label="Service pillars">
-        {cards.map((c, i) => (
-          <button
-            type="button"
-            class={`c8-svc__card${i === 0 ? ' is-active' : ''}`}
-            role="tab"
-            aria-selected={i === 0 ? 'true' : 'false'}
-            aria-controls={`c8-svc-image-${i}`}
-            data-svc-index={i}
-          >
-            <div class="c8-svc__card-row">
-              <span class="c8-svc__card-num">{c.num}</span>
-              <span class="c8-svc__card-arrow" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </span>
-            </div>
-            <h3 class="c8-svc__card-title">{c.title}</h3>
-            <p class="c8-svc__card-tagline">{c.tagline}</p>
-            <div class="c8-svc__card-detail">
-              <p class="c8-svc__card-desc">{c.desc}</p>
-              <ul class="c8-svc__card-tags">
-                {c.tags.map((t) => <li><a href={t.href} onclick="event.stopPropagation();">{t.label}</a></li>)}
-              </ul>
-              <a class="c8-svc__card-cta" href={c.ctaHref} onclick="event.stopPropagation();">
-                <span>{c.ctaLabel}</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </a>
-            </div>
-          </button>
-        ))}
-      </div>
-
-      <!-- RIGHT — image stack, only the active one is visible -->
-      <div class="c8-svc__media">
-        {cards.map((c, i) => (
-          <figure
-            class={`c8-svc__media-fig${i === 0 ? ' is-active' : ''}`}
-            id={`c8-svc-image-${i}`}
-            role="tabpanel"
-            aria-hidden={i === 0 ? 'false' : 'true'}
-          >
-            <img src={c.image} alt={c.imageAlt} loading="lazy" />
-            <span class="c8-svc__media-veil"></span>
-            <figcaption class="c8-svc__media-caption">
-              <span class="c8-svc__media-num">{c.num}</span>
-              <span class="c8-svc__media-title">{c.title}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
+    <div class="c8-svc__grid" data-reveal-stagger="80">
+      {services.map((s) => (
+        <a class={`c8-svc__card svc-${s.iconKey}`} href={s.href} data-reveal="up">
+          <div class="c8-svc__card-bg" aria-hidden="true"></div>
+          <div class="c8-svc__card-row">
+            <span class="c8-svc__card-num">{s.num}</span>
+            <span class="c8-svc__card-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </div>
+          <span class="c8-svc__card-icon" set:html={icons[s.iconKey]} />
+          <h3 class="c8-svc__card-title">{s.title}</h3>
+          <p class="c8-svc__card-blurb">{s.blurb}</p>
+        </a>
+      ))}
     </div>
   </div>
 </section>
@@ -178,56 +257,65 @@ const cards: Card[] = [
     font-size: clamp(1rem, 1.2vw, 1.15rem);
     line-height: 1.55;
     color: #555;
+    max-width: 44rem;
   }
 
-  /* ─── Two-column panel: left cards, right image ─── */
-  .c8-svc__panel {
+  /* ─── Grid ─── */
+  .c8-svc__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-    gap: clamp(1.5rem, 2.5vw, 2.5rem);
-    align-items: stretch;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(0.85rem, 1.4vw, 1.25rem);
+    perspective: 1100px;
+  }
+  @media (max-width: 900px) {
+    .c8-svc__grid { grid-template-columns: repeat(2, 1fr); perspective: none; }
+  }
+  @media (max-width: 540px) {
+    .c8-svc__grid { grid-template-columns: 1fr; }
   }
 
-  /* ── LEFT — cards ── */
-  .c8-svc__cards {
+  /* ─── Card ─── */
+  .c8-svc__card {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
-  }
-  .c8-svc__card {
-    /* Reset native button so it can act as a card */
-    appearance: none;
-    border: 1px solid rgba(0,0,0,0.06);
+    gap: 0.85rem;
+    padding: 1.4rem 1.4rem 1.5rem;
     background: #ffffff;
-    text-align: left;
-    padding: 1.25rem 1.5rem;
-    border-radius: 14px;
-    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    text-decoration: none;
     color: #0a0a0a;
-    font-family: inherit;
-    transition: border-color 0.4s ease,
-                background 0.4s ease,
-                box-shadow 0.4s ease,
-                transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    position: relative;
+    /* Mouse-tilt comes from CSS variables set by the script. */
+    --c8-svc-rx: 0deg;
+    --c8-svc-ry: 0deg;
+    transform: perspective(800px) rotateX(var(--c8-svc-rx)) rotateY(var(--c8-svc-ry));
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
+    box-shadow: 0 14px 32px -22px rgba(0,0,0,0.18);
     overflow: hidden;
+    isolation: isolate;
+    min-height: 230px;
   }
-  .c8-svc__card:hover { border-color: rgba(218, 158, 73, 0.4); }
-  .c8-svc__card.is-active {
-    border-color: var(--c8-gold-dark);
-    background: #fff;
-    box-shadow:
-      0 22px 48px -22px rgba(0,0,0,0.18),
-      0 0 36px -12px var(--c8-gold-soft);
+  .c8-svc__card:hover {
+    border-color: var(--c8-gold-glow);
+    box-shadow: 0 24px 50px -22px rgba(0,0,0,0.22), 0 0 38px -12px var(--c8-gold-soft);
   }
-  /* Subtle gold rail on the active card's left edge */
-  .c8-svc__card.is-active::before {
-    content: '';
+  /* Subtle gold gradient that emerges from the top-right corner on
+     hover — gives every card a soft signature glow. */
+  .c8-svc__card-bg {
     position: absolute;
-    top: 0; bottom: 0; left: 0;
-    width: 3px;
-    background: var(--c8-gold);
+    inset: 0;
+    background: radial-gradient(ellipse at top right, var(--c8-gold-soft) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: -1;
+    border-radius: inherit;
   }
+  .c8-svc__card:hover .c8-svc__card-bg { opacity: 1; }
 
   .c8-svc__card-row {
     display: flex;
@@ -248,222 +336,173 @@ const cards: Card[] = [
     color: #888;
     transition: color 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  .c8-svc__card.is-active .c8-svc__card-arrow,
   .c8-svc__card:hover .c8-svc__card-arrow {
     color: var(--c8-gold-dark);
     transform: translateX(3px);
   }
 
-  .c8-svc__card-title {
-    margin: 0.4rem 0 0.3rem;
-    font-family: var(--font-display);
-    font-size: clamp(1.4rem, 2vw, 1.75rem);
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -0.025em;
-  }
-  .c8-svc__card-tagline {
-    margin: 0;
-    font-family: var(--montreal);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #4a4a4a;
-  }
-
-  /* Detail block — collapsed when card is inactive, expanded when
-     active. Uses grid-template-rows: 0fr → 1fr trick for smooth
-     auto-height transition. */
-  .c8-svc__card-detail {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
-                margin-top 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
-                opacity 0.4s ease;
-    margin-top: 0;
-    opacity: 0;
-    overflow: hidden;
-  }
-  .c8-svc__card.is-active .c8-svc__card-detail {
-    grid-template-rows: 1fr;
-    margin-top: 1rem;
-    opacity: 1;
-  }
-  .c8-svc__card-detail > * {
-    /* The first child needs min-height 0 so the grid-row collapse works. */
-    min-height: 0;
-  }
-  .c8-svc__card-detail > :first-child { padding-bottom: 0.85rem; }
-
-  .c8-svc__card-desc {
-    margin: 0 0 0.85rem;
-    font-family: var(--montreal);
-    font-size: 0.9rem;
-    line-height: 1.55;
-    color: #555;
-  }
-  .c8-svc__card-tags {
-    list-style: none;
-    margin: 0 0 1rem;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-  .c8-svc__card-tags a {
-    display: inline-block;
-    font-family: var(--montreal);
-    font-size: 0.72rem;
-    padding: 0.28rem 0.65rem;
-    border: 1px solid rgba(0,0,0,0.12);
-    border-radius: 999px;
-    color: #3a3a3a;
-    text-decoration: none;
-    transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
-  }
-  .c8-svc__card-tags a:hover {
-    border-color: var(--c8-gold);
-    background: var(--c8-gold);
-    color: #111;
-  }
-  .c8-svc__card-cta {
+  /* Icon container + global icon defaults. Per-icon hover animations
+     are scoped under .svc-{key} below. */
+  .c8-svc__card-icon {
+    width: 56px;
+    height: 56px;
+    color: var(--c8-gold-dark);
+    transition: color 0.35s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1.1rem;
-    border: 1.5px solid #111;
-    border-radius: 999px;
-    color: #111;
-    text-decoration: none;
-    font-family: var(--montreal);
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   }
-  .c8-svc__card-cta:hover {
-    background: var(--c8-gold);
-    border-color: var(--c8-gold);
-    color: #111;
-    transform: translateY(-1px);
-  }
+  .c8-svc__card-icon svg { width: 100%; height: 100%; overflow: visible; }
+  .c8-svc__card:hover .c8-svc__card-icon { color: var(--c8-gold); transform: scale(1.06); }
 
-  /* ── RIGHT — image panel ── */
-  .c8-svc__media {
-    position: sticky;
-    top: 6rem;
-    align-self: stretch;
-    border-radius: 18px;
-    overflow: hidden;
-    background: #0a0a0a;
-    aspect-ratio: 4 / 5;
-    /* Cap the height so the image doesn't outgrow the cards stack on
-       very wide viewports. */
-    max-height: clamp(540px, 78vh, 760px);
-    box-shadow:
-      0 30px 60px -28px rgba(0,0,0,0.32),
-      0 0 0 1px rgba(0,0,0,0.06);
-  }
-  .c8-svc__media-fig {
-    margin: 0;
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .c8-svc__media-fig.is-active {
-    opacity: 1;
-  }
-  .c8-svc__media-fig img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 8s ease-out;
-  }
-  .c8-svc__media-fig.is-active img {
-    /* Slow Ken-Burns nudge while a service is active. */
-    transform: scale(1.04);
-  }
-  .c8-svc__media-veil {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(0,0,0,0) 0%,
-      rgba(0,0,0,0.05) 55%,
-      rgba(0,0,0,0.6) 100%
-    );
-  }
-  .c8-svc__media-caption {
-    position: absolute;
-    left: 1.5rem;
-    right: 1.5rem;
-    bottom: 1.4rem;
-    display: flex;
-    align-items: baseline;
-    gap: 0.85rem;
-    color: #fff;
-    z-index: 1;
-  }
-  .c8-svc__media-num {
+  .c8-svc__card-title {
+    margin: 0.1rem 0 0;
     font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    color: rgba(255,255,255,0.65);
-  }
-  .c8-svc__media-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+    font-size: clamp(1.1rem, 1.4vw, 1.3rem);
     font-weight: 400;
-    line-height: 1.1;
+    line-height: 1.15;
     letter-spacing: -0.02em;
-    color: #fff;
+    color: #0a0a0a;
+  }
+  .c8-svc__card-blurb {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #555;
+    flex: 1;
   }
 
-  /* ─── Responsive ─── */
-  @media (max-width: 1024px) {
-    .c8-svc__panel {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-    .c8-svc__media {
-      position: relative;
-      top: auto;
-      order: -1; /* image first on narrow viewports */
-      aspect-ratio: 16 / 11;
-      max-height: none;
-    }
+  /* ──────── Per-service icon animations ────────
+     Always-on subtle motion + a stronger, scoped animation on hover.
+     Each rule targets parts of the SVG via classes embedded in markup. */
+
+  /* 01 Community — nodes pulse, lines fade in/out */
+  .svc-community .i-node { transform-origin: center; animation: c8-svc-pulse 3.6s ease-in-out infinite; }
+  .svc-community .i-node-2 { animation-delay: 0.6s; }
+  .svc-community .i-node-3 { animation-delay: 1.2s; }
+  .svc-community .i-node-4 { animation-delay: 1.8s; }
+  .svc-community .i-link { stroke-dasharray: 30; stroke-dashoffset: 0; opacity: 0.35; }
+  .svc-community:hover .i-link { animation: c8-svc-dash 1.2s ease-out forwards; opacity: 1; }
+  @keyframes c8-svc-pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.18); }
+  }
+  @keyframes c8-svc-dash {
+    0%   { stroke-dashoffset: 30; opacity: 0.2; }
+    100% { stroke-dashoffset: 0;  opacity: 1; }
+  }
+
+  /* 02 Growth — bars climb on hover, line + arrow draw in */
+  .svc-growth .i-bar { transform-origin: bottom; transform: scaleY(0.8); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .svc-growth:hover .i-bar-1 { transform: scaleY(1); }
+  .svc-growth:hover .i-bar-2 { transform: scaleY(1); transition-delay: 0.08s; }
+  .svc-growth:hover .i-bar-3 { transform: scaleY(1); transition-delay: 0.16s; }
+  .svc-growth:hover .i-bar-4 { transform: scaleY(1); transition-delay: 0.24s; }
+  .svc-growth .i-line { stroke-dasharray: 60; stroke-dashoffset: 60; transition: stroke-dashoffset 0.7s ease 0.2s; }
+  .svc-growth:hover .i-line { stroke-dashoffset: 0; }
+  .svc-growth .i-arrow { opacity: 0; transform: translate(-4px, 4px); transition: opacity 0.4s ease 0.7s, transform 0.4s ease 0.7s; }
+  .svc-growth:hover .i-arrow { opacity: 1; transform: translate(0, 0); }
+
+  /* 03 Influencer — megaphone tilts, sound waves ripple */
+  .svc-influencer .i-mega { transform-origin: 22px 30px; animation: c8-svc-mega 3s ease-in-out infinite; }
+  .svc-influencer .i-wave { stroke-opacity: 0; }
+  .svc-influencer:hover .i-wave-1 { animation: c8-svc-ripple 1.4s ease-out infinite; }
+  .svc-influencer:hover .i-wave-2 { animation: c8-svc-ripple 1.4s ease-out infinite 0.4s; }
+  @keyframes c8-svc-mega {
+    0%, 100% { transform: rotate(0deg); }
+    50%      { transform: rotate(-3deg); }
+  }
+  @keyframes c8-svc-ripple {
+    0%   { stroke-opacity: 0; transform: translateX(-2px); }
+    50%  { stroke-opacity: 1; }
+    100% { stroke-opacity: 0; transform: translateX(2px); }
+  }
+
+  /* 04 PR — bubble breathes, burst dot flares on hover */
+  .svc-pr .i-bubble { transform-origin: center; animation: c8-svc-pulse 4s ease-in-out infinite; }
+  .svc-pr .i-burst { transform-origin: 48px 14px; animation: c8-svc-burst 2.2s ease-in-out infinite; }
+  @keyframes c8-svc-burst {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50%      { transform: scale(1.4); opacity: 1; }
+  }
+
+  /* 05 Listing — pyramid rises, arrow climbs through it on hover */
+  .svc-listing .i-arrow-up {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    transition: stroke-dashoffset 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .svc-listing:hover .i-arrow-up { stroke-dashoffset: 0; }
+  .svc-listing .i-pyr { transform-origin: 30px 52px; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .svc-listing:hover .i-pyr { transform: translateY(-2px); }
+
+  /* 06 SEO — magnifier circles on hover */
+  .svc-seo .i-lens,
+  .svc-seo .i-lens-handle { transform-origin: 42px 42px; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .svc-seo:hover .i-lens,
+  .svc-seo:hover .i-lens-handle { animation: c8-svc-circle 2.8s ease-in-out infinite; }
+  @keyframes c8-svc-circle {
+    0%, 100% { transform: translate(0, 0); }
+    25%      { transform: translate(-4px, -4px); }
+    50%      { transform: translate(0, -7px); }
+    75%      { transform: translate(4px, -4px); }
+  }
+
+  /* 07 Blockchain — blocks chain together (slide in) on hover */
+  .svc-blockchain .i-block-1 { transform: translateX(-3px); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .svc-blockchain .i-block-3 { transform: translateX(3px); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .svc-blockchain:hover .i-block-1,
+  .svc-blockchain:hover .i-block-3 { transform: translateX(0); }
+  .svc-blockchain .i-conn { stroke-dasharray: 4; stroke-dashoffset: 4; transition: stroke-dashoffset 0.4s ease 0.25s; }
+  .svc-blockchain:hover .i-conn { stroke-dashoffset: 0; }
+
+  /* 08 AI — neurons fire sequentially, edges light up */
+  .svc-ai .i-neuron { transform-origin: center; animation: c8-svc-pulse 2.4s ease-in-out infinite; }
+  .svc-ai .i-n-2 { animation-delay: 0.4s; }
+  .svc-ai .i-n-c { animation-delay: 0.8s; }
+  .svc-ai .i-n-3 { animation-delay: 1.2s; }
+  .svc-ai .i-n-4 { animation-delay: 1.6s; }
+  .svc-ai .i-edge { stroke-opacity: 0.45; transition: stroke-opacity 0.4s ease; }
+  .svc-ai:hover .i-edge { stroke-opacity: 1; }
+
+  /* 09 Apps — phone slides in from the right on hover */
+  .svc-apps .i-screen-app { transform: translateX(4px); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .svc-apps:hover .i-screen-app { transform: translateX(0); }
+  .svc-apps .i-screen-web { transform: translateX(-2px); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .svc-apps:hover .i-screen-web { transform: translateX(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c8-svc__card-icon * { animation: none !important; transition: none !important; }
   }
 </style>
 
 <script is:inline>
-  function startSvcSwap() {
-    var cards  = document.querySelectorAll('.c8-svc__card');
-    var images = document.querySelectorAll('.c8-svc__media-fig');
-    if (!cards.length || !images.length) return;
-
-    function activate(i) {
-      for (var n = 0; n < cards.length; n++) {
-        var on = (n === i);
-        cards[n].classList.toggle('is-active', on);
-        cards[n].setAttribute('aria-selected', on ? 'true' : 'false');
-        if (images[n]) {
-          images[n].classList.toggle('is-active', on);
-          images[n].setAttribute('aria-hidden', on ? 'false' : 'true');
-        }
-      }
-    }
-
-    Array.prototype.forEach.call(cards, function (card, i) {
-      // Hover (pointer-fine), focus (keyboard), and click all activate.
-      card.addEventListener('mouseenter', function () { activate(i); });
-      card.addEventListener('focus',      function () { activate(i); });
-      card.addEventListener('click',      function () { activate(i); });
+  /* Mouse-tracking 3D tilt on each card. Pointer-fine devices only.
+     Tilt is applied via CSS variables --c8-svc-rx / --c8-svc-ry on
+     the card so the perspective + transform composes cleanly. */
+  function startSvcTilt() {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var cards = document.querySelectorAll('.c8-svc__card');
+    Array.prototype.forEach.call(cards, function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width;  // 0..1
+        var py = (e.clientY - r.top)  / r.height; // 0..1
+        // Range ±5deg: subtle tilt.
+        var ry = (px - 0.5) * 10;   // left/right tilt
+        var rx = (0.5 - py) * 10;   // up/down tilt
+        card.style.setProperty('--c8-svc-ry', ry.toFixed(2) + 'deg');
+        card.style.setProperty('--c8-svc-rx', rx.toFixed(2) + 'deg');
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.setProperty('--c8-svc-ry', '0deg');
+        card.style.setProperty('--c8-svc-rx', '0deg');
+      });
     });
   }
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startSvcSwap, { once: true });
+    document.addEventListener('DOMContentLoaded', startSvcTilt, { once: true });
   } else {
-    startSvcSwap();
+    startSvcTilt();
   }
 </script>
