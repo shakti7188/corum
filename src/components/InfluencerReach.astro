@@ -56,8 +56,8 @@ const centerVideo = resolveMedia('video.ambient');
 <section class="c8-reach" data-pause-offscreen>
   <div class="c8-reach__inner">
 
-    <!-- RIGHT (desktop) — orbital visual -->
-    <div class="c8-reach__visual" data-reveal="right">
+    <!-- LEFT (desktop) — orbital visual -->
+    <div class="c8-reach__visual" data-reveal="left">
       <div class="c8-reach__glow"></div>
 
       <div class="c8-reach__ring c8-reach__ring--1"></div>
@@ -90,10 +90,10 @@ const centerVideo = resolveMedia('video.ambient');
       ))}
     </div>
 
-    <!-- LEFT (desktop) — content, stats, tags, CTA -->
-    <div class="c8-reach__body" data-reveal="left" data-reveal-delay="120">
+    <!-- RIGHT (desktop) — content, stats, tags, CTA -->
+    <div class="c8-reach__body" data-reveal="right" data-reveal-delay="120">
       <h2 class="c8-reach__heading">
-        Community is the <span class="c8-reach__heading-accent">moat.</span>
+        Real reach. <span class="c8-reach__heading-accent">Built, not bought.</span>
       </h2>
       <p class="c8-reach__lede">
         25,000+ vetted creators across 15+ verticals and 30+ regions, with
@@ -461,10 +461,12 @@ const centerVideo = resolveMedia('video.ambient');
     box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.2), 0 0 28px -12px var(--c8-gold-soft);
   }
   .c8-reach__stat-num {
-    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+    font-weight: 400;
     letter-spacing: -0.02em;
     color: #111;
+    line-height: 1;
   }
   .c8-reach__stat-lbl {
     margin-top: 0.25rem;
@@ -543,10 +545,9 @@ const centerVideo = resolveMedia('video.ambient');
   ------------------------------------------------------------------ */
   @media (min-width: 1024px) {
     .c8-reach__inner {
-      /* Reverse on desktop so the orbital visual lands on the RIGHT and
-         the copy stack lands on the LEFT — alternating rhythm against
-         ServicesAlt (media left, text right) directly above. */
-      flex-direction: row-reverse;
+      /* Visual lands on the LEFT, copy stack on the RIGHT — flipped per
+         user direction so the section reads orbital → narrative. */
+      flex-direction: row;
       align-items: center;
       gap: 5rem;
     }
