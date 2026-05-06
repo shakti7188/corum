@@ -240,6 +240,17 @@ import Layout from '../../../layouts/Layout.astro';
         <div class="sm-plat-card__img"><img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=600&q=80&auto=format&fit=crop" alt="Telegram Discord" /><span class="sm-plat-card__lbl">Telegram &amp; Discord</span></div>
         <div class="sm-plat-card__body"><p>Community core for crypto. We moderate, run AMAs, and keep the conversation moving across time zones in 14 languages.</p><span class="sm-plat-card__tag">Web3 · Community · 24/7</span></div>
       </div>
+      <div class="sm-plat-card reveal-stagger">
+        <div class="sm-plat-card__img"><img src="https://images.unsplash.com/photo-1611605645802-c21be743c321?w=600&q=80&auto=format&fit=crop" alt="Reddit" /><span class="sm-plat-card__lbl">Reddit</span></div>
+        <div class="sm-plat-card__body"><p>Subreddit-native conversations where technical buyers ask questions before they ever Google them. AMAs, niche communities, intent-rich reach.</p><span class="sm-plat-card__tag">Niche · Intent · Technical</span></div>
+      </div>
+      <div class="sm-plat-card sm-plat-card--more reveal-stagger">
+        <div class="sm-plat-card__more-inner">
+          <div class="sm-plat-card__more-num">+ many more</div>
+          <p>Farcaster, Lens, Threads, Quora, Mastodon, Substack, Mirror — wherever your audience actually lives, we ship there too.</p>
+          <a href="/contact" class="sm-plat-card__more-cta">Ask about a platform →</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -508,6 +519,13 @@ import Layout from '../../../layouts/Layout.astro';
 .sm-plat-card__body{padding:1.2rem 1.4rem 1.4rem;}
 .sm-plat-card__body p{font-size:.87rem;line-height:1.65;color:#555;margin:0 0 .85rem;}
 .sm-plat-card__tag{display:inline-flex;font-size:.7rem;font-weight:700;letter-spacing:.04em;color:#8a6a14;background:rgba(242,191,34,.12);border:1px solid rgba(242,191,34,.22);padding:.2rem .65rem;border-radius:100px;}
+.sm-plat-card--more{background:linear-gradient(135deg,#0f0f0f 0%,#1f1a0a 100%);border:1px solid rgba(242,191,34,.3);display:flex;align-items:center;justify-content:center;min-height:280px;}
+.sm-plat-card--more:hover{transform:translateY(-4px);box-shadow:0 22px 50px -16px rgba(242,191,34,.35);border-color:#f2bf22;}
+.sm-plat-card__more-inner{padding:2rem 1.6rem;text-align:center;}
+.sm-plat-card__more-num{font-family:var(--font-display);font-size:1.6rem;font-weight:400;color:#f2bf22;letter-spacing:-.01em;margin-bottom:.9rem;}
+.sm-plat-card--more p{font-size:.88rem;line-height:1.65;color:rgba(255,255,255,.65);margin:0 0 1.2rem;}
+.sm-plat-card__more-cta{display:inline-flex;font-size:.82rem;font-weight:700;color:#f2bf22;text-decoration:none;border-bottom:1px solid rgba(242,191,34,.4);padding-bottom:.15rem;transition:border-color .2s;}
+.sm-plat-card__more-cta:hover{border-color:#f2bf22;}
 
 /* SHOWCASE */
 .sm-showcase{padding:clamp(4rem,8vh,6rem) 2rem;background:#f4f4f0;}

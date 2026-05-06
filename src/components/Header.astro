@@ -7,8 +7,8 @@
 <header class="navbar" id="navbar">
   <div class="navbar-inner">
     <a href="/" class="navbar-logo">
-      <img src="/assets/logo/logo-dark.png" alt="Corum8" height="32" id="logoDark" style="">
-      <img src="/assets/logo/logo-white.png" alt="Corum8" height="32" id="logoWhite" style="display:none;">
+      <img src="/assets/logo/logo-dark.png" alt="Corum8" height="32" class="logo-img logo-img--dark" id="logoDark">
+      <img src="/assets/logo/logo-white.png" alt="Corum8" height="32" class="logo-img logo-img--white" id="logoWhite">
     </a>
 
     <nav class="nav-links" id="navLinks">
@@ -451,9 +451,9 @@
     border-bottom: 1px solid transparent;
   }
 
-  .navbar--on-dark .nav-link { color: rgba(255,255,255,0.75); }
-  .navbar--on-dark .nav-link:hover { color: #fff; }
-  .navbar--on-dark .menu-toggle span { background: #fff; }
+  .navbar--on-dark:not(.scrolled):not(.mega-open) .nav-link { color: rgba(255,255,255,0.85); }
+  .navbar--on-dark:not(.scrolled):not(.mega-open) .nav-link:hover { color: #fff; }
+  .navbar--on-dark:not(.scrolled):not(.mega-open) .menu-toggle span { background: #fff; }
 
   .navbar.scrolled {
     background: rgba(255,255,255,0.88);
@@ -494,6 +494,13 @@
   }
   .navbar-logo img { height: 32px; width: auto; }
   .navbar-logo:hover { opacity: 0.9; }
+
+  /* Logo swap — CSS-only, no flicker. Default = light page, show dark logo. */
+  .logo-img { display: block; }
+  .logo-img--white { display: none; }
+  /* On dark hero (top of page, not scrolled, mega closed) → show white logo */
+  .navbar.navbar--on-dark:not(.scrolled):not(.mega-open) .logo-img--dark { display: none; }
+  .navbar.navbar--on-dark:not(.scrolled):not(.mega-open) .logo-img--white { display: block; }
 
   /* ─── Nav links row ─── */
   .nav-links {
@@ -860,27 +867,17 @@
     var navbar     = document.getElementById('navbar');
     var menuToggle = document.getElementById('menuToggle');
     var mobileMenu = document.getElementById('mobileMenu');
-    var logoDark   = document.getElementById('logoDark');
-    var logoWhite  = document.getElementById('logoWhite');
     if (!navbar) return;
 
-    /* ── Scroll + logo swap ── */
+    /* ── Detect dark hero synchronously so on-dark applies before first paint flicker ── */
+    if (document.querySelector('.c8-hero-section')) {
+      navbar.classList.add('navbar--on-dark');
+    }
+
+    /* ── Scroll detection (logo swap is CSS-only) ── */
     function handleScroll() {
-      var scrolled = window.scrollY > 50;
-      if (scrolled) {
-        navbar.classList.add('scrolled');
-        if (logoDark && logoWhite) {
-          logoDark.style.display = 'block';
-          logoWhite.style.display = 'none';
-        }
-      } else {
-        navbar.classList.remove('scrolled');
-        if (logoDark && logoWhite) {
-          var onDark = navbar.classList.contains('navbar--on-dark');
-          logoDark.style.display  = onDark ? 'none'  : 'block';
-          logoWhite.style.display = onDark ? 'block' : 'none';
-        }
-      }
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
     }
 
     var scrollTick = false;
@@ -926,10 +923,6 @@
       });
       item.classList.add('active');
       navbar.classList.add('mega-open');
-      if (logoDark && logoWhite) {
-        logoDark.style.display  = 'block';
-        logoWhite.style.display = 'none';
-      }
     }
 
     function closeMega() {
