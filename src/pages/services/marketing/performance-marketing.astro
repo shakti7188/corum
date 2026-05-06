@@ -9,8 +9,8 @@ const channels = [
   { name: 'Meta',        pitch: 'Pixel-only is broken post-ATT. We rebuilt the stack.',                          img: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=900&q=80&auto=format&fit=crop' },
   { name: 'LinkedIn',    pitch: 'B2B at the decision-maker layer. No MQL theatre.',                              img: 'https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=900&q=80&auto=format&fit=crop' },
   { name: 'X / Twitter', pitch: 'Crypto- and tech-native reach. Real attention, not bots.',                      img: 'https://images.unsplash.com/photo-1611605698323-b1e99cfd37ea?w=900&q=80&auto=format&fit=crop' },
-  { name: 'TikTok',      pitch: 'Consumer creative-first. Built native — not adapted.',                          img: 'https://images.unsplash.com/photo-1596558450268-9c27524ba856?w=900&q=80&auto=format&fit=crop' },
-  { name: 'Telegram',    pitch: '800M+ users. Highest-converting reach in crypto + emerging markets.',           img: 'https://images.unsplash.com/photo-1611605645802-c21be743c321?w=900&q=80&auto=format&fit=crop' },
+  { name: 'TikTok',      pitch: 'Consumer creative-first. Built native — not adapted.',                          img: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?w=900&q=80&auto=format&fit=crop' },
+  { name: 'Telegram',    pitch: '800M+ users. Highest-converting reach in crypto + emerging markets.',           img: 'https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=900&q=80&auto=format&fit=crop' },
 ];
 
 // Deep channels — surfaces most agencies skip, with concrete results
@@ -27,7 +27,7 @@ const deepChannels = [
     ],
     chip: 'Web3-native distribution',
     result: '~3× CAC efficiency vs paid social on token-launch programs',
-    img: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1100&q=80&auto=format&fit=crop',
+    img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1100&q=80&auto=format&fit=crop',
   },
   {
     title: 'Taboola & Outbrain',
@@ -40,7 +40,7 @@ const deepChannels = [
     ],
     chip: 'Premium publisher inventory',
     result: '~35% lower CPM than Meta for fintech + regulated brands',
-    img: 'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=1100&q=80&auto=format&fit=crop',
+    img: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1100&q=80&auto=format&fit=crop',
   },
   {
     title: 'Reddit + Quora',
@@ -53,7 +53,7 @@ const deepChannels = [
     ],
     chip: 'Intent-driven niche reach',
     result: '~2× signup-to-paid conversion vs Meta for AI SaaS',
-    img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1100&q=80&auto=format&fit=crop',
+    img: 'https://images.unsplash.com/photo-1611605645802-c21be743c321?w=1100&q=80&auto=format&fit=crop',
   },
   {
     title: 'Programmatic + DSP',
@@ -126,7 +126,7 @@ const proof = [
     headline: '3×',
     subheadline: 'CAC on top creative',
     body: 'Wallet-connect attribution bridge — ad click → signed transaction → on-chain deposit, value passed back to Google + Meta. Top creative outperformed auto-bidding 3×.',
-    img: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=900&q=80&auto=format&fit=crop',
+    img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&q=80&auto=format&fit=crop',
   },
   {
     company: 'Crest AI',
@@ -1028,13 +1028,23 @@ const faqs = [
 
     .lp-tabs__media {
       position: relative; margin: 0; aspect-ratio: 4 / 3;
-      border-radius: 16px; overflow: hidden; background: #111;
+      border-radius: 16px; overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.9) inset,
+        0 30px 60px -28px rgba(15,23,42,0.28),
+        0 12px 24px -16px rgba(15,23,42,0.18);
+      transform: rotate(-1.6deg);
+      transition: transform 0.7s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s ease;
     }
+    .lp-tabs__panel:nth-child(even) .lp-tabs__media { transform: rotate(1.4deg); }
     .lp-tabs__media img {
-      width: 100%; height: 100%; object-fit: cover;
+      width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.7s cubic-bezier(0.2,0.8,0.2,1);
     }
-    .lp-tabs__panel.is-active .lp-tabs__media img { transform: scale(1.04); }
+    .lp-tabs__panel.is-active .lp-tabs__media { transform: rotate(-0.4deg) scale(1.01); }
+    .lp-tabs__panel.is-active:nth-child(even) .lp-tabs__media { transform: rotate(0.4deg) scale(1.01); }
     .lp-tabs__claim {
       position: absolute; bottom: 1rem; left: 1rem;
       padding: 0.5rem 1rem;
@@ -1141,14 +1151,22 @@ const faqs = [
       aspect-ratio: 4 / 3;
       border-radius: 18px;
       overflow: hidden;
-      background: #111;
-      box-shadow: 0 30px 60px -28px rgba(0,0,0,0.22);
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.9) inset,
+        0 32px 64px -28px rgba(15,23,42,0.28),
+        0 14px 28px -18px rgba(15,23,42,0.18);
+      transform: rotate(-1.4deg);
+      transition: transform 0.8s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s ease;
     }
+    .lp-deep-row:nth-child(even) .lp-deep__media { transform: rotate(1.4deg); }
     .lp-deep__media img {
-      width: 100%; height: 100%; object-fit: cover;
+      width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.8s cubic-bezier(0.2,0.8,0.2,1);
     }
-    .lp-deep-row:hover .lp-deep__media img { transform: scale(1.04); }
+    .lp-deep-row:hover .lp-deep__media { transform: rotate(-0.3deg); }
+    .lp-deep-row:nth-child(even):hover .lp-deep__media { transform: rotate(0.3deg); }
     .lp-deep__chip {
       position: absolute; top: 1rem; left: 1rem;
       padding: 0.45rem 0.85rem;

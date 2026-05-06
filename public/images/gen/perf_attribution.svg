@@ -1,136 +1,151 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" preserveAspectRatio="xMidYMid slice" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a0b10"/><stop offset="100%" stop-color="#13141d"/></linearGradient>
-    <radialGradient id="wash" cx="80%" cy="100%" r="100%"><stop offset="0%" stop-color="#f2bf22" stop-opacity="0.16"/><stop offset="60%" stop-color="#f2bf22" stop-opacity="0.03"/><stop offset="100%" stop-color="#000" stop-opacity="0"/></radialGradient>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="rgba(242,191,34,0.85)"/></marker>
-    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="rgba(34,197,94,0.85)"/></marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fafbfc"/><stop offset="100%" stop-color="#eef0f4"/></linearGradient>
+    <radialGradient id="wash" cx="80%" cy="100%" r="100%"><stop offset="0%" stop-color="#f2bf22" stop-opacity="0.16"/><stop offset="60%" stop-color="#f2bf22" stop-opacity="0.03"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#b8860b"/></marker>
+    <linearGradient id="logoG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4285f4"/><stop offset="100%" stop-color="#0f9d58"/></linearGradient>
+    <linearGradient id="logoM" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0866ff"/><stop offset="100%" stop-color="#0a4ec5"/></linearGradient>
+    <linearGradient id="logoL" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a66c2"/><stop offset="100%" stop-color="#004182"/></linearGradient>
+    <linearGradient id="logoT" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#000"/><stop offset="100%" stop-color="#1f1f1f"/></linearGradient>
+    <linearGradient id="av1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f2bf22"/><stop offset="100%" stop-color="#da9e49"/></linearGradient>
+    <linearGradient id="av2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient>
+    <linearGradient id="av3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#6b21a8"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.06"/></filter>
   </defs>
   <rect width="1200" height="900" fill="url(#bg)"/>
   <rect width="1200" height="900" fill="url(#wash)"/>
 
   <!-- Frame -->
-  <rect x="32" y="32" width="1136" height="836" rx="20" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.08)"/>
-  <rect x="32" y="32" width="1136" height="60" rx="20" fill="rgba(255,255,255,0.03)"/>
-  <rect x="32" y="80" width="1136" height="12" fill="rgba(255,255,255,0.03)"/>
+  <rect x="32" y="32" width="1136" height="836" rx="20" fill="#ffffff" stroke="#e5e7eb" filter="url(#shadow)"/>
+  <rect x="32" y="32" width="1136" height="60" rx="20" fill="#f7f8fa"/>
+  <rect x="32" y="80" width="1136" height="12" fill="#f7f8fa"/>
   <circle cx="60" cy="62" r="6" fill="#ef4444"/><circle cx="80" cy="62" r="6" fill="#f2bf22"/><circle cx="100" cy="62" r="6" fill="#22c55e"/>
-  <text x="138" y="68" font-size="15" font-weight="600" fill="#fff">Attribution · iOS ATT + Andromeda</text>
-  <text x="488" y="68" font-size="13" fill="rgba(255,255,255,0.5)">survives every signal-loss event</text>
+  <text x="138" y="68" font-size="15" font-weight="600" fill="#0a0a0a">Attribution · iOS ATT + Andromeda</text>
+  <text x="488" y="68" font-size="13" fill="#9ca3af">survives every signal-loss event</text>
 
   <!-- Top label -->
-  <text x="64" y="140" font-size="11" letter-spacing="2.4" fill="rgba(255,255,255,0.5)">DATA FLOW · FIRST-PARTY HASHED</text>
+  <text x="64" y="140" font-size="11" letter-spacing="2.4" fill="#6b7280">DATA FLOW · FIRST-PARTY HASHED</text>
 
-  <!-- Layer 1: User Touch -->
+  <!-- Layer 1 -->
   <g transform="translate(64,170)">
-    <rect width="216" height="92" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)"/>
-    <text x="20" y="32" font-size="11" letter-spacing="1.6" fill="rgba(255,255,255,0.5)">01 · TOUCH</text>
-    <text x="20" y="58" font-size="16" font-weight="600" fill="#fff">User click</text>
-    <text x="20" y="78" font-size="12" fill="rgba(255,255,255,0.55)">Ad surface · iOS · Web</text>
+    <rect width="216" height="92" rx="14" fill="#ffffff" stroke="#e5e7eb" filter="url(#shadow)"/>
+    <circle cx="34" cy="46" r="14" fill="url(#av1)"/>
+    <text x="34" y="51" font-size="11" font-weight="700" fill="#0a0a0a" text-anchor="middle">SK</text>
+    <text x="60" y="34" font-size="11" letter-spacing="1.6" fill="#9ca3af">01 · TOUCH</text>
+    <text x="60" y="58" font-size="14" font-weight="600" fill="#0a0a0a">User click</text>
+    <text x="60" y="76" font-size="11" fill="#6b7280">Ad surface · iOS · Web</text>
   </g>
 
-  <!-- Layer 2: GTM Server-Side -->
   <g transform="translate(348,170)">
-    <rect width="216" height="92" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(34,197,94,0.45)"/>
-    <text x="20" y="32" font-size="11" letter-spacing="1.6" fill="rgba(255,255,255,0.5)">02 · SERVER-SIDE</text>
-    <text x="20" y="58" font-size="16" font-weight="600" fill="#fff">GTM SS · CAPI</text>
-    <text x="20" y="78" font-size="12" fill="#22c55e">first-party hashed</text>
+    <rect width="216" height="92" rx="14" fill="#ffffff" stroke="#22c55e" filter="url(#shadow)"/>
+    <text x="20" y="32" font-size="11" letter-spacing="1.6" fill="#9ca3af">02 · SERVER-SIDE</text>
+    <text x="20" y="58" font-size="14" font-weight="600" fill="#0a0a0a">GTM SS · CAPI</text>
+    <text x="20" y="78" font-size="12" fill="#16a34a">first-party hashed</text>
   </g>
 
-  <!-- Layer 3: Enrichment -->
   <g transform="translate(632,170)">
-    <rect width="216" height="92" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(242,191,34,0.5)"/>
-    <text x="20" y="32" font-size="11" letter-spacing="1.6" fill="rgba(255,255,255,0.5)">03 · ENRICHMENT</text>
-    <text x="20" y="58" font-size="16" font-weight="600" fill="#fff">LTV stitch</text>
-    <text x="20" y="78" font-size="12" fill="#f2bf22">CRM · cohort · region</text>
+    <rect width="216" height="92" rx="14" fill="#ffffff" stroke="#f2bf22" filter="url(#shadow)"/>
+    <text x="20" y="32" font-size="11" letter-spacing="1.6" fill="#9ca3af">03 · ENRICHMENT</text>
+    <text x="20" y="58" font-size="14" font-weight="600" fill="#0a0a0a">LTV stitch</text>
+    <text x="20" y="78" font-size="12" fill="#b8860b">CRM · cohort · region</text>
   </g>
 
-  <!-- Layer 4: Platform pass-back -->
   <g transform="translate(916,170)">
-    <rect width="216" height="92" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)"/>
-    <text x="20" y="32" font-size="11" letter-spacing="1.6" fill="rgba(255,255,255,0.5)">04 · PLATFORM</text>
-    <text x="20" y="58" font-size="16" font-weight="600" fill="#fff">Pass-back</text>
-    <text x="20" y="78" font-size="12" fill="rgba(255,255,255,0.55)">value · LTV · revenue</text>
+    <rect width="216" height="92" rx="14" fill="#ffffff" stroke="#e5e7eb" filter="url(#shadow)"/>
+    <text x="20" y="32" font-size="11" letter-spacing="1.6" fill="#9ca3af">04 · PLATFORM</text>
+    <text x="20" y="58" font-size="14" font-weight="600" fill="#0a0a0a">Pass-back</text>
+    <text x="20" y="78" font-size="12" fill="#6b7280">value · LTV · revenue</text>
   </g>
 
-  <!-- Connecting arrows -->
-  <g stroke="rgba(242,191,34,0.6)" stroke-width="1.6" fill="none">
+  <!-- arrows -->
+  <g stroke="#b8860b" stroke-width="1.6" fill="none">
     <line x1="280" y1="216" x2="348" y2="216" marker-end="url(#arrow)"/>
     <line x1="564" y1="216" x2="632" y2="216" marker-end="url(#arrow)"/>
     <line x1="848" y1="216" x2="916" y2="216" marker-end="url(#arrow)"/>
   </g>
 
-  <!-- Sub-flow: Branches into platforms -->
-  <g transform="translate(64,310)">
-    <text x="0" y="0" font-size="11" letter-spacing="2.4" fill="rgba(255,255,255,0.5)">PLATFORMS · CONVERSIONS API LIVE</text>
-  </g>
+  <text x="64" y="310" font-size="11" letter-spacing="2.4" fill="#6b7280">PLATFORMS · CONVERSIONS API LIVE</text>
 
+  <!-- Platform tiles with mock logos -->
   <g transform="translate(64,340)">
-    <!-- platform tile: Google -->
-    <rect width="252" height="120" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)"/>
-    <text x="20" y="32" font-size="13" font-weight="600" fill="#fff">Google</text>
-    <text x="20" y="52" font-size="11" fill="rgba(255,255,255,0.5)">Enhanced Conversions</text>
-    <rect x="18" y="68" width="216" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
-    <rect x="18" y="68" width="208" height="6" rx="3" fill="#22c55e"/>
-    <text x="20" y="98" font-size="11" fill="#22c55e">98.4% match-rate · live</text>
+    <rect width="252" height="120" rx="14" fill="#ffffff" stroke="#e5e7eb" filter="url(#shadow)"/>
+    <circle cx="36" cy="36" r="18" fill="url(#logoG)"/>
+    <text x="36" y="42" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">G</text>
+    <text x="64" y="32" font-size="13" font-weight="600" fill="#0a0a0a">Google</text>
+    <text x="64" y="50" font-size="11" fill="#6b7280">Enhanced Conversions</text>
+    <rect x="18" y="74" width="216" height="6" rx="3" fill="#f3f4f6"/>
+    <rect x="18" y="74" width="208" height="6" rx="3" fill="#16a34a"/>
+    <text x="20" y="102" font-size="11" fill="#16a34a">98.4% match-rate · live</text>
   </g>
 
   <g transform="translate(336,340)">
-    <rect width="252" height="120" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)"/>
-    <text x="20" y="32" font-size="13" font-weight="600" fill="#fff">Meta</text>
-    <text x="20" y="52" font-size="11" fill="rgba(255,255,255,0.5)">CAPI · Andromeda-tuned</text>
-    <rect x="18" y="68" width="216" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
-    <rect x="18" y="68" width="194" height="6" rx="3" fill="#22c55e"/>
-    <text x="20" y="98" font-size="11" fill="#22c55e">94.2% match-rate · live</text>
+    <rect width="252" height="120" rx="14" fill="#ffffff" stroke="#e5e7eb" filter="url(#shadow)"/>
+    <rect x="18" y="18" width="36" height="36" rx="10" fill="url(#logoM)"/>
+    <text x="36" y="42" font-size="18" font-weight="800" fill="#fff" text-anchor="middle">f</text>
+    <text x="64" y="32" font-size="13" font-weight="600" fill="#0a0a0a">Meta</text>
+    <text x="64" y="50" font-size="11" fill="#6b7280">CAPI · Andromeda-tuned</text>
+    <rect x="18" y="74" width="216" height="6" rx="3" fill="#f3f4f6"/>
+    <rect x="18" y="74" width="194" height="6" rx="3" fill="#16a34a"/>
+    <text x="20" y="102" font-size="11" fill="#16a34a">94.2% match-rate · live</text>
   </g>
 
   <g transform="translate(608,340)">
-    <rect width="252" height="120" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)"/>
-    <text x="20" y="32" font-size="13" font-weight="600" fill="#fff">LinkedIn</text>
-    <text x="20" y="52" font-size="11" fill="rgba(255,255,255,0.5)">CAPI · pipeline-$ value</text>
-    <rect x="18" y="68" width="216" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
-    <rect x="18" y="68" width="172" height="6" rx="3" fill="#22c55e"/>
-    <text x="20" y="98" font-size="11" fill="#22c55e">81% pipeline-attributed</text>
+    <rect width="252" height="120" rx="14" fill="#ffffff" stroke="#e5e7eb" filter="url(#shadow)"/>
+    <rect x="18" y="18" width="36" height="36" rx="6" fill="url(#logoL)"/>
+    <text x="36" y="42" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">in</text>
+    <text x="64" y="32" font-size="13" font-weight="600" fill="#0a0a0a">LinkedIn</text>
+    <text x="64" y="50" font-size="11" fill="#6b7280">CAPI · pipeline-$ value</text>
+    <rect x="18" y="74" width="216" height="6" rx="3" fill="#f3f4f6"/>
+    <rect x="18" y="74" width="172" height="6" rx="3" fill="#16a34a"/>
+    <text x="20" y="102" font-size="11" fill="#16a34a">81% pipeline-attributed</text>
   </g>
 
   <g transform="translate(880,340)">
-    <rect width="252" height="120" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)"/>
-    <text x="20" y="32" font-size="13" font-weight="600" fill="#fff">TikTok</text>
-    <text x="20" y="52" font-size="11" fill="rgba(255,255,255,0.5)">Events API · ATT-resilient</text>
-    <rect x="18" y="68" width="216" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
-    <rect x="18" y="68" width="148" height="6" rx="3" fill="#22c55e"/>
-    <text x="20" y="98" font-size="11" fill="#22c55e">85.6% match-rate · live</text>
+    <rect width="252" height="120" rx="14" fill="#ffffff" stroke="#e5e7eb" filter="url(#shadow)"/>
+    <rect x="18" y="18" width="36" height="36" rx="10" fill="url(#logoT)"/>
+    <text x="36" y="42" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">♪</text>
+    <text x="64" y="32" font-size="13" font-weight="600" fill="#0a0a0a">TikTok</text>
+    <text x="64" y="50" font-size="11" fill="#6b7280">Events API · ATT-resilient</text>
+    <rect x="18" y="74" width="216" height="6" rx="3" fill="#f3f4f6"/>
+    <rect x="18" y="74" width="148" height="6" rx="3" fill="#16a34a"/>
+    <text x="20" y="102" font-size="11" fill="#16a34a">85.6% match-rate · live</text>
   </g>
 
-  <!-- Bottom: Offline pass-back band -->
+  <!-- Bottom band styled as a Slack-ish post -->
   <g transform="translate(64,500)">
-    <rect width="1072" height="160" rx="16" fill="rgba(34,197,94,0.05)" stroke="rgba(34,197,94,0.35)"/>
-    <text x="24" y="36" font-size="11" letter-spacing="2.4" fill="#22c55e">CRM OFFLINE PASS-BACK · LTV-WEIGHTED</text>
-    <text x="24" y="64" font-size="20" font-weight="700" fill="#fff">Closed-deal value, not signups, drives bidding</text>
-    <text x="24" y="92" font-size="13" fill="rgba(255,255,255,0.7)">Hubspot · Salesforce · Snowflake · BigQuery — feeds back as enhanced conversions every 6 hours.</text>
+    <rect width="1072" height="160" rx="16" fill="#ffffff" stroke="#16a34a" filter="url(#shadow)"/>
+    <circle cx="48" cy="48" r="22" fill="url(#av2)"/>
+    <text x="48" y="54" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">RM</text>
+    <text x="84" y="38" font-size="13" font-weight="700" fill="#0a0a0a">Raj M. · Growth lead</text>
+    <text x="216" y="38" font-size="12" fill="#9ca3af">posted · 2h ago</text>
+    <text x="84" y="58" font-size="11" letter-spacing="2" fill="#16a34a">CRM OFFLINE PASS-BACK · LTV-WEIGHTED</text>
+    <text x="84" y="84" font-size="18" font-weight="700" fill="#0a0a0a">Closed-deal value, not signups, drives bidding</text>
+    <text x="84" y="104" font-size="12" fill="#374151">Hubspot · Salesforce · Snowflake · BigQuery — feeds back as enhanced conversions every 6 hours.</text>
 
-    <!-- 3 small chips -->
-    <g transform="translate(24,110)">
-      <rect width="172" height="36" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
-      <text x="14" y="23" font-size="12" fill="#fff">Hubspot · MQL → SQL</text>
-      <g transform="translate(192,0)">
-        <rect width="172" height="36" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
-        <text x="14" y="23" font-size="12" fill="#fff">Salesforce · pipeline$</text>
+    <g transform="translate(84,118)">
+      <rect width="172" height="32" rx="8" fill="#f3f4f6"/>
+      <text x="14" y="21" font-size="12" fill="#1f2937">Hubspot · MQL → SQL</text>
+      <g transform="translate(184,0)">
+        <rect width="172" height="32" rx="8" fill="#f3f4f6"/>
+        <text x="14" y="21" font-size="12" fill="#1f2937">Salesforce · pipeline$</text>
       </g>
-      <g transform="translate(384,0)">
-        <rect width="172" height="36" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
-        <text x="14" y="23" font-size="12" fill="#fff">Snowflake · LTV cohort</text>
+      <g transform="translate(368,0)">
+        <rect width="172" height="32" rx="8" fill="#f3f4f6"/>
+        <text x="14" y="21" font-size="12" fill="#1f2937">Snowflake · LTV cohort</text>
       </g>
-      <g transform="translate(576,0)">
-        <rect width="172" height="36" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
-        <text x="14" y="23" font-size="12" fill="#fff">BigQuery · churn signal</text>
+      <g transform="translate(552,0)">
+        <rect width="172" height="32" rx="8" fill="#f3f4f6"/>
+        <text x="14" y="21" font-size="12" fill="#1f2937">BigQuery · churn signal</text>
       </g>
+      <text x="744" y="20" font-size="12" fill="#6b7280">♥ 18  💬 4  🔁 2</text>
     </g>
   </g>
 
   <!-- Compliance / signal-loss panel -->
   <g transform="translate(64,696)">
-    <rect width="528" height="148" rx="14" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)"/>
-    <text x="20" y="32" font-size="13" font-weight="600" fill="#fff">Resilient through</text>
-    <g transform="translate(20,52)" font-size="12" fill="rgba(255,255,255,0.7)">
+    <rect width="528" height="148" rx="14" fill="#ffffff" stroke="#e5e7eb" filter="url(#shadow)"/>
+    <text x="20" y="32" font-size="13" font-weight="600" fill="#0a0a0a">Resilient through</text>
+    <g transform="translate(20,52)" font-size="12" fill="#374151">
       <text y="20">✓ iOS 14.5 ATT · 17.4 Link Tracking</text>
       <text y="44">✓ Chrome Privacy Sandbox</text>
       <text y="68">✓ Meta Andromeda re-shape (Q2 ’25)</text>
@@ -138,10 +153,10 @@
     </g>
   </g>
   <g transform="translate(608,696)">
-    <rect width="528" height="148" rx="14" fill="rgba(242,191,34,0.06)" stroke="rgba(242,191,34,0.4)"/>
-    <text x="20" y="32" font-size="13" letter-spacing="1.6" font-weight="600" fill="#f2bf22">RESULT · ATTRIBUTION COVERAGE</text>
-    <text x="20" y="78" font-size="42" font-weight="800" fill="#fff">94<tspan font-size="22" fill="rgba(255,255,255,0.6)">%</tspan></text>
-    <text x="20" y="106" font-size="13" fill="rgba(255,255,255,0.7)">conversions properly attributed</text>
-    <text x="20" y="128" font-size="11" fill="rgba(255,255,255,0.45)">vs. industry-typical 58–66% post-ATT</text>
+    <rect width="528" height="148" rx="14" fill="#fef3c7" stroke="#f2bf22" filter="url(#shadow)"/>
+    <text x="20" y="32" font-size="13" letter-spacing="1.6" font-weight="600" fill="#b8860b">RESULT · ATTRIBUTION COVERAGE</text>
+    <text x="20" y="78" font-size="42" font-weight="800" fill="#0a0a0a">94<tspan font-size="22" fill="#6b7280">%</tspan></text>
+    <text x="20" y="106" font-size="13" fill="#374151">conversions properly attributed</text>
+    <text x="20" y="128" font-size="11" fill="#9ca3af">vs. industry-typical 58–66% post-ATT</text>
   </g>
 </svg>
