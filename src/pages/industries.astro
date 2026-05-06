@@ -2,109 +2,1036 @@
 import Layout from "../layouts/Layout.astro";
 import FinalCta from "../components/FinalCta.astro";
 
-const arrowGrad = {
-  id: 'ind',
-  stops: [
-    { offset: '0', color: '#da9e49' },
-    { offset: '1', color: '#f4cb4e' },
-  ],
-};
+// ──────────────────────────────────────────────────────────────────────────
+// /industries — editorial landing page.
+//
+// Design intent:
+//   • Type-led, generous white space, restrained palette (cream / dark / gold).
+//   • No reused KOTA hero, no bg-image bento. Custom shell, end-to-end.
+//   • Six sections, all under one .indus__ namespace.
+//
+// Sections:
+//   1. Hero        — eyebrow, 3-line H1, subhead, dual CTAs, soft gold glow.
+//   2. Stats bar   — 4 huge numbers, no boxes, pure type on cream.
+//   3. Industries  — six dramatic alternating bands. Each: huge ghost
+//                    numeral, big editorial name, tagline, services chips,
+//                    clients line, "Explore →" + a 3-image floating collage
+//                    on the opposite side. Per-industry accent colour.
+//                    Images are Unsplash hot-links (same convention as
+//                    `src/components/Industries.astro`).
+//   4. Dark band   — big statement + 3 pillar columns.
+//   5. Testimonial — single quote, max 760px, premium card.
+//   6. Final CTA   — existing component.
+// ──────────────────────────────────────────────────────────────────────────
 
-const projects = [
+// Sized Unsplash hot-link helper. Returns a CDN URL with a width hint so
+// the browser fetches a sensibly-sized variant for each tile.
+const u = (id: string, w = 900) =>
+  `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
+
+const industries = [
   {
+    no: '01',
     href: '/industries/web3',
     name: 'Web3 & Crypto',
-    year: 'Core practice',
-    heading: 'Exchanges, wallets, RWAs, DeFi, tokens — and the launch engine around them.',
-    tags: ['Exchange', 'Wallet', 'RWA', 'DeFi', 'Token'],
-    poster: '/images/bento1-1.jpg',
+    tagline: 'Exchanges, wallets, RWAs, DeFi, tokens — and the launch engine that ships them.',
+    services: ['CEX & DEX', 'Wallets', 'RWA', 'Tokens', 'PR'],
+    clients: 'Binance · KuCoin · Cashaa · Fanadise · Metarix',
+    accent: '#F2BF22',
+    images: [
+      { src: u('1622630998477-20aa696ecb05'), alt: 'Bitcoin coin on a laptop keyboard' },
+      { src: u('1639152201720-5e536d254d81'), alt: 'Ethereum logo in three dimensions' },
+      { src: u('1631603090989-93f9ef6f9d80'), alt: 'Pile of gold Bitcoin coins' },
+    ],
   },
   {
+    no: '02',
     href: '/industries/fintech',
     name: 'Fintech',
-    year: 'Regulated',
-    heading: 'Banks, neobanks, payment rails, lending, insurance — regulated engineering with marketing bolted on top.',
-    tags: ['Payments', 'KYC/AML', 'Compliance', 'Institutional'],
-    poster: '/images/bento2-1.jpg',
+    tagline: 'Banks, neobanks, payment rails, lending — regulated engineering with marketing your legal team can sign off on.',
+    services: ['Card Programmes', 'KYC/AML', 'Compliance', 'Institutional'],
+    clients: 'Card programmes · MiCA-aware launches · FCA-friendly performance',
+    accent: '#34D399',
+    images: [
+      { src: u('1601597111158-2fceff292cdc'), alt: 'Mobile banking app interface' },
+      { src: u('1556742049-0cfed4f6a45d'),    alt: 'Stack of credit cards' },
+      { src: u('1554224155-6726b3ff858f'),    alt: 'Currency closeup' },
+    ],
   },
   {
+    no: '03',
     href: '/industries/ai',
     name: 'AI',
-    year: 'Emerging',
-    heading: 'Agents, copilots, LLM pipelines — and the go-to-market that cuts through the me-too AI wall.',
-    tags: ['Agents', 'LLM', 'RAG', 'Developer GTM'],
-    poster: '/images/bento3-1.jpg',
+    tagline: 'Agents, copilots, foundation-model wrappers — and the GTM that cuts through the me-too AI wall.',
+    services: ['Agents', 'LLM', 'RAG', 'Developer GTM'],
+    clients: 'Positioning · AEO/GEO · Developer-first launches',
+    accent: '#A78BFA',
+    images: [
+      { src: u('1620712943543-bcc4688e7485'), alt: 'Humanoid AI face' },
+      { src: u('1531297484001-80022131f5a1'), alt: 'Code on a monitor' },
+      { src: u('1518770660439-4636190af475'), alt: 'Circuit board detail' },
+    ],
   },
   {
+    no: '04',
     href: '/industries/saas',
     name: 'SaaS',
-    year: 'PLG & ABM',
-    heading: 'B2B and B2C SaaS — product-led growth, enterprise sales motions, and the stack under both.',
-    tags: ['PLG', 'ABM', 'Content', 'Analytics'],
-    poster: '/images/bento4-1.jpg',
+    tagline: 'B2B and B2C platforms — product-led growth, enterprise sales motions, and the dev tooling under both.',
+    services: ['PLG', 'ABM', 'Content', 'Analytics'],
+    clients: 'Pipeline-tuned content · Dashboard UX · Founder-led PR',
+    accent: '#60A5FA',
+    images: [
+      { src: u('1460925895917-afdab827c52f'), alt: 'Analytics dashboard on screen' },
+      { src: u('1551288049-bebda4e38f71'),    alt: 'Workspace with laptop and notebook' },
+      { src: u('1556761175-5973dc0f32e7'),    alt: 'Team strategy session at a table' },
+    ],
   },
   {
+    no: '05',
     href: '/industries/startups',
     name: 'Startups',
-    year: 'Early-stage',
-    heading: 'Pre-seed to Series A — products built for investors, users and the markets you haven\'t reached yet.',
-    tags: ['MVP', 'Pitch Decks', 'Launch PR', 'Growth'],
-    poster: '/images/bento1.jpg',
+    tagline: "Pre-seed to Series A — products built for investors, users, and markets you haven't reached yet.",
+    services: ['MVP', 'Pitch Decks', 'Launch PR', 'Growth'],
+    clients: 'MVPs that ship in weeks · Decks that close rounds',
+    accent: '#F472B6',
+    images: [
+      { src: u('1521737711867-e3b97375f902'), alt: 'Founders mid-conversation' },
+      { src: u('1559136555-9303baea8ebd'),    alt: 'Whiteboard with sketches' },
+      { src: u('1556761175-4b46a572b786'),    alt: 'Late-night build session' },
+    ],
   },
   {
+    no: '06',
     href: '/industries/enterprise',
     name: 'Enterprise',
-    year: 'Procurement',
-    heading: 'Fortune 500, financial institutions, government tech — delivery on the procurement clock.',
-    tags: ['Enterprise Blockchain', 'AI Integration', 'ABM', 'Analyst PR'],
-    poster: '/images/bento3.jpg',
+    tagline: 'Fortune 500, financial institutions, government tech — delivery on the procurement clock.',
+    services: ['Enterprise Blockchain', 'AI Integration', 'ABM', 'Analyst PR'],
+    clients: 'Procurement-friendly SOWs · Analyst-grade dashboards',
+    accent: '#FB923C',
+    images: [
+      { src: u('1542744173-8e7e53415bb0'), alt: 'Modern boardroom' },
+      { src: u('1497366216548-37526070297c'), alt: 'Enterprise office floor' },
+      { src: u('1486406146926-c627a92ad1ab'), alt: 'Skyscraper financial district' },
+    ],
   },
 ];
+
+const stats = [
+  { figure: '1,100+', label: 'projects shipped' },
+  { figure: '$120M+', label: 'revenue for clients' },
+  { figure: '10+',    label: 'years shipping' },
+  { figure: '30+',    label: 'partner countries' },
+];
+
+const pillars = [
+  {
+    eyebrow: 'Engineering',
+    title: 'Code that ships against audits.',
+    body: "We write Solidity, Rust, and TypeScript that has to clear external auditors before a single user touches it. Exchanges, wallets, RWAs, payment rails, agent stacks — the bar is the same.",
+  },
+  {
+    eyebrow: 'Marketing',
+    title: 'Go-to-market that ships against KPIs.',
+    body: "PR that lands in The Block, Decrypt, CoinDesk, Bloomberg. Communities that hit retention, not DAU spikes. Performance media tuned to ROAS your CFO will believe.",
+  },
+  {
+    eyebrow: 'One team',
+    title: 'Engineering and marketing in the same room.',
+    body: "One PM, one team across US, EU, UAE, India. Dev knows what marketing's promising. Marketing knows what dev's actually shipped. The handoff stops being a hand-off.",
+  },
+];
+
+const featuredQuote = {
+  quote: "Corum8 ran the narrative, the media, and the community push around our token event. The execution was clean, the relationships with outlets were already in place, and the team moved at the pace we needed. We raised what we set out to raise, and the coverage has kept working for us months later.",
+  author: "Kumar Gaurav",
+  role: "Founder & CEO, Cashaa",
+  location: "London, UK",
+  initials: "KG",
+  outcome: "$32M raised",
+};
 ---
 <Layout title="Industries | Corum8">
-<div data-theme="light">
-<section class="Hero_hero__Oyf4n"><div class="container"><div class="Hero_top__RRkYH"><h2><span class="LineByLine_headingOuter__JmusT"><span>Six industries. One team. Delivery from strategy to production.</span></span></h2><figure class="crosshair" aria-hidden="true"><span class="FadeInRotate_container__QE9u9" data-fill="true" data-direction="clockwise"><span class="inner"></span></span></figure><div class="Hero_video__rzcbe"><span class="ScaleFadeIn_container__cK78G" data-fill="true"><span class="ScaleFadeIn_inner__y4reT" data-fill="true"><video src="/media/bg2.mp4" class="Hero_video__rzcbe" autoplay muted loop playsinline></video></span></span></div></div><div class="Hero_bottom__ktiOH"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Industries</span></div></span></h1><h3 class="Hero_introText__oP34v"><span class="FadeIn_container__bjQVL" data-fill="false"><span>We work across six industries that share one thing — they move fast, regulate hard and punish generic marketing.</span></span></h3><div class="Hero_arrow__lxSeM"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z"></path></svg></span></div></div></div></section>
+<div data-theme="light" class="indus">
 
-<div class="Work_work__rSI8c">
-  <div class="DarkThemeSwitch_cover__hn_xc"></div>
-  <div class="Work_projects__A5q77">
-    <div class="AnimatedGrid_grid__otAMD">
-      <div class="container">
-        {projects.map((p) => (
-          <a class="ProjectCard_project__d1wbY ProjectCard_small__xsL92" data-animation="grid-item" href={p.href}>
-            <div class="ProjectCard_projectText__o770X">
-              <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.78 14.78">
-                  <defs>
-                    <linearGradient id={arrowGrad.id} x1="3.54" x2="13.98" y1="3.54" y2="13.99" gradientUnits="userSpaceOnUse">
-                      {arrowGrad.stops.map((s) => <stop offset={s.offset} stop-color={s.color}></stop>)}
-                    </linearGradient>
-                  </defs>
-                  <path fill={`url(#${arrowGrad.id})`} stroke-width="0" d="M13.25 12.18L13.25 0.23 14.78 0.23 14.78 14.76 14.74 14.76 14.74 14.78 0.21 14.78 0.21 13.25 12.18 13.25 0 1.08 1.08 0 13.25 12.18z"></path>
-                </svg>{p.name}
-              </h3>
-              <p>{p.year}</p>
-            </div>
-            <div class="ProjectCard_projectImage__Nfx9I">
-              <div class="ProjectCard_imageOverlay__OCawr">
-                <p class="ProjectCard_heading__1csIW">{p.heading}</p>
-                <ul class="ProjectCard_tags__XdVcf">
-                  {p.tags.map((t) => <li>{t}</li>)}
-                </ul>
-              </div>
-              <span class="Image_image__RAAdZ Image_fill__EiIzS"><img src={p.poster} alt="" fetchpriority="low" loading="lazy" /></span>
-            </div>
+  <!-- ───── 1. Hero ──────────────────────────────────────────────────── -->
+  <section class="indus__hero">
+    <div class="indus__hero-bg" aria-hidden="true">
+      <span class="indus__hero-glow"></span>
+      <span class="indus__hero-grid"></span>
+    </div>
+
+    <div class="indus__container">
+      <div class="indus__hero-inner" data-reveal-stagger="120">
+        <p class="indus__eyebrow" data-reveal="up">Industries</p>
+
+        <h1 class="indus__hero-h1">
+          <span data-reveal="up">Six industries.</span>
+          <span data-reveal="up">One team.</span>
+          <span data-reveal="up"><em>Strategy to production.</em></span>
+        </h1>
+
+        <p class="indus__hero-sub" data-reveal="up">
+          We ship engineering and go-to-market in the same room — for Web3, fintech, AI, SaaS, startups, and enterprise. Different surfaces. Same launch engine.
+        </p>
+
+        <div class="indus__hero-cta" data-reveal="up">
+          <a href="/book-a-strategy-call" class="indus__btn indus__btn--primary">
+            <span>Book a strategy call</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
-        ))}
+          <a href="/work" class="indus__btn indus__btn--ghost">
+            <span>See our work</span>
+          </a>
+        </div>
+
+        <p class="indus__hero-meta" data-reveal="up">
+          Trusted by <strong>1,100+ brands</strong>. <strong>10+ years</strong> shipping. <strong>Dubai · US · India</strong>.
+        </p>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- ───── 2. Stats bar ─────────────────────────────────────────────── -->
+  <section class="indus__stats">
+    <div class="indus__container">
+      <ul class="indus__stats-row" data-reveal-stagger="80">
+        {stats.map((s) => (
+          <li class="indus__stat" data-reveal="up">
+            <span class="indus__stat-fig">{s.figure}</span>
+            <span class="indus__stat-lbl">{s.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ───── 3. Industries — dramatic alternating rows ─────────────── -->
+  <section class="indus__rows-sec">
+    <div class="indus__container">
+      <header class="indus__sec-head indus__sec-head--center" data-reveal-stagger="100">
+        <p class="indus__eyebrow indus__eyebrow--muted" data-reveal="up">What we ship for</p>
+        <h2 class="indus__h2" data-reveal="up">
+          Six categories. <span class="indus__h2-accent">One bottleneck.</span>
+        </h2>
+        <p class="indus__sec-sub" data-reveal="up">
+          The launch breaks where dev hands off to marketing. We work in the categories where that handoff has to disappear.
+        </p>
+      </header>
+    </div>
+
+    {industries.map((i, idx) => {
+      const reverse = idx % 2 === 1;
+      return (
+        <article
+          class={`indus__row${reverse ? ' indus__row--reverse' : ''}`}
+          style={`--row-accent: ${i.accent};`}
+          data-reveal-stagger="100"
+        >
+          <span class="indus__row-glow" aria-hidden="true"></span>
+          <span class="indus__row-bg-num" aria-hidden="true">{i.no}</span>
+
+          <div class="indus__container">
+            <div class="indus__row-grid">
+              <div class="indus__row-content" data-reveal="up">
+                <span class="indus__row-no">
+                  <span class="indus__row-no-dot"></span>
+                  <span>{i.no} / 06</span>
+                </span>
+                <h3 class="indus__row-name">{i.name}</h3>
+                <p class="indus__row-tagline">{i.tagline}</p>
+
+                <ul class="indus__row-services" aria-label="What we ship">
+                  {i.services.map((s) => <li>{s}</li>)}
+                </ul>
+
+                <p class="indus__row-clients">
+                  <span class="indus__row-clients-label">Clients · proof</span>
+                  <span class="indus__row-clients-text">{i.clients}</span>
+                </p>
+
+                <a class="indus__row-cta" href={i.href}>
+                  <span>Explore {i.name}</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+              </div>
+
+              <div class="indus__row-stage" data-reveal="up">
+                <span class="indus__row-plate" aria-hidden="true"></span>
+                {i.images.map((img, ix) => (
+                  <figure class={`indus__photo indus__photo--${ix}`}>
+                    <img src={img.src} alt={img.alt} loading="lazy" />
+                  </figure>
+                ))}
+                <span class="indus__row-spark" aria-hidden="true"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </section>
+
+  <!-- ───── 4. Dark band — how we work ──────────────────────────────── -->
+  <section class="indus__how">
+    <div class="indus__container">
+      <header class="indus__how-head" data-reveal-stagger="120">
+        <p class="indus__eyebrow indus__eyebrow--gold" data-reveal="up">How we work</p>
+        <h2 class="indus__h2 indus__h2--invert" data-reveal="up">
+          The skills move. <span class="indus__h2-accent indus__h2-accent--invert">The surface changes.</span>
+        </h2>
+        <p class="indus__how-sub" data-reveal="up">
+          A token launch and a card programme look different on the website. Under the hood, the work is the same — engineering against an audit, marketing against a number, one PM keeping both honest.
+        </p>
+      </header>
+
+      <ol class="indus__pillars" data-reveal-stagger="120">
+        {pillars.map((p, i) => (
+          <li class="indus__pillar" data-reveal="up">
+            <span class="indus__pillar-no">{String(i + 1).padStart(2, '0')}</span>
+            <span class="indus__pillar-eyebrow">{p.eyebrow}</span>
+            <h3 class="indus__pillar-title">{p.title}</h3>
+            <p class="indus__pillar-body">{p.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ───── 6. Final CTA ────────────────────────────────────────────── -->
+  <FinalCta
+    light="One team."
+    bold="Six industries."
+    subtitle="Tell us where you're headed. We'll tell you what we'd ship first."
+  />
+
 </div>
 
-<FinalCta
-  light="One team."
-  bold="Six industries."
-  subtitle="Book a call. We'll tell you what we'd do first."
-/>
-</div>
+<style is:global>
+  /* ────────────────────────────────────────────────────────────────────
+     /industries — editorial landing styles. Single .indus__* namespace.
+     ──────────────────────────────────────────────────────────────────── */
+
+  .indus { background: var(--color-bg); color: #0a0a0a; }
+
+  .indus__container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+  }
+  .indus__container--narrow { max-width: 1100px; }
+
+  /* Shared eyebrow / heading */
+  .indus__eyebrow {
+    margin: 0 0 1.4rem;
+    font-family: var(--montreal);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--c8-gold-dark);
+  }
+  .indus__eyebrow--muted { color: rgba(0,0,0,0.55); }
+  .indus__eyebrow--gold  { color: var(--c8-gold); }
+
+  .indus__h2 {
+    margin: 0 0 1.1rem;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.6vw, 3.4rem);
+    font-weight: 350;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    color: #0a0a0a;
+  }
+  .indus__h2--invert { color: #fff; }
+  .indus__h2-accent  { color: var(--c8-gold-dark); font-weight: 350; }
+  .indus__h2-accent--invert { color: var(--c8-gold); }
+
+  /* ───── 1. Hero ──────────────────────────────────────────────────── */
+  .indus__hero {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(8rem, 16vh, 11rem) 0 clamp(5rem, 10vh, 7rem);
+    overflow: hidden;
+  }
+  .indus__hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .indus__hero-glow {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 70%;
+    height: 110%;
+    background:
+      radial-gradient(closest-side, rgba(242,191,34,0.28) 0%, rgba(242,191,34,0.10) 40%, transparent 75%);
+    filter: blur(8px);
+  }
+  .indus__hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 70% 65% at 50% 35%, #000 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 35%, #000 30%, transparent 80%);
+    opacity: 0.5;
+  }
+
+  .indus__hero-inner {
+    max-width: 980px;
+  }
+  .indus__hero-h1 {
+    margin: 0 0 1.6rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 6.2vw, 4.8rem);
+    font-weight: 350;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #0a0a0a;
+  }
+  .indus__hero-h1 span {
+    display: block;
+  }
+  .indus__hero-h1 em {
+    font-style: normal;
+    background: linear-gradient(110deg, var(--c8-gold-dark) 0%, var(--c8-gold) 50%, var(--c8-gold-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .indus__hero-sub {
+    margin: 0 0 2.2rem;
+    max-width: 38rem;
+    font-family: var(--montreal);
+    font-size: clamp(1.05rem, 1.3vw, 1.18rem);
+    line-height: 1.55;
+    color: rgba(0,0,0,0.7);
+  }
+
+  .indus__hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1rem;
+    align-items: center;
+    margin-bottom: 2.4rem;
+  }
+
+  .indus__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 1.05rem 1.85rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: var(--montreal);
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .indus__btn svg { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+  .indus__btn--primary {
+    background: #0a0a0a;
+    color: #fff;
+    box-shadow: 0 16px 32px -16px rgba(0,0,0,0.4);
+  }
+  .indus__btn--primary:hover {
+    background: var(--c8-gold);
+    color: #0a0a0a;
+    transform: translateY(-2px);
+    box-shadow: 0 22px 44px -20px var(--c8-gold-glow);
+  }
+  .indus__btn--primary:hover svg { transform: translateX(4px); }
+  .indus__btn--ghost {
+    background: transparent;
+    color: #0a0a0a;
+    border: 1px solid rgba(0,0,0,0.18);
+  }
+  .indus__btn--ghost:hover {
+    border-color: #0a0a0a;
+    transform: translateY(-2px);
+  }
+
+  .indus__hero-meta {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    color: rgba(0,0,0,0.55);
+  }
+  .indus__hero-meta strong { color: #0a0a0a; font-weight: 600; }
+
+  /* ───── 2. Stats bar ─────────────────────────────────────────────── */
+  .indus__stats {
+    padding: clamp(2rem, 4vh, 3.5rem) 0 clamp(4rem, 8vh, 6rem);
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .indus__stats-row {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 3rem);
+  }
+  .indus__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 1.85rem;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .indus__stat-fig {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 350;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: #0a0a0a;
+  }
+  .indus__stat-lbl {
+    font-family: var(--montreal);
+    font-size: 0.86rem;
+    line-height: 1.4;
+    color: rgba(0,0,0,0.6);
+  }
+  @media (max-width: 800px) {
+    .indus__stats-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 460px) {
+    .indus__stats-row { grid-template-columns: 1fr; }
+  }
+
+  /* ───── 3. Industries — dramatic alternating rows ─────────────── */
+  .indus__rows-sec {
+    padding: clamp(4rem, 8vh, 6rem) 0 0;
+  }
+  .indus__sec-head {
+    max-width: 56rem;
+    margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
+  }
+  .indus__sec-head--center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .indus__sec-sub {
+    margin: 0;
+    max-width: 38rem;
+    font-family: var(--montreal);
+    font-size: clamp(1rem, 1.15vw, 1.08rem);
+    line-height: 1.6;
+    color: rgba(0,0,0,0.62);
+  }
+  .indus__sec-head--center .indus__sec-sub {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ─── Row band ─── */
+  .indus__row {
+    position: relative;
+    padding: clamp(4rem, 9vh, 7rem) 0;
+    isolation: isolate;
+    overflow: hidden;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .indus__row:first-of-type { border-top: 0; }
+
+  /* Per-row coloured glow — subtle accent that distinguishes each
+     industry without overwhelming the cream surface. */
+  .indus__row-glow {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(900px circle at 88% 8%, color-mix(in srgb, var(--row-accent) 22%, transparent) 0%, transparent 55%),
+      radial-gradient(700px circle at 6% 92%, color-mix(in srgb, var(--row-accent) 12%, transparent) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .indus__row--reverse .indus__row-glow {
+    background:
+      radial-gradient(900px circle at 12% 8%, color-mix(in srgb, var(--row-accent) 22%, transparent) 0%, transparent 55%),
+      radial-gradient(700px circle at 94% 92%, color-mix(in srgb, var(--row-accent) 12%, transparent) 0%, transparent 55%);
+  }
+
+  /* Huge ghost numeral painted behind the content. Decorative. */
+  .indus__row-bg-num {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    font-family: var(--font-display);
+    font-size: clamp(18rem, 38vw, 36rem);
+    font-weight: 350;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    color: var(--row-accent);
+    opacity: 0.07;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .indus__row-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .indus__row--reverse .indus__row-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  }
+  .indus__row--reverse .indus__row-content { order: 2; }
+  .indus__row--reverse .indus__row-stage   { order: 1; }
+  @media (max-width: 900px) {
+    .indus__row-grid,
+    .indus__row--reverse .indus__row-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+    .indus__row--reverse .indus__row-content,
+    .indus__row--reverse .indus__row-stage { order: initial; }
+  }
+
+  /* Content side */
+  .indus__row-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    align-items: flex-start;
+  }
+  .indus__row-no {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.2rem;
+    font-family: var(--montreal);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.55);
+  }
+  .indus__row-no-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--row-accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--row-accent) 18%, transparent);
+    animation: indus-pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes indus-pulse {
+    0%, 100% { transform: scale(1);   opacity: 1;   }
+    50%      { transform: scale(1.4); opacity: 0.6; }
+  }
+
+  .indus__row-name {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+    font-weight: 350;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    color: #0a0a0a;
+  }
+  .indus__row-tagline {
+    margin: 0;
+    max-width: 32rem;
+    font-family: var(--montreal);
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    line-height: 1.6;
+    color: rgba(0,0,0,0.72);
+  }
+
+  .indus__row-services {
+    list-style: none;
+    margin: 0.4rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.45rem;
+  }
+  .indus__row-services li {
+    font-family: var(--montreal);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.34rem 0.7rem;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid color-mix(in srgb, var(--row-accent) 22%, rgba(0,0,0,0.08));
+    border-radius: 999px;
+    color: #0a0a0a;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, background 0.3s ease;
+  }
+  .indus__row-services li:hover {
+    transform: translateY(-2px);
+    border-color: var(--row-accent);
+    background: #fff;
+  }
+
+  .indus__row-clients {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0.4rem 0 0;
+    padding: 0.95rem 1.1rem;
+    background: rgba(255,255,255,0.6);
+    border-left: 3px solid var(--row-accent);
+    border-radius: 4px 12px 12px 4px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .indus__row-clients-label {
+    font-family: var(--montreal);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.45);
+  }
+  .indus__row-clients-text {
+    font-family: var(--montreal);
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: rgba(0,0,0,0.78);
+  }
+
+  .indus__row-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+    padding: 0.95rem 1.55rem;
+    background: #0a0a0a;
+    color: #fff;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: var(--montreal);
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 16px 32px -16px rgba(0,0,0,0.45);
+  }
+  .indus__row-cta svg { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+  .indus__row-cta:hover {
+    background: var(--row-accent);
+    color: #0a0a0a;
+    transform: translateY(-2px);
+    box-shadow: 0 22px 44px -20px color-mix(in srgb, var(--row-accent) 65%, transparent);
+  }
+  .indus__row-cta:hover svg { transform: translateX(5px); }
+
+  /* Stage — the floating image collage. Three photos with independent
+     gentle floats so the composition feels alive without distracting. */
+  .indus__row-stage {
+    position: relative;
+    z-index: 1;
+    aspect-ratio: 1 / 1;
+    min-height: clamp(360px, 50vh, 540px);
+  }
+  .indus__row-plate {
+    position: absolute;
+    inset: 4%;
+    border-radius: 24px;
+    background:
+      radial-gradient(closest-side, color-mix(in srgb, var(--row-accent) 18%, transparent) 0%, transparent 70%);
+    filter: blur(28px);
+    z-index: -1;
+  }
+  .indus__row-spark {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    bottom: 8%;
+    left: 6%;
+    border-radius: 999px;
+    background: var(--row-accent);
+    box-shadow: 0 0 24px var(--row-accent), 0 0 60px var(--row-accent);
+    opacity: 0.85;
+    animation: indus-pulse 3.2s ease-in-out infinite;
+  }
+
+  .indus__photo {
+    position: absolute;
+    margin: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+      0 32px 60px -22px rgba(0,0,0,0.35),
+      0 0 0 1px rgba(255,255,255,0.06);
+    background: #111;
+    will-change: transform;
+  }
+  .indus__photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s cubic-bezier(0.16,1,0.3,1);
+  }
+  .indus__row:hover .indus__photo img,
+  .indus__row[data-reveal-stagger] .indus__photo:hover img { transform: scale(1.06); }
+
+  /* Three positions — main + two satellite photos overlapping. */
+  .indus__photo--0 {
+    top: 4%;
+    left: 0;
+    width: 62%;
+    aspect-ratio: 4 / 3;
+    transform: rotate(-1.5deg);
+    animation: ind-float-a 8s ease-in-out infinite;
+    z-index: 1;
+  }
+  .indus__photo--1 {
+    top: 22%;
+    right: 0;
+    width: 50%;
+    aspect-ratio: 5 / 4;
+    transform: rotate(2deg);
+    z-index: 3;
+    animation: ind-float-b 9.5s ease-in-out infinite;
+    animation-delay: -2s;
+  }
+  .indus__photo--2 {
+    bottom: 4%;
+    left: 16%;
+    width: 60%;
+    aspect-ratio: 16 / 10;
+    transform: rotate(-0.8deg);
+    z-index: 2;
+    animation: ind-float-c 10.5s ease-in-out infinite;
+    animation-delay: -5s;
+  }
+
+  /* Reverse rows mirror the photo collage so the visual weight follows
+     the content swap. */
+  .indus__row--reverse .indus__photo--0 { left: auto; right: 0; transform: rotate(1.5deg); }
+  .indus__row--reverse .indus__photo--1 { right: auto; left: 0; transform: rotate(-2deg); }
+  .indus__row--reverse .indus__photo--2 { left: auto; right: 16%; transform: rotate(0.8deg); }
+
+  @keyframes ind-float-a {
+    0%, 100% { transform: translate3d(0,0,0)   rotate(-1.5deg); }
+    50%      { transform: translate3d(8px,-12px,0) rotate(-0.4deg); }
+  }
+  @keyframes ind-float-b {
+    0%, 100% { transform: translate3d(0,0,0)   rotate(2deg); }
+    50%      { transform: translate3d(-10px,10px,0) rotate(0.6deg); }
+  }
+  @keyframes ind-float-c {
+    0%, 100% { transform: translate3d(0,0,0) rotate(-0.8deg); }
+    50%      { transform: translate3d(6px,-9px,0) rotate(0.4deg); }
+  }
+
+  @media (max-width: 600px) {
+    .indus__row-stage { min-height: 320px; }
+    .indus__photo--0 { width: 70%; }
+    .indus__photo--1 { width: 58%; }
+    .indus__photo--2 { width: 64%; left: 12%; }
+  }
+
+  /* ───── 4. Dark band ─────────────────────────────────────────────── */
+  .indus__how {
+    background: #0a0a0a;
+    color: #fff;
+    padding: clamp(5rem, 11vh, 8rem) 0;
+    isolation: isolate;
+    position: relative;
+    overflow: hidden;
+  }
+  .indus__how::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(900px circle at 90% 12%, rgba(242,191,34,0.10) 0%, transparent 60%),
+      radial-gradient(700px circle at 8% 88%, rgba(242,191,34,0.05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .indus__how > * { position: relative; z-index: 1; }
+
+  .indus__how-head {
+    max-width: 56rem;
+    margin: 0 0 clamp(3rem, 6vh, 4.5rem);
+  }
+  .indus__how-sub {
+    margin: 0;
+    max-width: 40rem;
+    font-family: var(--montreal);
+    font-size: clamp(1rem, 1.15vw, 1.08rem);
+    line-height: 1.65;
+    color: rgba(255,255,255,0.72);
+  }
+
+  .indus__pillars {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+  @media (max-width: 900px) { .indus__pillars { grid-template-columns: 1fr; } }
+
+  .indus__pillar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    position: relative;
+  }
+  .indus__pillar-no {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--c8-gold);
+  }
+  .indus__pillar-eyebrow {
+    font-family: var(--montreal);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.05rem;
+  }
+  .indus__pillar-title {
+    margin: 0.6rem 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 1.9vw, 1.65rem);
+    font-weight: 350;
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    color: #fff;
+  }
+  .indus__pillar-body {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.96rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.72);
+  }
+
+  /* ───── 5. Testimonial ──────────────────────────────────────────── */
+  .indus__quote {
+    background: var(--color-bg);
+    padding: clamp(5rem, 10vh, 7.5rem) 0;
+  }
+  .indus__quote-card {
+    padding: clamp(2.4rem, 5vw, 4rem);
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 22px;
+    box-shadow: 0 30px 70px -32px rgba(0,0,0,0.18);
+    text-align: left;
+  }
+  .indus__quote-text {
+    margin: 0.4rem 0 2rem;
+    padding: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+    font-weight: 350;
+    line-height: 1.4;
+    letter-spacing: -0.018em;
+    color: #0a0a0a;
+    quotes: '\201C' '\201D';
+  }
+  .indus__quote-text::before { content: open-quote; color: var(--c8-gold); margin-right: 0.1em; }
+  .indus__quote-text::after  { content: close-quote; color: var(--c8-gold); margin-left: 0.05em; }
+
+  .indus__quote-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .indus__quote-attrib {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .indus__quote-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--c8-gold) 0%, var(--c8-gold-dark) 100%);
+    color: #0a0a0a;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    flex: 0 0 auto;
+  }
+  .indus__quote-meta { display: flex; flex-direction: column; gap: 0.15rem; }
+  .indus__quote-author {
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: #0a0a0a;
+  }
+  .indus__quote-role {
+    font-family: var(--montreal);
+    font-size: 0.83rem;
+    color: rgba(0,0,0,0.6);
+  }
+
+  .indus__quote-outcome {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    text-align: right;
+    padding: 0.55rem 1rem;
+    border: 1px solid rgba(242,191,34,0.4);
+    background: linear-gradient(135deg, rgba(242,191,34,0.16), rgba(244,203,78,0.04));
+    border-radius: 12px;
+  }
+  .indus__quote-outcome-fig {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: #0a0a0a;
+    line-height: 1;
+  }
+  .indus__quote-outcome-lbl {
+    font-family: var(--montreal);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.6);
+  }
+  @media (max-width: 600px) {
+    .indus__quote-outcome { text-align: left; align-self: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .indus__btn,
+    .indus__btn svg,
+    .indus__row-cta,
+    .indus__row-cta svg,
+    .indus__row-services li,
+    .indus__photo img { transition: none; }
+    .indus__photo,
+    .indus__row-no-dot,
+    .indus__row-spark { animation: none !important; }
+  }
+</style>
 </Layout>

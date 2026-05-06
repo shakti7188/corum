@@ -86,8 +86,8 @@ export const media = {
       w: 1400, h: 1050, kind: "image",
     },
     nft: {
-      src: u("1639762681485-074b7f938ba0", 1400),
-      alt: "Glowing digital asset visualisation in a web3 style",
+      src: u("1620321023374-d1a68fbc720d", 1400),
+      alt: "Colourful NFT digital artwork grid on a dark background",
       w: 1400, h: 1050, kind: "image",
     },
     token: {
@@ -141,7 +141,7 @@ export const media = {
     cryptoMobile:   { src: u("1518544801976-3e159e50e5bb", 800), alt: "", kind: "image", decorative: true },
     btcChart:       { src: u("1614064641938-3bbee52942c7", 800), alt: "", kind: "image", decorative: true },
     stockScreen:    { src: u("1516321318423-f06f85e504b3", 800), alt: "", kind: "image", decorative: true },
-    blockchainAbstract: { src: u("1639762681485-074b7f938ba0", 800), alt: "", kind: "image", decorative: true },
+    blockchainAbstract: { src: u("1569025743873-ea3a9ade89f9", 800), alt: "", kind: "image", decorative: true },
     networkNodes:   { src: u("1639152201720-5e536d254d81", 800), alt: "", kind: "image", decorative: true },
     dataViz:        { src: u("1551288049-bebda4e38f71", 800), alt: "", kind: "image", decorative: true },
     serverRoom:     { src: u("1558494949-ef010cbdcc31", 800), alt: "", kind: "image", decorative: true },
