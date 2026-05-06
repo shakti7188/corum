@@ -216,12 +216,30 @@ import Layout from '../../../layouts/Layout.astro';
       <p class="sm-section-head__sub">Each channel has its own tone, format, and audience. We've shipped on all of them — and we know which ones matter for your category.</p>
     </div>
     <div class="sm-plat-grid">
-      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">𝕏</div><h4>Twitter / X</h4><p>Founder threads, breaking commentary, real-time community. The default for crypto and AI.</p></div>
-      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">in</div><h4>LinkedIn</h4><p>B2B buyers, founders, investors. Long-form thought leadership and pipeline-driving content.</p></div>
-      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">📸</div><h4>Instagram</h4><p>Brand aesthetic, reels, behind-the-scenes. Where consumer Web3 and lifestyle fintech wins.</p></div>
-      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">♪</div><h4>TikTok</h4><p>Short-form explainers, trends, viral retail awareness. Top of funnel for retail products.</p></div>
-      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">▶</div><h4>YouTube</h4><p>Long-form authority, tutorials, founder interviews. Where SEO meets social discovery.</p></div>
-      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">✈</div><h4>Telegram &amp; Discord</h4><p>Community core for crypto. We moderate, respond, and run AMAs across time zones.</p></div>
+      <div class="sm-plat-card reveal-stagger">
+        <div class="sm-plat-card__img"><img src="https://images.unsplash.com/photo-1611605698323-b1e99cfd37ea?w=600&q=80&auto=format&fit=crop" alt="Twitter X" /><span class="sm-plat-card__lbl">Twitter / X</span></div>
+        <div class="sm-plat-card__body"><p>Founder threads, breaking commentary, real-time community. The default reach layer for crypto and AI brands.</p><span class="sm-plat-card__tag">Crypto · AI · Fintech</span></div>
+      </div>
+      <div class="sm-plat-card reveal-stagger">
+        <div class="sm-plat-card__img"><img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=600&q=80&auto=format&fit=crop" alt="LinkedIn" /><span class="sm-plat-card__lbl">LinkedIn</span></div>
+        <div class="sm-plat-card__body"><p>B2B buyers, founders, investors. Long-form thought leadership that shows up when a prospect Googles your CEO.</p><span class="sm-plat-card__tag">B2B · SaaS · Enterprise</span></div>
+      </div>
+      <div class="sm-plat-card reveal-stagger">
+        <div class="sm-plat-card__img"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80&auto=format&fit=crop" alt="Instagram" /><span class="sm-plat-card__lbl">Instagram</span></div>
+        <div class="sm-plat-card__body"><p>Brand aesthetic, reels, behind-the-scenes. Where consumer Web3 and lifestyle fintech drives awareness.</p><span class="sm-plat-card__tag">Consumer · Brand</span></div>
+      </div>
+      <div class="sm-plat-card reveal-stagger">
+        <div class="sm-plat-card__img"><img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?w=600&q=80&auto=format&fit=crop" alt="TikTok" /><span class="sm-plat-card__lbl">TikTok</span></div>
+        <div class="sm-plat-card__body"><p>Short-form explainers, trend-riding, viral retail awareness. Top of funnel for consumer crypto and retail products.</p><span class="sm-plat-card__tag">Consumer · Retail · Gen-Z</span></div>
+      </div>
+      <div class="sm-plat-card reveal-stagger">
+        <div class="sm-plat-card__img"><img src="https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=600&q=80&auto=format&fit=crop" alt="YouTube" /><span class="sm-plat-card__lbl">YouTube</span></div>
+        <div class="sm-plat-card__body"><p>Long-form authority, tutorials, founder interviews. Where SEO meets social — and stays indexed for years.</p><span class="sm-plat-card__tag">Authority · SEO · Long-form</span></div>
+      </div>
+      <div class="sm-plat-card reveal-stagger">
+        <div class="sm-plat-card__img"><img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=600&q=80&auto=format&fit=crop" alt="Telegram Discord" /><span class="sm-plat-card__lbl">Telegram &amp; Discord</span></div>
+        <div class="sm-plat-card__body"><p>Community core for crypto. We moderate, run AMAs, and keep the conversation moving across time zones in 14 languages.</p><span class="sm-plat-card__tag">Web3 · Community · 24/7</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -478,12 +496,18 @@ import Layout from '../../../layouts/Layout.astro';
 .sm-platforms{background:#efe9dc;padding:clamp(4rem,8vh,6rem) 2rem;border:1px solid rgba(0,0,0,.04);}
 @media(min-width:768px){.sm-platforms{padding:clamp(4rem,8vh,6rem) 4rem;}}
 .sm-platforms__inner{max-width:1200px;margin:0 auto;}
-.sm-plat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
-.sm-plat-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:18px;padding:1.6rem;transition:all .3s;box-shadow:0 6px 20px -10px rgba(0,0,0,.06);}
-.sm-plat-card:hover{border-color:#f2bf22;transform:translateY(-3px);box-shadow:0 18px 40px -16px rgba(242,191,34,.25);}
-.sm-plat-card__icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#f2bf22,#da9e49);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:1rem;}
-.sm-plat-card h4{font-size:1rem;font-weight:700;color:#0f0f0f;margin-bottom:.45rem;}
-.sm-plat-card p{font-size:.85rem;line-height:1.65;color:#666;margin:0;}
+.sm-plat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+@media(max-width:900px){.sm-plat-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.sm-plat-grid{grid-template-columns:1fr;}}
+.sm-plat-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:20px;overflow:hidden;transition:all .3s;box-shadow:0 8px 28px -12px rgba(0,0,0,.08);}
+.sm-plat-card:hover{border-color:#f2bf22;transform:translateY(-4px);box-shadow:0 20px 50px -16px rgba(242,191,34,.28);}
+.sm-plat-card__img{position:relative;height:160px;overflow:hidden;}
+.sm-plat-card__img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.sm-plat-card:hover .sm-plat-card__img img{transform:scale(1.06);}
+.sm-plat-card__lbl{position:absolute;bottom:.75rem;left:.85rem;font-family:var(--font-display);font-size:.88rem;font-weight:400;color:#fff;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);padding:.3rem .8rem;border-radius:100px;}
+.sm-plat-card__body{padding:1.2rem 1.4rem 1.4rem;}
+.sm-plat-card__body p{font-size:.87rem;line-height:1.65;color:#555;margin:0 0 .85rem;}
+.sm-plat-card__tag{display:inline-flex;font-size:.7rem;font-weight:700;letter-spacing:.04em;color:#8a6a14;background:rgba(242,191,34,.12);border:1px solid rgba(242,191,34,.22);padding:.2rem .65rem;border-radius:100px;}
 
 /* SHOWCASE */
 .sm-showcase{padding:clamp(4rem,8vh,6rem) 2rem;background:#f4f4f0;}
