@@ -84,8 +84,21 @@ function initReveals() {
   revealFrom('[class*="ImageEnter_image"]', { opacity: 0, scale: 1.05 }, { duration: 0.7 });
   revealFrom('[class*="AnimatedPanel_panel"]:not(.gsap-service-card)', { opacity: 0, y: 30 }, { duration: 0.55 });
 
-  // Global lazy-loading for textual site elements (skips elements already controlled by other effects)
-  revealFrom('main p:not([class*="Statistic"]):not([class*="hero"]), main h2:not([data-split]):not([class*="Statistic"]):not(.gsap-service-heading), main h3:not([data-split]):not([class*="Statistic"]), main li', { opacity: 0, y: 18 }, { duration: 0.45 });
+  // Global lazy-loading for textual site elements (skips elements already
+  // controlled by other effects). The custom :not() filters keep this scoped:
+  //   • `:not([data-reveal])` and `:not([data-reveal] *)` — every element
+  //     managed by ScrollReveal.astro (or nested inside one) is excluded so
+  //     GSAP's inline-style writes can't beat the CSS init/is-revealed rules.
+  //   • The Statistic / hero / data-split exclusions stay so we don't
+  //     double-animate elements that already have a bespoke entrance.
+  revealFrom(
+    'main p:not([data-reveal]):not([class*="Statistic"]):not([class*="hero"]):not([data-reveal] *), '
+    + 'main h2:not([data-reveal]):not([data-split]):not([class*="Statistic"]):not(.gsap-service-heading):not([data-reveal] *), '
+    + 'main h3:not([data-reveal]):not([data-split]):not([class*="Statistic"]):not([data-reveal] *), '
+    + 'main li:not([data-reveal]):not([data-reveal] *)',
+    { opacity: 0, y: 18 },
+    { duration: 0.45 },
+  );
 
   // Ethos is next after pinned Services. Trigger off the Services container
   // (not Ethos itself) so we can start fading Ethos in *while* Services is

@@ -248,6 +248,27 @@ const { title } = Astro.props;
         width: 14px;
         flex-shrink: 0;
       }
+
+      /* Reduce KOTA hero H1 size site-wide. KOTA's --fs-60 (clamp(2.5rem,
+         4.26vw, 4.375rem) = up to ~70px) was reading too large across
+         /case-studies, /industries/*, /services/*, /about, etc. Pulled down
+         to ~3rem ceiling for tighter editorial rhythm. */
+      [class*="Hero_hero__"] h1,
+      [class*="Hero_hero__"] h1 span,
+      [class*="Hero_bottom__"] h1,
+      [class*="Hero_bottom__"] h1 span {
+        font-size: clamp(1.85rem, 3.4vw, 3rem) !important;
+      }
+      [class*="Hero_hero__"] h2,
+      [class*="Hero_top__"] h2 {
+        font-size: clamp(1.05rem, 1.6vw, 1.35rem) !important;
+        line-height: 1.35 !important;
+      }
+      [class*="Hero_introText__"],
+      [class*="Hero_introText__"] span {
+        font-size: clamp(0.95rem, 1.2vw, 1.05rem) !important;
+        line-height: 1.55 !important;
+      }
     </style>
   </body>
 </html>

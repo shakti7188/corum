@@ -36,25 +36,45 @@
      ──────────────────────────────────────────────────────────────────── */
   [data-reveal] {
     transition:
-      opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--c8-reveal-delay, 0ms);
   }
   [data-reveal].c8-reveal-init {
     opacity: 0;
+    filter: blur(14px);
   }
-  [data-reveal].c8-reveal-init[data-reveal="up"]    { transform: translate3d(0, 80px, 0); }
-  [data-reveal].c8-reveal-init[data-reveal="down"]  { transform: translate3d(0, -80px, 0); }
-  [data-reveal].c8-reveal-init[data-reveal="left"]  { transform: translate3d(-110px, 0, 0); }
-  [data-reveal].c8-reveal-init[data-reveal="right"] { transform: translate3d(110px, 0, 0); }
-  [data-reveal].c8-reveal-init[data-reveal="scale"] { transform: scale(0.86); }
-  [data-reveal].c8-reveal-init[data-reveal="fade"]  { transform: none; }
-  [data-reveal].c8-reveal-init[data-reveal="tilt"]  { transform: translate3d(0, 70px, 0) rotate(-3deg); }
+  /* Amplitudes are bigger than the typical "scroll-reveal" library on
+     purpose — the brief was "make the page feel alive," not "subtle." Each
+     direction still pairs the translate with a scale-down so the entry
+     reads like a camera focus, not a flat slide. The blur on init is what
+     sells the "loading into place" feel.
+
+     Y values are written as `calc(var(--c8-rev-y, 1) * <distance>)` so a
+     scroll-direction tracker on <html> can flip the sign on up-scroll.
+     When the user reverses direction, elements re-entering from the TOP
+     of the viewport land FROM ABOVE instead of from below. */
+  [data-reveal].c8-reveal-init[data-reveal="up"]         { transform: translate3d(0, calc(var(--c8-rev-y, 1) * 110px), 0) scale(0.92); }
+  [data-reveal].c8-reveal-init[data-reveal="down"]       { transform: translate3d(0, calc(var(--c8-rev-y, 1) * -110px), 0) scale(0.92); }
+  [data-reveal].c8-reveal-init[data-reveal="left"]       { transform: translate3d(-160px, calc(var(--c8-rev-y, 1) * 24px), 0) scale(0.92); }
+  [data-reveal].c8-reveal-init[data-reveal="right"]      { transform: translate3d(160px, calc(var(--c8-rev-y, 1) * 24px), 0) scale(0.92); }
+  [data-reveal].c8-reveal-init[data-reveal="scale"]      { transform: scale(0.74); }
+  [data-reveal].c8-reveal-init[data-reveal="fade"]       { transform: none; }
+  [data-reveal].c8-reveal-init[data-reveal="tilt"]       { transform: translate3d(-90px, calc(var(--c8-rev-y, 1) * 100px), 0) rotate(calc(var(--c8-rev-y, 1) * -5deg)) scale(0.9); }
+  [data-reveal].c8-reveal-init[data-reveal="tilt-right"] { transform: translate3d(90px, calc(var(--c8-rev-y, 1) * 100px), 0) rotate(calc(var(--c8-rev-y, 1) * 5deg)) scale(0.9); }
+
+  /* Zigzag — alternates which side each child enters from. Apply to the
+     children of a [data-reveal-stagger] container; the nth-child rules
+     pick the direction so adjacent items feel like they're weaving in
+     toward the centre rail. */
+  [data-reveal].c8-reveal-init[data-reveal="zigzag"]                                           { transform: translate3d(-140px, calc(var(--c8-rev-y, 1) * 32px), 0) scale(0.94); }
+  [data-reveal-stagger] > [data-reveal="zigzag"]:nth-child(even).c8-reveal-init                { transform: translate3d(140px,  calc(var(--c8-rev-y, 1) * 32px), 0) scale(0.94); }
 
   /* will-change only during the active reveal — NOT permanent. Keeping it
      on thousands of elements forever hurts scroll perf more than it helps. */
   [data-reveal].c8-reveal-animating {
-    will-change: opacity, transform;
+    will-change: opacity, transform, filter;
   }
 
   /* !important here is deliberate. The reveal init rules (especially
@@ -67,6 +87,7 @@
   [data-reveal].is-revealed {
     opacity: 1 !important;
     transform: translate3d(0, 0, 0) scale(1) rotate(0) !important;
+    filter: blur(0) !important;
   }
 
   /* ────────────────────────────────────────────────────────────────────
@@ -76,14 +97,18 @@
      If JS never runs, sections stay visible.
      ──────────────────────────────────────────────────────────────────── */
   main > .c8-reveal-section {
-    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    transition:
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
   }
   main > .c8-reveal-section.c8-reveal-init {
     opacity: 0;
-    will-change: opacity;
+    transform: translate3d(0, calc(var(--c8-rev-y, 1) * 60px), 0);
+    will-change: opacity, transform;
   }
   main > .c8-reveal-section.is-revealed {
     opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
   }
 
   /* First section (Hero) paints immediately — never un-reveal the fold. */
@@ -122,6 +147,7 @@
     main > .c8-reveal-section {
       opacity: 1 !important;
       transform: none !important;
+      filter: none !important;
       transition: none !important;
     }
   }
@@ -142,6 +168,35 @@
     var prefersReduced =
       window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Scroll-direction tracker — keeps a CSS var (--c8-rev-y) on <html>
+       that flips between 1 (default, content rises from below) and -1
+       (content drops from above). The reveal init transforms multiply
+       their Y offset by this var so an element re-entering the viewport
+       from the TOP on up-scroll lands FROM ABOVE, not from below. Without
+       this the up-scroll re-reveals always look like the element is
+       falling from below the viewport, which reads wrong. */
+    var html = document.documentElement;
+    var lastY = window.scrollY || 0;
+    var lastDir = 1;
+    var dirTickPending = false;
+    function updateDir() {
+      dirTickPending = false;
+      var y = window.scrollY || 0;
+      // Tiny delta = no change. Avoids flipping on subpixel jitter.
+      if (Math.abs(y - lastY) < 4) return;
+      var dir = y > lastY ? 1 : -1;
+      lastY = y;
+      if (dir !== lastDir) {
+        lastDir = dir;
+        html.style.setProperty('--c8-rev-y', dir.toString());
+      }
+    }
+    window.addEventListener('scroll', function () {
+      if (dirTickPending) return;
+      dirTickPending = true;
+      requestAnimationFrame(updateDir);
+    }, { passive: true });
 
     // Tag direct main > * as reveal sections, and apply c8-reveal-init
     // to the sections + every [data-reveal] item so they start hidden.
@@ -214,11 +269,17 @@
         });
       },
       {
-        // Negative bottom margin: element must be 12% into the viewport
-        // before reveal fires. Top/side stay at 0 so the un-reveal only
-        // fires once the element has cleared the viewport entirely,
-        // avoiding edge flicker.
-        rootMargin: '0px 0px -12% 0px',
+        // Asymmetric rootMargin tuned for "alive" feel:
+        //   • bottom: -8%  → reveal fires the moment an element peeks ~8%
+        //     into the viewport. Earlier than that, the user can't see
+        //     the entry animation because the element is still off-screen.
+        //   • top: +50%   → un-reveal is delayed until the element is a
+        //     half-viewport ABOVE the actual viewport top. By then any
+        //     "snap to init" is invisible. This is what eliminates the
+        //     jarring mid-screen reset when scrolling fast.
+        //   • horizontal: 0 — left/right reveals don't have a horizontal
+        //     scroll axis to worry about.
+        rootMargin: '50% 0px -8% 0px',
         threshold: 0,
       }
     );

@@ -46,7 +46,11 @@ const projects = [
     heading: 'Token2049 — global stage',
     description: 'Compressed multi-channel launch around Token2049 Dubai. PR, KOL activation and live community moments synchronized into a single 72-hour burst.',
     tags: ['PR', 'KOL', 'Community'],
-    poster: '/images/utribe.png',
+    // Unsplash stand-in until a real Token2049/Ubuntu Tribe photo lands —
+    // /images/utribe.png was referenced but never shipped, so the card was
+    // rendering broken alt text. Dubai-skyline shot keeps the Token2049
+    // context legible at thumbnail size.
+    poster: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&h=900&fit=crop&q=80',
   },
   {
     href: '/work/kucoin',
@@ -75,7 +79,7 @@ const projects = [
 
 <section class="c8-work" id="our-work">
   <div class="c8-work__inner">
-    <header class="c8-work__head">
+    <header class="c8-work__head" data-reveal-stagger="110">
       <p class="c8-work__eyebrow" data-reveal="up">Featured work</p>
       <h2 class="c8-work__heading" data-reveal="up">
         Featured work. <span class="c8-work__heading-accent">Outsized outcomes.</span>

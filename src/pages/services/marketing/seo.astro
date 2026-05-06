@@ -1,275 +1,673 @@
 ---
-import "../../../styles/global.css";
+import Layout from '../../../layouts/Layout.astro';
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SEO & AEO Services | Corum8</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  </head>
+<Layout title="SEO & AEO Services — Rank First, Get Cited by AI | Corum8">
+  <Fragment slot="head">
+    <meta name="description" content="Corum8 SEO and AEO for Web3, AI, and fintech. Technical SEO, content strategy, and authority building so AI engines cite your brand directly." />
+    <link rel="canonical" href="https://corum8.com/services/marketing/seo" />
+  </Fragment>
 
-  <body class="bg-[#f5f2eb] text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-[#ff9b71]/30">
-    <main class="relative z-10 pt-20 lg:pt-32 pb-24 overflow-hidden" id="smooth-wrapper">
-      <div id="smooth-content">
+<!-- ══════════════════════════════════════════════════════════════════
+     1. HERO — headline left · floating cards + photo right
+═══════════════════════════════════════════════════════════════════ -->
+<section class="s-hero">
+  <div class="s-blob s-blob--a"></div>
+  <div class="s-blob s-blob--b"></div>
+  <div class="s-hero__inner">
 
-        <!-- Ambient Background -->
-        <div class="absolute top-0 right-0 -z-10 w-[600px] h-[600px] bg-[#ff9b71]/10 blur-[100px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
-        
-        <!-- HERO SECTION -->
-        <section class="max-w-6xl mx-auto px-6 text-center min-h-[70vh] flex flex-col justify-center">
-          <div class="gs-reveal">
-            <div class="inline-flex items-center px-4 py-2 rounded-full bg-[#ff9b71]/10 text-[#d35400] font-bold text-xs tracking-widest uppercase mb-8 border border-[#ff9b71]/20">
-              SEO & AEO AGENCY
-            </div>
-            <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
-              Bring <span class="text-[#ff9b71]">Qualified Traffic</span><br/> to your website.
-            </h1>
-            <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-12 leading-relaxed">
-              We help Web3, AI, and Fintech brands dominate search engines and AI-generated answers. Get a free SEO audit today to uncover missed revenue.
-            </p>
-            
-            <!-- AUDIT FORM -->
-            <div class="max-w-3xl mx-auto bg-white p-2 sm:p-3 rounded-3xl sm:rounded-full shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-slate-200 flex flex-col sm:flex-row gap-2 sm:gap-0 relative z-20 mb-20 transform transition-transform hover:-translate-y-1 duration-300">
-              <input type="url" placeholder="Your Website URL" class="flex-1 bg-transparent border-none outline-none px-6 py-4 text-slate-800 placeholder-slate-400 font-medium sm:border-r border-slate-200" />
-              <input type="email" placeholder="Your Email Address" class="flex-1 bg-transparent border-none outline-none px-6 py-4 text-slate-800 placeholder-slate-400 font-medium" />
-              <button class="bg-[#ff9b71] hover:bg-[#e0835b] text-white px-8 py-4 rounded-xl sm:rounded-full font-bold transition-all hover:shadow-lg whitespace-nowrap">
-                Get Free Audit
-              </button>
-            </div>
-          </div>
-
-          <!-- HERO VISUAL / TRAFFIC CARD -->
-          <div class="max-w-md mx-auto bg-white rounded-[32px] p-8 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100 text-left relative z-10 gs-reveal">
-            <h3 class="font-bold text-slate-900 mb-6 text-lg flex items-center justify-between">
-              Organic Traffic Growth
-              <span class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400">↗</span>
-            </h3>
-            
-            <!-- Mock Chart -->
-            <div class="h-24 w-full border-b border-dashed border-slate-200 mb-6 relative">
-              <svg viewBox="0 0 100 40" class="w-full h-full overflow-visible">
-                <path d="M0 30 Q 20 25, 40 10 T 80 15 T 100 0" fill="none" stroke="#ff9b71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="dash-anim" />
-                <path d="M0 30 Q 20 25, 40 10 T 80 15 T 100 0 L 100 40 L 0 40 Z" fill="url(#gradient)" opacity="0.2" />
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#ff9b71" stop-opacity="1" />
-                    <stop offset="100%" stop-color="#ff9b71" stop-opacity="0" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            
-            <div class="flex items-end gap-3">
-              <span class="text-4xl font-extrabold text-[#27c93f]">+450%</span>
-              <span class="text-sm font-medium text-slate-400 mb-1">vs last year</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- LOGO CLOUD -->
-        <section class="py-12 mt-12 mb-20 gs-reveal">
-          <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-sm font-bold tracking-widest text-slate-400 uppercase mb-8">Ranked #1 for global queries</p>
-            <div class="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-              <div class="text-2xl font-black text-slate-800">Shopify</div>
-              <div class="text-2xl font-black text-slate-800 tracking-tighter">Webflow</div>
-              <div class="text-2xl font-black text-slate-800 italic">Vercel</div>
-              <div class="text-2xl font-black text-slate-800 uppercase tracking-widest">Stripe</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SERVICE CARDS (DARK) -->
-        <section class="py-24 lg:py-32 bg-[#111] rounded-[40px] lg:rounded-[80px] text-white mx-4 lg:mx-8">
-          <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <h2 class="text-4xl lg:text-6xl font-extrabold text-center mb-16 gs-reveal">How we rank your site</h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-              <!-- Card 1 -->
-              <div class="bg-[#1a1a1a] p-10 rounded-3xl border border-[#2a2a2a] hover:border-[#ff9b71] transition-all hover:-translate-y-2 group gs-reveal">
-                <span class="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-[#ff9b71]/50 to-transparent mb-6 block" style="-webkit-text-stroke: 1px #ff9b71;">01</span>
-                <h3 class="text-2xl font-bold mb-4 text-white">Technical SEO</h3>
-                <p class="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">We fix crawlability, site speed, and structured data so search engines can read and index your site perfectly.</p>
-              </div>
-              <!-- Card 2 -->
-              <div class="bg-[#1a1a1a] p-10 rounded-3xl border border-[#2a2a2a] hover:border-[#ff9b71] transition-all hover:-translate-y-2 group gs-reveal" style="transition-delay: 100ms;">
-                <span class="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-[#ff9b71]/50 to-transparent mb-6 block" style="-webkit-text-stroke: 1px #ff9b71;">02</span>
-                <h3 class="text-2xl font-bold mb-4 text-white">Content Strategy</h3>
-                <p class="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">Data-driven content clusters that target high-intent commercial keywords with low difficulty for rapid wins.</p>
-              </div>
-              <!-- Card 3 -->
-              <div class="bg-[#1a1a1a] p-10 rounded-3xl border border-[#2a2a2a] hover:border-[#ff9b71] transition-all hover:-translate-y-2 group gs-reveal" style="transition-delay: 200ms;">
-                <span class="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-[#ff9b71]/50 to-transparent mb-6 block" style="-webkit-text-stroke: 1px #ff9b71;">03</span>
-                <h3 class="text-2xl font-bold mb-4 text-white">AEO & Authority</h3>
-                <p class="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">Securing high-DR backlinks and optimizing entities so ChatGPT, Gemini, and Perplexity quote your brand directly.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- GROWTH STATS -->
-        <section class="py-24 mt-12 bg-white mx-4 lg:mx-8 rounded-[40px] lg:rounded-[80px] shadow-sm border border-slate-100">
-          <div class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
-            <div class="gs-reveal-left">
-              <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 leading-[1.1]">
-                We don't just chase rankings. <br/> We chase <span class="text-[#ff9b71]">Revenue</span>.
-              </h2>
-              <p class="text-xl text-slate-600 leading-relaxed mb-8">
-                Traffic is a vanity metric if it doesn't convert. Our SEO and AEO strategies are built purely around commercial intent and driving actual pipeline value for high-ticket clients.
-              </p>
-              <a href="/contact" class="px-8 py-4 inline-block rounded-full bg-slate-900 text-white font-bold text-lg hover:bg-[#ff9b71] transition-colors">
-                View Case Studies
-              </a>
-            </div>
-            
-            <div class="grid sm:grid-cols-2 gap-6 gs-reveal-right">
-              <div class="bg-[#f5f2eb] p-10 rounded-3xl text-center border border-slate-200">
-                <h3 class="text-5xl font-extrabold text-[#ff9b71] mb-2">98%</h3>
-                <span class="font-bold text-slate-700">Avg. Client Retention</span>
-              </div>
-              <div class="bg-[#f5f2eb] p-10 rounded-3xl text-center border border-slate-200 sm:mt-12">
-                <h3 class="text-5xl font-extrabold text-[#ff9b71] mb-2">60M+</h3>
-                <span class="font-bold text-slate-700">Organic Traffic Generated</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- TESTIMONIALS -->
-        <section class="py-32">
-          <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center max-w-3xl mx-auto mb-20 gs-reveal">
-              <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">Real Results.</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8">
-              <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 gs-reveal">
-                <div class="flex text-amber-400 mb-6 text-2xl">★★★★★</div>
-                <p class="text-xl text-slate-700 leading-relaxed mb-8 italic font-medium">"Within 6 months, Corum8 doubled our organic traffic. But more importantly, our qualified inbound leads tripled. They understand B2B SaaS SEO better than anyone."</p>
-                <div class="flex items-center gap-4">
-                  <div class="w-14 h-14 bg-slate-200 rounded-full"></div>
-                  <div>
-                    <h4 class="font-bold text-slate-900 text-lg">Jonathan Reed</h4>
-                    <p class="text-slate-500">CEO at FinMatrix</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 gs-reveal" style="transition-delay: 100ms;">
-                <div class="flex text-amber-400 mb-6 text-2xl">★★★★★</div>
-                <p class="text-xl text-slate-700 leading-relaxed mb-8 italic font-medium">"Their AEO strategy got our brand mentioned directly inside ChatGPT and Claude answers. We bypassed traditional search entirely for our biggest enterprise deals."</p>
-                <div class="flex items-center gap-4">
-                  <div class="w-14 h-14 bg-slate-200 rounded-full"></div>
-                  <div>
-                    <h4 class="font-bold text-slate-900 text-lg">Emily Chen</h4>
-                    <p class="text-slate-500">Head of Marketing, Web3Core</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- FAQ -->
-        <section class="py-24 bg-white border-y border-slate-200">
-          <div class="max-w-4xl mx-auto px-6 lg:px-12">
-            <div class="text-center mb-16 gs-reveal">
-              <h2 class="text-4xl font-extrabold text-slate-900">Frequently Asked Questions</h2>
-            </div>
-            <div class="space-y-6 gs-reveal">
-              <div class="p-6 rounded-2xl bg-[#f5f2eb] border border-slate-200">
-                <h4 class="text-xl font-bold text-slate-900 mb-2">How long does SEO take to see results?</h4>
-                <p class="text-slate-600">Typically, you will start seeing noticeable movement in rankings and traffic within 3 to 6 months, depending on the competitiveness of your industry.</p>
-              </div>
-              <div class="p-6 rounded-2xl bg-[#f5f2eb] border border-slate-200">
-                <h4 class="text-xl font-bold text-slate-900 mb-2">What is AEO?</h4>
-                <p class="text-slate-600">Answer Engine Optimization (AEO) focuses on structuring your content and building authority so that AI engines like ChatGPT, Claude, and Gemini cite your brand in their answers.</p>
-              </div>
-              <div class="p-6 rounded-2xl bg-[#f5f2eb] border border-slate-200">
-                <h4 class="text-xl font-bold text-slate-900 mb-2">Do you guarantee #1 rankings?</h4>
-                <p class="text-slate-600">No agency can guarantee a specific ranking. Instead, we guarantee a data-driven process that has consistently delivered massive ROI and top-tier visibility for our clients.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- CTA SECTION -->
-        <section class="py-32">
-          <div class="max-w-5xl mx-auto px-6 text-center gs-reveal">
-            <h2 class="text-5xl lg:text-7xl font-extrabold text-slate-900 mb-8 leading-[1.1]">Dominate your <br/><span class="text-[#ff9b71]">Search Market</span></h2>
-            <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">Get a comprehensive audit of your current SEO landscape and a roadmap to outrank your competitors.</p>
-            <a href="/contact" class="px-10 py-5 rounded-full bg-[#ff9b71] hover:bg-[#e0835b] text-white font-bold text-xl transition-all shadow-xl hover:-translate-y-1 inline-block">
-              Request Your Free Audit
-            </a>
-          </div>
-        </section>
-
+    <div class="s-hero__copy reveal-up">
+      <span class="s-badge">SEO · AEO · GEO · since 2014</span>
+      <h1 class="s-hero__h1">The team behind<br/><span class="s-orange">200+ tier-1 placements</span><br/>per quarter for KuCoin.</h1>
+      <p class="s-hero__sub">We're an SEO and AEO agency for Web3, AI, and fintech. We rank you in Google. We get you quoted by ChatGPT, Gemini, and Perplexity. We've driven <strong>60M+ organic sessions</strong> for clients including Binance, KuCoin, and Cashaa.</p>
+      <div class="s-hero__btns">
+        <a href="/contact" class="s-btn s-btn--fill">Get a free SEO audit</a>
+        <a href="#case-spotlight" class="s-btn s-btn--line">See the work →</a>
       </div>
-    </main>
+      <ul class="s-hero__chips">
+        <li><span class="s-chip-num">60M+</span><span class="s-chip-lbl">organic sessions</span></li>
+        <li class="s-chip-div"></li>
+        <li><span class="s-chip-num">200+</span><span class="s-chip-lbl">tier-1 placements / qtr</span></li>
+        <li class="s-chip-div"></li>
+        <li><span class="s-chip-num">14</span><span class="s-chip-lbl">languages live</span></li>
+      </ul>
+    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js" is:inline></script>
-    
-    <script is:inline>
-      document.addEventListener("DOMContentLoaded", (event) => {
-        const lenis = new Lenis({
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          direction: 'vertical',
-          gestureDirection: 'vertical',
-          smooth: true
-        });
+    <div class="s-hero__visual reveal-right">
+      <!-- main photo -->
+      <div class="s-hero__photo">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80&auto=format&fit=crop" alt="Analytics dashboard" />
+      </div>
+      <!-- floating rank card -->
+      <div class="s-fc s-fc--rank float-a">
+        <div class="s-fc__label">Live rankings</div>
+        <div class="s-fc__row"><span>crypto exchange platform</span><span class="green">#1</span></div>
+        <div class="s-fc__row"><span>web3 marketing agency</span><span class="green">#2</span></div>
+        <div class="s-fc__row"><span>defi token strategy</span><span class="green">#3</span></div>
+      </div>
+      <!-- floating traffic card -->
+      <div class="s-fc s-fc--traffic float-b">
+        <svg viewBox="0 0 180 55" fill="none" class="s-sparkline">
+          <defs><linearGradient id="spg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f2bf22" stop-opacity=".3"/><stop offset="100%" stop-color="#f2bf22" stop-opacity="0"/></linearGradient></defs>
+          <path class="sp-fill" d="M0 48 Q30 40,55 28 T110 16 T180 4 L180 55 L0 55Z" fill="url(#spg)"/>
+          <path class="sp-line" d="M0 48 Q30 40,55 28 T110 16 T180 4" stroke="#f2bf22" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div class="s-fc__stat"><span class="s-fc__big">+450%</span><span class="s-fc__lbl">organic · 12 mo</span></div>
+      </div>
+    </div>
 
-        function raf(time) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
+  </div>
+</section>
 
-        gsap.registerPlugin(ScrollTrigger);
+<!-- ── LOGO STRIP ── -->
+<div class="s-logos reveal-up">
+  <span>Binance</span><span class="sdot">·</span>
+  <span>KuCoin</span><span class="sdot">·</span>
+  <span>Cashaa</span><span class="sdot">·</span>
+  <span>Fanadise</span><span class="sdot">·</span>
+  <span>Metarix</span><span class="sdot">·</span>
+  <span>Ubuntu Tribe</span>
+</div>
 
-        const revealElements = document.querySelectorAll(".gs-reveal");
-        revealElements.forEach((el) => {
-          gsap.fromTo(el, { autoAlpha: 0, y: 50 }, {
-            duration: 1, autoAlpha: 1, y: 0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
-          });
-        });
+<!-- ══════════════════════════════════════════════════════════════════
+     2. THREE DISCIPLINES — light cream pill, image-topped cards
+═══════════════════════════════════════════════════════════════════ -->
+<section class="s-disc s-pill">
+  <div class="s-section-head reveal-up">
+    <span class="s-badge">What we do</span>
+    <h2 class="s-h2">Three disciplines.<br/>One search strategy that actually moves pipeline.</h2>
+    <p class="s-section-head__sub">Most agencies pick one. We run all three together because they only work as a system.</p>
+  </div>
+  <div class="s-disc-grid">
 
-        const revealLeft = document.querySelectorAll(".gs-reveal-left");
-        revealLeft.forEach((el) => {
-          gsap.fromTo(el, { autoAlpha: 0, x: -50 }, {
-            duration: 1, autoAlpha: 1, x: 0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
-          });
-        });
+    <div class="s-disc-card reveal-stagger">
+      <div class="s-disc-card__img">
+        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80&auto=format&fit=crop" alt="Technical audit" />
+        <span class="s-disc-card__num">01</span>
+      </div>
+      <div class="s-disc-card__body">
+        <h3>Technical SEO</h3>
+        <p>Core Web Vitals, crawl depth, structured data, JS rendering — fixed so Google reads every page at full capacity.</p>
+        <ul>
+          <li>Site speed &amp; CWV</li>
+          <li>Schema.org markup</li>
+          <li>Crawl &amp; indexation</li>
+        </ul>
+      </div>
+    </div>
 
-        const revealRight = document.querySelectorAll(".gs-reveal-right");
-        revealRight.forEach((el) => {
-          gsap.fromTo(el, { autoAlpha: 0, x: 50 }, {
-            duration: 1, autoAlpha: 1, x: 0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
-          });
-        });
+    <div class="s-disc-card reveal-stagger">
+      <div class="s-disc-card__img">
+        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80&auto=format&fit=crop" alt="Content strategy" />
+        <span class="s-disc-card__num">02</span>
+      </div>
+      <div class="s-disc-card__body">
+        <h3>Content &amp; AEO</h3>
+        <p>Content clusters targeting commercial intent — then layered with Answer Engine Optimization so ChatGPT, Claude, and Gemini pull from your pages.</p>
+        <ul>
+          <li>Topical cluster architecture</li>
+          <li>Direct-answer blocks</li>
+          <li>AI citation optimization</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="s-disc-card reveal-stagger">
+      <div class="s-disc-card__img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Link building" />
+        <span class="s-disc-card__num">03</span>
+      </div>
+      <div class="s-disc-card__body">
+        <h3>Authority Building</h3>
+        <p>High-DR backlinks from Decrypt, CoinDesk, TechCrunch, Forbes Crypto. Relationships, not link farms.</p>
+        <ul>
+          <li>Tier-1 editorial placements</li>
+          <li>Digital PR acquisition</li>
+          <li>Domain authority growth</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     3. FULL-BLEED SPLIT — photo left · stats right
+═══════════════════════════════════════════════════════════════════ -->
+<section class="s-split-photo">
+  <div class="s-split-photo__img reveal-left">
+    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80&auto=format&fit=crop" alt="Data analytics" />
+    <div class="s-split-photo__badge">
+      <span class="s-split-photo__badge-num">200+</span>
+      <span class="s-split-photo__badge-lbl">tier-1 placements/quarter</span>
+    </div>
+  </div>
+  <div class="s-split-photo__copy reveal-right">
+    <span class="s-badge">Proven results</span>
+    <h2 class="s-h2">We don't chase rankings.<br/>We chase <span class="s-orange">revenue.</span></h2>
+    <p>Traffic is a vanity metric if it doesn't convert. Our strategies are built around commercial intent — every keyword maps back to a buyer stage, every backlink comes from a publication your customers already read.</p>
+    <div class="s-mini-stats">
+      <div class="s-mini-stat"><span>60M+</span><small>organic sessions driven</small></div>
+      <div class="s-mini-stat"><span>98%</span><small>client retention</small></div>
+      <div class="s-mini-stat"><span>50+</span><small>markets covered</small></div>
+    </div>
+    <a href="/case-studies" class="s-btn s-btn--fill">See case studies</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     4. HOW WE WORK — 2×2 image-cards
+═══════════════════════════════════════════════════════════════════ -->
+<section class="s-process">
+  <div class="s-section-head reveal-up">
+    <span class="s-badge">Process</span>
+    <h2 class="s-h2">From audit to authority.</h2>
+  </div>
+  <div class="s-process-grid">
+
+    <div class="s-proc-card reveal-stagger">
+      <div class="s-proc-card__img">
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80&auto=format&fit=crop" alt="Technical audit" />
+        <span class="s-proc-num">01</span>
+      </div>
+      <h3>Technical audit</h3>
+      <p>We crawl your site the way Google does — with Screaming Frog, Ahrefs, and Semrush. Every issue, prioritised.</p>
+    </div>
+
+    <div class="s-proc-card reveal-stagger">
+      <div class="s-proc-card__img">
+        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=80&auto=format&fit=crop" alt="Keyword mapping" />
+        <span class="s-proc-num">02</span>
+      </div>
+      <h3>Keyword &amp; entity mapping</h3>
+      <p>Every commercial keyword mapped by intent and potential value. Content architecture built around what earns rankings and AI citations.</p>
+    </div>
+
+    <div class="s-proc-card reveal-stagger">
+      <div class="s-proc-card__img">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80&auto=format&fit=crop" alt="Content production" />
+        <span class="s-proc-num">03</span>
+      </div>
+      <h3>Content production</h3>
+      <p>Industry-expert writers — not AI filler — produce fact-dense content structured for direct answers and named-entity authority.</p>
+    </div>
+
+    <div class="s-proc-card reveal-stagger">
+      <div class="s-proc-card__img">
+        <img src="https://images.unsplash.com/photo-1528901166007-3784c7dd3653?w=600&q=80&auto=format&fit=crop" alt="Link building" />
+        <span class="s-proc-num">04</span>
+      </div>
+      <h3>Link acceleration</h3>
+      <p>Monthly placements in publications your competitors can't get into. Editorially relevant context, not just DR numbers.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     5. WHY US — light comparison section · pivots the buyer
+═══════════════════════════════════════════════════════════════════ -->
+<section class="s-why">
+  <div class="s-section-head reveal-up">
+    <span class="s-badge">Why Corum8 vs. another agency</span>
+    <h2 class="s-h2">Most agencies sell rankings.<br/>We sell the <span class="s-orange">pipeline</span> behind them.</h2>
+  </div>
+  <div class="s-why__inner reveal-up">
+    <div class="s-why__col s-why__col--them">
+      <div class="s-why__col-h">A typical SEO agency</div>
+      <ul>
+        <li><span class="s-x">×</span> Reports on rankings and traffic — not pipeline</li>
+        <li><span class="s-x">×</span> Generic content briefs filled by junior writers</li>
+        <li><span class="s-x">×</span> Backlinks from low-authority "guest post" networks</li>
+        <li><span class="s-x">×</span> Doesn't understand Web3, MiCA, VARA, or DeFi</li>
+        <li><span class="s-x">×</span> AEO is "we'll figure it out next quarter"</li>
+        <li><span class="s-x">×</span> Reporting hidden behind a custom portal</li>
+      </ul>
+    </div>
+    <div class="s-why__col s-why__col--us">
+      <div class="s-why__col-h s-why__col-h--us">Corum8</div>
+      <ul>
+        <li><span class="s-tick">✓</span> Reports on qualified pipeline contribution and AI citation share</li>
+        <li><span class="s-tick">✓</span> Industry-expert writers — fact-dense, named entity-rich content</li>
+        <li><span class="s-tick">✓</span> Editorial placements in Decrypt, CoinDesk, Forbes Crypto, TechCrunch</li>
+        <li><span class="s-tick">✓</span> Built for Web3, AI, and fintech — regulators and standards by name</li>
+        <li><span class="s-tick">✓</span> AEO live for clients since 2023 — before it had a name</li>
+        <li><span class="s-tick">✓</span> Live Ahrefs + GSC dashboards. Verify every number yourself</li>
+      </ul>
+    </div>
+  </div>
+  <div class="s-why__cta reveal-up">
+    <span class="s-why__cta-text">Want to see how we'd approach yours?</span>
+    <a href="/contact" class="s-btn s-btn--fill">Get a free SEO audit →</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     6. TOOLS STRIP
+═══════════════════════════════════════════════════════════════════ -->
+<div class="s-tools reveal-up">
+  <p class="s-tools__label">Tools &amp; data sources</p>
+  <div class="s-tools__chips">
+    <span>Ahrefs</span><span>Semrush</span><span>Screaming Frog</span>
+    <span>Google Search Console</span><span>Surfer SEO</span>
+    <span>Clearscope</span><span>PageSpeed Insights</span><span>Perplexity API</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     7. CASE STUDY — full-width dark · large photo bg
+═══════════════════════════════════════════════════════════════════ -->
+<section class="s-case s-pill" id="case-spotlight">
+  <div class="s-case__bg">
+    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=70&auto=format&fit=crop" alt="" aria-hidden="true" />
+    <div class="s-case__overlay"></div>
+  </div>
+  <div class="s-case__inner reveal-up">
+    <span class="s-case__tag">Case study · KuCoin</span>
+    <h2 class="s-case__h2">200+ tier-1 placements per quarter.<br/>From zero organic strategy.</h2>
+    <p class="s-case__body">We rebuilt KuCoin's content architecture around commercial keywords, ran a link campaign through Decrypt, CoinTelegraph, and 60+ regional publications, and covered 14 languages simultaneously.</p>
+    <div class="s-case__metrics">
+      <div><span>200+</span><small>placements / quarter</small></div>
+      <div><span>#1–3</span><small>target keyword rankings</small></div>
+      <div><span>14</span><small>languages</small></div>
+    </div>
+    <a href="/case-studies" class="s-btn s-btn--outline-white">Read all case studies →</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     8. TESTIMONIALS — 3 cards with photo avatars
+═══════════════════════════════════════════════════════════════════ -->
+<section class="s-testi">
+  <div class="s-section-head reveal-up">
+    <span class="s-badge">Client outcomes</span>
+    <h2 class="s-h2">Real results. Named clients.</h2>
+  </div>
+  <div class="s-testi-grid">
+
+    <div class="s-testi-card reveal-stagger">
+      <div class="s-testi-img">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80&auto=format&fit=crop&crop=face" alt="Jonathan Reed" />
+      </div>
+      <div class="s-stars">★★★★★</div>
+      <blockquote>"Within eight months our organic traffic tripled and we started appearing in ChatGPT responses for our target queries. Corum8 understood AEO before we'd heard the term."</blockquote>
+      <div class="s-testi-name">Jonathan Reed</div>
+      <div class="s-testi-role">CEO · FinMatrix · London</div>
+    </div>
+
+    <div class="s-testi-card reveal-stagger">
+      <div class="s-testi-img">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80&auto=format&fit=crop&crop=face" alt="Emily Chen" />
+      </div>
+      <div class="s-stars">★★★★★</div>
+      <blockquote>"Their AEO strategy got us cited inside Claude and Gemini answers within four months. We bypassed traditional search entirely for two of our largest enterprise deals in 2025."</blockquote>
+      <div class="s-testi-name">Emily Chen</div>
+      <div class="s-testi-role">Head of Marketing · Web3Core · Singapore</div>
+    </div>
+
+    <div class="s-testi-card reveal-stagger">
+      <div class="s-testi-img">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=80&auto=format&fit=crop&crop=face" alt="Arjun Mehta" />
+      </div>
+      <div class="s-stars">★★★★★</div>
+      <blockquote>"We ranked for 'crypto exchange development' in four months. The content they produced is genuinely better than anything our in-house team had written — specific, number-dense, accurate."</blockquote>
+      <div class="s-testi-name">Arjun Mehta</div>
+      <div class="s-testi-role">Founder · ChainBuild Labs · Dubai</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     9. IMAGE FEATURE ROW — 3 photos + caption
+═══════════════════════════════════════════════════════════════════ -->
+<section class="s-imgrow reveal-up">
+  <div class="s-imgrow__item">
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80&auto=format&fit=crop" alt="Strategy session" />
+    <span>Strategy &amp; Research</span>
+  </div>
+  <div class="s-imgrow__item s-imgrow__item--tall">
+    <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&q=80&auto=format&fit=crop" alt="Content creation" />
+    <span>Content &amp; Publishing</span>
+  </div>
+  <div class="s-imgrow__item">
+    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80&auto=format&fit=crop" alt="Reporting" />
+    <span>Reporting &amp; Optimisation</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     10. FAQ — clean accordion
+═══════════════════════════════════════════════════════════════════ -->
+<section class="s-faq">
+  <div class="s-section-head reveal-up">
+    <span class="s-badge">FAQ</span>
+    <h2 class="s-h2">Questions we get every week.</h2>
+  </div>
+  <div class="s-faq-list reveal-up">
+
+    <div class="s-faq-item">
+      <button class="s-faq-q" aria-expanded="false">What's the difference between SEO and AEO?<span class="s-chevron"></span></button>
+      <div class="s-faq-a"><strong>SEO gets you ranked in Google; AEO gets your content cited by AI models like ChatGPT, Claude, and Gemini.</strong> The two overlap but require different content structure. AEO demands direct-answer blocks, entity markup, and fact density that traditional SEO content often lacks. We build both simultaneously.</div>
+    </div>
+
+    <div class="s-faq-item">
+      <button class="s-faq-q" aria-expanded="false">Do you specialise in Web3 and crypto?<span class="s-chevron"></span></button>
+      <div class="s-faq-a"><strong>Yes — Web3, crypto, DeFi, and fintech are our primary verticals.</strong> These niches have specific keyword dynamics and require writers who understand the technical content. We've ranked clients for terms like "crypto exchange platform" and "DeFi wallet development" in markets where Google's ad restrictions make organic visibility especially valuable.</div>
+    </div>
+
+    <div class="s-faq-item">
+      <button class="s-faq-q" aria-expanded="false">How do you get my brand cited by ChatGPT and Claude?<span class="s-chevron"></span></button>
+      <div class="s-faq-a"><strong>AI models cite sources that are authoritative, factually dense, clearly structured, and well-referenced across the web.</strong> We build pages with direct-answer blocks, specific numbers, named-entity co-occurrence, and structured data — then back that content with editorial links from publications AI models are known to pull from.</div>
+    </div>
+
+    <div class="s-faq-item">
+      <button class="s-faq-q" aria-expanded="false">Do you guarantee specific rankings?<span class="s-chevron"></span></button>
+      <div class="s-faq-a"><strong>No agency can guarantee specific positions — anyone who does is either lying or selling manipulative tactics that risk a Google penalty.</strong> What we guarantee is a rigorous process: technical fixes, intent-matched content, and editorially earned links. Our client results speak for what that produces.</div>
+    </div>
+
+    <div class="s-faq-item">
+      <button class="s-faq-q" aria-expanded="false">What does reporting look like?<span class="s-chevron"></span></button>
+      <div class="s-faq-a"><strong>We report through a live Ahrefs dashboard plus Google Search Console data and a monthly written summary.</strong> You see keyword positions, traffic trends, new backlinks acquired, and domain authority movement. Direct access to the source tools — no custom portal hiding the data.</div>
+    </div>
+
+    <div class="s-faq-item">
+      <button class="s-faq-q" aria-expanded="false">Do you handle international SEO?<span class="s-chevron"></span></button>
+      <div class="s-faq-a"><strong>Yes — we've run campaigns across 50+ markets including complex hreflang structures for Arabic, Mandarin, Korean, and European languages.</strong> We also handle local SEO for clients in Dubai (VARA), Singapore (MAS), and UK (FCA) markets where regulatory entity mentions drive significant organic traffic.</div>
+    </div>
+
+    <div class="s-faq-item">
+      <button class="s-faq-q" aria-expanded="false">Can you work alongside our existing content team?<span class="s-chevron"></span></button>
+      <div class="s-faq-a"><strong>Yes — we work as an extension of in-house teams.</strong> We can handle strategy while your team executes, or produce content directly for review. We document everything — keyword maps, briefs, internal linking plans — so your team has full visibility.</div>
+    </div>
+
+    <div class="s-faq-item">
+      <button class="s-faq-q" aria-expanded="false">What tools do you use?<span class="s-chevron"></span></button>
+      <div class="s-faq-a"><strong>Ahrefs, Semrush, Screaming Frog, Google Search Console, Surfer SEO, Clearscope, PageSpeed Insights, and the Perplexity API for AEO validation.</strong> For AI citation testing we run prompts across ChatGPT, Claude, Gemini, and Perplexity against your target queries and track mention share over time.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     11. CTA — dark pill with bg photo
+═══════════════════════════════════════════════════════════════════ -->
+<section class="s-cta s-pill">
+  <div class="s-cta__bg">
+    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1400&q=70&auto=format&fit=crop" alt="" aria-hidden="true" />
+    <div class="s-cta__overlay"></div>
+  </div>
+  <div class="s-cta__inner reveal-up">
+    <span class="s-badge s-badge--dim">Ready?</span>
+    <h2 class="s-cta__h2">Dominate your<br/><span class="s-orange">search market.</span></h2>
+    <p>We'll audit your current SEO state, map your biggest opportunities, and tell you exactly what it takes to outrank your competitors — in the first call.</p>
+    <div class="s-cta__btns">
+      <a href="/contact" class="s-btn s-btn--fill s-btn--lg">Book a strategy call</a>
+      <a href="/case-studies" class="s-btn s-btn--outline-white">See our work →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── SCRIPTS ── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js" is:inline></script>
+<script is:inline>
+(function(){
+  // Lenis smooth scroll
+  var lenis = new Lenis({ duration: 1.15, easing: function(t){ return Math.min(1,1.001-Math.pow(2,-10*t)); } });
+  function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // reveal-up
+  gsap.utils.toArray('.reveal-up').forEach(function(el){
+    gsap.fromTo(el,{autoAlpha:0,y:50},{autoAlpha:1,y:0,duration:0.9,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+  // reveal-left/right
+  gsap.utils.toArray('.reveal-left').forEach(function(el){
+    gsap.fromTo(el,{autoAlpha:0,x:-60},{autoAlpha:1,x:0,duration:1,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+  gsap.utils.toArray('.reveal-right').forEach(function(el){
+    gsap.fromTo(el,{autoAlpha:0,x:60},{autoAlpha:1,x:0,duration:1,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+  // stagger grids
+  ['.s-disc-grid','.s-process-grid','.s-testi-grid'].forEach(function(sel){
+    var parent = document.querySelector(sel);
+    if(!parent) return;
+    gsap.fromTo(parent.querySelectorAll('.reveal-stagger'),
+      {autoAlpha:0,y:60},{autoAlpha:1,y:0,duration:0.85,ease:'power3.out',stagger:0.13,
+      scrollTrigger:{trigger:parent,start:'top 86%'}});
+  });
+
+  // sparkline draw
+  var sp = document.querySelector('.sp-line');
+  if(sp){ var l=sp.getTotalLength(); gsap.set(sp,{strokeDasharray:l,strokeDashoffset:l}); gsap.to(sp,{strokeDashoffset:0,duration:2.2,ease:'power2.out',delay:0.5}); }
+
+  // FAQ accordion
+  document.querySelectorAll('.s-faq-q').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=btn.closest('.s-faq-item');
+      var ans=item.querySelector('.s-faq-a');
+      var open=btn.getAttribute('aria-expanded')==='true';
+      document.querySelectorAll('.s-faq-item').forEach(function(i){
+        i.querySelector('.s-faq-q').setAttribute('aria-expanded','false');
+        i.querySelector('.s-faq-a').style.maxHeight='0';
+        i.querySelector('.s-faq-a').style.opacity='0';
+        i.classList.remove('open');
       });
-    </script>
+      if(!open){ btn.setAttribute('aria-expanded','true'); ans.style.maxHeight=ans.scrollHeight+'px'; ans.style.opacity='1'; item.classList.add('open'); }
+    });
+  });
+})();
+</script>
 
-    <style is:global>
-      body { font-family: 'DM Sans', sans-serif; }
-      .dash-anim {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
-        animation: dash 3s ease-out forwards;
-        animation-delay: 0.5s;
-      }
-      @keyframes dash {
-        to { stroke-dashoffset: 0; }
-      }
-    </style>
-  </body>
-</html>
+<!-- ── STYLES ── -->
+<style is:global>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-sans);background:#f4f4f0;color:#0f0f0f;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+img{display:block;width:100%;height:100%;object-fit:cover;}
+
+/* ── TOKENS ── */
+.s-badge{display:inline-flex;align-items:center;padding:.3rem .9rem;border-radius:100px;background:rgba(242,191,34,.12);border:1px solid rgba(242,191,34,.3);color:#8a6a14;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.s-badge--dim{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.6);}
+.s-orange{background:linear-gradient(135deg,#f2bf22,#b8841a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.s-h2{font-family:var(--font-display);font-size:clamp(1.85rem,3.6vw,2.6rem);font-weight:400;line-height:1.18;letter-spacing:-.015em;margin:.9rem 0 1.2rem;}
+.s-h2--white{color:#fff;}
+.s-p--dim{font-size:1rem;line-height:1.7;color:rgba(255,255,255,.5);margin-bottom:1rem;}
+.s-section-head{text-align:center;max-width:740px;margin:0 auto 3.5rem;}
+.s-section-head__sub{font-size:1rem;line-height:1.7;color:#666;margin-top:.5rem;}
+
+.s-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.8rem;border-radius:100px;font-size:.9rem;font-weight:700;text-decoration:none;transition:all .25s;border:none;cursor:pointer;font-family:inherit;}
+.s-btn--fill{background:#f2bf22;color:#fff;box-shadow:0 4px 20px rgba(242,191,34,.3);}
+.s-btn--fill:hover{background:#da9e49;transform:translateY(-2px);}
+.s-btn--line{background:transparent;color:#0f0f0f;border:1.5px solid rgba(0,0,0,.18);}
+.s-btn--line:hover{border-color:#0f0f0f;}
+.s-btn--outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);}
+.s-btn--outline-white:hover{border-color:#fff;}
+.s-btn--lg{padding:1rem 2.5rem;font-size:1rem;}
+
+/* ── PILL sections ── */
+.s-pill{border-radius:40px;margin:2rem 1.5rem;overflow:hidden;}
+@media(min-width:768px){.s-pill{border-radius:60px;margin:2rem 3rem;}}
+.s-disc{background:#efe9dc;padding:clamp(4rem,8vh,6rem) 2rem;border:1px solid rgba(0,0,0,.04);}
+@media(min-width:768px){.s-disc{padding:clamp(4rem,8vh,6rem) 4rem;}}
+
+/* ── BLOBS ── */
+.s-blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
+.s-blob--a{width:480px;height:480px;background:rgba(242,191,34,.1);top:-80px;right:-80px;}
+.s-blob--b{width:360px;height:360px;background:rgba(200,168,75,.07);bottom:0;left:-80px;}
+
+/* ── HERO ── */
+.s-hero{position:relative;overflow:hidden;padding:clamp(4rem,9vh,7rem) 2rem clamp(3rem,6vh,5rem);}
+.s-hero__inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+@media(max-width:900px){.s-hero__inner{grid-template-columns:1fr;}.s-hero__visual{display:none;}}
+.s-hero__copy{position:relative;z-index:1;}
+.s-hero__h1{font-family:var(--font-display);font-size:clamp(2.1rem,4vw,3.2rem);font-weight:400;line-height:1.15;letter-spacing:-.015em;margin:.9rem 0 1.3rem;}
+.s-hero__sub{font-size:1.05rem;line-height:1.7;color:#555;max-width:500px;margin-bottom:2rem;}
+.s-hero__btns{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:2.2rem;}
+.s-hero__chips{display:flex;align-items:center;gap:1.2rem;list-style:none;padding:0;margin:0;flex-wrap:wrap;}
+.s-hero__chips li:not(.s-chip-div){display:flex;flex-direction:column;}
+.s-chip-num{font-size:1.5rem;font-weight:800;color:#0f0f0f;line-height:1;}
+.s-chip-lbl{font-size:.72rem;color:#888;margin-top:.25rem;}
+.s-chip-div{width:1px;height:32px;background:rgba(0,0,0,.12);}
+
+/* hero visual */
+.s-hero__visual{position:relative;height:460px;}
+.s-hero__photo{position:absolute;inset:0;border-radius:24px;overflow:hidden;box-shadow:0 30px 70px -20px rgba(0,0,0,.2);}
+.s-hero__photo img{object-position:center top;}
+
+/* floating cards */
+.s-fc{position:absolute;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;box-shadow:0 16px 50px -12px rgba(0,0,0,.15);padding:1rem 1.2rem;z-index:10;}
+.s-fc__label{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#bbb;margin-bottom:.6rem;}
+.s-fc--rank{bottom:-20px;left:-30px;width:240px;}
+.s-fc__row{display:flex;justify-content:space-between;font-size:.78rem;color:#555;padding:.25rem 0;}
+.s-fc__row .green{font-weight:800;color:#22c55e;}
+.s-fc--traffic{top:20px;right:-20px;width:200px;}
+.s-sparkline{width:100%;height:50px;margin-bottom:.6rem;overflow:visible;}
+.s-fc__stat{display:flex;align-items:baseline;gap:.4rem;}
+.s-fc__big{font-size:1.6rem;font-weight:800;color:#22c55e;}
+.s-fc__lbl{font-size:.72rem;color:#aaa;}
+
+/* float animations */
+@keyframes floatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.float-a{animation:floatA 6s ease-in-out infinite;}
+.float-b{animation:floatB 8s ease-in-out infinite;animation-delay:1.5s;}
+
+/* ── LOGO STRIP ── */
+.s-logos{padding:2rem;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(0,0,0,.06);}
+.s-logos span{font-size:1.05rem;font-weight:800;color:#ccc;letter-spacing:-.02em;transition:color .3s;}
+.s-logos span:hover{color:#666;}
+.sdot{color:#ddd!important;font-size:.4rem;vertical-align:middle;}
+
+/* ── DISCIPLINE CARDS (image-topped) ── */
+.s-disc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto;}
+.s-disc-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:20px;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;box-shadow:0 8px 28px -12px rgba(0,0,0,.08);}
+.s-disc-card:hover{border-color:#f2bf22;transform:translateY(-4px);box-shadow:0 18px 50px -16px rgba(242,191,34,.25);}
+.s-disc-card__img{position:relative;height:180px;overflow:hidden;}
+.s-disc-card__img img{transition:transform .5s;}
+.s-disc-card:hover .s-disc-card__img img{transform:scale(1.04);}
+.s-disc-card__num{position:absolute;top:1rem;right:1rem;font-size:2.5rem;font-weight:800;color:rgba(255,255,255,.7);line-height:1;text-shadow:0 2px 8px rgba(0,0,0,.25);}
+.s-disc-card__body{padding:1.5rem;}
+.s-disc-card__body h3{font-size:1.15rem;font-weight:700;color:#0f0f0f;margin-bottom:.6rem;}
+.s-disc-card__body p{font-size:.88rem;line-height:1.65;color:#555;margin-bottom:1rem;}
+.s-disc-card__body ul{list-style:none;display:flex;flex-direction:column;gap:.35rem;padding:0;margin:0;}
+.s-disc-card__body li{font-size:.8rem;color:#666;padding-left:.9rem;position:relative;}
+.s-disc-card__body li::before{content:'—';position:absolute;left:0;color:#f2bf22;}
+
+/* ── SPLIT PHOTO ── */
+.s-split-photo{display:grid;grid-template-columns:1fr 1fr;max-width:1300px;margin:4rem auto;border-radius:32px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.12);}
+@media(max-width:900px){.s-split-photo{grid-template-columns:1fr;margin:2rem 1.5rem;}}
+.s-split-photo__img{position:relative;min-height:500px;}
+.s-split-photo__badge{position:absolute;bottom:2rem;left:2rem;background:#fff;border-radius:16px;padding:1rem 1.4rem;box-shadow:0 10px 40px rgba(0,0,0,.12);}
+.s-split-photo__badge-num{display:block;font-size:2rem;font-weight:800;color:#f2bf22;line-height:1;}
+.s-split-photo__badge-lbl{font-size:.75rem;font-weight:600;color:#666;}
+.s-split-photo__copy{background:#fff;padding:clamp(3rem,6vw,5rem);display:flex;flex-direction:column;justify-content:center;}
+.s-split-photo__copy p{font-size:.95rem;line-height:1.75;color:#555;margin-bottom:1.2rem;}
+.s-mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2rem 0;}
+.s-mini-stat span{display:block;font-size:1.6rem;font-weight:800;color:#f2bf22;}
+.s-mini-stat small{display:block;font-size:.75rem;color:#888;margin-top:.2rem;}
+
+/* ── PROCESS GRID ── */
+.s-process{padding:clamp(4rem,8vh,6rem) 2rem;}
+.s-process-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+.s-proc-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:20px;overflow:hidden;box-shadow:0 10px 40px -10px rgba(0,0,0,.08);transition:transform .3s,box-shadow .3s;}
+.s-proc-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px -15px rgba(0,0,0,.12);}
+.s-proc-card__img{position:relative;height:200px;overflow:hidden;}
+.s-proc-card__img img{transition:transform .5s;}
+.s-proc-card:hover .s-proc-card__img img{transform:scale(1.05);}
+.s-proc-num{position:absolute;top:1rem;left:1rem;background:#fff;border-radius:8px;padding:.25rem .6rem;font-size:.8rem;font-weight:800;color:#f2bf22;}
+.s-proc-card h3{font-size:1rem;font-weight:700;padding:1.3rem 1.4rem .4rem;}
+.s-proc-card p{font-size:.83rem;line-height:1.65;color:#666;padding:0 1.4rem 1.4rem;}
+
+/* ── AEO SPLIT ── */
+/* ── WHY US comparison — large, scannable ── */
+.s-why{padding:clamp(4rem,8vh,6rem) 2rem;background:#f4f4f0;}
+.s-why__inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch;}
+@media(max-width:768px){.s-why__inner{grid-template-columns:1fr;gap:1.2rem;}}
+.s-why__col{background:#fff;border-radius:28px;padding:2.6rem 2.4rem;border:1px solid rgba(0,0,0,.08);box-shadow:0 10px 30px -14px rgba(0,0,0,.08);}
+.s-why__col--us{border:2px solid #f2bf22;background:#fff;box-shadow:0 24px 60px -20px rgba(242,191,34,.35);position:relative;}
+.s-why__col--us::before{content:"BEST CHOICE";position:absolute;top:-12px;right:24px;background:#f2bf22;color:#0a0b10;font-family:var(--font-display);font-size:.7rem;font-weight:400;letter-spacing:.12em;padding:.35rem .9rem;border-radius:100px;}
+.s-why__col-h{font-family:var(--font-display);font-size:1.15rem;font-weight:400;letter-spacing:-.005em;color:#1a1a1a;margin-bottom:1.6rem;padding-bottom:1.2rem;border-bottom:1px dashed rgba(0,0,0,.12);display:flex;align-items:center;gap:.6rem;}
+.s-why__col--them .s-why__col-h{color:#888;}
+.s-why__col-h--us{color:#0a0b10;}
+.s-why__col ul{list-style:none;display:flex;flex-direction:column;gap:1.1rem;padding:0;margin:0;}
+.s-why__col li{font-size:1.05rem;line-height:1.55;color:#222;display:flex;align-items:flex-start;gap:.85rem;font-weight:500;}
+.s-why__col--them li{color:#777;font-weight:400;}
+.s-x{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#f3f3f0;color:#aaa;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.05rem;line-height:1;margin-top:.05rem;}
+.s-tick{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#f2bf22;color:#0a0b10;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;line-height:1;margin-top:.05rem;}
+.s-why__cta{max-width:1180px;margin:2.5rem auto 0;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;background:#fff;border-radius:20px;padding:1.6rem 2.2rem;border:1px solid rgba(0,0,0,.08);flex-wrap:wrap;}
+.s-why__cta-text{font-size:1.15rem;font-weight:600;color:#0a0b10;font-family:var(--font-sans);}
+
+/* ── TOOLS ── */
+.s-tools{padding:2.5rem 2rem;text-align:center;}
+.s-tools__label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:1.2rem;}
+.s-tools__chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;}
+.s-tools__chips span{background:#fff;border:1px solid rgba(0,0,0,.09);border-radius:100px;padding:.35rem 1rem;font-size:.82rem;font-weight:600;color:#555;transition:all .2s;cursor:default;}
+.s-tools__chips span:hover{background:#0f0f0f;color:#fff;border-color:transparent;}
+
+/* ── CASE STUDY ── */
+.s-case{background:#0f0f0f;padding:clamp(4rem,8vh,6rem) 2rem;position:relative;overflow:hidden;}
+.s-case__bg{position:absolute;inset:0;z-index:0;}
+.s-case__bg img{width:100%;height:100%;object-fit:cover;opacity:.12;}
+.s-case__overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,15,15,.95) 40%,rgba(15,15,15,.7));}
+.s-case__inner{position:relative;z-index:1;max-width:860px;margin:0 auto;}
+.s-case__tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#f2bf22;background:rgba(242,191,34,.1);padding:.3rem .9rem;border-radius:100px;margin-bottom:1.5rem;}
+.s-case__h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.2;letter-spacing:-.03em;color:#fff;margin-bottom:1.5rem;}
+.s-case__body{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.45);margin-bottom:2.5rem;}
+.s-case__metrics{display:flex;flex-wrap:wrap;gap:2rem;padding:2rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;margin-bottom:2.5rem;}
+.s-case__metrics div span{display:block;font-size:2rem;font-weight:800;color:#f2bf22;line-height:1;}
+.s-case__metrics div small{font-size:.75rem;color:rgba(255,255,255,.4);}
+
+/* ── TESTIMONIALS ── */
+.s-testi{padding:clamp(4rem,8vh,6rem) 2rem;}
+.s-testi-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+.s-testi-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:24px;padding:2rem;box-shadow:0 10px 40px -12px rgba(0,0,0,.08);transition:transform .3s,box-shadow .3s;}
+.s-testi-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px -15px rgba(0,0,0,.12);}
+.s-testi-img{width:56px;height:56px;border-radius:50%;overflow:hidden;margin-bottom:1rem;border:2px solid rgba(242,191,34,.3);}
+.s-stars{color:#f59e0b;font-size:.9rem;letter-spacing:.05em;margin-bottom:1rem;}
+.s-testi-card blockquote{font-size:.88rem;line-height:1.7;color:#444;font-style:italic;margin-bottom:1.2rem;}
+.s-testi-name{font-size:.88rem;font-weight:700;}
+.s-testi-role{font-size:.75rem;color:#999;margin-top:.15rem;}
+
+/* ── IMAGE ROW ── */
+.s-imgrow{max-width:1300px;margin:0 auto 2rem;padding:0 2rem;display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:1rem;align-items:stretch;}
+@media(max-width:768px){.s-imgrow{grid-template-columns:1fr;}}
+.s-imgrow__item{position:relative;border-radius:20px;overflow:hidden;height:240px;}
+.s-imgrow__item--tall{height:300px;align-self:center;}
+.s-imgrow__item span{position:absolute;bottom:1rem;left:1rem;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);color:#fff;font-size:.75rem;font-weight:700;padding:.3rem .8rem;border-radius:100px;}
+
+/* ── FAQ ── */
+.s-faq{padding:clamp(4rem,8vh,6rem) 2rem;background:#fff;border-top:1px solid rgba(0,0,0,.06);}
+.s-faq-list{max-width:760px;margin:0 auto;}
+.s-faq-item{border-bottom:1px solid rgba(0,0,0,.07);}
+.s-faq-item:first-child{border-top:1px solid rgba(0,0,0,.07);}
+.s-faq-q{width:100%;text-align:left;padding:1.3rem 0;background:none;border:none;cursor:pointer;font-size:.95rem;font-weight:700;color:#0f0f0f;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-family:inherit;transition:color .2s;}
+.s-faq-q:hover,.s-faq-q[aria-expanded="true"]{color:#f2bf22;}
+.s-chevron{flex-shrink:0;width:22px;height:22px;border:1.5px solid currentColor;border-radius:50%;position:relative;transition:transform .3s;}
+.s-chevron::before,.s-chevron::after{content:'';position:absolute;top:50%;left:50%;width:7px;height:1.5px;background:currentColor;border-radius:2px;}
+.s-chevron::before{transform:translate(-50%,-50%) rotate(-45deg) translateX(2px);}
+.s-chevron::after{transform:translate(-50%,-50%) rotate(45deg) translateX(-2px);}
+.s-faq-q[aria-expanded="true"] .s-chevron{transform:rotate(180deg);}
+.s-faq-a{max-height:0;overflow:hidden;opacity:0;font-size:.9rem;line-height:1.75;color:#555;transition:max-height .4s cubic-bezier(.16,1,.3,1),opacity .3s;}
+.s-faq-item.open .s-faq-a{padding-bottom:1.4rem;}
+
+/* ── FINAL CTA ── */
+.s-cta{background:#0f0f0f;padding:clamp(5rem,10vh,8rem) 2rem;text-align:center;position:relative;overflow:hidden;}
+.s-cta__bg{position:absolute;inset:0;z-index:0;}
+.s-cta__bg img{width:100%;height:100%;object-fit:cover;opacity:.1;}
+.s-cta__overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(15,15,15,.6) 0%,rgba(15,15,15,.98) 70%);}
+.s-cta__inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.s-cta__h2{font-size:clamp(2.5rem,5.5vw,4.2rem);font-weight:800;line-height:1.1;letter-spacing:-.04em;color:#fff;margin:1rem 0;}
+.s-cta__inner p{font-size:1rem;line-height:1.7;color:rgba(255,255,255,.45);margin-bottom:2.5rem;}
+.s-cta__btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+/* ── reduce motion ── */
+@media(prefers-reduced-motion:reduce){.float-a,.float-b{animation:none;}}
+</style>
+
+</Layout>

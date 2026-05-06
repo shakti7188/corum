@@ -216,7 +216,7 @@ const testimonials = [
     avatar: '/images/approach.webp',
   },
   {
-    quote: 'Six disciplines under one accountable team. We stopped chasing four agencies for one launch. Pipeline grew, attribution tightened, narrative held.',
+    quote: 'Every discipline under one accountable team. We stopped chasing multiple agencies for one launch. Pipeline grew, attribution tightened, narrative held.',
     name: 'Hannah V.',
     role: 'VP Growth · Series-B fintech',
     avatar: '/images/corum8-mission.png',
@@ -237,8 +237,8 @@ const testimonials = [
 
 const faqs = [
   {
-    q: 'Why hire Corum8 over six specialised agencies?',
-    a: 'Because growth doesn\'t work in silos. PR moments need community to amplify. Performance ads need creative the brand actually shipped. SEO needs links the PR team earned. We run all six disciplines as one accountable team — one calendar, one KPI sheet, one brief.',
+    q: 'Why hire Corum8 over multiple specialised agencies?',
+    a: 'Because growth doesn\'t work in silos. PR moments need community to amplify. Performance ads need creative the brand actually shipped. SEO needs links the PR team earned. We run all disciplines as one accountable team — one calendar, one KPI sheet, one brief.',
   },
   {
     q: 'Do you work with brands outside crypto and Web3?',
@@ -263,7 +263,7 @@ const faqs = [
 ];
 ---
 
-<Layout title="Marketing Services — Six Disciplines, One Engine | Corum8">
+<Layout title="Marketing Services — Full-Spectrum, One Engine | Corum8">
   <Fragment slot="head">
     <meta name="description" content="PR, performance, influencer, community, SEO and social — run as one coordinated growth engine. $150M+ revenue driven for 1,100+ brands across 30+ markets." />
     <link rel="canonical" href="https://corum8.com/services/marketing" />
@@ -308,7 +308,7 @@ const faqs = [
 
         <div class="lp-hero__chip lp-hero__chip--live">
           <span class="lp-hero__chip-pulse" aria-hidden="true"></span>
-          Six disciplines · live
+          Full-spectrum · live
         </div>
       </div>
     </div>
@@ -384,9 +384,6 @@ const faqs = [
                   <rect class="lp-deco-doc lp-deco-doc--3" x="60"  y="40" width="100" height="130" rx="6" />
                   <rect class="lp-deco-doc lp-deco-doc--2" x="50"  y="50" width="100" height="130" rx="6" />
                   <rect class="lp-deco-doc lp-deco-doc--1" x="40"  y="60" width="100" height="130" rx="6" />
-                  <line class="lp-deco-doc-line" x1="56"  y1="86"  x2="120" y2="86" />
-                  <line class="lp-deco-doc-line" x1="56"  y1="106" x2="120" y2="106" />
-                  <line class="lp-deco-doc-line" x1="56"  y1="126" x2="100" y2="126" />
                 </svg>
               )}
               {o.kind === 'pulse' && (
@@ -512,8 +509,8 @@ const faqs = [
   <section class="lp-channels-sect">
     <header class="lp-h-head">
       <p class="lp-h-eyebrow">Where we lead</p>
-      <h2 class="lp-h-title">Six disciplines we lead with. <span class="lp-accent">Many more we ship on demand.</span></h2>
-      <p class="lp-h-sub">These are the pillars we run as one team — but the menu doesn't end here. Whatever earns attention, drives conversion, or compounds retention is on the table when the brief calls for it.</p>
+      <h2 class="lp-h-title">Core disciplines. <span class="lp-accent">More on demand.</span></h2>
+      <p class="lp-h-sub">If it earns attention, drives conversion or compounds retention, it's on the table.</p>
     </header>
     <div class="lp-channels-grid">
       {disciplines.map((d) => (
@@ -741,7 +738,7 @@ const faqs = [
     <div class="lp-final__veil"></div>
     <div class="lp-final__inner">
       <p class="lp-final__eyebrow">Tell us your numbers</p>
-      <h2 class="lp-final__title">Six disciplines. <span class="lp-accent">One accountable team.</span></h2>
+      <h2 class="lp-final__title">Every discipline. <span class="lp-accent">One accountable team.</span></h2>
       <p class="lp-final__sub">A 30-minute strategy call. We'll audit your current marketing, map the gaps, and tell you whether Corum8 is the right next move — honest answer either way.</p>
       <a class="lp-cta lp-cta--primary lp-cta--lg" href="/contact">Book a strategy call →</a>
     </div>
@@ -1157,32 +1154,19 @@ const faqs = [
       100% { transform: scaleY(1); }
     }
 
-    /* Content stack — drifting document silhouettes */
+    /* Content stack — three layered silhouettes, static. The previous
+       version drifted each document independently and packed inner text
+       lines into the front card — together that read as visually busy on
+       a dense KPI tile. Quieted by removing both the animations and the
+       inner lines, leaving a calm three-stack outline. */
     .lp-deco-doc {
       fill: none;
       stroke: var(--c8-gold);
-      stroke-width: 1.5;
+      stroke-width: 1.4;
     }
-    .lp-deco-doc--1 {
-      fill: rgba(242,191,34,0.08);
-      animation: lp-doc-drift-a 5s ease-in-out infinite alternate;
-    }
-    .lp-deco-doc--2 {
-      fill: rgba(242,191,34,0.05);
-      animation: lp-doc-drift-b 6s ease-in-out infinite alternate;
-    }
-    .lp-deco-doc--3 {
-      fill: rgba(242,191,34,0.03);
-      animation: lp-doc-drift-c 7s ease-in-out infinite alternate;
-    }
-    .lp-deco-doc-line {
-      stroke: var(--c8-gold);
-      stroke-width: 1.2;
-      opacity: 0.55;
-    }
-    @keyframes lp-doc-drift-a { from { transform: translate(0, 0); } to { transform: translate(2px, -3px); } }
-    @keyframes lp-doc-drift-b { from { transform: translate(0, 0); } to { transform: translate(-2px, -2px); } }
-    @keyframes lp-doc-drift-c { from { transform: translate(0, 0); } to { transform: translate(-3px, 1px); } }
+    .lp-deco-doc--1 { fill: rgba(242,191,34,0.07); }
+    .lp-deco-doc--2 { fill: rgba(242,191,34,0.04); stroke-opacity: 0.7; }
+    .lp-deco-doc--3 { fill: rgba(242,191,34,0.02); stroke-opacity: 0.45; }
 
     /* Community pulse — radial pings expanding outward */
     .lp-deco-pulse-ring {
@@ -1418,7 +1402,7 @@ const faqs = [
 
     /* SECTION HEADING HELPER */
     .lp-h-head {
-      max-width: 38rem; margin: 0 auto clamp(3rem, 6vh, 4.5rem); text-align: center;
+      max-width: 56rem; margin: 0 auto clamp(3rem, 6vh, 4.5rem); text-align: center;
     }
     .lp-h-head--left { text-align: left; margin-left: 0; }
     .lp-h-eyebrow {
@@ -1428,12 +1412,12 @@ const faqs = [
     }
     .lp-h-title {
       margin: 0;
-      font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.4rem);
-      font-weight: 350; line-height: 1.05; letter-spacing: -0.025em;
+      font-family: var(--font-display); font-size: clamp(1.75rem, 3.8vw, 2.85rem);
+      font-weight: 350; line-height: 1.08; letter-spacing: -0.025em;
     }
     .lp-h-sub {
-      margin: 1rem auto 0; max-width: 32rem;
-      font-family: var(--montreal); font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+      margin: 1rem auto 0; max-width: 44rem;
+      font-family: var(--montreal); font-size: clamp(0.96rem, 1.1vw, 1.04rem);
       line-height: 1.55; color: #555;
     }
     .lp-h-head--left .lp-h-sub { margin-left: 0; }
@@ -1527,6 +1511,15 @@ const faqs = [
       letter-spacing: 0.12em; color: var(--c8-gold-dark); opacity: 0.85;
     }
     .lp-tab.is-active .lp-tab__num { color: var(--c8-gold); opacity: 1; }
+    .lp-tab__label {
+      /* Cocogoose display face for the deliverables tab labels — matches
+         the section heading rhythm (Strategy / Distribution / Creative /
+         Measurement read as titled chapters, not utility nav). */
+      font-family: var(--font-display);
+      font-weight: 350;
+      font-size: 0.96rem;
+      letter-spacing: -0.01em;
+    }
     .lp-tabs__stage { position: relative; display: grid; }
     .lp-tabs__panel {
       grid-column: 1 / 2; grid-row: 1 / 2;

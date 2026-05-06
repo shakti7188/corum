@@ -1,344 +1,552 @@
 ---
-import "../../../styles/global.css";
+import Layout from '../../../layouts/Layout.astro';
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Social Media Marketing | Corum8</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  </head>
+<Layout title="Social Media Marketing — Build the Audience That Buys | Corum8">
+  <Fragment slot="head">
+    <meta name="description" content="Corum8 social media services — strategy, content production, and community management for Web3, AI, and fintech brands. From content calendars to viral campaigns." />
+    <link rel="canonical" href="https://corum8.com/services/marketing/social-media" />
+  </Fragment>
 
-  <body class="bg-[#fcfcff] text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-indigo-200">
-    <main class="relative z-10 pt-20 pb-24 overflow-hidden" id="smooth-wrapper">
-      <div id="smooth-content">
-        <!-- Background Ambient Glow -->
-        <div class="absolute top-0 right-0 -z-10 w-[800px] h-[800px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none translate-x-1/3 -translate-y-1/4"></div>
-        <div class="absolute top-1/2 left-0 -z-10 w-[600px] h-[600px] bg-purple-500/10 blur-[100px] rounded-full pointer-events-none -translate-x-1/2"></div>
-
-        <!-- HERO SECTION -->
-        <section class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center min-h-[85vh]">
-          <div class="max-w-2xl gs-reveal">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 font-semibold text-sm mb-8 shadow-sm">
-              <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
-              Social Media Automation 2.0
-            </div>
-            <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
-              Master Your <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Social Presence</span>
-            </h1>
-            <p class="text-xl text-slate-600 leading-relaxed mb-10">
-              Automate your posting, track engagement in real-time, and grow your audience exponentially with our data-driven social media engine.
-            </p>
-            <div class="flex flex-wrap items-center gap-4">
-              <a href="#" class="px-8 py-4 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-lg transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-600/30">
-                Start Growing Today
-              </a>
-              <a href="#features" class="px-8 py-4 rounded-full bg-white border border-slate-200 hover:border-indigo-600 hover:text-indigo-600 text-slate-700 font-bold text-lg transition-all flex items-center gap-2 group">
-                <svg class="w-5 h-5 text-slate-400 group-hover:text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                Watch Demo
-              </a>
-            </div>
-          </div>
-
-          <!-- HERO MOCKUP -->
-          <div class="relative w-full aspect-square max-w-[600px] mx-auto gs-reveal-right">
-            <!-- Main Dashboard Card -->
-            <div class="absolute inset-4 lg:inset-8 bg-white/60 backdrop-blur-2xl border border-white/80 shadow-[0_40px_80px_-20px_rgba(79,70,229,0.15)] rounded-3xl p-8 flex flex-col justify-between transform transition-transform hover:scale-[1.02] duration-500">
-              <div class="flex justify-between items-start">
-                <div>
-                  <p class="text-slate-500 font-semibold mb-1">Total Engagement</p>
-                  <p class="text-4xl font-extrabold text-slate-900">124,592</p>
-                </div>
-                <div class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-lg font-bold text-sm flex items-center gap-1">
-                  +245%
-                </div>
-              </div>
-              
-              <!-- Chart Mockup -->
-              <div class="h-48 flex items-end gap-3 w-full mt-8">
-                {[40, 70, 45, 90, 65, 85, 100].map((height, i) => (
-                  <div class="w-full bg-slate-100 rounded-t-md relative group">
-                    <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-indigo-600 to-purple-500 rounded-t-md transition-all duration-1000 origin-bottom" style={`height: ${height}%; animation: growUp 1.5s ease-out forwards ${i * 0.1}s;`}></div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <!-- Floating Element 1 -->
-            <div class="absolute -bottom-6 -left-6 lg:-left-12 bg-white rounded-2xl shadow-xl p-5 border border-slate-100 flex items-center gap-4 animate-[float-y_4s_ease-in-out_infinite]">
-              <div class="flex -space-x-4">
-                <div class="w-10 h-10 rounded-full border-2 border-white bg-indigo-200"></div>
-                <div class="w-10 h-10 rounded-full border-2 border-white bg-purple-200"></div>
-                <div class="w-10 h-10 rounded-full border-2 border-white bg-pink-200"></div>
-              </div>
-              <div>
-                <p class="text-sm font-bold text-slate-900 m-0">+1.2k Followers</p>
-              </div>
-            </div>
-            <!-- Floating Element 2 -->
-            <div class="absolute top-10 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 flex items-center gap-3 animate-[float-y_5s_ease-in-out_infinite_reverse]">
-              <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">✓</div>
-              <div>
-                <p class="text-xs text-slate-500 m-0">Campaign Status</p>
-                <p class="text-sm font-bold text-slate-900 m-0">Active</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- LOGO CLOUD -->
-        <section class="border-y border-slate-200 bg-white py-12 mt-10">
-          <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-sm font-bold tracking-widest text-slate-400 uppercase mb-8">Trusted by innovative teams worldwide</p>
-            <div class="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-              <div class="text-2xl font-black text-slate-800">AcmeCorp</div>
-              <div class="text-2xl font-black text-slate-800 tracking-tighter">GlobalTech</div>
-              <div class="text-2xl font-black text-slate-800 italic">Nexus</div>
-              <div class="text-2xl font-black text-slate-800 uppercase tracking-widest">Vertex</div>
-              <div class="text-2xl font-black text-slate-800">Quantum</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ANALYTICS GRID -->
-        <section id="features" class="max-w-7xl mx-auto px-6 lg:px-12 mt-32">
-          <div class="text-center max-w-3xl mx-auto mb-20 gs-reveal">
-            <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">Insights that drive action</h2>
-            <p class="text-xl text-slate-600">Stop guessing. Start knowing exactly what works for your audience with our unified analytics engine.</p>
-          </div>
-
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 gs-reveal">
-              <div class="w-16 h-16 rounded-2xl bg-indigo-50 flex items-center justify-center mb-8">
-                <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-              </div>
-              <h3 class="text-2xl font-bold text-slate-900 mb-4">Audience Reach</h3>
-              <p class="text-slate-600 leading-relaxed">Expand your reach organically with AI-optimized posting schedules and content formatting that algorithms love.</p>
-            </div>
-            <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 gs-reveal" style="transition-delay: 100ms;">
-              <div class="w-16 h-16 rounded-2xl bg-purple-50 flex items-center justify-center mb-8">
-                <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-              </div>
-              <h3 class="text-2xl font-bold text-slate-900 mb-4">Click-through Rates</h3>
-              <p class="text-slate-600 leading-relaxed">Monitor which posts drive traffic to your site and optimize your calls-to-action for the highest possible conversion.</p>
-            </div>
-            <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 gs-reveal" style="transition-delay: 200ms;">
-              <div class="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center mb-8">
-                <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-              </div>
-              <h3 class="text-2xl font-bold text-slate-900 mb-4">Growth Tracking</h3>
-              <p class="text-slate-600 leading-relaxed">Track follower growth, churn rate, and demographic shifts across all platforms from a single unified dashboard.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- AUTOMATION SECTION -->
-        <section class="max-w-7xl mx-auto px-6 lg:px-12 mt-40 grid lg:grid-cols-2 gap-16 items-center">
-          <div class="order-2 lg:order-1 relative h-[500px] w-full rounded-[40px] bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center overflow-hidden shadow-2xl gs-reveal-left">
-            <div class="bg-white w-72 rounded-2xl shadow-2xl p-6 relative z-10 animate-[float-y_5s_ease-in-out_infinite_reverse]">
-              <div class="flex justify-between items-center mb-6">
-                <h4 class="font-bold text-slate-900 m-0">Post Scheduled</h4>
-              </div>
-              <div class="space-y-3 mb-6">
-                <div class="h-3 w-full bg-slate-100 rounded-full"></div>
-                <div class="h-3 w-4/5 bg-slate-100 rounded-full"></div>
-                <div class="h-3 w-2/3 bg-slate-100 rounded-full"></div>
-              </div>
-              <div class="inline-flex px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-full">Ready to publish</div>
-            </div>
-            <div class="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
-            <div class="absolute bottom-10 right-10 w-48 h-48 bg-indigo-900/30 rounded-full blur-2xl"></div>
-          </div>
-
-          <div class="order-1 lg:order-2 gs-reveal-right">
-            <div class="text-indigo-600 font-bold mb-4 uppercase tracking-widest text-sm">Autopilot Engine</div>
-            <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 leading-[1.1]">Put your content on autopilot</h2>
-            <p class="text-xl text-slate-600 leading-relaxed mb-10">
-              Schedule weeks of content in minutes. Our automation tools ensure your brand stays active even when you're sleeping. Let AI handle the timing.
-            </p>
-            <ul class="space-y-5 p-0 m-0 list-none">
-              {[
-                'Multi-platform scheduling from one calendar',
-                'Auto-reposting for evergreen content',
-                'Best-time-to-post AI suggestions based on your data',
-                'Seamless approval workflows for teams'
-              ].map(item => (
-                <li class="flex items-center gap-4 text-lg font-semibold text-slate-800 m-0">
-                  <span class="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <!-- DASHBOARD SHOWCASE -->
-        <section class="max-w-7xl mx-auto px-6 lg:px-12 mt-40">
-          <div class="bg-slate-900 rounded-[40px] p-10 lg:p-20 relative overflow-hidden gs-reveal">
-            <!-- Background Decoration -->
-            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/20 blur-[100px] rounded-full pointer-events-none"></div>
-            
-            <div class="text-center max-w-3xl mx-auto mb-16 relative z-10">
-              <h2 class="text-4xl lg:text-5xl font-extrabold text-white mb-6">Manage everything from a single dashboard</h2>
-              <p class="text-xl text-slate-300">Stop switching between tabs. Reply to comments, track brand mentions, and analyze performance across 10+ platforms simultaneously.</p>
-            </div>
-
-            <!-- UI Mockup Window -->
-            <div class="relative w-full max-w-5xl mx-auto rounded-xl border border-slate-700 bg-[#0f172a] shadow-2xl overflow-hidden gs-reveal">
-              <div class="h-10 bg-slate-800 border-b border-slate-700 flex items-center px-4 gap-2">
-                <div class="w-3 h-3 rounded-full bg-slate-600"></div>
-                <div class="w-3 h-3 rounded-full bg-slate-600"></div>
-                <div class="w-3 h-3 rounded-full bg-slate-600"></div>
-              </div>
-              <div class="p-8 grid md:grid-cols-4 gap-6">
-                <!-- Sidebar -->
-                <div class="col-span-1 space-y-4 hidden md:block">
-                  <div class="h-8 bg-slate-800 rounded w-full"></div>
-                  <div class="h-8 bg-indigo-600 rounded w-4/5"></div>
-                  <div class="h-8 bg-slate-800 rounded w-full"></div>
-                  <div class="h-8 bg-slate-800 rounded w-2/3"></div>
-                </div>
-                <!-- Main Content -->
-                <div class="col-span-3 space-y-6">
-                  <div class="grid grid-cols-3 gap-4">
-                    <div class="h-24 bg-slate-800 rounded-lg border border-slate-700"></div>
-                    <div class="h-24 bg-slate-800 rounded-lg border border-slate-700"></div>
-                    <div class="h-24 bg-slate-800 rounded-lg border border-slate-700"></div>
-                  </div>
-                  <div class="h-64 bg-slate-800 rounded-lg border border-slate-700 relative overflow-hidden">
-                    <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-indigo-500/20 to-transparent"></div>
-                    <svg class="absolute bottom-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                      <path d="M0 100 L 0 50 Q 25 30, 50 60 T 100 20 L 100 100 Z" fill="rgba(79, 70, 229, 0.2)" stroke="rgb(79, 70, 229)" stroke-width="1"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- TESTIMONIALS -->
-        <section class="max-w-7xl mx-auto px-6 lg:px-12 mt-40">
-          <div class="text-center max-w-3xl mx-auto mb-20 gs-reveal">
-            <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">Loved by marketing teams</h2>
-          </div>
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 gs-reveal">
-              <div class="flex text-amber-400 mb-4">★★★★★</div>
-              <p class="text-slate-700 mb-6 font-medium">"Corum8's social engine saved us 20 hours a week. The AI scheduling alone is worth the investment."</p>
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                <div>
-                  <h4 class="font-bold text-slate-900">Sarah Jenkins</h4>
-                  <p class="text-sm text-slate-500">CMO at TechFlow</p>
-                </div>
-              </div>
-            </div>
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 gs-reveal" style="transition-delay: 100ms;">
-              <div class="flex text-amber-400 mb-4">★★★★★</div>
-              <p class="text-slate-700 mb-6 font-medium">"The analytics dashboard gives us exactly what we need to prove ROI to our board. Invaluable tool."</p>
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                <div>
-                  <h4 class="font-bold text-slate-900">Marcus Chen</h4>
-                  <p class="text-sm text-slate-500">Director of Growth</p>
-                </div>
-              </div>
-            </div>
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 gs-reveal" style="transition-delay: 200ms;">
-              <div class="flex text-amber-400 mb-4">★★★★★</div>
-              <p class="text-slate-700 mb-6 font-medium">"Our organic reach skyrocketed by 300% in the first quarter after we let the AI dictate our posting times."</p>
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                <div>
-                  <h4 class="font-bold text-slate-900">Elena Rodriguez</h4>
-                  <p class="text-sm text-slate-500">Social Media Manager</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- CTA SECTION -->
-        <section class="max-w-5xl mx-auto px-6 lg:px-12 mt-40 mb-32 gs-reveal">
-          <div class="bg-indigo-600 rounded-[40px] p-12 lg:p-20 text-center text-white relative overflow-hidden shadow-2xl">
-            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-50"></div>
-            <div class="relative z-10">
-              <h2 class="text-4xl lg:text-6xl font-extrabold mb-6">Ready to scale your social?</h2>
-              <p class="text-xl text-indigo-100 max-w-2xl mx-auto mb-10">Join 10,000+ modern teams using our platform to dominate their organic reach.</p>
-              <a href="/contact" class="px-10 py-5 rounded-full bg-white text-indigo-600 font-bold text-xl hover:shadow-xl hover:scale-105 transition-transform inline-block">
-                Start your 14-day free trial
-              </a>
-              <p class="mt-6 text-sm text-indigo-200">No credit card required. Cancel anytime.</p>
-            </div>
-          </div>
-        </section>
-
+<!-- 1. HERO -->
+<section class="sm-hero">
+  <div class="sm-blob sm-blob--a"></div>
+  <div class="sm-blob sm-blob--b"></div>
+  <div class="sm-hero__inner">
+    <div class="sm-hero__copy reveal-up">
+      <span class="sm-badge">Social · Community · Content · since 2014</span>
+      <h1 class="sm-hero__h1">The team behind<br/><span class="sm-grad">Cashaa's $32M token launch.</span></h1>
+      <p class="sm-hero__sub">We run social media for Web3, AI, and fintech founders. Strategy, content, paid amplification, and community as one team. We've grown <strong>500K+ communities</strong> for clients including Cashaa, KuCoin, and Fanadise.</p>
+      <div class="sm-hero__btns">
+        <a href="/contact" class="sm-btn sm-btn--fill">Get a free social audit</a>
+        <a href="#case-spotlight" class="sm-btn sm-btn--line">See the work →</a>
       </div>
-    </main>
+      <ul class="sm-hero__chips">
+        <li><span class="sm-chip-num">$32M</span><span class="sm-chip-lbl">raised on launch</span></li>
+        <li class="sm-chip-div"></li>
+        <li><span class="sm-chip-num">30M+</span><span class="sm-chip-lbl">impressions / mo</span></li>
+        <li class="sm-chip-div"></li>
+        <li><span class="sm-chip-num">14</span><span class="sm-chip-lbl">languages</span></li>
+      </ul>
+    </div>
+    <div class="sm-hero__visual reveal-right">
+      <div class="sm-phone">
+        <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80&auto=format&fit=crop" alt="Social feed" />
+      </div>
+      <div class="sm-fc sm-fc--eng float-a">
+        <div class="sm-fc__label">Engagement spike</div>
+        <div class="sm-fc__big">+312<span>%</span></div>
+        <svg viewBox="0 0 140 40" class="sm-spark">
+          <defs><linearGradient id="smg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f2bf22" stop-opacity=".35"/><stop offset="100%" stop-color="#f2bf22" stop-opacity="0"/></linearGradient></defs>
+          <path class="sm-spark__fill" d="M0 35 Q25 30,45 22 T85 12 T140 4 L140 40 L0 40Z" fill="url(#smg1)"/>
+          <path class="sm-spark__line" d="M0 35 Q25 30,45 22 T85 12 T140 4" stroke="#f2bf22" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="sm-fc sm-fc--fol float-b">
+        <div class="sm-fc__avatars">
+          <span class="sm-av" style="background:#f2bf22"></span>
+          <span class="sm-av" style="background:#da9e49"></span>
+          <span class="sm-av" style="background:#0a0b10"></span>
+          <span class="sm-av sm-av--more">+12K</span>
+        </div>
+        <div class="sm-fc__sub">new followers · 30 days</div>
+      </div>
+      <div class="sm-fc sm-fc--plat float-a" style="animation-delay:.8s">
+        <span class="sm-plat-icon">𝕏</span>
+        <div>
+          <div class="sm-fc__label">Top performing</div>
+          <div class="sm-fc__med">Twitter / X · 4.2M views</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js" is:inline></script>
-    
-    <script is:inline>
-      document.addEventListener("DOMContentLoaded", (event) => {
-        // Initialize Lenis for Smooth Scrolling
-        const lenis = new Lenis({
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          direction: 'vertical',
-          gestureDirection: 'vertical',
-          smooth: true,
-          mouseMultiplier: 1,
-          smoothTouch: false,
-          touchMultiplier: 2,
-          infinite: false,
-        });
+<!-- PLATFORM STRIP -->
+<div class="sm-plat-strip reveal-up">
+  <span class="sm-plat-strip__label">We run campaigns across</span>
+  <div class="sm-plat-strip__list">
+    <span>Twitter / X</span><span class="sdot">·</span>
+    <span>LinkedIn</span><span class="sdot">·</span>
+    <span>Instagram</span><span class="sdot">·</span>
+    <span>TikTok</span><span class="sdot">·</span>
+    <span>YouTube</span><span class="sdot">·</span>
+    <span>Telegram</span><span class="sdot">·</span>
+    <span>Discord</span><span class="sdot">·</span>
+    <span>Farcaster</span>
+  </div>
+</div>
 
-        function raf(time) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
+<!-- 2. THREE DISCIPLINES (LIGHT) -->
+<section class="sm-disc sm-pill">
+  <div class="sm-section-head reveal-up">
+    <span class="sm-badge">What we run</span>
+    <h2 class="sm-h2">Strategy. Content. Community.<br/><span class="sm-grad">One social engine.</span></h2>
+    <p class="sm-section-head__sub">Most agencies hand you three vendors who don't talk to each other. We hand you one team that ships every Friday.</p>
+  </div>
+  <div class="sm-disc-grid">
+    <div class="sm-disc-card reveal-stagger">
+      <div class="sm-disc-card__img">
+        <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=600&q=80&auto=format&fit=crop" alt="Strategy" />
+        <span class="sm-disc-card__num">01</span>
+      </div>
+      <div class="sm-disc-card__body">
+        <h3>Strategy &amp; Calendar</h3>
+        <p>Audience research, channel positioning, and a calendar that ladders to a pipeline goal — not just impressions.</p>
+        <ul><li>Audience research</li><li>Channel positioning</li><li>30/60/90 day calendars</li></ul>
+      </div>
+    </div>
+    <div class="sm-disc-card reveal-stagger">
+      <div class="sm-disc-card__img">
+        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&q=80&auto=format&fit=crop" alt="Content" />
+        <span class="sm-disc-card__num">02</span>
+      </div>
+      <div class="sm-disc-card__body">
+        <h3>Content Production</h3>
+        <p>Short-form video, design-led posts, founder threads, and platform-native creative — produced weekly, in your voice.</p>
+        <ul><li>Short-form video &amp; reels</li><li>Static design + carousels</li><li>Founder ghostwriting</li></ul>
+      </div>
+    </div>
+    <div class="sm-disc-card reveal-stagger">
+      <div class="sm-disc-card__img">
+        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80&auto=format&fit=crop" alt="Community" />
+        <span class="sm-disc-card__num">03</span>
+      </div>
+      <div class="sm-disc-card__body">
+        <h3>Community &amp; Comments</h3>
+        <p>Telegram, Discord, X replies, comments — moderated and responded to in your voice across time zones.</p>
+        <ul><li>24/7 moderation</li><li>Sentiment tracking</li><li>Crisis response protocols</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Initialize GSAP
-        gsap.registerPlugin(ScrollTrigger);
+<!-- 3. SPLIT PHOTO -->
+<section class="sm-split-photo">
+  <div class="sm-split-photo__img reveal-left">
+    <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?w=900&q=80&auto=format&fit=crop" alt="Social on phones" />
+    <div class="sm-split-photo__badge">
+      <span class="sm-split-photo__badge-num">4.2M</span>
+      <span class="sm-split-photo__badge-lbl">views · single thread</span>
+    </div>
+    <div class="sm-split-photo__chip float-a">
+      <span class="green">●</span> Live · 12K commenting
+    </div>
+  </div>
+  <div class="sm-split-photo__copy reveal-right">
+    <span class="sm-badge">Why us</span>
+    <h2 class="sm-h2">Posts ship. <span class="sm-grad">Audiences grow.</span><br/>Pipeline follows.</h2>
+    <p>Most agencies report on followers and impressions. We report on community health, share-of-voice, and the founders booking calls because of a thread we wrote.</p>
+    <div class="sm-mini-stats">
+      <div class="sm-mini-stat"><span>30M+</span><small>impressions / month</small></div>
+      <div class="sm-mini-stat"><span>500K+</span><small>communities grown</small></div>
+      <div class="sm-mini-stat"><span>14</span><small>languages</small></div>
+    </div>
+    <a href="/case-studies" class="sm-btn sm-btn--fill">See case studies</a>
+  </div>
+</section>
 
-        const revealElements = document.querySelectorAll(".gs-reveal");
-        revealElements.forEach((el) => {
-          gsap.fromTo(el, { autoAlpha: 0, y: 50 }, {
-            duration: 1, autoAlpha: 1, y: 0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
-          });
-        });
+<!-- 4. PROCESS -->
+<section class="sm-process">
+  <div class="sm-section-head reveal-up">
+    <span class="sm-badge">How we work</span>
+    <h2 class="sm-h2">From brand voice to viral thread.</h2>
+  </div>
+  <div class="sm-process-grid">
+    <div class="sm-proc-card reveal-stagger">
+      <div class="sm-proc-card__img"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80&auto=format&fit=crop" alt="" /><span class="sm-proc-num">01</span></div>
+      <h3>Discovery &amp; positioning</h3><p>We map your audience, study what's working, and define the editorial point of view your brand will own.</p>
+    </div>
+    <div class="sm-proc-card reveal-stagger">
+      <div class="sm-proc-card__img"><img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80&auto=format&fit=crop" alt="" /><span class="sm-proc-num">02</span></div>
+      <h3>Calendar &amp; brief</h3><p>30/60/90 day calendars across every active channel. Each post ladders to a campaign theme.</p>
+    </div>
+    <div class="sm-proc-card reveal-stagger">
+      <div class="sm-proc-card__img"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&q=80&auto=format&fit=crop" alt="" /><span class="sm-proc-num">03</span></div>
+      <h3>Production &amp; publishing</h3><p>Video, design, copy — all produced in-house, all platform-native. We post and monitor in real-time.</p>
+    </div>
+    <div class="sm-proc-card reveal-stagger">
+      <div class="sm-proc-card__img"><img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&q=80&auto=format&fit=crop" alt="" /><span class="sm-proc-num">04</span></div>
+      <h3>Amplify &amp; iterate</h3><p>Top posts get paid amplification. Weekly performance reviews. Winning formats become templates.</p>
+    </div>
+  </div>
+</section>
 
-        const revealLeft = document.querySelectorAll(".gs-reveal-left");
-        revealLeft.forEach((el) => {
-          gsap.fromTo(el, { autoAlpha: 0, x: -50 }, {
-            duration: 1, autoAlpha: 1, x: 0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
-          });
-        });
+<!-- 5. WHY US — comparison -->
+<section class="sm-why">
+  <div class="sm-section-head reveal-up">
+    <span class="sm-badge">Why Corum8 vs. another agency</span>
+    <h2 class="sm-h2">Most agencies post.<br/>We grow <span class="sm-grad">audiences that buy.</span></h2>
+  </div>
+  <div class="sm-why__inner reveal-up">
+    <div class="sm-why__col sm-why__col--them">
+      <div class="sm-why__col-h">A typical social agency</div>
+      <ul>
+        <li><span class="sm-x">×</span> Reports follower count and reach as the win</li>
+        <li><span class="sm-x">×</span> Generic posts written by junior content team</li>
+        <li><span class="sm-x">×</span> No founder voice — same template for every brand</li>
+        <li><span class="sm-x">×</span> Doesn't moderate community in your time zone</li>
+        <li><span class="sm-x">×</span> Paid is "an upsell next quarter"</li>
+        <li><span class="sm-x">×</span> Has never run a token launch or AMA</li>
+      </ul>
+    </div>
+    <div class="sm-why__col sm-why__col--us">
+      <div class="sm-why__col-h sm-why__col-h--us">Corum8</div>
+      <ul>
+        <li><span class="sm-tick">✓</span> Reports community health, share-of-voice, pipeline contribution</li>
+        <li><span class="sm-tick">✓</span> Industry-expert writers — Web3, AI, fintech native</li>
+        <li><span class="sm-tick">✓</span> Founder ghostwriting weekly — your voice, your takes</li>
+        <li><span class="sm-tick">✓</span> 24/7 moderation across 14 languages</li>
+        <li><span class="sm-tick">✓</span> Paid amplification baked in from day one</li>
+        <li><span class="sm-tick">✓</span> Cashaa $32M, KuCoin 200+ placements, Fanadise $5M raised</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sm-why__cta reveal-up">
+    <span class="sm-why__cta-text">Want to see how we'd approach yours?</span>
+    <a href="/contact" class="sm-btn sm-btn--fill">Get a free social audit →</a>
+  </div>
+</section>
 
-        const revealRight = document.querySelectorAll(".gs-reveal-right");
-        revealRight.forEach((el) => {
-          gsap.fromTo(el, { autoAlpha: 0, x: 50 }, {
-            duration: 1, autoAlpha: 1, x: 0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
-          });
-        });
-      });
-    </script>
+<!-- 5b. PLATFORMS GRID (LIGHT) -->
+<section class="sm-platforms sm-pill">
+  <div class="sm-platforms__inner">
+    <div class="sm-section-head reveal-up">
+      <span class="sm-badge">Platform expertise</span>
+      <h2 class="sm-h2">Different platforms.<br/>Different playbooks.</h2>
+      <p class="sm-section-head__sub">Each channel has its own tone, format, and audience. We've shipped on all of them — and we know which ones matter for your category.</p>
+    </div>
+    <div class="sm-plat-grid">
+      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">𝕏</div><h4>Twitter / X</h4><p>Founder threads, breaking commentary, real-time community. The default for crypto and AI.</p></div>
+      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">in</div><h4>LinkedIn</h4><p>B2B buyers, founders, investors. Long-form thought leadership and pipeline-driving content.</p></div>
+      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">📸</div><h4>Instagram</h4><p>Brand aesthetic, reels, behind-the-scenes. Where consumer Web3 and lifestyle fintech wins.</p></div>
+      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">♪</div><h4>TikTok</h4><p>Short-form explainers, trends, viral retail awareness. Top of funnel for retail products.</p></div>
+      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">▶</div><h4>YouTube</h4><p>Long-form authority, tutorials, founder interviews. Where SEO meets social discovery.</p></div>
+      <div class="sm-plat-card reveal-stagger"><div class="sm-plat-card__icon">✈</div><h4>Telegram &amp; Discord</h4><p>Community core for crypto. We moderate, respond, and run AMAs across time zones.</p></div>
+    </div>
+  </div>
+</section>
 
-    <style is:global>
-      body { font-family: 'Inter', sans-serif; }
-      @keyframes growUp { 0% { transform: scaleY(0); } 100% { transform: scaleY(1); } }
-      @keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-    </style>
-  </body>
-</html>
+<!-- 6. SHOWCASE GRID -->
+<section class="sm-showcase">
+  <div class="sm-section-head reveal-up">
+    <span class="sm-badge">Content we ship</span>
+    <h2 class="sm-h2">Real campaigns. Real engagement.</h2>
+  </div>
+  <div class="sm-show-grid">
+    <div class="sm-show-card sm-show-card--tall reveal-stagger"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80&auto=format&fit=crop" alt="" /><div class="sm-show-card__cap"><span class="sm-show-card__tag">Token launch</span><span class="sm-show-card__metric">$32M raised</span></div></div>
+    <div class="sm-show-card reveal-stagger"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80&auto=format&fit=crop" alt="" /><div class="sm-show-card__cap"><span class="sm-show-card__tag">LinkedIn</span><span class="sm-show-card__metric">2.1M views</span></div></div>
+    <div class="sm-show-card reveal-stagger"><img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?w=600&q=80&auto=format&fit=crop" alt="" /><div class="sm-show-card__cap"><span class="sm-show-card__tag">Community AMA</span><span class="sm-show-card__metric">12K live</span></div></div>
+    <div class="sm-show-card reveal-stagger"><img src="https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=600&q=80&auto=format&fit=crop" alt="" /><div class="sm-show-card__cap"><span class="sm-show-card__tag">Reels series</span><span class="sm-show-card__metric">18M plays</span></div></div>
+    <div class="sm-show-card sm-show-card--tall reveal-stagger"><img src="https://images.unsplash.com/photo-1611605698323-b1e99cfd37ea?w=600&q=80&auto=format&fit=crop" alt="" /><div class="sm-show-card__cap"><span class="sm-show-card__tag">Founder thread</span><span class="sm-show-card__metric">4.2M views</span></div></div>
+    <div class="sm-show-card reveal-stagger"><img src="https://images.unsplash.com/photo-1542744095-0d53267d353e?w=600&q=80&auto=format&fit=crop" alt="" /><div class="sm-show-card__cap"><span class="sm-show-card__tag">Brand campaign</span><span class="sm-show-card__metric">+42% CTR</span></div></div>
+  </div>
+</section>
+
+<!-- 7. CASE STUDY -->
+<section class="sm-case sm-pill" id="case-spotlight">
+  <div class="sm-case__bg"><img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=1400&q=70&auto=format&fit=crop" alt="" aria-hidden="true" /><div class="sm-case__overlay"></div></div>
+  <div class="sm-case__inner reveal-up">
+    <span class="sm-case__tag">Case study · Cashaa</span>
+    <h2 class="sm-case__h2">From quiet community to<br/>$32M raised in one launch.</h2>
+    <p class="sm-case__body">We rebuilt Cashaa's social-first launch playbook — Twitter founder threads, Telegram community AMAs, Discord onboarding, and YouTube long-form. The token launch closed at $32M raised, with engaged holders, not bots.</p>
+    <div class="sm-case__metrics">
+      <div><span>$32M</span><small>raised on launch</small></div>
+      <div><span>180K</span><small>community at TGE</small></div>
+      <div><span>12K</span><small>live at AMA peak</small></div>
+    </div>
+    <a href="/case-studies" class="sm-btn sm-btn--outline-white">Read all case studies →</a>
+  </div>
+</section>
+
+<!-- 8. TESTIMONIALS -->
+<section class="sm-testi">
+  <div class="sm-section-head reveal-up">
+    <span class="sm-badge">Client outcomes</span>
+    <h2 class="sm-h2">What founders say.</h2>
+  </div>
+  <div class="sm-testi-grid">
+    <div class="sm-testi-card reveal-stagger"><div class="sm-testi-img"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=80&auto=format&fit=crop&crop=face" alt="" /></div><div class="sm-stars">★★★★★</div><blockquote>"Our follower count was a vanity metric until Corum8 took over. They built the community that actually showed up at our token launch and kept showing up after."</blockquote><div class="sm-testi-name">Kumar Gaurav</div><div class="sm-testi-role">Founder · Cashaa · Dubai</div></div>
+    <div class="sm-testi-card reveal-stagger"><div class="sm-testi-img"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=80&auto=format&fit=crop&crop=face" alt="" /></div><div class="sm-stars">★★★★★</div><blockquote>"Their content team understood our category in two weeks. Six months later we're being quoted by tier-1 outlets because of threads they ghostwrote for our CEO."</blockquote><div class="sm-testi-name">Priya Anand</div><div class="sm-testi-role">CMO · Fintech Series-B · London</div></div>
+    <div class="sm-testi-card reveal-stagger"><div class="sm-testi-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80&auto=format&fit=crop&crop=face" alt="" /></div><div class="sm-stars">★★★★★</div><blockquote>"We hired three social agencies before Corum8. They were the first that didn't need us to teach them what our product does. Pipeline started showing within a quarter."</blockquote><div class="sm-testi-name">Marcus Riley</div><div class="sm-testi-role">CEO · AI infrastructure · NYC</div></div>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
+<section class="sm-faq">
+  <div class="sm-section-head reveal-up"><span class="sm-badge">FAQ</span><h2 class="sm-h2">Questions we get every week.</h2></div>
+  <div class="sm-faq-list reveal-up">
+    <div class="sm-faq-item"><button class="sm-faq-q" aria-expanded="false">Which platforms do you cover?<span class="sm-chevron"></span></button><div class="sm-faq-a"><strong>Twitter/X, LinkedIn, Instagram, TikTok, YouTube, Telegram, Discord, and Farcaster — depending on what your category and audience actually live on.</strong> The first thing we do is figure out which two or three platforms will actually move pipeline for you, then go deep there.</div></div>
+    <div class="sm-faq-item"><button class="sm-faq-q" aria-expanded="false">Do you handle paid amplification too?<span class="sm-chevron"></span></button><div class="sm-faq-a"><strong>Yes — we run paid amplification on top of organic content, especially on X, LinkedIn, and Meta.</strong> Our content team and paid team sit together so winning organic posts get a paid budget within hours, not weeks.</div></div>
+    <div class="sm-faq-item"><button class="sm-faq-q" aria-expanded="false">Can you ghostwrite for our founder?<span class="sm-chevron"></span></button><div class="sm-faq-a"><strong>Yes — founder ghostwriting is one of our most-requested services.</strong> We interview your founder weekly, capture the takes worth posting, and turn them into threads, LinkedIn posts, and YouTube outlines. Founder voice stays authentic; the production overhead disappears.</div></div>
+    <div class="sm-faq-item"><button class="sm-faq-q" aria-expanded="false">Do you do community moderation in non-English languages?<span class="sm-chevron"></span></button><div class="sm-faq-a"><strong>Yes — we run community moderation in 14 languages including Mandarin, Korean, Japanese, Arabic, Spanish, Portuguese, and more.</strong> Native speakers, not translators. We've staffed regional community managers across Telegram, Discord, and platform-native comments for clients like KuCoin and Cashaa.</div></div>
+    <div class="sm-faq-item"><button class="sm-faq-q" aria-expanded="false">How do you measure social media success?<span class="sm-chevron"></span></button><div class="sm-faq-a"><strong>We measure share-of-voice, qualified pipeline attribution, community health, and conversion to next-step action — not just follower count or vanity impressions.</strong> Every monthly report shows how social activity laddered to a business outcome.</div></div>
+    <div class="sm-faq-item"><button class="sm-faq-q" aria-expanded="false">Can you produce video content?<span class="sm-chevron"></span></button><div class="sm-faq-a"><strong>Yes — short-form video, reels, founder talking-head clips, and explainers are all produced in-house.</strong> We script, shoot remotely with founders, edit platform-native, and ship at the cadence each platform rewards.</div></div>
+    <div class="sm-faq-item"><button class="sm-faq-q" aria-expanded="false">Do you respond to comments and DMs?<span class="sm-chevron"></span></button><div class="sm-faq-a"><strong>Yes — comments, replies, and brand DMs are part of every engagement.</strong> Our community team responds in your voice with documented escalation rules for press inquiries, partnership asks, and crisis-shaped messages.</div></div>
+    <div class="sm-faq-item"><button class="sm-faq-q" aria-expanded="false">How does crisis communication work?<span class="sm-chevron"></span></button><div class="sm-faq-a"><strong>We document a crisis playbook with you in advance — escalation chains, holding statements, channel-by-channel response timing.</strong> Especially important for Web3 brands where a single tweet can move price.</div></div>
+  </div>
+</section>
+
+<!-- 10. CTA -->
+<section class="sm-cta sm-pill">
+  <div class="sm-cta__bg"><img src="https://images.unsplash.com/photo-1514315384763-ba401779410f?w=1400&q=70&auto=format&fit=crop" alt="" aria-hidden="true" /><div class="sm-cta__overlay"></div></div>
+  <div class="sm-cta__inner reveal-up">
+    <span class="sm-badge sm-badge--dim">Ready?</span>
+    <h2 class="sm-cta__h2">Build the audience<br/><span class="sm-grad">that actually buys.</span></h2>
+    <p>We'll audit your current social presence, show you the gaps, and map what it takes to grow the community your category is missing — in the first call.</p>
+    <div class="sm-cta__btns">
+      <a href="/contact" class="sm-btn sm-btn--fill sm-btn--lg">Book a strategy call</a>
+      <a href="/case-studies" class="sm-btn sm-btn--outline-white">See campaigns →</a>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js" is:inline></script>
+<script is:inline>
+(function(){
+  if(window.smInited) return; window.smInited=true;
+  var lenis=new Lenis({duration:1.15,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));}});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf);} requestAnimationFrame(raf);
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray('.reveal-up').forEach(function(el){gsap.fromTo(el,{autoAlpha:0,y:50},{autoAlpha:1,y:0,duration:0.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});});
+  gsap.utils.toArray('.reveal-left').forEach(function(el){gsap.fromTo(el,{autoAlpha:0,x:-60},{autoAlpha:1,x:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});});
+  gsap.utils.toArray('.reveal-right').forEach(function(el){gsap.fromTo(el,{autoAlpha:0,x:60},{autoAlpha:1,x:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});});
+  ['.sm-disc-grid','.sm-process-grid','.sm-plat-grid','.sm-show-grid','.sm-testi-grid'].forEach(function(sel){
+    var p=document.querySelector(sel); if(!p) return;
+    gsap.fromTo(p.querySelectorAll('.reveal-stagger'),{autoAlpha:0,y:60},{autoAlpha:1,y:0,duration:0.85,ease:'power3.out',stagger:0.1,scrollTrigger:{trigger:p,start:'top 86%'}});
+  });
+  var sp=document.querySelector('.sm-spark__line'); if(sp){var l=sp.getTotalLength();gsap.set(sp,{strokeDasharray:l,strokeDashoffset:l});gsap.to(sp,{strokeDashoffset:0,duration:2,ease:'power2.out',delay:0.4});}
+  document.querySelectorAll('.sm-faq-q').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=btn.closest('.sm-faq-item'); var ans=item.querySelector('.sm-faq-a'); var open=btn.getAttribute('aria-expanded')==='true';
+      document.querySelectorAll('.sm-faq-item').forEach(function(i){i.querySelector('.sm-faq-q').setAttribute('aria-expanded','false');i.querySelector('.sm-faq-a').style.maxHeight='0';i.querySelector('.sm-faq-a').style.opacity='0';i.classList.remove('open');});
+      if(!open){btn.setAttribute('aria-expanded','true');ans.style.maxHeight=ans.scrollHeight+'px';ans.style.opacity='1';item.classList.add('open');}
+    });
+  });
+})();
+</script>
+
+<style is:global>
+.sm-hero, .sm-hero *, .sm-dark, .sm-dark *, .sm-platforms, .sm-platforms *, .sm-process, .sm-process *,
+.sm-split-photo, .sm-split-photo *, .sm-showcase, .sm-showcase *, .sm-case, .sm-case *, .sm-testi, .sm-testi *,
+.sm-faq, .sm-faq *, .sm-cta, .sm-cta *, .sm-plat-strip, .sm-plat-strip * {
+  box-sizing: border-box; font-family: var(--font-sans);
+}
+.sm-hero img, .sm-dark img, .sm-platforms img, .sm-process img, .sm-split-photo img, .sm-showcase img, .sm-case img, .sm-testi img, .sm-cta img {
+  display:block; width:100%; height:100%; object-fit:cover;
+}
+
+/* TOKENS */
+.sm-badge{display:inline-flex;align-items:center;padding:.3rem .9rem;border-radius:100px;background:rgba(242,191,34,.1);border:1px solid rgba(242,191,34,.25);color:#8a6a14;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.sm-badge--dim{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.6);}
+.sm-grad{background:linear-gradient(135deg,#f2bf22 0%,#da9e49 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sm-h2{font-family:var(--font-display);font-size:clamp(1.85rem,3.6vw,2.6rem);font-weight:400;line-height:1.18;letter-spacing:-.015em;margin:.9rem 0 1.2rem;color:#0f0f0f;}
+.sm-h2--white{color:#fff;}
+.sm-p--dim{font-size:1rem;line-height:1.7;color:rgba(255,255,255,.5);margin-bottom:1rem;}
+.sm-section-head{text-align:center;max-width:740px;margin:0 auto 3.5rem;}
+.sm-section-head__sub{font-size:1rem;line-height:1.7;color:#666;margin-top:.5rem;}
+.sm-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.9rem;border-radius:100px;font-size:.92rem;font-weight:700;text-decoration:none;transition:all .25s;border:none;cursor:pointer;font-family:inherit;}
+.sm-btn--fill{background:linear-gradient(135deg,#f2bf22,#da9e49);color:#fff;box-shadow:0 8px 24px rgba(242,191,34,.3);}
+.sm-btn--fill:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(242,191,34,.4);}
+.sm-btn--line{background:transparent;color:#0f0f0f;border:1.5px solid rgba(0,0,0,.18);}
+.sm-btn--line:hover{border-color:#0f0f0f;}
+.sm-btn--outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);}
+.sm-btn--outline-white:hover{border-color:#fff;}
+.sm-btn--lg{padding:1rem 2.5rem;font-size:1rem;}
+
+/* PILL */
+.sm-pill{border-radius:40px;margin:2rem 1.5rem;overflow:hidden;}
+@media(min-width:768px){.sm-pill{border-radius:60px;margin:2rem 3rem;}}
+
+/* BLOBS */
+.sm-blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
+.sm-blob--a{width:520px;height:520px;background:rgba(242,191,34,.1);top:-100px;right:-80px;}
+.sm-blob--b{width:400px;height:400px;background:rgba(218,158,73,.08);bottom:0;left:-100px;}
+
+/* HERO */
+.sm-hero{position:relative;overflow:hidden;background:#f4f4f0;padding:clamp(4rem,9vh,7rem) 2rem clamp(3rem,6vh,5rem);}
+.sm-hero__inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1;}
+@media(max-width:900px){.sm-hero__inner{grid-template-columns:1fr;}.sm-hero__visual{display:none;}}
+.sm-hero__h1{font-family:var(--font-display);font-size:clamp(2.1rem,4vw,3.2rem);font-weight:400;line-height:1.15;letter-spacing:-.015em;margin:.9rem 0 1.3rem;color:#0f0f0f;}
+.sm-hero__sub{font-size:1.05rem;line-height:1.7;color:#555;max-width:520px;margin-bottom:2rem;}
+.sm-hero__btns{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:2.2rem;}
+.sm-hero__chips{display:flex;align-items:center;gap:1.2rem;list-style:none;padding:0;margin:0;flex-wrap:wrap;}
+.sm-hero__chips li:not(.sm-chip-div){display:flex;flex-direction:column;}
+.sm-chip-num{font-size:1.5rem;font-weight:800;color:#0f0f0f;line-height:1;}
+.sm-chip-lbl{font-size:.72rem;color:#888;margin-top:.25rem;}
+.sm-chip-div{width:1px;height:32px;background:rgba(0,0,0,.12);}
+.sm-hero__trust{display:flex;align-items:center;gap:.55rem;list-style:none;font-size:.85rem;color:#888;flex-wrap:wrap;padding:0;margin:0;}
+.sm-hero__trust strong{color:#0f0f0f;}
+.sm-hero__trust .dot{color:#ccc;}
+
+/* HERO VISUAL */
+.sm-hero__visual{position:relative;height:520px;}
+.sm-phone{position:absolute;top:0;left:50%;transform:translateX(-50%) rotate(-3deg);width:280px;height:520px;border-radius:34px;overflow:hidden;border:8px solid #0f0f0f;box-shadow:0 30px 80px -20px rgba(0,0,0,.25),0 0 0 2px rgba(0,0,0,.05);}
+.sm-fc{position:absolute;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:16px;box-shadow:0 16px 50px -12px rgba(0,0,0,.18);padding:1rem 1.2rem;z-index:10;}
+.sm-fc__label{font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#aaa;margin-bottom:.5rem;}
+.sm-fc__big{font-size:1.7rem;font-weight:800;color:#f2bf22;line-height:1;}
+.sm-fc__big span{font-size:1.1rem;}
+.sm-fc__sub{font-size:.72rem;color:#999;margin-top:.4rem;}
+.sm-fc__med{font-size:.84rem;font-weight:700;color:#0f0f0f;}
+.sm-fc--eng{top:30px;left:-30px;width:200px;}
+.sm-spark{width:100%;height:36px;margin-top:.6rem;overflow:visible;}
+.sm-fc--fol{bottom:50px;left:-50px;width:180px;display:flex;flex-direction:column;align-items:flex-start;gap:.4rem;}
+.sm-fc__avatars{display:flex;align-items:center;}
+.sm-av{width:28px;height:28px;border-radius:50%;border:2px solid #fff;margin-left:-8px;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;color:#fff;}
+.sm-av:first-child{margin-left:0;}
+.sm-av--more{background:#0f0f0f;}
+.sm-fc--plat{bottom:-10px;right:-30px;width:220px;display:flex;align-items:center;gap:.7rem;}
+.sm-plat-icon{font-size:1.5rem;font-weight:800;color:#0f0f0f;flex-shrink:0;width:36px;height:36px;background:#f5f1ea;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+
+/* FLOAT */
+@keyframes smfloatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes smfloatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.float-a{animation:smfloatA 6s ease-in-out infinite;}
+.float-b{animation:smfloatB 8s ease-in-out infinite;animation-delay:1.5s;}
+
+/* PLATFORM STRIP */
+.sm-plat-strip{padding:2rem;text-align:center;background:#f4f4f0;border-top:1px solid rgba(0,0,0,.06);}
+.sm-plat-strip__label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;display:block;margin-bottom:.8rem;}
+.sm-plat-strip__list{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.6rem;}
+.sm-plat-strip__list span{font-size:.95rem;font-weight:700;color:#888;}
+.sm-plat-strip__list .sdot{color:#ddd;}
+
+/* DISCIPLINES (LIGHT) */
+.sm-disc{background:#efe9dc;padding:clamp(4rem,8vh,6rem) 2rem;border:1px solid rgba(0,0,0,.04);}
+@media(min-width:768px){.sm-disc{padding:clamp(4rem,8vh,6rem) 4rem;}}
+.sm-disc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto;}
+.sm-disc-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:20px;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;box-shadow:0 8px 28px -12px rgba(0,0,0,.08);}
+.sm-disc-card:hover{border-color:#f2bf22;transform:translateY(-4px);box-shadow:0 18px 50px -16px rgba(242,191,34,.25);}
+.sm-disc-card__img{position:relative;height:180px;overflow:hidden;}
+.sm-disc-card__img img{transition:transform .5s;}
+.sm-disc-card:hover .sm-disc-card__img img{transform:scale(1.05);}
+.sm-disc-card__num{position:absolute;top:1rem;right:1rem;font-size:2.5rem;font-weight:800;color:rgba(255,255,255,.7);line-height:1;text-shadow:0 2px 8px rgba(0,0,0,.25);}
+.sm-disc-card__body{padding:1.5rem;}
+.sm-disc-card__body h3{font-size:1.2rem;font-weight:700;color:#0f0f0f;margin-bottom:.6rem;}
+.sm-disc-card__body p{font-size:.88rem;line-height:1.65;color:#555;margin-bottom:1rem;}
+.sm-disc-card__body ul{list-style:none;display:flex;flex-direction:column;gap:.35rem;padding:0;margin:0;}
+.sm-disc-card__body li{font-size:.8rem;color:#666;padding-left:.9rem;position:relative;}
+.sm-disc-card__body li::before{content:'—';position:absolute;left:0;color:#f2bf22;}
+
+/* WHY US comparison — large, scannable */
+.sm-why{padding:clamp(4rem,8vh,6rem) 2rem;background:#f4f4f0;}
+.sm-why__inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch;}
+@media(max-width:768px){.sm-why__inner{grid-template-columns:1fr;gap:1.2rem;}}
+.sm-why__col{background:#fff;border-radius:28px;padding:2.6rem 2.4rem;border:1px solid rgba(0,0,0,.08);box-shadow:0 10px 30px -14px rgba(0,0,0,.08);}
+.sm-why__col--us{border:2px solid #f2bf22;background:#fff;box-shadow:0 24px 60px -20px rgba(242,191,34,.35);position:relative;}
+.sm-why__col--us::before{content:"BEST CHOICE";position:absolute;top:-12px;right:24px;background:#f2bf22;color:#0a0b10;font-family:var(--font-display);font-size:.7rem;font-weight:400;letter-spacing:.12em;padding:.35rem .9rem;border-radius:100px;}
+.sm-why__col-h{font-family:var(--font-display);font-size:1.15rem;font-weight:400;letter-spacing:-.005em;color:#1a1a1a;margin-bottom:1.6rem;padding-bottom:1.2rem;border-bottom:1px dashed rgba(0,0,0,.12);display:flex;align-items:center;gap:.6rem;}
+.sm-why__col--them .sm-why__col-h{color:#888;}
+.sm-why__col-h--us{color:#0a0b10;}
+.sm-why__col ul{list-style:none;display:flex;flex-direction:column;gap:1.1rem;padding:0;margin:0;}
+.sm-why__col li{font-size:1.05rem;line-height:1.55;color:#222;display:flex;align-items:flex-start;gap:.85rem;font-weight:500;}
+.sm-why__col--them li{color:#777;font-weight:400;}
+.sm-x{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#f3f3f0;color:#aaa;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.05rem;line-height:1;margin-top:.05rem;}
+.sm-tick{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#f2bf22;color:#0a0b10;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;line-height:1;margin-top:.05rem;}
+.sm-why__cta{max-width:1180px;margin:2.5rem auto 0;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;background:#fff;border-radius:20px;padding:1.6rem 2.2rem;border:1px solid rgba(0,0,0,.08);flex-wrap:wrap;}
+.sm-why__cta-text{font-size:1.15rem;font-weight:600;color:#0a0b10;font-family:var(--font-sans);}
+
+/* SPLIT PHOTO */
+.sm-split-photo{display:grid;grid-template-columns:1fr 1fr;max-width:1300px;margin:4rem auto;border-radius:32px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.12);}
+@media(max-width:900px){.sm-split-photo{grid-template-columns:1fr;margin:2rem 1.5rem;}}
+.sm-split-photo__img{position:relative;min-height:500px;}
+.sm-split-photo__badge{position:absolute;bottom:2rem;left:2rem;background:#fff;border-radius:14px;padding:1rem 1.4rem;box-shadow:0 12px 40px rgba(0,0,0,.15);}
+.sm-split-photo__badge-num{display:block;font-size:1.8rem;font-weight:800;color:#f2bf22;line-height:1;}
+.sm-split-photo__badge-lbl{font-size:.75rem;font-weight:600;color:#666;}
+.sm-split-photo__chip{position:absolute;top:2rem;right:2rem;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);color:#fff;padding:.45rem 1rem;border-radius:100px;font-size:.78rem;font-weight:700;display:flex;align-items:center;gap:.5rem;}
+.sm-split-photo__chip .green{color:#22c55e;font-size:.6rem;}
+.sm-split-photo__copy{background:#fff;padding:clamp(3rem,6vw,5rem);display:flex;flex-direction:column;justify-content:center;}
+.sm-split-photo__copy p{font-size:.95rem;line-height:1.75;color:#555;margin-bottom:1.2rem;}
+.sm-mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2rem 0;}
+.sm-mini-stat span{display:block;font-size:1.6rem;font-weight:800;color:#f2bf22;}
+.sm-mini-stat small{display:block;font-size:.75rem;color:#888;margin-top:.2rem;}
+
+/* PROCESS */
+.sm-process{padding:clamp(4rem,8vh,6rem) 2rem;background:#f4f4f0;}
+.sm-process-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+.sm-proc-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:20px;overflow:hidden;box-shadow:0 10px 40px -10px rgba(0,0,0,.08);transition:transform .3s,box-shadow .3s;}
+.sm-proc-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px -15px rgba(0,0,0,.12);}
+.sm-proc-card__img{position:relative;height:200px;overflow:hidden;}
+.sm-proc-card__img img{transition:transform .5s;}
+.sm-proc-card:hover .sm-proc-card__img img{transform:scale(1.05);}
+.sm-proc-num{position:absolute;top:1rem;left:1rem;background:linear-gradient(135deg,#f2bf22,#da9e49);color:#fff;border-radius:8px;padding:.25rem .65rem;font-size:.8rem;font-weight:800;}
+.sm-proc-card h3{font-size:1.05rem;font-weight:700;padding:1.3rem 1.4rem .4rem;color:#0f0f0f;}
+.sm-proc-card p{font-size:.85rem;line-height:1.65;color:#666;padding:0 1.4rem 1.4rem;margin:0;}
+
+/* PLATFORMS GRID (LIGHT) */
+.sm-platforms{background:#efe9dc;padding:clamp(4rem,8vh,6rem) 2rem;border:1px solid rgba(0,0,0,.04);}
+@media(min-width:768px){.sm-platforms{padding:clamp(4rem,8vh,6rem) 4rem;}}
+.sm-platforms__inner{max-width:1200px;margin:0 auto;}
+.sm-plat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+.sm-plat-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:18px;padding:1.6rem;transition:all .3s;box-shadow:0 6px 20px -10px rgba(0,0,0,.06);}
+.sm-plat-card:hover{border-color:#f2bf22;transform:translateY(-3px);box-shadow:0 18px 40px -16px rgba(242,191,34,.25);}
+.sm-plat-card__icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#f2bf22,#da9e49);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:1rem;}
+.sm-plat-card h4{font-size:1rem;font-weight:700;color:#0f0f0f;margin-bottom:.45rem;}
+.sm-plat-card p{font-size:.85rem;line-height:1.65;color:#666;margin:0;}
+
+/* SHOWCASE */
+.sm-showcase{padding:clamp(4rem,8vh,6rem) 2rem;background:#f4f4f0;}
+.sm-show-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:200px;gap:1rem;}
+@media(max-width:768px){.sm-show-grid{grid-template-columns:1fr;}}
+.sm-show-card{position:relative;border-radius:18px;overflow:hidden;}
+.sm-show-card--tall{grid-row:span 2;}
+.sm-show-card img{transition:transform .5s;}
+.sm-show-card:hover img{transform:scale(1.05);}
+.sm-show-card__cap{position:absolute;bottom:1rem;left:1rem;right:1rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);padding:.5rem .8rem;border-radius:100px;}
+.sm-show-card__tag{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.85);}
+.sm-show-card__metric{font-size:.72rem;font-weight:800;color:#fff;background:rgba(242,191,34,.5);padding:.15rem .55rem;border-radius:100px;}
+
+/* CASE */
+.sm-case{background:#0f0f0f;padding:clamp(4rem,8vh,6rem) 2rem;position:relative;overflow:hidden;}
+.sm-case__bg{position:absolute;inset:0;z-index:0;}
+.sm-case__bg img{width:100%;height:100%;object-fit:cover;opacity:.13;}
+.sm-case__overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,15,15,.95) 40%,rgba(15,15,15,.7));}
+.sm-case__inner{position:relative;z-index:1;max-width:860px;margin:0 auto;}
+.sm-case__tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#f2bf22;background:rgba(242,191,34,.15);padding:.3rem .9rem;border-radius:100px;margin-bottom:1.5rem;}
+.sm-case__h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.2;letter-spacing:-.03em;color:#fff;margin-bottom:1.5rem;}
+.sm-case__body{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.45);margin-bottom:2.5rem;}
+.sm-case__metrics{display:flex;flex-wrap:wrap;gap:2rem;padding:2rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;margin-bottom:2.5rem;}
+.sm-case__metrics div span{display:block;font-size:2rem;font-weight:800;color:#f2bf22;line-height:1;}
+.sm-case__metrics div small{font-size:.75rem;color:rgba(255,255,255,.4);}
+
+/* TESTIMONIALS */
+.sm-testi{padding:clamp(4rem,8vh,6rem) 2rem;background:#f4f4f0;}
+.sm-testi-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+.sm-testi-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:24px;padding:2rem;box-shadow:0 10px 40px -12px rgba(0,0,0,.08);transition:transform .3s,box-shadow .3s;}
+.sm-testi-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px -15px rgba(0,0,0,.12);}
+.sm-testi-img{width:56px;height:56px;border-radius:50%;overflow:hidden;margin-bottom:1rem;border:2px solid rgba(242,191,34,.3);}
+.sm-stars{color:#f59e0b;font-size:.9rem;letter-spacing:.05em;margin-bottom:1rem;}
+.sm-testi-card blockquote{font-size:.88rem;line-height:1.7;color:#444;font-style:italic;margin-bottom:1.2rem;}
+.sm-testi-name{font-size:.88rem;font-weight:700;color:#0f0f0f;}
+.sm-testi-role{font-size:.75rem;color:#999;margin-top:.15rem;}
+
+/* FAQ */
+.sm-faq{padding:clamp(4rem,8vh,6rem) 2rem;background:#fff;border-top:1px solid rgba(0,0,0,.06);}
+.sm-faq-list{max-width:760px;margin:0 auto;}
+.sm-faq-item{border-bottom:1px solid rgba(0,0,0,.07);}
+.sm-faq-item:first-child{border-top:1px solid rgba(0,0,0,.07);}
+.sm-faq-q{width:100%;text-align:left;padding:1.3rem 0;background:none;border:none;cursor:pointer;font-size:.95rem;font-weight:700;color:#0f0f0f;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-family:inherit;transition:color .2s;}
+.sm-faq-q:hover,.sm-faq-q[aria-expanded="true"]{color:#f2bf22;}
+.sm-chevron{flex-shrink:0;width:22px;height:22px;border:1.5px solid currentColor;border-radius:50%;position:relative;transition:transform .3s;}
+.sm-chevron::before,.sm-chevron::after{content:'';position:absolute;top:50%;left:50%;width:7px;height:1.5px;background:currentColor;border-radius:2px;}
+.sm-chevron::before{transform:translate(-50%,-50%) rotate(-45deg) translateX(2px);}
+.sm-chevron::after{transform:translate(-50%,-50%) rotate(45deg) translateX(-2px);}
+.sm-faq-q[aria-expanded="true"] .sm-chevron{transform:rotate(180deg);}
+.sm-faq-a{max-height:0;overflow:hidden;opacity:0;font-size:.9rem;line-height:1.75;color:#555;transition:max-height .4s cubic-bezier(.16,1,.3,1),opacity .3s;}
+.sm-faq-item.open .sm-faq-a{padding-bottom:1.4rem;}
+
+/* CTA */
+.sm-cta{background:#0f0f0f;padding:clamp(5rem,10vh,8rem) 2rem;text-align:center;position:relative;overflow:hidden;}
+.sm-cta__bg{position:absolute;inset:0;z-index:0;}
+.sm-cta__bg img{width:100%;height:100%;object-fit:cover;opacity:.1;}
+.sm-cta__overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(15,15,15,.5) 0%,rgba(15,15,15,.97) 70%);}
+.sm-cta__inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.sm-cta__h2{font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-.04em;color:#fff;margin:1rem 0;}
+.sm-cta__inner p{font-size:1rem;line-height:1.7;color:rgba(255,255,255,.45);margin-bottom:2.5rem;}
+.sm-cta__btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+@media(prefers-reduced-motion:reduce){.float-a,.float-b{animation:none;}}
+</style>
+
+</Layout>

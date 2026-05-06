@@ -2,111 +2,307 @@
 import Layout from "../layouts/Layout.astro";
 import FinalCta from "../components/FinalCta.astro";
 
-const arrowGrad = {
-  id: 'cs',
-  stops: [
-    { offset: '0', color: '#da9e49' },
-    { offset: '1', color: '#f4cb4e' },
-  ],
-};
+// ──────────────────────────────────────────────────────────────────────────
+// /case-studies — every card mirrors the homepage <Work /> carousel.
+//
+// Same data shape (year, category, heading=result, description, tags,
+// poster, posterMode, darkLogo) and same `.c8-work__*` markup + styles —
+// the only difference is layout. Homepage shows them in a 1/2/3-up Swiper;
+// this page shows all six in a 3×2 grid.
+//
+// Notes
+// • No autoplay videos. Homepage uses static posters only — we match.
+// • Ubuntu Tribe poster: homepage references `/images/utribe.png` which is
+//   missing on disk (404). We fall back to `/images/ISI-Image.png`.
+// ──────────────────────────────────────────────────────────────────────────
 
 const projects = [
-  {
-    href: '/case-studies/binance',
-    name: 'Binance',
-    year: '2023',
-    heading: 'Performance affiliate network driving $800M+ monthly exchange volume.',
-    tags: ['Performance Marketing', 'Affiliate Network', 'Exchange'],
-    video: '/media/Company-Loop4-compressed-2.mp4',
-    poster: '/images/upp-featured-mobile.jpg',
-  },
   {
     href: '/case-studies/cashaa',
     name: 'Cashaa',
     year: '2022',
-    heading: 'Token launch powered by influencer marketing, PR and community activation — $32M raised.',
-    tags: ['Token Launch', 'Influencer Marketing', 'PR', 'Community'],
-    video: '/media/Featured2-Compressed.mp4',
-    poster: '/images/upp-featured-mobile.jpg',
+    category: 'Token Launch',
+    heading: '$32M raised',
+    description: 'End-to-end token launch — global press across 200+ publications, Tier-1 KOL seeding, and a community built from zero across Discord and Telegram.',
+    tags: ['PR', 'Influencer', 'Community'],
+    poster: '/images/cashaa.jpg',
   },
   {
-    href: '/case-studies/kucoin',
-    name: 'KuCoin',
+    href: '/case-studies/binance',
+    name: 'Binance',
     year: '2024',
-    heading: 'Strategic PR programme for a major exchange — amplifying brand visibility in every priority market.',
-    tags: ['Strategic PR', 'Exchange', 'Global Visibility'],
-    video: '/media/Duplicated-Assets.mp4',
-    poster: '/images/ig-featured-mobile.jpg',
+    category: 'Affiliate Network',
+    heading: '$800M+ monthly',
+    description: 'Built the affiliate network behind Binance India — drove $800M+ in monthly volume through curated KOL partnerships and programmatic referral growth.',
+    tags: ['PR', 'Growth', 'Community'],
+    poster: '/clients/binance.webp',
+    posterMode: 'logo',
   },
   {
     href: '/case-studies/fanadise',
     name: 'Fanadise',
     year: '2024',
-    heading: 'Full-stack Web3 growth campaign that rallied the community behind a $5M raise.',
-    tags: ['Full-stack Web3', 'Growth Campaign', 'Community'],
-    video: '/media/GOAT-FeatureVideo.mp4',
-    poster: '/images/GOAT-FeaturedImage.webp',
+    category: 'Web3 Growth',
+    heading: '$5M raised',
+    description: 'Full-stack Web3 fan platform — smart contracts, NFT mechanics and a coordinated multi-channel growth campaign that drove raise momentum from day one.',
+    tags: ['Development', 'Community', 'Influencer'],
+    poster: '/images/fanadise.png',
   },
   {
     href: '/case-studies/ubuntu-tribe',
     name: 'Ubuntu Tribe',
     year: '2024',
-    heading: 'PR, community and influencer programme anchored around a Token2049 activation.',
-    tags: ['PR', 'Community', 'Influencer', 'Token2049 Event'],
-    video: '/media/isi-vid2-1.mp4',
-    poster: '/images/hero.webp',
+    category: 'Event Launch',
+    heading: 'Token2049 — global stage',
+    description: 'Compressed multi-channel launch around Token2049 Dubai. PR, KOL activation and live community moments synchronized into a single 72-hour burst.',
+    tags: ['PR', 'KOL', 'Community'],
+    poster: '/images/ISI-Image.png',
+  },
+  {
+    href: '/case-studies/kucoin',
+    name: 'KuCoin',
+    year: '2024',
+    category: 'Strategic PR',
+    heading: 'Tier-1 reach, every market',
+    description: 'Ongoing strategic PR retainer — tier-1 placement, editorial strategy and proactive narrative management across 30+ priority markets.',
+    tags: ['PR', 'Exchange', 'Global'],
+    poster: '/images/KuCoin.jpg',
   },
   {
     href: '/case-studies/metarix',
     name: 'Metarix',
     year: '2023',
-    heading: 'Full launch across influencers, PR and community that converted attention into a $780K raise.',
-    tags: ['Influencers', 'PR', 'Community', 'Full Launch'],
-    video: '/media/Featured-compressed.mp4',
-    poster: '/images/wogan-featured-2.jpg',
+    category: 'Token Raise',
+    heading: '$780K raised',
+    description: 'Pre-launch community engineering, KOL seeding and PR — a full launch stack that turned a quiet pre-seed into a credible Web3 pre-token raise.',
+    tags: ['Community', 'Influencer', 'PR'],
+    poster: '/clients/metarix.webp',
+    posterMode: 'logo',
+    darkLogo: true,
   },
 ];
 ---
 <Layout title="Case Studies | Corum8">
 <div data-theme="light">
-<section class="Hero_hero__Oyf4n"><div class="container"><div class="Hero_top__RRkYH"><h2><span class="LineByLine_headingOuter__JmusT"><span>Selected work. Real clients. Verifiable numbers.</span></span></h2><figure class="crosshair" aria-hidden="true"><span class="FadeInRotate_container__QE9u9" data-fill="true" data-direction="clockwise"><span class="inner"></span></span></figure><div class="Hero_video__rzcbe"><span class="ScaleFadeIn_container__cK78G" data-fill="true"><span class="ScaleFadeIn_inner__y4reT" data-fill="true"><video src="/media/bg2.mp4" class="Hero_video__rzcbe" autoplay muted loop playsinline></video></span></span></div></div><div class="Hero_bottom__ktiOH"><h1><span class="MaskInUp_container__0AW5i" data-fill="false"><div><span><i></i>Case studies</span></div></span></h1><h3 class="Hero_introText__oP34v"><span class="FadeIn_container__bjQVL" data-fill="false"><span>Six engagements across exchanges, token launches, community programmes and performance networks — with the numbers attached.</span></span></h3><div class="Hero_arrow__lxSeM"><span class="FadeInRotate_container__QE9u9" data-fill="false" data-direction="counterclockwise"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.91 75.65"><path d="m13.65 67.65 61.93-62L69.92 0 8 61.99V.25H0v75.4h75.91v-8H13.65z"></path></svg></span></div></div></div></section>
 
-<div class="Work_work__rSI8c" id="case-studies-grid">
-  <div class="DarkThemeSwitch_cover__hn_xc"></div>
-  <div class="Work_projects__A5q77">
-    <div class="AnimatedGrid_grid__otAMD">
-      <div class="container">
-        {projects.map((p) => (
-          <a class="ProjectCard_project__d1wbY ProjectCard_small__xsL92" data-animation="grid-item" href={p.href}>
-            <div class="ProjectCard_projectText__o770X">
-              <h3>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.78 14.78">
-                  <defs>
-                    <linearGradient id={arrowGrad.id} x1="3.54" x2="13.98" y1="3.54" y2="13.99" gradientUnits="userSpaceOnUse">
-                      {arrowGrad.stops.map((s) => <stop offset={s.offset} stop-color={s.color}></stop>)}
-                    </linearGradient>
-                  </defs>
-                  <path fill={`url(#${arrowGrad.id})`} stroke-width="0" d="M13.25 12.18L13.25 0.23 14.78 0.23 14.78 14.76 14.74 14.76 14.74 14.78 0.21 14.78 0.21 13.25 12.18 13.25 0 1.08 1.08 0 13.25 12.18z"></path>
-                </svg>{p.name}
-              </h3>
-              <p>{p.year}</p>
-            </div>
-            <div class="ProjectCard_projectImage__Nfx9I">
-              <div class="ProjectCard_imageOverlay__OCawr">
-                <p class="ProjectCard_heading__1csIW">{p.heading}</p>
-                <ul class="ProjectCard_tags__XdVcf">
-                  {p.tags.map((t) => <li>{t}</li>)}
-                </ul>
-              </div>
-              <span class="Image_image__RAAdZ Image_fill__EiIzS"><img src={p.poster} alt="" fetchpriority="low" loading="lazy" /></span>
-              <video src={p.video} class="ProjectCard_video__AheFz" autoplay muted loop playsinline></video>
-            </div>
-          </a>
-        ))}
+<!-- ───── Hero (custom — salesy boast, dark, big numbers) ───────────── -->
+<section class="cs-hero">
+  <div class="cs-hero__bg" aria-hidden="true">
+    <span class="cs-hero__glow cs-hero__glow--gold"></span>
+    <span class="cs-hero__glow cs-hero__glow--green"></span>
+    <span class="cs-hero__grid"></span>
+  </div>
+
+  <div class="cs-hero__inner">
+    <div class="cs-hero__copy" data-reveal-stagger="120">
+      <p class="cs-hero__eyebrow" data-reveal="up">
+        <span class="cs-hero__eyebrow-dot"></span>
+        Case studies · Receipts only
+      </p>
+
+      <h1 class="cs-hero__h1">
+        <span data-reveal="up">We don't pitch.</span>
+        <span data-reveal="up">We point at <em>the work.</em></span>
+      </h1>
+
+      <p class="cs-hero__lede" data-reveal="up">
+        Most agencies show you a deck. We show you the wire transfers, the volume reports, the listing screenshots. <strong>1,100+ projects since 2014</strong>, <strong>$120M+</strong> in client revenue, <strong>$32M raised</strong> on a single token, <strong>$800M+</strong> in monthly affiliate volume — every number is on a page below with the client's name attached. Browse what's public. The rest is behind an NDA.
+      </p>
+
+      <div class="cs-hero__cta-row" data-reveal="up">
+        <a href="#case-studies-grid" class="cs-hero__cta cs-hero__cta--primary">
+          <span>Browse our work</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        </a>
+        <a href="/book-a-strategy-call" class="cs-hero__cta cs-hero__cta--ghost">
+          <span>Book a strategy call</span>
+        </a>
       </div>
     </div>
+
+    <ul class="cs-hero__chips" aria-label="Headline outcomes" data-reveal-stagger="80">
+      <li class="cs-hero__chip" data-reveal="up">
+        <span class="cs-hero__chip-fig">$32M</span>
+        <span class="cs-hero__chip-lbl">raised on Cashaa's token launch</span>
+      </li>
+      <li class="cs-hero__chip" data-reveal="up">
+        <span class="cs-hero__chip-fig">$800M+</span>
+        <span class="cs-hero__chip-lbl">monthly affiliate volume — Binance</span>
+      </li>
+      <li class="cs-hero__chip" data-reveal="up">
+        <span class="cs-hero__chip-fig">$5M</span>
+        <span class="cs-hero__chip-lbl">raised on Fanadise — full-stack Web3</span>
+      </li>
+      <li class="cs-hero__chip" data-reveal="up">
+        <span class="cs-hero__chip-fig">200+</span>
+        <span class="cs-hero__chip-lbl">tier-1 placements per quarter — KuCoin</span>
+      </li>
+      <li class="cs-hero__chip" data-reveal="up">
+        <span class="cs-hero__chip-fig">$780K</span>
+        <span class="cs-hero__chip-lbl">raised on Metarix's pre-token round</span>
+      </li>
+      <li class="cs-hero__chip" data-reveal="up">
+        <span class="cs-hero__chip-fig">72hr</span>
+        <span class="cs-hero__chip-lbl">multi-channel burst — Token2049 Dubai</span>
+      </li>
+    </ul>
   </div>
-</div>
+
+  <div class="cs-hero__scroll" aria-hidden="true">
+    <span class="cs-hero__scroll-line"></span>
+    <span class="cs-hero__scroll-text">Scroll for receipts</span>
+  </div>
+</section>
+
+<!-- ───── Case-study grid (homepage <Work /> cards in a 3×2 layout) ──── -->
+<section class="cs-grid" id="case-studies-grid">
+  <div class="cs-grid__inner">
+    <header class="cs-grid__head" data-reveal-stagger="100">
+      <p class="cs-grid__eyebrow" data-reveal="up">Selected engagements</p>
+      <h2 class="cs-grid__heading" data-reveal="up">
+        Real launches. <span class="cs-grid__heading-accent">Outsized outcomes.</span>
+      </h2>
+    </header>
+
+    <div class="cs-grid__row" data-reveal-stagger="80">
+      {projects.map((p) => (
+        <a class="c8-work__card cs-grid__card" href={p.href} data-reveal="up">
+          <div class={`c8-work__media${p.posterMode === 'logo' ? ' c8-work__media--logo' : ''}${p.darkLogo ? ' c8-work__media--invert' : ''}`}>
+            <img src={p.poster} alt={`${p.name} case study`} loading="lazy" />
+            <div class="c8-work__veil"></div>
+            <span class="c8-work__cat">{p.category}</span>
+          </div>
+          <div class="c8-work__body">
+            <div class="c8-work__meta">
+              <span class="c8-work__name">{p.name}</span>
+              <span class="c8-work__year">{p.year}</span>
+            </div>
+            <h3 class="c8-work__result">{p.heading}</h3>
+            <p class="c8-work__desc">{p.description}</p>
+            <ul class="c8-work__tags">
+              {p.tags.map((t) => <li>{t}</li>)}
+            </ul>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ───── Subscribe band ────────────────────────────────────────────── -->
+<section class="cs-sub" id="subscribe">
+  <div class="cs-sub__inner">
+    <div class="cs-sub__copy" data-reveal-stagger="100">
+      <p class="cs-sub__eyebrow" data-reveal="up">NDA-protected work</p>
+      <h2 class="cs-sub__heading" data-reveal="up">
+        Not everything can <span class="cs-sub__heading-accent">be public.</span>
+      </h2>
+      <p class="cs-sub__lede" data-reveal="up">
+        Most of our work is covered by client NDAs and privacy agreements — we can't post it on a website. But we can walk you through it directly. Drop your email and we'll reach out to share what we can't show here: the full numbers, the playbooks, the engagements that can't be named publicly.
+      </p>
+    </div>
+
+    <form class="cs-sub__form" action="/subscribe" method="post" novalidate data-reveal="up">
+      <label class="cs-sub__field">
+        <span class="cs-sub__label">Work email</span>
+        <input
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          placeholder="founder@yourstartup.com"
+          aria-label="Email address"
+          class="cs-sub__input"
+        />
+      </label>
+      <button type="submit" class="cs-sub__btn">
+        <span>Get in touch →</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+
+      <ul class="cs-sub__perks" aria-label="What you get">
+        <li>
+          <span class="cs-sub__perk-tick" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          NDA-covered work we can't post publicly
+        </li>
+        <li>
+          <span class="cs-sub__perk-tick" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          Real numbers, real client names under NDA
+        </li>
+        <li>
+          <span class="cs-sub__perk-tick" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          We reach out — <strong>no spam, ever</strong>
+        </li>
+      </ul>
+    </form>
+  </div>
+</section>
+
+<!-- ───── Locked teasers — case studies that continue past the email ── -->
+<section class="cs-locked" aria-label="Upcoming case studies (subscribers)">
+  <div class="cs-locked__inner">
+    <header class="cs-locked__head" data-reveal-stagger="100">
+      <p class="cs-locked__eyebrow" data-reveal="up">
+        <span class="cs-locked__lock" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </span>
+        Coming up next · subscribers only
+      </p>
+      <h2 class="cs-locked__heading" data-reveal="up">
+        14 more case studies <span class="cs-locked__heading-accent">behind the email.</span>
+      </h2>
+      <p class="cs-locked__sub" data-reveal="up">
+        These ship to inboxes, not to the public site. The next three drops:
+      </p>
+    </header>
+
+    <ul class="cs-locked__row" data-reveal-stagger="80">
+      <li class="cs-locked__teaser" data-reveal="up">
+        <div class="cs-locked__teaser-top">
+          <span class="cs-locked__teaser-cat">Strategic PR</span>
+          <span class="cs-locked__teaser-when">Next week</span>
+        </div>
+        <h3 class="cs-locked__teaser-name">A top-3 CEX · Q4 narrative reset</h3>
+        <p class="cs-locked__teaser-result"><span>$██M</span> in earned media · 47 tier-1 placements</p>
+        <p class="cs-locked__teaser-desc">How we rewrote the public narrative around a top-3 exchange after a regulatory event — what we said, what we refused to say, and the seven outlets we got to print it first.</p>
+        <span class="cs-locked__teaser-fade" aria-hidden="true"></span>
+      </li>
+
+      <li class="cs-locked__teaser" data-reveal="up">
+        <div class="cs-locked__teaser-top">
+          <span class="cs-locked__teaser-cat">Token Launch</span>
+          <span class="cs-locked__teaser-when">+2 weeks</span>
+        </div>
+        <h3 class="cs-locked__teaser-name">RWA platform · pre-listing run-up</h3>
+        <p class="cs-locked__teaser-result"><span>$██M</span> raised · 4 tier-1 listings secured</p>
+        <p class="cs-locked__teaser-desc">An RWA platform that sat at zero KOL coverage 90 days before listing. The cohort plan, the seeding cadence, and the three influencers who actually moved volume.</p>
+        <span class="cs-locked__teaser-fade" aria-hidden="true"></span>
+      </li>
+
+      <li class="cs-locked__teaser" data-reveal="up">
+        <div class="cs-locked__teaser-top">
+          <span class="cs-locked__teaser-cat">Performance</span>
+          <span class="cs-locked__teaser-when">+4 weeks</span>
+        </div>
+        <h3 class="cs-locked__teaser-name">Fintech card programme · EU launch</h3>
+        <p class="cs-locked__teaser-result"><span>██% CAC</span> reduction · 3.4× pipeline lift</p>
+        <p class="cs-locked__teaser-desc">A regulated EU card programme that needed FCA-friendly performance creative. Why our first 12 ads got rejected, and the playbook that took the next 200 live.</p>
+        <span class="cs-locked__teaser-fade" aria-hidden="true"></span>
+      </li>
+    </ul>
+
+    <a href="#subscribe" class="cs-locked__cta" data-reveal="up">
+      <span>Unlock by subscribing above</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    </a>
+  </div>
+</section>
 
 <FinalCta
   light="Want a"
@@ -114,4 +310,840 @@ const projects = [
   subtitle="Book a call. We'll tell you what we'd ship and measure first."
 />
 </div>
+
+<style is:global>
+  /* ────────────────────────────────────────────────────────────────────
+     /case-studies — custom hero (dark salesy boast), grid section
+     (homepage card styles duplicated here), subscribe band, and locked
+     teasers section.
+     ──────────────────────────────────────────────────────────────────── */
+
+  /* ╔═══════════════════════════════════════════════════════════════════╗
+     ║ HERO — dark, dramatic, salesy. Two-column on desktop:             ║
+     ║   left = boast headline + lede + CTAs                             ║
+     ║   right = stack of 6 outcome chips (each: figure + label)         ║
+     ║ Stacks to one column on mobile.                                   ║
+     ╚═══════════════════════════════════════════════════════════════════╝ */
+  .cs-hero {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(8rem, 16vh, 11rem) clamp(1.5rem, 5vw, 5rem) clamp(5rem, 9vh, 7rem);
+    color: #fff;
+    background: #06070b;
+    overflow: hidden;
+  }
+  .cs-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .cs-hero__glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+  }
+  .cs-hero__glow--gold {
+    top: -10%;
+    right: -5%;
+    width: 60%;
+    height: 90%;
+    background: radial-gradient(closest-side, rgba(242,191,34,0.32) 0%, rgba(242,191,34,0.10) 40%, transparent 75%);
+  }
+  .cs-hero__glow--green {
+    bottom: -20%;
+    left: -10%;
+    width: 50%;
+    height: 80%;
+    background: radial-gradient(closest-side, rgba(52,211,153,0.18) 0%, rgba(52,211,153,0.06) 50%, transparent 75%);
+  }
+  .cs-hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, #000 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, #000 30%, transparent 80%);
+    opacity: 0.55;
+  }
+
+  .cs-hero__inner {
+    max-width: var(--c8-section-max, 1320px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: center;
+  }
+  @media (max-width: 980px) {
+    .cs-hero__inner { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  .cs-hero__copy { max-width: 36rem; }
+  .cs-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0 0 1.4rem;
+    padding: 0.45rem 0.9rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 999px;
+    font-family: var(--montreal);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c8-gold);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .cs-hero__eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: var(--c8-gold);
+    box-shadow: 0 0 0 4px rgba(242,191,34,0.25);
+    animation: cs-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes cs-pulse {
+    0%, 100% { transform: scale(1);   opacity: 1;   }
+    50%      { transform: scale(1.3); opacity: 0.7; }
+  }
+
+  .cs-hero__h1 {
+    margin: 0 0 1.6rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 6.5vw, 4.6rem);
+    font-weight: 350;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #fff;
+  }
+  .cs-hero__h1 span { display: block; }
+  .cs-hero__h1 em {
+    font-style: normal;
+    background: linear-gradient(110deg, var(--c8-gold-dark) 0%, var(--c8-gold) 50%, var(--c8-gold-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .cs-hero__lede {
+    margin: 0 0 2rem;
+    max-width: 36rem;
+    font-family: var(--montreal);
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    line-height: 1.65;
+    color: rgba(255,255,255,0.78);
+  }
+  .cs-hero__lede strong { color: #fff; font-weight: 600; }
+
+  .cs-hero__cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 0.9rem;
+    align-items: center;
+  }
+  .cs-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 1rem 1.7rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: var(--montreal);
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cs-hero__cta svg { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+  .cs-hero__cta--primary {
+    background: var(--c8-gold);
+    color: #0a0a0a;
+    box-shadow: 0 18px 38px -16px var(--c8-gold-glow);
+  }
+  .cs-hero__cta--primary:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 24px 50px -18px rgba(255,255,255,0.4);
+  }
+  .cs-hero__cta--primary:hover svg { transform: translateY(3px); }
+  .cs-hero__cta--ghost {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.32);
+  }
+  .cs-hero__cta--ghost:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-2px);
+  }
+
+  /* Outcome chips column */
+  .cs-hero__chips {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+  .cs-hero__chip {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1rem 1.1rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, background 0.3s ease;
+  }
+  .cs-hero__chip:hover {
+    transform: translateY(-3px);
+    border-color: rgba(242,191,34,0.45);
+    background: rgba(242,191,34,0.06);
+  }
+  .cs-hero__chip-fig {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 350;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--c8-gold);
+  }
+  .cs-hero__chip-lbl {
+    font-family: var(--montreal);
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* Scroll-cue at bottom of hero */
+  .cs-hero__scroll {
+    position: absolute;
+    bottom: clamp(1.25rem, 3vh, 2rem);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    pointer-events: none;
+  }
+  .cs-hero__scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(180deg, transparent 0%, var(--c8-gold) 100%);
+    animation: cs-scroll-line 2.4s ease-in-out infinite;
+    transform-origin: top;
+  }
+  @keyframes cs-scroll-line {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+    50%      { transform: scaleY(1);   opacity: 1;   }
+  }
+  .cs-hero__scroll-text {
+    font-family: var(--montreal);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  @media (max-width: 980px) { .cs-hero__scroll { display: none; } }
+
+  .cs-grid {
+    background: var(--color-bg-dark);
+    color: #fff;
+    padding-block: var(--c8-pad-section, clamp(4.5rem, 9vh, 7rem));
+    padding-inline: clamp(1.5rem, 5vw, 5rem);
+  }
+  .cs-grid__inner {
+    max-width: var(--c8-section-max, 1320px);
+    margin: 0 auto;
+  }
+  .cs-grid__head {
+    margin: 0 0 clamp(2.5rem, 5vh, 3.5rem);
+    max-width: 52rem;
+  }
+  .cs-grid__eyebrow {
+    margin: 0 0 1rem;
+    font-family: var(--montreal);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c8-gold-dark);
+  }
+  .cs-grid__heading {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+    font-weight: 350;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+  .cs-grid__heading-accent {
+    color: var(--c8-gold-dark);
+    font-weight: 350;
+  }
+
+  /* 3 cols on desktop, 2 cols on tablet, 1 col on mobile. */
+  .cs-grid__row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 1.6vw, 1.5rem);
+  }
+  @media (max-width: 1000px) { .cs-grid__row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px)  { .cs-grid__row { grid-template-columns: 1fr; } }
+
+  /* Card overrides for grid context (homepage uses Swiper, here we own
+     the height/width so the card needs to stretch the grid cell). */
+  .cs-grid__card { width: 100%; height: 100%; }
+
+  /* ────────────────────────────────────────────────────────────────────
+     Homepage card styles — duplicated from src/components/Work.astro so
+     the cards match exactly without loading the homepage section.
+     If you change one, change both.
+     ──────────────────────────────────────────────────────────────────── */
+  .c8-work__card {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 18px 40px -22px rgba(0,0,0,0.6);
+  }
+  .c8-work__card:hover {
+    transform: translateY(-6px);
+    border-color: var(--c8-gold-glow);
+    box-shadow: 0 28px 60px -22px rgba(0,0,0,0.7), 0 0 50px -12px var(--c8-gold-soft);
+  }
+
+  .c8-work__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+    background: #000;
+  }
+  .c8-work__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .c8-work__card:hover .c8-work__media img {
+    transform: scale(1.04);
+  }
+  .c8-work__media--logo {
+    background:
+      radial-gradient(ellipse at center, rgba(242,191,34,0.06) 0%, transparent 65%),
+      linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  }
+  .c8-work__media--logo img {
+    object-fit: contain;
+    padding: clamp(2rem, 5vw, 3rem);
+  }
+  .c8-work__media--invert img {
+    filter: brightness(0) invert(1);
+    opacity: 0.92;
+  }
+  .c8-work__card:hover .c8-work__media--logo img {
+    transform: scale(1.06);
+  }
+  .c8-work__veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%);
+    pointer-events: none;
+  }
+  .c8-work__cat {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    font-family: var(--montreal);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--c8-gold-dark);
+    padding: 0.28rem 0.7rem;
+    border: 1px solid rgba(242,191,34,0.4);
+    border-radius: 999px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .c8-work__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 1.4rem 1.4rem 1.5rem;
+    flex: 1;
+  }
+  .c8-work__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--montreal);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+  }
+  .c8-work__name {
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.02em;
+  }
+  .c8-work__year { color: rgba(255,255,255,0.45); }
+  .c8-work__result {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1.8vw, 1.55rem);
+    font-weight: 350;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .c8-work__desc {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.72);
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .c8-work__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0.3rem 0 0;
+    padding: 0;
+  }
+  .c8-work__tags li {
+    font-family: var(--montreal);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* ────────────────────────────────────────────────────────────────────
+     Subscribe band
+     ──────────────────────────────────────────────────────────────────── */
+  .cs-sub {
+    background: var(--color-bg);
+    padding: clamp(5rem, 10vh, 7.5rem) clamp(1.5rem, 5vw, 5rem);
+    border-top: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .cs-sub::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(800px circle at 92% 18%, rgba(242,191,34,0.16) 0%, transparent 60%),
+      radial-gradient(700px circle at 6% 90%, rgba(242,191,34,0.07) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .cs-sub__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .cs-sub__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  .cs-sub__eyebrow {
+    margin: 0 0 1rem;
+    font-family: var(--montreal);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--c8-gold-dark);
+  }
+  .cs-sub__heading {
+    margin: 0 0 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.6vw, 3.2rem);
+    font-weight: 350;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    color: #0a0a0a;
+  }
+  .cs-sub__heading-accent {
+    background: linear-gradient(110deg, var(--c8-gold-dark) 0%, var(--c8-gold) 60%, var(--c8-gold-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 350;
+  }
+  .cs-sub__lede {
+    margin: 0;
+    max-width: 36rem;
+    font-family: var(--montreal);
+    font-size: clamp(1rem, 1.15vw, 1.08rem);
+    line-height: 1.65;
+    color: rgba(0,0,0,0.7);
+  }
+  .cs-sub__lede strong { color: #0a0a0a; font-weight: 600; }
+
+  .cs-sub__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: clamp(1.6rem, 2.5vw, 2.2rem);
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 18px;
+    box-shadow: 0 30px 70px -32px rgba(0,0,0,0.18);
+  }
+  .cs-sub__field { display: flex; flex-direction: column; gap: 0.5rem; }
+  .cs-sub__label {
+    font-family: var(--montreal);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.55);
+  }
+  .cs-sub__input {
+    appearance: none;
+    width: 100%;
+    padding: 0.95rem 1.1rem;
+    border: 1px solid rgba(0,0,0,0.14);
+    border-radius: 12px;
+    background: var(--color-bg);
+    font-family: var(--montreal);
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #0a0a0a;
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cs-sub__input::placeholder { color: rgba(0,0,0,0.42); }
+  .cs-sub__input:focus {
+    outline: none;
+    border-color: var(--c8-gold-dark);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(242,191,34,0.18);
+  }
+
+  .cs-sub__btn {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 1rem 1.6rem;
+    border: 0;
+    border-radius: 999px;
+    background: #0a0a0a;
+    color: #fff;
+    cursor: pointer;
+    font-family: var(--montreal);
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    box-shadow: 0 16px 32px -16px rgba(0,0,0,0.4);
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cs-sub__btn svg { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+  .cs-sub__btn:hover {
+    background: var(--c8-gold);
+    color: #0a0a0a;
+    transform: translateY(-2px);
+    box-shadow: 0 22px 44px -20px var(--c8-gold-glow);
+  }
+  .cs-sub__btn:hover svg { transform: translateX(4px); }
+
+  .cs-sub__perks {
+    list-style: none;
+    margin: 0.6rem 0 0;
+    padding: 0.85rem 0 0;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .cs-sub__perks li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--montreal);
+    font-size: 0.88rem;
+    line-height: 1.4;
+    color: rgba(0,0,0,0.7);
+  }
+  .cs-sub__perks strong { color: #0a0a0a; font-weight: 600; }
+  .cs-sub__perk-tick {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: rgba(242,191,34,0.18);
+    color: var(--c8-gold-dark);
+    flex: 0 0 auto;
+  }
+
+  /* ╔═══════════════════════════════════════════════════════════════════╗
+     ║ LOCKED TEASERS — three "next-up" case studies behind the email.   ║
+     ║ Visual cues: lock icon, redacted figures (██), per-card fade-out  ║
+     ║ veil, "Unlock by subscribing above" anchor pointing at #subscribe.║
+     ╚═══════════════════════════════════════════════════════════════════╝ */
+  .cs-locked {
+    background: var(--color-bg);
+    padding: clamp(3rem, 6vh, 4.5rem) clamp(1.5rem, 5vw, 5rem) clamp(5rem, 10vh, 7rem);
+    border-top: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+    isolation: isolate;
+  }
+  .cs-locked__inner {
+    max-width: var(--c8-section-max, 1320px);
+    margin: 0 auto;
+  }
+  .cs-locked__head {
+    text-align: center;
+    margin: 0 auto clamp(2.5rem, 5vh, 3.5rem);
+    max-width: 44rem;
+  }
+  .cs-locked__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+    padding: 0.4rem 0.85rem;
+    background: rgba(242,191,34,0.12);
+    border: 1px solid rgba(242,191,34,0.32);
+    border-radius: 999px;
+    font-family: var(--montreal);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c8-gold-dark);
+  }
+  .cs-locked__lock {
+    display: inline-flex;
+    align-items: center;
+    color: var(--c8-gold-dark);
+  }
+  .cs-locked__heading {
+    margin: 0 0 0.85rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 4vw, 2.85rem);
+    font-weight: 350;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    color: #0a0a0a;
+  }
+  .cs-locked__heading-accent {
+    background: linear-gradient(110deg, var(--c8-gold-dark) 0%, var(--c8-gold) 60%, var(--c8-gold-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 350;
+  }
+  .cs-locked__sub {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.98rem;
+    line-height: 1.55;
+    color: rgba(0,0,0,0.62);
+  }
+
+  .cs-locked__row {
+    list-style: none;
+    margin: 0 0 clamp(2rem, 4vh, 2.5rem);
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 1.6vw, 1.5rem);
+  }
+  @media (max-width: 1000px) { .cs-locked__row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px)  { .cs-locked__row { grid-template-columns: 1fr; } }
+
+  .cs-locked__teaser {
+    position: relative;
+    overflow: hidden;
+    padding: 1.4rem 1.4rem 5rem;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 18px;
+    box-shadow: 0 18px 40px -22px rgba(0,0,0,0.18);
+    min-height: 280px;
+    transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1), border-color 0.4s ease;
+    /* Whole card slightly desaturated to read as "preview" */
+    filter: saturate(0.88);
+  }
+  .cs-locked__teaser:hover {
+    transform: translateY(-3px);
+    border-color: rgba(242,191,34,0.45);
+  }
+
+  .cs-locked__teaser-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  .cs-locked__teaser-cat {
+    font-family: var(--montreal);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c8-gold-dark);
+    padding: 0.28rem 0.7rem;
+    border: 1px solid rgba(242,191,34,0.4);
+    border-radius: 999px;
+    background: rgba(242,191,34,0.08);
+  }
+  .cs-locked__teaser-when {
+    font-family: var(--montreal);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(0,0,0,0.5);
+  }
+
+  .cs-locked__teaser-name {
+    margin: 0 0 0.6rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+    font-weight: 350;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #0a0a0a;
+  }
+  .cs-locked__teaser-result {
+    margin: 0 0 0.85rem;
+    font-family: var(--montreal);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: rgba(0,0,0,0.78);
+    letter-spacing: 0.01em;
+  }
+  .cs-locked__teaser-result span {
+    /* Redacted figure — uses the same monospace block char to imply "behind email" */
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--c8-gold-dark);
+    letter-spacing: 0.04em;
+  }
+  .cs-locked__teaser-desc {
+    margin: 0;
+    font-family: var(--montreal);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: rgba(0,0,0,0.62);
+  }
+
+  /* Per-card fade-out veil at the bottom — visual cue that the card
+     continues past the email gate. */
+  .cs-locked__teaser-fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4.5rem;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.65) 35%,
+      rgba(255,255,255,0.95) 75%,
+      #fff 100%);
+    pointer-events: none;
+  }
+  .cs-locked__teaser-fade::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0.95rem;
+    transform: translateX(-50%);
+    width: 38px;
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(242,191,34,0.55);
+    box-shadow: 0 0 0 1px rgba(242,191,34,0.2);
+  }
+
+  .cs-locked__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.95rem 1.5rem;
+    border-radius: 999px;
+    background: #0a0a0a;
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--montreal);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin: 0 auto;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 16px 32px -16px rgba(0,0,0,0.4);
+  }
+  .cs-locked__cta {
+    /* Center the anchor inside the section */
+    display: flex;
+    width: fit-content;
+  }
+  .cs-locked__cta svg { transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+  .cs-locked__cta:hover {
+    background: var(--c8-gold);
+    color: #0a0a0a;
+    transform: translateY(-2px);
+    box-shadow: 0 22px 44px -20px var(--c8-gold-glow);
+  }
+  .cs-locked__cta:hover svg { transform: translateY(-3px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .c8-work__card,
+    .c8-work__media img,
+    .cs-sub__btn,
+    .cs-sub__btn svg,
+    .cs-hero__cta,
+    .cs-hero__cta svg,
+    .cs-hero__chip,
+    .cs-locked__teaser,
+    .cs-locked__cta { transition: none; }
+    .cs-hero__eyebrow-dot,
+    .cs-hero__scroll-line { animation: none !important; }
+  }
+</style>
 </Layout>

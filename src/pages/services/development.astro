@@ -13,7 +13,7 @@ const disciplines = [
     name: 'Exchange (CEX/DEX)',
     href: '/services/development/exchange',
     pitch: 'Matching engines, custody, KYC, liquidity — built to institutional standards. Audited, not demoed.',
-    img: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=900&q=80&auto=format&fit=crop',
+    img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&q=80&auto=format&fit=crop',
   },
   {
     name: 'Wallet Infrastructure',
@@ -275,7 +275,7 @@ const faqs = [
 
   <!-- ── HERO ── -->
   <section class="lp-hero">
-    <img class="lp-hero__bg-img" src="/images/back-end.jpg" alt="" aria-hidden="true" />
+    <img class="lp-hero__bg-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80&auto=format&fit=crop" alt="" aria-hidden="true" />
     <div class="lp-hero__bg-veil" aria-hidden="true"></div>
     <div class="lp-hero__bg-grid" aria-hidden="true"></div>
 
@@ -301,7 +301,7 @@ const faqs = [
 
       <div class="lp-hero__feature">
         <figure class="lp-hero__photo">
-          <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=900&q=80&auto=format&fit=crop" alt="Engineering team writing production code" loading="eager" />
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1100&q=80&auto=format&fit=crop" alt="Production code on a dark editor — clean lines, monospace" loading="eager" />
           <span class="lp-hero__photo-corner" aria-hidden="true"></span>
         </figure>
 
@@ -522,7 +522,7 @@ const faqs = [
   <section class="lp-channels-sect">
     <header class="lp-h-head">
       <p class="lp-h-eyebrow">Where we lead</p>
-      <h2 class="lp-h-title">Six disciplines we lead with. <span class="lp-accent">Many more we ship on demand.</span></h2>
+      <h2 class="lp-h-title">Core disciplines. <span class="lp-accent">More on demand.</span></h2>
     </header>
     <div class="lp-channels-grid">
       {disciplines.map((d) => (
@@ -750,7 +750,7 @@ const faqs = [
     <div class="lp-final__veil"></div>
     <div class="lp-final__inner">
       <p class="lp-final__eyebrow">Tell us your build</p>
-      <h2 class="lp-final__title">Six disciplines. <span class="lp-accent">One engineering team.</span></h2>
+      <h2 class="lp-final__title">Every discipline. <span class="lp-accent">One engineering team.</span></h2>
       <p class="lp-final__sub">A 30-minute technical call. We'll walk your architecture, flag the failure modes, and tell you whether Corum8 is the right team to ship it — honest answer either way.</p>
       <a class="lp-cta lp-cta--primary lp-cta--lg" href="/contact">Book a technical call →</a>
     </div>
@@ -783,11 +783,11 @@ const faqs = [
     .lp-hero__bg-img {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; z-index: -3;
-      mix-blend-mode: multiply; opacity: 0.10;
+      mix-blend-mode: multiply; opacity: 0.28;
     }
     .lp-hero__bg-veil {
       position: absolute; inset: 0; z-index: -2;
-      background: linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.85) 100%);
+      background: linear-gradient(135deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.60) 100%);
     }
     .lp-hero__bg-grid {
       position: absolute; inset: 0; z-index: -1;
@@ -1266,7 +1266,7 @@ const faqs = [
 
     /* SECTION HEADING HELPER */
     .lp-h-head {
-      max-width: 38rem; margin: 0 auto clamp(3rem, 6vh, 4.5rem); text-align: center;
+      max-width: 56rem; margin: 0 auto clamp(3rem, 6vh, 4.5rem); text-align: center;
     }
     .lp-h-head--left { text-align: left; margin-left: 0; }
     .lp-h-eyebrow {
@@ -1276,12 +1276,12 @@ const faqs = [
     }
     .lp-h-title {
       margin: 0;
-      font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.4rem);
-      font-weight: 350; line-height: 1.05; letter-spacing: -0.025em;
+      font-family: var(--font-display); font-size: clamp(1.75rem, 3.8vw, 2.85rem);
+      font-weight: 350; line-height: 1.08; letter-spacing: -0.025em;
     }
     .lp-h-sub {
-      margin: 1rem auto 0; max-width: 32rem;
-      font-family: var(--montreal); font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+      margin: 1rem auto 0; max-width: 44rem;
+      font-family: var(--montreal); font-size: clamp(0.96rem, 1.1vw, 1.04rem);
       line-height: 1.55; color: #555;
     }
     .lp-h-head--left .lp-h-sub { margin-left: 0; }
@@ -1375,6 +1375,15 @@ const faqs = [
       letter-spacing: 0.12em; color: var(--c8-gold-dark); opacity: 0.85;
     }
     .lp-tab.is-active .lp-tab__num { color: var(--c8-gold); opacity: 1; }
+    .lp-tab__label {
+      /* Cocogoose display face for the phase tab labels — matches the
+         section heading rhythm (Architecture / Build / Audit / Operate
+         read as titled chapters, not utility nav). */
+      font-family: var(--font-display);
+      font-weight: 350;
+      font-size: 0.96rem;
+      letter-spacing: -0.01em;
+    }
     .lp-tabs__stage { position: relative; display: grid; }
     .lp-tabs__panel {
       grid-column: 1 / 2; grid-row: 1 / 2;
