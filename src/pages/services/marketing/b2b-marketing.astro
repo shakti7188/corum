@@ -1,315 +1,571 @@
 ---
-import "../../../styles/global.css";
+import Layout from '../../../layouts/Layout.astro';
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>B2B Lead Generation | Corum8</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  </head>
+<Layout title="B2B Marketing & Lead Generation — Pipeline That Closes | Corum8">
+  <Fragment slot="head">
+    <meta name="description" content="Corum8 B2B marketing — outbound engines, demand generation, ABM, and content for Web3, AI, and fintech. Verified decision-makers, booked meetings, and pipeline that actually closes." />
+    <link rel="canonical" href="https://corum8.com/services/marketing/b2b-marketing" />
+  </Fragment>
 
-  <body class="bg-[#f3f0ff] text-[#0b0a2e] font-sans antialiased overflow-x-hidden selection:bg-[#0b0a2e] selection:text-white">
-    <main class="relative z-10 pt-20 lg:pt-32 pb-24 overflow-hidden" id="smooth-wrapper">
-      <div id="smooth-content">
-        
-        <!-- HERO SPLIT -->
-        <section class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center min-h-[85vh]">
-          <div class="max-w-xl gs-reveal-left">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0b0a2e]/10 text-[#0b0a2e] font-bold text-xs tracking-widest uppercase mb-8">
-              B2B Outreach Engine
-            </div>
-            <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-[#0b0a2e] leading-[1.05] mb-6">
-              Fill your pipeline with <br/>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-800">Qualified Leads</span>
-            </h1>
-            <p class="text-xl text-[#0b0a2e]/70 leading-relaxed mb-10">
-              We build automated outbound engines that engage decision-makers, book meetings, and accelerate your sales cycle predictably.
-            </p>
-            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-              <a href="#" class="px-8 py-4 rounded-xl bg-[#0b0a2e] hover:bg-[#1a1854] text-white font-bold text-lg transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-[#0b0a2e]/20">
-                Book a Demo
-              </a>
-              <div class="flex flex-col">
-                <div class="flex text-amber-400 text-xl mb-1">★★★★★</div>
-                <span class="text-sm font-semibold text-[#0b0a2e]/60">4.9/5 from 200+ Reviews</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- HERO MOCKUP -->
-          <div class="relative w-full max-w-[500px] mx-auto lg:ml-auto gs-reveal-right">
-            <!-- Inbox Window -->
-            <div class="bg-white rounded-2xl shadow-[0_30px_60px_-15px_rgba(11,10,46,0.15)] overflow-hidden border border-slate-200 flex flex-col transform transition-transform hover:scale-[1.02] duration-500">
-              <!-- Window Header -->
-              <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex items-center gap-3">
-                <div class="flex gap-1.5">
-                  <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                  <div class="w-3 h-3 rounded-full bg-amber-400"></div>
-                  <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
-                </div>
-                <span class="text-xs font-semibold text-slate-500 ml-2">Campaign Manager</span>
-              </div>
-              
-              <!-- Inbox List -->
-              <div class="p-4 space-y-3">
-                <div class="p-4 rounded-xl border border-[#0b0a2e]/10 bg-[#f3f0ff] flex items-start gap-4">
-                  <div class="w-10 h-10 rounded-full bg-indigo-200 flex-shrink-0"></div>
-                  <div class="flex-1 min-w-0">
-                    <div class="flex justify-between items-center mb-1">
-                      <strong class="text-sm text-slate-900 truncate">Sarah Jenkins</strong>
-                      <span class="text-[10px] text-slate-400">10:42 AM</span>
-                    </div>
-                    <p class="text-xs text-slate-600 truncate">Interested in your enterprise plan, let's chat...</p>
-                  </div>
-                  <div class="px-2 py-1 bg-red-100 text-red-700 text-[10px] font-bold rounded">Hot Lead</div>
-                </div>
-
-                <div class="p-4 rounded-xl border border-slate-100 bg-white flex items-start gap-4">
-                  <div class="w-10 h-10 rounded-full bg-emerald-200 flex-shrink-0"></div>
-                  <div class="flex-1 min-w-0">
-                    <div class="flex justify-between items-center mb-1">
-                      <strong class="text-sm text-slate-900 truncate">Michael Chen</strong>
-                      <span class="text-[10px] text-slate-400">Yesterday</span>
-                    </div>
-                    <p class="text-xs text-slate-600 truncate">Can we schedule a call for Tuesday?</p>
-                  </div>
-                  <div class="px-2 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded">Meeting</div>
-                </div>
-
-                <div class="p-4 rounded-xl border border-slate-100 bg-white flex items-start gap-4">
-                  <div class="w-10 h-10 rounded-full bg-amber-200 flex-shrink-0"></div>
-                  <div class="flex-1 min-w-0">
-                    <div class="flex justify-between items-center mb-1">
-                      <strong class="text-sm text-slate-900 truncate">David Rodriguez</strong>
-                      <span class="text-[10px] text-slate-400">Yesterday</span>
-                    </div>
-                    <p class="text-xs text-slate-600 truncate">Reviewing the proposal internally.</p>
-                  </div>
-                  <div class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded">Follow Up</div>
-                </div>
-              </div>
-              
-              <div class="p-4 border-t border-slate-100">
-                <div class="w-full py-3 bg-[#6c5ce7] hover:bg-[#5b4cdb] text-white text-center rounded-lg font-bold text-sm cursor-pointer transition-colors">
-                  Schedule Campaign
-                </div>
-              </div>
-            </div>
-            
-            <!-- Floating Elements -->
-            <div class="absolute -right-8 top-12 bg-white rounded-xl shadow-lg p-3 border border-slate-100 flex items-center gap-2 animate-[float-y_4s_ease-in-out_infinite]">
-              <div class="w-8 h-8 rounded bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold">✓</div>
-              <span class="text-xs font-bold">Meeting Booked</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- CLIENTS -->
-        <section class="py-12 bg-transparent border-t border-indigo-100 mt-10 gs-reveal">
-          <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-sm font-bold tracking-widest text-[#0b0a2e]/40 uppercase mb-8">Trusted by B2B Revenue Teams</p>
-            <div class="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-60">
-              <div class="text-2xl font-black italic tracking-tighter">Gong</div>
-              <div class="text-2xl font-black uppercase">Outreach</div>
-              <div class="text-2xl font-black">SalesLoft</div>
-              <div class="text-2xl font-black tracking-widest uppercase">Apollo</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- THE PROCESS (DARK SECTION) -->
-        <section class="mt-32 py-24 lg:py-32 bg-[#0b0a2e] text-white rounded-t-[40px] lg:rounded-[80px] mx-0 lg:mx-8">
-          <div class="max-w-7xl mx-auto px-6 lg:px-12 gs-reveal">
-            <div class="grid lg:grid-cols-12 gap-16">
-              <div class="lg:col-span-5">
-                <h2 class="text-5xl lg:text-6xl font-extrabold mb-6 leading-[1.1]">How we generate meetings</h2>
-                <p class="text-[#a29eff] text-xl mb-10">A systematic approach to predictable revenue</p>
-                <a href="#" class="px-8 py-4 inline-block rounded-xl bg-white text-[#0b0a2e] font-bold text-lg hover:bg-slate-100 transition-colors">
-                  Get Started
-                </a>
-              </div>
-              
-              <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6">
-                <!-- Step 1 -->
-                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors gs-reveal">
-                  <span class="text-6xl font-extrabold text-white/10 block mb-6">01</span>
-                  <h3 class="text-2xl font-bold mb-4">Target & Extract</h3>
-                  <p class="text-slate-400 leading-relaxed">We scrape highly targeted decision-makers using intent data and verify all contact information to ensure zero bounces.</p>
-                </div>
-                <!-- Step 2 -->
-                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors sm:-translate-y-8 gs-reveal" style="transition-delay: 100ms;">
-                  <span class="text-6xl font-extrabold text-white/10 block mb-6">02</span>
-                  <h3 class="text-2xl font-bold mb-4">Personalized Outreach</h3>
-                  <p class="text-slate-400 leading-relaxed">AI-driven personalization sequences that hit the primary inbox and resonate directly with prospect pain points.</p>
-                </div>
-                <!-- Step 3 -->
-                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors gs-reveal" style="transition-delay: 200ms;">
-                  <span class="text-6xl font-extrabold text-white/10 block mb-6">03</span>
-                  <h3 class="text-2xl font-bold mb-4">Close & Scale</h3>
-                  <p class="text-slate-400 leading-relaxed">We handle the replies, overcome initial objections, and book qualified meetings directly onto your sales team's calendar.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- FEATURE HIGHLIGHT -->
-        <section class="py-32 bg-white">
-          <div class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
-            <div class="order-2 lg:order-1 gs-reveal-left">
-              <div class="bg-slate-50 p-8 lg:p-12 rounded-3xl border border-slate-200">
-                <h3 class="text-3xl font-extrabold text-slate-900 mb-8">Lead Qualification Framework</h3>
-                <ul class="space-y-6">
-                  {[
-                    'Verified Decision Maker (C-Level/VP)',
-                    'Confirmed active budget for your category',
-                    'Expressed direct interest via reply',
-                    'Ready to buy within 90 days'
-                  ].map(item => (
-                    <li class="flex items-center gap-4 text-lg font-medium text-slate-700">
-                      <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div class="order-1 lg:order-2 gs-reveal-right">
-              <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 leading-[1.1]">Stop wasting time on bad leads</h2>
-              <p class="text-xl text-slate-600 leading-relaxed mb-8">
-                Our multi-channel approach ensures that when your sales team gets on a call, the prospect is already educated, qualified, and actively looking for your solution. We handle the dirty work so you can focus on closing.
-              </p>
-              <a href="#" class="text-[#6c5ce7] font-bold text-lg hover:underline inline-flex items-center gap-2">
-                Learn more about our criteria <span class="text-xl">&rarr;</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- METRICS -->
-        <section class="py-24 bg-[#6c5ce7] text-white">
-          <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/20 gs-reveal">
-            <div class="py-4">
-              <h3 class="text-5xl font-extrabold mb-2">2.5M+</h3>
-              <p class="text-indigo-200 font-medium">Emails Sent</p>
-            </div>
-            <div class="py-4">
-              <h3 class="text-5xl font-extrabold mb-2">45k</h3>
-              <p class="text-indigo-200 font-medium">Meetings Booked</p>
-            </div>
-            <div class="py-4">
-              <h3 class="text-5xl font-extrabold mb-2">82%</h3>
-              <p class="text-indigo-200 font-medium">Open Rate</p>
-            </div>
-            <div class="py-4">
-              <h3 class="text-5xl font-extrabold mb-2">$120M</h3>
-              <p class="text-indigo-200 font-medium">Pipeline Generated</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- TESTIMONIALS -->
-        <section class="py-32 bg-[#f3f0ff]">
-          <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center max-w-3xl mx-auto mb-20 gs-reveal">
-              <h2 class="text-4xl lg:text-5xl font-extrabold text-[#0b0a2e] mb-6">Don't just take our word for it</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8">
-              <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 gs-reveal">
-                <p class="text-xl text-slate-700 leading-relaxed mb-8 italic">"Corum8's outreach engine fundamentally changed our business. We went from scraping by on referrals to having 20+ qualified enterprise demos booked every single week."</p>
-                <div class="flex items-center gap-4">
-                  <div class="w-14 h-14 bg-indigo-100 rounded-full"></div>
-                  <div>
-                    <h4 class="font-bold text-slate-900 text-lg">Alex Mercer</h4>
-                    <p class="text-slate-500">VP of Sales at SaaSify</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 gs-reveal" style="transition-delay: 100ms;">
-                <p class="text-xl text-slate-700 leading-relaxed mb-8 italic">"The lead quality is unmatched. The prospects actually show up to the calls knowing what we do and ready to talk pricing. It's the highest ROI channel we have."</p>
-                <div class="flex items-center gap-4">
-                  <div class="w-14 h-14 bg-indigo-100 rounded-full"></div>
-                  <div>
-                    <h4 class="font-bold text-slate-900 text-lg">Samantha Wright</h4>
-                    <p class="text-slate-500">Founder, DataSync</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- CTA SECTION -->
-        <section class="py-32 bg-white">
-          <div class="max-w-4xl mx-auto px-6 text-center gs-reveal">
-            <h2 class="text-5xl lg:text-6xl font-extrabold text-[#0b0a2e] mb-8 leading-[1.1]">Ready to scale your revenue?</h2>
-            <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">Stop worrying about where your next deal is coming from. Let our automated outbound engine fill your calendar.</p>
-            <a href="/contact" class="px-10 py-5 rounded-xl bg-[#6c5ce7] hover:bg-[#5b4cdb] text-white font-bold text-xl transition-all shadow-xl shadow-indigo-200 hover:-translate-y-1 inline-block">
-              Get Your Custom Blueprint
-            </a>
-          </div>
-        </section>
-
+<!-- 1. HERO -->
+<section class="b2-hero">
+  <div class="b2-blob b2-blob--a"></div>
+  <div class="b2-blob b2-blob--b"></div>
+  <div class="b2-hero__inner">
+    <div class="b2-hero__copy reveal-up">
+      <span class="b2-badge">Demand · Outbound · ABM · since 2014</span>
+      <h1 class="b2-hero__h1">The team that built<br/><span class="b2-grad">$120M+ in pipeline</span><br/>for B2B founders.</h1>
+      <p class="b2-hero__sub">We run B2B marketing for SaaS, Web3, AI, and fintech companies. Verified decision-makers, multi-channel sequences, and ABM that books meetings — not impressions. <strong>45,000+ meetings booked</strong> across portfolio, <strong>82% delivery rate</strong>, every reply read by a human.</p>
+      <div class="b2-hero__btns">
+        <a href="/contact" class="b2-btn b2-btn--fill">Get a free pipeline audit</a>
+        <a href="#case-spotlight" class="b2-btn b2-btn--line">See the work →</a>
       </div>
-    </main>
+      <ul class="b2-hero__chips">
+        <li><span class="b2-chip-num">$120M+</span><span class="b2-chip-lbl">pipeline generated</span></li>
+        <li class="b2-chip-div"></li>
+        <li><span class="b2-chip-num">45K+</span><span class="b2-chip-lbl">meetings booked</span></li>
+        <li class="b2-chip-div"></li>
+        <li><span class="b2-chip-num">82%</span><span class="b2-chip-lbl">inbox delivery</span></li>
+      </ul>
+    </div>
+    <div class="b2-hero__visual reveal-right">
+      <div class="b2-inbox">
+        <div class="b2-inbox__bar">
+          <span class="b2-dot b2-dot--r"></span><span class="b2-dot b2-dot--y"></span><span class="b2-dot b2-dot--g"></span>
+          <span class="b2-inbox__title">Pipeline · Q2</span>
+        </div>
+        <div class="b2-inbox__row b2-inbox__row--hot">
+          <div class="b2-av" style="background:#f2bf22"></div>
+          <div class="b2-row__body"><div class="b2-row__name">Sarah Jenkins · CTO</div><div class="b2-row__msg">Booked. Series B fintech, 200 seats.</div></div>
+          <span class="b2-tag b2-tag--hot">Hot</span>
+        </div>
+        <div class="b2-inbox__row">
+          <div class="b2-av" style="background:#0a0b10"></div>
+          <div class="b2-row__body"><div class="b2-row__name">Michael Chen · VP Eng</div><div class="b2-row__msg">Demo Tuesday 3pm. Sent calendar.</div></div>
+          <span class="b2-tag b2-tag--meet">Meeting</span>
+        </div>
+        <div class="b2-inbox__row">
+          <div class="b2-av" style="background:#da9e49"></div>
+          <div class="b2-row__body"><div class="b2-row__name">David Rodriguez · CMO</div><div class="b2-row__msg">Reviewing proposal internally.</div></div>
+          <span class="b2-tag b2-tag--fu">Follow-up</span>
+        </div>
+      </div>
+      <div class="b2-fc b2-fc--m float-a">
+        <div class="b2-fc__lbl">Meetings booked</div>
+        <div class="b2-fc__big">+147<span>%</span></div>
+      </div>
+      <div class="b2-fc b2-fc--p float-b">
+        <div class="b2-fc__lbl">Reply rate</div>
+        <div class="b2-fc__med">14.2%</div>
+        <div class="b2-fc__sub">vs 2.3% industry avg</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js" is:inline></script>
-    
-    <script is:inline>
-      document.addEventListener("DOMContentLoaded", (event) => {
-        const lenis = new Lenis({
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          direction: 'vertical',
-          gestureDirection: 'vertical',
-          smooth: true
-        });
+<!-- CHANNELS STRIP -->
+<div class="b2-strip reveal-up">
+  <span class="b2-strip__lbl">We run pipeline programs across</span>
+  <div class="b2-strip__list">
+    <span>Cold email</span><span class="bdot">·</span>
+    <span>LinkedIn outbound</span><span class="bdot">·</span>
+    <span>Intent-based ABM</span><span class="bdot">·</span>
+    <span>Paid social</span><span class="bdot">·</span>
+    <span>Webinars</span><span class="bdot">·</span>
+    <span>Content syndication</span><span class="bdot">·</span>
+    <span>Conference outbound</span>
+  </div>
+</div>
 
-        function raf(time) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
+<!-- 2. DISCIPLINES -->
+<section class="b2-disc b2-pill">
+  <div class="b2-section-head reveal-up">
+    <span class="b2-badge">What we run</span>
+    <h2 class="b2-h2">Outbound. Demand. ABM.<br/><span class="b2-grad">One revenue engine.</span></h2>
+    <p class="b2-section-head__sub">Most B2B agencies sell you a single channel and call it a strategy. We build the engine that makes channels feed each other.</p>
+  </div>
+  <div class="b2-disc-grid">
+    <div class="b2-disc-card reveal-stagger">
+      <div class="b2-disc-card__img">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80&auto=format&fit=crop" alt="Outbound" />
+        <span class="b2-disc-card__num">01</span>
+      </div>
+      <div class="b2-disc-card__body">
+        <h3>Outbound &amp; Email Engines</h3>
+        <p>Verified decision-makers, multi-channel sequences, AI-personalized openers. Inbox-safe infrastructure with sub-1% bounce rates.</p>
+        <ul><li>Domain warm-up &amp; deliverability</li><li>Apollo / Clay / Sales Navigator stacks</li><li>Reply handling &amp; meeting booking</li></ul>
+      </div>
+    </div>
+    <div class="b2-disc-card reveal-stagger">
+      <div class="b2-disc-card__img">
+        <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80&auto=format&fit=crop" alt="Demand" />
+        <span class="b2-disc-card__num">02</span>
+      </div>
+      <div class="b2-disc-card__body">
+        <h3>Demand Generation</h3>
+        <p>Paid social, content syndication, webinars, and intent-data programs that put your brand in front of buyers who are already researching your category.</p>
+        <ul><li>LinkedIn paid + retargeting</li><li>G2 / TrustRadius / 6sense plays</li><li>Webinar &amp; ebook funnels</li></ul>
+      </div>
+    </div>
+    <div class="b2-disc-card reveal-stagger">
+      <div class="b2-disc-card__img">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80&auto=format&fit=crop" alt="ABM" />
+        <span class="b2-disc-card__num">03</span>
+      </div>
+      <div class="b2-disc-card__body">
+        <h3>Account-Based Marketing</h3>
+        <p>Tier-1 target lists, multi-stakeholder orchestration, and personalized landing pages for each named account. Built for $50K+ ACV.</p>
+        <ul><li>1:1 / 1:few / 1:many tiers</li><li>Custom landing pages per account</li><li>SDR + AE alignment loops</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-        gsap.registerPlugin(ScrollTrigger);
+<!-- 3. SPLIT PHOTO -->
+<section class="b2-split-photo">
+  <div class="b2-split-photo__img reveal-left">
+    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80&auto=format&fit=crop" alt="Sales call" />
+    <div class="b2-split-photo__badge">
+      <span class="b2-split-photo__badge-num">14.2%</span>
+      <span class="b2-split-photo__badge-lbl">avg reply rate</span>
+    </div>
+    <div class="b2-split-photo__chip float-a">
+      <span class="green">●</span> 23 meetings · this week
+    </div>
+  </div>
+  <div class="b2-split-photo__copy reveal-right">
+    <span class="b2-badge">Why us</span>
+    <h2 class="b2-h2">Replies happen. <span class="b2-grad">Meetings get booked.</span><br/>Pipeline closes.</h2>
+    <p>Most B2B agencies report on emails sent and impressions served. We report on qualified meetings, pipeline value, and the deals that closed because of a sequence we wrote.</p>
+    <div class="b2-mini-stats">
+      <div class="b2-mini-stat"><span>$120M+</span><small>pipeline generated</small></div>
+      <div class="b2-mini-stat"><span>45K+</span><small>meetings booked</small></div>
+      <div class="b2-mini-stat"><span>82%</span><small>inbox delivery</small></div>
+    </div>
+    <a href="/case-studies" class="b2-btn b2-btn--fill">See case studies</a>
+  </div>
+</section>
 
-        const revealElements = document.querySelectorAll(".gs-reveal");
-        revealElements.forEach((el) => {
-          gsap.fromTo(el, { autoAlpha: 0, y: 50 }, {
-            duration: 1, autoAlpha: 1, y: 0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
-          });
-        });
+<!-- 4. PROCESS -->
+<section class="b2-process">
+  <div class="b2-section-head reveal-up">
+    <span class="b2-badge">How we work</span>
+    <h2 class="b2-h2">From ICP to closed-won.</h2>
+  </div>
+  <div class="b2-process-grid">
+    <div class="b2-proc-card reveal-stagger">
+      <div class="b2-proc-card__img"><img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&q=80&auto=format&fit=crop" alt="" /><span class="b2-proc-num">01</span></div>
+      <h3>ICP &amp; offer audit</h3><p>We map your ideal customer profile, current win rate, lost-deal patterns, and the offer angles that would actually convert this quarter.</p>
+    </div>
+    <div class="b2-proc-card reveal-stagger">
+      <div class="b2-proc-card__img"><img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&q=80&auto=format&fit=crop" alt="" /><span class="b2-proc-num">02</span></div>
+      <h3>List build &amp; enrich</h3><p>Verified decision-makers from Apollo, Sales Navigator, Clay, and intent platforms. Triple-verified emails, sub-1% bounce.</p>
+    </div>
+    <div class="b2-proc-card reveal-stagger">
+      <div class="b2-proc-card__img"><img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80&auto=format&fit=crop" alt="" /><span class="b2-proc-num">03</span></div>
+      <h3>Sequences &amp; sends</h3><p>Multi-channel sequences across email, LinkedIn, and warm intros. AI-personalized openers, hand-edited where it matters.</p>
+    </div>
+    <div class="b2-proc-card reveal-stagger">
+      <div class="b2-proc-card__img"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80&auto=format&fit=crop" alt="" /><span class="b2-proc-num">04</span></div>
+      <h3>Reply &amp; book</h3><p>Every reply read by a human within an hour. Meetings booked directly into your AE's calendar with full context.</p>
+    </div>
+  </div>
+</section>
 
-        const revealLeft = document.querySelectorAll(".gs-reveal-left");
-        revealLeft.forEach((el) => {
-          gsap.fromTo(el, { autoAlpha: 0, x: -50 }, {
-            duration: 1, autoAlpha: 1, x: 0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
-          });
-        });
+<!-- 5. WHY US -->
+<section class="b2-why">
+  <div class="b2-section-head reveal-up">
+    <span class="b2-badge">Why Corum8 vs. another agency</span>
+    <h2 class="b2-h2">Most agencies send emails.<br/>We book <span class="b2-grad">meetings that close.</span></h2>
+  </div>
+  <div class="b2-why__inner reveal-up">
+    <div class="b2-why__col b2-why__col--them">
+      <div class="b2-why__col-h">A typical B2B agency</div>
+      <ul>
+        <li><span class="b2-x">×</span> Reports emails sent and open rate as the win</li>
+        <li><span class="b2-x">×</span> Generic templates, scraped lists, 30%+ bounce</li>
+        <li><span class="b2-x">×</span> No reply handling — leaves replies for you</li>
+        <li><span class="b2-x">×</span> Single-channel: email-only or LinkedIn-only</li>
+        <li><span class="b2-x">×</span> Doesn't speak SaaS, Web3, AI, or fintech buyer language</li>
+        <li><span class="b2-x">×</span> Books "meetings" with junior interns or no-shows</li>
+      </ul>
+    </div>
+    <div class="b2-why__col b2-why__col--us">
+      <div class="b2-why__col-h b2-why__col-h--us">Corum8</div>
+      <ul>
+        <li><span class="b2-tick">✓</span> Reports qualified meetings, pipeline value, deals closed</li>
+        <li><span class="b2-tick">✓</span> Triple-verified contacts, sub-1% bounce, inbox-safe infra</li>
+        <li><span class="b2-tick">✓</span> Every reply handled by a human, meetings booked for you</li>
+        <li><span class="b2-tick">✓</span> Email + LinkedIn + paid + ABM running as one engine</li>
+        <li><span class="b2-tick">✓</span> Native to SaaS, Web3, AI, fintech buyer psychology</li>
+        <li><span class="b2-tick">✓</span> $120M+ pipeline, 45K+ meetings, 82% delivery rate</li>
+      </ul>
+    </div>
+  </div>
+  <div class="b2-why__cta reveal-up">
+    <span class="b2-why__cta-text">Want to see how we'd build yours?</span>
+    <a href="/contact" class="b2-btn b2-btn--fill">Get a free pipeline audit →</a>
+  </div>
+</section>
 
-        const revealRight = document.querySelectorAll(".gs-reveal-right");
-        revealRight.forEach((el) => {
-          gsap.fromTo(el, { autoAlpha: 0, x: 50 }, {
-            duration: 1, autoAlpha: 1, x: 0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
-          });
-        });
-      });
-    </script>
+<!-- 5b. CHANNELS GRID -->
+<section class="b2-channels b2-pill">
+  <div class="b2-channels__inner">
+    <div class="b2-section-head reveal-up">
+      <span class="b2-badge">Channel expertise</span>
+      <h2 class="b2-h2">Different channels.<br/>Different playbooks.</h2>
+      <p class="b2-section-head__sub">Each channel has its own delivery rules, buyer behavior, and ROI curve. We've shipped on all of them — and we know which ones move pipeline for your category.</p>
+    </div>
+    <div class="b2-chan-grid">
+      <div class="b2-chan-card reveal-stagger">
+        <div class="b2-chan-card__img"><img src="https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?w=600&q=80&auto=format&fit=crop" alt="Cold email" /><span class="b2-chan-card__lbl">Cold Email</span></div>
+        <div class="b2-chan-card__body"><p>Inbox-safe infrastructure, AI-personalized openers, multi-domain rotation. The default outbound channel for $10K–$500K ACV.</p><span class="b2-chan-card__tag">Outbound · Volume · Predictable</span></div>
+      </div>
+      <div class="b2-chan-card reveal-stagger">
+        <div class="b2-chan-card__img"><img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=600&q=80&auto=format&fit=crop" alt="LinkedIn" /><span class="b2-chan-card__lbl">LinkedIn Outbound</span></div>
+        <div class="b2-chan-card__body"><p>Founder-led DMs, Sales Navigator targeting, content amplification. Where senior buyers actually respond to a cold message.</p><span class="b2-chan-card__tag">Senior buyers · 1:1 · Founder-led</span></div>
+      </div>
+      <div class="b2-chan-card reveal-stagger">
+        <div class="b2-chan-card__img"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80&auto=format&fit=crop" alt="ABM" /><span class="b2-chan-card__lbl">ABM</span></div>
+        <div class="b2-chan-card__body"><p>1:1 and 1:few orchestration on named accounts — landing pages, ads, gifting, multi-stakeholder sequencing for $50K+ ACV.</p><span class="b2-chan-card__tag">Enterprise · $50K+ ACV</span></div>
+      </div>
+      <div class="b2-chan-card reveal-stagger">
+        <div class="b2-chan-card__img"><img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&q=80&auto=format&fit=crop" alt="Paid social" /><span class="b2-chan-card__lbl">Paid Social</span></div>
+        <div class="b2-chan-card__body"><p>LinkedIn-led demand gen with tightly defined ICPs, retargeting clusters, and offer-led creative. Ties directly to pipeline, not MQLs.</p><span class="b2-chan-card__tag">LinkedIn · Demand · Pipeline</span></div>
+      </div>
+      <div class="b2-chan-card reveal-stagger">
+        <div class="b2-chan-card__img"><img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=600&q=80&auto=format&fit=crop" alt="Webinars" /><span class="b2-chan-card__lbl">Webinars &amp; Events</span></div>
+        <div class="b2-chan-card__body"><p>Topic-led webinars, partner co-marketing, in-person dinners. The highest-converting top-of-funnel for technical buyers.</p><span class="b2-chan-card__tag">Top-of-funnel · Technical</span></div>
+      </div>
+      <div class="b2-chan-card reveal-stagger">
+        <div class="b2-chan-card__img"><img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=600&q=80&auto=format&fit=crop" alt="Intent" /><span class="b2-chan-card__lbl">Intent &amp; Reviews</span></div>
+        <div class="b2-chan-card__body"><p>G2, TrustRadius, Capterra, 6sense, Bombora. We surface accounts already researching your category — before competitors notice.</p><span class="b2-chan-card__tag">Intent · Reviews · 6sense</span></div>
+      </div>
+      <div class="b2-chan-card reveal-stagger">
+        <div class="b2-chan-card__img"><img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80&auto=format&fit=crop" alt="Content" /><span class="b2-chan-card__lbl">Content Syndication</span></div>
+        <div class="b2-chan-card__body"><p>Premium B2B publisher placements, gated whitepaper distribution, executive newsletters. Where IT and finance buyers read.</p><span class="b2-chan-card__tag">Mid-funnel · Decision-maker</span></div>
+      </div>
+      <div class="b2-chan-card b2-chan-card--more reveal-stagger">
+        <div class="b2-chan-card__more-inner">
+          <div class="b2-chan-card__more-num">+ many more</div>
+          <p>Conference outbound, partner co-sell, podcast tours, executive dinners — wherever your buyers actually are, we ship there too.</p>
+          <a href="/contact" class="b2-chan-card__more-cta">Ask about a channel →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <style is:global>
-      body { font-family: 'DM Sans', sans-serif; }
-      @keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-    </style>
-  </body>
-</html>
+<!-- 6. CASE STUDY -->
+<section class="b2-case b2-pill" id="case-spotlight">
+  <div class="b2-case__bg"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1400&q=70&auto=format&fit=crop" alt="" aria-hidden="true" /><div class="b2-case__overlay"></div></div>
+  <div class="b2-case__inner reveal-up">
+    <span class="b2-case__tag">Case study · SaaS Series-B</span>
+    <h2 class="b2-case__h2">From 4 demos a month to<br/>23 qualified meetings a week.</h2>
+    <p class="b2-case__body">A Series-B B2B SaaS came to us with a single SDR, a stalled pipeline, and a CMO under pressure. We rebuilt their outbound stack — Apollo for sourcing, Smartlead for sends, Clay for enrichment, Calendly for booking — and added LinkedIn outbound on top. Within one quarter, qualified pipeline grew 6× and CAC payback halved.</p>
+    <div class="b2-case__metrics">
+      <div><span>23/wk</span><small>qualified meetings</small></div>
+      <div><span>6×</span><small>pipeline growth</small></div>
+      <div><span>−52%</span><small>CAC payback</small></div>
+    </div>
+    <a href="/case-studies" class="b2-btn b2-btn--outline-white">Read all case studies →</a>
+  </div>
+</section>
+
+<!-- 7. TESTIMONIALS -->
+<section class="b2-testi">
+  <div class="b2-section-head reveal-up">
+    <span class="b2-badge">Client outcomes</span>
+    <h2 class="b2-h2">What revenue leaders say.</h2>
+  </div>
+  <div class="b2-testi-grid">
+    <div class="b2-testi-card reveal-stagger"><div class="b2-testi-img"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=80&auto=format&fit=crop&crop=face" alt="" /></div><div class="b2-stars">★★★★★</div><blockquote>"Corum8's outbound engine fundamentally changed our business. We went from referrals only to 20+ qualified enterprise demos every week. The reply handling alone is worth what we pay them."</blockquote><div class="b2-testi-name">Alex Mercer</div><div class="b2-testi-role">VP Sales · SaaSify · NYC</div></div>
+    <div class="b2-testi-card reveal-stagger"><div class="b2-testi-img"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=80&auto=format&fit=crop&crop=face" alt="" /></div><div class="b2-stars">★★★★★</div><blockquote>"Lead quality is unmatched. Prospects show up to calls knowing what we do, ready to talk pricing. It's the highest-ROI channel we have. Three quarters in, still our best decision."</blockquote><div class="b2-testi-name">Samantha Wright</div><div class="b2-testi-role">Founder · DataSync · London</div></div>
+    <div class="b2-testi-card reveal-stagger"><div class="b2-testi-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80&auto=format&fit=crop&crop=face" alt="" /></div><div class="b2-stars">★★★★★</div><blockquote>"We hired two outbound agencies before Corum8. Both burned our domain reputation. These folks rebuilt our deliverability from scratch and we're now booking enterprise meetings every week."</blockquote><div class="b2-testi-name">Kenji Nakamura</div><div class="b2-testi-role">CRO · AI infrastructure · Tokyo</div></div>
+  </div>
+</section>
+
+<!-- 8. FAQ -->
+<section class="b2-faq">
+  <div class="b2-section-head reveal-up"><span class="b2-badge">FAQ</span><h2 class="b2-h2">Questions revenue leaders ask.</h2></div>
+  <div class="b2-faq-list reveal-up">
+    <div class="b2-faq-item"><button class="b2-faq-q" aria-expanded="false">What's the typical reply rate on a Corum8 outbound program?<span class="b2-chevron"></span></button><div class="b2-faq-a"><strong>Across portfolio our average reply rate sits at 14.2% — roughly 6× the cold-email industry average of ~2.3%.</strong> The driver is verified contact data, AI-personalized openers hand-edited at the top of every sequence, and inbox-safe infrastructure that keeps domains out of spam.</div></div>
+    <div class="b2-faq-item"><button class="b2-faq-q" aria-expanded="false">How do you protect our domain reputation?<span class="b2-chevron"></span></button><div class="b2-faq-a"><strong>We never send from your primary domain.</strong> We register and warm secondary sending domains, configure DKIM, SPF, DMARC properly, throttle volume per inbox, and rotate across multiple sending mailboxes. Your main domain stays clean for transactional and customer email.</div></div>
+    <div class="b2-faq-item"><button class="b2-faq-q" aria-expanded="false">Do you handle replies and book meetings, or just send?<span class="b2-chevron"></span></button><div class="b2-faq-a"><strong>We handle every reply.</strong> A Corum8 SDR reads each response within an hour during business windows, qualifies the prospect, handles initial objections, and books the meeting directly onto your AE's calendar with full context. You only get involved when a qualified meeting is on your calendar.</div></div>
+    <div class="b2-faq-item"><button class="b2-faq-q" aria-expanded="false">What contact data sources do you use?<span class="b2-chevron"></span></button><div class="b2-faq-a"><strong>Apollo, Sales Navigator, Clay, ZoomInfo, and Cognism — triple-verified through ZeroBounce or NeverBounce before any send.</strong> Sub-1% bounce rate on every campaign. We also use intent platforms like 6sense and Bombora to surface accounts already researching your category.</div></div>
+    <div class="b2-faq-item"><button class="b2-faq-q" aria-expanded="false">Can you run ABM for enterprise accounts?<span class="b2-chevron"></span></button><div class="b2-faq-a"><strong>Yes — 1:1, 1:few, and 1:many ABM are part of our regular engagements, especially for clients with $50K+ ACV.</strong> Custom landing pages per account, multi-stakeholder sequencing, executive gifting, and ad orchestration on LinkedIn, RollWorks, or 6sense — all aligned to your AE's account plans.</div></div>
+    <div class="b2-faq-item"><button class="b2-faq-q" aria-expanded="false">How do you measure success?<span class="b2-chevron"></span></button><div class="b2-faq-a"><strong>Qualified meetings booked, pipeline value generated, and deals closed — not opens, clicks, or impressions.</strong> Every monthly review shows accounts engaged, meetings held, pipeline added, and (with your CRM access) closed-won attribution. Vanity metrics are reported but not optimized for.</div></div>
+    <div class="b2-faq-item"><button class="b2-faq-q" aria-expanded="false">Do you cover non-English markets?<span class="b2-chevron"></span></button><div class="b2-faq-a"><strong>Yes — we run B2B outbound in 14 languages including Spanish, German, French, Mandarin, Japanese, and Korean.</strong> Native-speaker copywriters and SDRs, regional ICPs, and timezone-aligned reply handling. Especially relevant for clients selling enterprise software into EMEA or APAC.</div></div>
+    <div class="b2-faq-item"><button class="b2-faq-q" aria-expanded="false">How does Corum8 work alongside our internal SDR team?<span class="b2-chevron"></span></button><div class="b2-faq-a"><strong>We complement, not replace.</strong> Most clients keep their internal SDRs on inbound and named-account expansion while we handle the high-volume outbound layer your team doesn't have bandwidth for. Weekly syncs ensure no double-touch on accounts and that messaging stays aligned.</div></div>
+  </div>
+</section>
+
+<!-- 9. CTA -->
+<section class="b2-cta b2-pill">
+  <div class="b2-cta__bg"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1400&q=70&auto=format&fit=crop" alt="" aria-hidden="true" /><div class="b2-cta__overlay"></div></div>
+  <div class="b2-cta__inner reveal-up">
+    <span class="b2-badge b2-badge--dim">Ready?</span>
+    <h2 class="b2-cta__h2">Build the pipeline<br/><span class="b2-grad">that actually closes.</span></h2>
+    <p>We'll audit your current outbound, map the gaps, and show you what a verified-data, multi-channel, reply-handled engine could deliver for your category — in the first call.</p>
+    <div class="b2-cta__btns">
+      <a href="/contact" class="b2-btn b2-btn--fill b2-btn--lg">Book a strategy call</a>
+      <a href="/case-studies" class="b2-btn b2-btn--outline-white">See campaigns →</a>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" is:inline></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js" is:inline></script>
+<script is:inline>
+(function(){
+  if(window.b2Inited) return; window.b2Inited=true;
+  var lenis=new Lenis({duration:1.15,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));}});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf);} requestAnimationFrame(raf);
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray('.reveal-up').forEach(function(el){gsap.fromTo(el,{autoAlpha:0,y:50},{autoAlpha:1,y:0,duration:0.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});});
+  gsap.utils.toArray('.reveal-left').forEach(function(el){gsap.fromTo(el,{autoAlpha:0,x:-60},{autoAlpha:1,x:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});});
+  gsap.utils.toArray('.reveal-right').forEach(function(el){gsap.fromTo(el,{autoAlpha:0,x:60},{autoAlpha:1,x:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});});
+  ['.b2-disc-grid','.b2-process-grid','.b2-chan-grid','.b2-testi-grid'].forEach(function(sel){
+    var p=document.querySelector(sel); if(!p) return;
+    gsap.fromTo(p.querySelectorAll('.reveal-stagger'),{autoAlpha:0,y:60},{autoAlpha:1,y:0,duration:0.85,ease:'power3.out',stagger:0.1,scrollTrigger:{trigger:p,start:'top 86%'}});
+  });
+  document.querySelectorAll('.b2-faq-q').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=btn.closest('.b2-faq-item'); var ans=item.querySelector('.b2-faq-a'); var open=btn.getAttribute('aria-expanded')==='true';
+      document.querySelectorAll('.b2-faq-item').forEach(function(i){i.querySelector('.b2-faq-q').setAttribute('aria-expanded','false');i.querySelector('.b2-faq-a').style.maxHeight='0';i.querySelector('.b2-faq-a').style.opacity='0';i.classList.remove('open');});
+      if(!open){btn.setAttribute('aria-expanded','true');ans.style.maxHeight=ans.scrollHeight+'px';ans.style.opacity='1';item.classList.add('open');}
+    });
+  });
+})();
+</script>
+
+<style is:global>
+.b2-hero, .b2-hero *, .b2-channels, .b2-channels *, .b2-process, .b2-process *,
+.b2-split-photo, .b2-split-photo *, .b2-case, .b2-case *, .b2-testi, .b2-testi *,
+.b2-faq, .b2-faq *, .b2-cta, .b2-cta *, .b2-strip, .b2-strip *, .b2-disc, .b2-disc *, .b2-why, .b2-why * {
+  box-sizing: border-box; font-family: var(--font-sans);
+}
+.b2-hero img, .b2-channels img, .b2-process img, .b2-split-photo img, .b2-case img, .b2-testi img, .b2-cta img {
+  display:block; width:100%; height:100%; object-fit:cover;
+}
+
+/* TOKENS */
+.b2-badge{display:inline-flex;align-items:center;padding:.3rem .9rem;border-radius:100px;background:rgba(242,191,34,.1);border:1px solid rgba(242,191,34,.25);color:#8a6a14;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.b2-badge--dim{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.6);}
+.b2-grad{background:linear-gradient(135deg,#f2bf22 0%,#da9e49 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.b2-h2{font-family:var(--font-display);font-size:clamp(1.85rem,3.6vw,2.6rem);font-weight:400;line-height:1.18;letter-spacing:-.015em;margin:.9rem 0 1.2rem;color:#0f0f0f;}
+.b2-section-head{text-align:center;max-width:740px;margin:0 auto 3.5rem;}
+.b2-section-head__sub{font-size:1rem;line-height:1.7;color:#666;margin-top:.5rem;}
+.b2-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.9rem;border-radius:100px;font-size:.92rem;font-weight:700;text-decoration:none;transition:all .25s;border:none;cursor:pointer;font-family:inherit;}
+.b2-btn--fill{background:linear-gradient(135deg,#f2bf22,#da9e49);color:#fff;box-shadow:0 8px 24px rgba(242,191,34,.3);}
+.b2-btn--fill:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(242,191,34,.4);}
+.b2-btn--line{background:transparent;color:#0f0f0f;border:1.5px solid rgba(0,0,0,.18);}
+.b2-btn--line:hover{border-color:#0f0f0f;}
+.b2-btn--outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);}
+.b2-btn--outline-white:hover{border-color:#fff;}
+.b2-btn--lg{padding:1rem 2.5rem;font-size:1rem;}
+
+/* PILL */
+.b2-pill{border-radius:40px;margin:2rem 1.5rem;overflow:hidden;}
+@media(min-width:768px){.b2-pill{border-radius:60px;margin:2rem 3rem;}}
+
+/* BLOBS */
+.b2-blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
+.b2-blob--a{width:520px;height:520px;background:rgba(242,191,34,.1);top:-100px;right:-80px;}
+.b2-blob--b{width:400px;height:400px;background:rgba(218,158,73,.08);bottom:0;left:-100px;}
+
+/* HERO */
+.b2-hero{position:relative;overflow:hidden;background:#f4f4f0;padding:clamp(4rem,9vh,7rem) 2rem clamp(3rem,6vh,5rem);}
+.b2-hero__inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1;}
+@media(max-width:900px){.b2-hero__inner{grid-template-columns:1fr;}.b2-hero__visual{display:none;}}
+.b2-hero__h1{font-family:var(--font-display);font-size:clamp(2.1rem,4vw,3.2rem);font-weight:400;line-height:1.15;letter-spacing:-.015em;margin:.9rem 0 1.3rem;color:#0f0f0f;}
+.b2-hero__sub{font-size:1.05rem;line-height:1.7;color:#555;max-width:540px;margin-bottom:2rem;}
+.b2-hero__btns{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:2.2rem;}
+.b2-hero__chips{display:flex;align-items:center;gap:1.2rem;list-style:none;padding:0;margin:0;flex-wrap:wrap;}
+.b2-hero__chips li:not(.b2-chip-div){display:flex;flex-direction:column;}
+.b2-chip-num{font-size:1.5rem;font-weight:800;color:#0f0f0f;line-height:1;}
+.b2-chip-lbl{font-size:.72rem;color:#888;margin-top:.25rem;}
+.b2-chip-div{width:1px;height:32px;background:rgba(0,0,0,.12);}
+
+/* HERO INBOX VISUAL */
+.b2-hero__visual{position:relative;height:520px;}
+.b2-inbox{position:absolute;top:0;right:0;width:380px;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:18px;box-shadow:0 30px 80px -20px rgba(0,0,0,.18);overflow:hidden;}
+.b2-inbox__bar{display:flex;align-items:center;gap:.4rem;padding:.7rem 1rem;background:#f7f5ee;border-bottom:1px solid rgba(0,0,0,.05);}
+.b2-dot{width:10px;height:10px;border-radius:50%;}
+.b2-dot--r{background:#ff5f57;}.b2-dot--y{background:#ffbd2e;}.b2-dot--g{background:#28c940;}
+.b2-inbox__title{margin-left:.5rem;font-size:.72rem;font-weight:700;color:#888;letter-spacing:.05em;text-transform:uppercase;}
+.b2-inbox__row{display:flex;align-items:center;gap:.85rem;padding:1rem 1.1rem;border-bottom:1px solid rgba(0,0,0,.05);}
+.b2-inbox__row:last-child{border-bottom:none;}
+.b2-inbox__row--hot{background:#fffaeb;}
+.b2-av{width:36px;height:36px;border-radius:50%;flex-shrink:0;}
+.b2-row__body{flex:1;min-width:0;}
+.b2-row__name{font-size:.82rem;font-weight:700;color:#0f0f0f;}
+.b2-row__msg{font-size:.74rem;color:#777;margin-top:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.b2-tag{flex-shrink:0;font-size:.62rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:.2rem .55rem;border-radius:6px;}
+.b2-tag--hot{background:rgba(242,191,34,.18);color:#a07a14;}
+.b2-tag--meet{background:rgba(34,197,94,.15);color:#15803d;}
+.b2-tag--fu{background:rgba(0,0,0,.06);color:#666;}
+.b2-fc{position:absolute;background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:14px;box-shadow:0 16px 50px -12px rgba(0,0,0,.18);padding:.95rem 1.15rem;z-index:10;}
+.b2-fc__lbl{font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#aaa;margin-bottom:.4rem;}
+.b2-fc__big{font-size:1.6rem;font-weight:800;color:#f2bf22;line-height:1;}
+.b2-fc__big span{font-size:1rem;}
+.b2-fc__med{font-size:1.3rem;font-weight:800;color:#0f0f0f;line-height:1;}
+.b2-fc__sub{font-size:.7rem;color:#888;margin-top:.2rem;}
+.b2-fc--m{top:30px;left:-20px;width:170px;}
+.b2-fc--p{bottom:30px;left:-40px;width:190px;}
+
+/* FLOAT */
+@keyframes b2floatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes b2floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.float-a{animation:b2floatA 6s ease-in-out infinite;}
+.float-b{animation:b2floatB 8s ease-in-out infinite;animation-delay:1.5s;}
+
+/* STRIP */
+.b2-strip{padding:2rem;text-align:center;background:#f4f4f0;border-top:1px solid rgba(0,0,0,.06);}
+.b2-strip__lbl{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;display:block;margin-bottom:.8rem;}
+.b2-strip__list{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.6rem;}
+.b2-strip__list span{font-size:.95rem;font-weight:700;color:#888;}
+.b2-strip__list .bdot{color:#ddd;}
+
+/* DISCIPLINES */
+.b2-disc{background:#efe9dc;padding:clamp(4rem,8vh,6rem) 2rem;border:1px solid rgba(0,0,0,.04);}
+@media(min-width:768px){.b2-disc{padding:clamp(4rem,8vh,6rem) 4rem;}}
+.b2-disc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto;}
+.b2-disc-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:20px;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;box-shadow:0 8px 28px -12px rgba(0,0,0,.08);}
+.b2-disc-card:hover{border-color:#f2bf22;transform:translateY(-4px);box-shadow:0 18px 50px -16px rgba(242,191,34,.25);}
+.b2-disc-card__img{position:relative;height:180px;overflow:hidden;}
+.b2-disc-card__img img{transition:transform .5s;}
+.b2-disc-card:hover .b2-disc-card__img img{transform:scale(1.05);}
+.b2-disc-card__num{position:absolute;top:1rem;right:1rem;font-size:2.5rem;font-weight:800;color:rgba(255,255,255,.7);line-height:1;text-shadow:0 2px 8px rgba(0,0,0,.25);}
+.b2-disc-card__body{padding:1.5rem;}
+.b2-disc-card__body h3{font-size:1.2rem;font-weight:700;color:#0f0f0f;margin-bottom:.6rem;}
+.b2-disc-card__body p{font-size:.88rem;line-height:1.65;color:#555;margin-bottom:1rem;}
+.b2-disc-card__body ul{list-style:none;display:flex;flex-direction:column;gap:.35rem;padding:0;margin:0;}
+.b2-disc-card__body li{font-size:.8rem;color:#666;padding-left:.9rem;position:relative;}
+.b2-disc-card__body li::before{content:'—';position:absolute;left:0;color:#f2bf22;}
+
+/* WHY US */
+.b2-why{padding:clamp(4rem,8vh,6rem) 2rem;background:#f4f4f0;}
+.b2-why__inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch;}
+@media(max-width:768px){.b2-why__inner{grid-template-columns:1fr;gap:1.2rem;}}
+.b2-why__col{background:#fff;border-radius:28px;padding:2.6rem 2.4rem;border:1px solid rgba(0,0,0,.08);box-shadow:0 10px 30px -14px rgba(0,0,0,.08);}
+.b2-why__col--us{border:2px solid #f2bf22;background:#fff;box-shadow:0 24px 60px -20px rgba(242,191,34,.35);position:relative;}
+.b2-why__col--us::before{content:"BEST CHOICE";position:absolute;top:-12px;right:24px;background:#f2bf22;color:#0a0b10;font-family:var(--font-display);font-size:.7rem;font-weight:400;letter-spacing:.12em;padding:.35rem .9rem;border-radius:100px;}
+.b2-why__col-h{font-family:var(--font-display);font-size:1.15rem;font-weight:400;letter-spacing:-.005em;color:#1a1a1a;margin-bottom:1.6rem;padding-bottom:1.2rem;border-bottom:1px dashed rgba(0,0,0,.12);}
+.b2-why__col--them .b2-why__col-h{color:#888;}
+.b2-why__col-h--us{color:#0a0b10;}
+.b2-why__col ul{list-style:none;display:flex;flex-direction:column;gap:1.1rem;padding:0;margin:0;}
+.b2-why__col li{font-size:1.05rem;line-height:1.55;color:#222;display:flex;align-items:flex-start;gap:.85rem;font-weight:500;}
+.b2-why__col--them li{color:#777;font-weight:400;}
+.b2-x{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#f3f3f0;color:#aaa;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.05rem;line-height:1;margin-top:.05rem;}
+.b2-tick{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#f2bf22;color:#0a0b10;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;line-height:1;margin-top:.05rem;}
+.b2-why__cta{max-width:1180px;margin:2.5rem auto 0;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;background:#fff;border-radius:20px;padding:1.6rem 2.2rem;border:1px solid rgba(0,0,0,.08);flex-wrap:wrap;}
+.b2-why__cta-text{font-size:1.15rem;font-weight:600;color:#0a0b10;}
+
+/* SPLIT */
+.b2-split-photo{display:grid;grid-template-columns:1fr 1fr;max-width:1300px;margin:4rem auto;border-radius:32px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.12);}
+@media(max-width:900px){.b2-split-photo{grid-template-columns:1fr;margin:2rem 1.5rem;}}
+.b2-split-photo__img{position:relative;min-height:500px;}
+.b2-split-photo__badge{position:absolute;bottom:2rem;left:2rem;background:#fff;border-radius:14px;padding:1rem 1.4rem;box-shadow:0 12px 40px rgba(0,0,0,.15);}
+.b2-split-photo__badge-num{display:block;font-size:1.8rem;font-weight:800;color:#f2bf22;line-height:1;}
+.b2-split-photo__badge-lbl{font-size:.75rem;font-weight:600;color:#666;}
+.b2-split-photo__chip{position:absolute;top:2rem;right:2rem;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);color:#fff;padding:.45rem 1rem;border-radius:100px;font-size:.78rem;font-weight:700;display:flex;align-items:center;gap:.5rem;}
+.b2-split-photo__chip .green{color:#22c55e;font-size:.6rem;}
+.b2-split-photo__copy{background:#fff;padding:clamp(3rem,6vw,5rem);display:flex;flex-direction:column;justify-content:center;}
+.b2-split-photo__copy p{font-size:.95rem;line-height:1.75;color:#555;margin-bottom:1.2rem;}
+.b2-mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2rem 0;}
+.b2-mini-stat span{display:block;font-size:1.6rem;font-weight:800;color:#f2bf22;}
+.b2-mini-stat small{display:block;font-size:.75rem;color:#888;margin-top:.2rem;}
+
+/* PROCESS */
+.b2-process{padding:clamp(4rem,8vh,6rem) 2rem;background:#f4f4f0;}
+.b2-process-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+.b2-proc-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:20px;overflow:hidden;box-shadow:0 10px 40px -10px rgba(0,0,0,.08);transition:transform .3s,box-shadow .3s;}
+.b2-proc-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px -15px rgba(0,0,0,.12);}
+.b2-proc-card__img{position:relative;height:200px;overflow:hidden;}
+.b2-proc-card__img img{transition:transform .5s;}
+.b2-proc-card:hover .b2-proc-card__img img{transform:scale(1.05);}
+.b2-proc-num{position:absolute;top:1rem;left:1rem;background:linear-gradient(135deg,#f2bf22,#da9e49);color:#fff;border-radius:8px;padding:.25rem .65rem;font-size:.8rem;font-weight:800;}
+.b2-proc-card h3{font-size:1.05rem;font-weight:700;padding:1.3rem 1.4rem .4rem;color:#0f0f0f;}
+.b2-proc-card p{font-size:.85rem;line-height:1.65;color:#666;padding:0 1.4rem 1.4rem;margin:0;}
+
+/* CHANNELS GRID */
+.b2-channels{background:#efe9dc;padding:clamp(4rem,8vh,6rem) 2rem;border:1px solid rgba(0,0,0,.04);}
+@media(min-width:768px){.b2-channels{padding:clamp(4rem,8vh,6rem) 4rem;}}
+.b2-channels__inner{max-width:1200px;margin:0 auto;}
+.b2-chan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+@media(max-width:1100px){.b2-chan-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:820px){.b2-chan-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.b2-chan-grid{grid-template-columns:1fr;}}
+.b2-chan-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:20px;overflow:hidden;transition:all .3s;box-shadow:0 8px 28px -12px rgba(0,0,0,.08);}
+.b2-chan-card:hover{border-color:#f2bf22;transform:translateY(-4px);box-shadow:0 20px 50px -16px rgba(242,191,34,.28);}
+.b2-chan-card__img{position:relative;height:160px;overflow:hidden;}
+.b2-chan-card__img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.b2-chan-card:hover .b2-chan-card__img img{transform:scale(1.06);}
+.b2-chan-card__lbl{position:absolute;bottom:.75rem;left:.85rem;font-family:var(--font-display);font-size:.88rem;font-weight:400;color:#fff;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);padding:.3rem .8rem;border-radius:100px;}
+.b2-chan-card__body{padding:1.2rem 1.4rem 1.4rem;}
+.b2-chan-card__body p{font-size:.87rem;line-height:1.65;color:#555;margin:0 0 .85rem;}
+.b2-chan-card__tag{display:inline-flex;font-size:.7rem;font-weight:700;letter-spacing:.04em;color:#8a6a14;background:rgba(242,191,34,.12);border:1px solid rgba(242,191,34,.22);padding:.2rem .65rem;border-radius:100px;}
+.b2-chan-card--more{background:linear-gradient(135deg,#0f0f0f 0%,#1f1a0a 100%);border:1px solid rgba(242,191,34,.3);display:flex;align-items:center;justify-content:center;min-height:280px;}
+.b2-chan-card--more:hover{transform:translateY(-4px);box-shadow:0 22px 50px -16px rgba(242,191,34,.35);border-color:#f2bf22;}
+.b2-chan-card__more-inner{padding:2rem 1.6rem;text-align:center;}
+.b2-chan-card__more-num{font-family:var(--font-display);font-size:1.6rem;font-weight:400;color:#f2bf22;margin-bottom:.9rem;}
+.b2-chan-card--more p{font-size:.88rem;line-height:1.65;color:rgba(255,255,255,.65);margin:0 0 1.2rem;}
+.b2-chan-card__more-cta{display:inline-flex;font-size:.82rem;font-weight:700;color:#f2bf22;text-decoration:none;border-bottom:1px solid rgba(242,191,34,.4);padding-bottom:.15rem;}
+
+/* CASE */
+.b2-case{background:#0f0f0f;padding:clamp(4rem,8vh,6rem) 2rem;position:relative;overflow:hidden;}
+.b2-case__bg{position:absolute;inset:0;z-index:0;}
+.b2-case__bg img{width:100%;height:100%;object-fit:cover;opacity:.13;}
+.b2-case__overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,15,15,.95) 40%,rgba(15,15,15,.7));}
+.b2-case__inner{position:relative;z-index:1;max-width:860px;margin:0 auto;}
+.b2-case__tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#f2bf22;background:rgba(242,191,34,.15);padding:.3rem .9rem;border-radius:100px;margin-bottom:1.5rem;}
+.b2-case__h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.2;letter-spacing:-.03em;color:#fff;margin-bottom:1.5rem;}
+.b2-case__body{font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.5);margin-bottom:2.5rem;}
+.b2-case__metrics{display:flex;flex-wrap:wrap;gap:2rem;padding:2rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;margin-bottom:2.5rem;}
+.b2-case__metrics div span{display:block;font-size:2rem;font-weight:800;color:#f2bf22;line-height:1;}
+.b2-case__metrics div small{font-size:.75rem;color:rgba(255,255,255,.4);}
+
+/* TESTIMONIALS */
+.b2-testi{padding:clamp(4rem,8vh,6rem) 2rem;background:#f4f4f0;}
+.b2-testi-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+.b2-testi-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:24px;padding:2rem;box-shadow:0 10px 40px -12px rgba(0,0,0,.08);transition:transform .3s,box-shadow .3s;}
+.b2-testi-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px -15px rgba(0,0,0,.12);}
+.b2-testi-img{width:56px;height:56px;border-radius:50%;overflow:hidden;margin-bottom:1rem;border:2px solid rgba(242,191,34,.3);}
+.b2-stars{color:#f59e0b;font-size:.9rem;letter-spacing:.05em;margin-bottom:1rem;}
+.b2-testi-card blockquote{font-size:.88rem;line-height:1.7;color:#444;font-style:italic;margin-bottom:1.2rem;}
+.b2-testi-name{font-size:.88rem;font-weight:700;color:#0f0f0f;}
+.b2-testi-role{font-size:.75rem;color:#999;margin-top:.15rem;}
+
+/* FAQ */
+.b2-faq{padding:clamp(4rem,8vh,6rem) 2rem;background:#fff;border-top:1px solid rgba(0,0,0,.06);}
+.b2-faq-list{max-width:760px;margin:0 auto;}
+.b2-faq-item{border-bottom:1px solid rgba(0,0,0,.07);}
+.b2-faq-item:first-child{border-top:1px solid rgba(0,0,0,.07);}
+.b2-faq-q{width:100%;text-align:left;padding:1.3rem 0;background:none;border:none;cursor:pointer;font-size:.95rem;font-weight:700;color:#0f0f0f;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-family:inherit;transition:color .2s;}
+.b2-faq-q:hover,.b2-faq-q[aria-expanded="true"]{color:#f2bf22;}
+.b2-chevron{flex-shrink:0;width:22px;height:22px;border:1.5px solid currentColor;border-radius:50%;position:relative;transition:transform .3s;}
+.b2-chevron::before,.b2-chevron::after{content:'';position:absolute;top:50%;left:50%;width:7px;height:1.5px;background:currentColor;border-radius:2px;}
+.b2-chevron::before{transform:translate(-50%,-50%) rotate(-45deg) translateX(2px);}
+.b2-chevron::after{transform:translate(-50%,-50%) rotate(45deg) translateX(-2px);}
+.b2-faq-q[aria-expanded="true"] .b2-chevron{transform:rotate(180deg);}
+.b2-faq-a{max-height:0;overflow:hidden;opacity:0;font-size:.9rem;line-height:1.75;color:#555;transition:max-height .4s cubic-bezier(.16,1,.3,1),opacity .3s;}
+.b2-faq-item.open .b2-faq-a{padding-bottom:1.4rem;}
+
+/* CTA */
+.b2-cta{background:#0f0f0f;padding:clamp(5rem,10vh,8rem) 2rem;text-align:center;position:relative;overflow:hidden;}
+.b2-cta__bg{position:absolute;inset:0;z-index:0;}
+.b2-cta__bg img{width:100%;height:100%;object-fit:cover;opacity:.1;}
+.b2-cta__overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(15,15,15,.5) 0%,rgba(15,15,15,.97) 70%);}
+.b2-cta__inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.b2-cta__h2{font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-.04em;color:#fff;margin:1rem 0;}
+.b2-cta__inner p{font-size:1rem;line-height:1.7;color:rgba(255,255,255,.5);margin-bottom:2.5rem;}
+.b2-cta__btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+@media(prefers-reduced-motion:reduce){.float-a,.float-b{animation:none;}}
+</style>
+
+</Layout>
+</content>
+</invoke>
