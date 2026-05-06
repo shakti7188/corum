@@ -66,7 +66,7 @@ export const media = {
 
     // --- Topic-specific heroes (Unsplash) ---
     exchange: {
-      src: u("1611974789855-9c2a0a7236a3", 1400),
+      src: u("1640340434855-6084b1f4901c", 1400),
       alt: "Multi-monitor trading desk showing candles, order book and depth charts",
       w: 1400, h: 1050, kind: "image",
     },
@@ -134,7 +134,7 @@ export const media = {
   // Topic-tagged Unsplash imagery for body side-images. Decorative (repeated
   // across pages) so alt="" + role=presentation is applied automatically.
   topic: {
-    tradingScreen:  { src: u("1611974789855-9c2a0a7236a3", 800), alt: "", kind: "image", decorative: true },
+    tradingScreen:  { src: u("1640340434855-6084b1f4901c", 800), alt: "", kind: "image", decorative: true },
     candleChart:    { src: u("1633158829875-e5316a358c6f", 800), alt: "", kind: "image", decorative: true },
     cryptoCoins:    { src: u("1621761191319-c6fb62004040", 800), alt: "", kind: "image", decorative: true },
     cryptoGold:     { src: u("1518546305927-5a555bb7020d", 800), alt: "", kind: "image", decorative: true },
