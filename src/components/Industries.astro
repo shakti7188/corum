@@ -160,7 +160,7 @@ const industries: Industry[] = [
       </h2>
     </header>
 
-    <div class="c8-ind__panel" data-reveal="up">
+    <div class="c8-ind__panel" data-reveal="scale">
       <!-- LEFT — clickable industry titles -->
       <ol class="c8-ind__list" role="tablist" aria-label="Industries">
         {industries.map((i, idx) => (
@@ -230,7 +230,8 @@ const industries: Industry[] = [
   .c8-ind {
     background: #0a0a0a;
     color: #fff;
-    padding: clamp(4.5rem, 9vh, 7rem) clamp(1.5rem, 5vw, 5rem);
+    padding-block: var(--c8-pad-section);
+    padding-inline: var(--c8-section-pad);
     position: relative;
     overflow: hidden;
     isolation: isolate;

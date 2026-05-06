@@ -2,12 +2,15 @@
 import Layout from "../../../layouts/Layout.astro";
 
 const channels = [
-  { name: 'Google',      pitch: 'Where intent already lives. We just close it.',                                  img: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=900&q=80&auto=format&fit=crop' },
-  { name: 'Meta',        pitch: 'Pixel-only is broken post-ATT. We rebuilt the stack.',                           img: 'https://images.unsplash.com/photo-1607968565043-36af90dde238?w=900&q=80&auto=format&fit=crop' },
-  { name: 'LinkedIn',    pitch: 'B2B at the decision-maker layer. No MQL theatre.',                               img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&q=80&auto=format&fit=crop' },
-  { name: 'X / Twitter', pitch: 'Crypto- and tech-native reach. Real attention, not bots.',                       img: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?w=900&q=80&auto=format&fit=crop' },
-  { name: 'TikTok',      pitch: 'Consumer creative-first. Built native — not adapted.',                           img: 'https://images.unsplash.com/photo-1611605698323-b1e99cfd37ea?w=900&q=80&auto=format&fit=crop' },
-  { name: 'Telegram',    pitch: '800M+ users. Highest-converting reach in crypto + emerging markets.',           img: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=900&q=80&auto=format&fit=crop' },
+  // Each channel card uses a topical Unsplash image — search-results screen
+  // for Google, social UI for Meta, professional networking for LinkedIn, etc.
+  // All are on-brand to the platform without duplicating logos.
+  { name: 'Google',      pitch: 'Where intent already lives. We just close it.',                                 img: 'https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=900&q=80&auto=format&fit=crop' },
+  { name: 'Meta',        pitch: 'Pixel-only is broken post-ATT. We rebuilt the stack.',                          img: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=900&q=80&auto=format&fit=crop' },
+  { name: 'LinkedIn',    pitch: 'B2B at the decision-maker layer. No MQL theatre.',                              img: 'https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=900&q=80&auto=format&fit=crop' },
+  { name: 'X / Twitter', pitch: 'Crypto- and tech-native reach. Real attention, not bots.',                      img: 'https://images.unsplash.com/photo-1611605698323-b1e99cfd37ea?w=900&q=80&auto=format&fit=crop' },
+  { name: 'TikTok',      pitch: 'Consumer creative-first. Built native — not adapted.',                          img: 'https://images.unsplash.com/photo-1596558450268-9c27524ba856?w=900&q=80&auto=format&fit=crop' },
+  { name: 'Telegram',    pitch: '800M+ users. Highest-converting reach in crypto + emerging markets.',           img: 'https://images.unsplash.com/photo-1611605645802-c21be743c321?w=900&q=80&auto=format&fit=crop' },
 ];
 
 // Deep channels — surfaces most agencies skip, with concrete results
@@ -151,7 +154,7 @@ const deliverables = [
     label: 'Attribution',
     headline: 'Built for iOS ATT, Meta Andromeda — and whatever ships next.',
     claim: 'Platform-update proof.',
-    img: '/images/gen/perf_funnel_3d_1778018249718.png',
+    img: '/images/gen/perf_attribution.svg',
     points: [
       'Server-side tracking via Google Tag Manager Server-Side — resilient through Chrome\'s Privacy Sandbox rollout',
       'Conversions API on Meta + LinkedIn + TikTok, recalibrated as Meta Andromeda re-shapes optimisation',
@@ -164,7 +167,7 @@ const deliverables = [
     label: 'Bidding',
     headline: 'Optimisation that targets revenue, not signups.',
     claim: 'Usually a 2–3× ROAS shift.',
-    img: '/images/gen/perf_bidding_ai_1778018266168.png',
+    img: '/images/gen/perf_bidding.svg',
     points: [
       'LTV-weighted value-based conversions on every campaign',
       'tROAS, tCPA, max-conv calibrated per cohort and product line',
@@ -177,7 +180,7 @@ const deliverables = [
     label: 'Creative',
     headline: '6–8 ad variants per campaign. Every week.',
     claim: 'Native to each surface — not adapted.',
-    img: '/images/gen/perf_channels_grid_1778018230948.png',
+    img: '/images/gen/perf_creative.svg',
     points: [
       'Video for Meta, TikTok, YouTube built as platform-native, not repurposed',
       'Static + carousel concepts in production rotation across geos',
@@ -190,7 +193,7 @@ const deliverables = [
     label: 'Reporting',
     headline: 'A weekly dashboard your CFO will actually read.',
     claim: 'Tied to the P&L. Not the platform.',
-    img: '/images/gen/perf_hero_dash_1778018216511.png',
+    img: '/images/gen/perf_hero_dash.svg',
     points: [
       'True CAC including platform fees, agency fees, creative production',
       'LTV cohorts segmented by channel, geography, and product line',
@@ -302,7 +305,7 @@ const faqs = [
 
       <div class="lp-hero__feature">
         <figure class="lp-hero__photo">
-          <img src="/images/gen/perf_hero_dash_1778018216511.png" alt="Analytics Dashboard" loading="eager" />
+          <img src="/images/gen/perf_hero_dash.svg" alt="Performance dashboard — managed spend, ROAS, CAC, channel mix" loading="eager" />
           <span class="lp-hero__photo-corner" aria-hidden="true"></span>
         </figure>
 
@@ -706,7 +709,7 @@ const faqs = [
 
   <!-- ── FINAL CTA ── -->
   <section class="lp-final">
-    <img class="lp-final__bg" src="/images/gen/perf_funnel_3d_1778018249718.png" alt="" aria-hidden="true" />
+    <img class="lp-final__bg" src="/images/gen/perf_attribution.svg" alt="" aria-hidden="true" />
     <div class="lp-final__veil"></div>
     <div class="lp-final__inner">
       <p class="lp-final__eyebrow">Stop optimising for vanity</p>

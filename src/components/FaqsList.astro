@@ -12,13 +12,13 @@ import { faqs } from '../data/content';
       <h2 class="c8-faq__heading" data-reveal="up">Frequently asked questions</h2>
     </header>
 
-    <ol class="c8-faq__list" data-reveal-stagger="60">
+    <ol class="c8-faq__list" data-reveal-stagger="80">
       {faqs.map((f, i) => (
-        <li class="c8-faq__item" data-reveal="up">
+        <li class="c8-faq__item" data-reveal="zigzag">
           <button
             type="button"
-            class={`c8-faq__q${i === 0 ? ' is-active' : ''}`}
-            aria-expanded={i === 0 ? 'true' : 'false'}
+            class="c8-faq__q"
+            aria-expanded="false"
             aria-controls={`c8-faq-a-${i}`}
             data-faq-index={i}
           >
@@ -33,8 +33,8 @@ import { faqs } from '../data/content';
             class="c8-faq__a"
             id={`c8-faq-a-${i}`}
             role="region"
-            aria-hidden={i === 0 ? 'false' : 'true'}
-            data-open={i === 0 ? 'true' : 'false'}
+            aria-hidden="true"
+            data-open="false"
           >
             <div class="c8-faq__a-inner">
               <p>{f.a}</p>
@@ -58,7 +58,8 @@ import { faqs } from '../data/content';
   .c8-faq {
     background: #ffffff;
     color: #0a0a0a;
-    padding: clamp(4rem, 8vh, 6rem) clamp(1.5rem, 5vw, 5rem);
+    padding-block: var(--c8-pad-section);
+    padding-inline: var(--c8-section-pad);
     border-top: 1px solid rgba(0,0,0,0.05);
     border-bottom: 1px solid rgba(0,0,0,0.05);
   }

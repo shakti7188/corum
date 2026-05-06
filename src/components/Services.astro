@@ -198,9 +198,9 @@ const icons: Record<Service['iconKey'], string> = {
       </h2>
     </header>
 
-    <div class="c8-svc__grid" data-reveal-stagger="80">
+    <div class="c8-svc__grid" data-reveal-stagger="70">
       {services.map((s) => (
-        <a class={`c8-svc__card svc-${s.iconKey}`} href={s.href} data-reveal="up">
+        <a class={`c8-svc__card svc-${s.iconKey}`} href={s.href} data-reveal="scale">
           <div class="c8-svc__card-bg" aria-hidden="true"></div>
           <span class="c8-svc__card-icon" set:html={icons[s.iconKey]} />
           <h3 class="c8-svc__card-title">{s.title}</h3>

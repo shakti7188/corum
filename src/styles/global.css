@@ -440,18 +440,9 @@ h3, .h3 { font-size: var(--fs-50); line-height: 1.1; letter-spacing: -0.02em; }
   animation: pulse-glow 2s ease-out infinite;
 }
 
-/* Reveal baseline — visible by default (progressive enhancement).
-   GSAP will set them to opacity:0 y:40 then animate in if JS is available. */
-[data-reveal] {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: no-preference) {
-  html.animations-ready [data-reveal][data-reveal-initial="0"] {
-    opacity: 0;
-    transform: translate3d(0, 40px, 0);
-  }
-}
+/* (Reveal baseline rules removed — they conflicted with ScrollReveal.astro's
+   init/is-revealed transitions. The current system handles all visibility
+   logic + reduced-motion fallbacks inside ScrollReveal.astro itself.) */
 
 /* Marquee (logos) */
 @keyframes marquee-x {

@@ -44,9 +44,9 @@ const steps = [
       </p>
     </header>
 
-    <ol class="c8-process__chain" data-reveal-stagger="120">
+    <ol class="c8-process__chain" data-reveal-stagger="140">
       {steps.map((s, i) => (
-        <li class="c8-process__step" data-reveal="up" style={`--step-i: ${i};`}>
+        <li class="c8-process__step" data-reveal="right" style={`--step-i: ${i};`}>
           <div class="c8-process__node">
             {i > 0 && <span class="c8-process__thread c8-process__thread--left" aria-hidden="true"></span>}
             {i < steps.length - 1 && <span class="c8-process__thread c8-process__thread--right" aria-hidden="true"></span>}
