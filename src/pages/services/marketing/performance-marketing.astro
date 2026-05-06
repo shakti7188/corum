@@ -1,5 +1,1492 @@
 ---
-import Layout from "../../../layouts/ServiceClusterLayoutV2.astro";
-import { page } from "../../../data/pages/services/marketing/performance-marketing";
+import Layout from "../../../layouts/Layout.astro";
+
+const channels = [
+  { name: 'Google',      pitch: 'Where intent already lives. We just close it.',                                  img: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=900&q=80&auto=format&fit=crop' },
+  { name: 'Meta',        pitch: 'Pixel-only is broken post-ATT. We rebuilt the stack.',                           img: 'https://images.unsplash.com/photo-1607968565043-36af90dde238?w=900&q=80&auto=format&fit=crop' },
+  { name: 'LinkedIn',    pitch: 'B2B at the decision-maker layer. No MQL theatre.',                               img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&q=80&auto=format&fit=crop' },
+  { name: 'X / Twitter', pitch: 'Crypto- and tech-native reach. Real attention, not bots.',                       img: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?w=900&q=80&auto=format&fit=crop' },
+  { name: 'TikTok',      pitch: 'Consumer creative-first. Built native — not adapted.',                           img: 'https://images.unsplash.com/photo-1611605698323-b1e99cfd37ea?w=900&q=80&auto=format&fit=crop' },
+  { name: 'Telegram',    pitch: '800M+ users. Highest-converting reach in crypto + emerging markets.',           img: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=900&q=80&auto=format&fit=crop' },
+];
+
+// Deep channels — surfaces most agencies skip, with concrete results
+// per channel. Uses the alternating image+text layout the user liked.
+const deepChannels = [
+  {
+    title: 'On-chain Ad Networks',
+    lede: 'Slise, AADS, Bitmedia, Coinzilla — Web3-native distribution where mainstream platforms don\'t even index.',
+    points: [
+      'Crypto-native audience reach without traditional ad-platform compliance friction',
+      'Wallet-connect attribution bridges so on-chain deposits pass back as conversions',
+      'Token-holder targeting and on-chain-behaviour segmentation',
+      'CPC (Cost Per Click) often 50–70% lower than X / Meta for crypto verticals',
+    ],
+    chip: 'Web3-native distribution',
+    result: '~3× CAC efficiency vs paid social on token-launch programs',
+    img: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1100&q=80&auto=format&fit=crop',
+  },
+  {
+    title: 'Taboola & Outbrain',
+    lede: 'Native discovery placements on Bloomberg, FT, CNN, NYT — where intent simmers, not where it shouts.',
+    points: [
+      'Premium publisher inventory most performance teams ignore',
+      'LTV-weighted bidding tied directly to your CRM cohorts',
+      'Audience modelling from your existing customer base',
+      'Pre-cleared creative matrices for regulated industries',
+    ],
+    chip: 'Premium publisher inventory',
+    result: '~35% lower CPM than Meta for fintech + regulated brands',
+    img: 'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=1100&q=80&auto=format&fit=crop',
+  },
+  {
+    title: 'Reddit + Quora',
+    lede: 'Where the technical buyer asks the question before they ever google it.',
+    points: [
+      'Subreddit-targeted in r/CryptoCurrency, r/MachineLearning, r/SaaS, r/Fintech',
+      'Quora promoted answers tied to commercial-intent question clusters',
+      'Long-window attribution for B2B (Business to Business) sales cycles',
+      'Sentiment-aware creative — community-native voice, not polished ad copy',
+    ],
+    chip: 'Intent-driven niche reach',
+    result: '~2× signup-to-paid conversion vs Meta for AI SaaS',
+    img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1100&q=80&auto=format&fit=crop',
+  },
+  {
+    title: 'Programmatic + DSP',
+    lede: 'The Trade Desk, DV360, Amazon DSP — and on-chain networks. One buying engine, every screen.',
+    points: [
+      'Cross-channel reach via DSP (Demand-Side Platform) consolidates fragmentation',
+      'LTV-weighted bidding via custom audience uploads, not platform defaults',
+      'On-chain ad networks — Slise, AADS, Bitmedia — wired into the same dashboard',
+      'CTV (Connected TV) + audio + display + on-chain measured as one funnel',
+    ],
+    chip: 'Cross-channel buying engine',
+    result: '~60% media-budget efficiency vs running each channel siloed',
+    img: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1100&q=80&auto=format&fit=crop',
+  },
+];
+
+// Discovery inputs — the actual things we need from you before a
+// dollar of media moves. Replaces the old "Process" section which
+// duplicated the Tabs content. Sales-y angle: shows the rigour of
+// our pre-launch audit, gives the buyer a checklist they can prep.
+const inputs = [
+  {
+    title: 'Your attribution stack',
+    body: 'Current tracking setup, Google Tag Manager access, whether server-side or pixel-only is running. We map the gaps before any campaign launches.',
+  },
+  {
+    title: 'LTV math + retention curves',
+    body: 'Payback period, churn cohorts, average customer lifetime by acquisition channel. This is the signal we feed back into bidding.',
+  },
+  {
+    title: 'Conversion economics',
+    body: 'Target CAC, AOV (Average Order Value) or MRR (Monthly Recurring Revenue), sales-cycle length. The goalposts every campaign chases.',
+  },
+  {
+    title: 'Past 90 days of spend',
+    body: 'Read-only export from Google Ads, Meta, LinkedIn, TikTok — diagnoses what\'s working, what to cut, what attribution is missing.',
+  },
+  {
+    title: 'Creative library + brand',
+    body: 'Existing video, static, ad copy, brand guidelines, asset locations. We refresh and remix weekly — not start from zero.',
+  },
+  {
+    title: 'Backend + CRM access',
+    body: 'CRM, data warehouse, customer events. So offline-conversion uploads can fire and pipeline-attributed reporting actually ties back to revenue.',
+  },
+  {
+    title: 'ICP + exclusion rules',
+    body: 'Ideal customer profile, accounts to exclude (existing customers, free-trial users, competitors), geographic priorities, language coverage.',
+  },
+  {
+    title: 'Compliance + ad policy',
+    body: 'Regulated industries, jurisdiction-specific disclaimers, claim controls. Pre-cleared creative matrices avoid mid-campaign rejections.',
+  },
+];
+
+const proof = [
+  {
+    company: 'Beacon Capital',
+    region: 'Germany / EU',
+    stage: 'Series B fintech',
+    headline: '−42%',
+    subheadline: 'CAC in two quarters',
+    body: 'CAC had doubled under pixel-only attribution post-ATT. We rebuilt with Conversions API, recalibrated around LTV-weighted bidding. Same budget. Half the CAC.',
+    img: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    company: 'Vivid Protocol',
+    region: 'Global',
+    stage: 'Seed Web3',
+    headline: '3×',
+    subheadline: 'CAC on top creative',
+    body: 'Wallet-connect attribution bridge — ad click → signed transaction → on-chain deposit, value passed back to Google + Meta. Top creative outperformed auto-bidding 3×.',
+    img: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    company: 'Crest AI',
+    region: 'United States',
+    stage: 'Series A · B2B SaaS',
+    headline: '22→51%',
+    subheadline: 'pipeline attribution',
+    body: 'LinkedIn Conversions API + closed-deal offline upload. Optimisation moved from MQL to pipeline-$ value. Pipeline-attributed marketing spend went from 22% to 51% in twelve months.',
+    img: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    company: 'Horizon Exchange',
+    region: 'Singapore / APAC',
+    stage: 'Post-licence',
+    headline: '4×',
+    subheadline: 'spend scale, CAC held',
+    body: 'MAS-licensed exchange. Pre-cleared creative matrices across Google, Meta and X with LTV-weighted bidding. Scaled spend ~4× over two quarters while CAC stayed inside target thresholds.',
+    img: 'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=900&q=80&auto=format&fit=crop',
+  },
+];
+
+const deliverables = [
+  {
+    key: 'attribution',
+    label: 'Attribution',
+    headline: 'Built for iOS ATT, Meta Andromeda — and whatever ships next.',
+    claim: 'Platform-update proof.',
+    img: '/images/gen/perf_funnel_3d_1778018249718.png',
+    points: [
+      'Server-side tracking via Google Tag Manager Server-Side — resilient through Chrome\'s Privacy Sandbox rollout',
+      'Conversions API on Meta + LinkedIn + TikTok, recalibrated as Meta Andromeda re-shapes optimisation',
+      'Enhanced Conversions on Google with first-party hashed identifiers',
+      'Offline pass-back from your CRM with LTV signals — survives every signal-loss event the platforms ship',
+    ],
+  },
+  {
+    key: 'bidding',
+    label: 'Bidding',
+    headline: 'Optimisation that targets revenue, not signups.',
+    claim: 'Usually a 2–3× ROAS shift.',
+    img: '/images/gen/perf_bidding_ai_1778018266168.png',
+    points: [
+      'LTV-weighted value-based conversions on every campaign',
+      'tROAS, tCPA, max-conv calibrated per cohort and product line',
+      'Marginal-ROAS budget rebalancing across channels weekly',
+      'Audience layering: cold reach, retargeting, exclusion lists kept hygienic',
+    ],
+  },
+  {
+    key: 'creative',
+    label: 'Creative',
+    headline: '6–8 ad variants per campaign. Every week.',
+    claim: 'Native to each surface — not adapted.',
+    img: '/images/gen/perf_channels_grid_1778018230948.png',
+    points: [
+      'Video for Meta, TikTok, YouTube built as platform-native, not repurposed',
+      'Static + carousel concepts in production rotation across geos',
+      'Ad copy A/B (head-to-head) tested via VWO or GrowthBook',
+      'AI-assisted ideation, human-edited final ship — never autonomous output',
+    ],
+  },
+  {
+    key: 'reporting',
+    label: 'Reporting',
+    headline: 'A weekly dashboard your CFO will actually read.',
+    claim: 'Tied to the P&L. Not the platform.',
+    img: '/images/gen/perf_hero_dash_1778018216511.png',
+    points: [
+      'True CAC including platform fees, agency fees, creative production',
+      'LTV cohorts segmented by channel, geography, and product line',
+      'Marginal-spend ROAS at every scale-up threshold',
+      'Quarterly incrementality testing where channel design allows',
+    ],
+  },
+];
+
+const testimonials = [
+  {
+    quote: 'They rebuilt our attribution stack in the first three weeks, then quietly cut our CAC by nearly half over the next two quarters. The dashboard finally agreed with the bank account.',
+    name: 'Hannah Vogt',
+    role: 'VP Growth · Beacon Capital',
+    avatar: 'https://i.pravatar.cc/150?u=hannah',
+  },
+  {
+    quote: 'We\'d been told for two years that "the platforms changed." Corum8 was the first team that translated that into specific work — Conversions API, offline pass-back, LTV-weighted bidding. ROAS doubled in one quarter.',
+    name: 'Marcus Webb',
+    role: 'Head of Acquisition · Crest AI',
+    avatar: 'https://i.pravatar.cc/150?u=marcus',
+  },
+  {
+    quote: 'On-chain attribution is supposed to be the hard part. They built a wallet-connect bridge that let us optimise Google + Meta against actual deposits. Top creative outperformed auto-bidding by 3×.',
+    name: 'Adaa Lee',
+    role: 'Founder · Vivid Protocol',
+    avatar: 'https://i.pravatar.cc/150?u=adaa',
+  },
+  {
+    quote: 'The retainer being flat — not percentage-of-spend — was the moment we knew we had a real partner. They actively recommended cutting a channel that was underperforming. Try getting that from a commission-paid agency.',
+    name: 'Priya Raman',
+    role: 'CMO · Horizon Exchange',
+    avatar: 'https://i.pravatar.cc/150?u=priya',
+  },
+  {
+    quote: 'Pipeline-attributed marketing spend went from 22% to 51% of total pipeline in a year. Sales finally stopped arguing with marketing about which leads were worth talking to.',
+    name: 'James Okonkwo',
+    role: 'CRO · Crest AI',
+    avatar: 'https://i.pravatar.cc/150?u=james',
+  },
+];
+
+const stats = [
+  { prefix: '$', target: 120, suffix: 'M+', label: 'Managed spend', spark: 'bars' },
+  { prefix: '', target: 40, suffix: '%', label: 'Avg CAC drop', spark: 'M0,25 Q20,10 50,15 T100,5' },
+  { prefix: '', target: 30, suffix: '+', label: 'Markets scaled', spark: 'globe' },
+  { prefix: '', target: 2, suffix: '–3×', label: 'LTV/CAC lift', spark: 'M0,20 C30,20 40,5 100,2' }
+];
+
+const faqs = [
+  {
+    q: 'How is this different from every other paid agency?',
+    a: 'Most agencies are paid as a percentage of media spend. Our retainer is flat. That means we get richer when you scale efficiently — not when we recommend bigger budgets. The incentive alignment changes everything about what gets recommended.',
+  },
+  {
+    q: 'How fast does it move?',
+    a: 'Attribution rebuild lands in the first 2–4 weeks. Creative + bidding live by week 6. Measurable CAC / ROAS shifts on most takeover programs by month 3. We don\'t promise overnight — anyone who does is selling theatre.',
+  },
+  {
+    q: 'Do you work with our existing tech stack?',
+    a: 'We work with Segment, RudderStack, GA4, Mixpanel, Amplitude, PostHog, Hyros, Triple Whale, Northbeam — and your custom data warehouse if you have one. We rebuild the layer that\'s broken; we don\'t replace what works.',
+  },
+  {
+    q: 'What if we\'re not ready for performance yet?',
+    a: 'We\'ll tell you. Pre-product-market-fit, paid spend buys you a faster discovery of broken funnels — not a fix. We don\'t take that work. Get organic signal and LTV stable first; then performance amplifies what already works.',
+  },
+  {
+    q: 'What\'s the minimum monthly ad budget you work with?',
+    a: 'We don\'t lock to a floor — we lock to a math test. If your LTV × target ROAS supports a meaningful media budget across 3–4 channels, the work pays for itself. Programs under that threshold are usually better off staying single-channel + organic until LTV stabilises.',
+  },
+  {
+    q: 'How do you report ROAS, and how often?',
+    a: 'Weekly performance dashboards combining platform data with your backend (true CAC including all fees, LTV cohorts by channel, marginal-spend ROAS). Monthly strategy review with your senior team. Quarterly deep audits. No vanity dashboards — every number ties to the P&L (Profit & Loss).',
+  },
+];
 ---
-<Layout page={page} />
+<Layout title="Performance Marketing | Corum8">
+  <Fragment slot="head">
+    <meta name="description" content="Outcome-driven performance marketing for Web3, AI, and enterprise. We don't sell ads, we sell market share." />
+    <link rel="canonical" href="https://corum8.com/services/marketing/performance-marketing" />
+  </Fragment>
+
+  <!-- ── HERO ── -->
+  <section class="lp-hero">
+    <img
+      class="lp-hero__bg-img"
+      src="/images/ads-bg.png"
+      alt=""
+      aria-hidden="true"
+    />
+    <div class="lp-hero__bg-veil" aria-hidden="true"></div>
+    <div class="lp-hero__bg-grid" aria-hidden="true"></div>
+
+    <div class="lp-hero__inner">
+      <div class="lp-hero__copy">
+        <p class="lp-hero__eyebrow">Performance · Paid Acquisition</p>
+        <h1 class="lp-hero__title">
+          Performance that <span class="lp-hero__title-accent">performs.</span>
+        </h1>
+        <a class="lp-cta lp-cta--primary lp-cta--lg" href="/contact">Book a strategy call →</a>
+        <ul class="lp-hero__credibility" aria-label="Credibility signals">
+          <li><strong>$10M+</strong> managed spend</li>
+          <li class="lp-hero__cred-dot" aria-hidden="true">●</li>
+          <li><strong>30+</strong> markets</li>
+          <li class="lp-hero__cred-dot" aria-hidden="true">●</li>
+          <li><strong>~40%</strong> avg CAC drop</li>
+        </ul>
+      </div>
+
+      <div class="lp-hero__feature">
+        <figure class="lp-hero__photo">
+          <img src="/images/gen/perf_hero_dash_1778018216511.png" alt="Analytics Dashboard" loading="eager" />
+          <span class="lp-hero__photo-corner" aria-hidden="true"></span>
+        </figure>
+
+        <div class="lp-hero__chip lp-hero__chip--outcome">
+          <span class="lp-hero__chip-label">CAC ↓ this quarter</span>
+          <span class="lp-hero__chip-value">−42<span class="lp-hero__chip-unit">%</span></span>
+        </div>
+
+        <div class="lp-hero__chip lp-hero__chip--live">
+          <span class="lp-hero__chip-dot"></span>
+          Attribution rebuilt · live
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    /* Hero horizontal parallax — drift the ads collage to the LEFT as
+       the page scrolls down. Uses a rAF loop with getBoundingClientRect
+       so it works regardless of the page's scroll engine (Lenis hijacks
+       native scroll events). The image is sized at 136% width with an
+       18% left offset so the transform has horizontal headroom to slide
+       without exposing edges. */
+    function lpHeroParallaxInit() {
+      var bg = document.querySelector('.lp-hero__bg-img');
+      var hero = document.querySelector('.lp-hero');
+      if (!bg || !hero) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var lastX = null;
+      var scheduled = false;
+
+      function apply() {
+        scheduled = false;
+        var rect = hero.getBoundingClientRect();
+        if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
+        // rect.top decreases (toward negative) as user scrolls down,
+        // producing a negative translateX so the bg drifts to the LEFT.
+        var x = rect.top * 0.35;
+        if (x === lastX) return;
+        bg.style.setProperty('transform', 'translate3d(' + x + 'px, 0, 0)', 'important');
+        lastX = x;
+      }
+
+      function onScroll() {
+        if (scheduled) return;
+        scheduled = true;
+        // rAF in production; if rAF is throttled, fall back to immediate.
+        if (typeof requestAnimationFrame === 'function') {
+          requestAnimationFrame(apply);
+          // safety net for environments where rAF is suspended
+          setTimeout(function () { if (scheduled) apply(); }, 50);
+        } else {
+          apply();
+        }
+      }
+
+      apply();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', lpHeroParallaxInit);
+    } else {
+      lpHeroParallaxInit();
+    }
+  </script>
+
+  <!-- ── MARQUEE ── -->
+  <section class="lp-marquee" aria-hidden="true">
+    <div class="lp-marquee__track">
+      <span>Acquisition</span><span class="lp-marquee__dot">●</span>
+      <span>Attribution</span><span class="lp-marquee__dot">●</span>
+      <span>LTV-weighted bidding</span><span class="lp-marquee__dot">●</span>
+      <span>Conversions API</span><span class="lp-marquee__dot">●</span>
+      <span>Pipeline ROAS</span><span class="lp-marquee__dot">●</span>
+      <span>On-chain advertising</span><span class="lp-marquee__dot">●</span>
+      <span>Acquisition</span><span class="lp-marquee__dot">●</span>
+      <span>Attribution</span><span class="lp-marquee__dot">●</span>
+      <span>LTV-weighted bidding</span><span class="lp-marquee__dot">●</span>
+      <span>Conversions API</span><span class="lp-marquee__dot">●</span>
+      <span>Pipeline ROAS</span><span class="lp-marquee__dot">●</span>
+      <span>On-chain advertising</span><span class="lp-marquee__dot">●</span>
+    </div>
+  </section>
+
+  <!-- ── COMBINED SECTION (Light Background) ── -->
+  <section class="lp-promise-light">
+    <div class="lp-promise__inner">
+      <header class="lp-h-head">
+        <h2 class="lp-h-title">
+          We don't sell ads. <span class="lp-accent">We sell outcomes.</span>
+        </h2>
+      </header>
+
+      <div class="lp-tabs" id="lp-tabs">
+        <nav class="lp-tabs__nav" role="tablist" aria-label="Deliverables">
+          {deliverables.map((d, i) => (
+            <button
+              type="button"
+              class={`lp-tab${i === 0 ? ' is-active' : ''}`}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`lp-tab-panel-${d.key}`}
+              data-tab={d.key}
+            >
+              <span class="lp-tab__num">0{i + 1}</span>
+              <span class="lp-tab__label">{d.label}</span>
+            </button>
+          ))}
+        </nav>
+
+        <div class="lp-tabs__stage">
+          {deliverables.map((d, i) => (
+            <article
+              class={`lp-tabs__panel${i === 0 ? ' is-active' : ''}`}
+              id={`lp-tab-panel-${d.key}`}
+              role="tabpanel"
+              aria-hidden={i === 0 ? 'false' : 'true'}
+            >
+              <figure class="lp-tabs__media">
+                <img src={d.img} alt={d.label} loading="lazy" />
+                <span class="lp-tabs__claim">{d.claim}</span>
+              </figure>
+              <div class="lp-tabs__body">
+                <span class="lp-tabs__pillar-num">0{i + 1} · {d.label}</span>
+                <h3 class="lp-tabs__headline">{d.headline}</h3>
+                <ul class="lp-tabs__points">
+                  {d.points.map((p) => (
+                    <li>
+                      <span class="lp-tabs__check" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      </span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <aside class="lp-promise__trust" aria-label="Categories of clients we work with">
+        <span class="lp-promise__trust-label">The same playbook we run for</span>
+        <ul class="lp-promise__trust-list">
+          <li>Tier-1 exchanges</li>
+          <li class="lp-promise__trust-dot" aria-hidden="true">●</li>
+          <li>Series-B fintechs</li>
+          <li class="lp-promise__trust-dot" aria-hidden="true">●</li>
+          <li>Web3 protocols at scale</li>
+          <li class="lp-promise__trust-dot" aria-hidden="true">●</li>
+          <li>Regulated payment networks</li>
+          <li class="lp-promise__trust-dot" aria-hidden="true">●</li>
+          <li>Consumer apps with $50M+ raised</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <section class="lp-bignumbers" id="lp-stats">
+    <div class="lp-bignumbers__inner">
+      {stats.map((s) => (
+        <article class="lp-bignum">
+          <div class="lp-bignum__top">
+            <span
+              class="lp-bignum__val"
+              data-count-target={s.target}
+              data-count-prefix={s.prefix}
+              data-count-suffix={s.suffix}
+            >{s.prefix}0{s.suffix}</span>
+            <svg class="lp-bignum__spark" viewBox="0 0 100 30" preserveAspectRatio="none">
+              <path d={s.spark === 'bars' ? 'M2 18h14v12H2zM22 14h14v16H22zM42 10h14v20H42zM62 6h14v24H62zM82 2h14v28H82z' : s.spark} fill={s.spark === 'bars' ? 'var(--c8-gold)' : 'none'} stroke={s.spark !== 'bars' ? 'var(--c8-gold)' : 'none'} stroke-width="1.6" />
+            </svg>
+          </div>
+          <span class="lp-bignum__label">{s.label}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var nums = document.querySelectorAll('#lp-stats .lp-bignum__val');
+      if (!nums.length) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function animate(el) {
+        var target = parseFloat(el.dataset.countTarget || '0');
+        var prefix = el.dataset.countPrefix || '';
+        var suffix = el.dataset.countSuffix || '';
+        if (reduce || target === 0) { el.textContent = prefix + target + suffix; return; }
+        var dur = 1400; var start = performance.now();
+        function tick(t) {
+          var p = Math.min(1, (t - start) / dur);
+          var eased = 1 - Math.pow(1 - p, 3);
+          var current = Math.round(target * eased);
+          el.textContent = prefix + current + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.4 });
+      nums.forEach(function (n) { io.observe(n); });
+    })();
+  </script>
+
+  <!-- ── CHANNELS BENTO grid — main stack ── -->
+  <section class="lp-channels-sect">
+    <header class="lp-h-head">
+      <p class="lp-h-eyebrow">Where we run · Main stack</p>
+      <h2 class="lp-h-title">Six channels. <span class="lp-accent">Picked by your buyer, not by us.</span></h2>
+    </header>
+    <div class="lp-channels-grid">
+      {channels.map((c) => (
+        <a class="lp-ch-tile" href="/contact">
+          <div class="lp-ch-tile__img">
+            <img src={c.img} alt={c.name} loading="lazy" />
+            <div class="lp-ch-tile__veil"></div>
+          </div>
+          <div class="lp-ch-tile__body">
+            <h3 class="lp-ch-tile__name">{c.name}</h3>
+            <p class="lp-ch-tile__pitch">{c.pitch}</p>
+          </div>
+          <span class="lp-ch-tile__arrow" aria-hidden="true">→</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── DEEP CHANNELS — out-of-the-box, alternating image + text rows ── -->
+  <section class="lp-deep">
+    <header class="lp-h-head">
+      <p class="lp-h-eyebrow">Where we run · Out-of-the-box</p>
+      <h2 class="lp-h-title">Four more. <span class="lp-accent">Where the smart money runs.</span></h2>
+    </header>
+    {deepChannels.map((c, i) => (
+      <article class={`lp-deep-row${i % 2 === 1 ? ' lp-deep-row--reverse' : ''}`}>
+        <figure class="lp-deep__media">
+          <img src={c.img} alt={c.title} loading="lazy" />
+          <span class="lp-deep__chip">{c.chip}</span>
+        </figure>
+        <div class="lp-deep__body">
+          <h3 class="lp-deep__title">{c.title}</h3>
+          <p class="lp-deep__lede">{c.lede}</p>
+          <ul class="lp-deep__bullets">
+            {c.points.map((p) => (
+              <li>
+                <span class="lp-deep__check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                {p}
+              </li>
+            ))}
+          </ul>
+          <div class="lp-deep__result">
+            <span class="lp-deep__result-dot" aria-hidden="true"></span>
+            <span>{c.result}</span>
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <!-- ── DISCOVERY INPUTS — what we'll need from you ── -->
+  <section class="lp-inputs">
+    <header class="lp-h-head lp-h-head--dark">
+      <h2 class="lp-h-title">
+        Before we buy a click, <span class="lp-accent">we'll want eight things.</span>
+      </h2>
+    </header>
+    <div class="lp-inputs__grid">
+      {inputs.map((it) => (
+        <article class="lp-inputs__card">
+          <h3 class="lp-inputs__title">{it.title}</h3>
+          <p class="lp-inputs__body">{it.body}</p>
+        </article>
+      ))}
+    </div>
+    <p class="lp-inputs__foot">
+      None of this yet? Fine — we'll help you assemble it during the first 2 weeks. <a href="/contact">Tell us where you are</a> and we'll handle the rest.
+    </p>
+  </section>
+
+  <!-- ── PROOF ── -->
+  <section class="lp-proof" id="proof">
+    <header class="lp-h-head">
+      <p class="lp-h-eyebrow">Real outcomes</p>
+      <h2 class="lp-h-title">Programs we've <span class="lp-accent">already shipped.</span></h2>
+    </header>
+    <div class="lp-proof-grid">
+      {proof.map((p) => (
+        <article class="lp-case">
+          <figure class="lp-case__media">
+            <img src={p.img} alt={p.company} loading="lazy" />
+            <span class="lp-case__chip">{p.stage} · {p.region}</span>
+          </figure>
+          <div class="lp-case__body">
+            <span class="lp-case__company">{p.company}</span>
+            <div class="lp-case__metrics">
+              <span class="lp-case__headline">{p.headline}</span>
+              <span class="lp-case__subheadline">{p.subheadline}</span>
+            </div>
+            <p class="lp-case__desc">{p.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS CAROUSEL ── -->
+  <section class="lp-testi">
+    <div class="lp-testi__inner" id="lp-testi-carousel">
+      <span class="lp-testi__quote-mark" aria-hidden="true">“</span>
+      <div class="lp-testi__stage">
+        {testimonials.map((t, i) => (
+          <article class={`lp-testi__slide${i === 0 ? ' is-active' : ''}`} data-idx={i}>
+            <blockquote class="lp-testi__quote"><p>{t.quote}</p></blockquote>
+            <footer class="lp-testi__cite">
+              <img src={t.avatar} alt={t.name} class="lp-testi__avatar" loading="lazy" />
+              <div>
+                <span class="lp-testi__name">{t.name}</span>
+                <span class="lp-testi__role">{t.role}</span>
+              </div>
+            </footer>
+          </article>
+        ))}
+      </div>
+      <div class="lp-testi__controls">
+        <button type="button" class="lp-testi__nav lp-testi__nav--prev" aria-label="Previous testimonial">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <ol class="lp-testi__dots" aria-label="Testimonial pagination">
+          {testimonials.map((_, i) => (
+            <li><button type="button" class={`lp-testi__dot${i === 0 ? ' is-active' : ''}`} data-go={i} aria-label={`Go to testimonial ${i + 1}`}></button></li>
+          ))}
+        </ol>
+        <button type="button" class="lp-testi__nav lp-testi__nav--next" aria-label="Next testimonial">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var root = document.getElementById('lp-testi-carousel');
+      if (!root) return;
+      var slides = root.querySelectorAll('.lp-testi__slide');
+      var dots = root.querySelectorAll('.lp-testi__dot');
+      var prev = root.querySelector('.lp-testi__nav--prev');
+      var next = root.querySelector('.lp-testi__nav--next');
+      if (!slides.length) return;
+      var idx = 0;
+      var timer = null;
+      var DUR = 6000;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function go(i) {
+        idx = (i + slides.length) % slides.length;
+        slides.forEach(function (s, n) { s.classList.toggle('is-active', n === idx); });
+        dots.forEach(function (d, n) { d.classList.toggle('is-active', n === idx); });
+      }
+      function tick() { go(idx + 1); schedule(); }
+      function schedule() { if (timer) clearTimeout(timer); if (!reduce) timer = setTimeout(tick, DUR); }
+      function reset() { if (timer) clearTimeout(timer); schedule(); }
+      prev && prev.addEventListener('click', function () { go(idx - 1); reset(); });
+      next && next.addEventListener('click', function () { go(idx + 1); reset(); });
+      dots.forEach(function (d) {
+        d.addEventListener('click', function () { go(parseInt(d.dataset.go, 10) || 0); reset(); });
+      });
+      schedule();
+    })();
+  </script>
+
+  <!-- ── FAQs ── -->
+  <section class="lp-faqs-sect">
+    <div class="lp-faqs__inner">
+      <header class="lp-h-head lp-h-head--left">
+        <p class="lp-h-eyebrow">FAQs</p>
+        <h2 class="lp-h-title">Common questions <span class="lp-accent">before we get on a call.</span></h2>
+      </header>
+      <ol class="lp-faqs__list">
+        {faqs.map((f) => (
+          <li class="lp-faq-item">
+            <details name="lp-faq-group">
+              <summary>
+                <span class="lp-faq-item__q">{f.q}</span>
+                <span class="lp-faq-item__icon" aria-hidden="true">+</span>
+              </summary>
+              <p class="lp-faq-item__a">{f.a}</p>
+            </details>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="lp-final">
+    <img class="lp-final__bg" src="/images/gen/perf_funnel_3d_1778018249718.png" alt="" aria-hidden="true" />
+    <div class="lp-final__veil"></div>
+    <div class="lp-final__inner">
+      <p class="lp-final__eyebrow">Stop optimising for vanity</p>
+      <h2 class="lp-final__title">Ready to buy <span class="lp-accent">market share?</span></h2>
+      <p class="lp-final__sub">Book a strategy session with our founding team. We'll audit your current stack, highlight the fail-modes, and model what a pipeline-attributed system looks like for your product.</p>
+      <a class="lp-cta lp-cta--primary lp-cta--lg" href="/contact">Book a strategy call →</a>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var root = document.getElementById('lp-tabs');
+      if (!root) return;
+      var tabs = root.querySelectorAll('.lp-tab');
+      var panels = root.querySelectorAll('.lp-tabs__panel');
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () {
+          var key = t.dataset.tab;
+          tabs.forEach(function (x) {
+            var on = x === t;
+            x.classList.toggle('is-active', on);
+            x.setAttribute('aria-selected', on ? 'true' : 'false');
+          });
+          panels.forEach(function (p) {
+            var on = p.id === 'lp-tab-panel-' + key;
+            p.classList.toggle('is-active', on);
+            p.setAttribute('aria-hidden', on ? 'false' : 'true');
+          });
+        });
+      });
+    })();
+  </script>
+
+  <style>
+    /* Use the global brand tokens (--c8-gold*, --montreal, --font-display)
+       defined in src/styles/global.css. Only the landing-page-specific
+       layout vars are declared here. */
+    :root {
+      --lp-max: 1480px;
+      --lp-pad-x: clamp(1.5rem, 5vw, 5rem);
+    }
+    body { overflow-x: hidden; }
+
+    /* HERO — white split with very subtle gold spotlights + dotted grid */
+    .lp-hero {
+      position: relative;
+      color: #0a0a0a;
+      overflow: hidden;
+      isolation: isolate;
+      padding: clamp(7rem, 13vh, 10rem) var(--lp-pad-x) clamp(4rem, 7vh, 6rem);
+      background:
+        radial-gradient(900px circle at 85% 20%, rgba(242,191,34,0.10) 0%, transparent 55%),
+        radial-gradient(700px circle at 8% 90%, rgba(242,191,34,0.05) 0%, transparent 55%),
+        #ffffff;
+    }
+    .lp-hero__bg-img {
+      position: absolute;
+      top: 0;
+      left: -18%;
+      width: 136%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: -3;
+      mix-blend-mode: normal;
+      opacity: 0.85;
+      will-change: transform;
+      transition: none !important;
+    }
+    /* Veil: dense white on the LEFT (where the copy sits) fading to a
+       softer wash on the right so the ads-collage stays visible behind
+       the feature column. Plus a top-to-bottom soften so the hero
+       blends into the marquee below. */
+    .lp-hero__bg-veil {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg,
+          rgba(255,255,255,0.96) 0%,
+          rgba(255,255,255,0.78) 38%,
+          rgba(255,255,255,0.32) 100%),
+        linear-gradient(180deg,
+          rgba(255,255,255,0.10) 0%,
+          rgba(255,255,255,0) 30%,
+          rgba(255,255,255,0) 70%,
+          rgba(255,255,255,0.45) 100%);
+    }
+    .lp-hero__bg-grid {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image: radial-gradient(circle at center, rgba(0,0,0,0.06) 1px, transparent 1.5px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 25%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 25%, transparent 80%);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    .lp-hero__inner {
+      width: 100%;
+      max-width: var(--lp-max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 1000px) {
+      .lp-hero__inner { grid-template-columns: 1fr; }
+      .lp-hero__feature { display: none; }
+    }
+    .lp-hero__eyebrow {
+      font-family: var(--montreal);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--c8-gold-dark);
+      margin: 0 0 1.5rem;
+    }
+    .lp-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 5.6rem);
+      font-weight: 350;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin: 0 0 2.2rem;
+      color: #0a0a0a;
+    }
+    .lp-hero__title-accent { display: block; color: var(--c8-gold-dark); font-weight: 350; }
+    .lp-hero__credibility {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem 0.9rem;
+      list-style: none;
+      padding: 0;
+      margin: 1.6rem 0 0;
+      font-family: var(--montreal);
+      font-size: 0.85rem;
+      color: rgba(0,0,0,0.6);
+    }
+    .lp-hero__credibility strong { color: #0a0a0a; font-weight: 700; margin-right: 0.25rem; }
+    .lp-hero__cred-dot { color: var(--c8-gold-dark); font-size: 0.45rem; }
+
+    .lp-hero__feature {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 0 0 auto;
+      aspect-ratio: 4 / 5;
+    }
+    @media (max-width: 900px) { .lp-hero__feature { margin: 0 auto; aspect-ratio: 5 / 4; } }
+    .lp-hero__photo {
+      position: relative;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 0;
+      box-shadow: 0 40px 80px -28px rgba(0,0,0,0.32), 0 0 0 1px rgba(0,0,0,0.04);
+      transform: rotate(-1.4deg);
+      transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .lp-hero__feature:hover .lp-hero__photo { transform: rotate(0deg) scale(1.02); }
+    .lp-hero__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lp-hero__photo-corner {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 40%;
+      height: 40%;
+      background: linear-gradient(315deg, rgba(242,191,34,0.32) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .lp-hero__chip {
+      position: absolute;
+      z-index: 2;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 18px;
+      box-shadow: 0 22px 44px -16px rgba(0,0,0,0.2);
+      font-family: var(--montreal);
+      transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .lp-hero__chip--outcome {
+      top: 6%;
+      left: -12%;
+      padding: 0.85rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      transform: rotate(-3deg);
+    }
+    .lp-hero__chip-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #888;
+    }
+    .lp-hero__chip-value {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 2.8vw, 2.2rem);
+      font-weight: 350;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      color: var(--c8-gold-dark);
+    }
+    .lp-hero__chip-unit { font-size: 0.55em; color: #aaa; margin-left: 0.05em; }
+    .lp-hero__chip--live {
+      bottom: 8%;
+      right: -10%;
+      padding: 0.65rem 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #0a0a0a;
+      transform: rotate(2.5deg);
+    }
+    .lp-hero__chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--c8-gold-dark);
+      box-shadow: 0 0 0 0 var(--c8-gold);
+      animation: lp-hero-pulse 2.2s ease-out infinite;
+    }
+    @keyframes lp-hero-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(242,191,34,0.5); }
+      70%  { box-shadow: 0 0 0 10px rgba(242,191,34,0); }
+      100% { box-shadow: 0 0 0 0 rgba(242,191,34,0); }
+    }
+    @media (max-width: 600px) {
+      .lp-hero__chip--outcome { left: 0; }
+      .lp-hero__chip--live { right: 0; }
+    }
+    
+    .lp-marquee {
+      background: #111;
+      border-top: 1px solid rgba(242,191,34,0.2);
+      border-bottom: 1px solid rgba(242,191,34,0.2);
+      padding: 1rem 0;
+      overflow: hidden;
+    }
+    .lp-marquee__track {
+      display: inline-flex;
+      align-items: center;
+      gap: 2rem;
+      white-space: nowrap;
+      animation: marquee 20s linear infinite;
+      font-size: 1.1rem;
+      color: var(--c8-gold);
+    }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    
+    /* Promise + tabs combined section — light cream so the tab pills
+       and panels read crisply. */
+    .lp-promise-light {
+      background: #f7f6f3;
+      color: #0a0a0a;
+      padding: clamp(6rem, 11vh, 9rem) var(--lp-pad-x);
+    }
+    .lp-promise__inner { max-width: var(--lp-max); margin: 0 auto; }
+    .lp-h-head { text-align: center; max-width: 40rem; margin: 0 auto 4rem; }
+    .lp-h-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c8-gold-dark); margin: 0 0 1rem; }
+    .lp-h-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; margin: 0 0 1.5rem; }
+    .lp-accent { color: var(--c8-gold-dark); }
+    .lp-h-sub { font-size: 1.1rem; color: #555; line-height: 1.6; }
+    
+    /* Pill nav — single rounded white container with inner pills */
+    .lp-tabs__nav {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem;
+      margin: 0 auto clamp(2.5rem, 5vh, 3.5rem); padding: 0.4rem;
+      background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 999px;
+      box-shadow: 0 18px 36px -22px rgba(0,0,0,0.12);
+      width: fit-content;
+    }
+    .lp-tab {
+      appearance: none; background: transparent; border: 0; cursor: pointer;
+      padding: 0.7rem 1.25rem; border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: var(--montreal); font-size: 0.92rem; font-weight: 600;
+      letter-spacing: -0.005em; color: #555; white-space: nowrap;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .lp-tab:hover { color: #0a0a0a; }
+    .lp-tab.is-active { background: #0a0a0a; color: #fff; }
+    .lp-tab__num {
+      font-family: var(--font-display); font-size: 0.75rem;
+      letter-spacing: 0.12em; color: var(--c8-gold-dark); opacity: 0.85;
+    }
+    .lp-tab.is-active .lp-tab__num { color: var(--c8-gold); opacity: 1; }
+    .lp-tab__label { letter-spacing: -0.005em; }
+
+    /* Tab panel — grid stacking + fade transition (so the stage doesn't
+       collapse-and-jump when switching tabs). */
+    .lp-tabs__stage { position: relative; display: grid; }
+    .lp-tabs__panel {
+      grid-column: 1 / 2; grid-row: 1 / 2;
+      display: grid; grid-template-columns: 1.05fr 1fr;
+      gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center;
+      opacity: 0; transform: translateY(8px); pointer-events: none;
+      transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1), transform 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    .lp-tabs__panel.is-active {
+      opacity: 1; transform: translateY(0); pointer-events: auto;
+    }
+    @media (max-width: 900px) { .lp-tabs__panel { grid-template-columns: 1fr; } }
+
+    .lp-tabs__media {
+      position: relative; margin: 0; aspect-ratio: 4 / 3;
+      border-radius: 16px; overflow: hidden; background: #111;
+    }
+    .lp-tabs__media img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .lp-tabs__panel.is-active .lp-tabs__media img { transform: scale(1.04); }
+    .lp-tabs__claim {
+      position: absolute; bottom: 1rem; left: 1rem;
+      padding: 0.5rem 1rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 999px;
+      color: var(--c8-gold);
+      font-family: var(--montreal); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .lp-tabs__pillar-num {
+      display: inline-block; margin: 0 0 1rem;
+      font-family: var(--montreal); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--c8-gold-dark);
+    }
+    .lp-tabs__headline {
+      margin: 0 0 1.4rem;
+      font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      font-weight: 350; line-height: 1.1; letter-spacing: -0.02em;
+      color: #0a0a0a; max-width: 28ch;
+    }
+    .lp-tabs__points {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; flex-direction: column; gap: 0.7rem;
+    }
+    .lp-tabs__points li {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      font-family: var(--montreal); font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      line-height: 1.5; color: #2a2a2a;
+    }
+    .lp-tabs__check {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(242,191,34,0.18); color: var(--c8-gold-dark);
+      flex: 0 0 auto; margin-top: 0.1rem;
+    }
+    
+    .lp-promise__trust {
+      margin: 4rem auto 0;
+      padding: 1.5rem;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 999px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem 1.5rem;
+    }
+    .lp-promise__trust-label { font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #888; font-size: 0.8rem; }
+    .lp-promise__trust-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 1rem; font-weight: 500; }
+    .lp-promise__trust-dot { color: var(--c8-gold-dark); font-size: 0.5rem; }
+    
+    .lp-bignumbers { padding: 6rem var(--lp-pad-x); background: #050505; }
+    .lp-bignumbers__inner { max-width: var(--lp-max); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .lp-bignum { background: #111; padding: 2rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+    .lp-bignum__val { font-family: var(--font-display); font-size: 3rem; color: var(--c8-gold); display: block; margin: 0 0 1rem; }
+    .lp-bignum__label { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+    @media (max-width: 900px) { .lp-bignumbers__inner { grid-template-columns: 1fr 1fr; } }
+    
+    /* Channels — LIGHT band so the photo tiles read as foreground content. */
+    .lp-channels-sect {
+      padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x);
+      background: #fff;
+      color: #0a0a0a;
+    }
+    .lp-channels-grid { max-width: var(--lp-max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .lp-ch-tile { position: relative; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; aspect-ratio: 4/3; text-decoration: none; color: #fff; }
+    .lp-ch-tile__img { position: absolute; inset: 0; z-index: 0; }
+    .lp-ch-tile__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .lp-ch-tile:hover .lp-ch-tile__img img { transform: scale(1.05); }
+    .lp-ch-tile__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%); }
+    .lp-ch-tile__body { position: relative; z-index: 1; margin-top: auto; padding: 2rem; }
+    .lp-ch-tile__name { font-size: 1.5rem; margin: 0 0 0.5rem; }
+    .lp-ch-tile__pitch { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin: 0; }
+    @media (max-width: 900px) { .lp-channels-grid { grid-template-columns: 1fr; } }
+    
+    /* DEEP CHANNELS — LIGHT band, alternating image+text rows.
+       Sales-y angle: surfaces other agencies skip + concrete results. */
+    .lp-deep {
+      padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x);
+      background: #fff;
+      color: #0a0a0a;
+    }
+    .lp-deep > * { max-width: var(--lp-max); margin-left: auto; margin-right: auto; }
+    .lp-deep-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      padding: clamp(2.5rem, 5vh, 4rem) 0;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .lp-deep-row:first-of-type { border-top: 0; padding-top: clamp(1rem, 2vh, 2rem); }
+    .lp-deep-row:last-child { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    @media (max-width: 900px) {
+      .lp-deep-row { grid-template-columns: 1fr; gap: 1.75rem; }
+      .lp-deep-row--reverse .lp-deep__media { order: 0; }
+    }
+    .lp-deep-row--reverse .lp-deep__body { order: -1; }
+    .lp-deep__media {
+      position: relative;
+      margin: 0;
+      aspect-ratio: 4 / 3;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #111;
+      box-shadow: 0 30px 60px -28px rgba(0,0,0,0.22);
+    }
+    .lp-deep__media img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .lp-deep-row:hover .lp-deep__media img { transform: scale(1.04); }
+    .lp-deep__chip {
+      position: absolute; top: 1rem; left: 1rem;
+      padding: 0.45rem 0.85rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      color: var(--c8-gold);
+      font-family: var(--montreal); font-size: 0.7rem;
+      font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .lp-deep__num {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 350;
+      letter-spacing: -0.04em;
+      color: var(--c8-gold-dark);
+      opacity: 0.6;
+      line-height: 1;
+      margin: 0 0 0.55rem;
+    }
+    .lp-deep__title {
+      margin: 0 0 0.85rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 350;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: #0a0a0a;
+    }
+    .lp-deep__lede {
+      margin: 0 0 1.2rem;
+      font-family: var(--montreal);
+      font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+      line-height: 1.5;
+      color: #2a2a2a;
+      max-width: 32rem;
+    }
+    .lp-deep__bullets {
+      list-style: none; margin: 0 0 1.4rem; padding: 0;
+      display: flex; flex-direction: column; gap: 0.55rem;
+    }
+    .lp-deep__bullets li {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-family: var(--montreal);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: #2a2a2a;
+    }
+    .lp-deep__check {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(242,191,34,0.18);
+      color: var(--c8-gold-dark);
+      flex: 0 0 auto; margin-top: 0.05rem;
+    }
+    .lp-deep__result {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.65rem 1rem;
+      background: linear-gradient(135deg, rgba(242,191,34,0.12) 0%, rgba(242,191,34,0.04) 100%);
+      border: 1px solid rgba(242,191,34,0.35);
+      border-radius: 12px;
+      font-family: var(--montreal);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    .lp-deep__result-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--c8-gold-dark);
+      box-shadow: 0 0 0 0 var(--c8-gold);
+      animation: lp-deep-pulse 2.4s ease-out infinite;
+      flex: 0 0 auto;
+    }
+    @keyframes lp-deep-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(242,191,34,0.6); }
+      70%  { box-shadow: 0 0 0 10px rgba(242,191,34,0); }
+      100% { box-shadow: 0 0 0 0 rgba(242,191,34,0); }
+    }
+
+    /* Discovery inputs — DARK band with grid of cards. Replaces the
+       old Process section (which duplicated Tabs content). */
+    .lp-inputs {
+      padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x);
+      background:
+        radial-gradient(circle at 22% 20%, rgba(242,191,34,0.12) 0%, transparent 45%),
+        radial-gradient(circle at 82% 80%, rgba(242,191,34,0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #0d0d0d 0%, #050505 100%);
+      color: #fff;
+    }
+    .lp-inputs > * { max-width: var(--lp-max); margin-left: auto; margin-right: auto; }
+    .lp-inputs__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(0.85rem, 1.4vw, 1.4rem);
+    }
+    @media (max-width: 1100px) { .lp-inputs__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px)  { .lp-inputs__grid { grid-template-columns: 1fr; } }
+    .lp-inputs__card {
+      position: relative;
+      padding: clamp(1.4rem, 2.4vw, 1.85rem);
+      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      display: flex; flex-direction: column; gap: 0.7rem;
+      transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1), border-color 0.4s ease, background 0.4s ease;
+    }
+    .lp-inputs__card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(242,191,34,0.45);
+      background: linear-gradient(135deg, rgba(242,191,34,0.05) 0%, rgba(255,255,255,0.02) 100%);
+    }
+    .lp-inputs__num {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      color: var(--c8-gold-dark);
+      opacity: 0.85;
+    }
+    .lp-inputs__title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+      font-weight: 350;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: #fff;
+    }
+    .lp-inputs__body {
+      margin: 0;
+      font-family: var(--montreal);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.68);
+    }
+    .lp-inputs__foot {
+      margin: clamp(2rem, 4vh, 2.8rem) auto 0;
+      padding: 1rem 1.4rem;
+      max-width: 44rem;
+      text-align: center;
+      font-family: var(--montreal);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+    }
+    .lp-inputs__foot a {
+      color: var(--c8-gold);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(242,191,34,0.4);
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    .lp-inputs__foot a:hover { color: #fff; border-color: var(--c8-gold); }
+    
+    /* Proof — LIGHT band so the white case cards drop-shadow off the page. */
+    .lp-proof {
+      padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x);
+      background: #fff;
+      color: #0a0a0a;
+    }
+    .lp-proof-grid {
+      max-width: var(--lp-max); margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: clamp(1rem, 1.6vw, 1.6rem);
+    }
+    @media (max-width: 1100px) { .lp-proof-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px)  { .lp-proof-grid { grid-template-columns: 1fr; } }
+    .lp-case {
+      display: flex; flex-direction: column;
+      background: #fff;
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 22px 44px -22px rgba(0,0,0,0.18);
+      transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s ease;
+    }
+    .lp-case:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 36px 64px -24px rgba(0,0,0,0.28);
+    }
+    .lp-case__media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #111; }
+    .lp-case__media img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .lp-case:hover .lp-case__media img { transform: scale(1.05); }
+    .lp-case__chip {
+      position: absolute; top: 1rem; left: 1rem;
+      padding: 0.4rem 0.85rem; background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 999px;
+      color: #fff; font-family: var(--montreal); font-size: 0.7rem;
+      font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .lp-case__body { padding: clamp(1.2rem, 2vw, 1.7rem); }
+    .lp-case__company {
+      display: inline-block; margin: 0 0 0.7rem;
+      font-family: var(--montreal); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #888;
+    }
+    .lp-case__metrics { display: flex; flex-direction: column; gap: 0.15rem; margin: 0 0 0.85rem; }
+    .lp-case__headline {
+      font-family: var(--font-display); font-size: clamp(2rem, 3.6vw, 2.85rem);
+      font-weight: 350; letter-spacing: -0.04em; line-height: 0.95;
+      color: var(--c8-gold-dark);
+    }
+    .lp-case__subheadline {
+      font-family: var(--montreal); font-size: 0.85rem; letter-spacing: 0.01em;
+      color: #555;
+    }
+    .lp-case__desc {
+      margin: 0;
+      font-family: var(--montreal); font-size: 0.88rem; line-height: 1.55;
+      color: #444;
+    }
+    
+    /* TESTIMONIAL CAROUSEL — slides stack via grid; only active slide visible */
+    .lp-testi {
+      padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(242,191,34,0.08) 0%, transparent 55%),
+        #0a0a0a;
+      color: #fff;
+    }
+    .lp-testi__inner {
+      max-width: 980px; margin: 0 auto; text-align: center; position: relative;
+    }
+    .lp-testi__quote-mark {
+      display: block;
+      font-family: var(--font-display); font-size: clamp(6rem, 12vw, 10rem);
+      line-height: 0.6; color: var(--c8-gold-dark); opacity: 0.4;
+      margin-bottom: 1rem;
+    }
+    .lp-testi__stage { position: relative; min-height: 280px; display: grid; }
+    .lp-testi__slide {
+      grid-column: 1 / 2; grid-row: 1 / 2;
+      opacity: 0; transform: translateY(8px); pointer-events: none;
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .lp-testi__slide.is-active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .lp-testi__quote { margin: 0 0 2rem; }
+    .lp-testi__quote p {
+      margin: 0;
+      font-family: var(--font-display); font-size: clamp(1.45rem, 2.8vw, 2.3rem);
+      font-weight: 350; line-height: 1.3; letter-spacing: -0.015em; color: #fff;
+    }
+    .lp-testi__cite {
+      display: flex; align-items: center; justify-content: center; gap: 0.85rem;
+      font-family: var(--montreal);
+    }
+    .lp-testi__avatar {
+      width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+      border: 2px solid rgba(242,191,34,0.5);
+    }
+    .lp-testi__cite > div { text-align: left; }
+    .lp-testi__name { display: block; font-weight: 600; font-size: 0.95rem; color: #fff; }
+    .lp-testi__role { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+    .lp-testi__controls {
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      margin-top: clamp(1.5rem, 3vh, 2.5rem);
+    }
+    .lp-testi__nav {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+    .lp-testi__nav:hover {
+      background: var(--c8-gold); border-color: var(--c8-gold); color: #111;
+      transform: translateY(-1px);
+    }
+    .lp-testi__dots {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .lp-testi__dot {
+      appearance: none; width: 8px; height: 8px; padding: 0;
+      border-radius: 50%; background: rgba(255,255,255,0.22);
+      border: 0; cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease, width 0.25s ease;
+    }
+    .lp-testi__dot:hover { background: rgba(255,255,255,0.45); }
+    .lp-testi__dot.is-active { background: var(--c8-gold); width: 22px; border-radius: 4px; }
+
+    /* FAQS */
+    .lp-h-head--left { text-align: left; max-width: 100%; margin: 0 0 2rem; }
+    .lp-h-head--left .lp-h-sub { margin-left: 0; }
+    .lp-faqs-sect { padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x); background: #fff; }
+    .lp-faqs__inner { max-width: 880px; margin: 0 auto; }
+    .lp-faqs__list {
+      list-style: none; margin: 0; padding: 0;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    .lp-faq-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .lp-faq-item details { padding: clamp(1.2rem, 2vw, 1.5rem) 0.25rem; }
+    .lp-faq-item summary {
+      cursor: pointer; list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      font-family: var(--font-display); font-size: clamp(1.05rem, 1.45vw, 1.25rem);
+      font-weight: 350; letter-spacing: -0.01em; color: #0a0a0a;
+    }
+    .lp-faq-item summary::-webkit-details-marker { display: none; }
+    .lp-faq-item__icon {
+      width: 28px; height: 28px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(0,0,0,0.2); border-radius: 50%;
+      font-family: var(--montreal); font-size: 1rem; font-weight: 300; color: #555;
+      transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+    .lp-faq-item details[open] .lp-faq-item__icon {
+      transform: rotate(45deg); background: var(--c8-gold);
+      border-color: var(--c8-gold); color: #111;
+    }
+    .lp-faq-item__a {
+      margin: 1rem 0 0;
+      font-family: var(--montreal); font-size: 1rem; line-height: 1.65;
+      color: #444; max-width: 60ch;
+    }
+    
+    .lp-final { position: relative; padding: 10rem var(--lp-pad-x); text-align: center; }
+    .lp-final__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; filter: blur(5px); opacity: 0.4; }
+    .lp-final__veil { position: absolute; inset: 0; background: rgba(5,5,5,0.8); z-index: -1; }
+    .lp-final__inner { position: relative; z-index: 1; max-width: 40rem; margin: 0 auto; }
+    .lp-final__eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--c8-gold);
+      margin: 0 0 1.25rem;
+    }
+    .lp-final__title { font-family: var(--font-display); font-size: 4rem; margin: 0 0 2rem; color: #ffffff; line-height: 1.05; }
+    .lp-final__sub { font-size: 1.2rem; line-height: 1.6; color: rgba(255,255,255,0.8); margin: 0 0 3rem; }
+    
+    .lp-cta { display: inline-block; padding: 1rem 2rem; border-radius: 999px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+    .lp-cta--primary { background: var(--c8-gold); color: #000; }
+    .lp-cta--primary:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(242,191,34,0.3); }
+  </style>
+</Layout>

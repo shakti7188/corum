@@ -1,289 +1,1664 @@
 ---
-import ServicePillarLayout from '../../layouts/ServicePillarLayout.astro';
+// Development pillar — landing-page treatment, sales pitch.
+// Same .lp-* design system as /services/marketing and
+// /services/marketing/performance-marketing. Engineering-themed content
+// throughout: hero → marquee → volume scoreboard → big numbers →
+// six-discipline bento → 4 phase tabs → proof → testimonials → FAQs →
+// final CTA.
 
-const devTestimonials = [
+import Layout from '../../layouts/Layout.astro';
+
+const disciplines = [
   {
-    bg: '#000000',
-    logo: '/clients/fanadise.png',
-    alt: 'Decentralized Exchange',
-    quote: 'Corum8 rebuilt our entire DEX smart contract architecture in 6 weeks. Their code passed all CertiK audits with zero critical vulnerabilities. Truly elite engineering.',
-    name: 'Alex R.',
-    title: 'CTO',
-    href: '/case-studies'
+    name: 'Exchange (CEX/DEX)',
+    href: '/services/development/exchange',
+    pitch: 'Matching engines, custody, KYC, liquidity — built to institutional standards. Audited, not demoed.',
+    img: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=900&q=80&auto=format&fit=crop',
   },
   {
-    bg: '#ffffff',
-    logo: '/clients/kava.png',
-    alt: 'DeFi protocol',
-    quote: 'The wallet infrastructure they provided scaled to 500k DAU effortlessly. Corum8 is the only agency we trust with our L1 integrations.',
-    name: 'Sarah K.',
-    title: 'Lead Architect',
-    href: '/case-studies'
-  }
+    name: 'Wallet Infrastructure',
+    href: '/services/development/wallet',
+    pitch: 'Custodial and non-custodial wallets — MPC, recovery, swaps, dApp browsers — across EVM, Solana, Bitcoin.',
+    img: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    name: 'Token Launch',
+    href: '/services/development/token',
+    pitch: 'ERC-20, SPL, governance, vesting, distribution — gas-optimised contracts, audit-ready from day one.',
+    img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    name: 'DeFi & Staking',
+    href: '/services/development/defi',
+    pitch: 'Lending, DEXs, yield, restaking — Solidity and Rust shipped across Ethereum, Solana, TON, modular rollups.',
+    img: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    name: 'RWA Tokenization',
+    href: '/services/development/rwa',
+    pitch: 'Private credit, treasuries, real estate, commodities — issuance, compliance, secondary markets, institutional-grade.',
+    img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    name: 'AI Solutions',
+    href: '/services/development/ai',
+    pitch: 'Agents, copilots, LLM pipelines — wired to on-chain data, customer records, revenue workflows. RAG, fine-tuning, inference infra.',
+    img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=900&q=80&auto=format&fit=crop',
+  },
 ];
 
-const devStats = [
+// Output volumes — engineering scoreboard. `kind` selects the animated
+// SVG decoration (waves / nodes / bars / stack / pulse) rendered on
+// each card.
+const outputs = [
   {
-    logo: '/clients/metamask.png',
-    alt: 'Security',
-    mainVisual: '/clients/metamask.png',
-    heading: 'Zero',
-    description: 'critical vulnerabilities across 50+ smart contract deployments.',
-    href: '/work',
-    btnText: 'Read Audits'
+    num: '1,100+',
+    label: 'Production systems shipped',
+    period: 'since 2014',
+    note: 'Exchanges, wallets, DeFi, RWA, AI agents and the infrastructure underneath — live, audited, in production with real users.',
+    size: 'lg',
+    kind: 'nodes',
   },
   {
-    logo: '/clients/binance.png',
-    alt: 'Volume',
-    mainVisual: '/clients/binance.png',
-    heading: 'B+',
-    description: 'Total Value Locked (TVL) across protocols we built.',
-    href: '/work',
-    btnText: 'View Case Study'
-  }
+    num: '$2B+',
+    label: 'Value secured in code we wrote',
+    period: 'TVL · live',
+    note: 'Across deployed protocols. Audited by CertiK, OpenZeppelin, Trail of Bits and Quantstamp — never just one auditor.',
+    size: 'md',
+    kind: 'bars',
+  },
+  {
+    num: '0',
+    label: 'Critical exploits in shipped code',
+    period: 'since 2014',
+    note: 'Public post-mortems where minor issues surfaced. We fund our own bug bounties on top of audits — no contracts go live blind.',
+    size: 'md',
+    kind: 'pulse',
+  },
+  {
+    num: '50+',
+    label: 'Chains supported in production',
+    period: 'EVM and beyond',
+    note: 'Ethereum, Solana, TON, Bitcoin, Cosmos, Polkadot, Arbitrum, Base, OP Stack, modular rollups. Multichain by default, not by retrofit.',
+    size: 'md',
+    kind: 'stack',
+  },
+  {
+    num: '24/7',
+    label: 'On-call across deployments',
+    period: 'three timezones',
+    note: 'SLOs tracked, pager budgets enforced, post-mortems shared with clients within seven days of any incident.',
+    size: 'md',
+    kind: 'waves',
+  },
+];
+
+const stats = [
+  { target: 1100, prefix: '', suffix: '+', label: 'Production systems shipped — exchanges, wallets, DeFi, RWA, AI',
+    spark: 'M0 22 L18 18 L36 20 L54 14 L72 10 L90 4 L100 6' },
+  { target: 12, prefix: '', suffix: '+', label: 'Years building Web3 infrastructure — through three full cycles',
+    spark: 'bars' },
+  { target: 200, prefix: '', suffix: '+', label: 'Engineers in our network — Solidity, Rust, Go, TypeScript, ML',
+    spark: 'M0 24 L18 20 L36 16 L54 14 L72 10 L90 6 L100 4' },
+  { target: 50, prefix: '', suffix: '+', label: 'Chains shipped to in production — EVM, non-EVM, modular rollups',
+    spark: 'globe' },
+];
+
+const phases = [
+  {
+    key: 'architecture',
+    label: 'Architecture',
+    headline: 'The decisions that decide whether you ship.',
+    claim: 'Set before a line of code lands.',
+    img: 'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=900&q=80&auto=format&fit=crop',
+    points: [
+      'Threat model — assets at risk, attacker classes, blast radius',
+      'Chain selection scoped against latency, fees, custody, liquidity',
+      'Contract architecture — upgrade paths, access control, kill switches',
+      'Service boundaries, data ownership, failure modes mapped on day one',
+    ],
+  },
+  {
+    key: 'build',
+    label: 'Build',
+    headline: 'Engineering, not assembly.',
+    claim: 'Solidity, Rust, TypeScript — written by senior hands.',
+    img: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=900&q=80&auto=format&fit=crop',
+    points: [
+      'Solidity / Rust / Move smart contracts with full test coverage',
+      'Frontend in React, Next.js, Astro — wired to real chain state, not mocks',
+      'Infra in Kubernetes, Terraform — observability built in from day zero',
+      'CI/CD with mainnet forks, fuzzing, formal verification where it earns it',
+    ],
+  },
+  {
+    key: 'audit',
+    label: 'Audit',
+    headline: 'Two firms, plus our own. Never just one.',
+    claim: 'Audited code is the floor, not the ceiling.',
+    img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=900&q=80&auto=format&fit=crop',
+    points: [
+      'Internal review — staff auditors, no production code ships unread',
+      'Two independent third-party firms — CertiK, OpenZeppelin, Trail of Bits, Quantstamp',
+      'Fuzz harnesses + formal verification on contracts holding real value',
+      'Public bug bounty before mainnet, funded by us, not deferred to clients',
+    ],
+  },
+  {
+    key: 'operate',
+    label: 'Operate',
+    headline: 'Production starts on day one of mainnet.',
+    claim: 'On-call, monitored, recoverable.',
+    img: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=900&q=80&auto=format&fit=crop',
+    points: [
+      'On-call rotations across three timezones — never a 6-hour gap',
+      'SLOs tied to user impact, not vanity uptime numbers',
+      'Anomaly alerts on chain state, oracle drift, treasury flow',
+      'Post-mortems within seven days of any incident — shared, not buried',
+    ],
+  },
+];
+
+const proof = [
+  {
+    company: 'Cashaa',
+    region: 'United Kingdom / Global',
+    stage: 'Banking + Custody',
+    headline: '$200M+',
+    subheadline: 'in deposits processed',
+    body: 'Core banking, custody and on-ramp infrastructure for a regulated crypto-banking platform. Smart-contract custody integrated with traditional rails — audited, compliant, in production.',
+    img: '/images/cashaa.jpg',
+  },
+  {
+    company: 'Binance',
+    region: 'India',
+    stage: 'Affiliate Platform',
+    headline: '$800M+',
+    subheadline: 'monthly volume routed',
+    body: 'Built the affiliate platform behind Binance India — referral attribution, payout pipelines, fraud controls. Engineered to handle the volume of a market with a billion potential users.',
+    img: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=900&q=80&auto=format&fit=crop',
+  },
+  {
+    company: 'Fanadise',
+    region: 'Global',
+    stage: 'Full-stack Web3',
+    headline: 'NFT + Token',
+    subheadline: 'platform shipped end-to-end',
+    body: 'Full-stack Web3 fan platform — token contracts, NFT marketplace, fan engagement layer. Smart contracts audited, frontend shipped, mobile apps live across iOS and Android.',
+    img: '/images/fanadise.png',
+  },
+  {
+    company: 'KuCoin',
+    region: '30+ Markets',
+    stage: 'Exchange Engineering',
+    headline: 'Tier-1',
+    subheadline: 'integrations live',
+    body: 'Smart-contract integrations and custody work for one of the largest centralised exchanges by volume. Listings, bridges, liquidity routing — engineered to institutional standards.',
+    img: '/images/KuCoin.jpg',
+  },
+];
+
+const testimonials = [
+  {
+    quote: 'Corum8 rebuilt our entire DEX smart-contract architecture in six weeks. CertiK passed it with zero critical findings. Their senior team is the only one I trust with production Solidity.',
+    name: 'Alex R.',
+    role: 'CTO · Decentralised exchange',
+    avatar: '/images/corum8-team.png',
+  },
+  {
+    quote: 'The wallet infrastructure they shipped scaled to 500K daily active users without a re-architecture. MPC, recovery, swaps — all working in production from week one.',
+    name: 'Sarah K.',
+    role: 'Lead Architect · Layer-1 chain',
+    avatar: '/images/approach.webp',
+  },
+  {
+    quote: 'We brought them in to audit our internal team\'s code. They found four high-severity issues two prior auditors missed. We now route every release through Corum8 review.',
+    name: 'Daniel M.',
+    role: 'Head of Engineering · DeFi protocol',
+    avatar: '/images/corum8-mission.png',
+  },
+  {
+    quote: 'Senior Rust engineers who actually understand Solana runtime. Our staking program shipped on-chain in eight weeks and has held since — through two halts, three upgrades.',
+    name: 'Priya R.',
+    role: 'VP Engineering · Solana protocol',
+    avatar: '/images/bento3-1.jpg',
+  },
+  {
+    quote: 'On-call rotation across three timezones meant a US-time incident got a London engineer in seven minutes. That alone justified moving infrastructure work to Corum8.',
+    name: 'Marcus W.',
+    role: 'CTO · RWA platform',
+    avatar: '/images/bento4-1.jpg',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Why hire Corum8 over individual contractors or boutique shops?',
+    a: 'Because production crypto code requires a depth of specialisations no single contractor carries — Solidity, Rust, formal verification, infra, frontend, on-call. We run all of that as one team with shared standards, shared review, and shared incident response. Our senior engineers have shipped through three full crypto cycles. That doesn\'t come from a freelancer marketplace.',
+  },
+  {
+    q: 'Do you only build crypto products?',
+    a: 'No — roughly 30% of our work is AI agents, fintech infrastructure, and consumer apps where the same engineering bar applies. The discipline (threat modelling, audit-first, on-call) translates. The runtime shifts. We don\'t take on consumer projects we couldn\'t ship at the standard a regulated exchange would expect.',
+  },
+  {
+    q: 'How do you handle smart-contract audits?',
+    a: 'We never rely on a single auditor. Every contract that holds real value gets reviewed internally first, then by two independent third-party firms — typically two of CertiK, OpenZeppelin, Trail of Bits, and Quantstamp. We add fuzzing, formal verification on critical paths, and a public bug bounty before mainnet. Audit reports are shared with clients in full.',
+  },
+  {
+    q: 'Do you use AI in code generation?',
+    a: 'AI helps with boilerplate and test scaffolding. It does not write contracts that hold value. Every line of Solidity, Rust, or Move that goes to mainnet is written or reviewed by a named senior engineer. We don\'t ship autonomous AI output to production. The risk profile is wrong for the upside.',
+  },
+  {
+    q: 'What does the engagement structure look like?',
+    a: 'Two shapes: dedicated team (a senior engineer or two embedded for the duration) or scoped project (fixed milestones with sign-off gates). Both run with weekly demos, shared docs, and shared CI. Cost structure depends on team size, audit depth, integration count, and chain coverage — never percentage-of-TVL or token-warrant arrangements.',
+  },
+  {
+    q: 'Do you support products after they ship?',
+    a: 'Yes. Post-launch we offer monitoring, on-call rotations, contract upgrade work, and incident response. SLOs are written into the engagement. Post-mortems within seven days of any incident, shared with the client team, kept in a public repo where the client allows it. Continuity matters more than initial ship.',
+  },
+  {
+    q: 'What technology stack do you typically work with?',
+    a: 'Solidity, Rust, Move on the contract side. TypeScript, React, Next.js, Astro on frontend. Go, Node, Python on backend. Kubernetes and Terraform for infra. Observability through Datadog, Grafana, and chain-specific tooling. We pick stack to fit the system, not to fit a sales pitch.',
+  },
+  {
+    q: 'How do you protect client IP and source code?',
+    a: 'Mutual NDAs sign first, before any technical conversation. Source goes into client-owned repos from day one — never our internal code. Access controls audited. Credentials rotated on engagement end. Where regulated environments require it, we run isolated build environments with chain-of-custody logs.',
+  },
 ];
 ---
 
-<ServicePillarLayout 
-  title="Web3 Development Services | Corum8"
-  heroHeadline="Development & Engineering Services"
-  heroSubheadline="Bulletproof architecture for Web3."
-  testimonials={devTestimonials}
-  stats={devStats}
->
-
-  <Fragment slot="pills">
-    <nav class="DiscoverMore_discoverMore__hYPtP" data-theme="light"><span class="FadeIn_container__bjQVL" data-fill="false"><div class="DiscoverMore_linksInner__Vgx11"><p class="DiscoverMore_heading__fBuVc">Discover more</p><a class="DiscoverMoreLink_active__6IF37" href="/services/development">All development</a><a class="" href="/services/development/exchange">Exchange (CEX/DEX)</a><a class="" href="/services/development/wallet">Wallet infrastructure</a><a class="" href="/services/development/rwa">RWA marketplaces</a><a class="" href="/services/development/defi">DeFi &amp; staking</a><a class="" href="/services/development/ai">AI solutions</a><a class="" href="/services/development/token">Token development</a></div></span></nav>
+<Layout title="Engineering Services — Production-Grade Web3 & AI | Corum8">
+  <Fragment slot="head">
+    <meta name="description" content="Production-grade engineering for Web3 and AI. 1,100+ shipped systems, $2B+ value secured, 0 critical exploits. Exchange, wallet, DeFi, RWA, AI — built and audited." />
+    <link rel="canonical" href="https://corum8.com/services/development" />
   </Fragment>
 
-  <Fragment slot="bento">
-    <section class="Bento_bento__aFMAt"><div class="container"><div class="StaggeredItems_grid__5Yycm"><div class="Bento_bentoGrid__ae1HZ"><div class="Bento_media1__OUXfN" data-animation="grid-item"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img src="/images/bento1-1.jpg" alt="" loading="eager" fetchPriority="high" height="1188" width="1188" sizes="100vw"/></span></div><div class="Bento_media2__daZE1" data-animation="grid-item"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img src="/images/bento2-1.jpg" alt="" loading="eager" fetchPriority="high" height="554" width="554" sizes="100vw"/></span></div><div class="Bento_media3__EQmGN" data-animation="grid-item"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data- data-src="/images/bento3-1.jpg" alt="" fetchPriority="low" height="554" width="554" sizes="auto" class="lazyload"/></span></div><div class="Bento_media4__11mH8" data-animation="grid-item"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img src="/images/bento4-1.jpg" alt="" loading="eager" fetchPriority="high" height="1188" width="554" sizes="100vw"/></span></div></div></div></div></section>
-  </Fragment>
+  <!-- ── HERO ── -->
+  <section class="lp-hero">
+    <img class="lp-hero__bg-img" src="/images/back-end.jpg" alt="" aria-hidden="true" />
+    <div class="lp-hero__bg-veil" aria-hidden="true"></div>
+    <div class="lp-hero__bg-grid" aria-hidden="true"></div>
 
-  <Fragment slot="service-rows">
-    <section class="Intro_intro__B7xXJ"><div class="container"><h2><span class="LineByLine_headingOuter__JmusT"><span>Full-stack engineering for the next financial internet.</span></span></h2><div class="Intro_text__4DPtt prose"><span class="FadeIn_container__bjQVL" data-fill="false"><span><p>Exchanges, wallets, RWA platforms, DeFi protocols, AI agents and the infrastructure underneath. Shipped into production, audited, live.</p>
-</span></span></div></div></section><section class="TextImageRows_textImageRows__lOU02"><div class="container"><div class="TextImageRows_row__PPlpB"><div class="TextImageRows_text__bRCSP"><h3 class="TextImageRows_heading__RS3OS"><span class="LineByLine_headingOuter__JmusT"><span>Exchange development.</span></span></h3><div class="TextImageRows_text__bRCSP"><span class="FadeIn_container__bjQVL" data-fill="false"><span><p>Centralized and decentralized venues built to institutional standards — matching engine, custody integrations, compliance stack, liquidity partners. Shipped with audits, not with demos.</p>
-</span></span></div><div class="TextImageRows_buttonContainer___PqVy"><span class="FadeIn_container__bjQVL" data-fill="false"><div class="Magnetic_magnetic__LncOy" data-fill="false"><div class="Button_button__JJiqJ" data-direction="forwards"><a class="Button_inner__fnyH6" href="/services/development/exchange"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Find out more</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI"><path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a></div></div></span></div></div><figure class="TextImageRows_media__twu3R"><div class="ImageEnter_image__FSEP_" data-fill="true"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data- data-src="/images/creative-web-design-1.jpg" alt="" fetchPriority="low" height="1186" width="1224" sizes="auto" class="lazyload"/></span></div></figure></div><div class="TextImageRows_row__PPlpB"><div class="TextImageRows_text__bRCSP"><h3 class="TextImageRows_heading__RS3OS"><span class="LineByLine_headingOuter__JmusT"><span>Wallet infrastructure.</span></span></h3><div class="TextImageRows_text__bRCSP"><span class="FadeIn_container__bjQVL" data-fill="false"><span><p>Custodial and non-custodial wallet stacks across EVM chains, Solana, Bitcoin and beyond. Key management, MPC, recovery flows, in-app swaps and dApp browsers — engineered for users, not just spec sheets.</p>
-</span></span></div><div class="TextImageRows_buttonContainer___PqVy"><span class="FadeIn_container__bjQVL" data-fill="false"><div class="Magnetic_magnetic__LncOy" data-fill="false"><div class="Button_button__JJiqJ" data-direction="forwards"><a class="Button_inner__fnyH6" href="/services/development/wallet"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Find out more</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI"><path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a></div></div></span></div></div><figure class="TextImageRows_media__twu3R"><div class="ImageEnter_image__FSEP_" data-fill="true"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data- data-src="/images/web-dev-2.jpg" alt="" fetchPriority="low" height="1224" width="1224" sizes="auto" class="lazyload"/></span></div></figure></div><div class="TextImageRows_row__PPlpB"><div class="TextImageRows_text__bRCSP"><h3 class="TextImageRows_heading__RS3OS"><span class="LineByLine_headingOuter__JmusT"><span>RWA marketplaces.</span></span></h3><div class="TextImageRows_text__bRCSP"><span class="FadeIn_container__bjQVL" data-fill="false"><span><p>Real-world asset tokenization platforms — private credit, commodities, real estate, treasuries. Issuance, compliance, secondary markets. Built for institutions that won't touch retail-grade code.</p>
-</span></span></div><div class="TextImageRows_buttonContainer___PqVy"><span class="FadeIn_container__bjQVL" data-fill="false"><div class="Magnetic_magnetic__LncOy" data-fill="false"><div class="Button_button__JJiqJ" data-direction="forwards"><a class="Button_inner__fnyH6" href="/services/development/rwa"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Find out more</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI"><path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a></div></div></span></div></div><figure class="TextImageRows_media__twu3R"><div class="ImageEnter_image__FSEP_" data-fill="true"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data- data-src="/images/copywriting-1.jpg" alt="" fetchPriority="low" height="1224" width="1224" sizes="auto" class="lazyload"/></span></div></figure></div><div class="TextImageRows_row__PPlpB"><div class="TextImageRows_text__bRCSP"><h3 class="TextImageRows_heading__RS3OS"><span class="LineByLine_headingOuter__JmusT"><span>DeFi &amp; staking.</span></span></h3><div class="TextImageRows_text__bRCSP"><span class="FadeIn_container__bjQVL" data-fill="false"><span><p>Lending, DEXs, yield protocols, staking and restaking stacks. Solidity and Rust smart contracts engineered, audited by top firms, and deployed across Ethereum, Solana, TON and modular rollups.</p>
-</span></span></div><div class="TextImageRows_buttonContainer___PqVy"><span class="FadeIn_container__bjQVL" data-fill="false"><div class="Magnetic_magnetic__LncOy" data-fill="false"><div class="Button_button__JJiqJ" data-direction="forwards"><a class="Button_inner__fnyH6" href="/services/development/defi"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Find out more</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI"><path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a></div></div></span></div></div><figure class="TextImageRows_media__twu3R"><div class="ImageEnter_image__FSEP_" data-fill="true"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data- data-src="/images/e-commerce.jpg" alt="" fetchPriority="low" height="1224" width="1224" sizes="auto" class="lazyload"/></span></div></figure></div><div class="TextImageRows_row__PPlpB"><div class="TextImageRows_text__bRCSP"><h3 class="TextImageRows_heading__RS3OS"><span class="LineByLine_headingOuter__JmusT"><span>AI solutions.</span></span></h3><div class="TextImageRows_text__bRCSP"><span class="FadeIn_container__bjQVL" data-fill="false"><span><p>AI agents, copilots and LLM pipelines — wired to on-chain data, customer records and revenue workflows. RAG, fine-tuning, agentic orchestration, inference infrastructure.</p>
-</span></span></div><div class="TextImageRows_buttonContainer___PqVy"><span class="FadeIn_container__bjQVL" data-fill="false"><div class="Magnetic_magnetic__LncOy" data-fill="false"><div class="Button_button__JJiqJ" data-direction="forwards"><a class="Button_inner__fnyH6" href="/services/development/ai"><span class="Button_border__hirH2"></span><span class="Button_text__IZaCD"><span class="Button_textInner__JTTHe">Find out more</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" class="Button_buttonArrow__0W9XI"><path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z" fill="currentColor"></path></svg></span></a></div></div></span></div></div><figure class="TextImageRows_media__twu3R"><div class="ImageEnter_image__FSEP_" data-fill="true"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data- data-src="/images/wordpress-1.jpg" alt="" fetchPriority="low" height="2160" width="2160" sizes="auto" class="lazyload"/></span></div></figure></div></div></section>
-  </Fragment>
+    <div class="lp-hero__inner">
+      <div class="lp-hero__copy">
+        <span class="lp-hero__pillar-badge" aria-label="Service category">
+          <span class="lp-hero__pillar-bar" aria-hidden="true"></span>
+          Pillar service
+        </span>
+        <p class="lp-hero__eyebrow">Engineering · Production</p>
+        <h1 class="lp-hero__title lp-hero__title--xl">
+          Code that ships. <span class="lp-hero__title-accent">And survives production.</span>
+        </h1>
+        <a class="lp-cta lp-cta--primary lp-cta--lg" href="/contact">Book a technical call →</a>
+        <ul class="lp-hero__credibility" aria-label="Credibility signals">
+          <li><strong>$2B+</strong> value secured</li>
+          <li class="lp-hero__cred-dot" aria-hidden="true">●</li>
+          <li><strong>50+</strong> chains</li>
+          <li class="lp-hero__cred-dot" aria-hidden="true">●</li>
+          <li><strong>0</strong> critical exploits</li>
+        </ul>
+      </div>
 
-  <Fragment slot="timeline">
-    <section class="Timeline_timeline__KvsOC" data-c8-timeline="vertical"><div class="container"><div class="Timeline_headings__PF6gg"><p class="Timeline_heading__JBlOu"><span class="LineByLine_headingOuter__JmusT"><span>How engagements run.</span></span></p><p class="Timeline_subheading__IVqa_"><span class="FadeIn_container__bjQVL" data-fill="false"><span>A typical phase breakdown — scope, sign-off and ship gates at each step. Actual durations depend on complexity, compliance depth and integration count.</span></span></p></div><div class="Timeline_scroller__D0iTE"><div class="StaggeredItems_grid__5Yycm"><div class="Timeline_inner__J706Z"><div class="Timeline_block__WRSOn" data-animation="grid-item"><figure class="Timeline_image__txoKz"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-srcset="" data-src="/images/workflow3.jpg" alt="" fetchPriority="low" height="426" width="426" sizes="auto" class="lazyload"/></span></figure><div><p class="Timeline_blockHeading__hif7t"><span>Immersion</span><span class="Timeline_duration__We5gA">1 week</span></p><p class="Timeline_blockText__RV__j">Ahead of the website kick off we&#x27;ll immerse ourselves in your brief, company, and scope of work. We&#x27;ll carry out competitor and industry analysis, a brand audit and start formulating a first draft of a sitemap. We&#x27;ll mood board some visual concept directions if needed for the kick off. We&#x27;ll also formulate your Corum8 team.</p><div class="Timeline_workInvolved__Z_cYT"><p>Work involved</p><div class="Timeline_workInvolvedList__CKLML"><span>Research</span><span>Competitor Analysis</span><span>Industry Analysis</span><span>Mood Boards</span><span>Sitemap Creation</span><span>Formulate Corum8 Team</span></div></div></div></div><div class="Timeline_block__WRSOn" data-animation="grid-item"><figure class="Timeline_image__txoKz"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-srcset="" data-src="/images/workflow1.jpg" alt="" fetchPriority="low" height="426" width="426" sizes="auto" class="lazyload"/></span></figure><div><p class="Timeline_blockHeading__hif7t"><span>Kick Off Meeting</span><span class="Timeline_duration__We5gA">3 hours</span></p><p class="Timeline_blockText__RV__j">After an initial intro call to say hi, we will prepare a timeline of milestones, starting with a ‘Kick Off’ meeting with key stakeholders and the Corum8 team assigned to your project. Here we will discuss a range of points so we can get started soon after, including project goals, functionality, inspiration and website structure.</p><div class="Timeline_workInvolved__Z_cYT"><p>Work involved</p><div class="Timeline_workInvolvedList__CKLML"><span>Workshop</span><span>Workshop Playback</span><span>Project Timeline</span></div></div></div></div><div class="Timeline_block__WRSOn" data-animation="grid-item"><figure class="Timeline_image__txoKz"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-srcset="" data-src="/images/workflow2.jpg" alt="" fetchPriority="low" height="426" width="426" sizes="auto" class="lazyload"/></span></figure><div><p class="Timeline_blockHeading__hif7t"><span>Structure (UX)</span><span class="Timeline_duration__We5gA">2 weeks</span></p><p class="Timeline_blockText__RV__j">The most important part of any website is having a clear and concise structure in order for users to be able to find the relevant content quickly and easily. We&#x27;ll wireframe your website as a clickable prototype, ensuring your content is structured correctly, creating a user experience that is engaging and intuitive. </p><div class="Timeline_workInvolved__Z_cYT"><p>Work involved</p><div class="Timeline_workInvolvedList__CKLML"><span>Sitemap Validation</span><span>User Mapping</span><span>Information Architecture</span><span>UX Design</span><span>Wireframing</span><span>Prototyping</span></div></div></div></div><div class="Timeline_block__WRSOn" data-animation="grid-item"><figure class="Timeline_image__txoKz"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-srcset="" data-src="/images/workflow3.jpg" alt="" fetchPriority="low" height="426" width="426" sizes="auto" class="lazyload"/></span></figure><div><p class="Timeline_blockHeading__hif7t"><span>Design (UI)</span><span class="Timeline_duration__We5gA">3 weeks</span></p><p class="Timeline_blockText__RV__j">From the Wireframes we produce, we will then design either bespoke templates for each page of the website (in mobile and desktop resolutions), or look to design a component builder approach. The designs will be prototyped with minimal micro-animations, and show examples of more complex animations.</p><div class="Timeline_workInvolved__Z_cYT"><p>Work involved</p><div class="Timeline_workInvolvedList__CKLML"><span>UI Design</span><span>Prototyping</span><span>Animations</span><span>Mobile &amp; Desktop Resolutions</span></div></div></div></div><div class="Timeline_block__WRSOn" data-animation="grid-item"><figure class="Timeline_image__txoKz"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-srcset="" data-src="/images/workflow4.jpg" alt="" fetchPriority="low" height="426" width="426" sizes="auto" class="lazyload"/></span></figure><div><p class="Timeline_blockHeading__hif7t"><span>Development</span><span class="Timeline_duration__We5gA">4 weeks</span></p><p class="Timeline_blockText__RV__j">Once the design for all the page templates has been signed off, we will produce a Functional Specification for the website. This will outline the functionality and features of each page so you know what will be delivered. We&#x27;ll begin the web development using the appropriate technology for the front and back ends. </p><div class="Timeline_workInvolved__Z_cYT"><p>Work involved</p><div class="Timeline_workInvolvedList__CKLML"><span>Functional Spec</span><span>CMS Development</span><span>Front End Development</span><span>Marketing Integrations</span><span>Website Animations</span></div></div></div></div><div class="Timeline_block__WRSOn" data-animation="grid-item"><figure class="Timeline_image__txoKz"><span class="Image_image__RAAdZ Image_fill__EiIzS"><img data-srcset="" data-src="/images/workflow5.jpg" alt="" fetchPriority="low" height="426" width="426" sizes="auto" class="lazyload"/></span></figure><div><p class="Timeline_blockHeading__hif7t"><span>QA &amp; Launch</span><span class="Timeline_duration__We5gA">2 weeks</span></p><p class="Timeline_blockText__RV__j">Before delivering you a beta link of the finished website, we will test and do quality assurance across all website browsers and devices. We will also implement a Technical SEO so your site is fully optimised for Google. After your final feedback we&#x27;ll migrate the site to the live server and offer a 30 day fix guarantee.</p><div class="Timeline_workInvolved__Z_cYT"><p>Work involved</p><div class="Timeline_workInvolvedList__CKLML"><span>Browser Testing</span><span>Device Testing</span><span>Technical SEO</span><span>301 Re-directs</span><span>Migrate to Live Sever</span></div></div></div></div></div><div class="Timeline_bottomTimeline__2F2yN" data-animation="grid-item"><div class="Timeline_blockTime__5jxQS"><span class="Timeline_weekNumber__qqgnG">Week <!-- -->1</span></div><div class="Timeline_blockTime__5jxQS"><span class="Timeline_weekNumber__qqgnG">Week <!-- -->1</span></div><div class="Timeline_blockTime__5jxQS"><span class="Timeline_weekNumber__qqgnG">Week <!-- -->2</span></div><div class="Timeline_blockTime__5jxQS"><span class="Timeline_weekNumber__qqgnG">Week <!-- -->5</span></div><div class="Timeline_blockTime__5jxQS"><span class="Timeline_weekNumber__qqgnG">Week <!-- -->9</span></div><div class="Timeline_blockTime__5jxQS"><span class="Timeline_weekNumber__qqgnG">Week <!-- -->12</span></div></div></div></div></div></section>
-  </Fragment>
-</ServicePillarLayout>
+      <div class="lp-hero__feature">
+        <figure class="lp-hero__photo">
+          <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=900&q=80&auto=format&fit=crop" alt="Engineering team writing production code" loading="eager" />
+          <span class="lp-hero__photo-corner" aria-hidden="true"></span>
+        </figure>
 
-<style is:global>
-  /* Website workflow — real vertical timeline with numbered nodes, a
-     continuous spine, and step cards flowing to the right. Reads as a
-     sequence of stations, with generous breathing room between each step. */
-  [data-c8-timeline="vertical"] {
-    padding: clamp(5rem, 9vw, 8rem) 0 !important;
-    background: transparent !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_scroller__D0iTE {
-    overflow: visible !important;
-    height: auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    padding: 0 !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_scroller__D0iTE .StaggeredItems_grid__5Yycm {
-    display: block !important;
-    height: auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_headings__PF6gg {
-    margin: 0 auto clamp(3.5rem, 6vw, 5.5rem) !important;
-    max-width: 1080px;
-    padding-left: 5rem !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_inner__J706Z {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0 !important;
-    width: 100% !important;
-    max-width: 1080px;
-    margin: 0 auto;
-    transform: none !important;
-    padding: 0 !important;
-    counter-reset: c8timeline;
-    position: relative;
-  }
-  /* Continuous spine behind the nodes. */
-  [data-c8-timeline="vertical"] .Timeline_inner__J706Z::before {
-    content: '';
-    position: absolute;
-    left: 31px;
-    top: 24px;
-    bottom: 24px;
-    width: 2px;
-    background: linear-gradient(to bottom,
-      rgba(0,0,0,0.22) 0%,
-      rgba(0,0,0,0.14) 60%,
-      rgba(0,0,0,0.04) 100%);
-    z-index: 0;
-  }
-  [data-c8-timeline="vertical"] .Timeline_block__WRSOn {
-    width: 100% !important;
-    max-width: none !important;
-    flex: unset !important;
-    margin: 0 !important;
-    padding: 0 0 3.75rem 5.25rem !important;
-    display: block !important;
-    position: relative;
-    counter-increment: c8timeline;
-    background: transparent !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_block__WRSOn:last-child {
-    padding-bottom: 0 !important;
-  }
-  /* Numbered node on the spine — floats freely, no halo ring. */
-  [data-c8-timeline="vertical"] .Timeline_block__WRSOn::before {
-    content: counter(c8timeline, decimal-leading-zero);
-    position: absolute;
-    left: 0;
-    top: 4px;
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: #0a0a0a;
-    color: #fff;
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    font-variant-numeric: tabular-nums;
-    z-index: 1;
-    box-shadow: 0 10px 24px -8px rgba(0,0,0,0.25);
-    transition: transform 0.35s ease, background 0.35s ease;
-  }
-  [data-c8-timeline="vertical"] .Timeline_block__WRSOn:hover::before {
-    transform: scale(1.08);
-  }
-  [data-c8-timeline="vertical"] .Timeline_image__txoKz {
-    display: none !important;
-  }
-  /* Step card — white elevated surface with shadow, cards only. The section
-     wrapper and numbered nodes stay background-free so numbers + spine don't
-     read as part of a shared container with the cards. */
-  [data-c8-timeline="vertical"] .Timeline_block__WRSOn > div:not(.Timeline_workInvolved__Z_cYT) {
-    background: #ffffff !important;
-    border: 1px solid rgba(0,0,0,0.06) !important;
-    border-radius: 18px !important;
-    padding: 1.75rem 2rem !important;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 18px 38px -24px rgba(0,0,0,0.18) !important;
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-  }
-  [data-c8-timeline="vertical"] .Timeline_block__WRSOn:hover > div:not(.Timeline_workInvolved__Z_cYT) {
-    transform: translateY(-3px);
-    border-color: rgba(0,0,0,0.12) !important;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 24px 46px -20px rgba(0,0,0,0.28) !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_blockHeading__hif7t {
-    display: flex !important;
-    align-items: center !important;
-    gap: 1rem !important;
-    margin: 0 0 1rem !important;
-    padding: 0 !important;
-    font-size: clamp(1.35rem, 1.9vw, 1.7rem) !important;
-    line-height: 1.22 !important;
-    font-weight: 600 !important;
-    letter-spacing: -0.015em !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_blockHeading__hif7t > span:first-child {
-    font-size: inherit !important;
-    line-height: inherit !important;
-    flex: 0 1 auto;
-  }
-  [data-c8-timeline="vertical"] .Timeline_duration__We5gA {
-    flex: 0 0 auto;
-    padding: 0.35rem 0.8rem !important;
-    border-radius: 999px !important;
-    background: #0a0a0a !important;
-    color: #fff !important;
-    font-size: 0.7rem !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.08em !important;
-    text-transform: uppercase;
-    white-space: nowrap;
-    line-height: 1 !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_blockText__RV__j {
-    font-size: 0.98rem !important;
-    line-height: 1.7 !important;
-    color: rgba(0, 0, 0, 0.68);
-    margin: 0 0 1.5rem !important;
-    max-width: 68ch;
-  }
-  [data-c8-timeline="vertical"] .Timeline_workInvolved__Z_cYT {
-    margin: 1.25rem 0 0 !important;
-    padding: 1.25rem 0 0 !important;
-    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_workInvolved__Z_cYT > p {
-    font-size: 0.68rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.14em !important;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.42) !important;
-    margin: 0 0 0.75rem !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_workInvolvedList__CKLML {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 0.5rem !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_workInvolvedList__CKLML > span {
-    padding: 0.4rem 0.75rem !important;
-    border-radius: 7px !important;
-    background: transparent !important;
-    border: 1px solid rgba(0, 0, 0, 0.14) !important;
-    color: rgba(0, 0, 0, 0.72) !important;
-    font-size: 0.72rem !important;
-    font-weight: 500 !important;
-    line-height: 1 !important;
-    white-space: nowrap;
-    transition: background 0.2s ease, border-color 0.2s ease;
-  }
-  [data-c8-timeline="vertical"] .Timeline_workInvolvedList__CKLML > span:hover {
-    background: rgba(0,0,0,0.04) !important;
-    border-color: rgba(0,0,0,0.22) !important;
-  }
-  [data-c8-timeline="vertical"] .Timeline_bottomTimeline__2F2yN {
-    display: none !important;
-  }
+        <div class="lp-hero__chip lp-hero__chip--outcome">
+          <span class="lp-hero__chip-label">Systems shipped</span>
+          <span class="lp-hero__chip-value">1,100<span class="lp-hero__chip-unit">+</span></span>
+        </div>
 
-  @media (max-width: 640px) {
-    [data-c8-timeline="vertical"] .Timeline_headings__PF6gg {
-      padding-left: 3.75rem !important;
+        <div class="lp-hero__chip lp-hero__chip--live">
+          <span class="lp-hero__chip-pulse" aria-hidden="true"></span>
+          On-call · live now
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <section class="lp-marquee" aria-hidden="true">
+    <div class="lp-marquee__track">
+      <span>Solidity</span><span class="lp-marquee__dot">●</span>
+      <span>Rust</span><span class="lp-marquee__dot">●</span>
+      <span>Audits</span><span class="lp-marquee__dot">●</span>
+      <span>Fuzzing</span><span class="lp-marquee__dot">●</span>
+      <span>MPC custody</span><span class="lp-marquee__dot">●</span>
+      <span>Zero-knowledge</span><span class="lp-marquee__dot">●</span>
+      <span>Modular rollups</span><span class="lp-marquee__dot">●</span>
+      <span>On-call</span><span class="lp-marquee__dot">●</span>
+      <span>Post-mortems</span><span class="lp-marquee__dot">●</span>
+      <span>Solidity</span><span class="lp-marquee__dot">●</span>
+      <span>Rust</span><span class="lp-marquee__dot">●</span>
+      <span>Audits</span><span class="lp-marquee__dot">●</span>
+      <span>Fuzzing</span><span class="lp-marquee__dot">●</span>
+      <span>MPC custody</span><span class="lp-marquee__dot">●</span>
+      <span>Zero-knowledge</span><span class="lp-marquee__dot">●</span>
+      <span>Modular rollups</span><span class="lp-marquee__dot">●</span>
+      <span>On-call</span><span class="lp-marquee__dot">●</span>
+      <span>Post-mortems</span><span class="lp-marquee__dot">●</span>
+    </div>
+  </section>
+
+  <!-- ── VOLUME — engineering scoreboard ── -->
+  <section class="lp-volume">
+    <div class="lp-volume__bg" aria-hidden="true"></div>
+    <div class="lp-volume__inner">
+      <header class="lp-volume__head">
+        <h2 class="lp-volume__title">
+          The numbers that hold up to a code review. <span class="lp-volume__title-accent">Shipped, audited, live.</span>
+        </h2>
+      </header>
+
+      <div class="lp-volume__grid">
+        {outputs.map((o, i) => (
+          <article class={`lp-volume-card lp-volume-card--${o.size} lp-volume-card--${o.kind}`} style={`--vol-i: ${i};`}>
+            <span class="lp-volume-card__bar" aria-hidden="true"></span>
+
+            <span class="lp-volume-card__deco" aria-hidden="true">
+              {o.kind === 'waves' && (
+                <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
+                  <circle class="lp-deco-wave lp-deco-wave--1" cx="160" cy="40" r="20" />
+                  <circle class="lp-deco-wave lp-deco-wave--2" cx="160" cy="40" r="40" />
+                  <circle class="lp-deco-wave lp-deco-wave--3" cx="160" cy="40" r="60" />
+                  <circle class="lp-deco-wave lp-deco-wave--4" cx="160" cy="40" r="80" />
+                </svg>
+              )}
+              {o.kind === 'nodes' && (
+                <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
+                  <line class="lp-deco-node-link" x1="40"  y1="40"  x2="120" y2="80" />
+                  <line class="lp-deco-node-link" x1="120" y1="80"  x2="170" y2="40" />
+                  <line class="lp-deco-node-link" x1="120" y1="80"  x2="160" y2="140" />
+                  <line class="lp-deco-node-link" x1="40"  y1="40"  x2="60"  y2="130" />
+                  <line class="lp-deco-node-link" x1="60"  y1="130" x2="160" y2="140" />
+                  <circle class="lp-deco-node lp-deco-node--1" cx="40"  cy="40"  r="4" />
+                  <circle class="lp-deco-node lp-deco-node--2" cx="120" cy="80"  r="5" />
+                  <circle class="lp-deco-node lp-deco-node--3" cx="170" cy="40"  r="3" />
+                  <circle class="lp-deco-node lp-deco-node--4" cx="60"  cy="130" r="3" />
+                  <circle class="lp-deco-node lp-deco-node--5" cx="160" cy="140" r="4" />
+                </svg>
+              )}
+              {o.kind === 'bars' && (
+                <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
+                  <rect class="lp-deco-bar lp-deco-bar--1" x="20"  y="120" width="22" height="60" rx="3" />
+                  <rect class="lp-deco-bar lp-deco-bar--2" x="56"  y="90"  width="22" height="90" rx="3" />
+                  <rect class="lp-deco-bar lp-deco-bar--3" x="92"  y="60"  width="22" height="120" rx="3" />
+                  <rect class="lp-deco-bar lp-deco-bar--4" x="128" y="40"  width="22" height="140" rx="3" />
+                  <rect class="lp-deco-bar lp-deco-bar--5" x="164" y="20"  width="22" height="160" rx="3" />
+                </svg>
+              )}
+              {o.kind === 'stack' && (
+                <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
+                  <rect class="lp-deco-doc lp-deco-doc--3" x="60"  y="40" width="100" height="130" rx="6" />
+                  <rect class="lp-deco-doc lp-deco-doc--2" x="50"  y="50" width="100" height="130" rx="6" />
+                  <rect class="lp-deco-doc lp-deco-doc--1" x="40"  y="60" width="100" height="130" rx="6" />
+                  <line class="lp-deco-doc-line" x1="56"  y1="86"  x2="120" y2="86" />
+                  <line class="lp-deco-doc-line" x1="56"  y1="106" x2="120" y2="106" />
+                  <line class="lp-deco-doc-line" x1="56"  y1="126" x2="100" y2="126" />
+                </svg>
+              )}
+              {o.kind === 'pulse' && (
+                <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
+                  <circle class="lp-deco-pulse-ring lp-deco-pulse-ring--1" cx="100" cy="100" r="30" />
+                  <circle class="lp-deco-pulse-ring lp-deco-pulse-ring--2" cx="100" cy="100" r="30" />
+                  <circle class="lp-deco-pulse-ring lp-deco-pulse-ring--3" cx="100" cy="100" r="30" />
+                  <circle class="lp-deco-pulse-core" cx="100" cy="100" r="8" />
+                  <circle class="lp-deco-pulse-dot" cx="40"  cy="60"  r="3" />
+                  <circle class="lp-deco-pulse-dot" cx="160" cy="50"  r="3" />
+                  <circle class="lp-deco-pulse-dot" cx="50"  cy="155" r="3" />
+                  <circle class="lp-deco-pulse-dot" cx="160" cy="150" r="3" />
+                </svg>
+              )}
+            </span>
+
+            <div class="lp-volume-card__top">
+              <span class="lp-volume-card__num">{o.num}</span>
+              <span class="lp-volume-card__period">{o.period}</span>
+            </div>
+            <h3 class="lp-volume-card__label">{o.label}</h3>
+            <p class="lp-volume-card__note">{o.note}</p>
+          </article>
+        ))}
+      </div>
+
+      <aside class="lp-volume__trust" aria-label="Categories of clients we work with">
+        <span class="lp-volume__trust-label">Built at this bar for</span>
+        <ul class="lp-volume__trust-list">
+          <li>Tier-1 exchanges</li>
+          <li class="lp-volume__trust-dot" aria-hidden="true">●</li>
+          <li>Layer-1 chains</li>
+          <li class="lp-volume__trust-dot" aria-hidden="true">●</li>
+          <li>DeFi protocols at scale</li>
+          <li class="lp-volume__trust-dot" aria-hidden="true">●</li>
+          <li>Regulated payment networks</li>
+          <li class="lp-volume__trust-dot" aria-hidden="true">●</li>
+          <li>Series-B AI infrastructure</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <section class="lp-bignumbers" id="lp-stats">
+    <div class="lp-bignumbers__inner">
+      {stats.map((s) => (
+        <article class="lp-bignum">
+          <div class="lp-bignum__top">
+            <span
+              class="lp-bignum__val"
+              data-count-target={s.target}
+              data-count-prefix={s.prefix}
+              data-count-suffix={s.suffix}
+            >{s.prefix}0{s.suffix}</span>
+            {s.spark === 'bars' ? (
+              <svg class="lp-bignum__spark" viewBox="0 0 100 30" preserveAspectRatio="none">
+                <rect x="2"  y="18" width="14" height="12" rx="2" fill="var(--c8-gold)" opacity="0.55" />
+                <rect x="22" y="14" width="14" height="16" rx="2" fill="var(--c8-gold)" opacity="0.7" />
+                <rect x="42" y="10" width="14" height="20" rx="2" fill="var(--c8-gold)" opacity="0.85" />
+                <rect x="62" y="6"  width="14" height="24" rx="2" fill="var(--c8-gold)" />
+                <rect x="82" y="2"  width="14" height="28" rx="2" fill="var(--c8-gold-dark)" />
+              </svg>
+            ) : s.spark === 'globe' ? (
+              <svg class="lp-bignum__spark" viewBox="0 0 100 30" preserveAspectRatio="none">
+                <circle cx="10" cy="22" r="2"   fill="var(--c8-gold)" opacity="0.5"  />
+                <circle cx="22" cy="10" r="2.5" fill="var(--c8-gold)" opacity="0.7"  />
+                <circle cx="38" cy="18" r="3"   fill="var(--c8-gold)" opacity="0.85" />
+                <circle cx="52" cy="8"  r="2.5" fill="var(--c8-gold)" />
+                <circle cx="66" cy="20" r="3.5" fill="var(--c8-gold-dark)" />
+                <circle cx="82" cy="12" r="2.5" fill="var(--c8-gold)" opacity="0.7"  />
+                <circle cx="94" cy="22" r="2"   fill="var(--c8-gold)" opacity="0.55" />
+              </svg>
+            ) : (
+              <svg class="lp-bignum__spark" viewBox="0 0 100 30" preserveAspectRatio="none">
+                <path d={s.spark} fill="none" stroke="var(--c8-gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            )}
+          </div>
+          <span class="lp-bignum__label">{s.label}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var nums = document.querySelectorAll('#lp-stats .lp-bignum__val');
+      if (!nums.length) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function animate(el) {
+        var target = parseFloat(el.dataset.countTarget || '0');
+        var prefix = el.dataset.countPrefix || '';
+        var suffix = el.dataset.countSuffix || '';
+        if (reduce || target === 0) {
+          el.textContent = prefix + target + suffix;
+          return;
+        }
+        var dur = 1400;
+        var start = performance.now();
+        function tick(t) {
+          var p = Math.min(1, (t - start) / dur);
+          var eased = 1 - Math.pow(1 - p, 3);
+          var current = Math.round(target * eased);
+          el.textContent = prefix + current + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            animate(e.target);
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      nums.forEach(function (n) { io.observe(n); });
+    })();
+  </script>
+
+  <!-- ── DISCIPLINES BENTO — six lead disciplines ── -->
+  <section class="lp-channels-sect">
+    <header class="lp-h-head">
+      <p class="lp-h-eyebrow">Where we lead</p>
+      <h2 class="lp-h-title">Six disciplines we lead with. <span class="lp-accent">Many more we ship on demand.</span></h2>
+    </header>
+    <div class="lp-channels-grid">
+      {disciplines.map((d) => (
+        <a class="lp-ch-tile" href={d.href}>
+          <div class="lp-ch-tile__img">
+            <img src={d.img} alt={d.name} loading="lazy" />
+            <div class="lp-ch-tile__veil"></div>
+          </div>
+          <div class="lp-ch-tile__body">
+            <h3 class="lp-ch-tile__name">{d.name}</h3>
+            <p class="lp-ch-tile__pitch">{d.pitch}</p>
+          </div>
+          <span class="lp-ch-tile__arrow" aria-hidden="true">→</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── PHASE TABS ── -->
+  <section class="lp-tabs-sect">
+    <header class="lp-h-head">
+      <p class="lp-h-eyebrow">How a build runs</p>
+      <h2 class="lp-h-title">Four phases. <span class="lp-accent">No skipped steps.</span></h2>
+      <p class="lp-h-sub">Architecture before code. Build with sign-off gates. Audit by two firms plus our own. Operate from day one of mainnet.</p>
+    </header>
+
+    <div class="lp-tabs" id="lp-tabs">
+      <nav class="lp-tabs__nav" role="tablist" aria-label="Phases">
+        {phases.map((p, i) => (
+          <button
+            type="button"
+            class={`lp-tab${i === 0 ? ' is-active' : ''}`}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls={`lp-tab-panel-${p.key}`}
+            data-tab={p.key}
+          >
+            <span class="lp-tab__num">0{i + 1}</span>
+            <span class="lp-tab__label">{p.label}</span>
+          </button>
+        ))}
+      </nav>
+
+      <div class="lp-tabs__stage">
+        {phases.map((p, i) => (
+          <article
+            class={`lp-tabs__panel${i === 0 ? ' is-active' : ''}`}
+            id={`lp-tab-panel-${p.key}`}
+            role="tabpanel"
+            aria-hidden={i === 0 ? 'false' : 'true'}
+          >
+            <figure class="lp-tabs__media">
+              <img src={p.img} alt={p.label} loading="lazy" />
+              <span class="lp-tabs__claim">{p.claim}</span>
+            </figure>
+            <div class="lp-tabs__body">
+              <span class="lp-tabs__pillar-num">0{i + 1} · {p.label}</span>
+              <h3 class="lp-tabs__headline">{p.headline}</h3>
+              <ul class="lp-tabs__points">
+                {p.points.map((pt) => (
+                  <li>
+                    <span class="lp-tabs__check" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </span>
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var root = document.getElementById('lp-tabs');
+      if (!root) return;
+      var tabs = root.querySelectorAll('.lp-tab');
+      var panels = root.querySelectorAll('.lp-tabs__panel');
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () {
+          var key = t.dataset.tab;
+          tabs.forEach(function (x) {
+            var on = x === t;
+            x.classList.toggle('is-active', on);
+            x.setAttribute('aria-selected', on ? 'true' : 'false');
+          });
+          panels.forEach(function (p) {
+            var on = p.id === 'lp-tab-panel-' + key;
+            p.classList.toggle('is-active', on);
+            p.setAttribute('aria-hidden', on ? 'false' : 'true');
+          });
+        });
+      });
+    })();
+  </script>
+
+  <!-- ── PROOF ── -->
+  <section class="lp-proof" id="proof">
+    <header class="lp-h-head">
+      <p class="lp-h-eyebrow">Real systems</p>
+      <h2 class="lp-h-title">Production we've <span class="lp-accent">already shipped.</span></h2>
+    </header>
+    <div class="lp-proof-grid">
+      {proof.map((p) => (
+        <article class="lp-case">
+          <figure class="lp-case__media">
+            <img src={p.img} alt={p.company} loading="lazy" />
+            <span class="lp-case__chip">{p.stage} · {p.region}</span>
+          </figure>
+          <div class="lp-case__body">
+            <span class="lp-case__company">{p.company}</span>
+            <h3 class="lp-case__headline">
+              <span class="lp-case__h-main">{p.headline}</span>
+              <span class="lp-case__h-sub">{p.subheadline}</span>
+            </h3>
+            <p class="lp-case__body-text">{p.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS CAROUSEL ── -->
+  <section class="lp-testi-section">
+    <div class="lp-testi__inner" id="lp-testi-carousel">
+      <span class="lp-testi__quote-mark" aria-hidden="true">“</span>
+
+      <div class="lp-testi__stage">
+        {testimonials.map((t, i) => (
+          <article class={`lp-testi__slide${i === 0 ? ' is-active' : ''}`} data-idx={i}>
+            <blockquote class="lp-testi__quote">
+              <p>{t.quote}</p>
+            </blockquote>
+            <footer class="lp-testi__cite">
+              <img src={t.avatar} alt={t.name} class="lp-testi__avatar" loading="lazy" />
+              <div>
+                <span class="lp-testi__name">{t.name}</span>
+                <span class="lp-testi__role">{t.role}</span>
+              </div>
+            </footer>
+          </article>
+        ))}
+      </div>
+
+      <div class="lp-testi__controls">
+        <button type="button" class="lp-testi__nav lp-testi__nav--prev" aria-label="Previous testimonial">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <ol class="lp-testi__dots" aria-label="Testimonial pagination">
+          {testimonials.map((_, i) => (
+            <li>
+              <button type="button" class={`lp-testi__dot${i === 0 ? ' is-active' : ''}`} data-go={i} aria-label={`Go to testimonial ${i + 1}`}></button>
+            </li>
+          ))}
+        </ol>
+        <button type="button" class="lp-testi__nav lp-testi__nav--next" aria-label="Next testimonial">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var root = document.getElementById('lp-testi-carousel');
+      if (!root) return;
+      var slides = root.querySelectorAll('.lp-testi__slide');
+      var dots   = root.querySelectorAll('.lp-testi__dot');
+      var prev   = root.querySelector('.lp-testi__nav--prev');
+      var next   = root.querySelector('.lp-testi__nav--next');
+      if (!slides.length) return;
+      var idx = 0;
+      var timer = null;
+      var DUR = 6000;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function go(i) {
+        idx = (i + slides.length) % slides.length;
+        slides.forEach(function (s, n) { s.classList.toggle('is-active', n === idx); });
+        dots.forEach(function (d, n) { d.classList.toggle('is-active', n === idx); });
+      }
+      function tick() { go(idx + 1); schedule(); }
+      function schedule() {
+        if (timer) clearTimeout(timer);
+        if (!reduce) timer = setTimeout(tick, DUR);
+      }
+      function reset() { if (timer) clearTimeout(timer); schedule(); }
+      prev && prev.addEventListener('click', function () { go(idx - 1); reset(); });
+      next && next.addEventListener('click', function () { go(idx + 1); reset(); });
+      dots.forEach(function (d) {
+        d.addEventListener('click', function () { go(parseInt(d.dataset.go, 10) || 0); reset(); });
+      });
+      schedule();
+    })();
+  </script>
+
+  <!-- ── FAQs ── -->
+  <section class="lp-faqs-sect">
+    <div class="lp-faqs__inner">
+      <header class="lp-h-head lp-h-head--left">
+        <p class="lp-h-eyebrow">FAQs</p>
+        <h2 class="lp-h-title">Common questions <span class="lp-accent">before we get on a call.</span></h2>
+      </header>
+      <ol class="lp-faqs__list">
+        {faqs.map((f) => (
+          <li class="lp-faq-item">
+            <details name="lp-faq-group">
+              <summary>
+                <span class="lp-faq-item__q">{f.q}</span>
+                <span class="lp-faq-item__icon" aria-hidden="true">+</span>
+              </summary>
+              <p class="lp-faq-item__a">{f.a}</p>
+            </details>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="lp-final">
+    <img class="lp-final__bg" src="/images/ads-bg.png" alt="" aria-hidden="true" />
+    <div class="lp-final__veil"></div>
+    <div class="lp-final__inner">
+      <p class="lp-final__eyebrow">Tell us your build</p>
+      <h2 class="lp-final__title">Six disciplines. <span class="lp-accent">One engineering team.</span></h2>
+      <p class="lp-final__sub">A 30-minute technical call. We'll walk your architecture, flag the failure modes, and tell you whether Corum8 is the right team to ship it — honest answer either way.</p>
+      <a class="lp-cta lp-cta--primary lp-cta--lg" href="/contact">Book a technical call →</a>
+    </div>
+  </section>
+
+  <style is:global>
+    /* ── Landing-page system. .lp-* prefix scoped — same system used on
+       /services/marketing and /services/marketing/performance-marketing.
+       Cloned verbatim so the three pages feel like one product. Will be
+       extracted to a shared stylesheet once a fourth page lands on the
+       same template. ── */
+    :root {
+      --lp-max: 1480px;
+      --lp-pad-x: clamp(1.5rem, 5vw, 5rem);
     }
-    [data-c8-timeline="vertical"] .Timeline_inner__J706Z::before {
-      left: 24px;
+    body { overflow-x: hidden; }
+
+    /* HERO */
+    .lp-hero {
+      position: relative;
+      color: #0a0a0a;
+      overflow: hidden;
+      isolation: isolate;
+      padding: clamp(7rem, 13vh, 10rem) var(--lp-pad-x) clamp(4rem, 7vh, 6rem);
+      background:
+        radial-gradient(900px circle at 85% 20%, rgba(242,191,34,0.10) 0%, transparent 55%),
+        radial-gradient(700px circle at 8% 90%, rgba(242,191,34,0.05) 0%, transparent 55%),
+        #ffffff;
     }
-    [data-c8-timeline="vertical"] .Timeline_block__WRSOn {
-      padding: 0 0 2.5rem 3.75rem !important;
+    .lp-hero__bg-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: -3;
+      mix-blend-mode: multiply; opacity: 0.10;
     }
-    [data-c8-timeline="vertical"] .Timeline_block__WRSOn::before {
-      width: 48px;
-      height: 48px;
-      font-size: 0.82rem;
+    .lp-hero__bg-veil {
+      position: absolute; inset: 0; z-index: -2;
+      background: linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.85) 100%);
     }
-    [data-c8-timeline="vertical"] .Timeline_block__WRSOn > div:not(.Timeline_workInvolved__Z_cYT) {
-      padding: 1.25rem 1.25rem !important;
+    .lp-hero__bg-grid {
+      position: absolute; inset: 0; z-index: -1;
+      background-image: radial-gradient(circle at center, rgba(0,0,0,0.06) 1px, transparent 1.5px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 25%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 25%, transparent 80%);
+      opacity: 0.45; pointer-events: none;
     }
-    [data-c8-timeline="vertical"] .Timeline_blockHeading__hif7t {
-      flex-wrap: wrap;
-      gap: 0.5rem !important;
+    .lp-hero__inner {
+      position: relative; max-width: var(--lp-max); margin: 0 auto;
+      display: grid; grid-template-columns: 1.05fr 1fr;
+      align-items: center; gap: clamp(2rem, 5vw, 5.5rem); z-index: 1;
     }
-  }
-</style>
+    @media (max-width: 900px) { .lp-hero__inner { grid-template-columns: 1fr; gap: 3rem; } }
+    .lp-hero__copy { max-width: 32rem; }
+    .lp-hero__pillar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 1.4rem;
+      padding: 0.45rem 0.95rem 0.45rem 0.55rem;
+      background: rgba(242,191,34,0.12);
+      border: 1px solid rgba(242,191,34,0.45);
+      border-radius: 999px;
+      font-family: var(--montreal);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--c8-gold-dark);
+    }
+    .lp-hero__pillar-bar {
+      width: 18px;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(to right, var(--c8-gold) 0%, var(--c8-gold-dark) 100%);
+    }
+    .lp-hero__title--xl {
+      font-size: clamp(3.2rem, 8vw, 6.8rem);
+      line-height: 0.92;
+    }
+    .lp-hero__eyebrow {
+      margin: 0 0 1.5rem;
+      font-family: var(--montreal); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.28em; text-transform: uppercase; color: var(--c8-gold-dark);
+    }
+    .lp-hero__title {
+      margin: 0 0 2.2rem;
+      font-family: var(--font-display); font-size: clamp(2.8rem, 7vw, 5.6rem);
+      font-weight: 350; line-height: 0.95; letter-spacing: -0.04em; color: #0a0a0a;
+    }
+    .lp-hero__title-accent { display: block; color: var(--c8-gold-dark); font-weight: 350; }
+    .lp-hero__credibility {
+      list-style: none; margin: 1.6rem 0 0; padding: 0;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 0.9rem;
+      font-family: var(--montreal); font-size: 0.85rem; color: rgba(0,0,0,0.6);
+    }
+    .lp-hero__credibility strong { color: #0a0a0a; font-weight: 700; margin-right: 0.25rem; }
+    .lp-hero__cred-dot { color: var(--c8-gold-dark); font-size: 0.45rem; }
+
+    .lp-hero__feature {
+      position: relative; width: 100%; max-width: 500px; margin: 0 0 0 auto;
+      aspect-ratio: 4 / 5;
+    }
+    @media (max-width: 900px) { .lp-hero__feature { margin: 0 auto; aspect-ratio: 5 / 4; } }
+    .lp-hero__photo {
+      position: relative; margin: 0; width: 100%; height: 100%;
+      border-radius: 22px; overflow: hidden;
+      box-shadow: 0 40px 80px -28px rgba(0,0,0,0.32), 0 0 0 1px rgba(0,0,0,0.04);
+      transform: rotate(-1.4deg); transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .lp-hero__feature:hover .lp-hero__photo { transform: rotate(0deg) scale(1.02); }
+    .lp-hero__photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 1.4s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .lp-hero__feature:hover .lp-hero__photo img { transform: scale(1.05); }
+    .lp-hero__photo-corner {
+      position: absolute; bottom: 0; right: 0; width: 40%; height: 40%;
+      background: linear-gradient(315deg, rgba(242,191,34,0.32) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .lp-hero__chip {
+      position: absolute; z-index: 2; background: #fff;
+      border: 1px solid rgba(0,0,0,0.08); border-radius: 18px;
+      box-shadow: 0 22px 44px -16px rgba(0,0,0,0.2);
+      font-family: var(--montreal);
+      transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .lp-hero__feature:hover .lp-hero__chip { transform: translateY(-4px); }
+    .lp-hero__chip--outcome {
+      top: 6%; left: -12%; padding: 0.85rem 1.15rem;
+      display: flex; flex-direction: column; gap: 0.25rem;
+      transform: rotate(-3deg);
+    }
+    .lp-hero__feature:hover .lp-hero__chip--outcome { transform: rotate(0deg) translateY(-4px); }
+    .lp-hero__chip-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #888;
+    }
+    .lp-hero__chip-value {
+      font-family: var(--font-display); font-size: clamp(1.7rem, 2.8vw, 2.2rem);
+      font-weight: 350; letter-spacing: -0.03em; line-height: 0.95;
+      color: var(--c8-gold-dark);
+    }
+    .lp-hero__chip-unit { font-size: 0.55em; color: #aaa; margin-left: 0.05em; }
+    .lp-hero__chip--live {
+      bottom: 8%; right: -10%; padding: 0.65rem 1.05rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+      color: #0a0a0a; transform: rotate(2.5deg);
+    }
+    .lp-hero__feature:hover .lp-hero__chip--live { transform: rotate(0deg) translateY(-4px); }
+    .lp-hero__chip-pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--c8-gold-dark);
+      box-shadow: 0 0 0 0 var(--c8-gold);
+      animation: lp-hero-pulse 2.2s ease-out infinite;
+    }
+    @keyframes lp-hero-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(242,191,34,0.5); }
+      70%  { box-shadow: 0 0 0 10px rgba(242,191,34,0); }
+      100% { box-shadow: 0 0 0 0 rgba(242,191,34,0); }
+    }
+    @media (max-width: 600px) {
+      .lp-hero__chip--outcome { left: 0; }
+      .lp-hero__chip--live { right: 0; }
+    }
+
+    /* MARQUEE */
+    .lp-marquee {
+      background: #0a0a0a; color: var(--c8-gold);
+      overflow: hidden;
+      border-top: 1px solid rgba(242,191,34,0.18);
+      border-bottom: 1px solid rgba(242,191,34,0.18);
+    }
+    .lp-marquee__track {
+      display: inline-flex; align-items: center; gap: 2rem;
+      padding: 1.1rem 0; white-space: nowrap;
+      animation: lp-marquee 38s linear infinite;
+      font-family: var(--font-display); font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+      letter-spacing: 0.04em; will-change: transform;
+    }
+    @keyframes lp-marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .lp-marquee__dot { color: var(--c8-gold-dark); opacity: 0.65; font-size: 0.6rem; }
+
+    /* VOLUME */
+    .lp-volume {
+      position: relative; padding: clamp(6rem, 11vh, 9rem) var(--lp-pad-x);
+      color: #fff; overflow: hidden; isolation: isolate;
+    }
+    .lp-volume__bg {
+      position: absolute; inset: 0; z-index: -1;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(242,191,34,0.18) 0%, transparent 45%),
+        radial-gradient(circle at 82% 80%, rgba(242,191,34,0.10) 0%, transparent 50%),
+        linear-gradient(180deg, #0d0d0d 0%, #050505 100%);
+    }
+    .lp-volume__bg::after {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(0deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 25%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 25%, transparent 80%);
+      opacity: 0.6;
+    }
+    .lp-volume__inner { max-width: 1240px; margin: 0 auto; position: relative; }
+    .lp-volume__head {
+      max-width: 40rem; margin: 0 auto clamp(3rem, 6vh, 4.5rem); text-align: center;
+    }
+    .lp-volume__title {
+      margin: 0;
+      font-family: var(--font-display); font-size: clamp(2rem, 4.6vw, 3.5rem);
+      font-weight: 350; line-height: 1.05; letter-spacing: -0.025em; color: #fff;
+    }
+    .lp-volume__title-accent { color: var(--c8-gold); font-weight: 350; }
+
+    .lp-volume__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: minmax(160px, auto);
+      gap: clamp(0.85rem, 1.4vw, 1.2rem);
+    }
+    .lp-volume-card--lg {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    @media (max-width: 1000px) {
+      .lp-volume__grid { grid-template-columns: repeat(2, 1fr); }
+      .lp-volume-card--lg { grid-column: span 2; grid-row: span 1; }
+    }
+    @media (max-width: 540px) {
+      .lp-volume__grid { grid-template-columns: 1fr; }
+      .lp-volume-card--lg { grid-column: span 1; }
+    }
+
+    .lp-volume-card {
+      position: relative;
+      padding: clamp(1.4rem, 2.4vw, 2rem) clamp(1.4rem, 2.4vw, 2rem) clamp(1.4rem, 2.4vw, 2rem) clamp(1.7rem, 2.8vw, 2.4rem);
+      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), border-color 0.5s ease, background 0.5s ease;
+    }
+    .lp-volume-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(242,191,34,0.5);
+      background: linear-gradient(135deg, rgba(242,191,34,0.05) 0%, rgba(255,255,255,0.02) 100%);
+    }
+    .lp-volume-card__bar {
+      position: absolute; top: 0; bottom: 0; left: 0; width: 3px;
+      background: linear-gradient(to bottom, var(--c8-gold) 0%, transparent 100%);
+      opacity: 0.85;
+      transition: opacity 0.4s ease, width 0.4s ease;
+    }
+    .lp-volume-card:hover .lp-volume-card__bar { opacity: 1; width: 5px; }
+    .lp-volume-card--lg .lp-volume-card__bar {
+      background: linear-gradient(to bottom, var(--c8-gold) 0%, var(--c8-gold-dark) 100%);
+      width: 4px;
+    }
+    .lp-volume-card__top {
+      display: flex; align-items: baseline; flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+    .lp-volume-card__num {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+      font-weight: 350;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      color: var(--c8-gold);
+    }
+    .lp-volume-card--lg .lp-volume-card__num {
+      font-size: clamp(3rem, 6.2vw, 5.4rem);
+    }
+    .lp-volume-card__period {
+      font-family: var(--montreal);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .lp-volume-card--lg .lp-volume-card__period { font-size: 0.85rem; }
+    .lp-volume-card__label {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+      font-weight: 350;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: #fff;
+    }
+    .lp-volume-card--lg .lp-volume-card__label {
+      font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+    }
+    .lp-volume-card__note {
+      margin: 0;
+      font-family: var(--montreal);
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.62);
+      max-width: 30rem;
+    }
+    .lp-volume-card--lg .lp-volume-card__note {
+      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      max-width: 28rem;
+    }
+
+    .lp-volume-card__deco {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0.55;
+      transition: opacity 0.5s ease;
+    }
+    .lp-volume-card:hover .lp-volume-card__deco { opacity: 0.85; }
+    .lp-volume-card__deco svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .lp-volume-card > *:not(.lp-volume-card__deco):not(.lp-volume-card__bar) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .lp-deco-wave {
+      fill: none;
+      stroke: var(--c8-gold);
+      stroke-width: 1.4;
+      transform-origin: 160px 40px;
+      animation: lp-wave 4s ease-out infinite;
+    }
+    .lp-deco-wave--1 { animation-delay: 0s; }
+    .lp-deco-wave--2 { animation-delay: 1s; }
+    .lp-deco-wave--3 { animation-delay: 2s; }
+    .lp-deco-wave--4 { animation-delay: 3s; }
+    @keyframes lp-wave {
+      0%   { transform: scale(0.4); opacity: 0.9; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    .lp-deco-node {
+      fill: var(--c8-gold);
+      animation: lp-node-pulse 3s ease-in-out infinite;
+    }
+    .lp-deco-node--1 { animation-delay: 0s; }
+    .lp-deco-node--2 { animation-delay: 0.5s; }
+    .lp-deco-node--3 { animation-delay: 1s; }
+    .lp-deco-node--4 { animation-delay: 1.5s; }
+    .lp-deco-node--5 { animation-delay: 2s; }
+    .lp-deco-node-link {
+      stroke: var(--c8-gold);
+      stroke-width: 1;
+      stroke-dasharray: 2 4;
+      opacity: 0.4;
+      animation: lp-node-flow 6s linear infinite;
+    }
+    @keyframes lp-node-pulse {
+      0%, 100% { transform: scale(1); transform-origin: center; opacity: 0.6; }
+      50%      { transform: scale(1.5); opacity: 1; }
+    }
+    @keyframes lp-node-flow {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -24; }
+    }
+
+    .lp-deco-bar {
+      fill: var(--c8-gold);
+      transform-origin: bottom;
+      animation: lp-bar-rise 2.4s ease-in-out infinite alternate;
+    }
+    .lp-deco-bar--1 { animation-delay: 0s;    fill-opacity: 0.4; }
+    .lp-deco-bar--2 { animation-delay: 0.15s; fill-opacity: 0.55; }
+    .lp-deco-bar--3 { animation-delay: 0.3s;  fill-opacity: 0.7; }
+    .lp-deco-bar--4 { animation-delay: 0.45s; fill-opacity: 0.85; }
+    .lp-deco-bar--5 { animation-delay: 0.6s;  fill-opacity: 1; fill: var(--c8-gold-dark); }
+    @keyframes lp-bar-rise {
+      0%   { transform: scaleY(0.7); }
+      100% { transform: scaleY(1); }
+    }
+
+    .lp-deco-doc {
+      fill: none;
+      stroke: var(--c8-gold);
+      stroke-width: 1.5;
+    }
+    .lp-deco-doc--1 {
+      fill: rgba(242,191,34,0.08);
+      animation: lp-doc-drift-a 5s ease-in-out infinite alternate;
+    }
+    .lp-deco-doc--2 {
+      fill: rgba(242,191,34,0.05);
+      animation: lp-doc-drift-b 6s ease-in-out infinite alternate;
+    }
+    .lp-deco-doc--3 {
+      fill: rgba(242,191,34,0.03);
+      animation: lp-doc-drift-c 7s ease-in-out infinite alternate;
+    }
+    .lp-deco-doc-line {
+      stroke: var(--c8-gold);
+      stroke-width: 1.2;
+      opacity: 0.55;
+    }
+    @keyframes lp-doc-drift-a { from { transform: translate(0, 0); } to { transform: translate(2px, -3px); } }
+    @keyframes lp-doc-drift-b { from { transform: translate(0, 0); } to { transform: translate(-2px, -2px); } }
+    @keyframes lp-doc-drift-c { from { transform: translate(0, 0); } to { transform: translate(-3px, 1px); } }
+
+    .lp-deco-pulse-ring {
+      fill: none;
+      stroke: var(--c8-gold);
+      stroke-width: 1.6;
+      transform-origin: 100px 100px;
+      animation: lp-ring-pulse 3.6s ease-out infinite;
+    }
+    .lp-deco-pulse-ring--1 { animation-delay: 0s; }
+    .lp-deco-pulse-ring--2 { animation-delay: 1.2s; }
+    .lp-deco-pulse-ring--3 { animation-delay: 2.4s; }
+    .lp-deco-pulse-core {
+      fill: var(--c8-gold-dark);
+      animation: lp-core-glow 2s ease-in-out infinite alternate;
+    }
+    .lp-deco-pulse-dot {
+      fill: var(--c8-gold);
+      opacity: 0.6;
+      animation: lp-core-glow 2.4s ease-in-out infinite alternate;
+    }
+    @keyframes lp-ring-pulse {
+      0%   { transform: scale(0.5); opacity: 0.85; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+    @keyframes lp-core-glow {
+      0%, 100% { opacity: 0.6; }
+      50%      { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lp-deco-wave, .lp-deco-node, .lp-deco-node-link,
+      .lp-deco-bar, .lp-deco-doc--1, .lp-deco-doc--2, .lp-deco-doc--3,
+      .lp-deco-pulse-ring, .lp-deco-pulse-core, .lp-deco-pulse-dot {
+        animation: none !important;
+      }
+    }
+
+    .lp-volume__trust {
+      margin: clamp(2.5rem, 5vh, 3.5rem) auto 0;
+      padding: 1.4rem clamp(1rem, 2vw, 1.5rem);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 0.85rem 1.4rem;
+    }
+    .lp-volume__trust-label {
+      font-family: var(--montreal); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.55);
+    }
+    .lp-volume__trust-list {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem;
+      font-family: var(--montreal); font-size: 0.88rem; color: rgba(255,255,255,0.85);
+    }
+    .lp-volume__trust-dot { color: var(--c8-gold-dark); font-size: 0.5rem; opacity: 0.7; }
+    @media (max-width: 800px) {
+      .lp-volume__trust { border-radius: 18px; padding: 1.4rem 1.2rem; }
+    }
+
+    /* BIG NUMBERS */
+    .lp-bignumbers {
+      background: #0a0a0a; color: #fff;
+      padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x);
+    }
+    .lp-bignumbers__inner {
+      max-width: var(--lp-max); margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: clamp(0.85rem, 1.4vw, 1.4rem);
+    }
+    @media (max-width: 1000px) { .lp-bignumbers__inner { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px)  { .lp-bignumbers__inner { grid-template-columns: 1fr; } }
+    .lp-bignum {
+      display: flex; flex-direction: column; gap: 1rem;
+      padding: clamp(1.4rem, 2.4vw, 1.85rem);
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1), border-color 0.4s ease, background 0.4s ease;
+    }
+    .lp-bignum:hover {
+      transform: translateY(-4px); border-color: rgba(242,191,34,0.4);
+      background: rgba(255,255,255,0.05);
+    }
+    .lp-bignum__top {
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 0.85rem;
+    }
+    .lp-bignum__val {
+      font-family: var(--font-display); font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+      font-weight: 350; letter-spacing: -0.04em; line-height: 0.9;
+      color: var(--c8-gold);
+    }
+    .lp-bignum__spark { width: 84px; height: 30px; flex: 0 0 auto; opacity: 0.85; }
+    .lp-bignum__label {
+      font-family: var(--montreal); font-size: 0.92rem; line-height: 1.5;
+      color: rgba(255,255,255,0.72);
+    }
+
+    /* SECTION HEADING HELPER */
+    .lp-h-head {
+      max-width: 38rem; margin: 0 auto clamp(3rem, 6vh, 4.5rem); text-align: center;
+    }
+    .lp-h-head--left { text-align: left; margin-left: 0; }
+    .lp-h-eyebrow {
+      margin: 0 0 1.1rem;
+      font-family: var(--montreal); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.28em; text-transform: uppercase; color: var(--c8-gold-dark);
+    }
+    .lp-h-title {
+      margin: 0;
+      font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 350; line-height: 1.05; letter-spacing: -0.025em;
+    }
+    .lp-h-sub {
+      margin: 1rem auto 0; max-width: 32rem;
+      font-family: var(--montreal); font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+      line-height: 1.55; color: #555;
+    }
+    .lp-h-head--left .lp-h-sub { margin-left: 0; }
+    .lp-accent { color: var(--c8-gold-dark); font-weight: 350; }
+
+    /* DISCIPLINES BENTO */
+    .lp-channels-sect { padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x); }
+    .lp-channels-grid {
+      max-width: var(--lp-max); margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: clamp(0.85rem, 1.4vw, 1.4rem);
+    }
+    @media (max-width: 900px) { .lp-channels-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .lp-channels-grid { grid-template-columns: 1fr; } }
+    .lp-ch-tile {
+      position: relative; display: flex; flex-direction: column;
+      aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden;
+      background: #111; color: #fff; text-decoration: none;
+      transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s ease;
+    }
+    .lp-ch-tile:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 32px 64px -22px rgba(0,0,0,0.4);
+    }
+    .lp-ch-tile__img { position: absolute; inset: 0; z-index: 0; }
+    .lp-ch-tile__img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .lp-ch-tile:hover .lp-ch-tile__img img { transform: scale(1.07); }
+    .lp-ch-tile__veil {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.85) 100%);
+    }
+    .lp-ch-tile__body {
+      position: relative; z-index: 1; margin-top: auto;
+      padding: clamp(1.4rem, 2.4vw, 2rem);
+    }
+    .lp-ch-tile__name {
+      margin: 0 0 0.55rem;
+      font-family: var(--font-display); font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+      font-weight: 350; letter-spacing: -0.02em;
+    }
+    .lp-ch-tile__pitch {
+      margin: 0;
+      font-family: var(--montreal); font-size: 0.95rem; line-height: 1.45;
+      color: rgba(255,255,255,0.78); max-width: 22rem;
+    }
+    .lp-ch-tile__arrow {
+      position: absolute;
+      top: clamp(1.2rem, 2.4vw, 1.85rem); right: clamp(1.2rem, 2.4vw, 1.85rem);
+      z-index: 1;
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-family: var(--montreal); font-size: 1.1rem;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .lp-ch-tile:hover .lp-ch-tile__arrow {
+      background: var(--c8-gold); color: #111; transform: rotate(-45deg);
+      border-color: var(--c8-gold);
+    }
+
+    /* TABS */
+    .lp-tabs-sect {
+      padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x); background: #f7f6f3;
+    }
+    .lp-tabs { max-width: var(--lp-max); margin: 0 auto; }
+    .lp-tabs__nav {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem;
+      margin: 0 auto clamp(2.5rem, 5vh, 3.5rem);
+      padding: 0.4rem;
+      background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 999px;
+      box-shadow: 0 18px 36px -22px rgba(0,0,0,0.12);
+      width: fit-content;
+    }
+    .lp-tab {
+      appearance: none; background: transparent; border: 0; cursor: pointer;
+      padding: 0.7rem 1.25rem; border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: var(--montreal); font-size: 0.92rem; font-weight: 600;
+      letter-spacing: -0.005em; color: #555; white-space: nowrap;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .lp-tab:hover { color: #0a0a0a; }
+    .lp-tab.is-active { background: #0a0a0a; color: #fff; }
+    .lp-tab__num {
+      font-family: var(--font-display); font-size: 0.75rem;
+      letter-spacing: 0.12em; color: var(--c8-gold-dark); opacity: 0.85;
+    }
+    .lp-tab.is-active .lp-tab__num { color: var(--c8-gold); opacity: 1; }
+    .lp-tabs__stage { position: relative; display: grid; }
+    .lp-tabs__panel {
+      grid-column: 1 / 2; grid-row: 1 / 2;
+      display: grid; grid-template-columns: 1.05fr 1fr;
+      gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center;
+      opacity: 0; transform: translateY(8px); pointer-events: none;
+      transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1), transform 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    .lp-tabs__panel.is-active {
+      opacity: 1; transform: translateY(0); pointer-events: auto;
+    }
+    @media (max-width: 900px) { .lp-tabs__panel { grid-template-columns: 1fr; } }
+    .lp-tabs__media {
+      position: relative; margin: 0; aspect-ratio: 4 / 3;
+      border-radius: 16px; overflow: hidden; background: #111;
+    }
+    .lp-tabs__media img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .lp-tabs__panel.is-active .lp-tabs__media img { transform: scale(1.04); }
+    .lp-tabs__claim {
+      position: absolute; bottom: 1rem; left: 1rem;
+      padding: 0.5rem 1rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 999px;
+      color: var(--c8-gold);
+      font-family: var(--montreal); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .lp-tabs__pillar-num {
+      display: inline-block; margin: 0 0 1rem;
+      font-family: var(--montreal); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--c8-gold-dark);
+    }
+    .lp-tabs__headline {
+      margin: 0 0 1.4rem;
+      font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      font-weight: 350; line-height: 1.1; letter-spacing: -0.02em;
+      color: #0a0a0a; max-width: 28ch;
+    }
+    .lp-tabs__points {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; flex-direction: column; gap: 0.7rem;
+    }
+    .lp-tabs__points li {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      font-family: var(--montreal); font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      line-height: 1.5; color: #2a2a2a;
+    }
+    .lp-tabs__check {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(242,191,34,0.18); color: var(--c8-gold-dark);
+      flex: 0 0 auto; margin-top: 0.1rem;
+    }
+
+    /* PROOF */
+    .lp-proof { padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x); background: #fff; }
+    .lp-proof-grid {
+      max-width: var(--lp-max); margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: clamp(1rem, 1.6vw, 1.6rem);
+    }
+    @media (max-width: 1100px) { .lp-proof-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px)  { .lp-proof-grid { grid-template-columns: 1fr; } }
+    .lp-case {
+      display: flex; flex-direction: column; background: #fff;
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 22px 44px -22px rgba(0,0,0,0.18);
+      transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s ease;
+    }
+    .lp-case:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 36px 64px -24px rgba(0,0,0,0.28);
+    }
+    .lp-case__media {
+      position: relative; margin: 0; aspect-ratio: 4 / 3;
+      overflow: hidden; background: #111;
+    }
+    .lp-case__media img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .lp-case:hover .lp-case__media img { transform: scale(1.05); }
+    .lp-case__chip {
+      position: absolute; top: 1rem; left: 1rem;
+      padding: 0.4rem 0.85rem; background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 999px;
+      color: #fff; font-family: var(--montreal); font-size: 0.7rem;
+      font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .lp-case__body { padding: clamp(1.2rem, 2vw, 1.7rem); }
+    .lp-case__company {
+      display: inline-block; margin: 0 0 0.7rem;
+      font-family: var(--montreal); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #888;
+    }
+    .lp-case__headline {
+      margin: 0 0 0.85rem; display: flex; flex-direction: column; gap: 0.15rem;
+    }
+    .lp-case__h-main {
+      font-family: var(--font-display); font-size: clamp(2rem, 3.6vw, 2.85rem);
+      font-weight: 350; letter-spacing: -0.04em; line-height: 0.95;
+      color: var(--c8-gold-dark);
+    }
+    .lp-case__h-sub {
+      font-family: var(--montreal); font-size: 0.85rem; letter-spacing: 0.01em; color: #555;
+    }
+    .lp-case__body-text {
+      margin: 0;
+      font-family: var(--montreal); font-size: 0.88rem; line-height: 1.55; color: #444;
+    }
+
+    /* TESTIMONIAL CAROUSEL */
+    .lp-testi-section {
+      padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(242,191,34,0.08) 0%, transparent 55%),
+        #0a0a0a;
+      color: #fff;
+    }
+    .lp-testi__inner {
+      max-width: 980px; margin: 0 auto; text-align: center; position: relative;
+    }
+    .lp-testi__quote-mark {
+      display: block;
+      font-family: var(--font-display); font-size: clamp(6rem, 12vw, 10rem);
+      line-height: 0.6; color: var(--c8-gold-dark); opacity: 0.4;
+      margin-bottom: 1rem;
+    }
+    .lp-testi__stage {
+      position: relative; min-height: 280px; display: grid;
+    }
+    .lp-testi__slide {
+      grid-column: 1 / 2; grid-row: 1 / 2;
+      opacity: 0; transform: translateY(8px); pointer-events: none;
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .lp-testi__slide.is-active {
+      opacity: 1; transform: translateY(0); pointer-events: auto;
+    }
+    .lp-testi__quote { margin: 0 0 2rem; }
+    .lp-testi__quote p {
+      margin: 0;
+      font-family: var(--font-display); font-size: clamp(1.45rem, 2.8vw, 2.3rem);
+      font-weight: 350; line-height: 1.3; letter-spacing: -0.015em; color: #fff;
+    }
+    .lp-testi__cite {
+      display: flex; align-items: center; justify-content: center; gap: 0.85rem;
+      font-family: var(--montreal);
+    }
+    .lp-testi__avatar {
+      width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+      border: 2px solid rgba(242,191,34,0.5);
+    }
+    .lp-testi__cite > div { text-align: left; }
+    .lp-testi__name { display: block; font-weight: 600; font-size: 0.95rem; }
+    .lp-testi__role { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+    .lp-testi__controls {
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      margin-top: clamp(1.5rem, 3vh, 2.5rem);
+    }
+    .lp-testi__nav {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+    .lp-testi__nav:hover {
+      background: var(--c8-gold); border-color: var(--c8-gold); color: #111;
+      transform: translateY(-1px);
+    }
+    .lp-testi__dots {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .lp-testi__dot {
+      appearance: none; width: 8px; height: 8px; padding: 0;
+      border-radius: 50%; background: rgba(255,255,255,0.22);
+      border: 0; cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease, width 0.25s ease;
+    }
+    .lp-testi__dot:hover { background: rgba(255,255,255,0.45); }
+    .lp-testi__dot.is-active {
+      background: var(--c8-gold); width: 22px; border-radius: 4px;
+    }
+
+    /* FAQS */
+    .lp-faqs-sect { padding: clamp(5rem, 10vh, 8rem) var(--lp-pad-x); background: #fff; }
+    .lp-faqs__inner { max-width: 880px; margin: 0 auto; }
+    .lp-faqs__list {
+      list-style: none; margin: 0; padding: 0;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    .lp-faq-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .lp-faq-item details { padding: clamp(1.2rem, 2vw, 1.5rem) 0.25rem; }
+    .lp-faq-item summary {
+      cursor: pointer; list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      font-family: var(--font-display); font-size: clamp(1.05rem, 1.45vw, 1.25rem);
+      font-weight: 350; letter-spacing: -0.01em; color: #0a0a0a;
+    }
+    .lp-faq-item summary::-webkit-details-marker { display: none; }
+    .lp-faq-item__icon {
+      width: 28px; height: 28px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(0,0,0,0.2); border-radius: 50%;
+      font-family: var(--montreal); font-size: 1rem; font-weight: 300; color: #555;
+      transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+    .lp-faq-item details[open] .lp-faq-item__icon {
+      transform: rotate(45deg); background: var(--c8-gold);
+      border-color: var(--c8-gold); color: #111;
+    }
+    .lp-faq-item__a {
+      margin: 1rem 0 0;
+      font-family: var(--montreal); font-size: 1rem; line-height: 1.65;
+      color: #444; max-width: 60ch;
+    }
+
+    /* FINAL CTA */
+    .lp-final {
+      position: relative; padding: clamp(6rem, 12vh, 10rem) var(--lp-pad-x);
+      color: #fff; overflow: hidden; isolation: isolate;
+    }
+    .lp-final__bg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: -2;
+      transform: scale(1.04);
+      animation: lp-final-zoom 18s ease-out infinite alternate;
+    }
+    @keyframes lp-final-zoom {
+      0%   { transform: scale(1.04); }
+      100% { transform: scale(1.1); }
+    }
+    .lp-final__veil {
+      position: absolute; inset: 0; z-index: -1;
+      background:
+        linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.65) 100%),
+        radial-gradient(circle at 70% 30%, rgba(242,191,34,0.18) 0%, transparent 55%);
+    }
+    .lp-final__inner { max-width: 56rem; margin: 0 auto; text-align: center; }
+    .lp-final__eyebrow {
+      margin: 0 0 1.4rem;
+      font-family: var(--montreal); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.28em; text-transform: uppercase; color: var(--c8-gold);
+    }
+    .lp-final__title {
+      margin: 0 0 1.4rem;
+      font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 350; line-height: 1.05; letter-spacing: -0.025em;
+    }
+    .lp-final__title .lp-accent { color: var(--c8-gold); }
+    .lp-final__sub {
+      margin: 0 auto 2.2rem; max-width: 38rem;
+      font-family: var(--montreal); font-size: clamp(1rem, 1.2vw, 1.15rem);
+      line-height: 1.55; color: rgba(255,255,255,0.78);
+    }
+
+    /* CTAs */
+    .lp-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.95rem 1.6rem; border-radius: 999px;
+      font-family: var(--montreal); font-size: 0.95rem; font-weight: 600;
+      letter-spacing: -0.005em; text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .lp-cta--lg { padding: 1.05rem 1.85rem; font-size: 1rem; }
+    .lp-cta--primary {
+      background: var(--c8-gold); color: #111;
+      box-shadow: 0 14px 32px -10px rgba(242,191,34,0.5);
+    }
+    .lp-cta--primary:hover {
+      background: #fff; color: #111; transform: translateY(-2px);
+      box-shadow: 0 18px 36px -10px rgba(242,191,34,0.6);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lp-final__bg, .lp-marquee__track { animation: none !important; }
+    }
+  </style>
+</Layout>

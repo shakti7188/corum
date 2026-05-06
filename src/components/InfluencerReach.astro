@@ -147,7 +147,8 @@ const centerVideo = resolveMedia('video.ambient');
        other section so the inner max-width reaches the same content
        rails. Vertical padding tightened from 5–9rem to 4–6rem to
        reduce overall height per user direction. */
-    padding: clamp(4rem, 8vh, 6rem) clamp(1.5rem, 5vw, 5rem);
+    padding-block: var(--c8-pad-section);
+    padding-inline: var(--c8-section-pad);
     /* Full-width pure white slab — alternates rhythm against the warm-cream
        Services / Process sections above + below. */
     background: #ffffff;

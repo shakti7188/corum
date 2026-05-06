@@ -32,6 +32,16 @@ const contact = {
   phone:   '+1 (302) 200-3000',
 };
 
+// Awards / industry recognition shown as a small logo strip beneath the
+// brand description. Logos live at /public/awards/*.png.
+const awardLogos = [
+  { src: '/awards/blockchain-life.png', alt: 'Blockchain Life' },
+  { src: '/awards/dubai-expo.png',      alt: 'Dubai Expo 2020' },
+  { src: '/awards/emmi-empire.png',     alt: 'Emmi Empire' },
+  { src: '/awards/finext.png',          alt: 'Finext Conference' },
+  { src: '/awards/iisa.png',            alt: 'IISA' },
+];
+
 // Premium dark world-map image (Unsplash) for the left tile.
 const mapImage = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=900&fit=crop';
 ---
@@ -76,6 +86,17 @@ const mapImage = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w
         media, KOL networks and full-stack engineering under one roof to help
         founders ship, launch and scale.
       </p>
+
+      <div class="c8-footer__awards" aria-label="Industry recognition">
+        <span class="c8-footer__awards-label">Recognized at</span>
+        <ul class="c8-footer__awards-list">
+          {awardLogos.map((a) => (
+            <li>
+              <img src={a.src} alt={a.alt} loading="lazy" />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
 
     <div class="c8-footer__col">
@@ -284,6 +305,53 @@ const mapImage = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w
     line-height: 1.55;
     color: #4f5563;
     max-width: 28rem;
+  }
+
+  /* Awards strip in the brand column — muted greyscale logos, lifts on hover */
+  .c8-footer__awards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin: 0 0 1.4rem;
+    max-width: 28rem;
+  }
+  .c8-footer__awards-label {
+    font-family: var(--montreal);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #707682;
+  }
+  .c8-footer__col .c8-footer__awards-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 0.7rem;
+    column-gap: 0.7rem;
+  }
+  .c8-footer__awards-list li {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+  }
+  .c8-footer__awards-list img {
+    height: 100%;
+    max-height: 24px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.4);
+    opacity: 0.6;
+    transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  }
+  .c8-footer__awards-list li:hover img {
+    filter: none;
+    opacity: 1;
+    transform: translateY(-1px);
   }
   .c8-footer__socials {
     display: flex;

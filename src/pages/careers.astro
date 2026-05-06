@@ -1,0 +1,408 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const perks = [
+  {
+    title: "Work from anywhere",
+    desc: "100% remote. We care about your output, not your timezone or desk location."
+  },
+  {
+    title: "Top 1% Compensation",
+    desc: "We pay aggressively above market to attract the absolute best in the industry."
+  },
+  {
+    title: "Continuous Evolution",
+    desc: "$3,000/year budget dedicated exclusively to your courses, books, and conferences."
+  },
+  {
+    title: "Global Health",
+    desc: "Comprehensive premium health coverage for you and your dependents, everywhere."
+  },
+  {
+    title: "Premium Gear",
+    desc: "A fully maxed-out MacBook Pro and home office setup on us, from day one."
+  },
+  {
+    title: "Mandatory Time Off",
+    desc: "Unlimited PTO, with a strictly enforced minimum of 3 weeks off per year."
+  }
+];
+
+const jobs = [
+  {
+    dept: "Engineering",
+    roles: [
+      { title: "Senior Smart Contract Engineer", loc: "Remote", type: "Full-Time" },
+      { title: "Lead Frontend Engineer (React/Astro)", loc: "Remote", type: "Full-Time" }
+    ]
+  },
+  {
+    dept: "Marketing",
+    roles: [
+      { title: "Performance Marketing Director", loc: "Remote", type: "Full-Time" },
+      { title: "Web3 Growth Lead", loc: "Remote", type: "Full-Time" }
+    ]
+  },
+  {
+    dept: "Sales",
+    roles: [
+      { title: "Enterprise Account Executive", loc: "Remote", type: "Full-Time" }
+    ]
+  }
+];
+---
+
+<Layout title="Careers | Corum8">
+  <Fragment slot="head">
+    <meta name="description" content="Join Corum8. Build the future of Web3, AI, and enterprise performance marketing." />
+  </Fragment>
+
+  <main class="careers-main">
+    
+    <!-- ── HERO ── -->
+    <section class="section-pad" data-reveal-stagger="100">
+      <div class="container-wide">
+        <div class="careers-hero-grid">
+          <div class="careers-hero-text" data-reveal="up">
+            <span class="careers-eyebrow">Careers at Corum8</span>
+            <h1 class="h2" style="margin: 0; line-height: 1.1;">
+              Do the best work of your <span class="c8-gold-text display">life.</span>
+            </h1>
+            <p class="careers-paragraph-large mt-4">
+              We are a collective of elite engineers, strategists, and growth hackers building scalable systems that dominate markets. No red tape. No bureaucracy. Just pure execution.
+            </p>
+            <div class="mt-8">
+              <a href="#roles" class="Button_button__JJiqJ" style="display: inline-flex; text-decoration: none;">
+                <span class="Button_inner__fnyH6">
+                  <span class="Button_text__IZaCD">
+                    View Open Roles
+                    <svg class="Button_buttonArrow__0W9XI" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="careers-hero-image" data-reveal="up">
+            <img src="/images/gen/careers_hero_1778043690598.png" alt="Corum8 Infrastructure" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ETHOS ── -->
+    <section class="section-pad">
+      <div class="container-wide">
+        <div class="split-layout">
+          <div class="split-text" data-reveal-stagger="100">
+            <h2 class="h2" data-reveal="up" style="margin: 0 0 1rem;">We hire <span class="c8-gold-text">leaders.</span></h2>
+            <p class="careers-paragraph" data-reveal="up">
+              At Corum8, "that's not my job" doesn't exist in our vocabulary. If you see a problem, you own the solution. We give you the autonomy to build, the resources to scale, and the expectation to win.
+            </p>
+          </div>
+          <div class="split-image-wrapper" data-reveal="up">
+            <img src="/images/corum8-team.png" alt="Corum8 Team" class="split-img" />
+          </div>
+        </div>
+        
+        <div class="split-layout split-layout--reverse mt-16">
+          <div class="split-image-wrapper" data-reveal="up">
+            <img src="/images/gen/careers_culture_1778043708074.png" alt="Speed as a habit" class="split-img" />
+          </div>
+          <div class="split-text" data-reveal-stagger="100">
+            <h2 class="h2" data-reveal="up" style="margin: 0 0 1rem;">Speed is our <span class="c8-gold-text">habit.</span></h2>
+            <p class="careers-paragraph" data-reveal="up">
+              Perfection is the enemy of shipped. The market moves fast, and we move faster. We iterate constantly and outpace the competition. If you thrive in high-velocity environments, you belong here.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PERKS ── -->
+    <section class="section-pad dark-panel">
+      <div class="container-wide">
+        <div class="text-center" data-reveal-stagger="100" style="max-width: 800px; margin: 0 auto;">
+          <h2 class="h2" data-reveal="up" style="margin: 0 0 1rem;">The <span class="c8-gold-text">Standard.</span></h2>
+          <p class="careers-paragraph" data-reveal="up">
+            We demand the absolute best from our team, so we provide an unparalleled environment in return.
+          </p>
+        </div>
+        
+        <div class="bento-grid mt-12" data-reveal-stagger="50">
+          {perks.map((p, i) => (
+            <div class="perk-card glass glass--interactive" data-reveal="up">
+              <span class="perk-num">0{i + 1}</span>
+              <h3 class="h4" style="margin: 0 0 0.5rem;">{p.title}</h3>
+              <p class="careers-paragraph-small">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ROLES ── -->
+    <section class="section-pad" id="roles">
+      <div class="container-wide">
+        <header class="text-center" data-reveal-stagger="100">
+          <h2 class="h2" data-reveal="up" style="margin: 0 0 1rem;">Open <span class="c8-gold-text">Positions.</span></h2>
+        </header>
+        
+        <div class="jobs-wrapper mt-12" data-reveal-stagger="50">
+          {jobs.map(group => (
+            <div class="job-group" data-reveal="up">
+              <h3 class="job-dept">{group.dept}</h3>
+              <div class="job-list">
+                {group.roles.map(role => (
+                  <a href="/contact" class="job-row link-underline">
+                    <div class="job-info">
+                      <h4 class="h5" style="margin: 0 0 0.25rem;">{role.title}</h4>
+                      <span class="job-meta">{role.loc} · {role.type}</span>
+                    </div>
+                    <div class="job-apply">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--c8-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="pitch-banner glass glass--interactive mt-16" data-reveal="up">
+          <div class="pitch-content">
+            <h3 class="h3" style="margin: 0 0 0.5rem;">Don't see your role?</h3>
+            <p class="careers-paragraph-small">We are always looking for exceptional talent. If you are in the top 1% of your field, pitch us.</p>
+          </div>
+          <a href="/contact" class="Button_button__JJiqJ" style="display: inline-flex; text-decoration: none;">
+            <span class="Button_inner__fnyH6">
+              <span class="Button_text__IZaCD">
+                Pitch Us
+                <svg class="Button_buttonArrow__0W9XI" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <style is:global>
+    .careers-main {
+      width: 100%;
+    }
+
+    .careers-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--c8-gold-dark);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .careers-paragraph-large {
+      font-family: var(--font-sans);
+      font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+      line-height: 1.5;
+      color: var(--color-ink);
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0;
+    }
+
+    .careers-paragraph {
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--color-ink);
+      opacity: 0.75;
+      margin: 0;
+    }
+
+    .careers-paragraph-small {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--color-ink);
+      opacity: 0.7;
+      margin: 0;
+    }
+
+    /* Utilites for Spacing */
+    .mt-4 { margin-top: 1rem; }
+    .mt-8 { margin-top: 2rem; }
+    .mt-12 { margin-top: 3rem; }
+    .mt-16 { margin-top: 4rem; }
+    .text-center { text-align: center; }
+
+    /* Hero */
+    .careers-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .careers-hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .careers-hero-image {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      transform: rotate(1.5deg);
+      transition: transform 0.6s var(--ease-primary);
+    }
+    .careers-hero-image:hover {
+      transform: rotate(0deg) scale(1.02);
+    }
+    .careers-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Split Layout */
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: center;
+    }
+    .split-layout--reverse {
+      direction: rtl;
+    }
+    .split-layout--reverse > * {
+      direction: ltr;
+    }
+    @media (max-width: 900px) {
+      .split-layout { grid-template-columns: 1fr; }
+      .split-layout--reverse { direction: ltr; }
+      .reverse-mobile .split-text { order: 2; }
+    }
+    .split-image-wrapper {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 16/11;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    }
+    .split-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease-primary);
+    }
+    .split-image-wrapper:hover .split-img {
+      transform: scale(1.05);
+    }
+
+    /* Dark Panel Overlay */
+    .dark-panel {
+      background: var(--color-bg-dark);
+      color: var(--color-ink-on-dark);
+    }
+    .dark-panel .careers-paragraph,
+    .dark-panel .careers-paragraph-small,
+    .dark-panel .careers-paragraph-large {
+      color: var(--color-ink-on-dark-mute);
+    }
+
+    /* Perks Bento */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 1000px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .bento-grid { grid-template-columns: 1fr; } }
+    .perk-card {
+      padding: 2.5rem;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+    .perk-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--c8-gold);
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    /* Jobs Directory */
+    .jobs-wrapper {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .job-group {
+      margin-bottom: 4rem;
+    }
+    .job-dept {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c8-gold-dark);
+      border-bottom: 1px solid var(--color-rule);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+    .job-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--color-rule);
+      text-decoration: none;
+      color: var(--color-ink);
+      transition: padding-left 0.3s ease;
+    }
+    .job-row:hover {
+      padding-left: 1rem;
+      border-bottom-color: var(--c8-gold);
+    }
+    .job-meta {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--color-ink-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .job-apply {
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s ease;
+    }
+    .job-row:hover .job-apply {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Pitch Banner */
+    .pitch-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      padding: 3rem 4rem;
+      border-radius: 20px;
+      background: var(--c8-gold-soft);
+      border: 1px solid var(--c8-gold);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 768px) {
+      .pitch-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 2.5rem 2rem;
+      }
+    }
+  </style>
+</Layout>

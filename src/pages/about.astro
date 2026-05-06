@@ -5,16 +5,17 @@ import Navigation      from '../components/Navigation.astro';
 import Header          from '../components/Header.astro';
 import Footer          from '../components/Footer.astro';
 import Preloader       from '../components/Preloader.astro';
-
 import WhatsAppButton  from '../components/WhatsAppButton.astro';
 import ScrollReveal    from '../components/ScrollReveal.astro';
+import Awards          from '../components/Awards.astro';
+import FinalCta        from '../components/FinalCta.astro';
 ---
 <!doctype html>
 <html lang="en" class="__variable_a78db3 __variable_ab8453">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>About | Corum8</title>
+    <title>About Us | Corum8 - Web3 Growth Partner</title>
 
     <link rel="icon"            type="image/png" href="/favicon.png" />
     <link rel="shortcut icon"   type="image/png" href="/favicon.png" />
@@ -22,7 +23,6 @@ import ScrollReveal    from '../components/ScrollReveal.astro';
 
     <link rel="preload" href="/_next/static/media/482a8097102f5f9f-s.p.woff2" as="font"  type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/logo/icon-gold.png"                    as="image" fetchpriority="high" />
-    <link rel="preload" href="/media/bg2.mp4"                                as="video" type="video/mp4" />
 
     <link rel="stylesheet" href="/css/c6a848d34dfd7dce.css" />
     <link rel="stylesheet" href="/css/0aea7e632ce3cedf.css" />
@@ -46,21 +46,245 @@ import ScrollReveal    from '../components/ScrollReveal.astro';
 
   <body>
     <Preloader />
-
     <Navigation />
     <Header />
 
-    <main class="internal-page-main" style="min-height: 80vh; padding: 160px 24px 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-      <!-- Use global styles/media, but clear out the specific content sections -->
-      <h1 style="color: var(--nb-brand-gold, #F2BF22); font-size: clamp(3rem, 5vw, 5rem); text-transform: uppercase; font-family: var(--font-heading, sans-serif); margin-bottom: 24px;">About Us</h1>
-      <p style="color: var(--nb-text-muted, #888); font-size: 1.25rem; max-width: 600px;">Content structure for this internal page will be developed here.</p>
+    <main class="c8-internal">
+      
+      <!-- 1. EDITORIAL HERO -->
+      <section class="c8-about-hero-editorial" data-reveal-stagger="100">
+        <!-- Animated Light Background -->
+        <div class="c8-hero-light-bg">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" alt="Abstract Light Background" />
+          <div class="c8-hero-light-overlay"></div>
+        </div>
+        
+        <div class="c8-container">
+          <div class="c8-editorial-grid">
+            <div class="c8-editorial-text" data-reveal="up">
+              <p class="c8-eyebrow">The Partner Behind The Pioneers</p>
+              <h1 class="c8-heading-massive">
+                We engineer<br/>
+                <span class="c8-gold-text">market</span><br/>
+                dominance.
+              </h1>
+              
+              <!-- Big Clients -->
+              <div class="c8-hero-clients" data-reveal="up">
+                <span class="c8-client-text">Trusted by:</span>
+                <span class="c8-client-logo">Binance</span>
+                <span class="c8-client-sep">•</span>
+                <span class="c8-client-logo">KuCoin</span>
+                <span class="c8-client-sep">•</span>
+                <span class="c8-client-logo">Polygon</span>
+                <span class="c8-client-sep">•</span>
+                <span class="c8-client-logo">Huobi</span>
+              </div>
+            </div>
+            <div class="c8-editorial-image-wrapper" data-reveal="up">
+              <img src="/images/corum8-mission.png" alt="Corum8 Mission" class="c8-editorial-image" />
+              <div class="c8-hero-badge">
+                <span class="c8-badge-number">1,100+</span>
+                <span class="c8-badge-text">Global Projects Scaled</span>
+              </div>
+            </div>
+          </div>
+          <div class="c8-hero-sub-text" data-reveal="up">
+            <p class="c8-paragraph-large">
+              Corum8 is not a traditional agency. We are an elite brain trust of ex-founders, deep-tech engineers, and quantitative marketers. We partner with serious Web3, AI, and Fintech companies to provide the infrastructure, distribution, and strategic capital networks required to win.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. THE BRAIN TRUST (Who We Are) -->
+      <section class="c8-about-culture">
+        <div class="c8-container">
+          <div class="c8-split-layout c8-reverse-mobile">
+            <div class="c8-split-text" data-reveal-stagger="100">
+              <p class="c8-eyebrow" data-reveal="up">Our DNA</p>
+              <h2 class="c8-heading-large" data-reveal="up">Built by founders, <br/><span class="c8-gold-text">for founders.</span></h2>
+              <p class="c8-paragraph" data-reveal="up">
+                When you hire an agency, you usually get account managers. When you partner with Corum8, you inherit an entire operational ecosystem.
+              </p>
+              <p class="c8-paragraph" data-reveal="up">
+                Our team is composed of blockchain architects who have deployed enterprise-grade smart contracts, PR veterans who control narratives in Forbes and Bloomberg, and growth hackers who know exactly how to manipulate algorithms to drive massive, qualified volume. We understand your product because we build products just like it.
+              </p>
+            </div>
+            <div class="c8-split-images" data-reveal-stagger="100">
+              <img src="/images/corum8-team.png" alt="Corum8 Team" class="c8-img-main" data-reveal="up" />
+              <img src="/images/culture-row-1.jpg" alt="Corum8 Office" class="c8-img-sub" data-reveal="up" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. OUR UNFAIR ADVANTAGE (Pitch Deck Style) -->
+      <section class="c8-about-reality">
+        <div class="c8-container">
+          <header class="c8-section-head" data-reveal-stagger="100">
+            <p class="c8-eyebrow" data-reveal="up">The Corum8 Arsenal</p>
+            <h2 class="c8-heading-large" data-reveal="up">What you actually inherit <br/>when you <span class="c8-gold-text">partner with us.</span></h2>
+          </header>
+
+          <div class="c8-bento-grid" data-reveal-stagger="100">
+            <div class="c8-bento-card" data-reveal="up">
+              <div class="c8-bento-image">
+                <img src="/images/bento1.jpg" alt="Institutional Network" />
+              </div>
+              <div class="c8-bento-content">
+                <h3 class="c8-heading-medium">The Institutional Network</h3>
+                <p class="c8-paragraph-small">Decades of combined experience have allowed us to build direct backchannel relationships. We have immediate access to Tier-1 exchange listing directors (Binance, KuCoin), market makers, and elite Web3 venture syndicates.</p>
+              </div>
+            </div>
+
+            <div class="c8-bento-card" data-reveal="up">
+              <div class="c8-bento-image">
+                <video src="/media/Featured-compressed.mp4" autoplay loop muted playsinline></video>
+              </div>
+              <div class="c8-bento-content">
+                <h3 class="c8-heading-medium">The Distribution Engine</h3>
+                <p class="c8-paragraph-small">We don't just "run ads." We control distribution. We bring an exclusive network of 25,000+ crypto and finance KOLs, 10,000+ media outlets, and proprietary SEO/AEO architectures that guarantee absolute market visibility.</p>
+              </div>
+            </div>
+
+            <div class="c8-bento-card" data-reveal="up">
+              <div class="c8-bento-image">
+                <img src="/images/back-end.jpg" alt="Engineering Core" />
+              </div>
+              <div class="c8-bento-content">
+                <h3 class="c8-heading-medium">The Engineering Core</h3>
+                <p class="c8-paragraph-small">True growth requires technical flexibility. Our in-house engineering team allows us to rapidly deploy custom DeFi protocols, scale token mechanics, build AI data pipelines, and develop high-converting user interfaces overnight.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. OUR STANDARDS (Culture of Execution) -->
+      <section class="c8-about-edge">
+        <div class="c8-container">
+          <div class="c8-split-layout c8-reverse-mobile">
+            <div class="c8-split-image" data-reveal="up">
+              <img src="/images/approach.webp" alt="Corum8 Approach" />
+            </div>
+            <div class="c8-split-text" data-reveal-stagger="100">
+              <p class="c8-eyebrow" data-reveal="up">Operational Philosophy</p>
+              <h2 class="c8-heading-large" data-reveal="up">The standards we hold <br/>ourselves to.</h2>
+              <ul class="c8-list">
+                <li data-reveal="up">
+                  <span class="c8-list-num">01/</span>
+                  <div>
+                    <h4 class="c8-heading-small">Radical Transparency</h4>
+                    <p class="c8-paragraph-small">No black-box reporting or vanity metrics. You see the raw data, the exact pipelines, and the unvarnished reality of the campaign at all times. We treat your capital as our own.</p>
+                  </div>
+                </li>
+                <li data-reveal="up">
+                  <span class="c8-list-num">02/</span>
+                  <div>
+                    <h4 class="c8-heading-small">Agile Execution</h4>
+                    <p class="c8-paragraph-small">In decentralized markets, momentum is everything. We operate without bureaucratic layers. When a market narrative shifts, our team pivots campaigns and deploys code in hours, not weeks.</p>
+                  </div>
+                </li>
+                <li data-reveal="up">
+                  <span class="c8-list-num">03/</span>
+                  <div>
+                    <h4 class="c8-heading-small">Revenue Accountability</h4>
+                    <p class="c8-paragraph-small">Traffic, likes, and followers are irrelevant if they don't impact the bottom line. Every strategy we execute is reverse-engineered from your core revenue or liquidity goals.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. WHAT WE DELIVER (Sales Focus) -->
+      <section class="c8-about-delivery">
+        <div class="c8-container">
+          <header class="c8-section-head" data-reveal-stagger="100">
+            <p class="c8-eyebrow" data-reveal="up">The Bottom Line</p>
+            <h2 class="c8-heading-large" data-reveal="up">We don't sell hours.<br/>We sell <span class="c8-gold-text">market share.</span></h2>
+          </header>
+
+          <div class="c8-delivery-grid" data-reveal-stagger="100">
+            <div class="c8-delivery-card" data-reveal="up">
+              <div class="c8-delivery-number">$120M+</div>
+              <h3 class="c8-heading-medium">Liquidity Generated</h3>
+              <p class="c8-paragraph-small">Through strategic tokenomics, market-maker introductions, and Tier-1 exchange listings, we ensure your token launches with explosive and sustained volume.</p>
+            </div>
+            <div class="c8-delivery-card" data-reveal="up">
+              <div class="c8-delivery-number">2M+</div>
+              <h3 class="c8-heading-medium">Wallets Acquired</h3>
+              <p class="c8-paragraph-small">Our growth engineering pipelines and 25,000+ KOL network drive qualified, high-LTV users directly into your ecosystem at scale.</p>
+            </div>
+            <div class="c8-delivery-card" data-reveal="up">
+              <div class="c8-delivery-number">10x</div>
+              <h3 class="c8-heading-medium">Average ROI</h3>
+              <p class="c8-paragraph-small">Every campaign is reverse-engineered from your revenue goals. We deploy code and capital exclusively to maximize your return on spend.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. AWARDS SECTION (Reusing global component) -->
+      <Awards />
+
+      <!-- 7. GLOBAL INFRASTRUCTURE -->
+      <section class="c8-about-presence">
+        <div class="c8-container" data-reveal-stagger="100">
+          <header class="c8-section-head text-center" data-reveal="up">
+            <h2 class="c8-heading-large">A globally distributed <span class="c8-gold-text">command center.</span></h2>
+            <p class="c8-paragraph" style="max-width: 800px; margin: 0 auto;">
+              We operate where the capital flows. Our decentralized hubs allow us to maintain 24/7 operational capability, providing our clients with immediate access to localized media, regulatory insights, and regional liquidity networks.
+            </p>
+          </header>
+
+          <div class="c8-grid-4" data-reveal-stagger="50">
+            <div class="c8-city-card" data-reveal="up">
+              <img src="/images/bento1-1.jpg" alt="Dubai" class="c8-city-bg" />
+              <div class="c8-city-content">
+                <h3>Dubai, UAE</h3>
+                <p>MENA HQ & Institutional</p>
+              </div>
+            </div>
+            <div class="c8-city-card" data-reveal="up">
+              <img src="/images/bento3.jpg" alt="New York" class="c8-city-bg" />
+              <div class="c8-city-content">
+                <h3>New York, USA</h3>
+                <p>North America & PR</p>
+              </div>
+            </div>
+            <div class="c8-city-card" data-reveal="up">
+              <img src="/images/bento4-1.jpg" alt="London" class="c8-city-bg" />
+              <div class="c8-city-content">
+                <h3>London, UK</h3>
+                <p>European Markets</p>
+              </div>
+            </div>
+            <div class="c8-city-card" data-reveal="up">
+              <img src="/images/culture-row-2.jpg" alt="Bangalore" class="c8-city-bg" />
+              <div class="c8-city-content">
+                <h3>Bangalore, India</h3>
+                <p>Engineering Core</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. FINAL CTA -->
+      <FinalCta 
+        light="Let's build" 
+        bold="an empire." 
+        subtitle="Partner with the agency that executes at the highest level." 
+        image="/images/header-3.jpg" 
+      />
+
     </main>
 
     <Footer />
-
     <WhatsAppButton />
-
-    <!-- Global scroll-reveal controller -->
     <ScrollReveal />
 
     <script>
@@ -68,8 +292,93 @@ import ScrollReveal    from '../components/ScrollReveal.astro';
     </script>
 
     <style is:global>
-      body { margin: 0; background: var(--color-bg); }
-      main { position: relative; z-index: 1; }
+      /* --- ABOUT PAGE CUSTOM KOTA-THEME STYLES --- */
+      body { margin: 0; background: var(--color-bg); color: var(--color-ink); }
+      .c8-internal { position: relative; z-index: 1; width: 100%; }
+      .c8-container { max-width: 1600px; margin: 0 auto; padding: 0 clamp(1.5rem, 6vw, 6rem); }
+      
+      /* Typography System */
+      .c8-heading-massive { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 7.5rem); font-weight: 350; line-height: 0.95; letter-spacing: -0.03em; }
+      .text-center { text-align: center; }
+      .c8-heading-large { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 350; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+      .c8-heading-medium { font-family: var(--font-display); font-size: clamp(1.5rem, 2.5vw, 2.2rem); font-weight: 350; line-height: 1.1; margin-bottom: 1rem; }
+      .c8-heading-small { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; margin-bottom: 0.5rem; }
+      .c8-paragraph { font-family: var(--montreal); font-size: clamp(1.1rem, 1.5vw, 1.4rem); line-height: 1.5; color: var(--color-ink); opacity: 0.8; margin-bottom: 1.5rem; }
+      .c8-paragraph-large { font-family: var(--montreal); font-size: clamp(1.3rem, 2vw, 1.8rem); line-height: 1.4; color: var(--color-ink); opacity: 0.9; }
+      .c8-paragraph-small { font-family: var(--montreal); font-size: 1rem; line-height: 1.5; color: var(--color-ink); opacity: 0.75; }
+      .c8-eyebrow { font-family: var(--montreal); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--c8-gold-dark, #b5924f); margin-bottom: 1rem; }
+      .c8-gold-text { color: var(--c8-gold-dark, #b5924f); }
+      .c8-text-center { text-align: center; margin-left: auto; margin-right: auto; max-width: 1000px; }
+      
+      /* NEW EDITORIAL HERO (Light Animated Background) */
+      .c8-about-hero-editorial { padding: clamp(10rem, 18vh, 15rem) 0 clamp(5rem, 10vh, 8rem); position: relative; overflow: hidden; }
+      
+      .c8-hero-light-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+      .c8-hero-light-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; animation: heroSlowZoom 25s linear infinite alternate; }
+      .c8-hero-light-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,1) 100%); }
+      @keyframes heroSlowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
+
+      .c8-editorial-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: end; position: relative; z-index: 2; }
+      @media (max-width: 900px) { .c8-editorial-grid { grid-template-columns: 1fr; gap: 2rem; } }
+      .c8-editorial-image-wrapper { position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.08); background: #ffffff; padding: 2rem; }
+      .c8-editorial-image { width: 100%; height: auto; max-height: 500px; object-fit: contain; display: block; mix-blend-mode: multiply; }
+      
+      .c8-hero-clients { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); }
+      .c8-client-text { font-family: var(--montreal); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); opacity: 0.6; margin-right: 1rem; }
+      .c8-client-logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--color-ink); letter-spacing: -0.02em; }
+      .c8-client-sep { color: var(--c8-gold-dark); opacity: 0.5; }
+      .c8-hero-badge { position: absolute; bottom: 2rem; left: -2rem; background: var(--color-bg); padding: 1.5rem 2.5rem; border-radius: 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
+      @media (max-width: 900px) { .c8-hero-badge { left: 1rem; bottom: 1rem; } }
+      .c8-badge-number { font-family: var(--font-display); font-size: 2.5rem; color: var(--c8-gold-dark); font-weight: 500; line-height: 1; margin-bottom: 0.3rem; }
+      .c8-badge-text { font-family: var(--montreal); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-ink); opacity: 0.8; font-weight: 600; }
+      .c8-hero-sub-text { max-width: 1000px; margin-top: 5rem; padding-left: clamp(1rem, 5vw, 4rem); border-left: 2px solid var(--c8-gold-dark); }
+
+      /* Spacing */
+      .c8-about-culture, .c8-about-edge, .c8-about-presence, .c8-about-reality, .c8-about-delivery { padding: clamp(5rem, 10vh, 10rem) 0; }
+      
+      /* Sales Delivery Boast */
+      .c8-delivery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+      @media (max-width: 900px) { .c8-delivery-grid { grid-template-columns: 1fr; } }
+      .c8-delivery-card { background: var(--color-bg); padding: 4rem 3rem; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 40px rgba(0,0,0,0.03); transition: transform 0.4s ease, box-shadow 0.4s ease; text-align: center; }
+      .c8-delivery-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); border-color: rgba(218, 158, 73, 0.3); }
+      .c8-delivery-number { font-family: var(--font-display); font-size: clamp(3.5rem, 5vw, 5rem); color: var(--c8-gold-dark); font-weight: 350; line-height: 1; margin-bottom: 1.5rem; }
+      .c8-delivery-card .c8-heading-medium { margin-bottom: 1rem; }
+      
+      /* Split Layout (Culture) */
+      .c8-split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(4rem, 8vw, 8rem); align-items: center; }
+      @media (max-width: 900px) { .c8-split-layout { grid-template-columns: 1fr; } .c8-reverse-mobile .c8-split-text { order: 2; } }
+      .c8-split-images { position: relative; height: 600px; }
+      .c8-img-main { position: absolute; top: 0; right: 0; width: 85%; height: 75%; object-fit: cover; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+      .c8-img-sub { position: absolute; bottom: 0; left: 0; width: 65%; height: 55%; object-fit: cover; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 12px solid var(--color-bg); }
+
+      /* Bento Grid (What we do) */
+      .c8-bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+      @media (max-width: 1000px) { .c8-bento-grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 600px) { .c8-bento-grid { grid-template-columns: 1fr; } }
+      .c8-bento-card { background: var(--color-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.4s ease; }
+      .c8-bento-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+      .c8-bento-image { height: 250px; overflow: hidden; }
+      .c8-bento-image img, .c8-bento-image video { width: 100%; height: 100%; object-fit: cover; }
+      .c8-bento-content { padding: 2.5rem; }
+
+      /* List */
+      .c8-list { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-direction: column; gap: 2rem; }
+      .c8-list li { display: flex; gap: 1.5rem; }
+      .c8-list-num { font-family: var(--font-display); font-size: 1.5rem; color: var(--c8-gold-dark, #b5924f); }
+
+      /* City Cards */
+      .c8-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem; }
+      @media (max-width: 1100px) { .c8-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 600px) { .c8-grid-4 { grid-template-columns: 1fr; } }
+      .c8-city-card { position: relative; height: 350px; border-radius: 20px; overflow: hidden; }
+      .c8-city-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+      .c8-city-card:hover .c8-city-bg { transform: scale(1.05); }
+      .c8-city-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%); }
+      .c8-city-content { position: absolute; bottom: 0; left: 0; padding: 2rem; z-index: 2; color: #fff; }
+      .c8-city-content h3 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; margin: 0 0 0.5rem; }
+      .c8-city-content p { font-family: var(--montreal); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c8-gold-dark, #b5924f); margin: 0; }
+
+
     </style>
   </body>
 </html>

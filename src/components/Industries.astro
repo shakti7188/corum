@@ -48,9 +48,9 @@ const industries: Industry[] = [
     href: '/industries/web3',
     accent: '#F2BF22',
     images: [
-      { src: u('1644361566696-3d442b5b482a'), alt: 'Web3 token concept' },
-      { src: u('1639762681485-074b7f938ba0'), alt: 'Cryptocurrency coins' },
-      { src: u('1518544801976-3e159e50e5bb'), alt: 'Trading dashboard' },
+      { src: u('1622630998477-20aa696ecb05'), alt: 'Bitcoin coin on a laptop keyboard' },
+      { src: u('1639152201720-5e536d254d81'), alt: 'Ethereum logo in three dimensions' },
+      { src: u('1631603090989-93f9ef6f9d80'), alt: 'Pile of gold Bitcoin coins' },
     ],
   },
   {
@@ -145,7 +145,7 @@ const industries: Industry[] = [
     images: [
       { src: u('1581091226825-a6a2a5aee158'), alt: 'Robotic arm in factory' },
       { src: u('1535378917042-10a22c95931a'), alt: 'Robot face detail' },
-      { src: u('1565008576549-57569a49371d'), alt: 'Industrial automation' },
+      { src: u('1535868463750-c78d9543614f'), alt: 'Industrial robot arm' },
     ],
   },
 ];
@@ -173,7 +173,6 @@ const industries: Industry[] = [
               aria-controls={`c8-ind-panel-${idx}`}
               data-ind-index={idx}
             >
-              <span class="c8-ind__title-num">{i.num}</span>
               <span class="c8-ind__title-name">{i.name}</span>
               <span class="c8-ind__title-tag">{i.tagline}</span>
               <span class="c8-ind__progress" aria-hidden="true"><span class="c8-ind__progress-bar"></span></span>
@@ -202,7 +201,7 @@ const industries: Industry[] = [
             </div>
 
             <div class="c8-ind__body">
-              <span class="c8-ind__body-num">{i.num} · {i.tagline}</span>
+              <span class="c8-ind__body-num">{i.tagline}</span>
               <h3 class="c8-ind__body-name">{i.name}</h3>
               <p class="c8-ind__body-blurb">{i.blurb}</p>
               <ul class="c8-ind__body-points">
@@ -409,22 +408,29 @@ const industries: Industry[] = [
     to   { transform: scaleX(1); }
   }
 
-  /* ── RIGHT — stage ── */
+  /* ── RIGHT — stage ──
+     All slides share a single grid cell so the stage auto-sizes to
+     the tallest slide's content (no fixed min-height needed and the
+     CTA at the bottom of the body never gets clipped). Active slide
+     fades to opacity 1; the rest stay at 0 but still occupy layout
+     so the cell measures correctly. */
   .c8-ind__stage {
     position: relative;
     border-radius: 18px;
     overflow: hidden;
     background: linear-gradient(180deg, #0e0e0e 0%, #050505 100%);
-    min-height: 580px;
+    display: grid;
+    grid-template-columns: 1fr;
     box-shadow:
       0 30px 60px -28px rgba(0, 0, 0, 0.5),
       0 0 0 1px rgba(255, 255, 255, 0.06);
   }
   .c8-ind__slide {
-    position: absolute;
-    inset: 0;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
     display: flex;
     flex-direction: column;
+    width: 100%;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);

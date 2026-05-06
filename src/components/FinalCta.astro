@@ -49,13 +49,14 @@ const {
   .FinalCta_wrapper {
     position: relative;
     width: 100%;
-    min-height: 80vh;
+    min-height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--color-bg-dark);
     overflow: hidden;
-    padding: 8rem 0;
+    padding-block: var(--c8-pad-section-tall);
+    padding-inline: 0;
   }
 
   .FinalCta_imageBackground {
@@ -172,6 +173,6 @@ const {
   }
 
   @media (max-width: 1024px) {
-    .FinalCta_wrapper { padding: 6rem 1.5rem; min-height: 70vh; }
+    .FinalCta_wrapper { padding-inline: 1.5rem; min-height: 60vh; }
   }
 </style>

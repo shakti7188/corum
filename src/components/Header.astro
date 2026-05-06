@@ -418,70 +418,9 @@
         </div>
       </div>
 
-      <!-- ── Resources Mega Menu ── -->
-      <div class="nav-item" id="navResources">
-        <a href="/resources" class="nav-link">
-          Resources <i data-lucide="chevron-down" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-left:2px;"></i>
-        </a>
-        <div class="mega-menu">
-          <div class="mega-menu-inner mega-menu-inner--compact">
-
-            <div class="mega-menu-category">
-              <div class="mega-menu-category-title">Work Showcase</div>
-              <a href="/case-studies" class="mega-menu-link">
-                <i data-lucide="trophy"></i>
-                <div class="mega-menu-link-text">
-                  <span class="mega-menu-link-name">Case Studies</span>
-                  <span class="mega-menu-link-desc">Outcome-led proof across Binance, Cashaa, Fanadise, KuCoin and more</span>
-                </div>
-              </a>
-              <a href="/gallery" class="mega-menu-link">
-                <i data-lucide="image"></i>
-                <div class="mega-menu-link-text">
-                  <span class="mega-menu-link-name">Gallery</span>
-                  <span class="mega-menu-link-desc">Visual portfolio — launches, brand systems, and campaign creative</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="mega-menu-category">
-              <div class="mega-menu-category-title">Content &amp; Knowledge</div>
-              <a href="/blog" class="mega-menu-link">
-                <i data-lucide="rss"></i>
-                <div class="mega-menu-link-text">
-                  <span class="mega-menu-link-name">Blog</span>
-                  <span class="mega-menu-link-desc">Field notes on Web3, AI and fintech marketing &amp; development</span>
-                </div>
-              </a>
-              <a href="/insights" class="mega-menu-link">
-                <i data-lucide="lightbulb"></i>
-                <div class="mega-menu-link-text">
-                  <span class="mega-menu-link-name">Insights</span>
-                  <span class="mega-menu-link-desc">Deep analysis on market trends, launches, and growth mechanics</span>
-                </div>
-              </a>
-              <a href="/guides" class="mega-menu-link">
-                <i data-lucide="book-open"></i>
-                <div class="mega-menu-link-text">
-                  <span class="mega-menu-link-name">Guides</span>
-                  <span class="mega-menu-link-desc">Practical playbooks for founders running launches and raising capital</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="mega-menu-cta">
-              <div class="mega-menu-cta-label">Talk to Us</div>
-              <div>
-                <h4>Field notes from a decade of execution</h4>
-                <p>10+ years shipping product and campaigns. Talk to a strategist who's done the work.</p>
-              </div>
-              <a href="/contact" class="c8-btn c8-btn-gold c8-btn-sm">
-                Talk to a Strategist <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-              </a>
-            </div>
-
-          </div>
-        </div>
+      <!-- ── Case Studies (simple link — no dropdown) ── -->
+      <div class="nav-item" id="navCaseStudies">
+        <a href="/case-studies" class="nav-link">Case Studies</a>
       </div>
 
       <!-- ── About (simple link — no dropdown) ── -->
@@ -508,7 +447,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="/services/marketing" class="mobile-nav-link">Marketing</a>
   <a href="/services/development" class="mobile-nav-link">Development</a>
-  <a href="/resources" class="mobile-nav-link">Resources</a>
+  <a href="/case-studies" class="mobile-nav-link">Case Studies</a>
   <a href="/about" class="mobile-nav-link">About</a>
   <a href="/contact" class="mobile-nav-link">Contact</a>
   <a href="/contact" class="c8-btn c8-btn-gold mobile-nav-link" style="margin-top:1rem;">Book a Strategy Call</a>
@@ -607,7 +546,7 @@
   }
 
   .nav-link {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-display);
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--nb-text-secondary);
@@ -639,6 +578,7 @@
     gap: 8px;
     padding: 10px 24px;
     border-radius: var(--nb-radius-pill);
+    font-family: var(--font-display);
     font-size: 0.875rem;
     font-weight: 600;
     color: #111;
@@ -837,7 +777,7 @@
     justify-content: center;
     gap: 8px;
     padding: 14px 32px;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-display);
     font-size: 0.9rem;
     font-weight: 600;
     border-radius: var(--nb-radius-pill);
@@ -898,7 +838,7 @@
   }
   .mobile-menu.open { clip-path: inset(0 0 0 0); }
   .mobile-menu .mobile-nav-link {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(1.6rem, 4vw, 2.4rem);
     font-weight: 700;
     color: var(--nb-text-primary);

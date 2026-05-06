@@ -74,6 +74,16 @@
   --c8-section-max: 1320px;
   --c8-section-pad: clamp(1.5rem, 5vw, 5rem);
 
+  /* Section vertical rhythm — three tiers covering every block on the page.
+     Goal: every standard section breathes at the same cadence, big "bookend"
+     sections (finale, anchor blocks) get a touch more air, and transitional
+     strips (logo bars) sit tight so the eye doesn't lose the page's pulse.
+     Use these via `padding-block: var(--c8-pad-section)` etc. — never hand-
+     roll a section padding clamp again. */
+  --c8-pad-section:       clamp(4.5rem, 9vh, 7rem);
+  --c8-pad-section-tall:  clamp(6rem, 11vh, 8.5rem);
+  --c8-pad-section-tight: clamp(2.5rem, 5vh, 3.5rem);
+
   /* Motion */
   --ease-primary: cubic-bezier(0.75, 0, 0.25, 1);
   --dur-fast: 0.25s;
