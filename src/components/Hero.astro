@@ -604,35 +604,6 @@
       animateStat(el, 1150 + i * 180);
     });
 
-    /* ── Cursor-following gold glow (pointer devices only) ── */
-    if (section && window.matchMedia('(pointer: fine)').matches && !mq.matches) {
-      var targetX = 82, targetY = 28;
-      var currentX = 82, currentY = 28;
-      var rafId = null;
-
-      function render() {
-        currentX += (targetX - currentX) * 0.08;
-        currentY += (targetY - currentY) * 0.08;
-        section.style.setProperty('--c8-hero-cx', currentX.toFixed(2) + '%');
-        section.style.setProperty('--c8-hero-cy', currentY.toFixed(2) + '%');
-        if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
-          rafId = requestAnimationFrame(render);
-        } else {
-          rafId = null;
-        }
-      }
-
-      section.addEventListener('mousemove', function (e) {
-        var rect = section.getBoundingClientRect();
-        targetX = ((e.clientX - rect.left) / rect.width) * 100;
-        targetY = ((e.clientY - rect.top)  / rect.height) * 100;
-        if (!rafId) rafId = requestAnimationFrame(render);
-      });
-
-      section.addEventListener('mouseleave', function () {
-        targetX = 82; targetY = 28;
-        if (!rafId) rafId = requestAnimationFrame(render);
-      });
-    }
+    /* Cursor-following gold glow removed as veil is now a flat overlay */
   })();
 </script>

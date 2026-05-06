@@ -93,7 +93,7 @@ const articles: Article[] = [
           {articles.map((a) => (
             <article class={`c8-pr__article ${a.cls}`}>
               <header class="c8-pr__article-meta">
-                <img src={a.logo} alt="" class={`c8-pr__article-logo${a.invertLogo ? ' c8-pr__article-logo--invert' : ''}`} />
+                <img src={a.logo} alt="" class={`c8-pr__article-logo${a.invertLogo ? ' c8-pr__article-logo--invert' : ''}`} loading="lazy" />
                 <span class="c8-pr__article-time">{a.meta}</span>
               </header>
               <p class="c8-pr__article-headline">{a.headline}</p>
